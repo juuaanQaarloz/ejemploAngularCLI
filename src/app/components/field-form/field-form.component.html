@@ -1,1 +1,17 @@
-<p>field-form works!</p>
+<div [formGroup]="form">
+  <label [attr.for]="field.id">{{field.label}}</label>
+  <div [ngSwitch]="field.controlType">
+    <input *ngSwitchCase="'textbox'" [formControlName]="field.name"
+            [id]="field.id" [type]="field.type">
+    <select *ngSwitchCase="'dropdown'" [formControlName]="field.name"
+            [id]="field.id">
+      <option *ngFor="let opt of field.options" [value]="opt.key">{{opt.value}}</option>
+
+      <input *ngSwitchCase="'checkbox'" [formControlName]="field.name"
+            [id]="field.id" type="checkbox" [value]="field.value">
+
+    </select>
+  </div>
+
+  <!--<div [ngClass]="field.messageClass" *ngIf="!isValid">{{field.message}}</div>-->
+</div>

@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-application',
@@ -6,6 +6,7 @@ import {Component, HostListener, OnInit} from '@angular/core';
   styleUrls: ['./application.component.css']
 })
 export class ApplicationComponent implements OnInit {
+  title = 'Meta Life Nuevo Negocio';
 
   constructor() { }
 

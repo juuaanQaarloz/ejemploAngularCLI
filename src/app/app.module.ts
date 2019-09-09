@@ -7,6 +7,7 @@ import { FieldFormComponent } from './components/field-form/field-form.component
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TrackScrollDirective } from './directives/track-scroll.directive';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TrackScrollDirective } from './directives/track-scroll.directive';
     TrackScrollDirective
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
