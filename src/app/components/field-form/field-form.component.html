@@ -1,22 +1,23 @@
-<div data-forms="floating-label" class="ml-form">
+<div [formGroup]="form" data-forms="floating-label" class="ml-form">
   <div [ngSwitch]="fieldObj.type">
 
     <fieldset *ngSwitchCase="'text'" class="ml-form-field">
       <label>
-        <input type="text" onkeyup="this.setAttribute('value', this.value);"
-               value="">
+        <input type="text" [formControlName]="fieldObj.name" [id]="fieldObj.id" [value]="fieldObj.value" value="">
         <span>{{fieldObj.label}}</span>
         <div class="ml-form-field-errortext">{{fieldObj.message}}</div>
       </label>
     </fieldset>
 
-    <fieldset *ngSwitchCase="'select'" class="ml-form-field ml-form-field-select">
-          <select class="form-dropdown" name="Options">
-            <option disabled selected>Select an Option</option>
-            <option value="Option A">Option A</option>
-            <option value="Option B">Option B</option>
-            <option value="Option C">Option C</option>
+    <fieldset *ngSwitchCase="'select'" class="ml-form-field">
+        <label>
+          <select name="Options" (change)="onChangeSelect($event)" [formControlName]="fieldObj.name" [id]="fieldObj.id">
+            <option selected>{{fieldObj.label}}</option>
+            <option value="Fperson">Persona Física</option>
+            <option value="Mperson">Persona Moral</option>
           </select>
+          <span *ngIf="showSelectLabel">{{fieldObj.label}}</span>
+        </label>
     </fieldset>
 
     <fieldset *ngSwitchCase="'radio'" class="ml-form-field ml-form-field-radio">

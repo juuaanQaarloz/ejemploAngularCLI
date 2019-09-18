@@ -1,10 +1,4 @@
-<!--<p>application component work!</p>-->
-<div *ngFor="let operation of MockOperations">
-  <app-operation-form [operationObj]="operation"></app-operation-form>
-</div>
-<!--<app-field-form></app-field-form>-->
-
-<div *ngFor="let field of MockFields">
-  <app-field-form [fieldObj]="field"></app-field-form>
+<div *ngFor="let section of applicationObj.sections">
+  <app-section-form [form]="formGroup" [sectionObj]="section"></app-section-form>
 </div>
 

@@ -10,9 +10,19 @@ import {FormGroup} from '@angular/forms';
 export class FieldFormComponent implements OnInit {
   @Input() fieldObj: FieldInterface;
   @Input() form: FormGroup;
+  showSelectLabel = false;
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onChangeSelect(event) {
+    console.log('event.target.value: ', event.target.value);
+    if (event.target.value !== this.fieldObj.label) {
+      this.showSelectLabel = true;
+    } else {
+      this.showSelectLabel = false;
+    }
   }
 
 }

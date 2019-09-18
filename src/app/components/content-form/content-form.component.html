@@ -1,0 +1,13 @@
+<div style="border:1px solid black;">
+  <p>content component works!</p>
+  <div *ngIf="contentObj.fields">
+    <div *ngFor="let field of contentObj.fields">
+      <app-field-form [form]="form" [fieldObj]="field"></app-field-form>
+    </div>
+  </div>
+
+  <div *ngIf="contentObj.process">
+    <app-process-form [form]="form" [processObj]="contentObj.process"></app-process-form>
+  </div>
+</div>
+

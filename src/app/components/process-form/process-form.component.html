@@ -1,1 +1,7 @@
-<p>process-form works!</p>
+
+<div style="border:1px solid black;">
+  <p>process-form works!</p>
+  <div *ngFor="let step of processObj.steps">
+    <app-step-form [form]="form" [stepObj]="step"></app-step-form>
+  </div>
+</div>

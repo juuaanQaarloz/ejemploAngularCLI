@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {OperationsInterface} from '../../models/operations-interface';
-import {FieldInterface} from '../../models/field-interface';
+import {MockApplication} from '../../mock/mock-data';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-application',
@@ -8,145 +8,33 @@ import {FieldInterface} from '../../models/field-interface';
   styleUrls: ['./application.component.css']
 })
 export class ApplicationComponent implements OnInit {
-  MockOperations: OperationsInterface[] = [
-    {
-      id: '1',
-      name: 'btnGuardarCerrar',
-      label: 'GUARDAR Y CERRAR',
-      type: 'button',
-      style: '',
-      styleClass: 'ml-button-primary',
-      message: '',
-      messageClass: '',
-      delegateOperation: 'saveApplication',
-      renderConditions: '',
-      enableConditions: '',
-    },
-    {
-      id: '2',
-      name: 'btnValidate',
-      label: 'VALIDAR',
-      type: 'button',
-      style: '',
-      styleClass: 'ml-button-secondary',
-      message: '',
-      messageClass: '',
-      delegateOperation: 'validateApplication',
-      renderConditions: '',
-      enableConditions: '',
-    },
-    {
-      id: '3',
-      name: 'linkCancelar',
-      label: 'Cancelar',
-      type: 'link',
-      style: '',
-      styleClass: 'ml-link',
-      message: '',
-      messageClass: '',
-      delegateOperation: 'cancelApplication',
-      renderConditions: '',
-      enableConditions: '',
-    }
-  ];
-
-  MockFields: FieldInterface[] = [
-    {
-      id: '1',
-      name: 'nameText',
-      orderAppearance: 1,
-      label: 'Nombre(s)',
-      type: 'text',
-      required: '',
-      placeholder: 'Nombre(s)',
-      length: '',
-      minValue: 0,
-      maxValue: 0,
-      pattern: '',
-      source: '',
-      sourceID: '',
-      style: '',
-      styleClass: '',
-      message: '',
-      messageClass: '',
-      renderConditions: '',
-      enableConditions: '',
-      entity: '',
-      entityField: '',
-    },
-    {
-      id: '2',
-      name: 'sexSelect',
-      orderAppearance: 2,
-      label: 'Sexo',
-      type: 'select',
-      required: '',
-      placeholder: '',
-      length: '',
-      minValue: 0,
-      maxValue: 0,
-      pattern: '',
-      source: '',
-      sourceID: '',
-      style: '',
-      styleClass: '',
-      message: '',
-      messageClass: '',
-      renderConditions: '',
-      enableConditions: '',
-      entity: '',
-      entityField: '',
-    },
-    {
-      id: '3',
-      name: 'yes/noQuestion',
-      orderAppearance: 2,
-      label: '¿Usted fuma?',
-      type: 'radio',
-      required: '',
-      placeholder: '',
-      length: '',
-      minValue: 0,
-      maxValue: 0,
-      pattern: '',
-      source: '',
-      sourceID: '',
-      style: '',
-      styleClass: '',
-      message: '',
-      messageClass: '',
-      renderConditions: '',
-      enableConditions: '',
-      entity: '',
-      entityField: '',
-    },
-    {
-      id: '4',
-      name: 'termsConditionsCheck',
-      orderAppearance: 4,
-      label: 'Acepto terminos y condiciones',
-      type: 'checkbox',
-      required: '',
-      placeholder: '',
-      length: '',
-      minValue: 0,
-      maxValue: 0,
-      pattern: '',
-      source: '',
-      sourceID: '',
-      style: '',
-      styleClass: '',
-      message: '',
-      messageClass: '',
-      renderConditions: '',
-      enableConditions: '',
-      entity: '',
-      entityField: '',
-    },
-  ];
+  applicationObj = MockApplication;
+  formGroup: FormGroup;
   constructor() { }
 
   ngOnInit() {
+    this.formGroup = this.toFormGroup();
   }
 
+  toFormGroup() {
+    const group: any = {};
+    this.applicationObj.sections.forEach(section => {
+      if (section.content.fields) {
+        section.content.fields.forEach(field => {
+          group[field.name] = field.required ? new FormControl(field.value || '', Validators.required)
+            : new FormControl(field.value || '');
+        });
+      } else {
+        if (section.content.process){
+          section.content.process.steps.forEach(step => {
+            step.content.fields.forEach(field => {
+              group[field.name] = field.required ? new FormControl(field.value || '', Validators.required)
+                : new FormControl(field.value || '');
+            });
+          });
+        }
+      }
+    });
+    return new FormGroup(group);
+  }
 }

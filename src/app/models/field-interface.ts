@@ -20,4 +20,5 @@ export interface FieldInterface {
   enableConditions: string;
   entity: string;
   entityField: string;
+  value?: string;
 }

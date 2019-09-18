@@ -1,8 +1,10 @@
 import {ProcessInterface} from './process-interface';
+import {FieldInterface} from './field-interface';
+import {OperationsInterface} from './operations-interface';
 
 export interface ContentInterface {
-  fields?: Array<any>;
+  fields?: Array<FieldInterface>;
   process?: ProcessInterface;
-  operations?: Array<any>;
+  operations?: Array<OperationsInterface>;
   renderConditions: string;
 }
