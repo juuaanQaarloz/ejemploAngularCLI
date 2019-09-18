@@ -26,7 +26,10 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "src/assets/patterns/js/app.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -91,7 +94,10 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.min.js",
+              "src/assets/patterns/js/app.js"
+            ]
           }
         },
         "lint": {

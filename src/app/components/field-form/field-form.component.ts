@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Field} from '../../models/Field';
+import {FieldInterface} from '../../models/field-interface';
 import {FormGroup} from '@angular/forms';
 
 @Component({
@@ -8,7 +8,7 @@ import {FormGroup} from '@angular/forms';
   styleUrls: ['./field-form.component.css']
 })
 export class FieldFormComponent implements OnInit {
-  @Input() field: Field<any>;
+  @Input() fieldObj: FieldInterface;
   @Input() form: FormGroup;
   constructor() { }
 

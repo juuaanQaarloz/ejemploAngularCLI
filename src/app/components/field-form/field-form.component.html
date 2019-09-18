@@ -1,17 +1,47 @@
-<div [formGroup]="form">
-  <label [attr.for]="field.id">{{field.label}}</label>
-  <div [ngSwitch]="field.controlType">
-    <input *ngSwitchCase="'textbox'" [formControlName]="field.name"
-            [id]="field.id" [type]="field.type">
-    <select *ngSwitchCase="'dropdown'" [formControlName]="field.name"
-            [id]="field.id">
-      <option *ngFor="let opt of field.options" [value]="opt.key">{{opt.value}}</option>
+<div data-forms="floating-label" class="ml-form">
+  <div [ngSwitch]="fieldObj.type">
 
-      <input *ngSwitchCase="'checkbox'" [formControlName]="field.name"
-            [id]="field.id" type="checkbox" [value]="field.value">
+    <fieldset *ngSwitchCase="'text'" class="ml-form-field">
+      <label>
+        <input type="text" onkeyup="this.setAttribute('value', this.value);"
+               value="">
+        <span>{{fieldObj.label}}</span>
+        <div class="ml-form-field-errortext">{{fieldObj.message}}</div>
+      </label>
+    </fieldset>
 
-    </select>
+    <fieldset *ngSwitchCase="'select'" class="ml-form-field ml-form-field-select">
+          <select class="form-dropdown" name="Options">
+            <option disabled selected>Select an Option</option>
+            <option value="Option A">Option A</option>
+            <option value="Option B">Option B</option>
+            <option value="Option C">Option C</option>
+          </select>
+    </fieldset>
+
+    <fieldset *ngSwitchCase="'radio'" class="ml-form-field ml-form-field-radio">
+      <legend>Time Frame:</legend>
+      <div class="ml-form-field-radio-group">
+        <input id="overnight" type="radio" name="time" value="overnight">
+        <label for="overnight">Overnight</label>
+      </div>
+      <div class="ml-form-field-radio-group">
+        <input id="sixtyday" type="radio" name="time" value="sixtyday">
+        <label for="sixtyday">60 Days</label>
+      </div>
+    </fieldset>
+
+    <fieldset *ngSwitchCase="'checkbox'" class="ml-form-field ml-form-field-checkboxes">
+      <legend>Time Frame:</legend>
+      <div class="ml-form-field-checkboxes-group">
+        <input id="lorem2" type="checkbox" name="lorem" value="lorem2">
+        <label for="lorem2">Overnight</label>
+      </div>
+      <div class="ml-form-field-checkboxes-group">
+        <input id="lorem1" type="checkbox" name="lorem" value="lorem1">
+        <label for="lorem1">Lorem itsum dolor sit amet</label>
+      </div>
+    </fieldset>
+
   </div>
-
-  <!--<div [ngClass]="field.messageClass" *ngIf="!isValid">{{field.message}}</div>-->
 </div>

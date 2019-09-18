@@ -1,9 +1,10 @@
-<!--header-->
-<app-header></app-header>
+<!--<p>application component work!</p>-->
+<div *ngFor="let operation of MockOperations">
+  <app-operation-form [operationObj]="operation"></app-operation-form>
+</div>
+<!--<app-field-form></app-field-form>-->
 
-<div>
-  <h2>{{title}}</h2>
+<div *ngFor="let field of MockFields">
+  <app-field-form [fieldObj]="field"></app-field-form>
 </div>
 
-<!--footer-->
-<app-footer></app-footer>
