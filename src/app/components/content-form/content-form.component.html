@@ -1,7 +1,7 @@
 <div style="border:1px solid black;">
   <p>content component works!</p>
   <div *ngIf="contentObj.fields">
-    <div *ngFor="let field of contentObj.fields">
+    <div *ngFor="let field of contentObj.fields" style="display: inline-block">
       <app-field-form [form]="form" [fieldObj]="field"></app-field-form>
     </div>
   </div>
@@ -9,5 +9,11 @@
   <div *ngIf="contentObj.process">
     <app-process-form [form]="form" [processObj]="contentObj.process"></app-process-form>
   </div>
+
+  <div *ngIf="payLoad" class="form-row">
+    <strong>Saved the following values</strong><br>{{payLoad}}
+  </div>
+
+  <button (click)="getFormValue()">get form value</button>
 </div>
 

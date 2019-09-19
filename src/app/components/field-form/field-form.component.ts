@@ -25,4 +25,8 @@ export class FieldFormComponent implements OnInit {
     }
   }
 
+  setAttribute(event) {
+    this.fieldObj.value = event.target.value;
+  }
+
 }

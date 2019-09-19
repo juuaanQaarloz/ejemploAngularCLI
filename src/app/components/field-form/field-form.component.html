@@ -3,13 +3,16 @@
 
     <fieldset *ngSwitchCase="'text'" class="ml-form-field">
       <label>
-        <input type="text" [formControlName]="fieldObj.name" [id]="fieldObj.id" [value]="fieldObj.value" value="">
+        <input type="text" [formControlName]="fieldObj.name" [id]="fieldObj.id"
+               value=""
+               placeholder="{{fieldObj.placeholder}}"
+               onkeyup="this.setAttribute('value',this.value)">
         <span>{{fieldObj.label}}</span>
         <div class="ml-form-field-errortext">{{fieldObj.message}}</div>
       </label>
     </fieldset>
 
-    <fieldset *ngSwitchCase="'select'" class="ml-form-field">
+    <fieldset *ngSwitchCase="'select'" class="ml-form-field ml">
         <label>
           <select name="Options" (change)="onChangeSelect($event)" [formControlName]="fieldObj.name" [id]="fieldObj.id">
             <option selected>{{fieldObj.label}}</option>
