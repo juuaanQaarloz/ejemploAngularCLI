@@ -4,7 +4,7 @@ export interface FieldInterface {
   orderAppearance: number;
   label: string;
   type: string;
-  required: string;
+  required: boolean;
   placeholder: string;
   length: string;
   minValue: number;

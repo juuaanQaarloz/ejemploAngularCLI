@@ -14,26 +14,22 @@
 
     <fieldset *ngSwitchCase="'select'" class="ml-form-field ml">
         <label>
-          <select name="Options" (change)="onChangeSelect($event)" [formControlName]="fieldObj.name" [id]="fieldObj.id">
-            <option selected>{{fieldObj.label}}</option>
-            <option value="Fperson">Persona Física</option>
-            <option value="Mperson">Persona Moral</option>
+          <select name="{{fieldObj.label}}" (change)="onChangeSelect($event)" [formControlName]="fieldObj.name" [id]="fieldObj.id">
+            <option value="" [selected]="isSelected"> {{fieldObj.label}} </option>
+            <option *ngFor="let opt of getSelectOptions(fieldObj.source, fieldObj.sourceID)" [value]="opt.code">{{opt.name}}</option>
           </select>
           <span *ngIf="showSelectLabel">{{fieldObj.label}}</span>
         </label>
     </fieldset>
 
-    <fieldset *ngSwitchCase="'radio'" class="ml-form-field ml-form-field-radio">
-      <legend>Time Frame:</legend>
-      <div class="ml-form-field-radio-group">
-        <input id="overnight" type="radio" name="time" value="overnight">
-        <label for="overnight">Overnight</label>
-      </div>
-      <div class="ml-form-field-radio-group">
-        <input id="sixtyday" type="radio" name="time" value="sixtyday">
-        <label for="sixtyday">60 Days</label>
-      </div>
-    </fieldset>
+      <fieldset *ngSwitchCase="'radio'" class="ml-form-field ml-form-field-radio table">
+          <label>{{fieldObj.label}}</label>
+
+          <div class="ml-form-field-radio-group" *ngFor="let radioOpt of getRadioOptions(fieldObj.source, fieldObj.sourceID)">
+            <input type="radio" [formControlName]="fieldObj.name" [id]="radioOpt.id" [value]="radioOpt.value" >
+            <label>{{radioOpt.name}}</label>
+          </div>
+      </fieldset>
 
     <fieldset *ngSwitchCase="'checkbox'" class="ml-form-field ml-form-field-checkboxes">
       <legend>Time Frame:</legend>

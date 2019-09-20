@@ -11,6 +11,7 @@ export class FieldFormComponent implements OnInit {
   @Input() fieldObj: FieldInterface;
   @Input() form: FormGroup;
   showSelectLabel = false;
+  isSelected = true;
   constructor() { }
 
   ngOnInit() {
@@ -18,15 +19,48 @@ export class FieldFormComponent implements OnInit {
 
   onChangeSelect(event) {
     console.log('event.target.value: ', event.target.value);
-    if (event.target.value !== this.fieldObj.label) {
-      this.showSelectLabel = true;
-    } else {
+    if (event.target.value === '') {
       this.showSelectLabel = false;
+    } else {
+      this.showSelectLabel = true;
     }
   }
 
-  setAttribute(event) {
-    this.fieldObj.value = event.target.value;
+  getSelectOptions(source, sourceID) {
+    let options = [];
+
+    options.push(
+      {
+        id: 0,
+        name: 'Mujer',
+        code: 'F'
+      }
+    );
+    options.push(
+      {
+        id: 1,
+        name: 'Hombre',
+        code: 'M'
+      }
+    );
+
+    return options;
   }
 
+  getRadioOptions(source, sourceID) {
+    let options = [];
+    options.push({
+      id: 0,
+      name: 'Si',
+      value: 'Si'
+    });
+    options.push({
+      id: 1,
+      name: 'No',
+      value: 'No'
+    });
+    return options;
+  }
 }
+
+

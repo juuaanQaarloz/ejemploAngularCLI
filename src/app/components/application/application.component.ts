@@ -25,7 +25,7 @@ export class ApplicationComponent implements OnInit {
             : new FormControl(field.value || '');
         });
       } else {
-        if (section.content.process){
+        if (section.content.process) {
           section.content.process.steps.forEach(step => {
             step.content.fields.forEach(field => {
               group[field.name] = field.required ? new FormControl(field.value || '', Validators.required)
