@@ -1,7 +1,8 @@
 <div [formGroup]="form" data-forms="floating-label" class="ml-form">
   <div [ngSwitch]="fieldObj.type">
 
-    <fieldset *ngSwitchCase="'text'" class="ml-form-field">
+    <fieldset *ngSwitchCase="'text'" class="ml-form-field"
+              [ngClass]="{'error': !isValid}">
       <label>
         <input type="text" [formControlName]="fieldObj.name" [id]="fieldObj.id"
                value=""
@@ -16,23 +17,26 @@
         <label>
           <select name="{{fieldObj.label}}" (change)="onChangeSelect($event)" [formControlName]="fieldObj.name" [id]="fieldObj.id">
             <option value="" [selected]="isSelected"> {{fieldObj.label}} </option>
-            <option *ngFor="let opt of getSelectOptions(fieldObj.source, fieldObj.sourceID)" [value]="opt.code">{{opt.name}}</option>
+            <option *ngFor="let opt of selectOptions" [value]="opt.code">{{opt.name}}</option>
           </select>
           <span *ngIf="showSelectLabel">{{fieldObj.label}}</span>
         </label>
     </fieldset>
 
-      <fieldset *ngSwitchCase="'radio'" class="ml-form-field ml-form-field-radio table">
-          <label>{{fieldObj.label}}</label>
+      <fieldset *ngSwitchCase="'radio'" class="ml-form-field ml-form-field-radio">
+        <label>{{fieldObj.label}}</label>
 
-          <div class="ml-form-field-radio-group" *ngFor="let radioOpt of getRadioOptions(fieldObj.source, fieldObj.sourceID)">
-            <input type="radio" [formControlName]="fieldObj.name" [id]="radioOpt.id" [value]="radioOpt.value" >
-            <label>{{radioOpt.name}}</label>
+          <div class="ml-form-field-radio-group"  *ngFor="let radioOption of radioOptions">
+            <input type="radio" [formControlName]="fieldObj.name"
+                   [id]="radioOption.id"
+                   [value]="radioOption.value" >
+            <label>{{radioOption.name}}</label>
           </div>
+
       </fieldset>
 
     <fieldset *ngSwitchCase="'checkbox'" class="ml-form-field ml-form-field-checkboxes">
-      <legend>Time Frame:</legend>
+      <label>{{fieldObj.label}}</label>
       <div class="ml-form-field-checkboxes-group">
         <input id="lorem2" type="checkbox" name="lorem" value="lorem2">
         <label for="lorem2">Overnight</label>

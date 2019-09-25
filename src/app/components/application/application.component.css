@@ -1,0 +1,104 @@
+.header {
+  background-color: #ffffff; /* Grey background */
+  position: fixed; /* Fixed position - sit on top of the page */
+  top: 0;
+  width: 100%; /* Full width */
+  height: 70px;
+  transition: 0.2s; /* Add a transition effect (when scrolling - and font size is decreased) */
+  display: grid;
+  grid-template-columns: 40% auto 40%;
+}
+
+.menu-container{
+  background-color: #0061a0; /* Grey background */
+  width: 100%; /* Full width */
+  padding-top: 130px;
+}
+
+.title {
+  font-weight: bold;
+  font-family: Georgia;
+}
+
+.container{
+  width: 100%;
+}
+.img-container {
+  text-align: center;
+  grid-column: 2 / 3;
+  height: auto;
+  max-height: 38px;
+  width: auto;
+  transition: all .5s;
+  margin: 16px auto;
+}
+.img-container-minimized {
+  text-align: center;
+  grid-column: 2 / 3;
+  height: auto;
+  max-height: 27px;
+  width: auto;
+  transition: all .5s;
+  margin: 11.5px auto;
+}
+
+.header-left-container{
+  text-align: center;
+  grid-column: 1 / 2;
+  height: auto;
+  max-height: 38px;
+  width: 100%;
+  transition: all .5s;
+  margin: 16px auto;
+}
+
+.header-left-container-minimized {
+  text-align: center;
+  grid-column: 1 / 2;
+  height: auto;
+  max-height: 27px;
+  width: auto;
+  transition: all .5s;
+  margin: 11.5px auto;
+}
+
+/* ==== menu icon ==== */
+
+.ml-icon-link-menu {
+  padding: 5px;
+  display: inline-block;
+  /*margin: 5px 0;*/
+}
+.ml-icon-link-menu img {
+
+  width: 20px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.ml-icon-link-menu:hover img {
+  content:url(../../../assets/icons/home-icon-hover.svg);
+}
+
+
+.ml-icon-link-menu span {
+  text-transform:none;
+  text-decoration: none;
+  color: #333333;
+  font-size: 11px;
+  font-weight: normal;
+}
+.ml-icon-link-menu:hover, .ml-icon-link-menu:focus, .hover.ml-icon-link-menu {
+}
+.ml-icon-link-menu:hover span, .ml-icon-link-menu.hover span, .ml-icon-link-menu:focus span, .ml-icon-link-menu.focus span {
+  display: inline;
+  text-decoration:underline;
+  color: #007abc;
+}
+.ml-icon-link-menu.focus {
+  outline: auto #13A8FF;
+}
+.ml-icon-link-menu:active {
+  outline: none;
+  box-shadow: none;
+}

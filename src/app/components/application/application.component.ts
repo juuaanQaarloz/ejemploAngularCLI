@@ -10,6 +10,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 export class ApplicationComponent implements OnInit {
   applicationObj = MockApplication;
   formGroup: FormGroup;
+  resizeHeaderHeight = false;
   constructor() { }
 
   ngOnInit() {
@@ -36,5 +37,13 @@ export class ApplicationComponent implements OnInit {
       }
     });
     return new FormGroup(group);
+  }
+
+  onScroll(scrollOffset) {
+    if (scrollOffset > 0) {
+      this.resizeHeaderHeight = true;
+    } else {
+      this.resizeHeaderHeight = false;
+    }
   }
 }

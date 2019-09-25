@@ -1,4 +1,27 @@
-<div *ngFor="let section of applicationObj.sections">
+<div class="header" appTrackScroll (scrollOffset)="onScroll($event)"
+     [ngStyle]="{'height':resizeHeaderHeight ? '50px' : '70px' }">
+  <div class="header-left-container"
+       [ngClass]="resizeHeaderHeight ? 'header-left-container-minimized' : 'header-left-container' ">
+    <a href="" class="ml-icon-link-menu"
+       [ngStyle]="{'padding':resizeHeaderHeight ? '3px' : '9px' }">
+      <img src="../../../assets/icons/home-icon.svg" alt="Edit"
+           onMouseOver="this.src='../../../assets/icons/home-icon-hover.svg';"
+           onMouseOut="this.src='../../../assets/icons/home-icon.svg';"/>
+      <span>INICIO</span></a>
+  </div>
+
+  <img class="img-container" src="../../../assets/img/met-life-logo.png"
+            [ngClass]="resizeHeaderHeight ? 'img-container-minimized' : 'img-container' ">
+
+</div>
+
+<div class="menu-container"></div>
+
+<div style="text-align: center">
+  <h1 class="title">MetaLife Nuevo Negocio</h1>
+</div>
+
+<div class="container" *ngFor="let section of applicationObj.sections">
   <app-section-form [form]="formGroup" [sectionObj]="section"></app-section-form>
 </div>
 

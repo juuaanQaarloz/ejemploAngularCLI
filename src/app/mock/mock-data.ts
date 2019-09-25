@@ -52,7 +52,7 @@ export const MockFields: FieldInterface[] = [
     label: 'Nombre(s)',
     type: 'text',
     required: false,
-    placeholder: '',
+    placeholder: 'Nombre(s)',
     length: '',
     minValue: 0,
     maxValue: 0,
@@ -61,7 +61,7 @@ export const MockFields: FieldInterface[] = [
     sourceID: '',
     style: '',
     styleClass: '',
-    message: '',
+    message: 'Nombre(s)',
     messageClass: '',
     renderConditions: '',
     enableConditions: '',
@@ -85,7 +85,7 @@ export const MockFields: FieldInterface[] = [
     sourceID: '',
     style: '',
     styleClass: '',
-    message: '',
+    message: 'Apellido Materno',
     messageClass: '',
     renderConditions: '',
     enableConditions: '',
@@ -121,7 +121,7 @@ export const MockFields: FieldInterface[] = [
     id: '4',
     name: 'ageText',
     orderAppearance: 4,
-    label: 'Edad',
+    label: 'Age',
     type: 'text',
     required: false,
     placeholder: '',
@@ -260,13 +260,13 @@ export const MockFields: FieldInterface[] = [
     entity: '',
     entityField: '',
   },
-  /*{
+  {
     id: '7',
     name: 'termsConditionsCheck',
     orderAppearance: 7,
     label: 'Acepto terminos y condiciones',
     type: 'checkbox',
-    required: '',
+    required: false,
     placeholder: '',
     length: '',
     minValue: 0,
@@ -282,7 +282,7 @@ export const MockFields: FieldInterface[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-  },*/
+  },
 ];
 
 export const MockApplication: ApplicationInterface = {
