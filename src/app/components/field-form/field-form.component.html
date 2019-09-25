@@ -13,7 +13,7 @@
       </label>
     </fieldset>
 
-    <fieldset *ngSwitchCase="'select'" class="ml-form-field ml">
+    <fieldset *ngSwitchCase="'select'" class="ml-form-field">
         <label>
           <select name="{{fieldObj.label}}" (change)="onChangeSelect($event)" [formControlName]="fieldObj.name" [id]="fieldObj.id">
             <option value="" [selected]="isSelected"> {{fieldObj.label}} </option>
@@ -23,7 +23,7 @@
         </label>
     </fieldset>
 
-      <fieldset *ngSwitchCase="'radio'" class="ml-form-field ml-form-field-radio">
+      <fieldset *ngSwitchCase="'radio'" class="ml-form-field">
         <label>{{fieldObj.label}}</label>
 
           <div class="ml-form-field-radio-group"  *ngFor="let radioOption of radioOptions">

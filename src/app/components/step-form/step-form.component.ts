@@ -10,6 +10,7 @@ import {FormGroup} from '@angular/forms';
 export class StepFormComponent implements OnInit {
   @Input() stepObj: StepInterface;
   @Input() form: FormGroup;
+  @Input() index: number;
   accordionExpanded = true;
 
   constructor() { }
@@ -19,9 +20,9 @@ export class StepFormComponent implements OnInit {
   }
 
   toggleAccordion() {
-    console.log('before: ', this.accordionExpanded);
+    // console.log('before: ', this.accordionExpanded);
     this.accordionExpanded = this.accordionExpanded ? false : true;
-    console.log('after: ', this.accordionExpanded);
+    // console.log('after: ', this.accordionExpanded);
   }
 
 }

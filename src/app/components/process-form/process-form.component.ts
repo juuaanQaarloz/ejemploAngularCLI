@@ -10,11 +10,17 @@ import {FormGroup} from '@angular/forms';
 export class ProcessFormComponent implements OnInit {
   @Input() processObj: ProcessInterface;
   @Input() form: FormGroup;
-
+  accordionExpanded = false;
   constructor() { }
 
   ngOnInit() {
     console.log('process: ', this.processObj);
+  }
+
+  toggleAccordion() {
+    console.log('before: ', this.accordionExpanded);
+    this.accordionExpanded = this.accordionExpanded ? false : true;
+    console.log('after: ', this.accordionExpanded);
   }
 
 }

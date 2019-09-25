@@ -1,11 +1,12 @@
-<div style="border:1px solid black;">
-  <p>step component works!</p>
-  <div id="accordion1" class="ml-accordion-container">
-    <h3 class="ml-accordion-header" (click)="toggleAccordion()" [ngClass]="{'expanded': accordionExpanded == false}">{{stepObj.title}}</h3>
-    <div class="ml-accordion-content" [ngClass]="{'hide': accordionExpanded}">
-      <app-content-form [form]="form" [contentObj]="stepObj.content"></app-content-form>
-    </div>
+  <h3 class="ml-accordion-header" (click)="toggleAccordion()"
+      [ngClass]="{'expanded': accordionExpanded == false}"
+      [ngStyle]="{'border-top':  index === 0 ? '1px solid #999999':'0px'}">
+    {{stepObj.title}}
+  </h3>
+
+  <div class="ml-accordion-content"
+       [ngClass]="{'hide': accordionExpanded}">
+    <app-content-form [form]="form" [contentObj]="stepObj.content"></app-content-form>
   </div>
-</div>
 
 

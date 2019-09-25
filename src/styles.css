@@ -6,3 +6,71 @@ body{
   height: 100%;
   width: 100%;
 }
+
+/* === accordion === */
+
+.ml-accordion-container {
+  width: 100%;
+  padding: 30px;
+}
+.ml-accordion-container h3 {
+  text-align: left;
+  padding: 25px 15px 25px 15px;
+  height: 67px;
+  margin: 0;
+  cursor: pointer;
+  color: #0061A0;
+}
+.ml-accordion-header {
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: underline;
+  border-bottom: 1px solid #999999;
+  background: url(assets/img/tables/expand.svg) no-repeat right 5px center;
+  background-size: 28px;
+}
+.ml-accordion-header:after {
+  content:"";
+  float:right;
+  margin-right:15px;
+  font-size: 10px;
+  font-weight:normal;
+  color: #333333;
+  text-decoration: none;
+  text-transform:uppercase;
+  letter-spacing:0.5px;
+  line-height:1.4;
+}
+
+.ml-accordion-header:hover {
+  background: url(assets/img/tables/expand-hover.svg) no-repeat right 5px center;
+  background-size: 28px;
+}
+.ml-accordion-header:hover:after {
+  content:"MOSTRAR";
+}
+.expanded {
+  text-decoration: none;
+  background: url(assets/img/tables/collapse.svg) no-repeat right 5px center;
+  background-size: 28px;
+  border-bottom: 0px solid #999999;
+}
+.expanded:hover {
+  background: url(assets/img/tables/collapse-hover.svg) no-repeat right 5px center;
+  background-size: 28px;
+}
+.expanded:hover:after
+{
+  content:"CERRAR";
+
+}
+/*.ml-accordion-container h3:first-child {
+  border-top: 1px solid #999999;
+}*/
+.ml-accordion-content {
+  background: #ffffff;
+  border-bottom: 1px solid #999999;
+  padding: 25px 15px 25px 15px;
+}
+
+/* === ends accordion === */

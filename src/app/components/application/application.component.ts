@@ -11,6 +11,8 @@ export class ApplicationComponent implements OnInit {
   applicationObj = MockApplication;
   formGroup: FormGroup;
   resizeHeaderHeight = false;
+  iconHome = 'home-icon';
+  iconSecurity = 'security-icon';
   constructor() { }
 
   ngOnInit() {
@@ -45,5 +47,22 @@ export class ApplicationComponent implements OnInit {
     } else {
       this.resizeHeaderHeight = false;
     }
+  }
+
+  onMouseMove(event) {
+    if (event.type === 'mouseover') {
+      if (event.target.id === 'labelHome' || event.target.id === 'iconHome') {
+        this.iconHome = 'home-icon-hover';
+      } else if (event.target.id === 'labelSecurity' || event.target.id === 'iconSecurity') {
+        this.iconSecurity = 'security-icon-hover';
+      }
+    } else if (event.type === 'mouseout') {
+      if (event.target.id === 'labelHome' || event.target.id === 'iconHome') {
+        this.iconHome = 'home-icon';
+      } else if (event.target.id === 'labelSecurity' || event.target.id === 'iconSecurity') {
+        this.iconSecurity = 'security-icon';
+      }
+    }
+    // console.log('event: ', event.target.id);
   }
 }
