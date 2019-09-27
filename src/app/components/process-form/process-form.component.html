@@ -1,3 +1,9 @@
-  <div *ngFor="let step of processObj.steps; let i = index">
-    <app-step-form [form]="form" [stepObj]="step" [index]="i"></app-step-form>
+  <div *ngFor="let step of processObj.steps; let i = index; first as isFirst; last as isLast">
+    <app-step-form
+      [form]="form"
+      [stepObj]="step"
+      [isFirst]="isFirst"
+      [isLast]="isLast"
+      [index]="i"
+    ></app-step-form>
   </div>

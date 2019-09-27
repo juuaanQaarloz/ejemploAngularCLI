@@ -10,10 +10,11 @@ import {FormGroup} from '@angular/forms';
 export class StepFormComponent implements OnInit {
   @Input() stepObj: StepInterface;
   @Input() form: FormGroup;
+  @Input() isFirst: boolean;
+  @Input() isLast: boolean;
   @Input() index: number;
-  accordionExpanded = true;
-  // activate, completed or not visited
-  state = '';
+  accordionExpanded = false;
+  completed = false;
 
   constructor() { }
 
@@ -22,9 +23,14 @@ export class StepFormComponent implements OnInit {
   }
 
   toggleAccordion() {
-    // console.log('before: ', this.accordionExpanded);
+    //console.log('before: ', this.accordionExpanded);
     this.accordionExpanded = this.accordionExpanded ? false : true;
-    // console.log('after: ', this.accordionExpanded);
+    //console.log('after: ', this.accordionExpanded);
+  }
+
+  completeStep() {
+    this.completed = !this.completed;
+    this.accordionExpanded = false;
   }
 
 }

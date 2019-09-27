@@ -5,18 +5,18 @@ import {ApplicationInterface} from '../models/application-interface';
 export const MockOperations: OperationsInterface[] = [
   {
     id: '1',
-    name: 'btnGuardarCerrar',
-    label: 'GUARDAR Y CERRAR',
+    name: 'btnNext',
+    label: 'SIGUIENTE',
     type: 'button',
     style: '',
     styleClass: 'ml-button-primary',
     message: '',
     messageClass: '',
-    delegateOperation: 'saveApplication',
+    delegateOperation: 'nextOperation',
     renderConditions: '',
     enableConditions: '',
   },
-  {
+  /*{
     id: '2',
     name: 'btnValidate',
     label: 'VALIDAR',
@@ -41,7 +41,7 @@ export const MockOperations: OperationsInterface[] = [
     delegateOperation: 'cancelApplication',
     renderConditions: '',
     enableConditions: '',
-  }
+  }*/
 ];
 
 export const MockFields: FieldInterface[] = [
@@ -365,7 +365,8 @@ export const MockApplication: ApplicationInterface = {
            ],
           renderConditions: ''
         },
-        renderConditions: ''
+        renderConditions: '',
+        operations: MockOperations,
       },
       renderConditions: ''
     }

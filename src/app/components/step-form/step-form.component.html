@@ -1,5 +1,5 @@
 <!-- Accordion Step -->
-<h3 class="ml-accordion-header" (click)="toggleAccordion()"
+<!--<h3 class="ml-accordion-header" (click)="toggleAccordion()"
       [ngClass]="{'expanded': accordionExpanded == false}"
       [ngStyle]="{'border-top':  index === 0 ? '1px solid #999999':'0px'}">
   {{stepObj.title}}
@@ -8,25 +8,52 @@
 <div class="ml-accordion-content"
        [ngClass]="{'hide': accordionExpanded}">
   <app-content-form [form]="form" [contentObj]="stepObj.content"></app-content-form>
-</div>
+</div>-->
 <!-- ends Accordion Step -->
 
 <!-- Progress Indicator Step -->
-<!--<div class="ml-step-header completed">
+<div [ngClass]="[
+                  (accordionExpanded && isFirst) ? 'ml-step-header-expanded-first-child':'',
+                  (!accordionExpanded && isFirst) ? 'ml-step-header-first-child':'',
+                  (!accordionExpanded) ? 'ml-step-header': '',
+                  accordionExpanded ? 'ml-step-header-expanded': '',
+                  (accordionExpanded && isLast) ? 'ml-step-header-expanded-last-child':'',
+                  (!accordionExpanded && isLast) ? 'ml-step-header-last-child':'',
+                  (completed && isFirst) ? 'ml-step-header-completed-first-child':'',
+                  (completed && isLast) ? 'ml-step-header-completed-last-child':'',
+                  completed ? 'ml-step-header-completed':'',
+                  (completed && !accordionExpanded) ? 'ml-step-header-completed':''
+                  ]">
+  <!--<p>{{accordionExpanded}}</p>
+  <p>{{isFirst}}</p>
+  <p>{{(accordionExpanded && isFirst)}}</p>-->
+
   <div class="ml-step-header-elements">
-    <span *ngIf="state === 'completed'" class="ml-step-numbers ml-completed-step fa"></span>
-    <span *ngIf= "state"class="ml-step-numbers ml-completed-step fa">1</span>
-    <h3>About Your Claim</h3>
+    <span *ngIf="!completed" [ngClass]="accordionExpanded ? 'ml-step-numbers ml-current-step' : 'ml-step-numbers' ">{{index + 1}}</span>
+    <span *ngIf="completed" class= "ml-step-numbers ml-completed-step fa"></span>
+    <h3 [ngClass]="accordionExpanded ? 'ml-step-header-title-expanded': 'ml-step-header-title'"
+        (click)="toggleAccordion()">{{stepObj.title}}</h3>
   </div>
-  <hr class="ml-step-hr">
+
+  <hr *ngIf="!accordionExpanded" class="ml-step-hr" [ngStyle]="{'display':  isLast ? 'none': ''}">
 </div>
-<div class="ml-step-content completed" id="step1">
-  <div class="ml-step-content-div">
-    <div><strong>Benefits for Using a Participating, Network Dentist</strong></div>
-    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent est enim, gravida eu ligula nec, condimentum fermentum velit. Quisque molestie, dui et mollis tincidunt, mauris orci mattis risus, a ullamcorper diam orci at augue. Donec porta nunc libero, sed dignissim diam vestibulum fringilla. Curabitur tempor tempor turpis, eget tempor massa tempus a. Praesent in dignissim enim, eget accumsan nisl. Phasellus efficitur leo ut elit aliquet, quis egestas velit feugiat. Sed pulvinar velit lectus, vitae mattis erat sollicitudin bibendum. Donec ut tortor viverra, eleifend velit at, lobortis arcu. Mauris vel tempor mi, et lacinia nunc. Morbi bibendum ipsum nec sapien scelerisque venenatis. </p>
-  </div>
-  <hr class="ml-step-hr">
-</div>-->
+<div class="ml-step-content" id="step1"
+     [ngStyle]="{'border-left': isLast ? '8px solid #ffffff': ''}"
+     [ngClass]="[
+                  !accordionExpanded ? 'hide': '',
+                  (completed && !isLast) ? 'completed': ''
+                  ]">
+  <div class="ml-step-content-div" >
+    <app-content-form [form]="form" [contentObj]="stepObj.content"></app-content-form>
+    <div *ngIf="stepObj.content.operations">
+      <div *ngFor="let operation of stepObj.content.operations">
+        <app-operation-form (click)="completeStep()" [operationObj]="operation"></app-operation-form>
+      </div>
+    </div>
+
+  <hr class="ml-step-hr" [ngStyle]="{'display':  isLast ? 'none': ''}">
+
+</div>
 <!-- ends Progress Indicator Step -->
 
 
