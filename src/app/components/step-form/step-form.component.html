@@ -1,12 +1,33 @@
-  <h3 class="ml-accordion-header" (click)="toggleAccordion()"
+<!-- Accordion Step -->
+<h3 class="ml-accordion-header" (click)="toggleAccordion()"
       [ngClass]="{'expanded': accordionExpanded == false}"
       [ngStyle]="{'border-top':  index === 0 ? '1px solid #999999':'0px'}">
-    {{stepObj.title}}
-  </h3>
+  {{stepObj.title}}
+</h3>
 
-  <div class="ml-accordion-content"
+<div class="ml-accordion-content"
        [ngClass]="{'hide': accordionExpanded}">
-    <app-content-form [form]="form" [contentObj]="stepObj.content"></app-content-form>
+  <app-content-form [form]="form" [contentObj]="stepObj.content"></app-content-form>
+</div>
+<!-- ends Accordion Step -->
+
+<!-- Progress Indicator Step -->
+<!--<div class="ml-step-header completed">
+  <div class="ml-step-header-elements">
+    <span *ngIf="state === 'completed'" class="ml-step-numbers ml-completed-step fa"></span>
+    <span *ngIf= "state"class="ml-step-numbers ml-completed-step fa">1</span>
+    <h3>About Your Claim</h3>
   </div>
+  <hr class="ml-step-hr">
+</div>
+<div class="ml-step-content completed" id="step1">
+  <div class="ml-step-content-div">
+    <div><strong>Benefits for Using a Participating, Network Dentist</strong></div>
+    <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent est enim, gravida eu ligula nec, condimentum fermentum velit. Quisque molestie, dui et mollis tincidunt, mauris orci mattis risus, a ullamcorper diam orci at augue. Donec porta nunc libero, sed dignissim diam vestibulum fringilla. Curabitur tempor tempor turpis, eget tempor massa tempus a. Praesent in dignissim enim, eget accumsan nisl. Phasellus efficitur leo ut elit aliquet, quis egestas velit feugiat. Sed pulvinar velit lectus, vitae mattis erat sollicitudin bibendum. Donec ut tortor viverra, eleifend velit at, lobortis arcu. Mauris vel tempor mi, et lacinia nunc. Morbi bibendum ipsum nec sapien scelerisque venenatis. </p>
+  </div>
+  <hr class="ml-step-hr">
+</div>-->
+<!-- ends Progress Indicator Step -->
+
 
 

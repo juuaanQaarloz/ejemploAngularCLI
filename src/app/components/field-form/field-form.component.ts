@@ -50,13 +50,13 @@ export class FieldFormComponent implements OnInit {
     } else if (type === 'select') {
       options.push({
           id: 0,
-          name: 'Mujer',
-          code: 'F'
+          name: 'Persona Física',
+          code: 'fPerson'
         });
       options.push({
           id: 1,
-          name: 'Hombre',
-          code: 'M'
+          name: 'Persona Moral',
+          code: 'mPerson'
         });
     }
 

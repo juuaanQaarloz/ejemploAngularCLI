@@ -12,6 +12,8 @@ export class StepFormComponent implements OnInit {
   @Input() form: FormGroup;
   @Input() index: number;
   accordionExpanded = true;
+  // activate, completed or not visited
+  state = '';
 
   constructor() { }
 

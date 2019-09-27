@@ -5,9 +5,18 @@
     </div>
   </div>
 
+  <!-- Accordion steps -->
   <div *ngIf="contentObj.process" class="ml-accordion-container">
     <app-process-form [form]="form" [processObj]="contentObj.process"></app-process-form>
   </div>
+  <!-- ends Accordion steps -->
+
+  <!-- Progress indicator steps -->
+  <!--<div *ngIf="contentObj.process" class="ml-step-container">
+    <app-process-form [form]="form" [processObj]="contentObj.process"></app-process-form>
+  </div>-->
+  <!-- ends Progress indicator steps -->
+
 
   <!--<div *ngIf="payLoad" class="form-row">
     <strong>Saved the following values</strong><br>{{payLoad}}

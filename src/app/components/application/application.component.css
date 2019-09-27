@@ -16,9 +16,11 @@
 }
 
 .title {
-  font-weight: bold;
   font-family: Georgia;
-  font-size: 16px;
+  font-size: 44px;
+  font-weight: bold;
+  line-height: 1.5;
+  color: #000;
 }
 
 .container{
@@ -44,7 +46,7 @@
 }
 
 .header-left-container{
-  text-align: center;
+  text-align: left;
   grid-column: 1 / 2;
   height: auto;
   max-height: 38px;
@@ -54,17 +56,17 @@
 }
 
 .header-left-container-minimized {
-  text-align: center;
+  text-align: left;
   grid-column: 1 / 2;
   height: auto;
   max-height: 27px;
-  width: auto;
+  width: 100%;
   transition: all .5s;
   margin: 11.5px auto;
 }
 
 .header-right-container{
-  text-align: center;
+  text-align: right;
   grid-column: 3 / 3;
   height: auto;
   max-height: 38px;
@@ -74,11 +76,11 @@
 }
 
 .header-right-container-minimized {
-  text-align: center;
+  text-align: right;
   grid-column: 3 / 3;
   height: auto;
   max-height: 27px;
-  width: auto;
+  width: 100%;
   transition: all .5s;
   margin: 11.5px auto;
 }

@@ -291,16 +291,16 @@ export const MockApplication: ApplicationInterface = {
   version: '1.0',
   sections: [
     {
-      title: 'TIPO PERSONA',
+      title: 'TIPO DE CONTRATANTE',
       content: {
         fields: [
           {
             id: '1',
-            name: 'personSelect',
+            name: 'personTypeSelect',
             orderAppearance: 1,
-            label: 'Tipo de Persona',
+            label: 'Tipo de Contratante',
             type: 'select',
-            required: false,
+            required: true,
             placeholder: '',
             length: '',
             minValue: 0,
