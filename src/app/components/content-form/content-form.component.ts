@@ -17,6 +17,7 @@ export class ContentFormComponent implements OnInit {
 
   ngOnInit() {
     console.log('content: ', this.contentObj);
+    this.orderFields();
     this.testFunction();
     let meuArray = [{id:1},{id:2},{id:3},{id:4},{id:5},{id:6},{id:7},{id:8},{id:9},{id:10}];
     /*separo meu array em grupos de 3 chaves*/
@@ -56,5 +57,9 @@ export class ContentFormComponent implements OnInit {
     console.log('resultado.length: ', resultado.length);
     console.log('grupo: ', grupo);
     return resultado;
+  }
+
+  orderFields() {
+    this.contentObj.fields.sort((a, b) => a.orderAppearance - b.orderAppearance);
   }
 }

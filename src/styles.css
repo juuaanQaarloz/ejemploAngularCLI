@@ -1,9 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
 
-body{
+html,body{
   font-family: 'Noto Sans', sans-serif;
-  height: 100%;
-  width: 100%;
+  min-height: 100vh;
+  height: auto;
+  margin: 0;
+  /*display: grid;
+  grid-template-columns: repeat(12, 1fr);*/
 }
 
 /* === accordion === */

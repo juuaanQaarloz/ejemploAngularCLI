@@ -6,4 +6,5 @@ export interface StepInterface {
   previousStep: string;
   nextStep: string;
   renderConditions: string;
+  isCompleted: boolean;
 }

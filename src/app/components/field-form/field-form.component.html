@@ -1,8 +1,8 @@
 <div [formGroup]="form" data-forms="floating-label" class="ml-form">
   <div [ngSwitch]="fieldObj.type">
 
-    <fieldset *ngSwitchCase="'text'" class="ml-form-field"
-              [ngClass]="{'error': !isValid}">
+    <fieldset *ngSwitchCase="'text'" class="ml-form-field">
+              <!--[ngClass]="{'error': !isValid}">-->
       <label>
         <input type="text" [formControlName]="fieldObj.name" [id]="fieldObj.id"
                value=""

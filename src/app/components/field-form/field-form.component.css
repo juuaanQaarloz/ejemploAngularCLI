@@ -3,14 +3,14 @@
 /* Forms*/
 .ml-form {
   padding: 20px;
-  position: relative;
+  position: static;
 }
 
 .ml-form-field {
   margin-bottom: 20px;
   display: block;
   width: 100%;
-  position: relative;
+  position: static;
   border: 0px;
   padding: 0;
 }

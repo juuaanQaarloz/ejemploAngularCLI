@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ProcessInterface} from '../../models/process-interface';
 import {FormGroup} from '@angular/forms';
+import {ApplicationService} from '../../services/application.service';
 
 @Component({
   selector: 'app-process-form',
@@ -10,19 +11,12 @@ import {FormGroup} from '@angular/forms';
 export class ProcessFormComponent implements OnInit {
   @Input() processObj: ProcessInterface;
   @Input() form: FormGroup;
-  accordionExpanded = false;
   totalSteps = 0;
+
   constructor() { }
 
   ngOnInit() {
     this.totalSteps = this.processObj.steps.length;
     console.log('process: ', this.processObj);
   }
-
-  toggleAccordion() {
-    console.log('before: ', this.accordionExpanded);
-    this.accordionExpanded = this.accordionExpanded ? false : true;
-    console.log('after: ', this.accordionExpanded);
-  }
-
 }
