@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MockApplication} from '../../mock/mock-data';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {ApplicationService} from '../../services/application.service';
 
 @Component({
   selector: 'app-application',
@@ -13,7 +14,7 @@ export class ApplicationComponent implements OnInit {
   resizeHeaderHeight = false;
   iconHome = 'home-icon';
   iconSecurity = 'security-icon';
-  constructor() { }
+  constructor(private appService: ApplicationService) { }
 
   ngOnInit() {
     this.formGroup = this.toFormGroup();

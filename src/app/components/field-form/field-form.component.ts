@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FieldInterface} from '../../models/field-interface';
 import {FormGroup} from '@angular/forms';
+import {ApplicationService} from '../../services/application.service';
 
 @Component({
   selector: 'app-field-form',
@@ -14,14 +15,14 @@ export class FieldFormComponent implements OnInit {
   isSelected = true;
   radioOptions = [];
   selectOptions = [];
-  constructor() { }
+  constructor(private applicationService: ApplicationService) { }
 
   ngOnInit() {
     if (this.fieldObj.type === 'radio' ) {
       this.radioOptions = this.getOptions(this.fieldObj.source, this.fieldObj.sourceID, this.fieldObj.type);
     }
     if (this.fieldObj.type === 'select') {
-      this.selectOptions = this.getOptions(this.fieldObj.source, this.fieldObj.sourceID, this.fieldObj.type);
+      this.getOptions(this.fieldObj.source, this.fieldObj.sourceID, this.fieldObj.type);
     }
   }
 
@@ -36,7 +37,15 @@ export class FieldFormComponent implements OnInit {
 
   getOptions(source, sourceID, type) {
     let options = [];
-    if (type === 'radio') {
+    if (source === 'IPRE') {
+      this.applicationService.getIpreCatalogById(sourceID)
+        .subscribe((results) => {
+          options = results;
+          this.selectOptions = results;
+          console.log('options: ', options);
+        });
+    }
+    /*if (type === 'radio') {
       options.push({
         id: '0',
         name: 'Si',
@@ -53,7 +62,7 @@ export class FieldFormComponent implements OnInit {
           name: 'MetaLife',
           code: 'metaLifeProduct'
         });
-    }
+    }*/
 
     return options;
   }

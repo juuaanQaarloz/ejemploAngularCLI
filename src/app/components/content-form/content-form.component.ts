@@ -16,17 +16,17 @@ export class ContentFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('content: ', this.contentObj);
+    // console.log('content: ', this.contentObj);
     this.orderFields();
     this.testFunction();
     let meuArray = [{id:1},{id:2},{id:3},{id:4},{id:5},{id:6},{id:7},{id:8},{id:9},{id:10}];
     /*separo meu array em grupos de 3 chaves*/
-    console.log(this.separar(meuArray, 4));
+    // console.log(this.separar(meuArray, 4));
   }
 
   getFormValue() {
     this.payLoad = JSON.stringify(this.form.value);
-    console.log(this.form.value);
+    // console.log(this.form.value);
   }
   testFunction() {
     let array = [{id:1},{id:2},{id:3},{id:4},{id:5},{id:6},{id:7},{id:8},{id:9},{id:10}];
@@ -36,7 +36,7 @@ export class ContentFormComponent implements OnInit {
         aux = aux + 1;
       }
     }
-    console.log('aux: ', aux);
+    // console.log('aux: ', aux);
   }
   separar(base, maximo) {
     let resultado = [[]];
@@ -54,12 +54,14 @@ export class ContentFormComponent implements OnInit {
       }
     }
 
-    console.log('resultado.length: ', resultado.length);
-    console.log('grupo: ', grupo);
+    // console.log('resultado.length: ', resultado.length);
+    // console.log('grupo: ', grupo);
     return resultado;
   }
 
   orderFields() {
-    this.contentObj.fields.sort((a, b) => a.orderAppearance - b.orderAppearance);
+    if (this.contentObj.fields) {
+      this.contentObj.fields.sort((a, b) => a.orderAppearance - b.orderAppearance);
+    }
   }
 }

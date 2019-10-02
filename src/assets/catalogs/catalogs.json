@@ -1,0 +1,8341 @@
+{
+    "genders": [
+    {
+        "id": 0,
+        "name": "Mujer",
+        "code": "F"
+    },
+    {
+        "id": 1,
+        "name": "Hombre",
+        "code": "M"
+    }],
+    "collectionMethods": [
+    {
+        "id": 0,
+        "name": "Descuento por N\u00f3mina (DXN)",
+        "value": 2
+    },
+    {
+        "id": 1,
+        "name": "Directo",
+        "value": 3
+    },
+    {
+        "id": 2,
+        "name": "Cobranza bancaria",
+        "value": 4
+    }],
+    "paymentModes": [
+    {
+        "id": 0,
+        "label": "Mensual",
+        "code": 1
+    },
+    {
+        "id": 1,
+        "label": "Quincenal",
+        "code": 3
+    },
+    {
+        "id": 2,
+        "label": "Semestral",
+        "code": 6
+    },
+    {
+        "id": 3,
+        "label": "Anual",
+        "code": 12
+    }],
+    "weekDays": [
+    {
+        "id": 0,
+        "name": "Lunes",
+        "value": "Lunes"
+    },
+    {
+        "id": 1,
+        "name": "Martes",
+        "value": "Martes"
+    },
+    {
+        "id": 2,
+        "name": "Mi\u00E9rcoles",
+        "value": "Mi\u00E9rcoles"
+    },
+    {
+        "id": 3,
+        "name": "Jueves",
+        "value": "Jueves"
+    },
+    {
+        "id": 4,
+        "name": "Viernes",
+        "value": "Viernes"
+    },
+    {
+        "id": 5,
+        "name": "Sabado",
+        "value": "Sabado"
+    },
+    {
+        "id": 6,
+        "name": "Domingo",
+        "value": "Domingo"
+    }],
+    "maritalStatuses": [
+    {
+        "id": 0,
+        "status": "Casado(a)",
+        "value": "C"
+    },
+    {
+        "id": 1,
+        "status": "Divorciado(a)",
+        "value": "D"
+    },
+    {
+        "id": 2,
+        "status": "Soltero(a)",
+        "value": "S"
+    },
+    {
+        "id": 3,
+        "status": "Union Libre",
+        "value": "U"
+    },
+    {
+        "id": 4,
+        "status": "Viudo(a)",
+        "value": "V"
+    }],
+    "relationships": [
+    {
+        "relationshipId": 0,
+        "relationship": "Padre",
+        "relationshipCode": "P"
+    },
+    {
+        "relationshipId": 1,
+        "relationship": "Madre",
+        "relationshipCode": "M"
+    },
+    {
+        "relationshipId": 2,
+        "relationship": "Hermano",
+        "relationshipCode": "HE"
+    },
+    {
+        "relationshipId": 3,
+        "relationship": "Hermana",
+        "relationshipCode": "HA"
+    },
+    {
+        "relationshipId": 4,
+        "relationship": "T\u00EDo",
+        "relationshipCode": "TO"
+    },
+    {
+        "relationshipId": 5,
+        "relationship": "T\u00EDa",
+        "relationshipCode": "TA"
+    },
+    {
+        "relationshipId": 6,
+        "relationship": "Abuelo",
+        "relationshipCode": "AO"
+    },
+    {
+        "relationshipId": 7,
+        "relationship": "Abuela",
+        "relationshipCode": "AA"
+    },
+    {
+        "relationshipId": 8,
+        "relationship": "Otro",
+        "relationshipCode": "OT"
+    }],
+    "countries": [
+    {
+        "id": 0,
+        "name": "M\u00E9xico",
+        "code": "MX"
+    },
+    {
+        "id": 1,
+        "name": "Brasil",
+        "code": "BR"
+    },
+    {
+        "id": 2,
+        "name": "Estados Unidos",
+        "code": "US"
+    },
+    {
+        "id": 3,
+        "name": "Canad\u00E1",
+        "code": "CN"
+    }],
+    "plans": [
+    {
+        "id": 0,
+        "name": "Provida ML99",
+        "code": "ML99"
+    },
+    {
+        "id": 1,
+        "name": "Provida PT20",
+        "code": "PT20"
+    },
+    {
+        "id": 2,
+        "name": "Provida Maestro 20",
+        "code": "M20"
+    }],
+    "idTypes": [
+    {
+        "id": 1,
+        "code": "IDIFE",
+        "value": "CREDENCIAL PARA VOTAR"
+    },
+    {
+        "id": 2,
+        "code": "IDPAM",
+        "value": "PASAPORTE MEXICANO"
+    },
+    {
+        "id": 3,
+        "code": "IDCED",
+        "value": "CEDULA PROFESIONAL"
+    },
+    {
+        "id": 4,
+        "code": "IDCSM",
+        "value": "CARTILLA DEL SERVICIO MILITAR NACIONAL"
+    },
+    {
+        "id": 5,
+        "code": "IDLCO",
+        "value": "LICENCIA PARA CONDUCIR"
+    },
+    {
+        "id": 6,
+        "code": "IDINA",
+        "value": "TARJETA DE AFILIACI\u00F3N AL INSTITUTO NACIONAL DE LAS PERSONAS ADULTAS MAYORES"
+    },
+    {
+        "id": 7,
+        "code": "IDIDM",
+        "value": "TARJETA UNICA DE IDENTIDAD MILITAR"
+    },
+    {
+        "id": 8,
+        "code": "IDCMC",
+        "value": "CERTIFICADO DE MATRÃ�CULA CONSULAR"
+    },
+    {
+        "id": 9,
+        "code": "IDIMS",
+        "value": "CREDENCIALES DE AFILIACI\u00F3N AL INSTITUTO MEXICANO DEL SEGURO SOCIAL"
+    },
+    {
+        "id": 10,
+        "code": "IDFMI",
+        "value": "FM2 (INMIGRANTE - INMIGRADO)"
+    },
+    {
+        "id": 11,
+        "code": "IDFMN",
+        "value": "FM3 (NO INMIGRANTES)"
+    },
+    {
+        "id": 12,
+        "code": "IDPAE",
+        "value": "PASAPORTE EXTRANJERO"
+    }],
+    "guardBoxOptions": [
+    {
+        "id": 0,
+        "label": "Si",
+        "value": true
+    },
+    {
+        "id": 1,
+        "label": "No",
+        "value": false
+    }],
+    "fedEntities": [
+    {
+        "id": 0,
+        "name": "Distrito Federal",
+        "code": 9
+    },
+    {
+        "id": 1,
+        "name": "Aguascalientes",
+        "code": 3
+    }],
+    "accountTypes": [
+    {
+        "id": "D",
+        "name": "DEBITO"
+    },
+    {
+        "id": "C",
+        "name": "CREDITO"
+    },
+    {
+        "id": "CL",
+        "name": "CLABE"
+    },
+    {
+        "id": "E",
+        "name": "EFECTIVO"
+    }],
+    "contactOptions": [
+    {
+        "id": 0,
+        "option": "Medio preferente de contacto",
+        "code": null
+    },
+    {
+        "id": 1,
+        "option": "SMS",
+        "code": "sms"
+    },
+    {
+        "id": 2,
+        "option": "E-mail",
+        "code": "email"
+    },
+    {
+        "id": 3,
+        "option": "Tel\u00E9fono",
+        "code": "phone"
+    }],
+    "contactTimes": [
+    {
+        "id": 0,
+        "label": "Por la ma\u00F1ana (9-12)",
+        "code": 1
+    },
+    {
+        "id": 1,
+        "label": "Al medio d\u00EDa (12-4)",
+        "code": 2
+    },
+    {
+        "id": 2,
+        "label": "Por la tarde (4-9)",
+        "code": 3
+    }],
+    "occupations": [
+    {
+        "id": 0,
+        "specificOccupationName": "CHOFER/ DE DEPENDENCIA",
+        "specificOccupationAlias": "CHOFER",
+        "specificOccupationCode": 510977812,
+        "companyName": null,
+        "ocupationZipCode": null,
+        "occupationDetails": null,
+        "occupationIncome": null
+    },
+    {
+        "id": 1,
+        "specificOccupationName": "CHOFER DE CAMION DE BOMBEROS",
+        "specificOccupationAlias": "CHOFER DE CAMION DE BOMBEROS",
+        "specificOccupationCode": 510977813,
+        "companyName": null,
+        "ocupationZipCode": null,
+        "occupationDetails": null,
+        "occupationIncome": null
+    },
+    {
+        "id": 2,
+        "specificOccupationName": "CHOFER DE CAMION DE CARGA O VOLTEO",
+        "specificOccupationAlias": "CHOFER DE CAMION DE CARGA O VOLTEO",
+        "specificOccupationCode": 510977814,
+        "companyName": null,
+        "ocupationZipCode": null,
+        "occupationDetails": null,
+        "occupationIncome": null
+    },
+    {
+        "id": 3,
+        "specificOccupationName": "CHOFER DE CAMION URBANO",
+        "specificOccupationAlias": "CHOFER DE CAMION URBANO",
+        "specificOccupationCode": 510977815,
+        "companyName": null,
+        "ocupationZipCode": null,
+        "occupationDetails": null,
+        "occupationIncome": null
+    },
+    {
+        "id": 4,
+        "specificOccupationName": "CHOFER DE CAMION DE TURISTAS",
+        "specificOccupationAlias": "CHOFER DE CAMION DE TURISTAS",
+        "specificOccupationCode": 510977816,
+        "companyName": null,
+        "ocupationZipCode": null,
+        "occupationDetails": null,
+        "occupationIncome": null
+    }],
+    "terms": [
+    {
+        "id": 0,
+        "name": "20 A\u00d1OS",
+        "value": 1
+    }],
+    "liquidationTypes": [
+    {
+        "id": 0,
+        "label": "Pago \u00DAnico",
+        "code": "OP"
+    },
+    {
+        "id": 1,
+        "label": "Fideicomiso",
+        "code": "T"
+    }],
+    "bines": [
+    {
+        "INF_LIMIT": "465829",
+        "SUP_LIMIT": "465829",
+        "BANK_ID": "036",
+        "COLLECT_TYPE_ID": "D",
+        "RETAINER_ID": "913",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "36",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "473701",
+        "SUP_LIMIT": "473701",
+        "BANK_ID": "036",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "36",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "474174",
+        "SUP_LIMIT": "474174",
+        "BANK_ID": "058",
+        "COLLECT_TYPE_ID": "D",
+        "RETAINER_ID": "913",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "58",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "474176",
+        "SUP_LIMIT": "474176",
+        "BANK_ID": "021",
+        "COLLECT_TYPE_ID": "D",
+        "RETAINER_ID": "913",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "21",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "491089",
+        "SUP_LIMIT": "491089",
+        "BANK_ID": "021",
+        "COLLECT_TYPE_ID": "D",
+        "RETAINER_ID": "913",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "21",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "491259",
+        "SUP_LIMIT": "491259",
+        "BANK_ID": "014",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "14",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "491280",
+        "SUP_LIMIT": "491280",
+        "BANK_ID": "021",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "21",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "491281",
+        "SUP_LIMIT": "491281",
+        "BANK_ID": "021",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "21",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "491282",
+        "SUP_LIMIT": "491282",
+        "BANK_ID": "021",
+        "COLLECT_TYPE_ID": "D",
+        "RETAINER_ID": "913",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "21",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "491284",
+        "SUP_LIMIT": "491284",
+        "BANK_ID": "021",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "21",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "491341",
+        "SUP_LIMIT": "491341",
+        "BANK_ID": "072",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "72",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "491367",
+        "SUP_LIMIT": "491367",
+        "BANK_ID": "072",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "72",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "491371",
+        "SUP_LIMIT": "491371",
+        "BANK_ID": "072",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "72",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "491376",
+        "SUP_LIMIT": "491376",
+        "BANK_ID": "072",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "72",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "493157",
+        "SUP_LIMIT": "493157",
+        "BANK_ID": "072",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "72",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "493173",
+        "SUP_LIMIT": "493173",
+        "BANK_ID": "072",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "72",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "544549",
+        "SUP_LIMIT": "544549",
+        "BANK_ID": "072",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "72",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "547078",
+        "SUP_LIMIT": "547078",
+        "BANK_ID": "072",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "72",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "547088",
+        "SUP_LIMIT": "547088",
+        "BANK_ID": "072",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "72",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "547097",
+        "SUP_LIMIT": "547097",
+        "BANK_ID": "072",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "72",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "493172",
+        "SUP_LIMIT": "493172",
+        "BANK_ID": "072",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "72",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "413098",
+        "SUP_LIMIT": "413098",
+        "BANK_ID": "062",
+        "COLLECT_TYPE_ID": "D",
+        "RETAINER_ID": "913",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "62",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "407339",
+        "SUP_LIMIT": "407339",
+        "BANK_ID": "022",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "22",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "404360",
+        "SUP_LIMIT": "404360",
+        "BANK_ID": "036",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "36",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "410181",
+        "SUP_LIMIT": "410181",
+        "BANK_ID": "012",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "12",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "439185",
+        "SUP_LIMIT": "439185",
+        "BANK_ID": "012",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "12",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "407559",
+        "SUP_LIMIT": "407559",
+        "BANK_ID": "002",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "2",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "480790",
+        "SUP_LIMIT": "480790",
+        "BANK_ID": "002",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "2",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "416502",
+        "SUP_LIMIT": "416502",
+        "BANK_ID": "021",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "21",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "420199",
+        "SUP_LIMIT": "420199",
+        "BANK_ID": "030",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "30",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "421003",
+        "SUP_LIMIT": "421003",
+        "BANK_ID": "030",
+        "COLLECT_TYPE_ID": "D",
+        "RETAINER_ID": "913",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "30",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "421364",
+        "SUP_LIMIT": "421364",
+        "BANK_ID": "127",
+        "COLLECT_TYPE_ID": "D",
+        "RETAINER_ID": "913",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "127",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "421811",
+        "SUP_LIMIT": "421811",
+        "BANK_ID": "059",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "59",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "425982",
+        "SUP_LIMIT": "425982",
+        "BANK_ID": "032",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "32",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "425983",
+        "SUP_LIMIT": "425983",
+        "BANK_ID": "032",
+        "COLLECT_TYPE_ID": "D",
+        "RETAINER_ID": "913",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "32",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "425984",
+        "SUP_LIMIT": "425984",
+        "BANK_ID": "032",
+        "COLLECT_TYPE_ID": "D",
+        "RETAINER_ID": "913",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "32",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "426514",
+        "SUP_LIMIT": "426514",
+        "BANK_ID": "021",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "21",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "430967",
+        "SUP_LIMIT": "430967",
+        "BANK_ID": "021",
+        "COLLECT_TYPE_ID": "D",
+        "RETAINER_ID": "913",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "21",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "431479",
+        "SUP_LIMIT": "431479",
+        "BANK_ID": "036",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "36",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "433454",
+        "SUP_LIMIT": "433454",
+        "BANK_ID": "032",
+        "COLLECT_TYPE_ID": "D",
+        "RETAINER_ID": "913",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "32",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "435769",
+        "SUP_LIMIT": "435769",
+        "BANK_ID": "060",
+        "COLLECT_TYPE_ID": "D",
+        "RETAINER_ID": "913",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "60",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "448790",
+        "SUP_LIMIT": "448790",
+        "BANK_ID": "062",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "62",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "450589",
+        "SUP_LIMIT": "450589",
+        "BANK_ID": "021",
+        "COLLECT_TYPE_ID": "D",
+        "RETAINER_ID": "913",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "21",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "451312",
+        "SUP_LIMIT": "451312",
+        "BANK_ID": "014",
+        "COLLECT_TYPE_ID": "D",
+        "RETAINER_ID": "913",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "14",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "452421",
+        "SUP_LIMIT": "452421",
+        "BANK_ID": "021",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "21",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "454747",
+        "SUP_LIMIT": "454747",
+        "BANK_ID": "014",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "14",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "455617",
+        "SUP_LIMIT": "455617",
+        "BANK_ID": "044",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "44",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "456300",
+        "SUP_LIMIT": "456300",
+        "BANK_ID": "014",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "14",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "456880",
+        "SUP_LIMIT": "456880",
+        "BANK_ID": "021",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "21",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "463186",
+        "SUP_LIMIT": "463186",
+        "BANK_ID": "059",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "59",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "463187",
+        "SUP_LIMIT": "463187",
+        "BANK_ID": "059",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "59",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "547370",
+        "SUP_LIMIT": "547370",
+        "BANK_ID": "002",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "2",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "547514",
+        "SUP_LIMIT": "547514",
+        "BANK_ID": "002",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "2",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "548234",
+        "SUP_LIMIT": "548234",
+        "BANK_ID": "002",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "2",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "549138",
+        "SUP_LIMIT": "549138",
+        "BANK_ID": "002",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "2",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "554627",
+        "SUP_LIMIT": "554627",
+        "BANK_ID": "002",
+        "COLLECT_TYPE_ID": "D",
+        "RETAINER_ID": "913",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "2",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "558426",
+        "SUP_LIMIT": "558426",
+        "BANK_ID": "002",
+        "COLLECT_TYPE_ID": "D",
+        "RETAINER_ID": "913",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "2",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "558784",
+        "SUP_LIMIT": "558784",
+        "BANK_ID": "002",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "2",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "854809",
+        "SUP_LIMIT": "854809",
+        "BANK_ID": "002",
+        "COLLECT_TYPE_ID": "D",
+        "RETAINER_ID": "913",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "2",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "854819",
+        "SUP_LIMIT": "854819",
+        "BANK_ID": "002",
+        "COLLECT_TYPE_ID": "D",
+        "RETAINER_ID": "913",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "2",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "854829",
+        "SUP_LIMIT": "854829",
+        "BANK_ID": "002",
+        "COLLECT_TYPE_ID": "D",
+        "RETAINER_ID": "913",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "2",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "854840",
+        "SUP_LIMIT": "854840",
+        "BANK_ID": "002",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "2",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "854848",
+        "SUP_LIMIT": "854848",
+        "BANK_ID": "002",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "2",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "854858",
+        "SUP_LIMIT": "854858",
+        "BANK_ID": "002",
+        "COLLECT_TYPE_ID": "D",
+        "RETAINER_ID": "913",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "2",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "854859",
+        "SUP_LIMIT": "854859",
+        "BANK_ID": "002",
+        "COLLECT_TYPE_ID": "D",
+        "RETAINER_ID": "913",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "2",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "491294",
+        "SUP_LIMIT": "491294",
+        "BANK_ID": "021",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "21",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "491327",
+        "SUP_LIMIT": "491327",
+        "BANK_ID": "014",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "14",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "491343",
+        "SUP_LIMIT": "491343",
+        "BANK_ID": "019",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "19",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "491344",
+        "SUP_LIMIT": "491344",
+        "BANK_ID": "019",
+        "COLLECT_TYPE_ID": "D",
+        "RETAINER_ID": "913",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "19",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "491346",
+        "SUP_LIMIT": "491346",
+        "BANK_ID": "019",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "19",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "491365",
+        "SUP_LIMIT": "491365",
+        "BANK_ID": "161",
+        "COLLECT_TYPE_ID": "D",
+        "RETAINER_ID": "913",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "161",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "491406",
+        "SUP_LIMIT": "491406",
+        "BANK_ID": "014",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "14",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "491418",
+        "SUP_LIMIT": "491418",
+        "BANK_ID": "014",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "14",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "491528",
+        "SUP_LIMIT": "491528",
+        "BANK_ID": "021",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "21",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "491529",
+        "SUP_LIMIT": "491529",
+        "BANK_ID": "021",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "21",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "491559",
+        "SUP_LIMIT": "491559",
+        "BANK_ID": "021",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "21",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "491572",
+        "SUP_LIMIT": "491572",
+        "BANK_ID": "014",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "14",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "491573",
+        "SUP_LIMIT": "491573",
+        "BANK_ID": "014",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "14",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "491872",
+        "SUP_LIMIT": "491872",
+        "BANK_ID": "044",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "44",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "491873",
+        "SUP_LIMIT": "491873",
+        "BANK_ID": "044",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "44",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "493136",
+        "SUP_LIMIT": "493136",
+        "BANK_ID": "014",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "14",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "493166",
+        "SUP_LIMIT": "493166",
+        "BANK_ID": "021",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "21",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "493170",
+        "SUP_LIMIT": "493170",
+        "BANK_ID": "021",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "21",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "493815",
+        "SUP_LIMIT": "493815",
+        "BANK_ID": "044",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "44",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "494133",
+        "SUP_LIMIT": "494133",
+        "BANK_ID": "014",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "14",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "512029",
+        "SUP_LIMIT": "512029",
+        "BANK_ID": "062",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "62",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "512048",
+        "SUP_LIMIT": "512048",
+        "BANK_ID": "062",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "62",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "520500",
+        "SUP_LIMIT": "520500",
+        "BANK_ID": "044",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "44",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "522174",
+        "SUP_LIMIT": "522174",
+        "BANK_ID": "021",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "21",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "540051",
+        "SUP_LIMIT": "540051",
+        "BANK_ID": "044",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "44",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "540845",
+        "SUP_LIMIT": "540845",
+        "BANK_ID": "014",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "14",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "540957",
+        "SUP_LIMIT": "540957",
+        "BANK_ID": "021",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "21",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "540958",
+        "SUP_LIMIT": "540958",
+        "BANK_ID": "044",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "44",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "541221",
+        "SUP_LIMIT": "541221",
+        "BANK_ID": "044",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "44",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "541286",
+        "SUP_LIMIT": "541286",
+        "BANK_ID": "021",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "21",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "541290",
+        "SUP_LIMIT": "541290",
+        "BANK_ID": "021",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "21",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "543221",
+        "SUP_LIMIT": "543221",
+        "BANK_ID": "044",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "44",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "543662",
+        "SUP_LIMIT": "543662",
+        "BANK_ID": "014",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "14",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "543710",
+        "SUP_LIMIT": "543710",
+        "BANK_ID": "032",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "32",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    },
+    {
+        "INF_LIMIT": "543785",
+        "SUP_LIMIT": "543785",
+        "BANK_ID": "044",
+        "COLLECT_TYPE_ID": "C",
+        "RETAINER_ID": "912",
+        "PAYMENT_UNIT": "1",
+        "CONCEPT_ID": "44",
+        "COLLECT_METHOD_ID": "03",
+        "LAST_UPDATE": "2017-02-27 15:36:14.0"
+    }],
+    "bank": [
+    {
+        "BANK_ID": "006",
+        "DESCRIPTION": "Banco Nacional de Comercio Exterior, S.N.C.",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "108",
+        "DESCRIPTION": "Bank of Tokyo",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "114",
+        "DESCRIPTION": "Bank One Mexico, S.A.",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "124",
+        "DESCRIPTION": "Deutsche Bank",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "161",
+        "DESCRIPTION": "Bancrecer, S.A.",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "002",
+        "DESCRIPTION": "Banco Nacional de Mexico S.A.",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "012",
+        "DESCRIPTION": "Bancomer, S.A.",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "126",
+        "DESCRIPTION": "Credit Suisse",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "166",
+        "DESCRIPTION": "Bansefi",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "014",
+        "DESCRIPTION": "Santander Mexicano, S.A.",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "116",
+        "DESCRIPTION": "ING",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "127",
+        "DESCRIPTION": "Azteca",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "168",
+        "DESCRIPTION": "Hipotecaria Federal",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "003",
+        "DESCRIPTION": "BANCA SERFIN S.A",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "019",
+        "DESCRIPTION": "Banco Nacional del Ejercito y Fuerza Aerea y Armada, S.N.C.",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "021",
+        "DESCRIPTION": "HSBC",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "022",
+        "DESCRIPTION": "GE Capital Bank, S.A.",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "030",
+        "DESCRIPTION": "Banco del Bajio, S.A.",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "032",
+        "DESCRIPTION": "Ixe Banco, S.A.",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "036",
+        "DESCRIPTION": "Banco Inbursa, S.A.",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "037",
+        "DESCRIPTION": "Banco Interacciones, S.A.",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "042",
+        "DESCRIPTION": "Banca Mifel, S.A.",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "044",
+        "DESCRIPTION": "Scotiabank, S.A.",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "058",
+        "DESCRIPTION": "Banco Regional de Monterrey, S.A.",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "059",
+        "DESCRIPTION": "Banco Invex, S.A.",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "060",
+        "DESCRIPTION": "Bansi, S.A.",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "062",
+        "DESCRIPTION": "Banco Afirme, S.A.",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "072",
+        "DESCRIPTION": "Banco Mercantil del Norte, S.A.",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "102",
+        "DESCRIPTION": "ABN Amro Bank (Mexico), S.A.",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "103",
+        "DESCRIPTION": "American Express Bank (Mexico), S.A.",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "106",
+        "DESCRIPTION": "Bank of America Mexico, S.A.",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "107",
+        "DESCRIPTION": "Bank Boston, S.A.",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "110",
+        "DESCRIPTION": "JP Morgan",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "113",
+        "DESCRIPTION": "Dresdner Bank Mexico, S.A.",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "119",
+        "DESCRIPTION": "Bital, S.A.",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "135",
+        "DESCRIPTION": "Nacional Financiera, S.N.C.",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "999",
+        "DESCRIPTION": "PROSA",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "BANK_ID": "137",
+        "DESCRIPTION": "Bancoppel",
+        "LAST_UPDATE": "2008-08-12 12:39:28.65594"
+    },
+    {
+        "BANK_ID": "140",
+        "DESCRIPTION": "Banco Facil",
+        "LAST_UPDATE": "2008-08-12 12:39:28.686974"
+    },
+    {
+        "BANK_ID": "134",
+        "DESCRIPTION": "Banco Wal-Mart de M\u00e9xico Adelante, S.A., Instituci\u00f3n de Banca M\u00faltiple",
+        "LAST_UPDATE": "2010-07-29 15:48:11.585366"
+    }],
+    "collection": [
+    {
+        "COLLECT_CHANNEL_ID": "1",
+        "DESCRIPTION": "EFECTIVO",
+        "PADMIN_ID": "1",
+        "PRODUCT_ID": "P",
+        "COLLECTION_TYPE_ID": "Z",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "COLLECT_CHANNEL_ID": "2",
+        "DESCRIPTION": "DESCTO. POR NOMINA",
+        "PADMIN_ID": "2",
+        "PRODUCT_ID": "P",
+        "COLLECTION_TYPE_ID": "X",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "COLLECT_CHANNEL_ID": "3",
+        "DESCRIPTION": "TARJETA DE CREDITO",
+        "PADMIN_ID": "3",
+        "PRODUCT_ID": "P",
+        "COLLECTION_TYPE_ID": "C",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "COLLECT_CHANNEL_ID": "4",
+        "DESCRIPTION": "TARJETA DE DEBITO",
+        "PADMIN_ID": "3",
+        "PRODUCT_ID": "P",
+        "COLLECTION_TYPE_ID": "D",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "COLLECT_CHANNEL_ID": "5",
+        "DESCRIPTION": "CLABE",
+        "PADMIN_ID": "3",
+        "PRODUCT_ID": "P",
+        "COLLECTION_TYPE_ID": "E",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    },
+    {
+        "COLLECT_CHANNEL_ID": "6",
+        "DESCRIPTION": "AMEX",
+        "PADMIN_ID": "3",
+        "PRODUCT_ID": "P",
+        "COLLECTION_TYPE_ID": "A",
+        "LAST_UPDATE": "2005-10-05 10:00:00.0"
+    }],
+    "promotories": [
+    {
+        "promCode": 0,
+        "promName": "FLOTONIC",
+        "promZones": [
+        {
+            "zoneCode": 0,
+            "zoneName": "NORALI"
+        }]
+    },
+    {
+        "promCode": 1,
+        "promName": "ISOSPHERE",
+        "promZones": [
+        {
+            "zoneCode": 0,
+            "zoneName": "OLYMPIX"
+        },
+        {
+            "zoneCode": 1,
+            "zoneName": "DYNO"
+        },
+        {
+            "zoneCode": 2,
+            "zoneName": "DEVILTOE"
+        },
+        {
+            "zoneCode": 3,
+            "zoneName": "TALENDULA"
+        },
+        {
+            "zoneCode": 4,
+            "zoneName": "POOCHIES"
+        }]
+    },
+    {
+        "promCode": 2,
+        "promName": "EXODOC",
+        "promZones": [
+        {
+            "zoneCode": 0,
+            "zoneName": "ASSITIA"
+        },
+        {
+            "zoneCode": 1,
+            "zoneName": "BUGSALL"
+        },
+        {
+            "zoneCode": 2,
+            "zoneName": "FIBRODYNE"
+        },
+        {
+            "zoneCode": 3,
+            "zoneName": "EXOPLODE"
+        },
+        {
+            "zoneCode": 4,
+            "zoneName": "EXOSIS"
+        }]
+    },
+    {
+        "promCode": 3,
+        "promName": "KNEEDLES",
+        "promZones": [
+        {
+            "zoneCode": 0,
+            "zoneName": "GEEKULAR"
+        },
+        {
+            "zoneCode": 1,
+            "zoneName": "ZAJ"
+        },
+        {
+            "zoneCode": 2,
+            "zoneName": "FIREWAX"
+        },
+        {
+            "zoneCode": 3,
+            "zoneName": "NEWCUBE"
+        }]
+    },
+    {
+        "promCode": 4,
+        "promName": "EXPOSA",
+        "promZones": []
+    }],
+    "relationshipsComplementaries":{ 
+        "bcac1":[
+          {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 46,
+		    "DESCRIPTION": "SOBRINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 46
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 33,
+		    "DESCRIPTION": "HIJA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 33
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 35,
+		    "DESCRIPTION": "MADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 35
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 37,
+		    "DESCRIPTION": "HERMANA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 37
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 39,
+		    "DESCRIPTION": "ABUELA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 39
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 41,
+		    "DESCRIPTION": "NIETA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 41
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 42,
+		    "DESCRIPTION": "OTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 42
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 44,
+		    "DESCRIPTION": "TIA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 44
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 45,
+		    "DESCRIPTION": "PRIMO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 93
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 47,
+		    "DESCRIPTION": "SOBRINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 47
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 32,
+		    "DESCRIPTION": "HIJO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 32
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 34,
+		    "DESCRIPTION": "PADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 34
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 36,
+		    "DESCRIPTION": "HERMANO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 36
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 38,
+		    "DESCRIPTION": "ABUELO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 38
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 40,
+		    "DESCRIPTION": "NIETO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 40
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 43,
+		    "DESCRIPTION": "TIO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 43
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 292,
+		    "DESCRIPTION": "PRIMA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 45
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 293,
+		    "DESCRIPTION": "U.LIBRE-H",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 96
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 294,
+		    "DESCRIPTION": "U.LIBRE-M",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 97
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 295,
+		    "DESCRIPTION": "CONCUBINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 98
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 296,
+		    "DESCRIPTION": "CONCUBINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 99
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 297,
+		    "DESCRIPTION": "ESPOSO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 94
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 298,
+		    "DESCRIPTION": "ESPOSA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 95
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 299,
+		    "DESCRIPTION": "HIJASTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 100
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 300,
+		    "DESCRIPTION": "HIJASTRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 101
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 301,
+		    "DESCRIPTION": "CUÑADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 102
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 302,
+		    "DESCRIPTION": "CUÑADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 103
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 303,
+		    "DESCRIPTION": "AHIJADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 104
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 304,
+		    "DESCRIPTION": "AHIJADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 105
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 305,
+		    "DESCRIPTION": "AMIGO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 106
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 306,
+		    "DESCRIPTION": "AMIGA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 107
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 307,
+		    "DESCRIPTION": "SUEGRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 108
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 308,
+		    "DESCRIPTION": "SUEGRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 109
+		  }
+        ],
+	    "bcac2":[
+	      {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 53,
+		    "DESCRIPTION": "HIJA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 53
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 55,
+		    "DESCRIPTION": "MADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 55
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 57,
+		    "DESCRIPTION": "HERMANA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 57
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 59,
+		    "DESCRIPTION": "ABUELA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 59
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 61,
+		    "DESCRIPTION": "NIETA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 61
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 62,
+		    "DESCRIPTION": "OTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 62
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 64,
+		    "DESCRIPTION": "TIA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 64
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 65,
+		    "DESCRIPTION": "PRIMO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 110
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 66,
+		    "DESCRIPTION": "SOBRINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 66
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 52,
+		    "DESCRIPTION": "HIJO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 52
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 54,
+		    "DESCRIPTION": "PADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 54
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 56,
+		    "DESCRIPTION": "HERMANO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 56
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 58,
+		    "DESCRIPTION": "ABUELO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 58
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 60,
+		    "DESCRIPTION": "NIETO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 60
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 67,
+		    "DESCRIPTION": "SOBRINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 67
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 63,
+		    "DESCRIPTION": "TIO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 63
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 309,
+		    "DESCRIPTION": "PRIMA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 65
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 310,
+		    "DESCRIPTION": "U.LIBRE-H",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 113
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 311,
+		    "DESCRIPTION": "U.LIBRE-M",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 114
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 312,
+		    "DESCRIPTION": "CONCUBINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 116
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 313,
+		    "DESCRIPTION": "CONCUBINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 115
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 314,
+		    "DESCRIPTION": "ESPOSO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 111
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 315,
+		    "DESCRIPTION": "ESPOSA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 112
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 316,
+		    "DESCRIPTION": "HIJASTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 117
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 317,
+		    "DESCRIPTION": "HIJASTRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 118
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 318,
+		    "DESCRIPTION": "CUÑADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 119
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 319,
+		    "DESCRIPTION": "CUÑADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 120
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 320,
+		    "DESCRIPTION": "AHIJADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 121
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 321,
+		    "DESCRIPTION": "AHIJADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 122
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 322,
+		    "DESCRIPTION": "SUEGRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 125
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 323,
+		    "DESCRIPTION": "SUEGRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 126
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 324,
+		    "DESCRIPTION": "AMIGO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 123
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 325,
+		    "DESCRIPTION": "AMIGA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 124
+		  }
+	    ],
+	    "bcac3":[
+	      {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 73,
+		    "DESCRIPTION": "HIJA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 73
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 75,
+		    "DESCRIPTION": "MADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 75
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 77,
+		    "DESCRIPTION": "HERMANA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 77
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 79,
+		    "DESCRIPTION": "ABUELA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 79
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 81,
+		    "DESCRIPTION": "NIETA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 81
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 82,
+		    "DESCRIPTION": "OTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 82
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 84,
+		    "DESCRIPTION": "TIA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 84
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 85,
+		    "DESCRIPTION": "PRIMO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 127
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 86,
+		    "DESCRIPTION": "SOBRINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 86
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 72,
+		    "DESCRIPTION": "HIJO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 72
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 74,
+		    "DESCRIPTION": "PADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 74
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 76,
+		    "DESCRIPTION": "HERMANO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 76
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 78,
+		    "DESCRIPTION": "ABUELO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 78
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 80,
+		    "DESCRIPTION": "NIETO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 80
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 83,
+		    "DESCRIPTION": "TIO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 83
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 87,
+		    "DESCRIPTION": "SOBRINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 87
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 326,
+		    "DESCRIPTION": "PRIMA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 85
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 327,
+		    "DESCRIPTION": "U.LIBRE-H",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 130
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 328,
+		    "DESCRIPTION": "U.LIBRE-M",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 131
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 329,
+		    "DESCRIPTION": "CONCUBINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 132
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 330,
+		    "DESCRIPTION": "CONCUBINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 133
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 331,
+		    "DESCRIPTION": "ESPOSO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 128
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 332,
+		    "DESCRIPTION": "ESPOSA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 129
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 333,
+		    "DESCRIPTION": "HIJASTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 134
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 334,
+		    "DESCRIPTION": "HIJASTRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 135
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 335,
+		    "DESCRIPTION": "CUÑADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 136
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 336,
+		    "DESCRIPTION": "CUÑADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 137
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 337,
+		    "DESCRIPTION": "AHIJADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 138
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 338,
+		    "DESCRIPTION": "AHIJADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 139
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 339,
+		    "DESCRIPTION": "SUEGRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 142
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 340,
+		    "DESCRIPTION": "SUEGRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 143
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 341,
+		    "DESCRIPTION": "AMIGO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 140
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCA3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 342,
+		    "DESCRIPTION": "AMIGA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 141
+		  }
+	    ],
+	    "bac":[
+	      {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 21,
+		    "DESCRIPTION": "PADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 21
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 22,
+		    "DESCRIPTION": "MADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 22
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 23,
+		    "DESCRIPTION": "HIJO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 23
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 24,
+		    "DESCRIPTION": "HIJA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 24
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 25,
+		    "DESCRIPTION": "HERMANO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 25
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 26,
+		    "DESCRIPTION": "HERMANA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 26
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 27,
+		    "DESCRIPTION": "ABUELO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 27
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 28,
+		    "DESCRIPTION": "ABUELA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 28
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 343,
+		    "DESCRIPTION": "TIO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 150
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 344,
+		    "DESCRIPTION": "TIA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 151
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 345,
+		    "DESCRIPTION": "SOBRINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 152
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 346,
+		    "DESCRIPTION": "SOBRINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 153
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 347,
+		    "DESCRIPTION": "PRIMA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 154
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 348,
+		    "DESCRIPTION": "PRIMO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 155
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 349,
+		    "DESCRIPTION": "U.LIBRE-H",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 146
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 350,
+		    "DESCRIPTION": "U.LIBRE-M",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 147
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 351,
+		    "DESCRIPTION": "CONCUBINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 148
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 352,
+		    "DESCRIPTION": "CONCUBINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 149
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 29,
+		    "DESCRIPTION": "NIETO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 29
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 30,
+		    "DESCRIPTION": "NIETA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 30
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 353,
+		    "DESCRIPTION": "ESPOSO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 144
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 354,
+		    "DESCRIPTION": "ESPOSA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 145
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 355,
+		    "DESCRIPTION": "HIJASTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 156
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 356,
+		    "DESCRIPTION": "HIJASTRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 157
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 357,
+		    "DESCRIPTION": "CUÑADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 158
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 358,
+		    "DESCRIPTION": "CUÑADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 159
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 359,
+		    "DESCRIPTION": "AHIJADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 162
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 360,
+		    "DESCRIPTION": "AHIJADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 163
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 361,
+		    "DESCRIPTION": "AMIGO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 160
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 363,
+		    "DESCRIPTION": "SUEGRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 164
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 364,
+		    "DESCRIPTION": "SUEGRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 165
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 365,
+		    "DESCRIPTION": "OTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 166
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCCO",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 362,
+		    "DESCRIPTION": "AMIGA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 161
+		  }
+	    ],
+	    "vptt":[
+	      {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPTT",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 2,
+		    "DESCRIPTION": "TITULAR",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 2
+		  }
+	    ],
+	    "ap1":[
+	      {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 702,
+		    "DESCRIPTION": "ABUELA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 766
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 703,
+		    "DESCRIPTION": "ABUELO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 767
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 704,
+		    "DESCRIPTION": "AHIJADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 768
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 705,
+		    "DESCRIPTION": "AHIJADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 769
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 706,
+		    "DESCRIPTION": "AMIGA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 770
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 707,
+		    "DESCRIPTION": "AMIGO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 771
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 708,
+		    "DESCRIPTION": "CONCUBINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 772
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 709,
+		    "DESCRIPTION": "CONCUBINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 773
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 710,
+		    "DESCRIPTION": "CUÑADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 774
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 711,
+		    "DESCRIPTION": "CUÑADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 775
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 712,
+		    "DESCRIPTION": "ESPOSA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 776
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 713,
+		    "DESCRIPTION": "ESPOSO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 777
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 714,
+		    "DESCRIPTION": "HERMANA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 778
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 715,
+		    "DESCRIPTION": "HERMANO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 779
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 716,
+		    "DESCRIPTION": "HIJA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 780
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 717,
+		    "DESCRIPTION": "HIJASTRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 781
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 718,
+		    "DESCRIPTION": "HIJASTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 782
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 719,
+		    "DESCRIPTION": "HIJO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 783
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 720,
+		    "DESCRIPTION": "MADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 784
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 721,
+		    "DESCRIPTION": "NIETA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 785
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 722,
+		    "DESCRIPTION": "NIETO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 786
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 723,
+		    "DESCRIPTION": "OTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 787
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 724,
+		    "DESCRIPTION": "PADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 788
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 725,
+		    "DESCRIPTION": "PRIMA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 789
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 726,
+		    "DESCRIPTION": "PRIMO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 790
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 727,
+		    "DESCRIPTION": "SOBRINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 791
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 728,
+		    "DESCRIPTION": "SOBRINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 792
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 729,
+		    "DESCRIPTION": "SUEGRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 793
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 730,
+		    "DESCRIPTION": "SUEGRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 794
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 731,
+		    "DESCRIPTION": "TIA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 795
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 732,
+		    "DESCRIPTION": "TIO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 796
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 733,
+		    "DESCRIPTION": "U.LIBRE-H",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 797
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP01",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 734,
+		    "DESCRIPTION": "U.LIBRE-M",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 798
+		  }
+	    ],
+	    "ap2":[
+	      {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 702,
+		    "DESCRIPTION": "ABUELA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 799
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 703,
+		    "DESCRIPTION": "ABUELO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 800
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 704,
+		    "DESCRIPTION": "AHIJADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 801
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 705,
+		    "DESCRIPTION": "AHIJADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 802
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 706,
+		    "DESCRIPTION": "AMIGA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 803
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 707,
+		    "DESCRIPTION": "AMIGO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 804
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 708,
+		    "DESCRIPTION": "CONCUBINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 805
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 709,
+		    "DESCRIPTION": "CONCUBINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 806
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 710,
+		    "DESCRIPTION": "CUÑADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 807
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 711,
+		    "DESCRIPTION": "CUÑADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 808
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 712,
+		    "DESCRIPTION": "ESPOSA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 809
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 713,
+		    "DESCRIPTION": "ESPOSO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 810
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 714,
+		    "DESCRIPTION": "HERMANA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 811
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 715,
+		    "DESCRIPTION": "HERMANO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 812
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 716,
+		    "DESCRIPTION": "HIJA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 813
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 717,
+		    "DESCRIPTION": "HIJASTRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 814
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 718,
+		    "DESCRIPTION": "HIJASTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 815
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 719,
+		    "DESCRIPTION": "HIJO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 816
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 720,
+		    "DESCRIPTION": "MADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 817
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 721,
+		    "DESCRIPTION": "NIETA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 818
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 722,
+		    "DESCRIPTION": "NIETO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 819
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 723,
+		    "DESCRIPTION": "OTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 820
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 724,
+		    "DESCRIPTION": "PADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 821
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 725,
+		    "DESCRIPTION": "PRIMA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 822
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 726,
+		    "DESCRIPTION": "PRIMO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 823
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 727,
+		    "DESCRIPTION": "SOBRINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 824
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 728,
+		    "DESCRIPTION": "SOBRINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 825
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 729,
+		    "DESCRIPTION": "SUEGRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 826
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 730,
+		    "DESCRIPTION": "SUEGRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 827
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 731,
+		    "DESCRIPTION": "TIA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 828
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 732,
+		    "DESCRIPTION": "TIO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 829
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 733,
+		    "DESCRIPTION": "U.LIBRE-H",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 830
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP02",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 734,
+		    "DESCRIPTION": "U.LIBRE-M",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 831
+		  }
+	    ],
+	    "gfc1":[
+	      {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 702,
+		    "DESCRIPTION": "ABUELA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 667
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 703,
+		    "DESCRIPTION": "ABUELO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 668
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 704,
+		    "DESCRIPTION": "AHIJADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 669
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 705,
+		    "DESCRIPTION": "AHIJADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 670
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 706,
+		    "DESCRIPTION": "AMIGA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 671
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 707,
+		    "DESCRIPTION": "AMIGO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 672
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 710,
+		    "DESCRIPTION": "CUÑADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 675
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 711,
+		    "DESCRIPTION": "CUÑADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 676
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 714,
+		    "DESCRIPTION": "HERMANA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 679
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 715,
+		    "DESCRIPTION": "HERMANO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 680
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 716,
+		    "DESCRIPTION": "HIJA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 681
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 717,
+		    "DESCRIPTION": "HIJASTRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 682
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 718,
+		    "DESCRIPTION": "HIJASTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 683
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 719,
+		    "DESCRIPTION": "HIJO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 684
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 720,
+		    "DESCRIPTION": "MADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 685
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 721,
+		    "DESCRIPTION": "NIETA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 686
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 722,
+		    "DESCRIPTION": "NIETO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 687
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 723,
+		    "DESCRIPTION": "OTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 688
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 724,
+		    "DESCRIPTION": "PADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 689
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 725,
+		    "DESCRIPTION": "PRIMA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 690
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 726,
+		    "DESCRIPTION": "PRIMO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 691
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 727,
+		    "DESCRIPTION": "SOBRINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 692
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 728,
+		    "DESCRIPTION": "SOBRINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 693
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 729,
+		    "DESCRIPTION": "SUEGRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 694
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 730,
+		    "DESCRIPTION": "SUEGRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 695
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 731,
+		    "DESCRIPTION": "TIA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 696
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 732,
+		    "DESCRIPTION": "TIO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 697
+		  }
+	    ],
+	    "gfc2":[
+	      {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 735,
+		    "DESCRIPTION": "ABUELA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 700
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 736,
+		    "DESCRIPTION": "ABUELO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 701
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 737,
+		    "DESCRIPTION": "AHIJADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 702
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 738,
+		    "DESCRIPTION": "AHIJADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 703
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 739,
+		    "DESCRIPTION": "AMIGA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 704
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 740,
+		    "DESCRIPTION": "AMIGO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 705
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 743,
+		    "DESCRIPTION": "CUÑADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 708
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 744,
+		    "DESCRIPTION": "CUÑADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 709
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 747,
+		    "DESCRIPTION": "HERMANA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 712
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 748,
+		    "DESCRIPTION": "HERMANO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 713
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 749,
+		    "DESCRIPTION": "HIJA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 714
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 750,
+		    "DESCRIPTION": "HIJASTRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 715
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 751,
+		    "DESCRIPTION": "HIJASTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 716
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 752,
+		    "DESCRIPTION": "HIJO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 717
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 753,
+		    "DESCRIPTION": "MADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 718
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 754,
+		    "DESCRIPTION": "NIETA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 719
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 755,
+		    "DESCRIPTION": "NIETO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 720
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 756,
+		    "DESCRIPTION": "OTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 721
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 757,
+		    "DESCRIPTION": "PADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 722
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 758,
+		    "DESCRIPTION": "PRIMA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 723
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 759,
+		    "DESCRIPTION": "PRIMO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 724
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 760,
+		    "DESCRIPTION": "SOBRINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 725
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 761,
+		    "DESCRIPTION": "SOBRINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 726
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 762,
+		    "DESCRIPTION": "SUEGRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 727
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 763,
+		    "DESCRIPTION": "SUEGRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 728
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 764,
+		    "DESCRIPTION": "TIA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 729
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 765,
+		    "DESCRIPTION": "TIO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 730
+		  }
+	    ],
+	    "gfc3":[
+	      {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 768,
+		    "DESCRIPTION": "ABUELA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 733
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 769,
+		    "DESCRIPTION": "ABUELO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 734
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 770,
+		    "DESCRIPTION": "AHIJADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 735
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 771,
+		    "DESCRIPTION": "AHIJADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 736
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 772,
+		    "DESCRIPTION": "AMIGA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 737
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 773,
+		    "DESCRIPTION": "AMIGO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 738
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 776,
+		    "DESCRIPTION": "CUÑADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 741
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 777,
+		    "DESCRIPTION": "CUÑADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 742
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 780,
+		    "DESCRIPTION": "HERMANA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 745
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 781,
+		    "DESCRIPTION": "HERMANO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 746
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 782,
+		    "DESCRIPTION": "HIJA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 747
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 783,
+		    "DESCRIPTION": "HIJASTRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 748
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 784,
+		    "DESCRIPTION": "HIJASTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 749
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 785,
+		    "DESCRIPTION": "HIJO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 750
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 786,
+		    "DESCRIPTION": "MADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 751
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 787,
+		    "DESCRIPTION": "NIETA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 752
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 788,
+		    "DESCRIPTION": "NIETO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 753
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 789,
+		    "DESCRIPTION": "OTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 754
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 790,
+		    "DESCRIPTION": "PADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 755
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 791,
+		    "DESCRIPTION": "PRIMA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 756
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 792,
+		    "DESCRIPTION": "PRIMO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 757
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 793,
+		    "DESCRIPTION": "SOBRINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 758
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 794,
+		    "DESCRIPTION": "SOBRINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 759
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 795,
+		    "DESCRIPTION": "SUEGRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 760
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 796,
+		    "DESCRIPTION": "SUEGRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 761
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 797,
+		    "DESCRIPTION": "TIA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 762
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VGF3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 798,
+		    "DESCRIPTION": "TIO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 763
+		  }
+	    ],
+	    "ap4":[
+	      {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 768,
+		    "DESCRIPTION": "ABUELA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 865
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 769,
+		    "DESCRIPTION": "ABUELO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 866
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 770,
+		    "DESCRIPTION": "AHIJADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 867
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 771,
+		    "DESCRIPTION": "AHIJADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 868
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 772,
+		    "DESCRIPTION": "AMIGA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 869
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 773,
+		    "DESCRIPTION": "AMIGO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 870
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 774,
+		    "DESCRIPTION": "CONCUBINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 871
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 775,
+		    "DESCRIPTION": "CONCUBINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 872
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 776,
+		    "DESCRIPTION": "CUÑADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 873
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 777,
+		    "DESCRIPTION": "CUÑADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 874
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 778,
+		    "DESCRIPTION": "ESPOSA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 875
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 779,
+		    "DESCRIPTION": "ESPOSO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 876
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 780,
+		    "DESCRIPTION": "HERMANA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 877
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 781,
+		    "DESCRIPTION": "HERMANO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 878
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 782,
+		    "DESCRIPTION": "HIJA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 879
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 783,
+		    "DESCRIPTION": "HIJASTRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 880
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 784,
+		    "DESCRIPTION": "HIJASTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 881
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 785,
+		    "DESCRIPTION": "HIJO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 882
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 786,
+		    "DESCRIPTION": "MADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 883
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 787,
+		    "DESCRIPTION": "NIETA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 884
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 788,
+		    "DESCRIPTION": "NIETO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 885
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 789,
+		    "DESCRIPTION": "OTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 886
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 790,
+		    "DESCRIPTION": "PADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 887
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 791,
+		    "DESCRIPTION": "PRIMA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 888
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 792,
+		    "DESCRIPTION": "PRIMO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 889
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 793,
+		    "DESCRIPTION": "SOBRINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 890
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 794,
+		    "DESCRIPTION": "SOBRINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 891
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 795,
+		    "DESCRIPTION": "SUEGRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 892
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 796,
+		    "DESCRIPTION": "SUEGRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 893
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 797,
+		    "DESCRIPTION": "TIA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 894
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 798,
+		    "DESCRIPTION": "TIO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 895
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 799,
+		    "DESCRIPTION": "U.LIBRE-H",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 896
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP04",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 800,
+		    "DESCRIPTION": "U.LIBRE-M",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 897
+		  }
+	    ],
+	    "ap3":[
+	      {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 735,
+		    "DESCRIPTION": "ABUELA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 832
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 736,
+		    "DESCRIPTION": "ABUELO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 833
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 737,
+		    "DESCRIPTION": "AHIJADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 834
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 738,
+		    "DESCRIPTION": "AHIJADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 835
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 739,
+		    "DESCRIPTION": "AMIGA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 836
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 740,
+		    "DESCRIPTION": "AMIGO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 837
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 741,
+		    "DESCRIPTION": "CONCUBINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 838
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 742,
+		    "DESCRIPTION": "CONCUBINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 839
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 743,
+		    "DESCRIPTION": "CUÑADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 840
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 744,
+		    "DESCRIPTION": "CUÑADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 841
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 745,
+		    "DESCRIPTION": "ESPOSA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 842
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 746,
+		    "DESCRIPTION": "ESPOSO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 843
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 747,
+		    "DESCRIPTION": "HERMANA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 844
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 748,
+		    "DESCRIPTION": "HERMANO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 845
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 749,
+		    "DESCRIPTION": "HIJA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 846
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 750,
+		    "DESCRIPTION": "HIJASTRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 847
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 751,
+		    "DESCRIPTION": "HIJASTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 848
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 752,
+		    "DESCRIPTION": "HIJO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 849
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 753,
+		    "DESCRIPTION": "MADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 850
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 754,
+		    "DESCRIPTION": "NIETA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 851
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 755,
+		    "DESCRIPTION": "NIETO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 852
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 756,
+		    "DESCRIPTION": "OTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 853
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 757,
+		    "DESCRIPTION": "PADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 854
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 758,
+		    "DESCRIPTION": "PRIMA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 855
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 759,
+		    "DESCRIPTION": "PRIMO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 856
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 760,
+		    "DESCRIPTION": "SOBRINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 857
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 761,
+		    "DESCRIPTION": "SOBRINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 858
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 762,
+		    "DESCRIPTION": "SUEGRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 859
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 763,
+		    "DESCRIPTION": "SUEGRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 860
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 764,
+		    "DESCRIPTION": "TIA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 861
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 765,
+		    "DESCRIPTION": "TIO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 862
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 766,
+		    "DESCRIPTION": "U.LIBRE-H",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 863
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VP03",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 767,
+		    "DESCRIPTION": "U.LIBRE-M",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 864
+		  }
+	    ],
+	    "eg1":[
+	      {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 898,
+		    "DESCRIPTION": "ABUELA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 898
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 899,
+		    "DESCRIPTION": "ABUELO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 899
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 900,
+		    "DESCRIPTION": "AHIJADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 900
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 901,
+		    "DESCRIPTION": "AHIJADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 901
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 902,
+		    "DESCRIPTION": "AMIGA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 902
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 903,
+		    "DESCRIPTION": "AMIGO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 903
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 904,
+		    "DESCRIPTION": "CONCUBINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 904
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 905,
+		    "DESCRIPTION": "CONCUBINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 905
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 906,
+		    "DESCRIPTION": "CUÑADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 906
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 907,
+		    "DESCRIPTION": "CUÑADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 907
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 908,
+		    "DESCRIPTION": "ESPOSA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 908
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 909,
+		    "DESCRIPTION": "ESPOSO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 909
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 910,
+		    "DESCRIPTION": "HERMANA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 910
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 911,
+		    "DESCRIPTION": "HERMANO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 911
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 912,
+		    "DESCRIPTION": "HIJA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 912
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 913,
+		    "DESCRIPTION": "HIJASTRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 913
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 914,
+		    "DESCRIPTION": "HIJASTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 914
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 915,
+		    "DESCRIPTION": "HIJO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 915
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 916,
+		    "DESCRIPTION": "MADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 916
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 917,
+		    "DESCRIPTION": "NIETA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 917
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 918,
+		    "DESCRIPTION": "NIETO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 918
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 919,
+		    "DESCRIPTION": "OTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 919
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1102,
+		    "DESCRIPTION": "OTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1102
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 921,
+		    "DESCRIPTION": "PADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 921
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 922,
+		    "DESCRIPTION": "PRIMA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 922
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 923,
+		    "DESCRIPTION": "PRIMO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 923
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 924,
+		    "DESCRIPTION": "SOBRINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 924
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 925,
+		    "DESCRIPTION": "SOBRINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 925
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 926,
+		    "DESCRIPTION": "SUEGRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 926
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 927,
+		    "DESCRIPTION": "SUEGRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 927
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 928,
+		    "DESCRIPTION": "TIA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 928
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 929,
+		    "DESCRIPTION": "TIO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 929
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 930,
+		    "DESCRIPTION": "U.LIBRE-H",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 930
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 931,
+		    "DESCRIPTION": "U.LIBRE-M",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 931
+		  }
+	    ],
+	    "eg2":[
+	      {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 932,
+		    "DESCRIPTION": "ABUELA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 932
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 933,
+		    "DESCRIPTION": "ABUELO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 933
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 934,
+		    "DESCRIPTION": "AHIJADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 934
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 935,
+		    "DESCRIPTION": "AHIJADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 935
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 936,
+		    "DESCRIPTION": "AMIGA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 936
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 937,
+		    "DESCRIPTION": "AMIGO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 937
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 938,
+		    "DESCRIPTION": "CONCUBINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 938
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 939,
+		    "DESCRIPTION": "CONCUBINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 939
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 940,
+		    "DESCRIPTION": "CUÑADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 940
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 941,
+		    "DESCRIPTION": "CUÑADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 941
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 942,
+		    "DESCRIPTION": "ESPOSA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 942
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 943,
+		    "DESCRIPTION": "ESPOSO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 943
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 944,
+		    "DESCRIPTION": "HERMANA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 944
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 945,
+		    "DESCRIPTION": "HERMANO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 945
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 946,
+		    "DESCRIPTION": "HIJA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 946
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 947,
+		    "DESCRIPTION": "HIJASTRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 947
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 948,
+		    "DESCRIPTION": "HIJASTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 948
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 949,
+		    "DESCRIPTION": "HIJO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 949
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 950,
+		    "DESCRIPTION": "MADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 950
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 951,
+		    "DESCRIPTION": "NIETA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 951
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 952,
+		    "DESCRIPTION": "NIETO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 952
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 953,
+		    "DESCRIPTION": "OTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 953
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1103,
+		    "DESCRIPTION": "OTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1102
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 955,
+		    "DESCRIPTION": "PADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 955
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 956,
+		    "DESCRIPTION": "PRIMA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 956
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 957,
+		    "DESCRIPTION": "PRIMO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 957
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 958,
+		    "DESCRIPTION": "SOBRINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 958
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 959,
+		    "DESCRIPTION": "SOBRINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 959
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 960,
+		    "DESCRIPTION": "SUEGRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 960
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 961,
+		    "DESCRIPTION": "SUEGRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 961
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 962,
+		    "DESCRIPTION": "TIA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 962
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 963,
+		    "DESCRIPTION": "TIO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 963
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 964,
+		    "DESCRIPTION": "U.LIBRE-H",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 964
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 965,
+		    "DESCRIPTION": "U.LIBRE-M",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 965
+		  }
+	    ],
+	    "eg3":[
+	      {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 966,
+		    "DESCRIPTION": "ABUELA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 966
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 967,
+		    "DESCRIPTION": "ABUELO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 967
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 968,
+		    "DESCRIPTION": "AHIJADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 968
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 969,
+		    "DESCRIPTION": "AHIJADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 969
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 970,
+		    "DESCRIPTION": "AMIGA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 970
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 971,
+		    "DESCRIPTION": "AMIGO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 971
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 972,
+		    "DESCRIPTION": "CONCUBINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 972
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 973,
+		    "DESCRIPTION": "CONCUBINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 973
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 974,
+		    "DESCRIPTION": "CUÑADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 974
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 975,
+		    "DESCRIPTION": "CUÑADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 975
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 976,
+		    "DESCRIPTION": "ESPOSA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 976
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 977,
+		    "DESCRIPTION": "ESPOSO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 977
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 978,
+		    "DESCRIPTION": "HERMANA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 978
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 979,
+		    "DESCRIPTION": "HERMANO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 979
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 980,
+		    "DESCRIPTION": "HIJA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 980
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 981,
+		    "DESCRIPTION": "HIJASTRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 981
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 982,
+		    "DESCRIPTION": "HIJASTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 982
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 983,
+		    "DESCRIPTION": "HIJO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 983
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 984,
+		    "DESCRIPTION": "MADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 984
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 985,
+		    "DESCRIPTION": "NIETA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 985
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 986,
+		    "DESCRIPTION": "NIETO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 986
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 987,
+		    "DESCRIPTION": "OTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 987
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1104,
+		    "DESCRIPTION": "ABUELA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1104
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 989,
+		    "DESCRIPTION": "PADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 989
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 990,
+		    "DESCRIPTION": "PRIMA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 990
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 991,
+		    "DESCRIPTION": "PRIMO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 991
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 994,
+		    "DESCRIPTION": "SUEGRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 994
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 995,
+		    "DESCRIPTION": "SUEGRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 995
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 996,
+		    "DESCRIPTION": "TIA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 996
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 997,
+		    "DESCRIPTION": "TIO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 997
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 998,
+		    "DESCRIPTION": "U.LIBRE-H",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 998
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 999,
+		    "DESCRIPTION": "U.LIBRE-M",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 999
+		  }
+	    ],
+	    "cr1":[
+	      {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1000,
+		    "DESCRIPTION": "ABUELA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1000
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1001,
+		    "DESCRIPTION": "ABUELO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1001
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1002,
+		    "DESCRIPTION": "AHIJADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1002
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1003,
+		    "DESCRIPTION": "AHIJADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1003
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1004,
+		    "DESCRIPTION": "AMIGA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1004
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1005,
+		    "DESCRIPTION": "AMIGO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1005
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1006,
+		    "DESCRIPTION": "CONCUBINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1006
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1007,
+		    "DESCRIPTION": "CONCUBINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1007
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1008,
+		    "DESCRIPTION": "CUÑADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1008
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1009,
+		    "DESCRIPTION": "CUÑADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1009
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1010,
+		    "DESCRIPTION": "ESPOSA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1010
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1011,
+		    "DESCRIPTION": "ESPOSO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1011
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1012,
+		    "DESCRIPTION": "HERMANA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1012
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 992,
+		    "DESCRIPTION": "SOBRINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 992
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VEG3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 993,
+		    "DESCRIPTION": "SOBRINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 993
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1016,
+		    "DESCRIPTION": "HIJASTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1016
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1017,
+		    "DESCRIPTION": "HIJO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1017
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1018,
+		    "DESCRIPTION": "MADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1018
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1019,
+		    "DESCRIPTION": "NIETA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1019
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1020,
+		    "DESCRIPTION": "NIETO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1020
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1021,
+		    "DESCRIPTION": "OTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1021
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1023,
+		    "DESCRIPTION": "PADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1023
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1024,
+		    "DESCRIPTION": "PRIMA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1024
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1025,
+		    "DESCRIPTION": "PRIMO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1025
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1026,
+		    "DESCRIPTION": "SOBRINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1026
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1027,
+		    "DESCRIPTION": "SOBRINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1027
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1028,
+		    "DESCRIPTION": "SUEGRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1028
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1029,
+		    "DESCRIPTION": "SUEGRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1029
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1030,
+		    "DESCRIPTION": "TIA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1030
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1031,
+		    "DESCRIPTION": "TIO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1031
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1032,
+		    "DESCRIPTION": "U.LIBRE-H",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1032
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1033,
+		    "DESCRIPTION": "U.LIBRE-M",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1033
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1105,
+		    "DESCRIPTION": "ABUELO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1105
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1013,
+		    "DESCRIPTION": "HERMANO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1013
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1014,
+		    "DESCRIPTION": "HIJA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1014
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1015,
+		    "DESCRIPTION": "HIJASTRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1015
+		  }
+	    ],
+	    "cr2":[
+	      {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1037,
+		    "DESCRIPTION": "AHIJADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1037
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1038,
+		    "DESCRIPTION": "AMIGA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1038
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1039,
+		    "DESCRIPTION": "AMIGO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1039
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1040,
+		    "DESCRIPTION": "CONCUBINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1040
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1041,
+		    "DESCRIPTION": "CONCUBINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1041
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1042,
+		    "DESCRIPTION": "CUÑADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1042
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1043,
+		    "DESCRIPTION": "CUÑADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1043
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1044,
+		    "DESCRIPTION": "ESPOSA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1044
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1045,
+		    "DESCRIPTION": "ESPOSO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1045
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1046,
+		    "DESCRIPTION": "HERMANA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1046
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1047,
+		    "DESCRIPTION": "HERMANO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1047
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1048,
+		    "DESCRIPTION": "HIJA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1048
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1049,
+		    "DESCRIPTION": "HIJASTRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1049
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1050,
+		    "DESCRIPTION": "HIJASTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1050
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1051,
+		    "DESCRIPTION": "HIJO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1051
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1052,
+		    "DESCRIPTION": "MADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1052
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1053,
+		    "DESCRIPTION": "NIETA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1053
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1054,
+		    "DESCRIPTION": "NIETO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1054
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1055,
+		    "DESCRIPTION": "OTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1055
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1106,
+		    "DESCRIPTION": "AHIJADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1106
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1057,
+		    "DESCRIPTION": "PADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1057
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1058,
+		    "DESCRIPTION": "PRIMA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1058
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1059,
+		    "DESCRIPTION": "PRIMO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1059
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1060,
+		    "DESCRIPTION": "SOBRINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1060
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1061,
+		    "DESCRIPTION": "SOBRINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1061
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1062,
+		    "DESCRIPTION": "SUEGRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1062
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1063,
+		    "DESCRIPTION": "SUEGRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1063
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1064,
+		    "DESCRIPTION": "TIA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1064
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1065,
+		    "DESCRIPTION": "TIO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1065
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1066,
+		    "DESCRIPTION": "U.LIBRE-H",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1066
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1067,
+		    "DESCRIPTION": "U.LIBRE-M",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1067
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1034,
+		    "DESCRIPTION": "ABUELA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1034
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1035,
+		    "DESCRIPTION": "ABUELO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1035
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1036,
+		    "DESCRIPTION": "AHIJADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1036
+		  }
+	    ],
+	    "cr3":[
+	      {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1068,
+		    "DESCRIPTION": "ABUELA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1068
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1069,
+		    "DESCRIPTION": "ABUELO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1069
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1070,
+		    "DESCRIPTION": "AHIJADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1070
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1071,
+		    "DESCRIPTION": "AHIJADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1071
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1072,
+		    "DESCRIPTION": "AMIGA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1072
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1073,
+		    "DESCRIPTION": "AMIGO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1073
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1074,
+		    "DESCRIPTION": "CONCUBINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1074
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1075,
+		    "DESCRIPTION": "CONCUBINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1075
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1076,
+		    "DESCRIPTION": "CUÑADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1076
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1077,
+		    "DESCRIPTION": "CUÑADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1077
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1078,
+		    "DESCRIPTION": "ESPOSA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1078
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1079,
+		    "DESCRIPTION": "ESPOSO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1079
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1080,
+		    "DESCRIPTION": "HERMANA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1080
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1081,
+		    "DESCRIPTION": "HERMANO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1081
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1082,
+		    "DESCRIPTION": "HIJA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1082
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1083,
+		    "DESCRIPTION": "HIJASTRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1083
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1084,
+		    "DESCRIPTION": "HIJASTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1084
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1085,
+		    "DESCRIPTION": "HIJO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1085
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1086,
+		    "DESCRIPTION": "MADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1086
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1087,
+		    "DESCRIPTION": "NIETA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1087
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1088,
+		    "DESCRIPTION": "NIETO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1088
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1089,
+		    "DESCRIPTION": "OTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1089
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1107,
+		    "DESCRIPTION": "AHIJADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1107
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1091,
+		    "DESCRIPTION": "PADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1091
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1092,
+		    "DESCRIPTION": "PRIMA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1092
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1093,
+		    "DESCRIPTION": "PRIMO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1093
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1094,
+		    "DESCRIPTION": "SOBRINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1094
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1095,
+		    "DESCRIPTION": "SOBRINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1095
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1096,
+		    "DESCRIPTION": "SUEGRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1096
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1097,
+		    "DESCRIPTION": "SUEGRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1097
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1098,
+		    "DESCRIPTION": "TIA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1098
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1099,
+		    "DESCRIPTION": "TIO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1099
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1100,
+		    "DESCRIPTION": "U.LIBRE-H",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1100
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VCR3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1101,
+		    "DESCRIPTION": "U.LIBRE-M",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1101
+		  }
+	    ],
+	    "ph1":[
+	      {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1124,
+		    "DESCRIPTION": "NIETO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1124
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1125,
+		    "DESCRIPTION": "PADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1125
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1126,
+		    "DESCRIPTION": "PRIMA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1126
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1127,
+		    "DESCRIPTION": "PRIMO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1127
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1128,
+		    "DESCRIPTION": "SOBRINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1128
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1129,
+		    "DESCRIPTION": "SOBRINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1129
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1130,
+		    "DESCRIPTION": "SUEGRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1130
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1131,
+		    "DESCRIPTION": "SUEGRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1131
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1132,
+		    "DESCRIPTION": "TÍA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1132
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1108,
+		    "DESCRIPTION": "AMIGA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1108
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1109,
+		    "DESCRIPTION": "AMIGO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1109
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1110,
+		    "DESCRIPTION": "CONCUBINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1110
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1111,
+		    "DESCRIPTION": "CONCUBINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1111
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1112,
+		    "DESCRIPTION": "CUÑADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1112
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1113,
+		    "DESCRIPTION": "CUÑADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1113
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1114,
+		    "DESCRIPTION": "ESPOSA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1114
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1115,
+		    "DESCRIPTION": "ESPOSO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1115
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1116,
+		    "DESCRIPTION": "HERMANA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1116
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1117,
+		    "DESCRIPTION": "HERMANO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1117
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1118,
+		    "DESCRIPTION": "HIJA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1118
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1119,
+		    "DESCRIPTION": "HIJASTRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1119
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1120,
+		    "DESCRIPTION": "HIJASTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1120
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1121,
+		    "DESCRIPTION": "HIJO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1121
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1122,
+		    "DESCRIPTION": "MADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1122
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1123,
+		    "DESCRIPTION": "NIETA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1123
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1133,
+		    "DESCRIPTION": "TÍO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1133
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1134,
+		    "DESCRIPTION": "U.LIBRE-H",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1134
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH1",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1135,
+		    "DESCRIPTION": "U.LIBRE-M",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1135
+		  }
+	    ],
+	    "ph2":[
+	      {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1158,
+		    "DESCRIPTION": "NIETO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1158
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1159,
+		    "DESCRIPTION": "PADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1159
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1160,
+		    "DESCRIPTION": "PRIMA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1160
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1161,
+		    "DESCRIPTION": "PRIMO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1161
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1162,
+		    "DESCRIPTION": "SOBRINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1162
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1163,
+		    "DESCRIPTION": "SOBRINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1163
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1164,
+		    "DESCRIPTION": "SUEGRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1164
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1165,
+		    "DESCRIPTION": "SUEGRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1165
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1166,
+		    "DESCRIPTION": "TÍA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1166
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1167,
+		    "DESCRIPTION": "TÍO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1167
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1168,
+		    "DESCRIPTION": "U.LIBRE-H",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1168
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1169,
+		    "DESCRIPTION": "U.LIBRE-M",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1169
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1136,
+		    "DESCRIPTION": "OTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1136
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1137,
+		    "DESCRIPTION": "OTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1136
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1138,
+		    "DESCRIPTION": "ABUELA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1138
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1139,
+		    "DESCRIPTION": "ABUELO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1139
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1140,
+		    "DESCRIPTION": "AHIJADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1140
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1141,
+		    "DESCRIPTION": "AHIJADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1141
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1142,
+		    "DESCRIPTION": "AMIGA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1142
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1143,
+		    "DESCRIPTION": "AMIGO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1143
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1144,
+		    "DESCRIPTION": "CONCUBINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1144
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1145,
+		    "DESCRIPTION": "CONCUBINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1145
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1146,
+		    "DESCRIPTION": "CUÑADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1146
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1147,
+		    "DESCRIPTION": "CUÑADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1147
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1148,
+		    "DESCRIPTION": "ESPOSA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1148
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1149,
+		    "DESCRIPTION": "ESPOSO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1149
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1150,
+		    "DESCRIPTION": "HERMANA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1150
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1151,
+		    "DESCRIPTION": "HERMANO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1151
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1152,
+		    "DESCRIPTION": "HIJA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1152
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1153,
+		    "DESCRIPTION": "HIJASTRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1153
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1154,
+		    "DESCRIPTION": "HIJASTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1154
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1155,
+		    "DESCRIPTION": "HIJO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1155
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1156,
+		    "DESCRIPTION": "MADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1156
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH2",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1157,
+		    "DESCRIPTION": "NIETA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1157
+		  }
+	    ],
+	    "ph3":[
+	      {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1170,
+		    "DESCRIPTION": "OTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1170
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1171,
+		    "DESCRIPTION": "OTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1170
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1172,
+		    "DESCRIPTION": "ABUELA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1172
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1173,
+		    "DESCRIPTION": "ABUELO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1173
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1174,
+		    "DESCRIPTION": "AHIJADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1174
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1175,
+		    "DESCRIPTION": "AHIJADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1175
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1176,
+		    "DESCRIPTION": "AMIGA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1176
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1177,
+		    "DESCRIPTION": "AMIGO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1177
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1178,
+		    "DESCRIPTION": "CONCUBINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1178
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1179,
+		    "DESCRIPTION": "CONCUBINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1179
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1180,
+		    "DESCRIPTION": "CUÑADA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1180
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1181,
+		    "DESCRIPTION": "CUÑADO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1181
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1182,
+		    "DESCRIPTION": "ESPOSA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1182
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1183,
+		    "DESCRIPTION": "ESPOSO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1183
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1184,
+		    "DESCRIPTION": "HERMANA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1184
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1185,
+		    "DESCRIPTION": "HERMANO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1185
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1186,
+		    "DESCRIPTION": "HIJA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1186
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1187,
+		    "DESCRIPTION": "HIJASTRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1187
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1188,
+		    "DESCRIPTION": "HIJASTRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1188
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1189,
+		    "DESCRIPTION": "HIJO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1189
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1190,
+		    "DESCRIPTION": "MADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1190
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1191,
+		    "DESCRIPTION": "NIETA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1191
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1192,
+		    "DESCRIPTION": "NIETO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1192
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1193,
+		    "DESCRIPTION": "PADRE",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1193
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1194,
+		    "DESCRIPTION": "PRIMA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1194
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1195,
+		    "DESCRIPTION": "PRIMO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1195
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1196,
+		    "DESCRIPTION": "SOBRINA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1196
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1197,
+		    "DESCRIPTION": "SOBRINO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1197
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1198,
+		    "DESCRIPTION": "SUEGRA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1198
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1199,
+		    "DESCRIPTION": "SUEGRO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1199
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1200,
+		    "DESCRIPTION": "TÍA",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1200
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1201,
+		    "DESCRIPTION": "TÍO",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1201
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1202,
+		    "DESCRIPTION": "U.LIBRE-H",
+		    "LAST_UPDATE": "",
+		    "GENDER": "M",
+		    "PADM_ID": 1202
+		  },
+		  {
+		    "PRODUCT_ID": 1,
+		    "COVERAGE_ID": "VPH3",
+		    "ROLE_ID": "INSURED",
+		    "RELATIONSHIP_ID": 1203,
+		    "DESCRIPTION": "U.LIBRE-M",
+		    "LAST_UPDATE": "",
+		    "GENDER": "F",
+		    "PADM_ID": 1203
+		  }
+	    ]
+	}  
+}

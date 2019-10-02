@@ -20,7 +20,7 @@ export class StepFormComponent implements OnInit {
   constructor(private applicationService: ApplicationService) { }
 
   ngOnInit() {
-    console.log('step: ', this.stepObj);
+    // console.log('step: ', this.stepObj);
     this.applicationService.currentValue.subscribe(value => {
       if (this.index === value) {
         if (this.index === 0) {
@@ -31,7 +31,7 @@ export class StepFormComponent implements OnInit {
       } else {
         this.accordionExpanded = false;
       }
-      console.log('from child', this.accordionExpanded);
+      // console.log('from child', this.accordionExpanded);
     });
   }
 

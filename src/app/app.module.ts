@@ -11,6 +11,7 @@ import { ProcessFormComponent } from './components/process-form/process-form.com
 import { ContentFormComponent } from './components/content-form/content-form.component';
 import { StepFormComponent } from './components/step-form/step-form.component';
 import { OperationFormComponent } from './components/operation-form/operation-form.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { OperationFormComponent } from './components/operation-form/operation-fo
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

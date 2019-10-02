@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
-import {compareNumbers} from '@angular/compiler-cli/src/diagnostics/typescript_version';
+import {BehaviorSubject, Observable} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class ApplicationService {
   private currentStepSource = new BehaviorSubject(0);
   currentValue = this.currentStepSource.asObservable();
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   submitFunction(type) {
     console.log(type);
@@ -18,5 +19,14 @@ export class ApplicationService {
 
   changeValue(newValue: number) {
     this.currentStepSource.next(newValue);
+  }
+
+  getIpreCatalogById(id: string): Observable<[]> {
+    return this.httpClient.get('../assets/catalogs/catalogs.json')
+      .pipe(
+        map((catalog) => {
+          return catalog[id];
+        })
+      );
   }
 }

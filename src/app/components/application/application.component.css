@@ -1,3 +1,6 @@
+:host{
+  height: 100vh;
+}
 .header {
   background-color: #ffffff; /* Grey background */
   position: fixed; /* Fixed position - sit on top of the page */

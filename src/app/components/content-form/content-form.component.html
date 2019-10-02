@@ -1,6 +1,6 @@
-<div style="width: 100%">
-  <div *ngIf="contentObj.fields">
-    <div *ngFor="let field of contentObj.fields" style="display: inline-block">
+<div>
+  <div [formGroup]="form" data-forms="floating-label" class="ml-form" *ngIf="contentObj.fields" >
+    <div *ngFor="let field of contentObj.fields">
       <app-field-form [form]="form" [fieldObj]="field"></app-field-form>
     </div>
   </div>
