@@ -1,5 +1,5 @@
 <!--<div [formGroup]="form" data-forms="floating-label" class="ml-form">-->
-  <div [ngSwitch]="fieldObj.type">
+  <div [ngSwitch]="fieldObj.type" [formGroup]="form">
 
     <fieldset *ngSwitchCase="'text'" class="ml-form-field">
               <!--[ngClass]="{'error': !isValid}">-->
