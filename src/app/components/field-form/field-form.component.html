@@ -17,7 +17,7 @@
         <label>
           <select name="{{fieldObj.label}}" (change)="onChangeSelect($event)" [formControlName]="fieldObj.name" [id]="fieldObj.id">
             <option value="" [selected]="isSelected"> {{fieldObj.label}} </option>
-            <option *ngFor="let opt of selectOptions " [value]="opt.code">{{opt.name}}</option>
+            <option *ngFor="let opt of selectOptions" [value]="opt.value">{{opt.name}}</option>
           </select>
           <span *ngIf="showSelectLabel">{{fieldObj.label}}</span>
         </label>

@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FieldInterface} from '../../models/field-interface';
 import {FormGroup} from '@angular/forms';
 import {ApplicationService} from '../../services/application.service';
+import {SelectOption} from '../../models/select-option-interface';
 
 @Component({
   selector: 'app-field-form',
@@ -22,7 +23,7 @@ export class FieldFormComponent implements OnInit {
       this.radioOptions = this.getOptions(this.fieldObj.source, this.fieldObj.sourceID, this.fieldObj.type);
     }
     if (this.fieldObj.type === 'select') {
-      this.getOptions(this.fieldObj.source, this.fieldObj.sourceID, this.fieldObj.type);
+      this.getOptions(this.fieldObj.source, this.fieldObj.sourceID, this.fieldObj.sourceStructure);
     }
   }
 
@@ -35,14 +36,16 @@ export class FieldFormComponent implements OnInit {
     }
   }
 
-  getOptions(source, sourceID, type) {
+  getOptions(source, sourceID, structure) {
     let options = [];
     if (source === 'IPRE') {
       this.applicationService.getIpreCatalogById(sourceID)
         .subscribe((results) => {
           options = results;
-          this.selectOptions = results;
-          console.log('options: ', options);
+          options.forEach((selectItem) => {
+            this.selectOptions.push(this.constructSelectOption(selectItem, structure));
+          });
+          // console.log('options: ', options);
         });
     }
     /*if (type === 'radio') {
@@ -65,6 +68,30 @@ export class FieldFormComponent implements OnInit {
     }*/
 
     return options;
+  }
+  constructSelectOption(option, structure) {
+    const finalSelectOption: SelectOption = {
+      id: this.getValueByProperty(option, structure[0]),
+      name: this.getValueByProperty(option, structure[1]),
+      value: this.getValueByProperty(option, structure[2])
+    };
+
+    console.log('finalSelectOption: ', finalSelectOption);
+
+    return finalSelectOption;
+  }
+  getValueByProperty(option, property) {
+    let value;
+    const properties = Object.getOwnPropertyNames(option);
+    properties.forEach((propertyItem) => {
+      console.log('propertyItem: ', propertyItem);
+      console.log('property: ', property);
+      if (propertyItem === property) {
+        value = option[propertyItem];
+      }
+      console.log('value: ', value);
+    });
+    return value;
   }
   get isValid() { return this.form.controls[this.fieldObj.name].valid; }
 }

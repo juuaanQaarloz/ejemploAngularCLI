@@ -1834,7 +1834,7 @@
         "promName": "EXPOSA",
         "promZones": []
     }],
-    "relationshipsComplementaries":{ 
+    "relationshipsComplementaries":{
         "bcac1":[
           {
 		    "PRODUCT_ID": 1,
@@ -8337,5 +8337,5 @@
 		    "PADM_ID": 1203
 		  }
 	    ]
-	}  
+	}
 }
