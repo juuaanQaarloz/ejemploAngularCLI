@@ -16,14 +16,18 @@ export class FieldFormComponent implements OnInit {
   isSelected = true;
   radioOptions = [];
   selectOptions = [];
+  checkBoxOptions = [
+    {id: 0, name: 'chkb1', value: 'chkb1Value'},
+    {id: 1, name: 'chkb2', value: 'chkb2Value'},
+    {id: 2, name: 'chkb3', value: 'chkb3Value'},
+    {id: 3, name: 'chkb4', value: 'chkb4Value'},
+  ];
+
   constructor(private applicationService: ApplicationService) { }
 
   ngOnInit() {
-    if (this.fieldObj.type === 'radio' ) {
-      this.radioOptions = this.getOptions(this.fieldObj.source, this.fieldObj.sourceID, this.fieldObj.type);
-    }
-    if (this.fieldObj.type === 'select') {
-      this.getOptions(this.fieldObj.source, this.fieldObj.sourceID, this.fieldObj.sourceStructure);
+    if (this.fieldObj.type === 'radio' || this.fieldObj.type === 'select') {
+      this.getOptions();
     }
   }
 
@@ -36,60 +40,39 @@ export class FieldFormComponent implements OnInit {
     }
   }
 
-  getOptions(source, sourceID, structure) {
+  getOptions() {
     let options = [];
-    if (source === 'IPRE') {
-      this.applicationService.getIpreCatalogById(sourceID)
+    if (this.fieldObj.source === 'IPRE') {
+      this.applicationService.getIpreCatalogById(this.fieldObj.sourceID)
         .subscribe((results) => {
           options = results;
           options.forEach((selectItem) => {
-            this.selectOptions.push(this.constructSelectOption(selectItem, structure));
+            if (this.fieldObj.type === 'select') {
+              this.selectOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
+            } else if (this.fieldObj.type === 'radio') {
+              this.radioOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
+            }
           });
-          // console.log('options: ', options);
         });
     }
-    /*if (type === 'radio') {
-      options.push({
-        id: '0',
-        name: 'Si',
-        value: 'yes'
-      });
-      options.push({
-        id: '1',
-        name: 'No',
-        value: 'no'
-      });
-    } else if (type === 'select') {
-      options.push({
-          id: 0,
-          name: 'MetaLife',
-          code: 'metaLifeProduct'
-        });
-    }*/
-
-    return options;
   }
-  constructSelectOption(option, structure) {
+
+  constructSelectOption(object, structure) {
     const finalSelectOption: SelectOption = {
-      id: this.getValueByProperty(option, structure[0]),
-      name: this.getValueByProperty(option, structure[1]),
-      value: this.getValueByProperty(option, structure[2])
+      id: this.getValueByProperty(object, structure[0]),
+      name: this.getValueByProperty(object, structure[1]),
+      value: this.getValueByProperty(object, structure[2])
     };
-
-    console.log('finalSelectOption: ', finalSelectOption);
-
     return finalSelectOption;
   }
-  getValueByProperty(option, property) {
+
+  getValueByProperty(object, property) {
     let value;
-    const properties = Object.getOwnPropertyNames(option);
+    const properties = Object.getOwnPropertyNames(object);
     properties.forEach((propertyItem) => {
-      console.log('propertyItem: ', propertyItem);
-      console.log('property: ', property);
       if (propertyItem === property) {
-        value = option[propertyItem];
+        value = object[propertyItem];
       }
-      console.log('value: ', value);
     });
     return value;
   }

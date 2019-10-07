@@ -18,7 +18,7 @@
 
   <div class="header-right-container"
        [ngClass]="resizeHeaderHeight ? 'header-right-container-minimized' : 'header-right-container' ">
-    <a href="" class="ml-icon-link-menu"
+    <a href="" class="ml-icon-link-menu" (click)="logout()"
        [ngStyle]="{'padding':resizeHeaderHeight ? '3px' : '9px' }">
       <span id="labelSecurity" (mouseover)="onMouseMove($event)"
             (mouseout)="onMouseMove($event)">

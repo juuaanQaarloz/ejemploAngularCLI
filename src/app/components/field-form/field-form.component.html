@@ -37,14 +37,16 @@
 
     <fieldset *ngSwitchCase="'checkbox'" class="ml-form-field ml-form-field-checkboxes">
       <label>{{fieldObj.label}}</label>
-      <div class="ml-form-field-checkboxes-group">
-        <input id="lorem2" type="checkbox" name="lorem" value="lorem2">
-        <label for="lorem2">Overnight</label>
+      <div class="checkbox-options">
+        <div  class="ml-form-field-checkboxes-group" *ngFor="let checkBoxOption of checkBoxOptions">
+          <input type="checkbox" [formControlName]="fieldObj.name"
+                 [id]="checkBoxOption.id"
+                 [name]="checkBoxOption.name"
+                 [value]="checkBoxOption.value">
+          <label [for]="checkBoxOption.id">{{checkBoxOption.name}}</label>
+        </div>
       </div>
-      <div class="ml-form-field-checkboxes-group">
-        <input id="lorem1" type="checkbox" name="lorem" value="lorem1">
-        <label for="lorem1">Lorem itsum dolor sit amet</label>
-      </div>
+
     </fieldset>
 
   </div>

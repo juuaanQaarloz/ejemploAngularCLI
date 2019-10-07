@@ -12,6 +12,10 @@ import { ContentFormComponent } from './components/content-form/content-form.com
 import { StepFormComponent } from './components/step-form/step-form.component';
 import { OperationFormComponent } from './components/operation-form/operation-form.component';
 import {HttpClientModule} from '@angular/common/http';
+import { LoginComponent } from './components/login/login.component';
+import { AppRoutingModule } from './app-routing.module';
+import {mockBackendProvider} from './mock/mock-backend';
+import {AuthGuard} from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -23,15 +27,20 @@ import {HttpClientModule} from '@angular/common/http';
     ProcessFormComponent,
     ContentFormComponent,
     StepFormComponent,
-    OperationFormComponent
+    OperationFormComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    mockBackendProvider
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {MockApplication} from '../../mock/mock-data';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ApplicationService} from '../../services/application.service';
+import {AuthService} from '../../services/auth.service';
+import {StorageService} from '../../services/storage.service';
 
 @Component({
   selector: 'app-application',
@@ -14,7 +16,10 @@ export class ApplicationComponent implements OnInit {
   resizeHeaderHeight = false;
   iconHome = 'home-icon';
   iconSecurity = 'security-icon';
-  constructor(private appService: ApplicationService) { }
+  constructor(private appService: ApplicationService,
+              private authService: AuthService,
+              private storageService: StorageService
+  ) { }
 
   ngOnInit() {
     this.formGroup = this.toFormGroup();
@@ -65,5 +70,15 @@ export class ApplicationComponent implements OnInit {
       }
     }
     // console.log('event: ', event.target.id);
+  }
+
+  logout(): void {
+    this.authService.logout().subscribe(
+      response => {
+        if (response) {
+          this.storageService.logout();
+        }
+      }
+    );
   }
 }
