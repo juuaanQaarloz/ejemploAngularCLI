@@ -4,6 +4,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ApplicationService} from '../../services/application.service';
 import {AuthService} from '../../services/auth.service';
 import {StorageService} from '../../services/storage.service';
+import {ModalService} from '../custom-modal';
 
 @Component({
   selector: 'app-application',
@@ -16,13 +17,23 @@ export class ApplicationComponent implements OnInit {
   resizeHeaderHeight = false;
   iconHome = 'home-icon';
   iconSecurity = 'security-icon';
+  bodyText = 'Body Text';
   constructor(private appService: ApplicationService,
               private authService: AuthService,
-              private storageService: StorageService
+              private storageService: StorageService,
+              private modalService: ModalService
   ) { }
 
   ngOnInit() {
     this.formGroup = this.toFormGroup();
+  }
+
+  closeModal(modalId: string) {
+    this.modalService.close(modalId);
+  }
+
+  openModal(modalId: string) {
+    this.modalService.open(modalId);
   }
 
   toFormGroup() {

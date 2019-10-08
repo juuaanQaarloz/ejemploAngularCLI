@@ -16,6 +16,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import {mockBackendProvider} from './mock/mock-backend';
 import {AuthGuard} from './guards/auth.guard';
+import {ModalModule} from './components/custom-modal';
 
 @NgModule({
   declarations: [
@@ -28,13 +29,14 @@ import {AuthGuard} from './guards/auth.guard';
     ContentFormComponent,
     StepFormComponent,
     OperationFormComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    ModalModule,
     AppRoutingModule
   ],
   providers: [
