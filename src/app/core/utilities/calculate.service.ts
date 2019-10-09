@@ -366,18 +366,13 @@ export class CalculateService {
 
       const sumStr = letterSum.toString();
       letterSum = Math.trunc(Number(sumStr.substring(sumStr.length - 3)));
-      console.log('letterSum: ', letterSum);
       const quotient = Math.trunc(Number(letterSum / 34));
-      console.log('quotient: ', quotient);
       const residue = Math.trunc(Number(letterSum % 34));
 
       const anexx2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'P',
         'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
       RFC = RFC + anexx2[quotient] + anexx2[residue];
-      console.log('RFC: ', RFC);
-      console.log('anexx2[quotient]: ', anexx2[quotient]);
-      console.log('anexx2[residue]: ',  anexx2[residue]);
 
       const anexx3 = {
         cero: '00',
