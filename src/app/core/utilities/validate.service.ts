@@ -332,4 +332,110 @@ export class ValidateService {
     return true;
   }
 
+  /**
+   * @param (string) mail The given e-mail to be validated
+   * @returns (boolean) returns false if the given e-mail doesnt´s match the format usuario&#64;servidor.extension(.extension(s)) or contains any invalid
+   * character.
+   *
+   * can view of valid and invalid e-mail here https://regexr.com/3bcrb
+   */
+  validateMail(mail: string): boolean {
+    if (!this.mailPattern.test(mail) && !this.nullUndefinedOrEmptyValidation(mail)) {
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * @param (string) mailConfirmation The captured mail confirmation
+   * @param (string) mail  the original mail captured
+   * @returns (boolean) returns false if the e-mail confirmation is not the same than the original e-mail
+   */
+  validateMailConfirmation(mailConfirmation: string, mail: string): boolean {
+    if (this.nullUndefinedOrEmptyValidation(mail)) {
+      return true;
+    }
+    if (!this.validateMail(mail)) {
+      return false;
+    }
+    if (mailConfirmation !== mail) {
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * @param (string) token to validate
+   * @returns (boolean) returns false if the token doesn't match a correct format
+   */
+  validateKeyToken(token: string): boolean {
+    const regexp = /^\d*$/;
+
+    if (token.length !== 16 && token.length !== 18) {
+
+      return false;
+    }
+
+    return regexp.test(token);
+  }
+
+  /**
+   * @param (string)tokenConfirmation The captured token confirmation
+   * @param (string) token  the original token captured
+   * @returns (boolean) returns false if the token confirmation is not the same than the original token
+   */
+  validateTokenConfirmation(tokenConfirmation: string, token: string) {
+    if (tokenConfirmation !== token) {
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * @param (string) street the given street string to be validated
+   * @returns (boolean) returns false if the street contains invalid characters
+   */
+  validateStreet(street: string): boolean {
+    if (!/^(([A-Z0-9 Ñ \-'.,_\(\)\[\]\/'\+&#])(?![A-Z0-9 Ñ\-'.,_\(\)\[\]\/\+&#](([A-Z0-9 Ñ\-'.,_\(\)\[\]\/\+&#]){})\3))+$/.test(street)) {
+      return false;
+    }
+    if (/(.)\1{3,}/g.test(street)) {
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * @param (string) num The street number to be validated
+   * @returns (boolean) returns false if the street number contains invaid characters
+   */
+  validateStreetNum(num: string): boolean {
+    if (this.nullUndefinedOrEmptyValidation(num)) {
+      return false;
+    }
+
+    const regexpZero = /^(?!.*(.)\1{3})/;
+
+    if (!regexpZero.test(num)) {
+      return false;
+    }
+    const regexpAdmisibleCharacter = /^[a-zA-Z0-9ñÑ\#\-\.]*$/;
+
+    if (regexpAdmisibleCharacter.test(num)) {
+      return true;
+    }
+
+    return false;
+  }
+
+  /** @param (string) cp the zip code to be validated
+   *  @returns (boolean) returns false if there is a value in the zipcode that doesn´t match a valid zipcode
+   */
+  validateZipCode(cp: string): boolean {
+    if (!/^[0-9]{5}$/m.test(cp)) {
+      return false;
+    }
+
+    return true;
+  }
 }

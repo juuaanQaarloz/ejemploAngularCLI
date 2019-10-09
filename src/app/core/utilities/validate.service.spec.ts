@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { ValidateService } from './validate.service';
+import {not} from 'rxjs/internal-compatibility';
 
 describe('ValidateService', () => {
   let service: ValidateService;
@@ -86,5 +87,57 @@ describe('ValidateService', () => {
   it('should return true if the given cell phone is empty', () => {
     const emptyCellPhone = '';
     expect(service.validateRFCNotMandatory(emptyCellPhone)).toBe(true);
+  });
+
+  it('should return true if the given email is valid', () => {
+    const validEmail = 'odalys@email.com';
+    const notValidEmail = 'odalys.email@com';
+
+    expect(service.validateMail(validEmail)).toBe(true);
+    expect(service.validateMail(notValidEmail)).toBe(false);
+  });
+
+  it('should return true when both emails are the same', () => {
+    const email = 'odalys@email.com';
+    const emailConfirmation = 'odalys@email.com';
+
+    expect(service.validateMailConfirmation(emailConfirmation, email)).toBe(true);
+  });
+
+  it('should return true if the given token has the correct format', () => {
+    const token = '123456789123456789';
+
+    expect(service.validateKeyToken(token)).toBe(true);
+  });
+
+  it('should return true when both tokens are the same', () => {
+    const token = '123456789123456789';
+    const confirmationToken = '123456789123456789';
+
+    expect(service.validateTokenConfirmation(confirmationToken, token)).toBe(true);
+  });
+
+  it('should return true if the street does not contains invalid characters', () => {
+    const validStreet = 'REFORMA';
+    const notValidStreet = 'ReeeeFFORMA';
+
+    expect(service.validateStreet(validStreet)).toBe(true);
+    expect(service.validateStreet(notValidStreet)).toBe(false);
+  });
+
+  it('should return true when the street number does not contain invalid characters', () => {
+    const validNumber = '145';
+    const notValidNumber  = '123/';
+
+    expect(service.validateStreetNum(validNumber)).toBe(true);
+    expect(service.validateStreetNum(notValidNumber)).toBe(false);
+  });
+
+  it('should return true when the zip code comply the given format', () => {
+    const validCP = '07840';
+    const notValidCP = '07840.1';
+
+    expect(service.validateZipCode(validCP)).toBe(true);
+    expect(service.validateZipCode(notValidCP)).toBe(false);
   });
 });
