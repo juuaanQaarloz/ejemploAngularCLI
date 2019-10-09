@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MockApplication} from '../../core/mock/mock-data';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ModalService} from '../custom-modal';
-import {ApplicationService, AuthService, StorageService} from '../../core/services';
+import {ApplicationService, AuthService, StorageService, ValidateService} from '../../core/services';
 
 @Component({
   selector: 'app-application',
@@ -19,7 +19,8 @@ export class ApplicationComponent implements OnInit {
   constructor(private appService: ApplicationService,
               private authService: AuthService,
               private storageService: StorageService,
-              private modalService: ModalService
+              private modalService: ModalService,
+              private validateService: ValidateService
   ) { }
 
   ngOnInit() {
@@ -89,5 +90,9 @@ export class ApplicationComponent implements OnInit {
         }
       }
     );
+  }
+
+  testValidateService() {
+    console.log('validate name: ', this.validateService.validateName('ODALYS'));
   }
 }
