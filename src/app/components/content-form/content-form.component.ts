@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ContentInterface} from '../../models/content-interface';
 import {FormGroup} from '@angular/forms';
-import {element} from 'protractor';
 
 @Component({
   selector: 'app-content-form',

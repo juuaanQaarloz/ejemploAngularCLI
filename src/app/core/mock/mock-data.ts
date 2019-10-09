@@ -1,6 +1,6 @@
-import {OperationsInterface} from '../models/operations-interface';
-import {FieldInterface} from '../models/field-interface';
-import {ApplicationInterface} from '../models/application-interface';
+import {OperationsInterface} from '../../models/operations-interface';
+import {FieldInterface} from '../../models/field-interface';
+import {ApplicationInterface} from '../../models/application-interface';
 
 export const MockOperations: OperationsInterface[] = [
   {

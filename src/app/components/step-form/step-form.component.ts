@@ -1,7 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {StepInterface} from '../../models/step-interface';
 import {FormGroup} from '@angular/forms';
-import {ApplicationService} from '../../services/application.service';
+import {ApplicationService} from '../../core/services';
 
 @Component({
   selector: 'app-step-form',

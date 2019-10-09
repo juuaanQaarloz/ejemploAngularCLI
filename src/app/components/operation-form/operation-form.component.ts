@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {OperationsInterface} from '../../models/operations-interface';
-import {ApplicationService} from '../../services/application.service';
+import {ApplicationService} from '../../core/services';
 import {FormGroup} from '@angular/forms';
 
 @Component({

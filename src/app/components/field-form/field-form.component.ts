@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FieldInterface} from '../../models/field-interface';
 import {FormGroup} from '@angular/forms';
-import {ApplicationService} from '../../services/application.service';
 import {SelectOption} from '../../models/select-option-interface';
+import {ApplicationService} from '../../core/services';
 
 @Component({
   selector: 'app-field-form',

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse} from '@angular/common/http';
 import {Observable, of, throwError} from 'rxjs';
 import {delay, dematerialize, materialize, mergeMap} from 'rxjs/operators';
-import {User} from '../models/user.interface';
+import {User} from '../../models/user.interface';
 import {USERS} from './mock-users';
 
 @Injectable()

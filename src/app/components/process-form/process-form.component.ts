@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ProcessInterface} from '../../models/process-interface';
 import {FormGroup} from '@angular/forms';
-import {ApplicationService} from '../../services/application.service';
 
 @Component({
   selector: 'app-process-form',

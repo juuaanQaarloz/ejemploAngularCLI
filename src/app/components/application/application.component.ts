@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {MockApplication} from '../../mock/mock-data';
+import {MockApplication} from '../../core/mock/mock-data';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ApplicationService} from '../../services/application.service';
-import {AuthService} from '../../services/auth.service';
-import {StorageService} from '../../services/storage.service';
 import {ModalService} from '../custom-modal';
+import {ApplicationService, AuthService, StorageService} from '../../core/services';
 
 @Component({
   selector: 'app-application',
