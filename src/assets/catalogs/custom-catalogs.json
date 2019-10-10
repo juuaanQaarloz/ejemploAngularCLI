@@ -1,0 +1,9 @@
+{
+  "emailCheckbox": [
+    {
+      "id": 0,
+      "name": "Sin correo electrónico",
+      "code": "noEmail"
+    }
+  ]
+}

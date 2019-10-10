@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit} from '@angular/core';
 import {FieldInterface} from '../../models/field-interface';
 import {FormGroup} from '@angular/forms';
 import {SelectOption} from '../../models/select-option-interface';
@@ -16,26 +16,24 @@ export class FieldFormComponent implements OnInit {
   isSelected = true;
   radioOptions = [];
   selectOptions = [];
-  checkBoxOptions = [
-    {id: 'chk1', name: 'chkb1', value: 'chkb1Value'},
-    {id: 'chk2', name: 'chkb2', value: 'chkb2Value'},
-    {id: 'chk3', name: 'chkb3', value: 'chkb3Value'},
-    {id: 'chk4', name: 'chkb4', value: 'chkb4Value'},
-  ];
+  checkBoxOptions = [];
   toggleVisible = true;
+
+  dynamicVariable =  true;
+  dynamicCondition = 'dynamicVariable === false';
 
   constructor(private applicationService: ApplicationService) { }
 
   ngOnInit() {
-    if (this.fieldObj.type === 'radio' || this.fieldObj.type === 'select') {
+    if (this.fieldObj.type === 'radio' || this.fieldObj.type === 'select' || this.fieldObj.type === 'checkbox') {
       this.getOptions();
     }
   }
 
   onKeyUp(event) {
-    console.log('onKeyUp() ');
-    console.log('even.target: ', event.target);
-    console.log('even.target.value: ', event.target.value);
+    let value;
+    value = event.target.value;
+    console.log('value: ', value);
     this.form.get(this.fieldObj.name).setValue(event.target.value);
   }
 
@@ -54,7 +52,22 @@ export class FieldFormComponent implements OnInit {
 
   getOptions() {
     let options = [];
-    if (this.fieldObj.source === 'IPRE') {
+    this.applicationService.getCatalogById(this.fieldObj.sourceID, this.fieldObj.source)
+      .subscribe((results) => {
+        options = results;
+        if (options !== undefined) {
+          options.forEach((selectItem) => {
+            if (this.fieldObj.type === 'select') {
+              this.selectOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
+            } else if (this.fieldObj.type === 'radio') {
+              this.radioOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
+            } else if (this.fieldObj.type === 'checkbox') {
+              this.checkBoxOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
+            }
+          });
+        }
+      });
+    /*if (this.fieldObj.source === 'IPRE') {
       this.applicationService.getIpreCatalogById(this.fieldObj.sourceID)
         .subscribe((results) => {
           options = results;
@@ -66,7 +79,7 @@ export class FieldFormComponent implements OnInit {
             }
           });
         });
-    }
+    }*/
   }
 
   constructSelectOption(object, structure) {

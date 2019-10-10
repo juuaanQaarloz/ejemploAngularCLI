@@ -3,10 +3,13 @@
 
     <fieldset *ngSwitchCase="'text'" class="ml-form-field">
               <!--[ngClass]="{'error': !isValid}">-->
-      <label>
+      <label *ngIf="!!(dynamicCondition)">
         <input [type]="toggleVisible ? 'text' : 'password'" [formControlName]="fieldObj.name" [id]="fieldObj.id"
+               value=""
                placeholder="{{fieldObj.placeholder}}"
-               (keyup)="onKeyUp($event)">
+               onkeyup="this.setAttribute('value', this.value);"
+               (keyup)="onKeyUp($event)"
+               >
         <span>{{fieldObj.label}}</span>
         <a *ngIf="fieldObj.canChangeType" href="javascript:;" (click)="onClickToggle()" class="ml-form-field-togglevisible"
            [ngClass]="[toggleVisible ? 'ml-form-field-togglevisible': 'ml-form-field-togglevisible occult']"
@@ -31,7 +34,7 @@
 
           <div class="ml-form-field-radio-group"  *ngFor="let radioOption of radioOptions">
             <input type="radio" [formControlName]="fieldObj.name"
-                   [id]="radioOption.id"
+                   [id]="radioOption.id + '-radio'"
                    [value]="radioOption.value" >
             <label>{{radioOption.name}}</label>
           </div>
@@ -43,10 +46,10 @@
       <div class="checkbox-options">
         <div  class="ml-form-field-checkboxes-group" *ngFor="let checkBoxOption of checkBoxOptions">
           <input type="checkbox" [formControlName]="fieldObj.name"
-                 [id]="checkBoxOption.id"
+                 [id]="checkBoxOption.id + '-checkbox'"
                  [name]="checkBoxOption.name"
                  [value]="checkBoxOption.value">
-          <label [for]="checkBoxOption.id">{{checkBoxOption.name}}</label>
+          <label [for]="checkBoxOption.id + '-checkbox'">{{checkBoxOption.name}}</label>
         </div>
       </div>
 
