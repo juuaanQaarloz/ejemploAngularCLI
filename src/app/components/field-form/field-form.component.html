@@ -4,13 +4,16 @@
     <fieldset *ngSwitchCase="'text'" class="ml-form-field">
               <!--[ngClass]="{'error': !isValid}">-->
       <label>
-        <input type="text" [formControlName]="fieldObj.name" [id]="fieldObj.id"
-               value=""
+        <input [type]="toggleVisible ? 'text' : 'password'" [formControlName]="fieldObj.name" [id]="fieldObj.id"
                placeholder="{{fieldObj.placeholder}}"
-               onkeyup="this.setAttribute('value',this.value)">
+               (keyup)="onKeyUp($event)">
         <span>{{fieldObj.label}}</span>
+        <a *ngIf="fieldObj.canChangeType" href="javascript:;" (click)="onClickToggle()" class="ml-form-field-togglevisible"
+           [ngClass]="[toggleVisible ? 'ml-form-field-togglevisible': 'ml-form-field-togglevisible occult']"
+        ></a>
         <div class="ml-form-field-errortext">{{fieldObj.message}}</div>
       </label>
+
     </fieldset>
 
     <fieldset *ngSwitchCase="'select'" class="ml-form-field">

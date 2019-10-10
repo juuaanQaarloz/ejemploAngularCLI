@@ -241,35 +241,35 @@ export class ValidateService {
     return true;
   }
 
-  validateInputDateBeforeOrEqualActualDate(dateSelected: string) {
+  /*validateInputDateBeforeOrEqualActualDate(dateSelected) {
 
-    /*var value = dateSelected;
+    const value = dateSelected;
 
-    var today = new Date();
+    let today = new Date();
 
-    var dd = today.getDate();
+    let dd = today.getDate();
 
-    var mm = today.getMonth() + 1; //January is 0!
+    let mm = today.getMonth() + 1; // January is 0!
 
-    var yyyy = today.getFullYear();
+    const yyyy = today.getFullYear();
 
     if (dd < 10) {
-      dd = '0' + dd
+      dd = '0' + dd;
     }
     if (mm < 10) {
-      mm = '0' + mm
+      mm = '0' + mm;
     }
-    //today = mm+'/'+dd+'/'+yyyy;
-    today = yyyy + '/' + mm + '/' + dd;
 
-    if (value != '') {
+    today = new Date(yyyy + '/' + mm + '/' + dd);
+
+    if (value !== '') {
       if (value > today) {
         return false;
       }
     }
 
-    return true;*/
-  }
+    return true;
+  }*/
 
   /**
    * @param (string) phone the phone number to validate the right format
@@ -285,26 +285,6 @@ export class ValidateService {
         return false;
       }
       if ((phone.length > 0 && phone.length < 10) || phone.length > 10) {
-        return false;
-      }
-    }
-    return true;
-  }
-
-  /**
-   * @param (string) cellphone the cellphone number to validate the right format
-   * @returns (boolean) returns false if the given cellphone contain more tha 6 times the same number consecutive or any invalid character
-   */
-  validateCellPhone(cellphone: string): boolean {
-
-    if (!this.nullUndefinedOrEmptyValidation(cellphone)) {
-      if (/(.)\1{6,}/g.test(cellphone)) {
-        return false;
-      }
-      if (/\D/g.test(cellphone)) {
-        return false;
-      }
-      if ((cellphone.length > 0 && cellphone.length < 10) || cellphone.length > 10) {
         return false;
       }
     }

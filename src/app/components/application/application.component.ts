@@ -46,10 +46,23 @@ export class ApplicationComponent implements OnInit {
       } else {
         if (section.content.process) {
           section.content.process.steps.forEach(step => {
-            step.content.fields.forEach(field => {
-              group[field.name] = field.required ? new FormControl(field.value || '', Validators.required)
-                : new FormControl(field.value || '');
-            });
+            if (step.content.fields) {
+              step.content.fields.forEach(field => {
+                group[field.name] = field.required ? new FormControl(field.value || '', Validators.required)
+                  : new FormControl(field.value || '');
+              });
+            } else {
+              if (step.content.contentChildren) {
+                step.content.contentChildren.forEach(contentChild => {
+                  if (contentChild.fields) {
+                    contentChild.fields.forEach(field => {
+                      group[field.name] = field.required ? new FormControl(field.value || '', Validators.required)
+                        : new FormControl(field.value || '');
+                    });
+                  }
+                });
+              }
+            }
           });
         }
       }

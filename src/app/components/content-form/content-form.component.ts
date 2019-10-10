@@ -11,6 +11,8 @@ export class ContentFormComponent implements OnInit {
   @Input() contentObj: ContentInterface;
   @Input() form: FormGroup;
   payLoad = '';
+  typePerson = 'fisica';
+  typePersonLabel = 'física';
 
   constructor() { }
 

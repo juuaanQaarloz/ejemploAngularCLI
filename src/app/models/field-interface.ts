@@ -26,4 +26,5 @@ export interface FieldInterface {
   entity: string;
   entityField: string;
   value?: string;
+  canChangeType?: boolean;
 }

@@ -367,7 +367,7 @@ export class CalculateService {
       const sumStr = letterSum.toString();
       letterSum = Math.trunc(Number(sumStr.substring(sumStr.length - 3)));
       const quotient = Math.trunc(Number(letterSum / 34));
-      const residue = Math.trunc(Number(letterSum % 34));
+      const residue = Number(letterSum % 34);
 
       const anexx2 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'P',
         'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
@@ -465,8 +465,8 @@ export class CalculateService {
         }
 
         // if (typeof ((window as any).eval('anexx3.' + letter)) === 'undefined') {
-        // if (typeof (anexx3[letter]) === 'undefined') {
-        if (anexx3[letter] === undefined) {
+        if (typeof (anexx3[letter]) === 'undefined') {
+        // if (anexx3[letter] === undefined) {
 
           value = '00';
         } else {
@@ -475,16 +475,20 @@ export class CalculateService {
           value = anexx3[letter];
         }
 
-        // if (typeof (value) !== 'undefined') {
-        if (value !== undefined) {
+        if (typeof (value) !== 'undefined') {
+        // if (value !== undefined) {
 
-          result = result + (Math.trunc(Number(value) * factor));
+          // console.log('value: ', value);
+
+          result = result + (Number(value) * factor);
           factor--;
         }
       }
 
       // var quotient2 = parseInt(result/11);
-      const residue2 = Math.trunc(Number(result % 11));
+      // console.log('result: ', result);
+      const residue2 = Number(result % 11);
+      // console.log('residue2: ', residue2);
 
       if (residue2 === 0) {
 
@@ -503,5 +507,6 @@ export class CalculateService {
 
     return null;
   }
+
 }
 

@@ -1,6 +1,7 @@
 import {OperationsInterface} from '../../models/operations-interface';
 import {FieldInterface} from '../../models/field-interface';
 import {ApplicationInterface} from '../../models/application-interface';
+import {ContentInterface} from '../../models/content-interface';
 
 export const MockOperations: OperationsInterface[] = [
   {
@@ -44,7 +45,7 @@ export const MockOperations: OperationsInterface[] = [
   }
 ];
 
-export const MockFields: FieldInterface[] = [
+export const DatosGeneralesPersonaFisica: FieldInterface[] = [
   {
     id: '1',
     idHtml: '',
@@ -333,6 +334,7 @@ export const MockFields: FieldInterface[] = [
     orderAppearance: 11,
     label: 'Número de identificación*',
     type: 'text',
+    canChangeType: true,
     required: true,
     placeholder: 'Número de identificación',
     length: '40',
@@ -461,12 +463,43 @@ export const MockFields: FieldInterface[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-  },
+  }
+];
+
+export const DatosTipoContratante: FieldInterface[] = [
   {
     id: '16',
     idHtml: '',
     name: 'typePerson',
     orderAppearance: 16,
+    label: '¿Eres persona física o moral?',
+    type: 'radio',
+    required: true,
+    placeholder: '',
+    length: '',
+    minValue: 0,
+    maxValue: 0,
+    pattern: '',
+    source: 'IPRE',
+    sourceID: 'guardBoxOptions',
+    sourceStructure: ['id', 'label', 'value'],
+    style: '',
+    styleClass: '',
+    styleClassError: '',
+    message: '',
+    messageClass: '',
+    messageError: '',
+    messageErrorClass: '',
+    renderConditions: '',
+    enableConditions: '',
+    entity: '',
+    entityField: '',
+  },
+  {
+    id: '17',
+    idHtml: '',
+    name: 'typeContractor',
+    orderAppearance: 17,
     label: '¿El solicitante es el mismo que el contratante?',
     type: 'radio',
     required: true,
@@ -481,7 +514,7 @@ export const MockFields: FieldInterface[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'La nacionalidad es obligatoria',
+    message: '',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
@@ -489,8 +522,8 @@ export const MockFields: FieldInterface[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-  },
-  {
+  }
+  /*{
     id: '17',
     idHtml: '',
     name: 'daysContact',
@@ -517,6 +550,19 @@ export const MockFields: FieldInterface[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
+  },*/
+];
+
+export const MockContentChildren: ContentInterface[] = [
+  {
+    fields: DatosTipoContratante,
+    renderConditions: ''
+  },
+  {
+    title: 'Información general del contratante persona física',
+    fields: DatosGeneralesPersonaFisica,
+    operations: MockOperations,
+    renderConditions: ''
   },
 ];
 
@@ -526,42 +572,6 @@ export const MockApplication: ApplicationInterface = {
   version: '1.0',
   sections: [
     {
-      title: 'TIPO DE PRODUCTO',
-      content: {
-        fields: [
-          {
-            id: '1',
-            idHtml: '',
-            name: 'productTypeSelect',
-            orderAppearance: 1,
-            label: 'Tipo de Producto',
-            type: 'select',
-            required: true,
-            placeholder: '',
-            length: '',
-            minValue: 0,
-            maxValue: 0,
-            pattern: '',
-            source: '',
-            sourceID: '',
-            style: '',
-            styleClass: '',
-            styleClassError: '',
-            message: '',
-            messageClass: '',
-            messageError: '',
-            messageErrorClass: '',
-            renderConditions: '',
-            enableConditions: '',
-            entity: '',
-            entityField: '',
-          },
-        ],
-        renderConditions: ''
-      },
-      renderConditions: ''
-    },
-    {
       title: 'SOLICITUD UNICA',
       content: {
         process: {
@@ -570,8 +580,7 @@ export const MockApplication: ApplicationInterface = {
             {
               title: 'Información General del Contratante',
               content: {
-                fields: MockFields,
-                operations: MockOperations,
+                contentChildren: MockContentChildren,
                 renderConditions: ''
               },
               previousStep: '0',
@@ -582,7 +591,7 @@ export const MockApplication: ApplicationInterface = {
             {
               title: 'Información Laboral del Contratante',
               content: {
-                fields: MockFields,
+                fields: DatosGeneralesPersonaFisica,
                 operations: MockOperations,
                 renderConditions: ''
               },
@@ -595,7 +604,7 @@ export const MockApplication: ApplicationInterface = {
             {
               title: 'Datos del Plan del Contratante',
               content: {
-                fields: MockFields,
+                fields: DatosGeneralesPersonaFisica,
                 operations: MockOperations,
                 renderConditions: ''
               },

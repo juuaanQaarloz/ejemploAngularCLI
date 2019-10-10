@@ -24,7 +24,10 @@ describe('CalculateService', () => {
     const lastMotherName = 'SANCHEZ';
     const birthDate = '06/01/1993';
     const RFC = calculateService.calculateRFC(lastFatherName, lastMotherName, name, birthDate);
-
+    // console.log('RFC: ', RFC);
     expect(RFC).toBe('MASO930106PD7');
+    // expect(RFC).toBe('PEVS940713V11');
+    // expect(RFC).toBe('MASJ671008PV4');
+    // expect(RFC).toBe('MASM950101UAA');
   });
 });

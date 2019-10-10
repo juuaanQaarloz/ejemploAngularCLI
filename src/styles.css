@@ -346,7 +346,7 @@ select::-ms-expand {
   top: 12px;
 }
 
-.ml-form-field-togglevisible.hidden {
+.ml-form-field-togglevisible.occult {
   background: url(assets/img/inputs/ml-toggle-visibility-hide.png) no-repeat;
   background-size: 100%;
 }

@@ -17,11 +17,12 @@ export class FieldFormComponent implements OnInit {
   radioOptions = [];
   selectOptions = [];
   checkBoxOptions = [
-    {id: 0, name: 'chkb1', value: 'chkb1Value'},
-    {id: 1, name: 'chkb2', value: 'chkb2Value'},
-    {id: 2, name: 'chkb3', value: 'chkb3Value'},
-    {id: 3, name: 'chkb4', value: 'chkb4Value'},
+    {id: 'chk1', name: 'chkb1', value: 'chkb1Value'},
+    {id: 'chk2', name: 'chkb2', value: 'chkb2Value'},
+    {id: 'chk3', name: 'chkb3', value: 'chkb3Value'},
+    {id: 'chk4', name: 'chkb4', value: 'chkb4Value'},
   ];
+  toggleVisible = true;
 
   constructor(private applicationService: ApplicationService) { }
 
@@ -29,6 +30,17 @@ export class FieldFormComponent implements OnInit {
     if (this.fieldObj.type === 'radio' || this.fieldObj.type === 'select') {
       this.getOptions();
     }
+  }
+
+  onKeyUp(event) {
+    console.log('onKeyUp() ');
+    console.log('even.target: ', event.target);
+    console.log('even.target.value: ', event.target.value);
+    this.form.get(this.fieldObj.name).setValue(event.target.value);
+  }
+
+  onClickToggle() {
+    this.toggleVisible = !this.toggleVisible;
   }
 
   onChangeSelect(event) {
