@@ -3,6 +3,7 @@ import {MockApplication} from '../../core/mock/mock-data';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ModalService} from '../custom-modal';
 import {ApplicationService, AuthService, StorageService, ValidateService} from '../../core/services';
+import {validatorsObjects} from '../../core/validators';
 
 @Component({
   selector: 'app-application',
@@ -25,6 +26,7 @@ export class ApplicationComponent implements OnInit {
 
   ngOnInit() {
     this.formGroup = this.toFormGroup();
+    this.getValidationFunctions('');
   }
 
   closeModal(modalId: string) {
@@ -48,7 +50,7 @@ export class ApplicationComponent implements OnInit {
           section.content.process.steps.forEach(step => {
             if (step.content.fields) {
               step.content.fields.forEach(field => {
-                group[field.name] = field.required ? new FormControl(field.value || '', Validators.required)
+                group[field.name] = field.required ? new FormControl(field.value || '', this.getValidationFunctions(field.name))
                   : new FormControl(field.value || '');
               });
             } else {
@@ -56,7 +58,7 @@ export class ApplicationComponent implements OnInit {
                 step.content.contentChildren.forEach(contentChild => {
                   if (contentChild.fields) {
                     contentChild.fields.forEach(field => {
-                      group[field.name] = field.required ? new FormControl(field.value || '', Validators.required)
+                      group[field.name] = field.required ? new FormControl(field.value || '', this.getValidationFunctions(field.name))
                         : new FormControl(field.value || '');
                     });
                   }
@@ -68,6 +70,17 @@ export class ApplicationComponent implements OnInit {
       }
     });
     return new FormGroup(group);
+  }
+
+  getValidationFunctions(fieldName: string): [] {
+    let validationFunctions;
+    validatorsObjects.forEach(validationObject => {
+      if (validationObject.nameField === fieldName) {
+        console.log('validationObject: ', validationObject);
+        validationFunctions = validationObject.validationFunctions;
+      }
+    });
+    return validationFunctions;
   }
 
   onScroll(scrollOffset) {

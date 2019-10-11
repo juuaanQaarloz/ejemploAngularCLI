@@ -714,7 +714,7 @@ select::-ms-expand {
   text-overflow: ellipsis;
   margin-top: 15px;
   font-size: 13px;
-  width: 90%;
+  width: 80%;
 }
 
 .ml-form[data-forms="floating-label"] input:focus+span,

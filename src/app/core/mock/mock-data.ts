@@ -2,6 +2,7 @@ import {OperationsInterface} from '../../models/operations-interface';
 import {FieldInterface} from '../../models/field-interface';
 import {ApplicationInterface} from '../../models/application-interface';
 import {ContentInterface} from '../../models/content-interface';
+import {phoneNumberValidator} from '../validators/validators';
 
 export const MockOperations: OperationsInterface[] = [
   {
@@ -49,7 +50,7 @@ export const DatosGeneralesPersonaFisica: FieldInterface[] = [
   {
     id: '1',
     idHtml: '',
-    name: 'namesText',
+    name: 'nameText',
     orderAppearance: 1,
     label: 'Nombres(s)*',
     type: 'text',

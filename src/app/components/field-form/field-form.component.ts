@@ -3,7 +3,7 @@ import {FieldInterface} from '../../models/field-interface';
 import {FormGroup} from '@angular/forms';
 import {SelectOption} from '../../models/select-option-interface';
 import {ApplicationService} from '../../core/services';
-import {MatDatepickerInputEvent, MatIconRegistry} from '@angular/material';
+import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
@@ -22,8 +22,6 @@ export class FieldFormComponent implements OnInit {
   toggleVisible = true;
   datePickerClicked = false;
   iconDatePicker = '';
-  events: string[] = [];
-
   dynamicVariable =  true;
   dynamicCondition = 'dynamicVariable === false';
 
@@ -37,11 +35,6 @@ export class FieldFormComponent implements OnInit {
     if (this.fieldObj.type === 'radio' || this.fieldObj.type === 'select' || this.fieldObj.type === 'checkbox') {
       this.getOptions();
     }
-  }
-
-  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
-    this.events.push(`${type}: ${event.value}`);
-    console.log('events: ', this.events);
   }
 
   onKeyUp(event) {
@@ -119,7 +112,10 @@ export class FieldFormComponent implements OnInit {
     });
     return value;
   }
-  get isValid() { return this.form.controls[this.fieldObj.name].valid; }
+  get isValid() {
+    console.log('errors: ', this.form.controls[this.fieldObj.name].errors);
+    return this.form.controls[this.fieldObj.name].valid;
+  }
 
   registerCustomIcons() {
     this.matIconRegistry.addSvgIcon(

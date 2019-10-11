@@ -1,8 +1,8 @@
 <!--<div [formGroup]="form" data-forms="floating-label" class="ml-form">-->
   <div [ngSwitch]="fieldObj.type" [formGroup]="form">
 
-    <fieldset *ngSwitchCase="'text'" class="ml-form-field">
-              <!--[ngClass]="{'error': !isValid}">-->
+    <fieldset *ngSwitchCase="'text'" class="ml-form-field"
+              [ngClass]="{'error': !isValid}">
       <label>
           <input [type]="toggleVisible ? 'text' : 'password'" [formControlName]="fieldObj.name" [id]="fieldObj.id"
                  value=""
@@ -27,7 +27,7 @@
                onkeyup="this.setAttribute('value', this.value);"
                (keyup)="onKeyUp($event)">
 
-        <span style="width: 80%;">{{fieldObj.label}}</span>
+        <span>{{fieldObj.label}}</span>
         <!--<a href="javascript:;" (click)="onDatePickerClick()" class="ml-form-field-datepicker"
            [ngClass]="[datePickerClicked ? 'ml-form-field-datepicke clicked': 'ml-form-field-datepicker']"
         ></a>-->
