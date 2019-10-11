@@ -3,20 +3,42 @@
 
     <fieldset *ngSwitchCase="'text'" class="ml-form-field">
               <!--[ngClass]="{'error': !isValid}">-->
-      <label *ngIf="!!(dynamicCondition)">
-        <input [type]="toggleVisible ? 'text' : 'password'" [formControlName]="fieldObj.name" [id]="fieldObj.id"
+      <label>
+          <input [type]="toggleVisible ? 'text' : 'password'" [formControlName]="fieldObj.name" [id]="fieldObj.id"
+                 value=""
+                 placeholder="{{fieldObj.placeholder}}"
+                 onkeyup="this.setAttribute('value', this.value);"
+                 (keyup)="onKeyUp($event)"
+          >
+          <span>{{fieldObj.label}}</span>
+          <a *ngIf="fieldObj.canChangeType" href="javascript:;" (click)="onClickToggle()" class="ml-form-field-togglevisible"
+             [ngClass]="[toggleVisible ? 'ml-form-field-togglevisible': 'ml-form-field-togglevisible occult']"
+          ></a>
+          <div class="ml-form-field-errortext">{{fieldObj.message}}</div>
+      </label>
+    </fieldset>
+
+    <fieldset *ngSwitchCase="'date'" class="ml-form-field">
+      <!--[ngClass]="{'error': !isValid}">-->
+      <label style="display: grid; grid-template-columns: 85% 15%;">
+        <input matInput [matDatepicker]="picker" [formControlName]="fieldObj.name" [id]="fieldObj.id"
                value=""
                placeholder="{{fieldObj.placeholder}}"
                onkeyup="this.setAttribute('value', this.value);"
-               (keyup)="onKeyUp($event)"
-               >
-        <span>{{fieldObj.label}}</span>
-        <a *ngIf="fieldObj.canChangeType" href="javascript:;" (click)="onClickToggle()" class="ml-form-field-togglevisible"
-           [ngClass]="[toggleVisible ? 'ml-form-field-togglevisible': 'ml-form-field-togglevisible occult']"
-        ></a>
+               (keyup)="onKeyUp($event)">
+
+        <span style="width: 80%;">{{fieldObj.label}}</span>
+        <!--<a href="javascript:;" (click)="onDatePickerClick()" class="ml-form-field-datepicker"
+           [ngClass]="[datePickerClicked ? 'ml-form-field-datepicke clicked': 'ml-form-field-datepicker']"
+        ></a>-->
+
+        <mat-datepicker-toggle matSuffix [for]="picker">
+          <mat-icon matDatepickerToggleIcon svgIcon="calendar-icon" style="text-align: right;"></mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+
         <div class="ml-form-field-errortext">{{fieldObj.message}}</div>
       </label>
-
     </fieldset>
 
     <fieldset *ngSwitchCase="'select'" class="ml-form-field">

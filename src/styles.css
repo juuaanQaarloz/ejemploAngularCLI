@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 html,body{
   font-family: 'Noto Sans', sans-serif;
@@ -7,9 +8,9 @@ html,body{
   /*display: grid;
   grid-template-columns: repeat(12, 1fr);*/
 }
-
 /* === progress indicator === */
 /* -1- */
+
 .ml-step-container{
   width:100%;
   padding: 8px;
@@ -348,6 +349,22 @@ select::-ms-expand {
 
 .ml-form-field-togglevisible.occult {
   background: url(assets/img/inputs/ml-toggle-visibility-hide.png) no-repeat;
+  background-size: 100%;
+}
+
+.ml-form-field-datepicker {
+  width: 18px;
+  height: 20px;
+  background: url(assets/img/datepicker/utility-3_calendar_16p_HVR.svg) no-repeat;
+  background-size: 100%;
+  display: block;
+  position: absolute;
+  right: 6px;
+  top: 12px;
+}
+
+.ml-form-field-datepicker.clicked {
+  background: url(assets/img/datepicker/utility-3_calendar_16p.svg) no-repeat;
   background-size: 100%;
 }
 

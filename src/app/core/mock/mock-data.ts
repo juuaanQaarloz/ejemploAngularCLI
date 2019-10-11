@@ -136,7 +136,7 @@ export const DatosGeneralesPersonaFisica: FieldInterface[] = [
     name: 'birthDateText',
     orderAppearance: 4,
     label: 'Fecha de nacimiento*',
-    type: 'text',
+    type: 'date',
     required: true,
     placeholder: 'YYYY/MM/DD',
     length: '10',
@@ -157,6 +157,7 @@ export const DatosGeneralesPersonaFisica: FieldInterface[] = [
     entity: '',
     entityField: '',
     value: '',
+    canChangeType: true
   },
   {
     id: '5',

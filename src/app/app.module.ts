@@ -15,6 +15,8 @@ import { LoginComponent } from './components/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import {ModalModule} from './components/custom-modal';
 import {CoreModule} from './core/core.module';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatDatepickerModule, MatIconModule, MatInputModule, MatNativeDateModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,11 @@ import {CoreModule} from './core/core.module';
     HttpClientModule,
     ModalModule,
     CoreModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatIconModule,
     AppRoutingModule
   ],
   bootstrap: [AppComponent]

@@ -3,6 +3,8 @@ import {FieldInterface} from '../../models/field-interface';
 import {FormGroup} from '@angular/forms';
 import {SelectOption} from '../../models/select-option-interface';
 import {ApplicationService} from '../../core/services';
+import {MatDatepickerInputEvent, MatIconRegistry} from '@angular/material';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-field-form',
@@ -18,16 +20,28 @@ export class FieldFormComponent implements OnInit {
   selectOptions = [];
   checkBoxOptions = [];
   toggleVisible = true;
+  datePickerClicked = false;
+  iconDatePicker = '';
+  events: string[] = [];
 
   dynamicVariable =  true;
   dynamicCondition = 'dynamicVariable === false';
 
-  constructor(private applicationService: ApplicationService) { }
+  constructor(private applicationService: ApplicationService,
+              private matIconRegistry: MatIconRegistry,
+              private domSanitizer: DomSanitizer) {
+    this.registerCustomIcons();
+  }
 
   ngOnInit() {
     if (this.fieldObj.type === 'radio' || this.fieldObj.type === 'select' || this.fieldObj.type === 'checkbox') {
       this.getOptions();
     }
+  }
+
+  addEvent(type: string, event: MatDatepickerInputEvent<Date>) {
+    this.events.push(`${type}: ${event.value}`);
+    console.log('events: ', this.events);
   }
 
   onKeyUp(event) {
@@ -39,6 +53,10 @@ export class FieldFormComponent implements OnInit {
 
   onClickToggle() {
     this.toggleVisible = !this.toggleVisible;
+  }
+
+  onDatePickerClick() {
+    this.datePickerClicked = !this.datePickerClicked;
   }
 
   onChangeSelect(event) {
@@ -102,6 +120,17 @@ export class FieldFormComponent implements OnInit {
     return value;
   }
   get isValid() { return this.form.controls[this.fieldObj.name].valid; }
+
+  registerCustomIcons() {
+    this.matIconRegistry.addSvgIcon(
+      'calendar-icon',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/icons/utility-3_calendar_16p_HVR.svg')
+    );
+    this.matIconRegistry.addSvgIcon(
+      'calendar-icon-clicked',
+      this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/icons/utility-3_calendar_16p.svg')
+    );
+  }
 }
 
 
