@@ -1,19 +1,11 @@
-import { Injectable } from '@angular/core';
-import {ValidateService} from './validate.service';
+import {nullUndefinedOrEmptyValidation} from '../validators';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class FormatService {
-
-  constructor(private validateService: ValidateService) { }
-
-  /**
+/**
    * @param (string) value the string who's removing withe spaces
    * @returns (string) value the same string in uppercase and no white spaces
    */
-  removeWhiteSpaces(value: string): string { // disable manually the input with ng-trim="false" to works this
-    if (!this.validateService.nullUndefinedOrEmptyValidation(value)) {
+export function removeWhiteSpaces(value: string): string { // disable manually the input with ng-trim="false" to works this
+    if (!nullUndefinedOrEmptyValidation(value)) {
       value = value.trim();
       // value = value.replace(/\s+/, ' ');
       value = value.replace(/\s+/g, '');
@@ -26,8 +18,8 @@ export class FormatService {
    * @param (string) value the string who's removing the first white space
    * @returns (string) value the same string with no first white space
    */
-  removeFirstBlankSpace(value: string): string {
-    if (!this.validateService.nullUndefinedOrEmptyValidation(value)) {
+  export function removeFirstBlankSpace(value: string): string {
+    if (!nullUndefinedOrEmptyValidation(value)) {
       if (value.substring(0, 1) === ' ') {
         value = value.substring(1);
       }
@@ -39,7 +31,7 @@ export class FormatService {
    * @param (string) date the date to add slashes in the format YYYY/MM/DD
    * @returns (string) date the same date with slashes added in the correct format
    */
-  addSlashesToDate(date: string): string {
+  export function addSlashesToDate(date: string): string {
     if (date.length === 4 || date.length === 7) {
       return date + '/';
     }
@@ -49,8 +41,8 @@ export class FormatService {
   /**@param (string) txt text to be modified with no accents
    * @return (string) the text with no accents marks
    */
-  removeAccents(txt: string): string {
-    if (!this.validateService.nullUndefinedOrEmptyValidation(txt)) {
+  export function removeAccents(txt: string): string {
+    if (!nullUndefinedOrEmptyValidation(txt)) {
       // if (type === '' || type === null || type === undefined) {
       txt = txt.toUpperCase();
       // }
@@ -67,8 +59,8 @@ export class FormatService {
   /**@param (string) val value to be corrected
    * @return (string) the given value in upper case, trimmed and with only 1 space between words
    */
-  correctFieldValue(val) {
-    if (!this.validateService.nullUndefinedOrEmptyValidation(val)) {
+  export function correctFieldValue(val) {
+    if (!nullUndefinedOrEmptyValidation(val)) {
       // if (type === '' || type === null || type === undefined) {
       val = val.toUpperCase();
       val = this.removeAccents(val);
@@ -86,4 +78,3 @@ export class FormatService {
     }
     return val;
   }
-}

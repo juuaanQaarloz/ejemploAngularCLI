@@ -2,7 +2,6 @@ import {OperationsInterface} from '../../models/operations-interface';
 import {FieldInterface} from '../../models/field-interface';
 import {ApplicationInterface} from '../../models/application-interface';
 import {ContentInterface} from '../../models/content-interface';
-import {phoneNumberValidator} from '../validators/validators';
 
 export const MockOperations: OperationsInterface[] = [
   {

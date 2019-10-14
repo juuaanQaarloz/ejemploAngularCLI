@@ -2,8 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {MockApplication} from '../../core/mock/mock-data';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ModalService} from '../custom-modal';
-import {ApplicationService, AuthService, StorageService, ValidateService} from '../../core/services';
+import {ApplicationService, AuthService, StorageService} from '../../core/services';
 import {validatorsObjects} from '../../core/validators';
+import {FieldInterface} from '../../models/field-interface';
 
 @Component({
   selector: 'app-application',
@@ -20,13 +21,11 @@ export class ApplicationComponent implements OnInit {
   constructor(private appService: ApplicationService,
               private authService: AuthService,
               private storageService: StorageService,
-              private modalService: ModalService,
-              private validateService: ValidateService
+              private modalService: ModalService
   ) { }
 
   ngOnInit() {
     this.formGroup = this.toFormGroup();
-    this.getValidationFunctions('');
   }
 
   closeModal(modalId: string) {
@@ -42,24 +41,21 @@ export class ApplicationComponent implements OnInit {
     this.applicationObj.sections.forEach(section => {
       if (section.content.fields) {
         section.content.fields.forEach(field => {
-          group[field.name] = field.required ? new FormControl(field.value || '', Validators.required)
-            : new FormControl(field.value || '');
+          group[field.name] = new FormControl(field.value || '', this.getValidationFunctions(field));
         });
       } else {
         if (section.content.process) {
           section.content.process.steps.forEach(step => {
             if (step.content.fields) {
               step.content.fields.forEach(field => {
-                group[field.name] = field.required ? new FormControl(field.value || '', this.getValidationFunctions(field.name))
-                  : new FormControl(field.value || '');
+                group[field.name] = new FormControl(field.value || '', this.getValidationFunctions(field));
               });
             } else {
               if (step.content.contentChildren) {
                 step.content.contentChildren.forEach(contentChild => {
                   if (contentChild.fields) {
                     contentChild.fields.forEach(field => {
-                      group[field.name] = field.required ? new FormControl(field.value || '', this.getValidationFunctions(field.name))
-                        : new FormControl(field.value || '');
+                      group[field.name] = new FormControl(field.value || '', this.getValidationFunctions(field));
                     });
                   }
                 });
@@ -72,14 +68,18 @@ export class ApplicationComponent implements OnInit {
     return new FormGroup(group);
   }
 
-  getValidationFunctions(fieldName: string): [] {
-    let validationFunctions;
+  getValidationFunctions(field: FieldInterface): any[] {
+    let validationFunctions = [];
     validatorsObjects.forEach(validationObject => {
-      if (validationObject.nameField === fieldName) {
+      if (validationObject.nameField === field.name) {
         console.log('validationObject: ', validationObject);
         validationFunctions = validationObject.validationFunctions;
       }
     });
+    if (field.required) {
+      validationFunctions.push(Validators.required);
+    }
+    console.log('validationFuntions: ', validationFunctions);
     return validationFunctions;
   }
 
@@ -116,9 +116,5 @@ export class ApplicationComponent implements OnInit {
         }
       }
     );
-  }
-
-  testValidateService() {
-    console.log('validate name: ', this.validateService.validateName('ODALYS'));
   }
 }
