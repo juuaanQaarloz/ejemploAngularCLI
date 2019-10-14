@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="contentObj.showContent === true">
   <p *ngIf="contentObj.title" class="title">{{contentObj.title}}</p>
 
   <div [formGroup]="form" data-forms="floating-label" class="ml-form" *ngIf="contentObj.fields" >
@@ -23,7 +23,6 @@
       <app-content-form [form]="form" [contentObj]="contentChild"></app-content-form>
     </div>
   </div>
-
 
   <!--<div *ngIf="payLoad" class="form-row">
     <strong>Saved the following values</strong><br>{{payLoad}}

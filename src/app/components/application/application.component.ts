@@ -18,6 +18,7 @@ export class ApplicationComponent implements OnInit {
   iconHome = 'home-icon';
   iconSecurity = 'security-icon';
   bodyText = 'Body Text';
+  payLoad = '';
   constructor(private appService: ApplicationService,
               private authService: AuthService,
               private storageService: StorageService,
@@ -72,14 +73,14 @@ export class ApplicationComponent implements OnInit {
     let validationFunctions = [];
     validatorsObjects.forEach(validationObject => {
       if (validationObject.nameField === field.name) {
-        console.log('validationObject: ', validationObject);
+        // console.log('validationObject: ', validationObject);
         validationFunctions = validationObject.validationFunctions;
       }
     });
     if (field.required) {
       validationFunctions.push(Validators.required);
     }
-    console.log('validationFuntions: ', validationFunctions);
+    // console.log('validationFuntions: ', validationFunctions);
     return validationFunctions;
   }
 
@@ -116,5 +117,10 @@ export class ApplicationComponent implements OnInit {
         }
       }
     );
+  }
+
+  getFormValue() {
+    this.payLoad = JSON.stringify(this.formGroup.value);
+    console.log(this.payLoad);
   }
 }

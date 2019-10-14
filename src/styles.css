@@ -699,8 +699,8 @@ select::-ms-expand {
   border-top: 0;
 }
 
-.ml-form[data-forms="floating-label"] input+span,
-.ml-form[data-forms="floating-label"] input[value=""]+span {
+.ml-form[data-forms="floating-label"] input+span ,
+.ml-form[data-forms="floating-label"] input[value = ""]+span {
   transition: 0.3s ease;
   -webkit-transform: translateY(-0.5em);
   -ms-transform: translateY(-0.5em);
@@ -717,7 +717,7 @@ select::-ms-expand {
   width: 80%;
 }
 
-.ml-form[data-forms="floating-label"] input:focus+span,
+.ml-form[data-forms="floating-label"] input:focus+span ,
 .ml-form[data-forms="floating-label"] input:not([value=""])+span {
   -webkit-transform: translateY(-100%);
   -ms-transform: translateY(-100%);

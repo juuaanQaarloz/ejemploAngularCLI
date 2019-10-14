@@ -1,5 +1,6 @@
 export interface OperationsInterface {
   id: string;
+  idHtml: string;
   name: string;
   label: string;
   type: string;

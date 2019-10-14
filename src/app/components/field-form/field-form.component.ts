@@ -1,10 +1,11 @@
-import {Component, ElementRef, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FieldInterface} from '../../models/field-interface';
 import {FormGroup} from '@angular/forms';
 import {SelectOption} from '../../models/select-option-interface';
 import {ApplicationService} from '../../core/services';
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
+import {correctFieldValue} from '../../core/utilities';
 
 @Component({
   selector: 'app-field-form',
@@ -32,6 +33,7 @@ export class FieldFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    // console.log('idHTML: ', this.fieldObj.idHtml);
     if (this.fieldObj.type === 'radio' || this.fieldObj.type === 'select' || this.fieldObj.type === 'checkbox') {
       this.getOptions();
     }
@@ -40,8 +42,11 @@ export class FieldFormComponent implements OnInit {
   onKeyUp(event) {
     let value;
     value = event.target.value;
-    console.log('value: ', value);
-    this.form.get(this.fieldObj.name).setValue(event.target.value);
+    console.log('from onKeyUp event: ', event);
+    console.log('from onKeyUp value: ', value);
+    event.target.value = correctFieldValue(value);
+    let elem: Element = document.getElementById(this.fieldObj.idHtml);
+    elem.setAttribute('value', event.target.value);
   }
 
   onClickToggle() {
@@ -113,7 +118,7 @@ export class FieldFormComponent implements OnInit {
     return value;
   }
   get isValid() {
-    console.log('errors: ', this.form.controls[this.fieldObj.name].errors);
+    // console.log('errors: ', this.form.controls[this.fieldObj.name].errors);
     return this.form.controls[this.fieldObj.name].valid;
   }
 

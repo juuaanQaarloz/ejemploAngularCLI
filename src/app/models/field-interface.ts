@@ -25,6 +25,6 @@ export interface FieldInterface {
   enableConditions: string;
   entity: string;
   entityField: string;
-  value?: string;
+  value?: any;
   canChangeType?: boolean;
 }

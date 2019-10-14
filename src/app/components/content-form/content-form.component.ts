@@ -17,7 +17,10 @@ export class ContentFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    // console.log('content: ', this.contentObj);
+    /* console.log('content.id: ', this.contentObj.id);
+    console.log('content.idParent: ', this.contentObj.idParent);
+    console.log('content.parentType: ', this.contentObj.parentType);
+    console.log('content.showContent: ', this.contentObj.showContent);*/
     this.orderFields();
     this.testFunction();
     let meuArray = [{id:1},{id:2},{id:3},{id:4},{id:5},{id:6},{id:7},{id:8},{id:9},{id:10}];
