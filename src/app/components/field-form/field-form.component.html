@@ -20,19 +20,14 @@
 
     <fieldset *ngSwitchCase="'date'" class="ml-form-field">
       <!--[ngClass]="{'error': !isValid}">-->
-      <label style="display: grid; grid-template-columns: 85% 15%;">
-        <input matInput [matDatepicker]="picker" [formControlName]="fieldObj.name"
-               [id]="fieldObj.idHtml"
-               value=""
-               placeholder="{{fieldObj.placeholder}}"
-               (keyup)="onKeyUp($event)">
+      <label >
 
-        <span>{{fieldObj.label}}</span>
-        
-        <mat-datepicker-toggle matSuffix [for]="picker">
-          <mat-icon matDatepickerToggleIcon svgIcon="calendar-icon" style="text-align: right;"></mat-icon>
-        </mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <app-custom-datepicker
+          [form]="form" [fieldObj]="fieldObj"
+          [dateFormat]="'YYYY/MM/DD'"
+        >
+
+        </app-custom-datepicker>
 
         <div class="ml-form-field-errortext">{{fieldObj.message}}</div>
       </label>

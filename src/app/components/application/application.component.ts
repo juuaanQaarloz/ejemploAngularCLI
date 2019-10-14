@@ -121,6 +121,6 @@ export class ApplicationComponent implements OnInit {
 
   getFormValue() {
     this.payLoad = JSON.stringify(this.formGroup.value);
-    console.log(this.payLoad);
+    console.log(this.formGroup.value);
   }
 }

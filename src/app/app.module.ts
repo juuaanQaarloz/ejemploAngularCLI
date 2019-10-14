@@ -17,6 +17,7 @@ import {ModalModule} from './components/custom-modal';
 import {CoreModule} from './core/core.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDatepickerModule, MatIconModule, MatInputModule, MatNativeDateModule} from '@angular/material';
+import { CustomDatepickerComponent } from './components/custom-datepicker/custom-datepicker.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import {MatDatepickerModule, MatIconModule, MatInputModule, MatNativeDateModule}
     StepFormComponent,
     OperationFormComponent,
     LoginComponent,
+    CustomDatepickerComponent,
   ],
   imports: [
     BrowserModule,

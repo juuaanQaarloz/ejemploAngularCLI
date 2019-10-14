@@ -1,0 +1,18 @@
+<div [formGroup]="form" style="display: grid; grid-template-columns: 85% 15%;">
+  <input matInput
+         [matDatepicker]="picker"
+         [formControlName]="fieldObj.name"
+         [id]="fieldObj.idHtml"
+         [value]="dateValue"
+         placeholder="{{fieldObj.placeholder}}"
+         value=""
+         (dateInput)="addEvent('input', $event)"
+  >
+
+  <span>{{fieldObj.label}}</span>
+
+  <mat-datepicker-toggle matSuffix [for]="picker">
+    <mat-icon matDatepickerToggleIcon svgIcon="calendar-icon" style="text-align: right;"></mat-icon>
+  </mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</div>
