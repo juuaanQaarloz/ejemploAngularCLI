@@ -187,6 +187,10 @@ hr.ml-step-hr{
   grid-gap: 15px
 }
 
+.ml-form.questions-type {
+  grid-template-columns: repeat(2, 1fr);
+}
+
 @media screen and (max-width: 979px){
   .ml-form {
     grid-template-columns: repeat(3,minmax(240px, 240px));
@@ -195,13 +199,13 @@ hr.ml-step-hr{
 }
 
 @media screen and (max-width: 768px){
-  .ml-form {
+  .ml-form, .ml-form.questions-type  {
     grid-template-columns: repeat(2,minmax(240px, 240px));
   }
 }
 
 @media screen and (max-width: 421px){
-  .ml-form {
+  .ml-form, .ml-form.questions-type {
     grid-template-columns: repeat(1,minmax(240px, 240px));
   }
 }

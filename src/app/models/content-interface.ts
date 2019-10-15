@@ -12,5 +12,7 @@ export interface ContentInterface {
   process?: ProcessInterface;
   operations?: Array<OperationsInterface>;
   showContent?: boolean;
+  enableConditions?: string;
   renderConditions: string;
+  styleClass?: string;
 }

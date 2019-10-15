@@ -1069,6 +1069,7 @@ export const MockContentChildren: ContentInterface[] = [
     fields: DatosTipoContratante,
     renderConditions: '',
     showContent: true,
+    styleClass: 'ml-form questions-type'
   },
   {
     id: '1.2',
@@ -1078,6 +1079,7 @@ export const MockContentChildren: ContentInterface[] = [
     fields: DatosGeneralesPersonaFisica,
     operations: MockOperations,
     showContent: true,
+    enableConditions: 'txtEdad>18,chboxGender=Female',
     renderConditions: ''
   },
   {

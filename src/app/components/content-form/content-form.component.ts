@@ -17,15 +17,14 @@ export class ContentFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    /* console.log('content.id: ', this.contentObj.id);
-    console.log('content.idParent: ', this.contentObj.idParent);
-    console.log('content.parentType: ', this.contentObj.parentType);
-    console.log('content.showContent: ', this.contentObj.showContent);*/
+    // console.log('content: ', this.contentObj);
     this.orderFields();
-    this.testFunction();
-    let meuArray = [{id:1},{id:2},{id:3},{id:4},{id:5},{id:6},{id:7},{id:8},{id:9},{id:10}];
-    /*separo meu array em grupos de 3 chaves*/
-    // console.log(this.separar(meuArray, 4));
+    /*this.testFunction();
+    let meuArray = [{id:1},{id:2},{id:3},{id:4},{id:5},{id:6},{id:7},{id:8},{id:9},{id:10}];*/
+    if (this.contentObj.enableConditions) {
+      this.getEnableConditions();
+    }
+
   }
 
   getFormValue() {
@@ -67,5 +66,32 @@ export class ContentFormComponent implements OnInit {
     if (this.contentObj.fields) {
       this.contentObj.fields.sort((a, b) => a.orderAppearance - b.orderAppearance);
     }
+  }
+
+  getEnableConditions() {
+    let enableConditions = [];
+
+    enableConditions = this.contentObj.enableConditions.split(',');
+
+    console.warn('enableConditions: ', enableConditions);
+
+    enableConditions.forEach((condition: string) => {
+      const separators = ['<', '>', '=', '!'];
+      let separatorFound;
+      separators.forEach((separator) => {
+        if (condition.indexOf(separator) > 0) {
+          // b console.log('separator: ', separator);
+          separatorFound = separator;
+        }
+      });
+
+      // conditionsElements[0] --variableName
+      // conditionsElements[1] --valueCondition
+      // conditionsElements[2] --simbolCondition
+      let conditionElements = condition.split(separatorFound);
+      conditionElements.push(separatorFound);
+      console.log('conditionElements: ', conditionElements);
+
+    });
   }
 }

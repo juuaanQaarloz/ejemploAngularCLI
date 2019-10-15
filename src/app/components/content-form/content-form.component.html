@@ -1,7 +1,9 @@
 <div *ngIf="contentObj.showContent === true">
   <p *ngIf="contentObj.title" class="title">{{contentObj.title}}</p>
 
-  <div [formGroup]="form" data-forms="floating-label" class="ml-form" *ngIf="contentObj.fields" >
+  <div [formGroup]="form" data-forms="floating-label" class="ml-form"
+       [ngClass]="[contentObj.styleClass ? contentObj.styleClass: 'ml-form']"
+       *ngIf="contentObj.fields" >
     <div *ngFor="let field of contentObj.fields">
       <app-field-form [form]="form" [fieldObj]="field"></app-field-form>
     </div>
