@@ -30,7 +30,7 @@ import { CustomDatepickerComponent } from './components/custom-datepicker/custom
     StepFormComponent,
     OperationFormComponent,
     LoginComponent,
-    CustomDatepickerComponent,
+    CustomDatepickerComponent
   ],
   imports: [
     BrowserModule,

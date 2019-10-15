@@ -73,7 +73,7 @@ export class ContentFormComponent implements OnInit {
 
     enableConditions = this.contentObj.enableConditions.split(',');
 
-    console.warn('enableConditions: ', enableConditions);
+    // console.log('enableConditions: ', enableConditions);
 
     enableConditions.forEach((condition: string) => {
       const separators = ['<', '>', '=', '!'];
@@ -90,7 +90,7 @@ export class ContentFormComponent implements OnInit {
       // conditionsElements[2] --simbolCondition
       let conditionElements = condition.split(separatorFound);
       conditionElements.push(separatorFound);
-      console.log('conditionElements: ', conditionElements);
+      // console.log('conditionElements: ', conditionElements);
 
     });
   }

@@ -1,12 +1,37 @@
 import { Component, ViewEncapsulation, ElementRef, Input, OnInit, OnDestroy } from '@angular/core';
 
 import { ModalService } from './modal.service';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'jw-modal',
   templateUrl: 'custom-modal.component.html',
   styleUrls: ['custom-modal.component.less'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  animations: [
+    trigger(
+      'myAnimation',
+      [
+        transition(
+          ':enter', [
+            style({transform: 'translateX(100%)', opacity: 0}),
+            animate('2500ms', style({transform: 'translateX(0)', opacity: 1}))
+          ]
+        ),
+        transition(
+          ':leave', [
+            style({transform: 'translateX(0)', opacity: 1}),
+            animate('2500ms', style({transform: 'translateX(100%)', opacity: 0}))
+          ]
+        )]
+    )]
+  /*animations: [
+    trigger('slide', [
+      state('left', style({ transform: 'translateX(0)' })),
+      state('right', style({ transform: 'translateX(-50%)' })),
+      transition('* => *', animate(300))
+    ])
+  ]*/
 })
 export class ModalComponent implements OnInit, OnDestroy {
   @Input() id: string;
@@ -17,6 +42,7 @@ export class ModalComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    console.log('from onInit()...');
     // ensure id attribute exists
     if (!this.id) {
       console.error('modal must have an id');
