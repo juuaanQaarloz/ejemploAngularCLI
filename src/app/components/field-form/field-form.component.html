@@ -24,9 +24,7 @@
 
         <app-custom-datepicker
           [form]="form" [fieldObj]="fieldObj"
-          [dateFormat]="'YYYY/MM/DD'"
-        >
-
+          [dateFormat]="fieldObj.placeholder">
         </app-custom-datepicker>
 
         <div class="ml-form-field-errortext">{{fieldObj.message}}</div>

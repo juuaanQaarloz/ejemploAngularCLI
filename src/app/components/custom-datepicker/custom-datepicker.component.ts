@@ -7,54 +7,35 @@ import * as moment from 'moment';
 @Component({
   selector: 'app-custom-datepicker',
   templateUrl: './custom-datepicker.component.html',
-  styleUrls: ['./custom-datepicker.component.css'],
-  providers: [
+  styleUrls: ['./custom-datepicker.component.css']
+  /*providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => CustomDatepickerComponent), // Name of our component
       multi: true
     }
-  ]
+  ]*/
 })
-export class CustomDatepickerComponent implements OnInit, ControlValueAccessor {
+export class CustomDatepickerComponent implements OnInit { // , ControlValueAccessor {
   @Input() fieldObj: FieldInterface;
   @Input() form: FormGroup;
-  @Input() dateFormat: 'YYYY/MM/DD';
-  @Input() _dateValue: string = null;
-
+  @Input() dateFormat = 'YYYY/MM/DD';
   constructor() { }
 
   ngOnInit() {
   }
 
-  addEvent(type: string, event: MatDatepickerInputEvent<moment.Moment>) {
-    this.dateValue = moment(event.value, this.dateFormat);
-    console.log('dateValue: ', this.dateValue.toString());
-    let elem: Element = document.getElementById(this.fieldObj.idHtml);
-    elem.setAttribute('value', this.dateValue.toString());
+  onDateInput(typeEvent: string, event) {
+    console.log('onDateInput...  ');
+
+    console.log('dateFormat: ', this.dateFormat);
+    const transformDate =  moment(event.value).format(this.dateFormat);
+    console.log('transformDate: ', transformDate);
+
+    event.targetElement.value = transformDate;
+
+    // set value to the input element
+    const elem: Element = document.getElementById(this.fieldObj.idHtml);
+    elem.setAttribute('value', event.targetElement.value);
   }
-
-  writeValue(value: any) {
-    if (value !== undefined) {
-      this.dateValue = moment(value, this.dateFormat);
-    }
-  }
-
-  propagateChange = (_: any) => {};
-
-  registerOnChange(fn) {
-    this.propagateChange = fn;
-  }
-
-  registerOnTouched() {}
-
-  get dateValue() {
-    return moment(this._dateValue, this.dateFormat);
-  }
-
-  set dateValue(val) {
-    this._dateValue = moment(val).format(this.dateFormat);
-    this.propagateChange(this._dateValue);
-  }
-
 }

@@ -78,3 +78,7 @@ export function correctFieldValue(val) {
   }
   return val;
 }
+
+export function trasnformDate(date: string, format: string) {
+  // input date format
+}
