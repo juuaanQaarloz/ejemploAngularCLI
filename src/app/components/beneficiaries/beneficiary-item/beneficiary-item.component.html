@@ -1,1 +1,17 @@
-<p>beneficiary-item works!</p>
+<div class="beneficiary-row" [ngStyle]="{'background-color':  determinateEvenOrOdd(index) ? '#E5F4FB': '#FFFFFF'}">
+  <div class="beneficiary-attribute">{{beneficiary.name}}</div>
+  <div class="beneficiary-attribute">{{beneficiary.fatherLastName}}</div>
+  <div class="beneficiary-attribute">{{beneficiary.motherLastName}}</div>
+  <div class="beneficiary-attribute">{{beneficiary.relationship}}</div>
+  <div class="beneficiary-attribute"><input type="text" [value]="beneficiary.participationPercentage"></div>
+
+  <div class="operations">
+    <div><img src="../../../../assets/img/tables/erase_simbol.svg" (click)="deleteBeneficiary()"></div>
+    <div *ngIf="isLast"><img src="../../../../assets/img/tables/plus_simbol.svg" (click)="addNewBeneficiary()"></div>
+  </div>
+
+  <jw-modal id="add-beneficiary-modal-2">
+    <app-new-beneficiary [modalId]="'add-beneficiary-modal-2'"></app-new-beneficiary>
+  </jw-modal>
+
+</div>

@@ -1,0 +1,12 @@
+<svg width="15" height="16" xmlns="http://www.w3.org/2000/svg">
+ <title>utility-2_close_16p</title>
+
+ <g>
+  <title>background</title>
+  <rect fill="none" id="canvas_background" height="18" width="17" y="-1" x="-1"/>
+ </g>
+ <g>
+  <title>Layer 1</title>
+  <polygon id="svg_1" fill="#333" points="16 1.877 14.123 0 8 6.123 1.877 0 0 1.877 6.123 7.999 0 14.122 1.877 15.999 8 9.876 14.123 15.999 16 14.122 9.877 7.999 16 1.877"/>
+ </g>
+</svg>

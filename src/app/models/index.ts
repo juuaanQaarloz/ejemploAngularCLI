@@ -10,3 +10,4 @@ export * from './select-option-interface';
 export * from './session.interface';
 export * from './step-interface';
 export * from './user.interface';
+export * from './beneficiary-model/index';

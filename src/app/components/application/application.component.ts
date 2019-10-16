@@ -20,7 +20,6 @@ export class ApplicationComponent implements OnInit {
   iconSecurity = 'security-icon';
   bodyText = 'Body Text';
   payLoad = '';
-  animation = false;
   constructor(private appService: ApplicationService,
               private authService: AuthService,
               private storageService: StorageService,
@@ -29,16 +28,6 @@ export class ApplicationComponent implements OnInit {
 
   ngOnInit() {
     this.formGroup = this.toFormGroup();
-  }
-
-  closeModal(modalId: string) {
-    this.animation = false;
-    this.modalService.close(modalId);
-  }
-
-  openModal(modalId: string) {
-    this.animation = true;
-    this.modalService.open(modalId);
   }
 
   toFormGroup() {

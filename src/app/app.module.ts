@@ -20,6 +20,7 @@ import {MatDatepickerModule, MatIconModule, MatInputModule, MatNativeDateModule}
 import { CustomDatepickerComponent } from './components/custom-datepicker/custom-datepicker.component';
 import { BeneficiaryTableComponent } from './components/beneficiaries/beneficiary-table/beneficiary-table.component';
 import { BeneficiaryItemComponent } from './components/beneficiaries/beneficiary-item/beneficiary-item.component';
+import { NewBeneficiaryComponent } from './components/beneficiaries/new-beneficiary/new-beneficiary.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { BeneficiaryItemComponent } from './components/beneficiaries/beneficiary
     LoginComponent,
     CustomDatepickerComponent,
     BeneficiaryTableComponent,
-    BeneficiaryItemComponent
+    BeneficiaryItemComponent,
+    NewBeneficiaryComponent
   ],
   imports: [
     BrowserModule,

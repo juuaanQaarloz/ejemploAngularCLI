@@ -2,7 +2,7 @@ import {validateAlphanumericValue} from './validators';
 
 export const validatorsObjects = [
   {
-    nameField: 'nameText',
+    nameField: 'name',
     validationFunctions: [validateAlphanumericValue]
   }
 ];

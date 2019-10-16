@@ -1,10 +1,24 @@
 <div class="ml-table-container">
-  <div class="ml-table-title">Title of table</div>
+  <div class="ml-table-title">{{title}}</div>
   <div class="even">
-    <div class="field-name-column">fieldName1</div>
-    <div class="field-name-column">fieldName2</div>
-    <div class="field-name-column">fieldName3</div>
-    <div class="field-name-column">fieldName4</div>
+    <div class="field-name-column" *ngFor="let columnName of columnsNames">{{columnName}}</div>
+    <div class="field-name-column" *ngIf="beneficiaries.length === 0 || beneficiaries === null">
+      <img src="../../../../assets/img/tables/plus_simbol.svg" (click)="addNewBeneficiary()">
+    </div>
+
   </div>
-  <div class="odd">item</div>
+  <app-beneficiary-item *ngFor="let beneficiary of beneficiaries; let i = index; last as isLast "
+                        [beneficiary]="beneficiary"
+                        [index]="i"
+                        [isLast]="isLast">
+
+  </app-beneficiary-item>
+  <div>
+
+  </div>
 </div>
+
+<jw-modal id="add-beneficiary-modal-1">
+  <app-new-beneficiary></app-new-beneficiary>
+  <button (click)="closeModal('add-beneficiary-modal-1')">close</button>
+</jw-modal>

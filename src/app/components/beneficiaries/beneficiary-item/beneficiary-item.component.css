@@ -1,0 +1,14 @@
+.beneficiary-row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.beneficiary-attribute {
+  text-align: center;
+}
+
+.operations {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  text-align: center;
+}

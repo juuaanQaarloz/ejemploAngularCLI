@@ -1,0 +1,78 @@
+.drawer-container{
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+}
+.ml-drawer-container {
+  top: 0;
+  left: calc(100% - 370px);
+  width: 370px;
+  height: 100vh;
+  display:none;
+  vertical-align: middle;
+  position: absolute;
+  z-index: 2;
+  box-sizing: border-box;
+  background: #ffffff;
+  padding: 55px 20px 0 20px;
+  text-align: left;
+  overflow: hidden;
+}
+.ml-drawer-title {
+  font-family: "Georgia", serif;
+  font-size:18px;
+  font-weight:bold;
+  color:#333333;
+  padding-bottom:20px;
+
+}
+
+.ml-drawer-content {
+  height: 100%;
+  overflow: scroll;
+  padding-right:20px;
+  line-height:1.4;
+}
+.ml-drawer-content::last-child {
+  margin-bottom:100px;
+}
+a.close-drawer {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: block;
+  width: 25px;
+  height: 25px;
+  text-indent: -9999px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url(../../../../assets/img/modal/close-icon.svg);
+}
+a.close-drawer:hover {
+  background-image: url(../../../../assets/img/modal/close-icon-over.svg);
+}
+.ml-drawer-action-bar {
+  height: 80px;
+  width: 100%;
+  background-color: #fff;
+  padding: 30px 0px 30px 0px;
+}
+.ml-drawer-action-bar-static {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  height: 80px;
+  width: 100%;
+  background-color: #fff;
+  padding: 30px 20px 30px 20px;
+
+
+}
+.ml-drawer-action-bar a, .ml-drawer-action-bar-static a {
+  margin-right: 50px;
+  vertical-align:text-bottom;
+}
+
+div.ml-drawer-action-bar > a.ml-link, div.ml-drawer-action-bar-static > a.ml-link {
+  padding-bottom:0px;
+}
