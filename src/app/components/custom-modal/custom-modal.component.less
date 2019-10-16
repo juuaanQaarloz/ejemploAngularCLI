@@ -23,9 +23,13 @@ jw-modal {
     background: #fff;
 
     /* margin exposes part of the modal background */
-    margin: 0 0 0 50%;
+    margin: 0 0 0 69%;
 
     //height: auto;
+
+    /* right to left transition*/
+    transition: 10s;
+    left: 0;
     }
   }
 
@@ -49,6 +53,7 @@ jw-modal {
 body.jw-modal-open {
   /* body overflow is hidden to hide main scrollbar when modal window is open */
   overflow: hidden;
+
 }
 
 @media only screen and (min-height: 768px) and (min-height: 1024px){

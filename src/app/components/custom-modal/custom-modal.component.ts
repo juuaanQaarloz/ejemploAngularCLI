@@ -12,29 +12,15 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
     trigger(
       'myAnimation',
       [
-        transition(
-          ':enter', [
-            style({transform: 'translateX(100%)', opacity: 0}),
-            animate('2500ms', style({transform: 'translateX(0)', opacity: 1}))
-          ]
-        ),
-        transition(
-          ':leave', [
-            style({transform: 'translateX(0)', opacity: 1}),
-            animate('2500ms', style({transform: 'translateX(100%)', opacity: 0}))
-          ]
-        )]
+        state('false', style({transform: 'translateX(100%)', opacity: 0})),
+        state('true', style({transform: 'translateX(0)', opacity: 1})),
+        transition('false <=> true', animate(200))]
     )]
-  /*animations: [
-    trigger('slide', [
-      state('left', style({ transform: 'translateX(0)' })),
-      state('right', style({ transform: 'translateX(-50%)' })),
-      transition('* => *', animate(300))
-    ])
-  ]*/
 })
 export class ModalComponent implements OnInit, OnDestroy {
   @Input() id: string;
+  // @Input() animation: boolean;
+  animation = false;
   private element: any;
 
   constructor(private modalService: ModalService, private el: ElementRef) {
@@ -42,7 +28,6 @@ export class ModalComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log('from onInit()...');
     // ensure id attribute exists
     if (!this.id) {
       console.error('modal must have an id');
@@ -73,11 +58,17 @@ export class ModalComponent implements OnInit, OnDestroy {
   open(): void {
     this.element.style.display = 'block';
     document.body.classList.add('jw-modal-open');
+    this.animation = true;
   }
 
   // close modal
   close(): void {
-    this.element.style.display = 'none';
+    this.animation = false;
+    // add time out to be able to the user to see the left -> right animation
+    setTimeout(() => {
+      this.element.style.display = 'none';
+      }, 200);
+    // this.element.style.display = 'none';
     document.body.classList.remove('jw-modal-open');
   }
 }

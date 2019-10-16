@@ -18,6 +18,8 @@ import {CoreModule} from './core/core.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDatepickerModule, MatIconModule, MatInputModule, MatNativeDateModule} from '@angular/material';
 import { CustomDatepickerComponent } from './components/custom-datepicker/custom-datepicker.component';
+import { BeneficiaryTableComponent } from './components/beneficiaries/beneficiary-table/beneficiary-table.component';
+import { BeneficiaryItemComponent } from './components/beneficiaries/beneficiary-item/beneficiary-item.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { CustomDatepickerComponent } from './components/custom-datepicker/custom
     StepFormComponent,
     OperationFormComponent,
     LoginComponent,
-    CustomDatepickerComponent
+    CustomDatepickerComponent,
+    BeneficiaryTableComponent,
+    BeneficiaryItemComponent
   ],
   imports: [
     BrowserModule,

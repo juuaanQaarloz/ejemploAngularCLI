@@ -5,11 +5,12 @@ import {ModalService} from '../custom-modal';
 import {ApplicationService, AuthService, StorageService} from '../../core/services';
 import {validatorsObjects} from '../../core/validators';
 import {FieldInterface} from '../../models/field-interface';
+import {animate, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-application',
   templateUrl: './application.component.html',
-  styleUrls: ['./application.component.css']
+  styleUrls: ['./application.component.css'],
 })
 export class ApplicationComponent implements OnInit {
   applicationObj = MockApplication;
@@ -19,6 +20,7 @@ export class ApplicationComponent implements OnInit {
   iconSecurity = 'security-icon';
   bodyText = 'Body Text';
   payLoad = '';
+  animation = false;
   constructor(private appService: ApplicationService,
               private authService: AuthService,
               private storageService: StorageService,
@@ -30,10 +32,12 @@ export class ApplicationComponent implements OnInit {
   }
 
   closeModal(modalId: string) {
+    this.animation = false;
     this.modalService.close(modalId);
   }
 
   openModal(modalId: string) {
+    this.animation = true;
     this.modalService.open(modalId);
   }
 
