@@ -1,4 +1,5 @@
 import {Beneficiary} from '../../models/beneficiary-model';
+import {FieldInterface} from '../../models';
 
 export const BENEFICIARIES: Beneficiary[] =  [
   {
@@ -7,7 +8,7 @@ export const BENEFICIARIES: Beneficiary[] =  [
     name: 'ODALYS', // if typeBeneficiary is Physic person
     fatherLastName: 'MARRON', // if typeBeneficiary is Physic person
     motherLastName: 'SANCHEZ', // if typeBeneficiary is Physic person
-    relationship: 'HIJA',
+    relationship: 'Hermana',
     birthDateOrConstitution: '1993/01/06',
     address: {
       street: 'Aluminio',
@@ -28,7 +29,7 @@ export const BENEFICIARIES: Beneficiary[] =  [
     name: 'MADIAN', // if typeBeneficiary is Physic person
     fatherLastName: 'MARRON', // if typeBeneficiary is Physic person
     motherLastName: 'SANCHEZ', // if typeBeneficiary is Physic person
-    relationship: 'HIJA',
+    relationship: 'Hermana',
     birthDateOrConstitution: '1994/01/01',
     address: {
       street: 'Aluminio',
@@ -49,7 +50,7 @@ export const BENEFICIARIES: Beneficiary[] =  [
     name: 'ANA LUISA', // if typeBeneficiary is Physic person
     fatherLastName: 'BOBADILLA', // if typeBeneficiary is Physic person
     motherLastName: 'MARRON', // if typeBeneficiary is Physic person
-    relationship: 'SOBRINA',
+    relationship: 'Hermana',
     birthDateOrConstitution: '2005/01/07',
     address: {
       street: 'Aluminio',
@@ -85,4 +86,64 @@ export const BENEFICIARIES: Beneficiary[] =  [
     contractNumber: '12345678', // if typeBeneficiary is Moral person
     instructionLetterNumber: 'string' // if typeBeneficiary is Moral person
   }*/
+];
+
+export const beneficiaryFields: FieldInterface[] = [
+  {
+    id: '1',
+    idHtml: 'slctBeneficiaryRelationship',
+    name: 'beneficiaryRelationship',
+    orderAppearance: 1,
+    label: '',
+    type: 'select',
+    required: true,
+    placeholder: '',
+    length: '',
+    minValue: 0,
+    maxValue: 0,
+    pattern: '',
+    source: 'IPRE',
+    sourceID: 'relationships',
+    sourceStructure: ['relationshipId', 'relationship', 'relationshipCode'],
+    style: '',
+    styleClass: '',
+    styleClassError: '',
+    message: 'El parentesco es obligatorio',
+    messageClass: '',
+    messageError: '',
+    messageErrorClass: '',
+    renderConditions: '',
+    enableConditions: '',
+    entity: '',
+    entityField: '',
+    value: ''
+  },
+  {
+    id: '2',
+    idHtml: 'txtParticipationPercentage',
+    name: 'participationPercentage',
+    orderAppearance: 2,
+    label: '',
+    type: 'text',
+    required: true,
+    placeholder: '%',
+    length: '',
+    minValue: 0,
+    maxValue: 6,
+    pattern: '',
+    source: '',
+    sourceID: '',
+    style: '',
+    styleClass: '',
+    styleClassError: '',
+    message: 'El porcentaje de participación es obligatorio',
+    messageClass: '',
+    messageError: '',
+    messageErrorClass: '',
+    renderConditions: '',
+    enableConditions: '',
+    entity: '',
+    entityField: '',
+    value: '',
+  },
 ];

@@ -1,11 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {MockApplication} from '../../core/mock/mock-data';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {ModalService} from '../custom-modal';
 import {ApplicationService, AuthService, StorageService} from '../../core/services';
 import {validatorsObjects} from '../../core/validators';
 import {FieldInterface} from '../../models/field-interface';
-import {animate, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-application',
@@ -22,12 +20,12 @@ export class ApplicationComponent implements OnInit {
   payLoad = '';
   constructor(private appService: ApplicationService,
               private authService: AuthService,
-              private storageService: StorageService,
-              private modalService: ModalService
+              private storageService: StorageService
   ) { }
 
   ngOnInit() {
     this.formGroup = this.toFormGroup();
+    this.appService.setFormGroup(this.formGroup);
   }
 
   toFormGroup() {

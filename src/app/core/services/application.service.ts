@@ -4,6 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {BENEFICIARIES} from '../mock/mock-beneficiaries';
 import {Beneficiary} from '../../models/beneficiary-model';
+import {FormGroup} from '@angular/forms';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
@@ -15,6 +16,7 @@ export class ApplicationService {
   private currentStepSource = new BehaviorSubject(0);
   currentValue = this.currentStepSource.asObservable();
   beneficiaries = new BehaviorSubject(BENEFICIARIES);
+  formGroup: FormGroup;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -67,5 +69,13 @@ export class ApplicationService {
     let currentBeneficiaries = this.beneficiaries.getValue();
     currentBeneficiaries = currentBeneficiaries.filter(beneficiary => beneficiary.beneficiaryId !== beneficiaryId);
     this.beneficiaries.next(currentBeneficiaries);
+  }
+
+  setFormGroup(form: FormGroup) {
+    this.formGroup = form;
+  }
+
+  getFormGroup() {
+    return this.formGroup;
   }
 }

@@ -8,8 +8,8 @@
                  [id]="fieldObj.idHtml"
                  placeholder="{{fieldObj.placeholder}}"
                  value=""
-                 (keyup)="onKeyUp($event)"
-          >
+                 (keyup)="onKeyUp($event)">
+
           <span>{{fieldObj.label}}</span>
           <a *ngIf="fieldObj.canChangeType" href="javascript:;" (click)="onClickToggle()" class="ml-form-field-togglevisible"
              [ngClass]="[toggleVisible ? 'ml-form-field-togglevisible': 'ml-form-field-togglevisible occult']"
@@ -36,7 +36,8 @@
           <select name="{{fieldObj.label}}" (change)="onChangeSelect($event)" [formControlName]="fieldObj.name"
                   [id]="fieldObj.idHtml">
             <option value="" [selected]="isSelected"> {{fieldObj.label}} </option>
-            <option *ngFor="let opt of selectOptions" [value]="opt.value">{{opt.name}}</option>
+            <option *ngFor="let opt of selectOptions" [value]="opt.value" [selected]="fieldObj.value === opt.name" >{{opt.name}}</option>
+
           </select>
           <span *ngIf="showSelectLabel">{{fieldObj.label}}</span>
         </label>

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {FieldInterface} from '../../models/field-interface';
 import {FormGroup} from '@angular/forms';
 import {SelectOption} from '../../models/select-option-interface';
@@ -12,9 +12,9 @@ import {correctFieldValue} from '../../core/utilities';
   templateUrl: './field-form.component.html',
   styleUrls: ['./field-form.component.css']
 })
-export class FieldFormComponent implements OnInit {
+export class FieldFormComponent implements OnInit, AfterViewInit {
   @Input() fieldObj: FieldInterface;
-  @Input() form: FormGroup;
+  form: FormGroup;
   showSelectLabel = false;
   isSelected = true;
   radioOptions = [];
@@ -22,30 +22,45 @@ export class FieldFormComponent implements OnInit {
   checkBoxOptions = [];
   toggleVisible = true;
   datePickerClicked = false;
-  iconDatePicker = '';
-  dynamicVariable =  true;
-  dynamicCondition = 'dynamicVariable === false';
 
   constructor(private applicationService: ApplicationService,
               private matIconRegistry: MatIconRegistry,
               private domSanitizer: DomSanitizer) {
     this.registerCustomIcons();
+
   }
 
   ngOnInit() {
-    // console.log('idHTML: ', this.fieldObj.idHtml);
     if (this.fieldObj.type === 'radio' || this.fieldObj.type === 'select' || this.fieldObj.type === 'checkbox') {
       this.getOptions();
+    }
+    this.form = this.applicationService.getFormGroup();
+    if (this.fieldObj.type === 'select' && this.fieldObj.value) {
+      console.log('...aqui');
+      console.log('value: ', this.fieldObj.value);
+      this.showSelectLabel = true;
+    }
+  }
+
+  ngAfterViewInit() {
+    // console.log('onAfterViewInit...');
+    if (this.fieldObj.type === 'text' && this.fieldObj.value) {
+      const elem: Element = document.getElementById(this.fieldObj.idHtml);
+      // console.log('idHtml: ', this.fieldObj.idHtml);
+      elem.setAttribute('value', this.fieldObj.value);
+      // const value = elem.getAttribute('value');
+      // console.log('value HTML: ', value);
+      // console.log('value FielObject : ', this.fieldObj.value);
     }
   }
 
   onKeyUp(event) {
     let value;
     value = event.target.value;
-    console.log('from onKeyUp event: ', event);
-    console.log('from onKeyUp value: ', value);
-    event.target.value = correctFieldValue(value);
-    let elem: Element = document.getElementById(this.fieldObj.idHtml);
+    // console.log('from onKeyUp event: ', event);
+    // console.log('from onKeyUp value: ', value);
+    // event.target.value = correctFieldValue(value);
+    const elem: Element = document.getElementById(this.fieldObj.idHtml);
     elem.setAttribute('value', event.target.value);
   }
 
@@ -58,6 +73,7 @@ export class FieldFormComponent implements OnInit {
   }
 
   onChangeSelect(event) {
+    console.log('onChangeSelect...');
     console.log('event.target.value: ', event.target.value);
     if (event.target.value === '') {
       this.showSelectLabel = false;
@@ -83,19 +99,6 @@ export class FieldFormComponent implements OnInit {
           });
         }
       });
-    /*if (this.fieldObj.source === 'IPRE') {
-      this.applicationService.getIpreCatalogById(this.fieldObj.sourceID)
-        .subscribe((results) => {
-          options = results;
-          options.forEach((selectItem) => {
-            if (this.fieldObj.type === 'select') {
-              this.selectOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
-            } else if (this.fieldObj.type === 'radio') {
-              this.radioOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
-            }
-          });
-        });
-    }*/
   }
 
   constructSelectOption(object, structure) {
