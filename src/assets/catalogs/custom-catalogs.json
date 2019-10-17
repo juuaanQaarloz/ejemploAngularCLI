@@ -17,5 +17,22 @@
       "name": "Moral",
       "value": "morPerson"
     }
+  ],
+  "typeBeneficiary": [
+    {
+      "id": 0,
+      "name": "Persona física",
+      "value": "phyPerson"
+    },
+    {
+      "id": 1,
+      "name": "Persona moral",
+      "value": "morPerson"
+    },
+    {
+      "id": 3,
+      "name": "MetLife fiduciaria",
+      "value": "fidPerson"
+    }
   ]
 }

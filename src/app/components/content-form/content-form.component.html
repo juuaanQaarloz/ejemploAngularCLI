@@ -1,4 +1,4 @@
-<div *ngIf="contentObj.showContent === true">
+<div *ngIf="contentObj.showContent === true" [id]="contentObj.idHtml">
   <p *ngIf="contentObj.title" class="title">{{contentObj.title}}</p>
 
   <div [formGroup]="form" data-forms="floating-label" class="ml-form"
@@ -9,17 +9,16 @@
     </div>
   </div>
 
-  <!-- Accordion steps -->
-  <!--<div *ngIf="contentObj.process" class="ml-accordion-container">
-    <app-process-form [form]="form" [processObj]="contentObj.process"></app-process-form>
-  </div>-->
-  <!-- ends Accordion steps -->
+  <div *ngIf="contentObj.operations" class="operation">
+    <app-operation-form *ngFor="let operation of contentObj.operations" [operationObj]="operation"></app-operation-form>
+  </div>
 
   <!-- Progress indicator steps -->
   <div *ngIf="contentObj.process" class="ml-step-container">
     <app-process-form [form]="form" [processObj]="contentObj.process"></app-process-form>
   </div>
   <!-- ends Progress indicator steps-->
+
   <div *ngIf="contentObj.contentChildren">
     <div *ngFor="let contentChild of contentObj.contentChildren">
       <app-content-form [form]="form" [contentObj]="contentChild"></app-content-form>

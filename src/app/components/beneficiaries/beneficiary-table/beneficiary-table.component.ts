@@ -9,7 +9,12 @@ import {ApplicationService} from '../../../core/services';
 })
 export class BeneficiaryTableComponent implements OnInit {
   title = 'Datos de Beneficiario(s)';
-  columnsNames = ['Nombres(s)', 'Apellido Paterno', 'Apellido Materno', 'Parentesco', 'Porcentaje de participación'];
+  columnsNames = ['Tipo de Beneficiario',
+                  'Nombre / Razón social',
+                  'Fecha de nacimiento / constitución',
+                  'Parentesco',
+                  'Porcentaje de participación',
+                  ];
   beneficiaries = [];
   constructor(private modalService: ModalService,
               private applicationService: ApplicationService) { }

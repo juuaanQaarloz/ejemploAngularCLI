@@ -7,3 +7,16 @@
   /*margin-top: -2px;*/
   text-decoration: none !important;
 }
+
+.operation{
+  padding: 8px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+@media screen and (max-width: 421px){
+  .operation {
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 15px;
+  }
+}

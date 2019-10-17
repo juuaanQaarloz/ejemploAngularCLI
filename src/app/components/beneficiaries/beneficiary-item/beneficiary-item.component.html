@@ -1,7 +1,8 @@
 <div class="beneficiary-row" [ngStyle]="{'background-color':  determinateEvenOrOdd(index) ? '#E5F4FB': '#FFFFFF'}">
-  <div class="beneficiary-attribute">{{beneficiary.name}}</div>
-  <div class="beneficiary-attribute">{{beneficiary.fatherLastName}}</div>
-  <div class="beneficiary-attribute">{{beneficiary.motherLastName}}</div>
+  <div class="beneficiary-attribute">{{getBeneficiaryTypeLabel()}}</div>
+  <div class="beneficiary-attribute" *ngIf="beneficiary.beneficiaryType === 'phyPerson'">{{beneficiary.name + ' ' + beneficiary.fatherLastName + ' ' + beneficiary.motherLastName}}</div>
+  <div class="beneficiary-attribute" *ngIf="beneficiary.beneficiaryType === 'morPerson' || beneficiary.beneficiaryType === 'fidPerson'">{{beneficiary.bussinesName + 'here'}}</div>
+  <div class="beneficiary-attribute">{{beneficiary.birthDateOrConstitution}}</div>
   <div class="beneficiary-attribute">{{beneficiary.relationship}}</div>
   <div class="beneficiary-attribute"><input type="text" [value]="beneficiary.participationPercentage"></div>
 

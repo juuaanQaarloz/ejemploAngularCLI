@@ -39,4 +39,13 @@ export class BeneficiaryItemComponent implements OnInit {
     this.modalService.open(modalId);
   }
 
+  getBeneficiaryTypeLabel() {
+    if (this.beneficiary.beneficiaryType === 'phyPerson'){
+      return 'Persona física';
+    } else if (this.beneficiary.beneficiaryType === 'morPerson') {
+      return 'Persona moral';
+    } else {
+      return 'MetLife fiduciaria';
+    }
+  }
 }

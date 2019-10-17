@@ -3,7 +3,7 @@ import {Beneficiary} from '../../models/beneficiary-model';
 export const BENEFICIARIES: Beneficiary[] =  [
   {
     beneficiaryId: '01',
-    beneficiaryType: 'physicPerson',
+    beneficiaryType: 'phyPerson',
     name: 'ODALYS', // if typeBeneficiary is Physic person
     fatherLastName: 'MARRON', // if typeBeneficiary is Physic person
     motherLastName: 'SANCHEZ', // if typeBeneficiary is Physic person
@@ -24,7 +24,7 @@ export const BENEFICIARIES: Beneficiary[] =  [
   },
   {
     beneficiaryId: '02',
-    beneficiaryType: 'physicPerson',
+    beneficiaryType: 'phyPerson',
     name: 'MADIAN', // if typeBeneficiary is Physic person
     fatherLastName: 'MARRON', // if typeBeneficiary is Physic person
     motherLastName: 'SANCHEZ', // if typeBeneficiary is Physic person
@@ -45,7 +45,7 @@ export const BENEFICIARIES: Beneficiary[] =  [
   },
   {
     beneficiaryId: '03',
-    beneficiaryType: 'physicPerson',
+    beneficiaryType: 'phyPerson',
     name: 'ANA LUISA', // if typeBeneficiary is Physic person
     fatherLastName: 'BOBADILLA', // if typeBeneficiary is Physic person
     motherLastName: 'MARRON', // if typeBeneficiary is Physic person

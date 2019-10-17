@@ -6,6 +6,7 @@ export interface ContentInterface {
   id: string;
   idParent: string;
   parentType: string;
+  idHtml: string;
   title?: string;
   contentChildren?: Array<ContentInterface>;
   fields?: Array<FieldInterface>;
