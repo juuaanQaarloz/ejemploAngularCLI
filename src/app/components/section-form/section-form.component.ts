@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup} from '@angular/forms';
-import {SectionInterface} from '../../models/section-interface';
+import {Section} from '../../models/section';
 
 @Component({
   selector: 'app-section-form',
@@ -8,7 +8,7 @@ import {SectionInterface} from '../../models/section-interface';
   styleUrls: ['./section-form.component.css']
 })
 export class SectionFormComponent implements OnInit {
-  @Input() sectionObj: SectionInterface;
+  @Input() sectionObj: Section;
   @Input() form: FormGroup;
 
   constructor() { }

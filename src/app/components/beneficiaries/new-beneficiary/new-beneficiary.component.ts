@@ -1,7 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ModalService} from '../../custom-modal';
-import {Beneficiarios, MockOperations} from '../../../core/mock/mock-data';
+
 import {ApplicationService} from '../../../core/services';
+import {Beneficiarios} from '../../../core/mock/mock-beneficiaries';
+import {MockOperations} from '../../../core/mock/mock-operations';
 
 @Component({
   selector: 'app-new-beneficiary',

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {StepInterface} from '../../models/step-interface';
+import {Step} from '../../models/step';
 import {FormGroup} from '@angular/forms';
 import {ApplicationService} from '../../core/services';
 
@@ -9,7 +9,7 @@ import {ApplicationService} from '../../core/services';
   styleUrls: ['./step-form.component.css']
 })
 export class StepFormComponent implements OnInit {
-  @Input() stepObj: StepInterface;
+  @Input() stepObj: Step;
   @Input() form: FormGroup;
   @Input() isFirst: boolean;
   @Input() isLast: boolean;

@@ -1,6 +1,6 @@
-export interface FieldInterface {
+export interface Field {
   id: string;
-  idHtml: string; // new
+  idHtml: string;
   name: string;
   label: string;
   orderAppearance: number;
@@ -13,10 +13,12 @@ export interface FieldInterface {
   pattern: string;
   source: string;
   sourceID: string;
+  // --added extra from model--
   sourceStructure?: string [];
+  // --------------------------
   style: string;
   styleClass: string;
-  styleClassError: string; // new
+  styleClassError: string;
   message: string;
   messageClass: string;
   messageError: string; // new
@@ -25,6 +27,8 @@ export interface FieldInterface {
   enableConditions: string;
   entity: string;
   entityField: string;
+  // --added extra from modal--
   value?: any;
   canChangeType?: boolean;
+  // --------------------------
 }

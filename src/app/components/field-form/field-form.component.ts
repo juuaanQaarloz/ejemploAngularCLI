@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
-import {FieldInterface} from '../../models/field-interface';
+import {Field} from '../../models/field';
 import {FormGroup} from '@angular/forms';
 import {SelectOption} from '../../models/select-option-interface';
 import {ApplicationService} from '../../core/services';
@@ -13,7 +13,7 @@ import {correctFieldValue} from '../../core/utilities';
   styleUrls: ['./field-form.component.css']
 })
 export class FieldFormComponent implements OnInit, AfterViewInit {
-  @Input() fieldObj: FieldInterface;
+  @Input() fieldObj: Field;
   form: FormGroup;
   showSelectLabel = false;
   isSelected = true;
@@ -31,6 +31,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    // console.log('fieldObject: ', this.fieldObj);
     if (this.fieldObj.type === 'radio' || this.fieldObj.type === 'select' || this.fieldObj.type === 'checkbox') {
       this.getOptions();
     }

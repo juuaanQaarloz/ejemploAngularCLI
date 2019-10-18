@@ -1,5 +1,5 @@
 import {Component, forwardRef, Input, OnInit} from '@angular/core';
-import {FieldInterface} from '../../models';
+import {Field} from '../../models';
 import {ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import * as moment from 'moment';
@@ -17,7 +17,7 @@ import * as moment from 'moment';
   ]*/
 })
 export class CustomDatepickerComponent implements OnInit { // , ControlValueAccessor {
-  @Input() fieldObj: FieldInterface;
+  @Input() fieldObj: Field;
   @Input() form: FormGroup;
   @Input() dateFormat = 'YYYY/MM/DD';
   constructor() { }

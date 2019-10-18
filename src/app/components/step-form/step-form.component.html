@@ -11,7 +11,6 @@
                   completed ? 'ml-step-header-completed':'',
                   (completed && !accordionExpanded) ? 'ml-step-header-completed':''
                   ]">
-
   <div class="ml-step-header-elements">
     <span *ngIf="!completed" [ngClass]="accordionExpanded ? 'ml-step-numbers ml-current-step' : 'ml-step-numbers' ">{{index + 1}}</span>
     <span *ngIf="completed" class= "ml-step-numbers ml-completed-step fa"></span>
@@ -28,8 +27,7 @@
                   (completed && !isLast) ? 'completed': ''
                   ]">
   <div class="ml-step-content-div">
-
-    <app-content-form [form]="form" [contentObj]="stepObj.content"></app-content-form>
+      <app-content-form  *ngFor="let content of stepObj.contents" [form]="form" [contentObj]="content"></app-content-form>
     <!--<div *ngIf="stepObj.content.operations" class="operation">
       <app-operation-form *ngFor="let operation of stepObj.content.operations" (click)="completeStep()" [operationObj]="operation"></app-operation-form>
     </div>-->

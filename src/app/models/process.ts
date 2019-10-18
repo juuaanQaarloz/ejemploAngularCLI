@@ -1,11 +1,11 @@
-import {StepInterface} from './step-interface';
+import {Step} from './step';
 
-export interface ProcessInterface {
+export interface Process {
   id: string;
   idContent: string;
   idHtml: string;
   title: string;
-  steps: Array<StepInterface>;
+  steps: Step[];
   render: boolean;
   renderConditions: string;
 }

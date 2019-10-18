@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Beneficiary} from '../../../models/beneficiary-model';
 import {ModalService} from '../../custom-modal';
 import {ApplicationService} from '../../../core/services';
-import {FieldInterface} from '../../../models';
+import {Field} from '../../../models';
 import {beneficiaryFields} from '../../../core/mock/mock-beneficiaries';
 
 

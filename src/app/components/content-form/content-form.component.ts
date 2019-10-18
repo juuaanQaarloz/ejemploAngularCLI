@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ContentInterface} from '../../models/content-interface';
+import {Content} from '../../models/content';
 import {FormGroup} from '@angular/forms';
 
 @Component({
@@ -8,7 +8,7 @@ import {FormGroup} from '@angular/forms';
   styleUrls: ['./content-form.component.css']
 })
 export class ContentFormComponent implements OnInit {
-  @Input() contentObj: ContentInterface;
+  @Input() contentObj: Content;
   @Input() form: FormGroup;
   payLoad = '';
   typePerson = 'fisica';
@@ -17,7 +17,8 @@ export class ContentFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('content style class 2: ', this.contentObj.styleClass);
+    // console.log('content style class 2: ', this.contentObj.styleClass);
+    // console.log('contentObj', this.contentObj);
     this.orderFields();
     /*this.testFunction();
     let meuArray = [{id:1},{id:2},{id:3},{id:4},{id:5},{id:6},{id:7},{id:8},{id:9},{id:10}];*/

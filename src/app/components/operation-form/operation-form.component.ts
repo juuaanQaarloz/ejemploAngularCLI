@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {OperationsInterface} from '../../models/operations-interface';
+import {Operation} from '../../models/operation';
 import {ApplicationService} from '../../core/services';
 import {FormGroup} from '@angular/forms';
 
@@ -9,12 +9,13 @@ import {FormGroup} from '@angular/forms';
   styleUrls: ['./operation-form.component.css']
 })
 export class OperationFormComponent implements OnInit {
-  @Input() operationObj: OperationsInterface;
+  @Input() operationObj: Operation;
   @Input() form: FormGroup;
 
   constructor(private applicationService: ApplicationService) { }
 
   ngOnInit() {
+    // console.log('operationObject: ', this.operationObj);
   }
 
   executeOperation(typeOperation) {

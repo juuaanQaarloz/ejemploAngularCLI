@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {MockApplication} from '../../core/mock/mock-data';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ApplicationService, AuthService, StorageService} from '../../core/services';
 import {validatorsObjects} from '../../core/validators';
-import {FieldInterface} from '../../models/field-interface';
+import {Field} from '../../models/field';
+import {MockTemplate} from '../../core/mock/mock-template';
 
 @Component({
   selector: 'app-application',
@@ -11,7 +11,7 @@ import {FieldInterface} from '../../models/field-interface';
   styleUrls: ['./application.component.css'],
 })
 export class ApplicationComponent implements OnInit {
-  applicationObj = MockApplication;
+  applicationObj =  MockTemplate;
   formGroup: FormGroup;
   resizeHeaderHeight = false;
   iconHome = 'home-icon';
@@ -31,36 +31,41 @@ export class ApplicationComponent implements OnInit {
   toFormGroup() {
     const group: any = {};
     this.applicationObj.sections.forEach(section => {
-      if (section.content.fields) {
-        section.content.fields.forEach(field => {
-          group[field.name] = new FormControl(field.value || '', this.getValidationFunctions(field));
-        });
-      } else {
-        if (section.content.process) {
-          section.content.process.steps.forEach(step => {
-            if (step.content.fields) {
-              step.content.fields.forEach(field => {
-                group[field.name] = new FormControl(field.value || '', this.getValidationFunctions(field));
-              });
-            } else {
-              if (step.content.contentChildren) {
-                step.content.contentChildren.forEach(contentChild => {
-                  if (contentChild.fields) {
-                    contentChild.fields.forEach(field => {
-                      group[field.name] = new FormControl(field.value || '', this.getValidationFunctions(field));
+      section.contents.forEach((contentFromSection) => {
+        if (contentFromSection.fields) {
+          contentFromSection.fields.forEach(field => {
+            group[field.name] = new FormControl(field.value || '', this.getValidationFunctions(field));
+          });
+        } else {
+          if (contentFromSection.process) {
+            contentFromSection.process.steps.forEach(step => {
+              step.contents.forEach((contentFromStep) => {
+                if (contentFromStep.fields) {
+                  contentFromStep.fields.forEach(field => {
+                    group[field.name] = new FormControl(field.value || '', this.getValidationFunctions(field));
+                  });
+                } else {
+                  if (contentFromStep.contentChildren) {
+                    contentFromStep.contentChildren.forEach(contentChild => {
+                      if (contentChild.fields) {
+                        contentChild.fields.forEach(field => {
+                          group[field.name] = new FormControl(field.value || '', this.getValidationFunctions(field));
+                        });
+                      }
                     });
                   }
-                });
-              }
-            }
-          });
+                }
+              });
+            });
+          }
         }
-      }
+      });
+
     });
     return new FormGroup(group);
   }
 
-  getValidationFunctions(field: FieldInterface): any[] {
+  getValidationFunctions(field: Field): any[] {
     let validationFunctions = [];
     validatorsObjects.forEach(validationObject => {
       if (validationObject.nameField === field.name) {

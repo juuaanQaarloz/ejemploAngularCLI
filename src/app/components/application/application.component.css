@@ -10,6 +10,7 @@
   transition: 0.2s; /* Add a transition effect (when scrolling - and font size is decreased) */
   display: grid;
   grid-template-columns: 40% auto 40%;
+  z-index: 1
 }
 
 .menu-container{

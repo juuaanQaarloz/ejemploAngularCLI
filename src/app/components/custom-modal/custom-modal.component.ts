@@ -19,6 +19,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 })
 export class ModalComponent implements OnInit, OnDestroy {
   @Input() id: string;
+  @Input() modalType: string; // drawer or overlay
   // @Input() animation: boolean;
   animation = false;
   private element: any;
@@ -28,6 +29,7 @@ export class ModalComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    console.log('modalType: ', this.modalType);
     // ensure id attribute exists
     if (!this.id) {
       console.error('modal must have an id');

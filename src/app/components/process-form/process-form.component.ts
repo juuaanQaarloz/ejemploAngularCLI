@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ProcessInterface} from '../../models/process-interface';
+import {Process} from '../../models/process';
 import {FormGroup} from '@angular/forms';
 
 @Component({
@@ -8,7 +8,7 @@ import {FormGroup} from '@angular/forms';
   styleUrls: ['./process-form.component.css']
 })
 export class ProcessFormComponent implements OnInit {
-  @Input() processObj: ProcessInterface;
+  @Input() processObj: Process;
   @Input() form: FormGroup;
   totalSteps = 0;
 

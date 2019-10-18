@@ -13,7 +13,7 @@
     <div *ngIf="isLast"><img src="../../../../assets/img/tables/plus_simbol.svg" (click)="addNewBeneficiary()"></div>
   </div>
 
-  <jw-modal id="add-beneficiary-modal-2">
+  <jw-modal id="add-beneficiary-modal-2" modalType="drawer">
     <app-new-beneficiary [modalId]="'add-beneficiary-modal-2'"></app-new-beneficiary>
   </jw-modal>
 

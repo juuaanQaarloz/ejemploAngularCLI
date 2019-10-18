@@ -1,8 +1,8 @@
 import {Section} from './section';
 
-export interface ApplicationInterface {
+export interface Template {
   id: string;
   product: string;
   version: string;
-  sections: Array<Section>;
+  sections: Section[];
 }
