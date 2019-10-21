@@ -4,7 +4,7 @@ import { ModalService } from '../modal.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
-  selector: 'app-drawer',
+  selector: 'jw-modal',
   templateUrl: 'custom-modal.component.html',
   styleUrls: ['custom-modal.component.less'],
   encapsulation: ViewEncapsulation.None,
@@ -17,8 +17,9 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
         transition('false <=> true', animate(200))]
     )]
 })
-export class DrawerComponent implements OnInit, OnDestroy {
+export class CustomModalComponent implements OnInit, OnDestroy {
   @Input() id: string;
+  @Input() modalType: string;
   animation = false;
   private element: any;
 
@@ -27,6 +28,8 @@ export class DrawerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
+    console.log('modal type: ', this.modalType);
     // ensure id attribute exists
     if (!this.id) {
       console.error('modal must have an id');
@@ -63,11 +66,14 @@ export class DrawerComponent implements OnInit, OnDestroy {
   // close modal
   close(): void {
     this.animation = false;
-    // add time out to be able to the user to see the left -> right animation
-    setTimeout(() => {
-      this.element.style.display = 'none';
+    if (this.modalType === 'drawer') {
+      // add time out to be able to the user to see the left -> right animation
+      setTimeout(() => {
+        this.element.style.display = 'none';
       }, 200);
-    // this.element.style.display = 'none';
+    } else {
+      this.element.style.display = 'none';
+    }
     document.body.classList.remove('jw-modal-open');
   }
 }
