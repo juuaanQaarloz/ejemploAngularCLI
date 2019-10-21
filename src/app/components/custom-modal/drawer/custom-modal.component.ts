@@ -1,10 +1,10 @@
 import { Component, ViewEncapsulation, ElementRef, Input, OnInit, OnDestroy } from '@angular/core';
 
-import { ModalService } from './modal.service';
+import { ModalService } from '../modal.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
-  selector: 'jw-modal',
+  selector: 'app-drawer',
   templateUrl: 'custom-modal.component.html',
   styleUrls: ['custom-modal.component.less'],
   encapsulation: ViewEncapsulation.None,
@@ -17,10 +17,8 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
         transition('false <=> true', animate(200))]
     )]
 })
-export class ModalComponent implements OnInit, OnDestroy {
+export class DrawerComponent implements OnInit, OnDestroy {
   @Input() id: string;
-  @Input() modalType: string; // drawer or overlay
-  // @Input() animation: boolean;
   animation = false;
   private element: any;
 
@@ -29,7 +27,6 @@ export class ModalComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log('modalType: ', this.modalType);
     // ensure id attribute exists
     if (!this.id) {
       console.error('modal must have an id');
