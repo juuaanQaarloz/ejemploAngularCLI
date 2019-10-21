@@ -51,6 +51,7 @@ export const MockContentSection1: Content[] = [
 
     // --added extra from model--
     showContent: true,
+    contentType: 'looseFields'
     // enableConditions?: string,
     // styleClass?: string
   }
@@ -83,6 +84,7 @@ export const MockContentSection2: Content[] = [
 
     // --added extra from model--
     showContent: true,
+    contentType: ''
     // enableConditions?: string,
     // styleClass?: string
   }

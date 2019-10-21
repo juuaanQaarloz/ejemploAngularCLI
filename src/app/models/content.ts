@@ -20,5 +20,6 @@ export interface Content {
   showContent?: boolean;
   enableConditions?: string;
   styleClass?: string;
+  contentType: string; // loose fields, table, questionary
   // --------------------------
 }

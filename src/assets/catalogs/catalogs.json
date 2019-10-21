@@ -1,4 +1,31 @@
 {
+  "sector": [
+    {
+      "id": 0,
+      "name": "INDUSTRIA",
+      "code": "I"
+    },
+    {
+      "id": 1,
+      "name": "SERVICIOS",
+      "code": "S"
+    },
+    {
+      "id": 2,
+      "name": "ACTIVIDADES AGROPECUARIAS",
+      "code": "AA"
+    },
+    {
+      "id": 3,
+      "name": "GOBIERNO",
+      "code": "G"
+    },
+    {
+      "id": 4,
+      "name": "OTRO",
+      "code": "O"
+    }
+  ],
     "genders": [
     {
         "id": 0,

@@ -21,7 +21,8 @@ export class NewBeneficiaryComponent implements OnInit {
     operations: MockOperations,
     showContent: true,
     styleClass: 'ml-form-modal-type',
-    renderConditions: ''
+    renderConditions: '',
+    contentType: 'looseFields'
   };
 
   constructor(private modalService: ModalService,
