@@ -7,6 +7,7 @@ import {
   MockContentStep5Process1ContentSection2,
   MockContentStep6Process1ContentSection2, MockContentStep7Process1ContentSection2
 } from './mock-contents';
+import {templateJitUrl} from '@angular/compiler';
 
 export const MockStepsProcessContentSection2: Step[] = [
   {
@@ -16,10 +17,12 @@ export const MockStepsProcessContentSection2: Step[] = [
     title: 'Infomación general del contratante persona física',
     contents: MockContentStep1Process1ContentSection2,
     renderConditions: 'typePerson=phyPerson',
+    // renderConditions: 'A=B,C!=D,E>F,G>=H,I<J,K<=L',
     previousStep: '',
     nextStep: '2',
     /*added extra from model*/
-    isCompleted: false
+    isCompleted: false,
+    show: true
   },
   {
     id: 'step-2',
@@ -31,7 +34,8 @@ export const MockStepsProcessContentSection2: Step[] = [
     previousStep: '1',
     nextStep: '3',
     /*added extra from model*/
-    isCompleted: false
+    isCompleted: false,
+    show: true
   },
   {
     id: 'step-3',
@@ -43,7 +47,8 @@ export const MockStepsProcessContentSection2: Step[] = [
     previousStep: '1',
     nextStep: '3',
     /*added extra from model*/
-    isCompleted: false
+    isCompleted: false,
+    show: false
   },
   {
     id: 'step-4',
@@ -55,7 +60,8 @@ export const MockStepsProcessContentSection2: Step[] = [
     previousStep: '1',
     nextStep: '3',
     /*added extra from model*/
-    isCompleted: false
+    isCompleted: false,
+    show: false
   },
   {
     id: 'step-5',
@@ -63,11 +69,12 @@ export const MockStepsProcessContentSection2: Step[] = [
     idHtml: 'app-step-form-5',
     title: 'Datos generales del solicitante',
     contents: MockContentStep5Process1ContentSection2,
-    renderConditions: 'contractorType=No',
+    renderConditions: 'contractorType=false',
     previousStep: '1',
     nextStep: '3',
     /*added extra from model*/
-    isCompleted: false
+    isCompleted: false,
+    show: false
   },
   {
     id: 'step-6',
@@ -75,11 +82,12 @@ export const MockStepsProcessContentSection2: Step[] = [
     idHtml: 'app-step-form-6',
     title: 'Ocupación del solicitante',
     contents: MockContentStep6Process1ContentSection2,
-    renderConditions: 'contractorType=No',
+    renderConditions: 'contractorType=false',
     previousStep: '1',
     nextStep: '3',
     /*added extra from model*/
-    isCompleted: false
+    isCompleted: false,
+    show: false
   },
   {
     id: 'step-7',
@@ -91,6 +99,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     previousStep: '1',
     nextStep: '3',
     /*added extra from model*/
-    isCompleted: false
+    isCompleted: false,
+    show: true
   }
 ];

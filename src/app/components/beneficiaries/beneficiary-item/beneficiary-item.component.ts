@@ -35,7 +35,7 @@ export class BeneficiaryItemComponent implements OnInit {
   }
 
   addNewBeneficiary() {
-    console.log('addNewBeneficiary...');
+    // console.log('addNewBeneficiary...');
     this.openModal('add-beneficiary-modal-2');
   }
 
@@ -61,7 +61,7 @@ export class BeneficiaryItemComponent implements OnInit {
     this.fields[0].value = this.beneficiary.relationship;
     this.fields[1].value = this.beneficiary.participationPercentage;
     this.fields.forEach((field) => {
-      console.log('field value : ', field.value);
+      // console.log('field value : ', field.value);
     });
   }
 }

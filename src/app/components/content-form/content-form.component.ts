@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Content} from '../../models/content';
 import {FormGroup} from '@angular/forms';
+import {ApplicationService} from '../../core/services';
 
 @Component({
   selector: 'app-content-form',
@@ -11,10 +12,8 @@ export class ContentFormComponent implements OnInit {
   @Input() contentObj: Content;
   @Input() form: FormGroup;
   payLoad = '';
-  typePerson = 'fisica';
-  typePersonLabel = 'física';
 
-  constructor() { }
+  constructor(private applicationService: ApplicationService) { }
 
   ngOnInit() {
     // console.log('content style class 2: ', this.contentObj.styleClass);
@@ -22,8 +21,8 @@ export class ContentFormComponent implements OnInit {
     this.orderFields();
     /*this.testFunction();
     let meuArray = [{id:1},{id:2},{id:3},{id:4},{id:5},{id:6},{id:7},{id:8},{id:9},{id:10}];*/
-    if (this.contentObj.enableConditions) {
-      this.getEnableConditions();
+    if (this.contentObj.renderConditions) {
+      this.applicationService.getRenderConditions(this.contentObj.renderConditions);
     }
 
   }
@@ -67,32 +66,5 @@ export class ContentFormComponent implements OnInit {
     if (this.contentObj.fields) {
       this.contentObj.fields.sort((a, b) => a.orderAppearance - b.orderAppearance);
     }
-  }
-
-  getEnableConditions() {
-    let enableConditions = [];
-
-    enableConditions = this.contentObj.enableConditions.split(',');
-
-    // console.log('enableConditions: ', enableConditions);
-
-    enableConditions.forEach((condition: string) => {
-      const separators = ['<', '>', '=', '!'];
-      let separatorFound;
-      separators.forEach((separator) => {
-        if (condition.indexOf(separator) > 0) {
-          // b console.log('separator: ', separator);
-          separatorFound = separator;
-        }
-      });
-
-      // conditionsElements[0] --variableName
-      // conditionsElements[1] --valueCondition
-      // conditionsElements[2] --simbolCondition
-      let conditionElements = condition.split(separatorFound);
-      conditionElements.push(separatorFound);
-      // console.log('conditionElements: ', conditionElements);
-
-    });
   }
 }

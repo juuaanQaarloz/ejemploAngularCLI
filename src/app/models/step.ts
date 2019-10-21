@@ -11,4 +11,5 @@ export interface Step {
   nextStep: string;
   /*added extra from model*/
   isCompleted: boolean;
+  show: boolean;
 }

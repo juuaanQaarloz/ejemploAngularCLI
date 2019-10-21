@@ -12,72 +12,19 @@ import {MockTemplate} from '../../core/mock/mock-template';
 })
 export class ApplicationComponent implements OnInit {
   applicationObj =  MockTemplate;
-  formGroup: FormGroup;
   resizeHeaderHeight = false;
   iconHome = 'home-icon';
   iconSecurity = 'security-icon';
-  bodyText = 'Body Text';
   payLoad = '';
+  formGroup: FormGroup;
   constructor(private appService: ApplicationService,
               private authService: AuthService,
               private storageService: StorageService
   ) { }
 
   ngOnInit() {
-    this.formGroup = this.toFormGroup();
+    this.formGroup = this.appService.toFormGroup(this.applicationObj);
     this.appService.setFormGroup(this.formGroup);
-  }
-
-  toFormGroup() {
-    const group: any = {};
-    this.applicationObj.sections.forEach(section => {
-      section.contents.forEach((contentFromSection) => {
-        if (contentFromSection.fields) {
-          contentFromSection.fields.forEach(field => {
-            group[field.name] = new FormControl(field.value || '', this.getValidationFunctions(field));
-          });
-        } else {
-          if (contentFromSection.process) {
-            contentFromSection.process.steps.forEach(step => {
-              step.contents.forEach((contentFromStep) => {
-                if (contentFromStep.fields) {
-                  contentFromStep.fields.forEach(field => {
-                    group[field.name] = new FormControl(field.value || '', this.getValidationFunctions(field));
-                  });
-                } else {
-                  if (contentFromStep.contentChildren) {
-                    contentFromStep.contentChildren.forEach(contentChild => {
-                      if (contentChild.fields) {
-                        contentChild.fields.forEach(field => {
-                          group[field.name] = new FormControl(field.value || '', this.getValidationFunctions(field));
-                        });
-                      }
-                    });
-                  }
-                }
-              });
-            });
-          }
-        }
-      });
-
-    });
-    return new FormGroup(group);
-  }
-
-  getValidationFunctions(field: Field): any[] {
-    let validationFunctions = [];
-    validatorsObjects.forEach(validationObject => {
-      if (validationObject.nameField === field.name) {
-        // console.log('validationObject: ', validationObject);
-        validationFunctions = validationObject.validationFunctions;
-      }
-    });
-    if (field.required) {
-      validationFunctions.push(Validators.required);
-    }
-    // console.log('validationFuntions: ', validationFunctions);
-    return validationFunctions;
   }
 
   onScroll(scrollOffset) {
@@ -119,4 +66,5 @@ export class ApplicationComponent implements OnInit {
     this.payLoad = JSON.stringify(this.formGroup.value);
     console.log(this.formGroup.value);
   }
+
 }

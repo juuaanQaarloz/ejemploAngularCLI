@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, ElementRef, Input, OnInit, OnDestroy } from '@angular/core';
 
-import { ModalService } from '../modal.service';
+import { ModalService } from './modal.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
@@ -29,7 +29,6 @@ export class CustomModalComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    console.log('modal type: ', this.modalType);
     // ensure id attribute exists
     if (!this.id) {
       console.error('modal must have an id');

@@ -277,7 +277,7 @@ export const DatosDomicilio: Field[] = [
     idHtml: 'chboxEmail',
     name: 'emailCheck',
     orderAppearance: 11,
-    label: '',
+    label: 'Sin correo electrónico',
     type: 'checkbox',
     required: false,
     placeholder: '',

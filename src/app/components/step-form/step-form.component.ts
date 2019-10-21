@@ -15,6 +15,7 @@ export class StepFormComponent implements OnInit {
   @Input() isLast: boolean;
   @Input() index: number;
   accordionExpanded: boolean;
+  renderCondition;
   completed = false;
 
   constructor(private applicationService: ApplicationService) { }
@@ -33,6 +34,17 @@ export class StepFormComponent implements OnInit {
       }
       // console.log('from child', this.accordionExpanded);
     });
+
+    if (this.stepObj.renderConditions) {
+      console.log('renderConditions: ', this.applicationService.getRenderConditions(this.stepObj.renderConditions));
+      this.renderCondition = this.applicationService.getRenderConditions(this.stepObj.renderConditions);
+      console.log('this.renderCondition[0][1]: ', this.renderCondition[0][1]);
+      this.form.controls[this.renderCondition[0][1]].valueChanges.subscribe((value) => {
+        console.log('value: ', value);
+        this.stepObj.show = this.applicationService.evaluateRenderCondition(this.renderCondition[0]);
+        console.log('show: ', this.stepObj.show);
+      });
+    }
   }
 
   toggleAccordion() {

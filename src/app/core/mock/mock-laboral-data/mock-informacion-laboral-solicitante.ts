@@ -156,7 +156,7 @@ export const InformacionLaboralSolicitante: Field[] = [
     pattern: '',
     source: 'IPRE',
     sourceID: 'guardBoxOptions',
-    sourceStructure: ['id', 'code', 'value'],
+    sourceStructure: ['id', 'label', 'value'],
     style: '',
     styleClass: '',
     styleClassError: '',

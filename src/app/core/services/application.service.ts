@@ -4,7 +4,10 @@ import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {BENEFICIARIES} from '../mock/mock-beneficiaries';
 import {Beneficiary} from '../../models/beneficiary-model';
-import {FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Template} from '../../models/template';
+import {Field} from '../../models';
+import {validatorsObjects} from '../validators';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
@@ -18,7 +21,7 @@ export class ApplicationService {
   beneficiaries = new BehaviorSubject(BENEFICIARIES);
   formGroup: FormGroup;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   submitFunction(type) {
     console.log(type);
@@ -29,13 +32,56 @@ export class ApplicationService {
     this.currentStepSource.next(newValue);
   }
 
-  getIpreCatalogById(id: string): Observable<[]> {
-    return this.httpClient.get(URL_IPRE)
-      .pipe(
-        map((catalog) => {
-          return catalog[id];
-        })
-      );
+  toFormGroup(applicationObj: Template) {
+    const group: any = {};
+    applicationObj.sections.forEach(section => {
+      section.contents.forEach((contentFromSection) => {
+        if (contentFromSection.fields) {
+          contentFromSection.fields.forEach(field => {
+            group[field.name] = new FormControl(field.value || '', this.getValidationFunctions(field));
+          });
+        } else {
+          if (contentFromSection.process) {
+            contentFromSection.process.steps.forEach(step => {
+              step.contents.forEach((contentFromStep) => {
+                if (contentFromStep.fields) {
+                  contentFromStep.fields.forEach(field => {
+                    group[field.name] = new FormControl(field.value || '', this.getValidationFunctions(field));
+                  });
+                } else {
+                  if (contentFromStep.contentChildren) {
+                    contentFromStep.contentChildren.forEach(contentChild => {
+                      if (contentChild.fields) {
+                        contentChild.fields.forEach(field => {
+                          group[field.name] = new FormControl(field.value || '', this.getValidationFunctions(field));
+                        });
+                      }
+                    });
+                  }
+                }
+              });
+            });
+          }
+        }
+      });
+
+    });
+    return new FormGroup(group);
+  }
+
+  getValidationFunctions(field: Field): any[] {
+    let validationFunctions = [];
+    validatorsObjects.forEach(validationObject => {
+      if (validationObject.nameField === field.name) {
+        // console.log('validationObject: ', validationObject);
+        validationFunctions = validationObject.validationFunctions;
+      }
+    });
+    if (field.required) {
+      validationFunctions.push(Validators.required);
+    }
+    // console.log('validationFuntions: ', validationFunctions);
+    return validationFunctions;
   }
 
   getCatalogById(id: string, source: string): Observable<[]> {
@@ -77,5 +123,88 @@ export class ApplicationService {
 
   getFormGroup() {
     return this.formGroup;
+  }
+
+  getFormControlValueByName(formControlName: string) {
+    const value = this.formGroup.get(formControlName).value;
+    // console.log(`value of ${formControlName} : ${value} from step ${stepId}`);
+    return value;
+  }
+
+
+  getRenderConditions(renderConditions: string) {
+    let result = [];
+    let separatedRenderConditions = [];
+
+    separatedRenderConditions = renderConditions.split(',');
+
+    separatedRenderConditions.forEach((condition: string) => {
+      const reExp = '^(.*?)([!<>=|]=?)(.*?)$'; // regular expresion for logic operators
+      const res = condition.match(reExp);
+      console.log('res: ', res);
+      if (res !== null) {
+        // res[1] --variableName
+        // res[2] --simbolCondition
+        // res[3] --valueCondition
+        result.push(res);
+      }
+    });
+
+    return result;
+  }
+
+  evaluateRenderCondition(elementsCondition) {
+    const valueFormControl = this.getFormControlValueByName(elementsCondition[1]);
+    let result = false;
+
+    switch (elementsCondition[2]) {
+      case '=':
+        if (elementsCondition[3] === 'false') {
+          if (valueFormControl === false) {
+            result = true;
+          }
+        } else if (elementsCondition[3] === 'true') {
+          if (valueFormControl === true) {
+            result = true;
+          }
+        } else {
+          if (valueFormControl === elementsCondition[3]) {
+            console.log('case = ', elementsCondition[3]);
+            result = true;
+          }
+        }
+        break;
+
+      case '<':
+        if (valueFormControl < elementsCondition[3]) {
+          result = true;
+        }
+        break;
+      case '>':
+        if (valueFormControl > elementsCondition[3]) {
+          result = true;
+        }
+        break;
+      case '<=':
+        if (valueFormControl <= elementsCondition[3]) {
+          result = true;
+        }
+        break;
+      case '>=':
+        if (valueFormControl >= elementsCondition[3]) {
+          result = true;
+        }
+        break;
+      case '!=':
+        if (valueFormControl !== elementsCondition[3]) {
+          result = true;
+        }
+        break;
+      default:
+        result = false;
+        break;
+    }
+
+    return result;
   }
 }

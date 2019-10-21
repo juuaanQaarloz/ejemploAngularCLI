@@ -30,7 +30,7 @@ export class NewBeneficiaryComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('content style class: ', this.content.styleClass);
+    // console.log('content style class: ', this.content.styleClass);
   }
 
   closeModal() {

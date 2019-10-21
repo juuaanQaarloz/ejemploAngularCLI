@@ -18,7 +18,6 @@ export interface Content {
 
   // --added extra from model--
   showContent?: boolean;
-  enableConditions?: string;
   styleClass?: string;
   contentType: string; // loose fields, table, questionary
   // --------------------------

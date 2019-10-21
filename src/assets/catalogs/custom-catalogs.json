@@ -2,7 +2,7 @@
   "emailCheckbox": [
     {
       "id": 0,
-      "name": "Sin correo electrónico",
+      "name": " ",
       "code": "noEmail"
     }
   ],
