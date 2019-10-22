@@ -5,7 +5,8 @@ import {
   MockContentStep3Process1ContentSection2,
   MockContentStep4Process1ContentSection2,
   MockContentStep5Process1ContentSection2,
-  MockContentStep6Process1ContentSection2, MockContentStep7Process1ContentSection2
+  MockContentStep6Process1ContentSection2,
+  MockContentStep7Process1ContentSection2
 } from './mock-contents';
 import {templateJitUrl} from '@angular/compiler';
 

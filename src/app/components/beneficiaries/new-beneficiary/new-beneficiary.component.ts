@@ -4,7 +4,7 @@ import {ModalService} from '../../custom-modal';
 import {ApplicationService} from '../../../core/services';
 import {Beneficiarios} from '../../../core/mock/mock-beneficiaries';
 import {MockOperations} from '../../../core/mock/mock-operations';
-import {Content} from '../../../models';
+import {Beneficiary, Content} from '../../../models';
 import {MockContentStep7Process1ContentSection2} from '../../../core/mock/mock-contents';
 
 @Component({
@@ -14,6 +14,7 @@ import {MockContentStep7Process1ContentSection2} from '../../../core/mock/mock-c
 })
 export class NewBeneficiaryComponent implements OnInit {
   @Input() modalId: string;
+  @Input() beneficiary: Beneficiary;
   // @Input() content: Content;
   /*content = {
     id: 'content-2.19',
@@ -34,11 +35,20 @@ export class NewBeneficiaryComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('content style class: ', this.content.styleClass);
+    // console.log('content style class: ', this.content.styleClass);
+    if (this.beneficiary) {
+      this.setBeneficiaryValues();
+    }
   }
 
   closeModal() {
     this.modalService.close(this.modalId);
+  }
+
+  setBeneficiaryValues() {
+    this.content.fields.forEach((field) => {
+      console.log('field.name: ', field.name);
+    });
   }
 
 }

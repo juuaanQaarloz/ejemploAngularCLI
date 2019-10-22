@@ -1,26 +1,30 @@
 <div class="beneficiary-row" [ngStyle]="{'background-color':  determinateEvenOrOdd(index) ? '#E5F4FB': '#FFFFFF'}">
   <div class="beneficiary-attribute">{{getBeneficiaryTypeLabel()}}</div>
-  <div class="beneficiary-attribute" *ngIf="beneficiary.beneficiaryType === 'phyPerson'">{{beneficiary.name + ' ' + beneficiary.fatherLastName + ' ' + beneficiary.motherLastName}}</div>
-  <div class="beneficiary-attribute" *ngIf="beneficiary.beneficiaryType === 'morPerson' || beneficiary.beneficiaryType === 'fidPerson'">{{beneficiary.bussinesName + 'here'}}</div>
+  <div class="beneficiary-attribute"
+       *ngIf="beneficiary.beneficiaryType === 'phyPerson'">{{beneficiary.name + ' ' + beneficiary.fatherLastName + ' ' + beneficiary.motherLastName}}</div>
+  <div class="beneficiary-attribute"
+       *ngIf="beneficiary.beneficiaryType === 'morPerson' || beneficiary.beneficiaryType === 'fidPerson'">{{beneficiary.bussinesName + 'here'}}</div>
   <div class="beneficiary-attribute">{{beneficiary.birthDateOrConstitution}}</div>
 
   <div class="beneficiary-attribute" *ngFor="let field of fields">
-    <app-field-form  [fieldObj]="field"></app-field-form>
+    <app-field-form [fieldObj]="field"></app-field-form>
   </div>
 
   <div class="operations">
     <div>
       <img class="icon-delete" (click)="deleteBeneficiary()">
-      <img class="icon-edit" (click)="editBeneficiary()">
+      <img class="icon-edit" (click)="openAddBeneficiaryModal('add-beneficiary-modal-2')">
     </div>
-    <div *ngIf="isLast"><img src="../../../../assets/img/tables/plus_simbol.svg" (click)="openAddBeneficiaryModal()">
+    <div *ngIf="isLast"><img src="../../../../assets/img/tables/plus_simbol.svg" (click)="openAddBeneficiaryModal('add-beneficiary-modal-1')">
     </div>
   </div>
 
-  <!--<jw-modal id="add-beneficiary-modal-2" modalType="drawer">
-    <app-new-beneficiary [modalId]="'add-beneficiary-modal-2'">
+  <jw-modal id="add-beneficiary-modal-2" modalType="drawer">
+    <app-new-beneficiary [modalId]="'add-beneficiary-modal-2'"
+                         [beneficiary]="beneficiary"
+    >
 
     </app-new-beneficiary>
-  </jw-modal>-->
+  </jw-modal>
 
 </div>

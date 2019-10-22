@@ -131,12 +131,11 @@ export class ApplicationService {
     return value;
   }
 
-  getRenderConditionsTwin(renderConditions: string) {
-    let separatedRenderConditions = [];
-    const separators = ['&', '|'];
-    console.log('separators.join(): ', separators.join());
-    separatedRenderConditions = renderConditions.split(new RegExp(separators.join(), 'g'));
-    console.log('separatedRenderConditions: ', separatedRenderConditions);
+  booleanCalculator(renderConditions: string) {
+    let testExp = '((A && B) && C) || D';
+    console.log('renderConditions: ', renderConditions);
+    // eval && operator first when is no parenthesis
+    // eval conditions that are inside parenthesis
   }
 
   getRenderConditions(renderConditions: string) {
@@ -148,7 +147,7 @@ export class ApplicationService {
     separatedRenderConditions.forEach((condition: string) => {
       const reExp = '^(.*?)([!<>=|]=?)(.*?)$'; // regular expresion for logic operators
       const res = condition.match(reExp);
-      console.log('res: ', res);
+      // console.log('res: ', res);
       if (res !== null) {
         // res[1] --variableName
         // res[2] --simbolCondition
@@ -176,7 +175,7 @@ export class ApplicationService {
           }
         } else {
           if (valueFormControl === elementsCondition[3]) {
-            console.log('case = ', elementsCondition[3]);
+            // console.log('case = ', elementsCondition[3]);
             result = true;
           }
         }

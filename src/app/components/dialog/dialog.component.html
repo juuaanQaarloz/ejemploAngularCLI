@@ -1,0 +1,15 @@
+<div class="dialog">
+
+  <ng-template #content><ng-content></ng-content></ng-template>
+
+  <div class="dialog-body"  *ngIf="modalType === 'drawer'" [@myAnimation]="animation ? true: false">
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </div>
+
+  <div class="dialog-body-overlay" *ngIf="modalType === 'overlay'" >
+    <ng-container *ngTemplateOutlet="content"></ng-container>
+  </div>
+
+</div>
+
+<div class="dialog-background"></div>

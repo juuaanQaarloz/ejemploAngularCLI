@@ -14,8 +14,8 @@
 }
 
 .icon-delete {
-  width: 25px;
-  height: 25px;
+  width: 16px;
+  height: 16px;
   content: url(../../../../assets/img/tables/delete.svg);
 }
 .icon-delete:hover{
@@ -23,8 +23,8 @@
 }
 
 .icon-edit {
-  width: 25px;
-  height: 25px;
+  width: 16px;
+  height: 16px;
   content: url(../../../../assets/img/tables/edit.svg);
 }
 .icon-edit:hover{

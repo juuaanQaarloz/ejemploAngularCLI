@@ -21,6 +21,7 @@ import { CustomDatepickerComponent } from './components/custom-datepicker/custom
 import { BeneficiaryTableComponent } from './components/beneficiaries/beneficiary-table/beneficiary-table.component';
 import { BeneficiaryItemComponent } from './components/beneficiaries/beneficiary-item/beneficiary-item.component';
 import { NewBeneficiaryComponent } from './components/beneficiaries/new-beneficiary/new-beneficiary.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { NewBeneficiaryComponent } from './components/beneficiaries/new-benefici
     CustomDatepickerComponent,
     BeneficiaryTableComponent,
     BeneficiaryItemComponent,
-    NewBeneficiaryComponent
+    NewBeneficiaryComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +54,7 @@ import { NewBeneficiaryComponent } from './components/beneficiaries/new-benefici
     MatIconModule,
     AppRoutingModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [NewBeneficiaryComponent]
 })
 export class AppModule { }

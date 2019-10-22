@@ -43,7 +43,7 @@ export const MockFieldsContractorType: Field[] = [
   }
 ];
 
-export const MockFieldsContractorTypeM: Field[] = [
+/*export const MockFieldsContractorTypeM: Field[] = [
   {
     id: 'field-36',
     idHtml: 'rdiotyContractorTypeM',
@@ -73,7 +73,7 @@ export const MockFieldsContractorTypeM: Field[] = [
     entityField: '',
     value: true
   }
-];
+];*/
 
 export const MockContentStep1Process1ContentSection2: Content[] = [
   {
@@ -208,7 +208,7 @@ export const MockContentStep2Process1ContentSection2: Content[] = [
 ];
 
 export const MockContentStep3Process1ContentSection2: Content[] = [
-  {
+  /*{
     id: 'content-2.7',
     idParent: 'step-3',
     parentType: 'Step',
@@ -228,7 +228,7 @@ export const MockContentStep3Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass?: 'string';
     // --------------------------
-  },
+  },*/
   {
     id: 'content-2.8',
     idParent: 'step-3',

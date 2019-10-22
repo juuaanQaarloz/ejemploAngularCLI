@@ -45,13 +45,13 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.renderConditions) {
       const renderConditions = this.applicationService.getRenderConditions(this.fieldObj.renderConditions);
-      console.log('----from Field----');
-      console.log('renderConditions: ', renderConditions);
-      console.log('renderConditions[0][1]: ', renderConditions[0][1]);
+      // console.log('----from Field----');
+      // console.log('renderConditions: ', renderConditions);
+      // console.log('renderConditions[0][1]: ', renderConditions[0][1]);
       this.form.controls[renderConditions[0][1]].valueChanges.subscribe(() => {
-        console.log('show before: ', this.show);
+        // console.log('show before: ', this.show);
         this.show = this.applicationService.evaluateRenderCondition(renderConditions[0]);
-        console.log('show: after: ', this.show);
+        // console.log('show: after: ', this.show);
       });
     }
   }

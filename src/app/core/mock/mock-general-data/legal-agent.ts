@@ -165,13 +165,13 @@ export const DatosRepresentanteLegal: Field[] = [
   },
   {
     id: 'field-66',
-    idHtml: 'chboxDeclarationM',
+    idHtml: 'radioDeclarationM',
     name: 'declarationM',
     orderAppearance: 7,
     label: 'Dentro de la composición accionaria de la persona moral, ¿Algún accionista(s) extranjero(s), su(s) cónyuge(s) o\n' +
       'familiar(es)  (tales como padres, hermanos, abuelos, hijos, nietos del accionista o del cónyuge), desempeña o ha desempeñado ' +
       'funciones públicas destacadas en territorio nacional o en el extranjero?',
-    type: 'checkbox',
+    type: 'radio',
     required: true,
     placeholder: '',
     length: '',
@@ -192,5 +192,6 @@ export const DatosRepresentanteLegal: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
+    value: true
   }
 ];

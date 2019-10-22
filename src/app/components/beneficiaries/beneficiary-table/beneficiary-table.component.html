@@ -3,11 +3,11 @@
   <div class="even">
     <div class="field-name-column" *ngFor="let columnName of columnsNames">{{columnName}}</div>
     <div class="field-name-column" *ngIf="beneficiaries.length === 0 || beneficiaries === null">
-      <img src="../../../../assets/img/tables/plus_simbol.svg" (click)="addNewBeneficiary()">
+      <img src="../../../../assets/img/tables/plus_simbol.svg" (click)="addNewBeneficiary('add-beneficiary-modal-1')">
     </div>
 
   </div>
-  <app-beneficiary-item *ngFor="let beneficiary of beneficiaries; let i = index; last as isLast "
+  <app-beneficiary-item *ngFor="let beneficiary of beneficiaries; let i = index; last as isLast"
                         [beneficiary]="beneficiary"
                         [index]="i"
                         [isLast]="isLast">

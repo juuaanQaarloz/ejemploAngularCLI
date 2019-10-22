@@ -29,9 +29,9 @@ export class BeneficiaryTableComponent implements OnInit {
     });
   }
 
-  addNewBeneficiary() {
+  addNewBeneficiary(idModal: string) {
     // console.log('addNewBeneficiary...');
-    this.modalService.open('add-beneficiary-modal-1');
+    this.modalService.open(idModal);
   }
 
   closeModal(modalId) {
