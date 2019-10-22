@@ -299,6 +299,7 @@ export const DatosDomicilio: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
+    value: false
   },
   {
     id: 'field-29',
@@ -322,7 +323,7 @@ export const DatosDomicilio: Field[] = [
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
-    renderConditions: 'emailCheckox=true',
+    renderConditions: 'emailCheck=false',
     enableConditions: '',
     entity: '',
     entityField: '',
@@ -349,7 +350,7 @@ export const DatosDomicilio: Field[] = [
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
-    renderConditions: 'emailCheckox=true',
+    renderConditions: 'emailCheck=false',
     enableConditions: '',
     entity: '',
     entityField: '',

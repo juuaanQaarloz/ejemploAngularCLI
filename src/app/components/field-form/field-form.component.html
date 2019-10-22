@@ -1,74 +1,78 @@
 <!--<div [formGroup]="form" data-forms="floating-label" class="ml-form">-->
-  <div [ngSwitch]="fieldObj.type" [formGroup]="form">
+<div *ngIf="show" [ngSwitch]="fieldObj.type" [formGroup]="form">
 
-    <fieldset *ngSwitchCase="'text'" class="ml-form-field">
-              <!--[ngClass]="{'error': !isValid}">-->
-      <label>
-          <input [type]="toggleVisible ? 'text' : 'password'" [formControlName]="fieldObj.name"
-                 [id]="fieldObj.idHtml"
-                 placeholder="{{fieldObj.placeholder}}"
-                 value=""
-                 (keyup)="onKeyUp($event)">
+  <fieldset *ngSwitchCase="'text'" class="ml-form-field">
+    <!--[ngClass]="{'error': !isValid}">-->
+    <label>
+      <input [type]="toggleVisible ? 'text' : 'password'"
+             [formControlName]="fieldObj.name"
+             [id]="fieldObj.idHtml"
+             placeholder="{{fieldObj.placeholder}}"
+             value=""
+             (keyup)="onKeyUp($event)">
 
-          <span>{{fieldObj.label}}</span>
-          <a *ngIf="fieldObj.canChangeType" href="javascript:;" (click)="onClickToggle()" class="ml-form-field-togglevisible"
-             [ngClass]="[toggleVisible ? 'ml-form-field-togglevisible': 'ml-form-field-togglevisible occult']"
-          ></a>
-          <div class="ml-form-field-errortext">{{fieldObj.message}}</div>
-      </label>
-    </fieldset>
+      <span>{{fieldObj.label}}</span>
+      <a *ngIf="fieldObj.canChangeType" href="javascript:;" (click)="onClickToggle()"
+         class="ml-form-field-togglevisible"
+         [ngClass]="[toggleVisible ? 'ml-form-field-togglevisible': 'ml-form-field-togglevisible occult']"
+      ></a>
+      <div class="ml-form-field-errortext">{{fieldObj.message}}</div>
+    </label>
+  </fieldset>
 
-    <fieldset *ngSwitchCase="'date'" class="ml-form-field">
-      <!--[ngClass]="{'error': !isValid}">-->
-      <label>
+  <fieldset *ngSwitchCase="'date'" class="ml-form-field">
+    <!--[ngClass]="{'error': !isValid}">-->
+    <label>
 
-        <app-custom-datepicker
-          [form]="form" [fieldObj]="fieldObj"
-          [dateFormat]="fieldObj.placeholder">
-        </app-custom-datepicker>
+      <app-custom-datepicker
+        [form]="form" [fieldObj]="fieldObj"
+        [dateFormat]="fieldObj.placeholder">
+      </app-custom-datepicker>
 
-        <div class="ml-form-field-errortext">{{fieldObj.message}}</div>
-      </label>
-    </fieldset>
+      <div class="ml-form-field-errortext">{{fieldObj.message}}</div>
+    </label>
+  </fieldset>
 
-    <fieldset *ngSwitchCase="'select'" class="ml-form-field">
-        <label>
-          <select name="{{fieldObj.label}}" (change)="onChangeSelect($event)" [formControlName]="fieldObj.name"
-                  [id]="fieldObj.idHtml">
-            <option value="" [selected]="isSelected"> {{fieldObj.label}} </option>
-            <option *ngFor="let opt of selectOptions" [value]="opt.value" [selected]="fieldObj.value === opt.name" >{{opt.name}}</option>
+  <fieldset *ngSwitchCase="'select'" class="ml-form-field">
+    <label>
+      <select name="{{fieldObj.label}}" (change)="onChangeSelect($event)" [formControlName]="fieldObj.name"
+              [id]="fieldObj.idHtml">
+        <option value="" [selected]="isSelected"> {{fieldObj.label}} </option>
+        <option *ngFor="let opt of selectOptions" [value]="opt.value"
+                [selected]="fieldObj.value === opt.name">{{opt.name}}</option>
 
-          </select>
-          <span *ngIf="showSelectLabel">{{fieldObj.label}}</span>
-        </label>
-    </fieldset>
+      </select>
+      <span *ngIf="showSelectLabel">{{fieldObj.label}}</span>
+    </label>
+  </fieldset>
 
-      <fieldset *ngSwitchCase="'radio'" class="ml-form-field" style="display: grid; grid-template-columns: 85% 15%;">
-        <label >{{fieldObj.label}}</label>
+  <fieldset *ngSwitchCase="'radio'" class="ml-form-field" style="display: grid; grid-template-columns: 85% 15%;">
+    <label>{{fieldObj.label}}</label>
 
-          <div class="ml-form-field-radio-group"  *ngFor="let radioOption of radioOptions; let first = first">
-            <input type="radio" [formControlName]="fieldObj.name"
-                   [id]="radioOption.id + '-radio'"
-                   [value]="radioOption.value"
-                   [checked]="first">
-            <label>{{radioOption.name}}</label>
-          </div>
+    <div class="ml-form-field-radio-group" *ngFor="let radioOption of radioOptions; let first = first">
+      <input type="radio" [formControlName]="fieldObj.name"
+             [id]="radioOption.id + '-radio'"
+             [value]="radioOption.value"
+             [checked]="first">
+      <label>{{radioOption.name}}</label>
+    </div>
 
-      </fieldset>
+  </fieldset>
 
-    <fieldset *ngSwitchCase="'checkbox'" class="ml-form-field ml-form-field-checkboxes">
-      <label>{{fieldObj.label}}</label>
-      <div class="checkbox-options">
-        <div  class="ml-form-field-checkboxes-group" *ngFor="let checkBoxOption of checkBoxOptions">
-          <input type="checkbox" [formControlName]="fieldObj.name"
-                 [id]="checkBoxOption.id + '-checkbox'"
-                 [name]="checkBoxOption.name"
-                 [value]="checkBoxOption.value">
-          <label [for]="checkBoxOption.id + '-checkbox'">{{checkBoxOption.name}}</label>
-        </div>
+  <fieldset *ngSwitchCase="'checkbox'" class="ml-form-field ml-form-field-checkboxes">
+    <label>{{fieldObj.label}}</label>
+    <div class="checkbox-options">
+      <div class="ml-form-field-checkboxes-group" *ngFor="let checkBoxOption of checkBoxOptions">
+        <input type="checkbox" [formControlName]="fieldObj.name"
+               [id]="checkBoxOption.id + '-checkbox'"
+               [name]="checkBoxOption.name"
+               [value]="checkBoxOption.value"
+               [checked]="fieldObj.value">
+        <label [for]="checkBoxOption.id + '-checkbox'">{{checkBoxOption.name}}</label>
       </div>
+    </div>
 
-    </fieldset>
+  </fieldset>
 
-  </div>
+</div>
 <!--</div>-->

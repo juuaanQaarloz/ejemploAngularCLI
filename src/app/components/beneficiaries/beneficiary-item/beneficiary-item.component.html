@@ -9,12 +9,18 @@
   </div>
 
   <div class="operations">
-    <div><img src="../../../../assets/img/tables/erase_simbol.svg" (click)="deleteBeneficiary()"></div>
-    <div *ngIf="isLast"><img src="../../../../assets/img/tables/plus_simbol.svg" (click)="addNewBeneficiary()"></div>
+    <div>
+      <img class="icon-delete" (click)="deleteBeneficiary()">
+      <img class="icon-edit" (click)="editBeneficiary()">
+    </div>
+    <div *ngIf="isLast"><img src="../../../../assets/img/tables/plus_simbol.svg" (click)="openAddBeneficiaryModal()">
+    </div>
   </div>
 
-  <jw-modal id="add-beneficiary-modal-2" modalType="drawer">
-    <app-new-beneficiary [modalId]="'add-beneficiary-modal-2'"></app-new-beneficiary>
-  </jw-modal>
+  <!--<jw-modal id="add-beneficiary-modal-2" modalType="drawer">
+    <app-new-beneficiary [modalId]="'add-beneficiary-modal-2'">
+
+    </app-new-beneficiary>
+  </jw-modal>-->
 
 </div>

@@ -22,6 +22,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   checkBoxOptions = [];
   toggleVisible = true;
   datePickerClicked = false;
+  show = true;
 
   constructor(private applicationService: ApplicationService,
               private matIconRegistry: MatIconRegistry,
@@ -41,6 +42,18 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       // console.log('value: ', this.fieldObj.value);
       this.showSelectLabel = true;
     }
+
+    if (this.fieldObj.renderConditions) {
+      const renderConditions = this.applicationService.getRenderConditions(this.fieldObj.renderConditions);
+      console.log('----from Field----');
+      console.log('renderConditions: ', renderConditions);
+      console.log('renderConditions[0][1]: ', renderConditions[0][1]);
+      this.form.controls[renderConditions[0][1]].valueChanges.subscribe(() => {
+        console.log('show before: ', this.show);
+        this.show = this.applicationService.evaluateRenderCondition(renderConditions[0]);
+        console.log('show: after: ', this.show);
+      });
+    }
   }
 
   ngAfterViewInit() {
@@ -51,10 +64,14 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onKeyUp(event) {
+    console.log('onKeyUp: ', this.fieldObj.name);
     let value;
     value = event.target.value;
+    console.log('value: ', value);
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
+    console.log('elem: ', elem);
     elem.setAttribute('value', event.target.value);
+    console.log('elem.getAttribute: ', elem.getAttribute('value'));
   }
 
   onClickToggle() {

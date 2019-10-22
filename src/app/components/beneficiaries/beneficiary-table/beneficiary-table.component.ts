@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ModalService} from '../../custom-modal';
 import {ApplicationService} from '../../../core/services';
+import {Content} from '../../../models';
 
 @Component({
   selector: 'app-beneficiary-table',
@@ -8,6 +9,7 @@ import {ApplicationService} from '../../../core/services';
   styleUrls: ['./beneficiary-table.component.css']
 })
 export class BeneficiaryTableComponent implements OnInit {
+  // @Input() content: Content;
   title = 'Datos de Beneficiario(s)';
   columnsNames = ['Tipo de Beneficiario',
                   'Nombre / Razón social',
@@ -20,13 +22,15 @@ export class BeneficiaryTableComponent implements OnInit {
               private applicationService: ApplicationService) { }
 
   ngOnInit() {
+    // console.log('onInit of BeneficiaryTableComponent');
+    // console.log('content: ', this.content);
     this.applicationService.beneficiaries.subscribe((value) => {
       this.beneficiaries = value;
     });
   }
 
   addNewBeneficiary() {
-    console.log('addNewBeneficiary...');
+    // console.log('addNewBeneficiary...');
     this.modalService.open('add-beneficiary-modal-1');
   }
 

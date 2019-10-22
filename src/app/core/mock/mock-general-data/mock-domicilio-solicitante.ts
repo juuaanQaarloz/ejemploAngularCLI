@@ -294,7 +294,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
-    renderConditions: 'emailCheckox=true',
+    renderConditions: 'emailCheck=false',
     enableConditions: '',
     entity: '',
     entityField: '',

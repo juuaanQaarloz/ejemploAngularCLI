@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Beneficiary} from '../../../models/beneficiary-model';
 import {ModalService} from '../../custom-modal';
 import {ApplicationService} from '../../../core/services';
-import {Field} from '../../../models';
+import {Content, Field} from '../../../models';
 import {beneficiaryFields} from '../../../core/mock/mock-beneficiaries';
 
 
@@ -15,6 +15,7 @@ export class BeneficiaryItemComponent implements OnInit {
   @Input() beneficiary: Beneficiary;
   @Input() index: number;
   @Input() isLast: boolean;
+  // @Input() content: Content;
 
   fields = beneficiaryFields;
 
@@ -23,7 +24,7 @@ export class BeneficiaryItemComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.setFieldsValues();
+    // this.setFieldsValues();
   }
 
   determinateEvenOrOdd(num: number): boolean {
@@ -34,13 +35,18 @@ export class BeneficiaryItemComponent implements OnInit {
     }
   }
 
-  addNewBeneficiary() {
-    // console.log('addNewBeneficiary...');
-    this.openModal('add-beneficiary-modal-2');
+  openAddBeneficiaryModal() {
+    // this.openModal('add-beneficiary-modal-2');
+    this.openModal('add-beneficiary-modal-1');
   }
 
   deleteBeneficiary() {
    this.applicationService.removeBeneficiary(this.beneficiary.beneficiaryId);
+  }
+
+  editBeneficiary() {
+    console.log('onEditBeneficiary...');
+    this.openModal('add-beneficiary-modal-1');
   }
 
   openModal(modalId: string) {

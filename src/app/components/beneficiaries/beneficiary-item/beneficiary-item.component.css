@@ -12,3 +12,21 @@
   grid-template-columns: repeat(2, 1fr);
   text-align: center;
 }
+
+.icon-delete {
+  width: 25px;
+  height: 25px;
+  content: url(../../../../assets/img/tables/delete.svg);
+}
+.icon-delete:hover{
+  content: url(../../../../assets/img/tables/delete-hover.svg);
+}
+
+.icon-edit {
+  width: 25px;
+  height: 25px;
+  content: url(../../../../assets/img/tables/edit.svg);
+}
+.icon-edit:hover{
+  content: url(../../../../assets/img/tables/edit-hover.svg);
+}

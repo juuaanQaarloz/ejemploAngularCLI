@@ -191,8 +191,8 @@ hr.ml-step-hr{
   grid-template-columns: repeat(2, 1fr);
 }
 
-.ml-for-modal-type {
-  grid-template-columns: repeat(1, minmax(240px, 240px));
+.ml-form.modal-type {
+  grid-template-columns: repeat(1, 1fr);
 }
 
 @media screen and (max-width: 979px){

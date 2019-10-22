@@ -131,6 +131,13 @@ export class ApplicationService {
     return value;
   }
 
+  getRenderConditionsTwin(renderConditions: string) {
+    let separatedRenderConditions = [];
+    const separators = ['&', '|'];
+    console.log('separators.join(): ', separators.join());
+    separatedRenderConditions = renderConditions.split(new RegExp(separators.join(), 'g'));
+    console.log('separatedRenderConditions: ', separatedRenderConditions);
+  }
 
   getRenderConditions(renderConditions: string) {
     let result = [];

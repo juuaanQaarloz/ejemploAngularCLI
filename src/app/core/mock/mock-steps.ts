@@ -17,7 +17,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     title: 'Infomación general del contratante persona física',
     contents: MockContentStep1Process1ContentSection2,
     renderConditions: 'typePerson=phyPerson',
-    // renderConditions: 'A=B,C!=D,E>F,G>=H,I<J,K<=L',
+    // renderConditions: 'A=B&C!=D|E>F&',
     previousStep: '',
     nextStep: '2',
     /*added extra from model*/

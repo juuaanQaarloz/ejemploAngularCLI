@@ -5,7 +5,13 @@
   </div>
 
   <div>
-    <app-content-form [contentObj]="content" [form]="applicationService.getFormGroup()">
-    </app-content-form>
+    <div [formGroup]="applicationService.getFormGroup()" data-forms="floating-label" class="ml-form"
+         [ngClass]="content.styleClass">
+      <div *ngFor="let field of content.fields">
+        <app-field-form [fieldObj]="field"></app-field-form>
+      </div>
+    </div>
+    <!--<app-content-form [contentObj]="content" [form]="applicationService.getFormGroup()">
+    </app-content-form>-->
   </div>
 </div>
