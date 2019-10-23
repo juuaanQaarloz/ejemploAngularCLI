@@ -1,10 +1,10 @@
 /* MODAL DRAWER STYLES
 -------------------------------*/
-dialog {
+ct-dialog {
   /* modals are hidden by default */
   display: none;
 
-  .dialog {
+  .ct-dialog {
     /* modal container fixed across whole screen */
     position: fixed;
     top: 0;
@@ -18,7 +18,7 @@ dialog {
     /* enables scrolling for tall modals */
     overflow: auto;
 
-    .dialog-body {
+    .ct-dialog-body {
       padding: 20px;
       background: #fff;
 
@@ -31,7 +31,7 @@ dialog {
       overflow: scroll;
     }
 
-    .dialog-body-overlay {
+    .ct-dialog-body-overlay {
       padding: 20px;
       background: #fff;
 
@@ -41,7 +41,7 @@ dialog {
     }
   }
 
-  .dialog-background {
+  .ct-dialog-background {
     /* modal background fixed across whole screen */
     position: fixed;
     top: 0;
@@ -58,14 +58,14 @@ dialog {
   }
 }
 
-body.dialog-open {
+body.ct-dialog-open {
   /* body overflow is hidden to hide main scrollbar when modal window is open */
   overflow: hidden;
 
 }
 
 @media only screen and (min-height: 768px) and (min-height: 1024px){
-  .dialog-body {
+  .ct-dialog-body {
     height: 100%;
   }
 }

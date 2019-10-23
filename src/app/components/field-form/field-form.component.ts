@@ -14,7 +14,7 @@ import {correctFieldValue} from '../../core/utilities';
 })
 export class FieldFormComponent implements OnInit, AfterViewInit {
   @Input() fieldObj: Field;
-  form: FormGroup;
+  @Input() form: FormGroup;
   showSelectLabel = false;
   isSelected = true;
   radioOptions = [];
@@ -36,7 +36,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     if (this.fieldObj.type === 'radio' || this.fieldObj.type === 'select' || this.fieldObj.type === 'checkbox') {
       this.getOptions();
     }
-    this.form = this.applicationService.getFormGroup();
+    // this.form = this.applicationService.getFormGroup();
     if (this.fieldObj.type === 'select' && this.fieldObj.value) {
       // console.log('...aqui');
       // console.log('value: ', this.fieldObj.value);
@@ -45,33 +45,35 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.renderConditions) {
       const renderConditions = this.applicationService.getRenderConditions(this.fieldObj.renderConditions);
-      // console.log('----from Field----');
-      // console.log('renderConditions: ', renderConditions);
-      // console.log('renderConditions[0][1]: ', renderConditions[0][1]);
+      console.log('----from Field----');
+      console.log('renderConditions: ', renderConditions);
+      console.log('renderConditions[0][1]: ', renderConditions[0][1]);
+      console.log('this.form: field component: ', this.form);
       this.form.controls[renderConditions[0][1]].valueChanges.subscribe(() => {
-        // console.log('show before: ', this.show);
-        this.show = this.applicationService.evaluateRenderCondition(renderConditions[0]);
-        // console.log('show: after: ', this.show);
+        console.log('show before: ', this.show);
+        this.show = this.applicationService.evaluateRenderCondition(this.form, renderConditions[0]);
+        console.log('show: after: ', this.show);
       });
     }
   }
 
   ngAfterViewInit() {
     if (this.fieldObj.type === 'text' && this.fieldObj.value) {
+      // console.log('field value onAfterViewInit: ', this.fieldObj.value);
       const elem: Element = document.getElementById(this.fieldObj.idHtml);
       elem.setAttribute('value', this.fieldObj.value);
     }
   }
 
   onKeyUp(event) {
-    console.log('onKeyUp: ', this.fieldObj.name);
+    // console.log('onKeyUp: ', this.fieldObj.name);
     let value;
     value = event.target.value;
-    console.log('value: ', value);
+    // console.log('value: ', value);
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
-    console.log('elem: ', elem);
+    // console.log('elem: ', elem);
     elem.setAttribute('value', event.target.value);
-    console.log('elem.getAttribute: ', elem.getAttribute('value'));
+    // console.log('elem.getAttribute: ', elem.getAttribute('value'));
   }
 
   onClickToggle() {

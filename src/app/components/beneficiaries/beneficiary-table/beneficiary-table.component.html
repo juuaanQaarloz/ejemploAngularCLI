@@ -3,7 +3,7 @@
   <div class="even">
     <div class="field-name-column" *ngFor="let columnName of columnsNames">{{columnName}}</div>
     <div class="field-name-column" *ngIf="beneficiaries.length === 0 || beneficiaries === null">
-      <img src="../../../../assets/img/tables/plus_simbol.svg" (click)="addNewBeneficiary('add-beneficiary-modal-1')">
+      <img src="../../../../assets/img/tables/plus_simbol.svg" (click)="addNewBeneficiary()">
     </div>
 
   </div>
@@ -18,8 +18,3 @@
   </div>
 </div>
 
-<jw-modal id="add-beneficiary-modal-1" modalType="drawer">
-  <app-new-beneficiary [modalId]="'add-beneficiary-modal-1'">
-
-  </app-new-beneficiary>
-</jw-modal>

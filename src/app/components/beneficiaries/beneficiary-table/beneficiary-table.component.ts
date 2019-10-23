@@ -1,7 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ModalService} from '../../custom-modal';
 import {ApplicationService} from '../../../core/services';
-import {Content} from '../../../models';
+import {NewBeneficiaryComponent} from '../new-beneficiary/new-beneficiary.component';
+import {DialogService} from '../../dialog/dialog.service';
 
 @Component({
   selector: 'app-beneficiary-table',
@@ -12,14 +13,16 @@ export class BeneficiaryTableComponent implements OnInit {
   // @Input() content: Content;
   title = 'Datos de Beneficiario(s)';
   columnsNames = ['Tipo de Beneficiario',
-                  'Nombre / Razón social',
-                  'Fecha de nacimiento / constitución',
-                  'Parentesco',
-                  'Porcentaje de participación',
-                  ];
+    'Nombre / Razón social',
+    'Fecha de nacimiento / constitución',
+    'Parentesco',
+    'Porcentaje de participación',
+  ];
   beneficiaries = [];
-  constructor(private modalService: ModalService,
-              private applicationService: ApplicationService) { }
+
+  constructor(private applicationService: ApplicationService,
+              public dialog: DialogService) {
+  }
 
   ngOnInit() {
     // console.log('onInit of BeneficiaryTableComponent');
@@ -29,12 +32,10 @@ export class BeneficiaryTableComponent implements OnInit {
     });
   }
 
-  addNewBeneficiary(idModal: string) {
-    // console.log('addNewBeneficiary...');
-    this.modalService.open(idModal);
-  }
-
-  closeModal(modalId) {
-    this.modalService.close(modalId);
+  addNewBeneficiary() {
+    const ref = this.dialog.open(NewBeneficiaryComponent, {data: null});
+    ref.afterClosed.subscribe((result) => {
+      console.log('dialog closed FROM BENEFICIARY TABLE, result: ', result);
+    });
   }
 }

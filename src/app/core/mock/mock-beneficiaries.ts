@@ -340,6 +340,7 @@ export const Beneficiarios: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
+    value: ''
   },
   {
     id: 'field-98',
@@ -367,6 +368,7 @@ export const Beneficiarios: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
+    value: ''
   },
   {
     id: 'field-99',
@@ -394,6 +396,7 @@ export const Beneficiarios: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
+    value: ''
   },
   {
     id: 'field-100',
@@ -421,6 +424,7 @@ export const Beneficiarios: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
+    value: ''
   },
   {
     id: 'field-101',
@@ -448,6 +452,7 @@ export const Beneficiarios: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
+    value: ''
   },
   {
     id: 'field-102',
@@ -475,6 +480,7 @@ export const Beneficiarios: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
+    value: ''
   },
   {
     id: 'field-103',
@@ -502,6 +508,7 @@ export const Beneficiarios: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
+    value: ''
   },
   {
     id: 'field-104',
@@ -529,6 +536,7 @@ export const Beneficiarios: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
+    value: ''
   },
   {
     id: 'field-105',
@@ -557,6 +565,7 @@ export const Beneficiarios: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
+    value: ''
   }
 ];
 
@@ -580,7 +589,7 @@ export const BENEFICIARIES: Beneficiary[] =  [
       city: 'CDMX',
       country: 'México'
     },
-    participationPercentage: '40',
+    participationPercentage: '50'
   },
   {
     beneficiaryId: '02',
@@ -601,7 +610,7 @@ export const BENEFICIARIES: Beneficiary[] =  [
       city: 'CDMX',
       country: 'México'
     },
-    participationPercentage: '30',
+    participationPercentage: '20'
   },
   {
     beneficiaryId: '03',
@@ -622,13 +631,13 @@ export const BENEFICIARIES: Beneficiary[] =  [
       city: 'CDMX',
       country: 'México'
     },
-    participationPercentage: '30',
-  }
-
-  /*{
-    beneficiaryId: '02',
-    beneficiaryType: 'moralPerson',
+    participationPercentage: '30'
+  },
+  {
+    beneficiaryId: '05',
+    beneficiaryType: 'morPerson',
     relationship: ' ',
+    bussinesName: 'Empresa',
     birthDateOrConstitution: '2001/03/08',
     address: {
       street: 'CALLE',
@@ -644,14 +653,14 @@ export const BENEFICIARIES: Beneficiary[] =  [
     suspensiveCondition: 'NO', // if typeBeneficiary is Moral person
     contractNumber: '12345678', // if typeBeneficiary is Moral person
     instructionLetterNumber: 'string' // if typeBeneficiary is Moral person
-  }*/
+  }
 ];
 
 export const beneficiaryFields: Field[] = [
   {
     id: 'field-93',
-    idHtml: 'slctBeneficiaryRelationship',
-    name: 'beneficiaryRelationship',
+    idHtml: 'slctBeneficiaryRelationshipI',
+    name: 'beneficiaryRelationshipI',
     orderAppearance: 1,
     label: '',
     type: 'select',
@@ -679,8 +688,8 @@ export const beneficiaryFields: Field[] = [
   },
   {
     id: 'field-95',
-    idHtml: 'txtParticipationPercentage',
-    name: 'participationPercentage',
+    idHtml: 'txtParticipationPercentageI',
+    name: 'participationPercentageI',
     orderAppearance: 2,
     label: '',
     type: 'text',

@@ -24,10 +24,12 @@ export class CustomModalComponent implements OnInit, OnDestroy {
   private element: any;
 
   constructor(private modalService: ModalService, private el: ElementRef) {
+    console.log('onConstructor...');
     this.element = el.nativeElement;
   }
 
   ngOnInit(): void {
+    console.log('onInit...');
 
     // ensure id attribute exists
     if (!this.id) {
@@ -52,13 +54,14 @@ export class CustomModalComponent implements OnInit, OnDestroy {
   // remove self from modal service when component is destroyed
   ngOnDestroy(): void {
 
-    console.log('onDestroy modal...');
+    console.log('onDestroy...');
     this.modalService.remove(this.id);
     this.element.remove();
   }
 
   // open modal
   open(): void {
+    console.log('onOpen...');
     this.element.style.display = 'block';
     document.body.classList.add('jw-modal-open');
     this.animation = true;
@@ -66,6 +69,7 @@ export class CustomModalComponent implements OnInit, OnDestroy {
 
   // close modal
   close(): void {
+    console.log('onClose...');
     this.animation = false;
     if (this.modalType === 'drawer') {
       // add time out to be able to the user to see the left -> right animation

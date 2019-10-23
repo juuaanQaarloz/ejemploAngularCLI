@@ -42,7 +42,7 @@ export class StepFormComponent implements OnInit {
       // this.applicationService.getRenderConditionsTwin(this.stepObj.renderConditions);
       this.form.controls[this.renderCondition[0][1]].valueChanges.subscribe(() => {
         // console.log('value: ', value);
-        this.stepObj.show = this.applicationService.evaluateRenderCondition(this.renderCondition[0]);
+        this.stepObj.show = this.applicationService.evaluateRenderCondition(this.form, this.renderCondition[0]);
         // console.log('show: ', this.stepObj.show);
       });
     }

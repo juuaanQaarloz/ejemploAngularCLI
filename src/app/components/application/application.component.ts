@@ -1,9 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormGroup} from '@angular/forms';
 import {ApplicationService, AuthService, StorageService} from '../../core/services';
-import {validatorsObjects} from '../../core/validators';
-import {Field} from '../../models/field';
 import {MockTemplate} from '../../core/mock/mock-template';
+import {DialogService} from '../dialog/dialog.service';
 
 @Component({
   selector: 'app-application',
@@ -19,8 +18,9 @@ export class ApplicationComponent implements OnInit {
   formGroup: FormGroup;
   constructor(private appService: ApplicationService,
               private authService: AuthService,
-              private storageService: StorageService
-  ) { }
+              private storageService: StorageService,
+              public dialog: DialogService
+  ) {}
 
   ngOnInit() {
     this.formGroup = this.appService.toFormGroup(this.applicationObj);
@@ -66,5 +66,4 @@ export class ApplicationComponent implements OnInit {
     this.payLoad = JSON.stringify(this.formGroup.value);
     console.log(this.formGroup.value);
   }
-
 }

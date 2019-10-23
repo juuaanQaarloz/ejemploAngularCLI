@@ -1,15 +1,7 @@
-<div class="dialog">
+<div class="overlay" (click)="onOverlayClicked($event)">
+  <div class="dialog" (click)="onDialogClicked($event)" [@myAnimation]="animation ? true: false">
+    <ng-template appInsertion>
 
-  <ng-template #content><ng-content></ng-content></ng-template>
-
-  <div class="dialog-body"  *ngIf="modalType === 'drawer'" [@myAnimation]="animation ? true: false">
-    <ng-container *ngTemplateOutlet="content"></ng-container>
+    </ng-template>
   </div>
-
-  <div class="dialog-body-overlay" *ngIf="modalType === 'overlay'" >
-    <ng-container *ngTemplateOutlet="content"></ng-container>
-  </div>
-
 </div>
-
-<div class="dialog-background"></div>

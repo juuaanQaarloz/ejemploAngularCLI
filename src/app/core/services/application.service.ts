@@ -4,7 +4,7 @@ import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {BENEFICIARIES} from '../mock/mock-beneficiaries';
 import {Beneficiary} from '../../models/beneficiary-model';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Form, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';
 import {Field} from '../../models';
 import {validatorsObjects} from '../validators';
@@ -125,8 +125,8 @@ export class ApplicationService {
     return this.formGroup;
   }
 
-  getFormControlValueByName(formControlName: string) {
-    const value = this.formGroup.get(formControlName).value;
+  getFormControlValueByName(formGroup: FormGroup, formControlName: string) {
+    const value = formGroup.get(formControlName).value;
     // console.log(`value of ${formControlName} : ${value} from step ${stepId}`);
     return value;
   }
@@ -159,8 +159,8 @@ export class ApplicationService {
     return result;
   }
 
-  evaluateRenderCondition(elementsCondition) {
-    const valueFormControl = this.getFormControlValueByName(elementsCondition[1]);
+  evaluateRenderCondition(formGroup: FormGroup, elementsCondition) {
+    const valueFormControl = this.getFormControlValueByName(formGroup, elementsCondition[1]);
     let result = false;
 
     switch (elementsCondition[2]) {
@@ -212,5 +212,13 @@ export class ApplicationService {
     }
 
     return result;
+  }
+
+  createNewFormGroup(fields: Field[]): FormGroup {
+    const group: any = {};
+    fields.forEach((field) => {
+      group[field.name] = new FormControl(field.value || '');
+    });
+    return new FormGroup(group);
   }
 }

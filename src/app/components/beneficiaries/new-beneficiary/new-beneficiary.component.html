@@ -1,14 +1,14 @@
 <!--Drawer Container-->
 <div class="drawer-container">
   <div style="text-align: right">
-    <img class="button-close" (click)="closeModal()">
+    <img class="button-close" (click)="closeDialog()">
   </div>
 
   <div>
-    <div [formGroup]="applicationService.getFormGroup()" data-forms="floating-label" class="ml-form"
+    <div data-forms="floating-label" class="ml-form"
          [ngClass]="content.styleClass">
       <div *ngFor="let field of content.fields">
-        <app-field-form [fieldObj]="field"></app-field-form>
+        <app-field-form [fieldObj]="field" [form]="formGroup"></app-field-form>
       </div>
     </div>
     <!--<app-content-form [contentObj]="content" [form]="applicationService.getFormGroup()">

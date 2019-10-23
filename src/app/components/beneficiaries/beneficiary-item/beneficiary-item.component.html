@@ -7,24 +7,16 @@
   <div class="beneficiary-attribute">{{beneficiary.birthDateOrConstitution}}</div>
 
   <div class="beneficiary-attribute" *ngFor="let field of fields">
-    <app-field-form [fieldObj]="field"></app-field-form>
+    <app-field-form [fieldObj]="field" [form]="formGroup"></app-field-form>
   </div>
 
   <div class="operations">
     <div>
       <img class="icon-delete" (click)="deleteBeneficiary()">
-      <img class="icon-edit" (click)="openAddBeneficiaryModal('add-beneficiary-modal-2')">
+      <img class="icon-edit" (click)="editBeneficiary()">
     </div>
-    <div *ngIf="isLast"><img src="../../../../assets/img/tables/plus_simbol.svg" (click)="openAddBeneficiaryModal('add-beneficiary-modal-1')">
+    <div *ngIf="isLast"><img src="../../../../assets/img/tables/plus_simbol.svg" (click)="addNewBeneficiary()">
     </div>
   </div>
-
-  <jw-modal id="add-beneficiary-modal-2" modalType="drawer">
-    <app-new-beneficiary [modalId]="'add-beneficiary-modal-2'"
-                         [beneficiary]="beneficiary"
-    >
-
-    </app-new-beneficiary>
-  </jw-modal>
 
 </div>

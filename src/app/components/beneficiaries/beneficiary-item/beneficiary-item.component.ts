@@ -1,10 +1,10 @@
-import {Component, ComponentFactoryResolver, Input, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {Beneficiary} from '../../../models/beneficiary-model';
-import {ModalService} from '../../custom-modal';
 import {ApplicationService} from '../../../core/services';
-import {Content, Field} from '../../../models';
 import {beneficiaryFields} from '../../../core/mock/mock-beneficiaries';
 import {NewBeneficiaryComponent} from '../new-beneficiary/new-beneficiary.component';
+import {DialogService} from '../../dialog/dialog.service';
+import {FormGroup} from '@angular/forms';
 
 
 @Component({
@@ -12,19 +12,26 @@ import {NewBeneficiaryComponent} from '../new-beneficiary/new-beneficiary.compon
   templateUrl: './beneficiary-item.component.html',
   styleUrls: ['./beneficiary-item.component.css']
 })
-export class BeneficiaryItemComponent implements OnInit {
+export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   @Input() beneficiary: Beneficiary;
   @Input() index: number;
   @Input() isLast: boolean;
   // @Input() content: Content;
   fields = beneficiaryFields;
+  formGroup: FormGroup;
 
-  constructor(private modalService: ModalService,
-              private applicationService: ApplicationService) {
+  constructor(private applicationService: ApplicationService,
+              public dialog: DialogService) {
   }
 
   ngOnInit() {
-    // this.setFieldsValues();
+    this.formGroup = this.applicationService.createNewFormGroup(this.fields);
+    this.clearFields();
+    this.setFieldsValues();
+
+  }
+
+  ngAfterViewInit(): void {
   }
 
   determinateEvenOrOdd(num: number): boolean {
@@ -35,9 +42,11 @@ export class BeneficiaryItemComponent implements OnInit {
     }
   }
 
-  openAddBeneficiaryModal(idModal: string) {
-    // this.openModal('add-beneficiary-modal-2');
-    this.openModal(idModal);
+  addNewBeneficiary() {
+    const ref = this.dialog.open(NewBeneficiaryComponent, {data: null});
+    ref.afterClosed.subscribe((result) => {
+      console.log('dialog closed FROM BENEFICIARY ITEM, result: ', result);
+    });
   }
 
   deleteBeneficiary() {
@@ -45,12 +54,10 @@ export class BeneficiaryItemComponent implements OnInit {
   }
 
   editBeneficiary() {
-    console.log('onEditBeneficiary...');
-    this.openModal('add-beneficiary-modal-1');
-  }
-
-  openModal(modalId: string) {
-    this.modalService.open(modalId);
+    const ref = this.dialog.open(NewBeneficiaryComponent, {data: { beneficiary: this.beneficiary}});
+    ref.afterClosed.subscribe((result) => {
+      console.log('dialog closed FROM BENEFICIARY ITEM, result: ', result);
+    });
   }
 
   getBeneficiaryTypeLabel() {
@@ -64,10 +71,19 @@ export class BeneficiaryItemComponent implements OnInit {
   }
 
   setFieldsValues() {
-    this.fields[0].value = this.beneficiary.relationship;
+    // console.log('before field value from item component: ', this.fields[0].value);
+    console.log('before field value from item component: ', this.fields[1].value);
+
+    // this.fields[0].value = this.beneficiary.relationship;
     this.fields[1].value = this.beneficiary.participationPercentage;
+
+    // console.log('after field value from item component: ', this.fields[0].value);
+    console.log('after field value from item component: ', this.fields[1].value);
+  }
+
+  clearFields() {
     this.fields.forEach((field) => {
-      // console.log('field value : ', field.value);
+      field.value = '';
     });
   }
 }

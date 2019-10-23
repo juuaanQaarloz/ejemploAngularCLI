@@ -473,18 +473,6 @@ export const MockContentStep7Process1ContentSection2: Content[] = [
     // --------------------------
   },
   {
-    id: 'content-2.19',
-    idParent: 'step-7',
-    parentType: 'Step',
-    idHtml: 'app-content-form-2.19',
-    fields: Beneficiarios,
-    operations: MockOperations,
-    showContent: false,
-    styleClass: 'modal-type',
-    renderConditions: '',
-    contentType: 'looseFields'
-  },
-  {
     id: 'content-2.20',
     idParent: 'step-6',
     parentType: 'Step',
