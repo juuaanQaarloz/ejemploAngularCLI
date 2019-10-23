@@ -1,10 +1,11 @@
 <div [formGroup]="form" style="display: grid; grid-template-columns: 85% 15%;">
-  <input matInput  [formControlName]="fieldObj.name"
+  <input matInput [formControlName]="fieldObj.name"
          [matDatepicker]="picker"
          [id]="fieldObj.idHtml"
          placeholder="{{fieldObj.placeholder}}"
          value=""
-         (dateInput)="onDateInput('input', $event)">
+         (dateInput)="onDateInput('input', $event)"
+         (dateChange)="onDateChange($event)">
 
   <span>{{fieldObj.label}}</span>
 

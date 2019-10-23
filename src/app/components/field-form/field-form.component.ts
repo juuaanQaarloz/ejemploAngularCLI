@@ -45,23 +45,29 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.renderConditions) {
       const renderConditions = this.applicationService.getRenderConditions(this.fieldObj.renderConditions);
-      console.log('----from Field----');
-      console.log('renderConditions: ', renderConditions);
-      console.log('renderConditions[0][1]: ', renderConditions[0][1]);
-      console.log('this.form: field component: ', this.form);
+      // console.log('----from Field----');
+      // console.log('renderConditions: ', renderConditions);
+      // console.log('renderConditions[0][1]: ', renderConditions[0][1]);
+      // console.log('this.form: field component: ', this.form);
       this.form.controls[renderConditions[0][1]].valueChanges.subscribe(() => {
-        console.log('show before: ', this.show);
+        // console.log('show before: ', this.show);
         this.show = this.applicationService.evaluateRenderCondition(this.form, renderConditions[0]);
-        console.log('show: after: ', this.show);
+        // console.log('show: after: ', this.show);
       });
     }
   }
 
   ngAfterViewInit() {
-    if (this.fieldObj.type === 'text' && this.fieldObj.value) {
-      // console.log('field value onAfterViewInit: ', this.fieldObj.value);
-      const elem: Element = document.getElementById(this.fieldObj.idHtml);
-      elem.setAttribute('value', this.fieldObj.value);
+    if (this.fieldObj.type === 'text' || this.fieldObj.type === 'date') {
+      let elem: Element = document.getElementById(this.fieldObj.idHtml);
+      let valueToSet;
+      if (this.fieldObj.value) { // set default value from configuration
+        valueToSet = this.fieldObj.value;
+        elem.setAttribute('value', valueToSet);
+      } else if (this.form.controls[this.fieldObj.name].value) { // set value from an older capture
+        valueToSet = this.form.controls[this.fieldObj.name].value;
+        elem.setAttribute('value', valueToSet);
+      }
     }
   }
 

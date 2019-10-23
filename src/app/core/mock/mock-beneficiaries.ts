@@ -29,7 +29,7 @@ export const Beneficiarios: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: 'phyPerson',
+    value: '',
   },
   {
     id: 'field-87',
@@ -649,7 +649,7 @@ export const BENEFICIARIES: Beneficiary[] =  [
       city: 'CIUDAD',
       country: 'PAIS'
     },
-    participationPercentage: '50',
+    participationPercentage: '10',
     suspensiveCondition: 'NO', // if typeBeneficiary is Moral person
     contractNumber: '12345678', // if typeBeneficiary is Moral person
     instructionLetterNumber: 'string' // if typeBeneficiary is Moral person

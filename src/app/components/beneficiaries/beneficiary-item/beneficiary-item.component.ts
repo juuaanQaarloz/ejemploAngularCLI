@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Beneficiary} from '../../../models/beneficiary-model';
 import {ApplicationService} from '../../../core/services';
 import {beneficiaryFields} from '../../../core/mock/mock-beneficiaries';
@@ -26,7 +26,8 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.formGroup = this.applicationService.createNewFormGroup(this.fields);
-    this.clearFields();
+    console.log('formGroup: ', this.formGroup);
+    // this.clearFields();
     this.setFieldsValues();
 
   }
@@ -71,18 +72,16 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   }
 
   setFieldsValues() {
-    // console.log('before field value from item component: ', this.fields[0].value);
-    console.log('before field value from item component: ', this.fields[1].value);
-
+    this.formGroup.controls[this.fields[0].name].setValue(this.beneficiary.relationship);
+    this.formGroup.controls[this.fields[1].name].setValue(this.beneficiary.participationPercentage);
     // this.fields[0].value = this.beneficiary.relationship;
-    this.fields[1].value = this.beneficiary.participationPercentage;
-
-    // console.log('after field value from item component: ', this.fields[0].value);
-    console.log('after field value from item component: ', this.fields[1].value);
+    // this.fields[1].value = this.beneficiary.participationPercentage;
   }
 
   clearFields() {
+    console.log('onClear...', this.index);
     this.fields.forEach((field) => {
+      console.log('onClear...', field.value);
       field.value = '';
     });
   }
