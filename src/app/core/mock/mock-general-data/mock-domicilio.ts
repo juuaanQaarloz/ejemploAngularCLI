@@ -299,7 +299,7 @@ export const DatosDomicilio: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: false
+    value: 'noEmail'
   },
   {
     id: 'field-29',

@@ -5,7 +5,6 @@ import {SelectOption} from '../../models/select-option-interface';
 import {ApplicationService} from '../../core/services';
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
-import {correctFieldValue} from '../../core/utilities';
 
 @Component({
   selector: 'app-field-form',
@@ -49,8 +48,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       // console.log('renderConditions: ', renderConditions);
       // console.log('renderConditions[0][1]: ', renderConditions[0][1]);
       // console.log('this.form: field component: ', this.form);
-      this.form.controls[renderConditions[0][1]].valueChanges.subscribe(() => {
-        // console.log('show before: ', this.show);
+      this.show = this.applicationService.evaluateRenderCondition(this.form, renderConditions[0]);
+      this.form.controls[renderConditions[0][1]].valueChanges.subscribe((value) => {
         this.show = this.applicationService.evaluateRenderCondition(this.form, renderConditions[0]);
         // console.log('show: after: ', this.show);
       });
@@ -58,7 +57,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (this.fieldObj.type === 'text' || this.fieldObj.type === 'date') {
+    let currentValue = this.form.controls[this.fieldObj.name].value;
+    // console.log('value: ', currentValue);
+    let defaultValue = this.fieldObj.value;
+    // console.log('defaultValue: ', defaultValue);
+
+    if (this.fieldObj.type === 'text') {
       let elem: Element = document.getElementById(this.fieldObj.idHtml);
       let valueToSet;
       if (this.fieldObj.value) { // set default value from configuration
@@ -152,6 +156,28 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       'calendar-icon-clicked',
       this.domSanitizer.bypassSecurityTrustResourceUrl('../assets/icons/utility-3_calendar_16p.svg')
     );
+  }
+
+  checkValue(value) {
+    let currentValue = this.form.controls[this.fieldObj.name].value;
+    let defaultValue = this.fieldObj.value;
+    let result: boolean;
+
+    if (defaultValue) {
+      if (defaultValue === value) {
+        result =  true;
+      } else {
+        result = false;
+      }
+    } else if (currentValue) {
+      if (currentValue === value) {
+        result = true;
+      } else {
+        result = false;
+      }
+    }
+
+    return  result;
   }
 }
 

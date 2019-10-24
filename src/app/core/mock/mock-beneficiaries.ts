@@ -29,7 +29,7 @@ export const Beneficiarios: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: 'phyPerson'
   },
   {
     id: 'field-87',
@@ -57,7 +57,7 @@ export const Beneficiarios: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   },
   {
     id: 'field-88',
@@ -85,7 +85,7 @@ export const Beneficiarios: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   },
   {
     id: 'field-89',
@@ -113,7 +113,7 @@ export const Beneficiarios: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   },
   {
     id: 'field-90',
@@ -141,7 +141,7 @@ export const Beneficiarios: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   },
   {
     id: 'field-91',
@@ -170,7 +170,7 @@ export const Beneficiarios: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: true
   },
   {
     id: 'field-92',
@@ -198,7 +198,7 @@ export const Beneficiarios: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   },
   {
     id: 'field-93',
@@ -226,7 +226,7 @@ export const Beneficiarios: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   },
   {
     id: 'field-94',
@@ -255,7 +255,7 @@ export const Beneficiarios: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   },
   {
     id: 'field-95',
@@ -283,7 +283,7 @@ export const Beneficiarios: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   },
   {
     id: 'field-96',
@@ -340,7 +340,7 @@ export const Beneficiarios: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: true
   },
   {
     id: 'field-98',
@@ -431,10 +431,10 @@ export const Beneficiarios: Field[] = [
     idHtml: 'txtBeneficiaryZipCode',
     name: 'beneficiaryZipCode',
     orderAppearance: 15,
-    label: 'Código postar*',
+    label: 'Código postal*',
     type: 'text',
     required: true,
-    placeholder: '',
+    placeholder: 'Código postal',
     length: '',
     minValue: 0,
     maxValue: 5,
@@ -604,7 +604,7 @@ export const BENEFICIARIES: Beneficiary[] =  [
     name: 'ODALYS', // if typeBeneficiary is Physic person
     fatherLastName: 'MARRON', // if typeBeneficiary is Physic person
     motherLastName: 'SANCHEZ', // if typeBeneficiary is Physic person
-    relationship: 'Hermana',
+    relationship: 'HA',
     birthDateOrConstitution: '1993/01/06',
     address: {
       street: 'Aluminio',
@@ -622,7 +622,7 @@ export const BENEFICIARIES: Beneficiary[] =  [
   {
     beneficiaryId: '5',
     beneficiaryType: 'morPerson',
-    relationship: ' ',
+    relationship: 'OT',
     businessName: 'Empresa',
     birthDateOrConstitution: '2001/03/08',
     address: {

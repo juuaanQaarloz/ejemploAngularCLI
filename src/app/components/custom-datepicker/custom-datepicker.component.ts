@@ -28,6 +28,7 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
     console.log('value before: ', value);
     if (this.fieldObj.value) {
       value = this.fieldObj.value;
+      console.log('attributesNames: ', elem.getAttributeNames());
       elem.setAttribute('value', value);
     } else if (this.form.controls[this.fieldObj.name].value) {
       value = this.form.controls[this.fieldObj.name].value;
@@ -58,8 +59,18 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
 
       event.targetElement.value = transformedDate;
 
+      console.log('type of event.targetElement.value', typeof event.targetElement.value);
+
       // set value to the input element
       elem.setAttribute('value', event.targetElement.value);
     }
+  }
+
+  checkValue() {
+    let value = this.fieldObj.value;
+    if (value) {
+      console.log('value: ', value);
+    }
+    return value;
   }
 }

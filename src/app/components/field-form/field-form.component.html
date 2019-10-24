@@ -39,7 +39,7 @@
               [id]="fieldObj.idHtml">
         <option value="" [selected]="isSelected"> {{fieldObj.label}} </option>
         <option *ngFor="let opt of selectOptions" [value]="opt.value"
-                [selected]="fieldObj.value === opt.name">{{opt.name}}</option>
+                [selected]="checkValue(opt.value)">{{opt.name}}</option>
 
       </select>
       <span *ngIf="showSelectLabel">{{fieldObj.label}}</span>
@@ -53,8 +53,8 @@
       <input type="radio" [formControlName]="fieldObj.name"
              [id]="radioOption.id + '-radio'"
              [value]="radioOption.value"
-             [checked]="first">
-      <label>{{radioOption.name}}</label>
+             [checked]="checkValue(radioOption.value)">
+      <label>{{checkValue(radioOption.value)}}</label>
     </div>
 
   </fieldset>
@@ -67,7 +67,7 @@
                [id]="checkBoxOption.id + '-checkbox'"
                [name]="checkBoxOption.name"
                [value]="checkBoxOption.value"
-               [checked]="fieldObj.value">
+               [checked]="checkValue(checkBoxOption.value)">
         <label [for]="checkBoxOption.id + '-checkbox'">{{checkBoxOption.name}}</label>
       </div>
     </div>

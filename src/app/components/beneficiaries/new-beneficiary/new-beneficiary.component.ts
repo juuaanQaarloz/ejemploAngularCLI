@@ -103,12 +103,14 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         case 'beneficiaryRelationship':
           value = this.config.data.beneficiary.instructionLetterNumber;
           break;
-        case 'beneficiaryBirthDate':
+        /*case 'beneficiaryBirthDate':
           value = this.config.data.beneficiary.birthDateOrConstitution;
-          break;
+          break;*/
       }
       this.formGroup.controls[field.name].setValue(value);
     });
+    console.log('form values: ');
+    console.log(this.formGroup.value);
   }
 
   mapNewBeneficiaryData() {
