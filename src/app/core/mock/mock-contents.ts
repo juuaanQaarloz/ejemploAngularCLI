@@ -39,7 +39,7 @@ export const MockFieldsContractorType: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: 'false'
+    value: true
   }
 ];
 

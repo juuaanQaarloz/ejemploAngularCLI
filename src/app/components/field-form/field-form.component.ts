@@ -64,13 +64,16 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.type === 'text') {
       let elem: Element = document.getElementById(this.fieldObj.idHtml);
+      console.log('elem: ', elem);
       let valueToSet;
-      if (this.fieldObj.value) { // set default value from configuration
-        valueToSet = this.fieldObj.value;
-        elem.setAttribute('value', valueToSet);
-      } else if (this.form.controls[this.fieldObj.name].value) { // set value from an older capture
-        valueToSet = this.form.controls[this.fieldObj.name].value;
-        elem.setAttribute('value', valueToSet);
+      if (elem) {
+        if (this.fieldObj.value) { // set default value from configuration
+          valueToSet = this.fieldObj.value;
+          elem.setAttribute('value', valueToSet);
+        } else if (this.form.controls[this.fieldObj.name].value) { // set value from an older capture
+          valueToSet = this.form.controls[this.fieldObj.name].value;
+          elem.setAttribute('value', valueToSet);
+        }
       }
     }
   }
@@ -159,8 +162,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   checkValue(value) {
-    let currentValue = this.form.controls[this.fieldObj.name].value;
-    let defaultValue = this.fieldObj.value;
+    const currentValue = this.form.controls[this.fieldObj.name].value;
+    const defaultValue = this.fieldObj.value;
     let result: boolean;
 
     if (defaultValue) {
@@ -176,7 +179,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         result = false;
       }
     }
-
     return  result;
   }
 }

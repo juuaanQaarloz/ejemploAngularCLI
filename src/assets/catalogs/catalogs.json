@@ -118,23 +118,8 @@
     },
     {
         "id": 1,
-        "status": "Divorciado(a)",
-        "value": "D"
-    },
-    {
-        "id": 2,
         "status": "Soltero(a)",
         "value": "S"
-    },
-    {
-        "id": 3,
-        "status": "Union Libre",
-        "value": "U"
-    },
-    {
-        "id": 4,
-        "status": "Viudo(a)",
-        "value": "V"
     }],
     "relationships": [
     {
