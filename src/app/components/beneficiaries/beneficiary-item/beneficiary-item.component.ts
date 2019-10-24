@@ -6,6 +6,7 @@ import {NewBeneficiaryComponent} from '../new-beneficiary/new-beneficiary.compon
 import {DialogService} from '../../dialog/dialog.service';
 import {FormGroup} from '@angular/forms';
 import {ModalService} from '../../custom-modal';
+import {BeneficiaryItemOperations} from '../../../core/mock/mock-operations';
 
 
 @Component({
@@ -20,6 +21,8 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   // @Input() content: Content;
   fields = beneficiaryFields;
   formGroup: FormGroup;
+  modalId;
+  operations = BeneficiaryItemOperations;
 
   constructor(private applicationService: ApplicationService,
               public dialog: DialogService,
@@ -31,6 +34,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
     console.log('formGroup: ', this.formGroup);
     // this.clearFields();
     this.setFieldsValues();
+    this.modalId = 'modal-' + this.beneficiary.beneficiaryId;
 
   }
 
@@ -54,7 +58,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
 
   deleteBeneficiary() {
    this.applicationService.removeBeneficiary(this.beneficiary.beneficiaryId);
-   this.closeModal('modal-1');
+   this.closeModal(this.modalId);
   }
 
   editBeneficiary() {
@@ -95,5 +99,13 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
 
   closeModal(modalId: string) {
     this.modalService.close(modalId);
+  }
+
+  executeOperation(delegateOperation: string) {
+    if (delegateOperation === 'closeModal') {
+      this.closeModal(this.modalId);
+    } else if (delegateOperation === 'deleteBeneficiary') {
+      this.deleteBeneficiary();
+    }
   }
 }

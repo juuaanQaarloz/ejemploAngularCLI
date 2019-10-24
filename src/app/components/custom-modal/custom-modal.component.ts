@@ -24,13 +24,10 @@ export class CustomModalComponent implements OnInit, OnDestroy {
   private element: any;
 
   constructor(private modalService: ModalService, private el: ElementRef) {
-    console.log('onConstructor...');
     this.element = el.nativeElement;
   }
 
   ngOnInit(): void {
-    console.log('onInit...');
-
     // ensure id attribute exists
     if (!this.id) {
       console.error('modal must have an id');

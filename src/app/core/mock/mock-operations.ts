@@ -90,3 +90,35 @@ export const BeneficiariesOperations: Operation[] = [
   }
 ];
 
+export const BeneficiaryItemOperations: Operation[] = [
+  {
+    id: 'opt-1',
+    idHtml: 'btnCancel',
+    name: 'cancelar',
+    label: 'Cancelar',
+    type: 'button',
+    style: '',
+    styleClass: 'ml-link',
+    message: '',
+    messageClass: '',
+    delegateOperation: 'closeModal',
+    renderConditions: '',
+    enableConditions: '',
+  },
+  {
+    id: 'opt-2',
+    idHtml: 'btnDeleteBeneficiary',
+    name: 'deleteBeneficiary',
+    label: 'ELIMINAR',
+    type: 'button',
+    style: '',
+    styleClass: 'ml-button-primary',
+    message: '',
+    messageClass: '',
+    delegateOperation: 'deleteBeneficiary',
+    renderConditions: '',
+    enableConditions: ''
+  }
+];
+
+

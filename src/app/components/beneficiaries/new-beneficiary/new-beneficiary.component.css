@@ -3,15 +3,6 @@
   grid-template-columns: repeat(1, 1fr);
 }
 
-.button-close {
-  width: 25px;
-  height: 25px;
-  content: url(../../../../assets/img/modal/close-icon.svg);
-}
-.button-close:hover{
-  content: url(../../../../assets/img/modal/close-icon-over.svg);
-}
-
 .operation{
   padding: 8px;
   display: grid;

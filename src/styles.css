@@ -855,3 +855,12 @@ select::-ms-expand {
 /*.ml-icon-link-menu:hover img {
   content:url(assets/img/navigation/i_vision2.png);
 }*/
+
+.button-close {
+  width: 25px;
+  height: 25px;
+  content: url(/assets/img/modal/close-icon.svg);
+}
+.button-close:hover{
+  content: url(/assets/img/modal/close-icon-over.svg);
+}
