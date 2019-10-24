@@ -72,7 +72,7 @@ export const BeneficiariesOperations: Operation[] = [
     messageClass: '',
     delegateOperation: 'addNewBeneficiary',
     renderConditions: '',
-    enableConditions: '',
+    enableConditions: ''
   },
   {
     id: 'opt-3',

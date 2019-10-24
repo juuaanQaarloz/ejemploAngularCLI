@@ -15,7 +15,6 @@ export class OperationFormComponent implements OnInit {
   constructor(private applicationService: ApplicationService) { }
 
   ngOnInit() {
-    // console.log('operationObject: ', this.operationObj);
   }
 
   executeOperation(typeOperation) {

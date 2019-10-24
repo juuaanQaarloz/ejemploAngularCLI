@@ -1,13 +1,10 @@
-import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ApplicationService} from '../../../core/services';
-import {Address, Beneficiary} from '../../../models';
-import {MockContentStep7Process1ContentSection2} from '../../../core/mock/mock-contents';
 import {DialogConfig} from '../../dialog/dialog-config';
 import {DialogRef} from '../../dialog/dialog-ref';
 import {Beneficiarios} from '../../../core/mock/mock-beneficiaries';
-import {BeneficiariesOperations, MockOperations} from '../../../core/mock/mock-operations';
-import {Form, FormControl, FormGroup} from '@angular/forms';
-import * as moment from 'moment';
+import {BeneficiariesOperations} from '../../../core/mock/mock-operations';
+import {FormGroup} from '@angular/forms';
 import {transformDate} from '../../../core/utilities';
 
 @Component({
@@ -16,7 +13,6 @@ import {transformDate} from '../../../core/utilities';
   styleUrls: ['./new-beneficiary.component.css']
 })
 export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
-  // @Input() content: Content;
   content = {
     id: 'content-2.19',
     idParent: 'step-7',
@@ -30,7 +26,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
     contentType: 'looseFields'
   };
   formGroup: FormGroup;
-  // content = MockContentStep7Process1ContentSection2[1];
+  operationType: string;
   constructor(private applicationService: ApplicationService,
               public config: DialogConfig,
               public dialog: DialogRef
@@ -39,9 +35,11 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.formGroup = this.applicationService.createNewFormGroup(this.content.fields);
-    console.log('from newBeneficiary formGroup: ', this.formGroup);
     if (this.config.data !== null) {
+      this.operationType = 'edit';
       this.setBeneficiaryValues();
+    } else {
+      this.operationType = 'add';
     }
 
   }
@@ -78,8 +76,6 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   }
 
   setBeneficiaryValues() {
-    // this.getValue('');
-    // this.content.fields[1].value = this.config.data.beneficiary.name;
     this.content.fields.forEach((field) => {
       let value;
       switch (field.name) {
@@ -112,8 +108,6 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           break;
       }
       this.formGroup.controls[field.name].setValue(value);
-      // console.log('value: ', value);
-      // field.value = value;
     });
   }
 

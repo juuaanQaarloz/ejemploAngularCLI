@@ -5,6 +5,7 @@ import {beneficiaryFields} from '../../../core/mock/mock-beneficiaries';
 import {NewBeneficiaryComponent} from '../new-beneficiary/new-beneficiary.component';
 import {DialogService} from '../../dialog/dialog.service';
 import {FormGroup} from '@angular/forms';
+import {ModalService} from '../../custom-modal';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   formGroup: FormGroup;
 
   constructor(private applicationService: ApplicationService,
-              public dialog: DialogService) {
+              public dialog: DialogService,
+              private modalService: ModalService) {
   }
 
   ngOnInit() {
@@ -52,6 +54,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
 
   deleteBeneficiary() {
    this.applicationService.removeBeneficiary(this.beneficiary.beneficiaryId);
+   this.closeModal('modal-1');
   }
 
   editBeneficiary() {
@@ -84,5 +87,13 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       console.log('onClear...', field.value);
       field.value = '';
     });
+  }
+
+  openModal(modalId: string) {
+    this.modalService.open(modalId);
+  }
+
+  closeModal(modalId: string) {
+    this.modalService.close(modalId);
   }
 }

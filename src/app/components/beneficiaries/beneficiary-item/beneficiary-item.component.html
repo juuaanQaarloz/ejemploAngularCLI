@@ -13,7 +13,7 @@
 
   <div class="operations">
     <div>
-      <img class="icon-delete" (click)="deleteBeneficiary()">
+      <img class="icon-delete" (click)="openModal('modal-1')">
       <img class="icon-edit" (click)="editBeneficiary()">
     </div>
     <div *ngIf="isLast"><img src="../../../../assets/img/tables/plus_simbol.svg" (click)="addNewBeneficiary()">
@@ -21,3 +21,11 @@
   </div>
 
 </div>
+
+<jw-modal [id]="'modal-1'" [modalType]="'overlay'">
+  <div>
+    ¿Esta seguro que desea eliminar al beneficiario de la lista ?
+    <button (click)="closeModal('modal-1')">Cancelar</button>
+    <button (click)="deleteBeneficiary()">OK</button>
+  </div>
+</jw-modal>
