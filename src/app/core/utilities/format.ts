@@ -1,4 +1,5 @@
 import {nullUndefinedOrEmptyValidation} from '../validators';
+import * as moment from 'moment';
 
 /**
  * @param (string) value the string who's removing withe spaces
@@ -79,6 +80,7 @@ export function correctFieldValue(val) {
   return val;
 }
 
-export function trasnformDate(date: string, format: string) {
-  // input date format
+export function transformDate(date: Date, format: string) {
+  const newDate =  moment(date).format(format);
+  return newDate;
 }

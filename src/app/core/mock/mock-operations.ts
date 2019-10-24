@@ -73,6 +73,20 @@ export const BeneficiariesOperations: Operation[] = [
     delegateOperation: 'addNewBeneficiary',
     renderConditions: '',
     enableConditions: '',
+  },
+  {
+    id: 'opt-3',
+    idHtml: 'btnUpdateBeneficiary',
+    name: 'updateBeneficiary',
+    label: 'GUARDAR',
+    type: 'button',
+    style: '',
+    styleClass: 'ml-button-primary',
+    message: '',
+    messageClass: '',
+    delegateOperation: 'updateBeneficiary',
+    renderConditions: '',
+    enableConditions: '',
   }
 ];
 

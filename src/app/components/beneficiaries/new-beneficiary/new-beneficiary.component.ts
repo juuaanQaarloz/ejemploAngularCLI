@@ -8,6 +8,7 @@ import {Beneficiarios} from '../../../core/mock/mock-beneficiaries';
 import {BeneficiariesOperations, MockOperations} from '../../../core/mock/mock-operations';
 import {Form, FormControl, FormGroup} from '@angular/forms';
 import * as moment from 'moment';
+import {transformDate} from '../../../core/utilities';
 
 @Component({
   selector: 'app-new-beneficiary',
@@ -40,7 +41,6 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
     this.formGroup = this.applicationService.createNewFormGroup(this.content.fields);
     console.log('from newBeneficiary formGroup: ', this.formGroup);
     if (this.config.data !== null) {
-      console.log('config: ', this.config.data);
       this.setBeneficiaryValues();
     }
 
@@ -51,10 +51,15 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
   addNewBeneficiary() {
     console.log('formGroup value: ', this.formGroup.value);
-    let newBeneficiary = this.mapBeneficiaryData();
+    let newBeneficiary = this.mapNewBeneficiaryData();
 
-    console.log('newBeneficiary: ', newBeneficiary);
     this.applicationService.addBeneficiary(newBeneficiary);
+    this.closeDialog();
+  }
+
+  updateBeneficiary() {
+    let updatedBeneficiary = this.mapBeneficiaryData();
+    this.applicationService.updateBeneficiary(updatedBeneficiary);
     this.closeDialog();
   }
 
@@ -63,11 +68,12 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
       this.closeDialog();
     } else if (delegateOperation === 'addNewBeneficiary') {
       this.addNewBeneficiary();
+    } else if (delegateOperation === 'updateBeneficiary') {
+      this.updateBeneficiary();
     }
   }
 
   closeDialog() {
-    // this.cleanFields();
     this.dialog.close();
   }
 
@@ -111,57 +117,59 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
     });
   }
 
-  cleanFields() {
-    this.content.fields.forEach((field) => {
-      console.log('field value before: ', field.value);
-      field.value = '';
-      console.log('field value after: ', field.value);
-    });
-  }
-
-  getValue(fieldName: string) {
-    let value = '';
-    const properties = Object.getOwnPropertyNames(this.config.data.beneficiary);
-    console.log('properties: ', properties);
-    /*this.content.fields.forEach((field) => {
-      if (field.name === fieldName) {
-        value = '';
-      }
-    });*/
-
-    return value;
+  mapNewBeneficiaryData() {
+    return {
+      beneficiaryId: (this.applicationService.getLastBeneficiaryId() + 1).toString(),
+      beneficiaryType: this.formGroup.controls.beneficiaryType.value,
+      name: this.formGroup.controls.beneficiaryName.value,
+      fatherLastName: this.formGroup.controls.beneficiaryFaLastName.value,
+      motherLastName: this.formGroup.controls.beneficiaryMoLastName.value,
+      relationship: this.formGroup.controls.beneficiaryRelationship.value,
+      birthDateOrConstitution: transformDate(this.formGroup.controls.beneficiaryBirthDate.value, 'YYYY/MM/DD'),
+      address: {
+        street: this.formGroup.controls.beneficiaryStreet.value,
+        exteriorNumber: this.formGroup.controls.beneficiaryExteriorNumber.value,
+        interiorNumber: this.formGroup.controls.beneficiaryInteriorNumber.value,
+        zipCode: this.formGroup.controls.beneficiaryZipCode.value,
+        neighborhood: this.formGroup.controls.beneficiarySuburb.value,
+        municipality: this.formGroup.controls.beneficiaryMunicipality.value,
+        state: this.formGroup.controls.beneficiaryState.value,
+        city: this.formGroup.controls.beneficiaryCity.value,
+        country: this.formGroup.controls.beneficiaryCountry.value,
+      },
+      participationPercentage: this.formGroup.controls.participationPercentage.value,
+      businessName: this.formGroup.controls.beneficiaryBusinessName.value,
+      suspensiveCondition: this.formGroup.controls.suspensiveCodition.value,
+      contractNumber: this.formGroup.controls.contractNumber.value,
+      instructionLetterNumber: this.formGroup.controls.instructionLetterNumber.value,
+    };
   }
 
   mapBeneficiaryData() {
     return {
-      beneficiaryId: (this.applicationService.getLastBeneficiaryId() + 1).toString(),
-      beneficiaryType: this.formGroup.controls['beneficiaryType'].value,
-      name: this.formGroup.controls['beneficiaryName'].value,
-      fatherLastName: this.formGroup.controls['beneficiaryFaLastName'].value,
-      motherLastName: this.formGroup.controls['beneficiaryMoLastName'].value,
-      relationship: this.formGroup.controls['beneficiaryRelationship'].value,
-      birthDateOrConstitution: this.formatDate(this.formGroup.controls['beneficiaryBirthDate'].value),
+      beneficiaryId: this.config.data.beneficiary.beneficiaryId,
+      beneficiaryType: this.formGroup.controls.beneficiaryType.value,
+      name: this.formGroup.controls.beneficiaryName.value,
+      fatherLastName: this.formGroup.controls.beneficiaryFaLastName.value,
+      motherLastName: this.formGroup.controls.beneficiaryMoLastName.value,
+      relationship: this.formGroup.controls.beneficiaryRelationship.value,
+      birthDateOrConstitution: transformDate(this.formGroup.controls.beneficiaryBirthDate.value, 'YYYY/MM/DD'),
       address: {
-        street: this.formGroup.controls['beneficiaryStreet'].value,
-        exteriorNumber: this.formGroup.controls['beneficiaryExteriorNumber'].value,
-        interiorNumber: this.formGroup.controls['beneficiaryInteriorNumber'].value,
-        zipCode: this.formGroup.controls['beneficiaryZipCode'].value,
-        neighborhood: this.formGroup.controls['beneficiarySuburb'].value,
-        municipality: this.formGroup.controls['beneficiaryMunicipality'].value,
-        state: this.formGroup.controls['beneficiaryState'].value,
-        city: this.formGroup.controls['beneficiaryCity'].value,
-        country: this.formGroup.controls['beneficiaryCountry'].value,
+        street: this.formGroup.controls.beneficiaryStreet.value,
+        exteriorNumber: this.formGroup.controls.beneficiaryExteriorNumber.value,
+        interiorNumber: this.formGroup.controls.beneficiaryInteriorNumber.value,
+        zipCode: this.formGroup.controls.beneficiaryZipCode.value,
+        neighborhood: this.formGroup.controls.beneficiarySuburb.value,
+        municipality: this.formGroup.controls.beneficiaryMunicipality.value,
+        state: this.formGroup.controls.beneficiaryState.value,
+        city: this.formGroup.controls.beneficiaryCity.value,
+        country: this.formGroup.controls.beneficiaryCountry.value,
       },
-      participationPercentage: this.formGroup.controls['participationPercentage'].value,
-      businessName: this.formGroup.controls['beneficiaryBusinessName'].value,
-      suspensiveCondition: this.formGroup.controls['suspensiveCodition'].value,
-      contractNumber: this.formGroup.controls['contractNumber'].value,
-      instructionLetterNumber: this.formGroup.controls['instructionLetterNumber'].value,
+      participationPercentage: this.formGroup.controls.participationPercentage.value,
+      businessName: this.formGroup.controls.beneficiaryBusinessName.value,
+      suspensiveCondition: this.formGroup.controls.suspensiveCodition.value,
+      contractNumber: this.formGroup.controls.contractNumber.value,
+      instructionLetterNumber: this.formGroup.controls.instructionLetterNumber.value,
     };
-  }
-
-  formatDate(date) {
-    const transformDate =  moment(date).format('YYYY/MM/DD');
-    return transformDate;
   }
 }

@@ -119,10 +119,12 @@ export class ApplicationService {
 
   getLastBeneficiaryId() {
     let currentBeneficiaries = this.beneficiaries.getValue();
+    const beneficiariesLength = currentBeneficiaries.length;
     let lastId = 0;
-    if (currentBeneficiaries.length > 1) {
-      lastId = Number(currentBeneficiaries[length].beneficiaryId);
+    if (beneficiariesLength > 1) {
+      lastId = Number(currentBeneficiaries[beneficiariesLength - 1].beneficiaryId);
     }
+    console.log('lastId: ', lastId);
     return lastId;
   }
 
@@ -130,6 +132,16 @@ export class ApplicationService {
     let currentBeneficiaries = this.beneficiaries.getValue();
     let findedBeneficiary = currentBeneficiaries.filter(b => b.beneficiaryId === updatedBeneficiary.beneficiaryId)[0];
     console.log('findedBeneficiary: ', findedBeneficiary);
+
+    const index = currentBeneficiaries.findIndex((b) => b.beneficiaryId === updatedBeneficiary.beneficiaryId);
+
+    console.log('index: ', index);
+
+    currentBeneficiaries[index] = updatedBeneficiary;
+
+    console.log('updated Beneficiaries: ', currentBeneficiaries);
+
+    this.beneficiaries.next(currentBeneficiaries);
   }
 
   setFormGroup(form: FormGroup) {

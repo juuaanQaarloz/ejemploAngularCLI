@@ -16,9 +16,10 @@
   </div>
 
   <div *ngIf="content.operations" class="operation">
+
     <app-operation-form *ngFor="let operation of content.operations" [operationObj]="operation"
                         (click)="executeOperation(operation.delegateOperation)">
-
     </app-operation-form>
+
   </div>
 </div>

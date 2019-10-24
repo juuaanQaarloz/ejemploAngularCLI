@@ -4,6 +4,7 @@ import {ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import * as moment from 'moment';
 import {dateTitPattern} from '../../core/validators';
+import {transformDate} from '../../core/utilities';
 
 @Component({
   selector: 'app-custom-datepicker',
@@ -52,10 +53,10 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
     } else {
 
       console.log('dateFormat: ', this.dateFormat);
-      const transformDate =  moment(event.value).format(this.dateFormat);
-      console.log('transformDate: ', transformDate);
+      const transformedDate =  transformDate(event.value, this.dateFormat);
+      console.log('transformedDate: ', transformedDate);
 
-      event.targetElement.value = transformDate;
+      event.targetElement.value = transformedDate;
 
       // set value to the input element
       elem.setAttribute('value', event.targetElement.value);
