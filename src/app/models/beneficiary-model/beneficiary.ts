@@ -10,7 +10,7 @@ export interface Beneficiary {
   birthDateOrConstitution: string;
   address: Address;
   participationPercentage: string;
-  bussinesName?: string;
+  businessName?: string;
   suspensiveCondition?: string;
   contractNumber?: string;
   instructionLetterNumber?: string;

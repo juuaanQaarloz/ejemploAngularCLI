@@ -111,7 +111,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: ''
+    value: '1993/01/06'
   },
   {
     id: 'field-7',

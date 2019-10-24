@@ -1,12 +1,13 @@
 import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {ApplicationService} from '../../../core/services';
-import {Beneficiary} from '../../../models';
+import {Address, Beneficiary} from '../../../models';
 import {MockContentStep7Process1ContentSection2} from '../../../core/mock/mock-contents';
 import {DialogConfig} from '../../dialog/dialog-config';
 import {DialogRef} from '../../dialog/dialog-ref';
 import {Beneficiarios} from '../../../core/mock/mock-beneficiaries';
-import {MockOperations} from '../../../core/mock/mock-operations';
+import {BeneficiariesOperations, MockOperations} from '../../../core/mock/mock-operations';
 import {Form, FormControl, FormGroup} from '@angular/forms';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-new-beneficiary',
@@ -21,7 +22,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
     parentType: 'Step',
     idHtml: 'app-content-form-2.19',
     fields: Beneficiarios,
-    operations: MockOperations,
+    operations: BeneficiariesOperations,
     showContent: false,
     styleClass: 'modal-type',
     renderConditions: '',
@@ -48,8 +49,25 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
   }
 
+  addNewBeneficiary() {
+    console.log('formGroup value: ', this.formGroup.value);
+    let newBeneficiary = this.mapBeneficiaryData();
+
+    console.log('newBeneficiary: ', newBeneficiary);
+    this.applicationService.addBeneficiary(newBeneficiary);
+    this.closeDialog();
+  }
+
+  executeOperation(delegateOperation: string) {
+    if (delegateOperation === 'closeDialog') {
+      this.closeDialog();
+    } else if (delegateOperation === 'addNewBeneficiary') {
+      this.addNewBeneficiary();
+    }
+  }
+
   closeDialog() {
-    this.cleanFields();
+    // this.cleanFields();
     this.dialog.close();
   }
 
@@ -112,5 +130,38 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
     });*/
 
     return value;
+  }
+
+  mapBeneficiaryData() {
+    return {
+      beneficiaryId: (this.applicationService.getLastBeneficiaryId() + 1).toString(),
+      beneficiaryType: this.formGroup.controls['beneficiaryType'].value,
+      name: this.formGroup.controls['beneficiaryName'].value,
+      fatherLastName: this.formGroup.controls['beneficiaryFaLastName'].value,
+      motherLastName: this.formGroup.controls['beneficiaryMoLastName'].value,
+      relationship: this.formGroup.controls['beneficiaryRelationship'].value,
+      birthDateOrConstitution: this.formatDate(this.formGroup.controls['beneficiaryBirthDate'].value),
+      address: {
+        street: this.formGroup.controls['beneficiaryStreet'].value,
+        exteriorNumber: this.formGroup.controls['beneficiaryExteriorNumber'].value,
+        interiorNumber: this.formGroup.controls['beneficiaryInteriorNumber'].value,
+        zipCode: this.formGroup.controls['beneficiaryZipCode'].value,
+        neighborhood: this.formGroup.controls['beneficiarySuburb'].value,
+        municipality: this.formGroup.controls['beneficiaryMunicipality'].value,
+        state: this.formGroup.controls['beneficiaryState'].value,
+        city: this.formGroup.controls['beneficiaryCity'].value,
+        country: this.formGroup.controls['beneficiaryCountry'].value,
+      },
+      participationPercentage: this.formGroup.controls['participationPercentage'].value,
+      businessName: this.formGroup.controls['beneficiaryBusinessName'].value,
+      suspensiveCondition: this.formGroup.controls['suspensiveCodition'].value,
+      contractNumber: this.formGroup.controls['contractNumber'].value,
+      instructionLetterNumber: this.formGroup.controls['instructionLetterNumber'].value,
+    };
+  }
+
+  formatDate(date) {
+    const transformDate =  moment(date).format('YYYY/MM/DD');
+    return transformDate;
   }
 }

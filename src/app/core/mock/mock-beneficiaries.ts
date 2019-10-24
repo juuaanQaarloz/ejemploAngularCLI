@@ -61,6 +61,34 @@ export const Beneficiarios: Field[] = [
   },
   {
     id: 'field-88',
+    idHtml: 'txtBeneficiaryBusinessName',
+    name: 'beneficiaryBusinessName',
+    orderAppearance: 2,
+    label: 'Denominación / Razón social*',
+    type: 'text',
+    required: true,
+    placeholder: 'Denominación / Razón social',
+    length: '',
+    minValue: 0,
+    maxValue: 60,
+    pattern: '',
+    source: '',
+    sourceID: '',
+    style: '',
+    styleClass: '',
+    styleClassError: '',
+    message: 'La denominación / razón social es obligatoria',
+    messageClass: '',
+    messageError: '',
+    messageErrorClass: '',
+    renderConditions: 'beneficiaryType=morPerson',
+    enableConditions: '',
+    entity: '',
+    entityField: '',
+    value: '',
+  },
+  {
+    id: 'field-89',
     idHtml: 'txtBeneficiaryFaLastName',
     name: 'beneficiaryFaLastName',
     orderAppearance: 3,
@@ -88,7 +116,7 @@ export const Beneficiarios: Field[] = [
     value: '',
   },
   {
-    id: 'field-89',
+    id: 'field-90',
     idHtml: 'txtBeneficiaryMoLastName',
     name: 'beneficiaryMoLastName',
     orderAppearance: 4,
@@ -116,7 +144,7 @@ export const Beneficiarios: Field[] = [
     value: '',
   },
   {
-    id: 'field-90',
+    id: 'field-91',
     idHtml: 'radioSuspensiveCondition',
     name: 'suspensiveCodition',
     orderAppearance: 5,
@@ -145,7 +173,7 @@ export const Beneficiarios: Field[] = [
     value: '',
   },
   {
-    id: 'field-91',
+    id: 'field-92',
     idHtml: 'txtContractNumber',
     name: 'contractNumber',
     orderAppearance: 6,
@@ -173,7 +201,7 @@ export const Beneficiarios: Field[] = [
     value: '',
   },
   {
-    id: 'field-92',
+    id: 'field-93',
     idHtml: 'txtInstructionLetterNumber',
     name: 'instructionLetterNumber',
     orderAppearance: 7,
@@ -201,7 +229,7 @@ export const Beneficiarios: Field[] = [
     value: '',
   },
   {
-    id: 'field-93',
+    id: 'field-94',
     idHtml: 'slctBeneficiaryRelationship',
     name: 'beneficiaryRelationship',
     orderAppearance: 8,
@@ -230,7 +258,7 @@ export const Beneficiarios: Field[] = [
     value: '',
   },
   {
-    id: 'field-94',
+    id: 'field-95',
     idHtml: 'dateBeneficiaryBirthDate',
     name: 'beneficiaryBirthDate',
     orderAppearance: 9,
@@ -258,7 +286,7 @@ export const Beneficiarios: Field[] = [
     value: '',
   },
   {
-    id: 'field-95',
+    id: 'field-96',
     idHtml: 'txtParticipationPercentage',
     name: 'participationPercentage',
     orderAppearance: 10,
@@ -286,7 +314,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-96',
+    id: 'field-97',
     idHtml: 'radioSameAsTitular',
     name: 'sameAsTitular',
     orderAppearance: 11,
@@ -315,7 +343,7 @@ export const Beneficiarios: Field[] = [
     value: '',
   },
   {
-    id: 'field-97',
+    id: 'field-98',
     idHtml: 'txtBeneficiaryStreet',
     name: 'beneficiaryStreet',
     orderAppearance: 12,
@@ -343,7 +371,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-98',
+    id: 'field-99',
     idHtml: 'txtBeneficiaryExteriorNumber',
     name: 'beneficiaryExteriorNumber',
     orderAppearance: 13,
@@ -371,7 +399,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-99',
+    id: 'field-100',
     idHtml: 'txtBeneficiaryInteriorNumber',
     name: 'beneficiaryInteriorNumber',
     orderAppearance: 14,
@@ -399,7 +427,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-100',
+    id: 'field-101',
     idHtml: 'txtBeneficiaryZipCode',
     name: 'beneficiaryZipCode',
     orderAppearance: 15,
@@ -427,7 +455,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-101',
+    id: 'field-102',
     idHtml: 'txtBeneficiarySuburb',
     name: 'beneficiarySuburb',
     orderAppearance: 16,
@@ -455,7 +483,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-102',
+    id: 'field-103',
     idHtml: 'txtBeneficiaryMunicipality',
     name: 'beneficiaryMunicipality',
     orderAppearance: 17,
@@ -483,7 +511,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-103',
+    id: 'field-104',
     idHtml: 'txtBeneficiaryState',
     name: 'beneficiaryState',
     orderAppearance: 18,
@@ -511,7 +539,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-104',
+    id: 'field-105',
     idHtml: 'txtBeneficiaryCity',
     name: 'beneficiaryCity',
     orderAppearance: 19,
@@ -539,7 +567,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-105',
+    id: 'field-106',
     idHtml: 'slctBeneficiaryCountry',
     name: 'beneficiaryCountry',
     orderAppearance: 20,
@@ -571,7 +599,7 @@ export const Beneficiarios: Field[] = [
 
 export const BENEFICIARIES: Beneficiary[] =  [
   {
-    beneficiaryId: '01',
+    beneficiaryId: '1',
     beneficiaryType: 'phyPerson',
     name: 'ODALYS', // if typeBeneficiary is Physic person
     fatherLastName: 'MARRON', // if typeBeneficiary is Physic person
@@ -592,52 +620,10 @@ export const BENEFICIARIES: Beneficiary[] =  [
     participationPercentage: '50'
   },
   {
-    beneficiaryId: '02',
-    beneficiaryType: 'phyPerson',
-    name: 'MADIAN', // if typeBeneficiary is Physic person
-    fatherLastName: 'MARRON', // if typeBeneficiary is Physic person
-    motherLastName: 'SANCHEZ', // if typeBeneficiary is Physic person
-    relationship: 'Hermana',
-    birthDateOrConstitution: '1994/01/01',
-    address: {
-      street: 'Aluminio',
-      exteriorNumber: '145',
-      interiorNumber: 'D-7',
-      zipCode: '15220',
-      neighborhood: 'Nicolas Bravo',
-      municipality: 'Venustiano Carranza',
-      state: 'CDMX',
-      city: 'CDMX',
-      country: 'México'
-    },
-    participationPercentage: '20'
-  },
-  {
-    beneficiaryId: '03',
-    beneficiaryType: 'phyPerson',
-    name: 'ANA LUISA', // if typeBeneficiary is Physic person
-    fatherLastName: 'BOBADILLA', // if typeBeneficiary is Physic person
-    motherLastName: 'MARRON', // if typeBeneficiary is Physic person
-    relationship: 'Hermana',
-    birthDateOrConstitution: '2005/01/07',
-    address: {
-      street: 'Aluminio',
-      exteriorNumber: '145',
-      interiorNumber: 'D-7',
-      zipCode: '15220',
-      neighborhood: 'Nicolas Bravo',
-      municipality: 'Venustiano Carranza',
-      state: 'CDMX',
-      city: 'CDMX',
-      country: 'México'
-    },
-    participationPercentage: '30'
-  },
-  {
-    beneficiaryId: '05',
+    beneficiaryId: '5',
     beneficiaryType: 'morPerson',
     relationship: ' ',
-    bussinesName: 'Empresa',
+    businessName: 'Empresa',
     birthDateOrConstitution: '2001/03/08',
     address: {
       street: 'CALLE',

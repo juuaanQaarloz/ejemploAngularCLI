@@ -44,3 +44,35 @@ export const MockOperations: Operation[] = [
     enableConditions: '',
   }
 ];
+
+export const BeneficiariesOperations: Operation[] = [
+  {
+    id: 'opt-1',
+    idHtml: 'btnCancel',
+    name: 'cancelar',
+    label: 'Cancelar',
+    type: 'button',
+    style: '',
+    styleClass: 'ml-link',
+    message: '',
+    messageClass: '',
+    delegateOperation: 'closeDialog',
+    renderConditions: '',
+    enableConditions: '',
+  },
+  {
+    id: 'opt-2',
+    idHtml: 'btnAddBeneficiary',
+    name: 'addBeneficiary',
+    label: 'AGREGAR',
+    type: 'button',
+    style: '',
+    styleClass: 'ml-button-primary',
+    message: '',
+    messageClass: '',
+    delegateOperation: 'addNewBeneficiary',
+    renderConditions: '',
+    enableConditions: '',
+  }
+];
+

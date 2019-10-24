@@ -3,7 +3,7 @@
   <div class="beneficiary-attribute"
        *ngIf="beneficiary.beneficiaryType === 'phyPerson'">{{beneficiary.name + ' ' + beneficiary.fatherLastName + ' ' + beneficiary.motherLastName}}</div>
   <div class="beneficiary-attribute"
-       *ngIf="beneficiary.beneficiaryType === 'morPerson' || beneficiary.beneficiaryType === 'fidPerson'">{{beneficiary.bussinesName + 'here'}}</div>
+       *ngIf="beneficiary.beneficiaryType === 'morPerson' || beneficiary.beneficiaryType === 'fidPerson'">{{beneficiary.businessName}}</div>
   <div class="beneficiary-attribute">{{beneficiary.birthDateOrConstitution}}</div>
 
   <div class="beneficiary-attribute" *ngFor="let field of fields">

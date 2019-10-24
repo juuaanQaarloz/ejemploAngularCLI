@@ -117,6 +117,21 @@ export class ApplicationService {
     this.beneficiaries.next(currentBeneficiaries);
   }
 
+  getLastBeneficiaryId() {
+    let currentBeneficiaries = this.beneficiaries.getValue();
+    let lastId = 0;
+    if (currentBeneficiaries.length > 1) {
+      lastId = Number(currentBeneficiaries[length].beneficiaryId);
+    }
+    return lastId;
+  }
+
+  updateBeneficiary(updatedBeneficiary: Beneficiary) {
+    let currentBeneficiaries = this.beneficiaries.getValue();
+    let findedBeneficiary = currentBeneficiaries.filter(b => b.beneficiaryId === updatedBeneficiary.beneficiaryId)[0];
+    console.log('findedBeneficiary: ', findedBeneficiary);
+  }
+
   setFormGroup(form: FormGroup) {
     this.formGroup = form;
   }

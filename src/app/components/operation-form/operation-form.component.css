@@ -115,6 +115,7 @@
   color: #007abc;
   font-weight: bold;
   display: inline-block;
+  margin: 15px;
 }
 
 .ml-link:hover,

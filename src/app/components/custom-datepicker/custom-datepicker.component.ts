@@ -9,15 +9,8 @@ import {dateTitPattern} from '../../core/validators';
   selector: 'app-custom-datepicker',
   templateUrl: './custom-datepicker.component.html',
   styleUrls: ['./custom-datepicker.component.css']
-  /*providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CustomDatepickerComponent), // Name of our component
-      multi: true
-    }
-  ]*/
 })
-export class CustomDatepickerComponent implements OnInit, AfterViewInit { // , ControlValueAccessor {
+export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   @Input() fieldObj: Field;
   @Input() form: FormGroup;
   @Input() dateFormat = 'YYYY/MM/DD';
@@ -67,7 +60,5 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit { // , C
       // set value to the input element
       elem.setAttribute('value', event.targetElement.value);
     }
-
-
   }
 }
