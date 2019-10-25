@@ -25,6 +25,7 @@ export interface Field {
   messageErrorClass: string; // new
   renderConditions: string;
   enableConditions: string;
+  requiredConditions?: string;
   entity: string;
   entityField: string;
   // --added extra from modal--

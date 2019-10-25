@@ -38,7 +38,8 @@ export class ApplicationService {
       section.contents.forEach((contentFromSection) => {
         if (contentFromSection.fields) {
           contentFromSection.fields.forEach(field => {
-            group[field.name] = new FormControl(field.value || '', this.getValidationFunctions(field));
+            group[field.name] = new FormControl(
+              field.value || '', this.getValidationFunctions(field));
           });
         } else {
           if (contentFromSection.process) {
@@ -46,14 +47,18 @@ export class ApplicationService {
               step.contents.forEach((contentFromStep) => {
                 if (contentFromStep.fields) {
                   contentFromStep.fields.forEach(field => {
-                    group[field.name] = new FormControl(field.value || '', this.getValidationFunctions(field));
+                    group[field.name] = new FormControl(
+                      field.value || '',
+                      this.getValidationFunctions(field));
                   });
                 } else {
                   if (contentFromStep.contentChildren) {
                     contentFromStep.contentChildren.forEach(contentChild => {
                       if (contentChild.fields) {
                         contentChild.fields.forEach(field => {
-                          group[field.name] = new FormControl(field.value || '', this.getValidationFunctions(field));
+                          group[field.name] = new FormControl(
+                            field.value || '',
+                            this.getValidationFunctions(field));
                         });
                       }
                     });
@@ -188,7 +193,7 @@ export class ApplicationService {
 
   evaluateRenderCondition(formGroup: FormGroup, elementsCondition) {
     const valueFormControl = this.getFormControlValueByName(formGroup, elementsCondition[1]);
-    let result = false;
+    let result: boolean;
 
     switch (elementsCondition[2]) {
       case '=':

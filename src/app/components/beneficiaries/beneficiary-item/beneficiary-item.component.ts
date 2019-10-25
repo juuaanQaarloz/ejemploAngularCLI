@@ -31,7 +31,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.formGroup = this.applicationService.createNewFormGroup(this.fields);
-    console.log('formGroup: ', this.formGroup);
+    // console.log('formGroup: ', this.formGroup);
     // this.clearFields();
     this.setFieldsValues();
     this.modalId = 'modal-' + this.beneficiary.beneficiaryId;

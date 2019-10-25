@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Field} from '../../models/field';
 import {FormGroup} from '@angular/forms';
 import {SelectOption} from '../../models/select-option-interface';
@@ -11,7 +11,7 @@ import {DomSanitizer} from '@angular/platform-browser';
   templateUrl: './field-form.component.html',
   styleUrls: ['./field-form.component.css']
 })
-export class FieldFormComponent implements OnInit, AfterViewInit {
+export class FieldFormComponent implements OnInit, AfterViewInit, OnDestroy{
   @Input() fieldObj: Field;
   @Input() form: FormGroup;
   showSelectLabel = false;
@@ -22,6 +22,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   toggleVisible = true;
   datePickerClicked = false;
   show = true;
+  valid = true;
 
   constructor(private applicationService: ApplicationService,
               private matIconRegistry: MatIconRegistry,
@@ -48,23 +49,42 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       // console.log('renderConditions: ', renderConditions);
       // console.log('renderConditions[0][1]: ', renderConditions[0][1]);
       // console.log('this.form: field component: ', this.form);
-      this.show = this.applicationService.evaluateRenderCondition(this.form, renderConditions[0]);
+      // this.show = this.applicationService.evaluateRenderCondition(this.form, renderConditions[0]);
       this.form.controls[renderConditions[0][1]].valueChanges.subscribe((value) => {
+        console.log('onValueChanges: ', value);
+        console.log('formControl : ', renderConditions[0][1]);
         this.show = this.applicationService.evaluateRenderCondition(this.form, renderConditions[0]);
         // console.log('show: after: ', this.show);
       });
     }
+
+    if (this.fieldObj.requiredConditions) {
+      const requiredConditions = this.applicationService.getRenderConditions(this.fieldObj.requiredConditions);
+      console.log('requiredConditions: ', requiredConditions);
+      this.fieldObj.required = this.applicationService.evaluateRenderCondition(this.form, requiredConditions[0]);
+      this.form.controls[requiredConditions[0][1]].valueChanges.subscribe((value) => {
+        console.log('value: ', value);
+        this.fieldObj.required = this.applicationService.evaluateRenderCondition(this.form, requiredConditions[0]);
+        this.form.controls[this.fieldObj.name].setValidators(this.applicationService.getValidationFunctions(this.fieldObj));
+        this.form.controls[this.fieldObj.name].updateValueAndValidity();
+      });
+    }
+    // console.log('idHtml: ', this.fieldObj.idHtml);
+  }
+
+  ngOnDestroy(): void {
+
   }
 
   ngAfterViewInit() {
-    let currentValue = this.form.controls[this.fieldObj.name].value;
+    const currentValue = this.form.controls[this.fieldObj.name].value;
     // console.log('value: ', currentValue);
-    let defaultValue = this.fieldObj.value;
+    const defaultValue = this.fieldObj.value;
     // console.log('defaultValue: ', defaultValue);
 
     if (this.fieldObj.type === 'text') {
-      let elem: Element = document.getElementById(this.fieldObj.idHtml);
-      console.log('elem: ', elem);
+      const elem: Element = document.getElementById(this.fieldObj.idHtml);
+      // console.log('elem: ', elem);
       let valueToSet;
       if (elem) {
         if (this.fieldObj.value) { // set default value from configuration
@@ -79,7 +99,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onKeyUp(event) {
-    // console.log('onKeyUp: ', this.fieldObj.name);
+    // console.log('onKeyUp: ');
     let value;
     value = event.target.value;
     // console.log('value: ', value);
@@ -87,6 +107,11 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     // console.log('elem: ', elem);
     elem.setAttribute('value', event.target.value);
     // console.log('elem.getAttribute: ', elem.getAttribute('value'));
+  }
+
+  onBlur(event) {
+    // console.log('onBlur ', event);
+    this.isValid();
   }
 
   onClickToggle() {
@@ -145,9 +170,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     });
     return value;
   }
-  get isValid() {
+
+  isValid() {
     // console.log('errors: ', this.form.controls[this.fieldObj.name].errors);
-    return this.form.controls[this.fieldObj.name].valid;
+    this.valid =  this.form.controls[this.fieldObj.name].valid;
   }
 
   registerCustomIcons() {
@@ -166,15 +192,15 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     const defaultValue = this.fieldObj.value;
     let result: boolean;
 
-    if (defaultValue) {
-      if (defaultValue === value) {
-        result =  true;
+    if (currentValue) {
+      if (currentValue === value) {
+        result = true;
       } else {
         result = false;
       }
-    } else if (currentValue) {
-      if (currentValue === value) {
-        result = true;
+    } else if (defaultValue) {
+      if (defaultValue === value) {
+        result =  true;
       } else {
         result = false;
       }
