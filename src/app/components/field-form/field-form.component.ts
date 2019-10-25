@@ -11,7 +11,7 @@ import {DomSanitizer} from '@angular/platform-browser';
   templateUrl: './field-form.component.html',
   styleUrls: ['./field-form.component.css']
 })
-export class FieldFormComponent implements OnInit, AfterViewInit, OnDestroy{
+export class FieldFormComponent implements OnInit, AfterViewInit {
   @Input() fieldObj: Field;
   @Input() form: FormGroup;
   showSelectLabel = false;
@@ -44,36 +44,32 @@ export class FieldFormComponent implements OnInit, AfterViewInit, OnDestroy{
     }
 
     if (this.fieldObj.renderConditions) {
-      const renderConditions = this.applicationService.getRenderConditions(this.fieldObj.renderConditions);
+      const renderConditions = this.applicationService.getConditions(this.fieldObj.renderConditions);
       // console.log('----from Field----');
       // console.log('renderConditions: ', renderConditions);
       // console.log('renderConditions[0][1]: ', renderConditions[0][1]);
       // console.log('this.form: field component: ', this.form);
-      // this.show = this.applicationService.evaluateRenderCondition(this.form, renderConditions[0]);
+      this.show = this.applicationService.evaluateCondition(this.form, renderConditions[0]);
       this.form.controls[renderConditions[0][1]].valueChanges.subscribe((value) => {
         console.log('onValueChanges: ', value);
         console.log('formControl : ', renderConditions[0][1]);
-        this.show = this.applicationService.evaluateRenderCondition(this.form, renderConditions[0]);
+        this.show = this.applicationService.evaluateCondition(this.form, renderConditions[0]);
         // console.log('show: after: ', this.show);
       });
     }
 
     if (this.fieldObj.requiredConditions) {
-      const requiredConditions = this.applicationService.getRenderConditions(this.fieldObj.requiredConditions);
-      console.log('requiredConditions: ', requiredConditions);
-      this.fieldObj.required = this.applicationService.evaluateRenderCondition(this.form, requiredConditions[0]);
+      const requiredConditions = this.applicationService.getConditions(this.fieldObj.requiredConditions);
+      // console.log('requiredConditions: ', requiredConditions);
+      this.fieldObj.required = this.applicationService.evaluateCondition(this.form, requiredConditions[0]);
       this.form.controls[requiredConditions[0][1]].valueChanges.subscribe((value) => {
-        console.log('value: ', value);
-        this.fieldObj.required = this.applicationService.evaluateRenderCondition(this.form, requiredConditions[0]);
+        // console.log('value: ', value);
+        this.fieldObj.required = this.applicationService.evaluateCondition(this.form, requiredConditions[0]);
         this.form.controls[this.fieldObj.name].setValidators(this.applicationService.getValidationFunctions(this.fieldObj));
         this.form.controls[this.fieldObj.name].updateValueAndValidity();
       });
     }
     // console.log('idHtml: ', this.fieldObj.idHtml);
-  }
-
-  ngOnDestroy(): void {
-
   }
 
   ngAfterViewInit() {
@@ -110,7 +106,13 @@ export class FieldFormComponent implements OnInit, AfterViewInit, OnDestroy{
   }
 
   onBlur(event) {
-    // console.log('onBlur ', event);
+    console.log('onBlur ', event);
+    this.isValid();
+  }
+
+  onValidate(event) {
+    console.log('onValidate ', event);
+    console.log('currentValue: ', this.form.controls[this.fieldObj.name].value);
     this.isValid();
   }
 

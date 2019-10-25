@@ -16,12 +16,13 @@ import { AppRoutingModule } from './app-routing.module';
 import {ModalModule} from './components/custom-modal';
 import {CoreModule} from './core/core.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatDatepickerModule, MatIconModule, MatInputModule, MatNativeDateModule} from '@angular/material';
+import {DateAdapter, MAT_DATE_FORMATS, MatDatepickerModule, MatIconModule, MatInputModule, MatNativeDateModule} from '@angular/material';
 import { CustomDatepickerComponent } from './components/custom-datepicker/custom-datepicker.component';
 import { BeneficiaryTableComponent } from './components/beneficiaries/beneficiary-table/beneficiary-table.component';
 import { BeneficiaryItemComponent } from './components/beneficiaries/beneficiary-item/beneficiary-item.component';
 import { NewBeneficiaryComponent } from './components/beneficiaries/new-beneficiary/new-beneficiary.component';
 import {DialogModule} from './components/dialog/dialog.module';
+import {MY_DATE_FORMATS, MyDateAdapter} from './core/utilities/date.adapter';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,10 @@ import {DialogModule} from './components/dialog/dialog.module';
     AppRoutingModule
   ],
   bootstrap: [AppComponent],
-  entryComponents: [NewBeneficiaryComponent]
+  entryComponents: [NewBeneficiaryComponent],
+  providers: [
+    { provide: DateAdapter, useClass: MyDateAdapter},
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS}
+  ]
 })
 export class AppModule { }

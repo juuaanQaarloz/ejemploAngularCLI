@@ -1,7 +1,7 @@
-import {AfterViewChecked, AfterViewInit, Component, forwardRef, Input, OnInit} from '@angular/core';
+import {AfterViewChecked, AfterViewInit, Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
 import {Field} from '../../models';
 import {ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 import * as moment from 'moment';
 import {dateTitPattern} from '../../core/validators';
 import {transformDate} from '../../core/utilities';
@@ -15,8 +15,11 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   @Input() fieldObj: Field;
   @Input() form: FormGroup;
   @Input() dateFormat = 'YYYY/MM/DD';
+  @Output() validate = new EventEmitter<boolean>();
   isValid: boolean;
-  constructor() { }
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
@@ -38,39 +41,20 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   }
 
   onDateInput(typeEvent: string, event) {
-    console.log('onDateInput...  ');
-    console.log('event: ', event.targetElement.value);
-    this.isValid = dateTitPattern.test(event.targetElement.value);
   }
 
   onDateChange(event) {
-    console.log('onDateChange...');
+    console.log('onDateChange... ', event);
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
-    console.log('isValid: ', this.isValid);
-
-    if (this.isValid) {
-      console.log(' event.targetElement.value',  event.targetElement.value);
-      elem.setAttribute('value', event.targetElement.value);
-    } else {
-
-      console.log('dateFormat: ', this.dateFormat);
-      const transformedDate =  transformDate(event.value, this.dateFormat);
-      console.log('transformedDate: ', transformedDate);
-
-      event.targetElement.value = transformedDate;
-
-      console.log('type of event.targetElement.value', typeof event.targetElement.value);
-
-      // set value to the input element
-      elem.setAttribute('value', event.targetElement.value);
-    }
+    console.log('event.targetElement.value: ', event.targetElement.value);
+    // const transformedDate = transformDate(event.target.value, this.dateFormat);
+    // event.targetElement.value = transformedDate;
+    elem.setAttribute('value', event.targetElement.value);
+    this.validate.emit(true);
   }
 
-  checkValue() {
-    let value = this.fieldObj.value;
-    if (value) {
-      console.log('value: ', value);
-    }
-    return value;
+  onBlur() {
+    console.log('onBlur from custom-datepicker');
+    this.validate.emit(true);
   }
 }

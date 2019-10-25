@@ -4,8 +4,8 @@
          [id]="fieldObj.idHtml"
          placeholder="{{fieldObj.placeholder}}"
          value=""
-         (dateInput)="onDateInput('input', $event)"
-         (dateChange)="onDateChange($event)">
+         (dateChange)="onDateChange($event)"
+         (blur)="onBlur()">
 
   <span>{{fieldObj.label}}</span>
 

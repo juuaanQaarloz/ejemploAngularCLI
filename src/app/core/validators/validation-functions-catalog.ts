@@ -1,8 +1,8 @@
-import {validateAlphanumericValue} from './validators';
+import {validateAlphanumericValue, validateName} from './validators';
 
 export const validatorsObjects = [
   {
     nameField: 'name',
-    validationFunctions: [validateAlphanumericValue]
+    validationFunctions: [validateAlphanumericValue, validateName]
   }
 ];

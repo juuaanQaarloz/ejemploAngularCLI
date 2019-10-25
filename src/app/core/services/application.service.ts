@@ -170,7 +170,7 @@ export class ApplicationService {
     // eval conditions that are inside parenthesis
   }
 
-  getRenderConditions(renderConditions: string) {
+  getConditions(renderConditions: string) {
     let result = [];
     let separatedRenderConditions = [];
 
@@ -191,7 +191,7 @@ export class ApplicationService {
     return result;
   }
 
-  evaluateRenderCondition(formGroup: FormGroup, elementsCondition) {
+  evaluateCondition(formGroup: FormGroup, elementsCondition) {
     const valueFormControl = this.getFormControlValueByName(formGroup, elementsCondition[1]);
     let result: boolean;
 
