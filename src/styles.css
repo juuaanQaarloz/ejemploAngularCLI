@@ -864,3 +864,61 @@ select::-ms-expand {
 .button-close:hover{
   content: url(/assets/img/modal/close-icon-over.svg);
 }
+
+/*Table styles*/
+
+.ml-table-container {
+  padding: 30px;
+}
+
+.ml-table-title {
+  height: 37px;
+  line-height: 37px;
+  font-family: Georgia, serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  background: #007ABC;
+  /*added attributes*/
+  text-align: center;
+}
+
+.odd {
+  background-color: #E5F4FB;
+}
+
+.even {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  background-color: #FFFFFF;
+}
+
+.even-occupation {
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr;
+  background-color: #FFFFFF;
+}
+
+.field-name-column {
+  text-align: center;
+  color: black;
+  width: 100%;
+  font-size: 13px;
+  border-collapse: collapse;
+  margin: 0;
+  font-weight: bold;
+  background-color: white;
+}
+
+.name-column {
+  text-align: left;
+  color: black;
+  width: 100%;
+  font-size: 13px;
+  border-collapse: collapse;
+  margin: 0;
+  font-weight: bold;
+  background-color: white;
+}
+
+/*end Table styles*/

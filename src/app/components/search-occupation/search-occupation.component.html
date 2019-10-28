@@ -1,0 +1,36 @@
+<div data-forms="floating-label" class="ml-form"
+     [ngClass]="content.styleClass">
+  <div class="search-column" *ngFor="let field of content.fields">
+    <app-field-form [fieldObj]="field" [form]="form"></app-field-form>
+
+    <app-operation-form *ngFor="let operation of content.operations"
+                        [operationObj]="operation"
+                        (click)="executeOperation(operation.delegateOperation)"
+    ></app-operation-form>
+
+  </div>
+
+  <div *ngIf="foundOccupations.length > 0">
+    <div>
+      <div class="ml-table-title">{{tableTitle}}</div>
+      <div class="even-occupation">
+        <div class="name-column" *ngFor="let columnName of columnsNames">{{columnName}}</div>
+      </div>
+      <div class="occupation-row" *ngFor="let foundOccupation of foundOccupations; let i = index;"
+           [ngStyle]="{'background-color':  this.appService.determinateEvenOrOdd(i) ? '#E5F4FB': '#FFFFFF'}">
+        <div class="result-attribute">
+          <a (click)="setOccupation(foundOccupation)">{{foundOccupation.specificOccupationCode}}</a>
+        </div>
+        <div class="result-attribute">{{foundOccupation.specificOccupationName}}</div>
+        <div class="result-attribute">{{foundOccupation.specificOccupationAlias}}</div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="notResultsFound">
+   <p>No se han encontrado resultados para su búsqueda</p>
+  </div>
+</div>
+
+
+

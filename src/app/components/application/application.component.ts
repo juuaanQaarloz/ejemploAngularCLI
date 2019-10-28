@@ -3,6 +3,7 @@ import {FormGroup} from '@angular/forms';
 import {ApplicationService, AuthService, StorageService} from '../../core/services';
 import {MockTemplate} from '../../core/mock/mock-template';
 import {DialogService} from '../dialog/dialog.service';
+import {ModalService} from '../custom-modal';
 
 @Component({
   selector: 'app-application',
@@ -19,7 +20,8 @@ export class ApplicationComponent implements OnInit {
   constructor(private appService: ApplicationService,
               private authService: AuthService,
               private storageService: StorageService,
-              public dialog: DialogService
+              public dialog: DialogService,
+              private modalService: ModalService
   ) {}
 
   ngOnInit() {
@@ -65,5 +67,9 @@ export class ApplicationComponent implements OnInit {
   getFormValue() {
     this.payLoad = JSON.stringify(this.formGroup.value);
     console.log(this.formGroup.value);
+  }
+
+  openDialog(modalID: string) {
+    this.modalService.open(modalID);
   }
 }

@@ -1,4 +1,4 @@
-<div class="beneficiary-row" [ngStyle]="{'background-color':  determinateEvenOrOdd(index) ? '#E5F4FB': '#FFFFFF'}">
+<div class="beneficiary-row" [ngStyle]="{'background-color':  this.applicationService.determinateEvenOrOdd(index) ? '#E5F4FB': '#FFFFFF'}">
   <div class="beneficiary-attribute">{{getBeneficiaryTypeLabel()}}</div>
   <div class="beneficiary-attribute"
        *ngIf="beneficiary.beneficiaryType === 'phyPerson'">{{beneficiary.name + ' ' + beneficiary.fatherLastName + ' ' + beneficiary.motherLastName}}</div>

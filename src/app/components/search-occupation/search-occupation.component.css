@@ -1,0 +1,19 @@
+.search-container{
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.search-column{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  grid-gap: 10px
+}
+
+.occupation-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr;
+}
+
+.result-attribute{
+  text-align: left;
+}

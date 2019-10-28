@@ -23,6 +23,7 @@ import { BeneficiaryItemComponent } from './components/beneficiaries/beneficiary
 import { NewBeneficiaryComponent } from './components/beneficiaries/new-beneficiary/new-beneficiary.component';
 import {DialogModule} from './components/dialog/dialog.module';
 import {MY_DATE_FORMATS, MyDateAdapter} from './core/utilities/date.adapter';
+import { SearchOccupationComponent } from './components/search-occupation/search-occupation.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {MY_DATE_FORMATS, MyDateAdapter} from './core/utilities/date.adapter';
     CustomDatepickerComponent,
     BeneficiaryTableComponent,
     BeneficiaryItemComponent,
-    NewBeneficiaryComponent
+    NewBeneficiaryComponent,
+    SearchOccupationComponent,
   ],
   imports: [
     BrowserModule,

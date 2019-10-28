@@ -41,14 +41,6 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
   }
 
-  determinateEvenOrOdd(num: number): boolean {
-    if (num % 2 === 0) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-
   addNewBeneficiary() {
     const ref = this.dialog.open(NewBeneficiaryComponent, {data: null});
     ref.afterClosed.subscribe((result) => {

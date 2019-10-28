@@ -121,4 +121,21 @@ export const BeneficiaryItemOperations: Operation[] = [
   }
 ];
 
+export const SearchOccupationOperations: Operation[] = [
+  {
+    id: 'opt-1',
+    idHtml: 'btnSearchOccupation',
+    name: 'searchOccupation',
+    label: 'BUSCAR',
+    type: 'button',
+    style: '',
+    styleClass: 'ml-button-primary',
+    message: '',
+    messageClass: '',
+    delegateOperation: 'searchOccupation',
+    renderConditions: '',
+    enableConditions: ''
+  }
+];
+
 

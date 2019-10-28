@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ModalService} from '../../custom-modal';
 import {ApplicationService} from '../../../core/services';
 import {NewBeneficiaryComponent} from '../new-beneficiary/new-beneficiary.component';
 import {DialogService} from '../../dialog/dialog.service';
@@ -10,7 +9,6 @@ import {DialogService} from '../../dialog/dialog.service';
   styleUrls: ['./beneficiary-table.component.css']
 })
 export class BeneficiaryTableComponent implements OnInit {
-  // @Input() content: Content;
   title = 'Datos de Beneficiario(s)';
   columnsNames = ['Tipo de Beneficiario',
     'Nombre / Razón social',

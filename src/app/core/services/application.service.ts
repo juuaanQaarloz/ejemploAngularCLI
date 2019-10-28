@@ -249,8 +249,16 @@ export class ApplicationService {
   createNewFormGroup(fields: Field[]): FormGroup {
     const group: any = {};
     fields.forEach((field) => {
-      group[field.name] = new FormControl(field.value || '');
+      group[field.name] = new FormControl(field.value || '', this.getValidationFunctions(field));
     });
     return new FormGroup(group);
+  }
+
+  determinateEvenOrOdd(num: number): boolean {
+    if (num % 2 === 0) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

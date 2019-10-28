@@ -39,7 +39,12 @@
   <!--<div *ngIf="payLoad" class="form-row">
     <strong>Saved the following values</strong><br>{{payLoad}}
   </div>-->
-  <!--<button (click)="openDialog()">get form value</button>-->
+
+  <button (click)="openDialog('modal-search')">SEARCH</button>
+
+  <jw-modal [id]="'modal-search'" [modalType]="'overlay'">
+    <app-search-occupation></app-search-occupation>
+  </jw-modal>
 
 </div>
 
