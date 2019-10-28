@@ -53,7 +53,8 @@
     </label>
   </fieldset>
 
-  <fieldset *ngSwitchCase="'radio'" class="ml-form-field" style="display: grid; grid-template-columns: 85% 15%;">
+  <fieldset *ngSwitchCase="'radio'" class="ml-form-field" style="display: grid; grid-template-columns: 85% 15%;"
+            [ngClass]="{'error': !valid}">
     <label>{{fieldObj.label}}</label>
 
     <div class="ml-form-field-radio-group" *ngFor="let radioOption of radioOptions; let first = first">
@@ -62,6 +63,7 @@
              [value]="radioOption.value"
              [checked]="checkValue(radioOption.value)">
       <label>{{radioOption.name}}</label>
+
     </div>
 
   </fieldset>
