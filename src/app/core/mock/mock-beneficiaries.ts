@@ -600,6 +600,34 @@ export const Beneficiarios: Field[] = [
     entity: '',
     entityField: '',
     value: ''
+  },
+  {
+    id: 'field-107',
+    idHtml: 'txtAdditionalInfo',
+    name: 'additionalInfo',
+    orderAppearance: 21,
+    label: 'Información adicional',
+    type: 'text',
+    required: false,
+    placeholder: '',
+    length: '200',
+    minValue: 0,
+    maxValue: 200,
+    pattern: '',
+    source: '',
+    sourceID: '',
+    style: '',
+    styleClass: '',
+    styleClassError: '',
+    message: '',
+    messageClass: '',
+    messageError: '',
+    messageErrorClass: '',
+    renderConditions: '',
+    enableConditions: '',
+    entity: '',
+    entityField: '',
+    value: ''
   }
 ];
 

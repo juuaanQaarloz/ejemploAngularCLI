@@ -29,7 +29,7 @@
     </div>
     <p>¿Está seguro que desea eliminar al beneficiario de la lista?</p>
 
-    <div class="operation">
+    <div class="operation-modal">
       <app-operation-form *ngFor="let operation of operations" [operationObj]="operation"
                           (click)="executeOperation(operation.delegateOperation)">
       </app-operation-form>

@@ -1,5 +1,8 @@
 <div data-forms="floating-label" class="ml-form"
      [ngClass]="content.styleClass">
+  <div style="text-align: right">
+    <img class="button-close" (click)="closeModal(modalID)">
+  </div>
   <div class="search-column" *ngFor="let field of content.fields">
     <app-field-form [fieldObj]="field" [form]="form"></app-field-form>
 

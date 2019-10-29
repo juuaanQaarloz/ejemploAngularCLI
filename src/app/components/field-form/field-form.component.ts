@@ -106,13 +106,13 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onBlur(event) {
-    console.log('onBlur ', event);
+    // console.log('onBlur ', event);
     this.isValid();
   }
 
   onValidate(event) {
-    console.log('onValidate ', event);
-    console.log('currentValue: ', this.form.controls[this.fieldObj.name].value);
+    // console.log('onValidate ', event);
+    // console.log('currentValue: ', this.form.controls[this.fieldObj.name].value);
     this.isValid();
   }
 

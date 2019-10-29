@@ -1,14 +1,14 @@
 import {Content, Field, Operation, Process} from '../../models';
 import {DatosGeneralesPersonaFisica} from './mock-general-data/mock-datos-persona-fisica';
 import {DatosDomicilio} from './mock-general-data/mock-domicilio';
-import {MockOperations} from './mock-operations';
-import {InformacionLaboral} from './mock-laboral-data/mock-informacion-laboral';
+import {MockOperations, SearchOccupationOperations, SearchOccupationOperationsS} from './mock-operations';
+import {InformaciolLaboral1, InformacionLaboral} from './mock-laboral-data/mock-informacion-laboral';
 import {DatosGeneralesPersonaMoral} from './mock-general-data/mock-datos-pesona-moral';
 import {DatosDomicilioContactoMoral} from './mock-general-data/mock-domicilio-contacto-moral';
 import {DatosRepresentanteLegal} from './mock-general-data/legal-agent';
 import {DatosGeneralesSolicitante} from './mock-general-data/mock-datos-solicitante';
 import {DatosDomicilioSolicitante} from './mock-general-data/mock-domicilio-solicitante';
-import {InformacionLaboralSolicitante} from './mock-laboral-data/mock-informacion-laboral-solicitante';
+import {InformacionLaboralSolicitante, InformacionLaboralSolicitante1} from './mock-laboral-data/mock-informacion-laboral-solicitante';
 import {Beneficiarios} from './mock-beneficiaries';
 
 export const MockFieldsContractorType: Field[] = [
@@ -170,8 +170,8 @@ export const MockContentStep2Process1ContentSection2: Content[] = [
     idHtml: 'app-content-form-2.5',
     title: '',
     // process?: Process;
-    fields: InformacionLaboral,
-    // operations?: Operation[];
+    fields: InformaciolLaboral1,
+    operations: SearchOccupationOperations,
     renderConditions: '',
     // ---pending---
     // contentChildren?: Array<Content>;
@@ -189,6 +189,27 @@ export const MockContentStep2Process1ContentSection2: Content[] = [
     idParent: 'step-2',
     parentType: 'Step',
     idHtml: 'app-content-form-2.6',
+    title: '',
+    // process?: Process;
+    fields: InformacionLaboral,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-2.7',
+    idParent: 'step-2',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.7',
     title: '',
     // process?: Process;
     // fields: DatosDomicilio,
@@ -413,8 +434,8 @@ export const MockContentStep6Process1ContentSection2: Content[] = [
     idHtml: 'app-content-form-2.16',
     title: '',
     // process?: Process;
-    fields: InformacionLaboralSolicitante,
-    // operations?: Operation[];
+    fields: InformacionLaboralSolicitante1,
+    operations: SearchOccupationOperationsS,
     renderConditions: '',
     // ---pending---
     // contentChildren?: Array<Content>;
@@ -432,6 +453,27 @@ export const MockContentStep6Process1ContentSection2: Content[] = [
     idParent: 'step-6',
     parentType: 'Step',
     idHtml: 'app-content-form-2.17',
+    title: '',
+    // process?: Process;
+    fields: InformacionLaboralSolicitante,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-2.18',
+    idParent: 'step-6',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.18',
     title: '',
     // process?: Process;
     // fields: DatosDomicilio,
@@ -452,10 +494,10 @@ export const MockContentStep6Process1ContentSection2: Content[] = [
 
 export const MockContentStep7Process1ContentSection2: Content[] = [
   {
-    id: 'content-2.18',
+    id: 'content-2.19',
     idParent: 'step-7',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.18',
+    idHtml: 'app-content-form-2.19',
     title: '',
     contentType: 'table-beneficiary',
     // process?: Process;

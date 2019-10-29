@@ -6,6 +6,8 @@ import {Beneficiarios} from '../../../core/mock/mock-beneficiaries';
 import {BeneficiariesOperations} from '../../../core/mock/mock-operations';
 import {FormGroup} from '@angular/forms';
 import {transformDate} from '../../../core/utilities';
+import {ModalService} from '../../custom-modal';
+import {Operation} from '../../../models';
 
 @Component({
   selector: 'app-new-beneficiary',
@@ -25,11 +27,30 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
     renderConditions: '',
     contentType: 'looseFields'
   };
+
+  okOperation: Operation = {
+    id: 'opt-1',
+    idHtml: 'btnOK',
+    name: 'OK',
+    label: 'OK',
+    type: 'button',
+    style: '',
+    styleClass: 'ml-button-primary',
+    message: '',
+    messageClass: '',
+    delegateOperation: 'closeModal',
+    renderConditions: '',
+    enableConditions: ''
+  };
+
   formGroup: FormGroup;
   operationType: string;
+  modalID = 'modal-warning';
+
   constructor(private applicationService: ApplicationService,
               public config: DialogConfig,
-              public dialog: DialogRef
+              public dialog: DialogRef,
+              private modalService: ModalService
   ) {
   }
 
@@ -51,8 +72,11 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
     console.log('formGroup value: ', this.formGroup.value);
     let newBeneficiary = this.mapNewBeneficiaryData();
 
-    this.applicationService.addBeneficiary(newBeneficiary);
-    this.closeDialog();
+    if (this.applicationService.addBeneficiary(newBeneficiary)) {
+      this.closeDialog();
+    } else {
+      this.modalService.open(this.modalID);
+    }
   }
 
   updateBeneficiary() {
@@ -68,6 +92,8 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
       this.addNewBeneficiary();
     } else if (delegateOperation === 'updateBeneficiary') {
       this.updateBeneficiary();
+    } else if (delegateOperation === 'closeModal') {
+      this.modalService.close(this.modalID);
     }
   }
 
@@ -167,5 +193,9 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
       contractNumber: this.formGroup.controls.contractNumber.value,
       instructionLetterNumber: this.formGroup.controls.instructionLetterNumber.value,
     };
+  }
+
+  closeModal(modalID: string) {
+    this.modalService.close(modalID);
   }
 }

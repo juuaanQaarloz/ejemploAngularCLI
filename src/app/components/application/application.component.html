@@ -14,7 +14,7 @@
   </div>
 
   <img class="img-container" src="../../../assets/img/met-life-logo.png"
-            [ngClass]="resizeHeaderHeight ? 'img-container-minimized' : 'img-container' ">
+       [ngClass]="resizeHeaderHeight ? 'img-container-minimized' : 'img-container' ">
 
   <div class="header-right-container"
        [ngClass]="resizeHeaderHeight ? 'header-right-container-minimized' : 'header-right-container' ">
@@ -40,10 +40,11 @@
     <strong>Saved the following values</strong><br>{{payLoad}}
   </div>-->
 
-  <button (click)="openDialog('modal-search')">SEARCH</button>
+  <!--<button (click)="openDialog('modal-search')">SEARCH</button>-->
 
-  <jw-modal [id]="'modal-search'" [modalType]="'overlay'">
-    <app-search-occupation></app-search-occupation>
+  <jw-modal [id]="'modal-search'"
+            [modalType]="'overlay'">
+    <app-search-occupation [modalID]="'modal-search'"></app-search-occupation>
   </jw-modal>
 
 </div>

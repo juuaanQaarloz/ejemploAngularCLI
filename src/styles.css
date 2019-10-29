@@ -922,3 +922,16 @@ select::-ms-expand {
 }
 
 /*end Table styles*/
+
+.overlay-container{
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  height: 200px;
+}
+
+.operation-modal{
+  /*padding: 8px;*/
+  display: block;
+  text-align: right;
+  /*grid-template-columns: repeat(4, 1fr);*/
+}

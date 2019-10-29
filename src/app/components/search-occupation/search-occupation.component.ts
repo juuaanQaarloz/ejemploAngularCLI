@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {ApplicationService} from '../../core/services';
 import {Beneficiarios} from '../../core/mock/mock-beneficiaries';
-import {BeneficiariesOperations, SearchOccupationOperations} from '../../core/mock/mock-operations';
+import {BeneficiariesOperations, SearchOccupationOperations, SearchOccupationOperationsM} from '../../core/mock/mock-operations';
 import {Field, Occupation} from '../../models';
+import {ModalService} from '../custom-modal';
 
 const FIELDS: Field[] = [
   {
-    id: 'field-107',
+    id: 'field-108',
     idHtml: 'txtSearchOccupation',
     name: 'searchOccupation',
     label: 'Criterio de búsqueda',
@@ -47,6 +48,7 @@ const FIELDS: Field[] = [
   styleUrls: ['./search-occupation.component.css']
 })
 export class SearchOccupationComponent implements OnInit {
+  @Input() modalID: string;
   form: FormGroup;
   content = {
     id: 'content-2.20',
@@ -54,7 +56,7 @@ export class SearchOccupationComponent implements OnInit {
     parentType: 'Step',
     idHtml: 'app-content-form-2.20',
     fields: FIELDS,
-    operations: SearchOccupationOperations,
+    operations: SearchOccupationOperationsM,
     showContent: false,
     styleClass: 'modal-type',
     renderConditions: '',
@@ -69,7 +71,8 @@ export class SearchOccupationComponent implements OnInit {
   ];
   notResultsFound = false;
 
-  constructor(private appService: ApplicationService) {
+  constructor(private appService: ApplicationService,
+              private modalService: ModalService) {
   }
 
   ngOnInit() {
@@ -77,7 +80,7 @@ export class SearchOccupationComponent implements OnInit {
   }
 
   executeOperation(operation) {
-    if (operation === 'searchOccupation') {
+    if (operation === 'searchOccupationM') {
       this.searchOccupation(this.getKeyWord());
     }
   }
@@ -87,10 +90,9 @@ export class SearchOccupationComponent implements OnInit {
   }
 
   searchOccupation(keyWord: string) {
-    console.log('buscando ocupacion...', keyWord);
+    // console.log('buscando ocupacion...', keyWord);
     this.foundOccupations = [];
     this.appService.getCatalogById(FIELDS[0].sourceID, FIELDS[0].source).subscribe((occupations: Occupation[]) => {
-      console.log('all occupations: ', occupations);
       occupations.forEach((occupation) => {
         if (occupation.specificOccupationName.includes(keyWord.toUpperCase())) {
           this.foundOccupations.push(occupation);
@@ -105,7 +107,15 @@ export class SearchOccupationComponent implements OnInit {
   }
 
   setOccupation(selectedOccupation: Occupation) {
-    console.log('selectedOccupation... ', selectedOccupation);
+    // console.log('selectedOccupation... ', selectedOccupation);
+    this.appService.setSelectedOccupation(selectedOccupation,);
+    this.closeModal(this.modalID);
+
+  }
+
+  closeModal(modalID: string) {
+    this.foundOccupations = [];
+    this.modalService.close(modalID);
   }
 
 }

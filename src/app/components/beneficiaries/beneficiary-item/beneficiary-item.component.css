@@ -31,12 +31,6 @@
   content: url(../../../../assets/img/tables/edit-hover.svg);
 }
 
-.overlay-container{
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  height: 200px;
-}
-
 .operation{
   /*padding: 8px;*/
   display: block;

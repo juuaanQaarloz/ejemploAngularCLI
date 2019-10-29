@@ -1,6 +1,6 @@
 import {Field} from '../../../models';
 
-export const InformacionLaboral: Field[] = [
+export const InformaciolLaboral1: Field[] = [
   {
     id: 'field-31',
     idHtml: 'txtOccupation',
@@ -28,7 +28,10 @@ export const InformacionLaboral: Field[] = [
     entity: '',
     entityField: '',
     value: '',
-  },
+  }
+];
+
+export const InformacionLaboral: Field[] = [
   {
     id: 'field-32',
     idHtml: 'txtDetailOccupation',

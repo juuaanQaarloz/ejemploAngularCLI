@@ -1,10 +1,10 @@
 import {Field} from '../../../models';
 
-export const InformacionLaboralSolicitante: Field[] = [
+export const InformacionLaboralSolicitante1: Field[] = [
   {
     id: 'field-78',
-    idHtml: 'txtOccupations',
-    name: 'occupation',
+    idHtml: 'txtOccupationS',
+    name: 'occupationS',
     orderAppearance: 1,
     label: 'Ocupación o profesión*',
     type: 'text',
@@ -28,7 +28,10 @@ export const InformacionLaboralSolicitante: Field[] = [
     entity: '',
     entityField: '',
     value: '',
-  },
+  }
+];
+
+export const InformacionLaboralSolicitante: Field[] = [
   {
     id: 'field-79',
     idHtml: 'txtDetailOccupationS',

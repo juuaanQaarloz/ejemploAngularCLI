@@ -138,4 +138,38 @@ export const SearchOccupationOperations: Operation[] = [
   }
 ];
 
+export const SearchOccupationOperationsS: Operation[] = [
+  {
+    id: 'opt-1',
+    idHtml: 'btnSearchOccupationS',
+    name: 'searchOccupationS',
+    label: 'BUSCAR',
+    type: 'button',
+    style: '',
+    styleClass: 'ml-button-primary',
+    message: '',
+    messageClass: '',
+    delegateOperation: 'searchOccupationS',
+    renderConditions: '',
+    enableConditions: ''
+  }
+];
+
+export const SearchOccupationOperationsM: Operation[] = [
+  {
+    id: 'opt-1',
+    idHtml: 'btnSearchOccupationM',
+    name: 'searchOccupationM',
+    label: 'BUSCAR',
+    type: 'button',
+    style: '',
+    styleClass: 'ml-button-primary',
+    message: '',
+    messageClass: '',
+    delegateOperation: 'searchOccupationM',
+    renderConditions: '',
+    enableConditions: ''
+  }
+];
+
 

@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {BENEFICIARIES} from '../mock/mock-beneficiaries';
 import {Beneficiary} from '../../models/beneficiary-model';
 import {Form, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';
-import {Field} from '../../models';
+import {Field, Occupation} from '../../models';
 import {validatorsObjects} from '../validators';
+import {ModalService} from '../../components/custom-modal';
+import {SepomexObj} from '../../models/sepomex-obj';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
@@ -20,12 +22,26 @@ export class ApplicationService {
   currentValue = this.currentStepSource.asObservable();
   beneficiaries = new BehaviorSubject(BENEFICIARIES);
   formGroup: FormGroup;
+  searchModalFrom: string
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient,
+              private modalService: ModalService) {}
 
   submitFunction(type) {
     console.log(type);
-    console.log('pressed...');
+    if (type === 'searchOccupation') {
+      this.searchModalFrom = 'contractor';
+      this.openOccupationModal('modal-search');
+      console.log('searchModalFrom A: ', this.searchModalFrom);
+    } else if (type === 'searchOccupationS') {
+      this.searchModalFrom = 'applicant';
+      this.openOccupationModal('modal-search');
+      console.log('searchModalFrom B: ', this.searchModalFrom);
+    }
+  }
+
+  openOccupationModal(modalID: string) {
+    this.modalService.open(modalID);
   }
 
   changeValue(newValue: number) {
@@ -111,9 +127,16 @@ export class ApplicationService {
   }
 
   addBeneficiary(newBeneficiary: Beneficiary) {
-    let currentBeneficiaries = this.beneficiaries.getValue();
-    currentBeneficiaries.push(newBeneficiary);
-    this.beneficiaries.next(currentBeneficiaries);
+    let currentTotalParticipationPercentage = this.getTotalParticipationPercentage();
+    if (currentTotalParticipationPercentage + Number(newBeneficiary.participationPercentage) <= 100) {
+      // the new beneficiary can be added
+      let currentBeneficiaries = this.beneficiaries.getValue();
+      currentBeneficiaries.push(newBeneficiary);
+      this.beneficiaries.next(currentBeneficiaries);
+      return true;
+    } else {
+      return false;
+    }
   }
 
   removeBeneficiary(beneficiaryId: string) {
@@ -147,6 +170,15 @@ export class ApplicationService {
     console.log('updated Beneficiaries: ', currentBeneficiaries);
 
     this.beneficiaries.next(currentBeneficiaries);
+  }
+
+  getTotalParticipationPercentage() {
+    const currentBeneficiaries = this.beneficiaries.getValue();
+    let totalParticipationPercentage = 0;
+    currentBeneficiaries.forEach((beneficiary) => {
+      totalParticipationPercentage =  totalParticipationPercentage + Number(beneficiary.participationPercentage);
+    });
+    return totalParticipationPercentage;
   }
 
   setFormGroup(form: FormGroup) {
@@ -260,5 +292,38 @@ export class ApplicationService {
     } else {
       return false;
     }
+  }
+
+  setSelectedOccupation(selectedOccupation: Occupation) {
+    console.log('searchModalFrom: ', this.searchModalFrom);
+    let formControlName;
+    let htmlID;
+    if (this.searchModalFrom === 'contractor') {
+      formControlName = 'occupation';
+      htmlID = 'txtOccupation';
+
+    } else if (this.searchModalFrom === 'applicant') {
+      formControlName = 'occupationS';
+      htmlID = 'txtOccupationS';
+    }
+    this.formGroup.controls[formControlName].setValue(selectedOccupation.specificOccupationName);
+    const ele = document.getElementById(htmlID);
+    ele.setAttribute('value', selectedOccupation.specificOccupationName);
+  }
+
+  getInfoFromSepomex(zipCode: string): Observable<SepomexObj> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json'
+      })
+    };
+
+    const url = 'https://dev.des.metlife.com/des/ipreservices/sepomex/' + zipCode;
+    return this.httpClient.get(url, httpOptions)
+      .pipe(
+        map((response: any) => {
+          return response.data.items[0] as SepomexObj;
+        }
+      ));
   }
 }
