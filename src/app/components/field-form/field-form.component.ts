@@ -92,6 +92,9 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         }
       }
     }
+    /*if (this.fieldObj.disable) {
+      this.form.controls[this.fieldObj.name].disable();
+    }*/
   }
 
   onKeyUp(event) {

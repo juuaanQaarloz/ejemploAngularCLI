@@ -31,5 +31,6 @@ export interface Field {
   // --added extra from modal--
   value?: any;
   canChangeType?: boolean;
+  disable?: boolean;
   // --------------------------
 }

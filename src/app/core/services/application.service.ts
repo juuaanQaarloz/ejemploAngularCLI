@@ -55,7 +55,8 @@ export class ApplicationService {
         if (contentFromSection.fields) {
           contentFromSection.fields.forEach(field => {
             group[field.name] = new FormControl(
-              field.value || '', this.getValidationFunctions(field));
+              field.value || '',
+              this.getValidationFunctions(field));
           });
         } else {
           if (contentFromSection.process) {
@@ -88,6 +89,14 @@ export class ApplicationService {
 
     });
     return new FormGroup(group);
+  }
+
+  checkDisable(field: Field) {
+    if (field.disable) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   getValidationFunctions(field: Field): any[] {
@@ -314,15 +323,15 @@ export class ApplicationService {
   getInfoFromSepomex(zipCode: string): Observable<SepomexObj> {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json'
+        'Content-Type':  'application/json',
       })
     };
 
     const url = 'https://dev.des.metlife.com/des/ipreservices/sepomex/' + zipCode;
-    return this.httpClient.get(url, httpOptions)
+    return this.httpClient.get(url)
       .pipe(
         map((response: any) => {
-          return response.data.items[0] as SepomexObj;
+          return response.data.items[0].item as SepomexObj;
         }
       ));
   }

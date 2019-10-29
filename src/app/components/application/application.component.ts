@@ -72,4 +72,12 @@ export class ApplicationComponent implements OnInit {
   openDialog(modalID: string) {
     this.modalService.open(modalID);
   }
+
+  testSepoMexService() {
+    this.appService.getInfoFromSepomex('15220')
+      .subscribe((response) => {
+        console.log('response: ', response);
+      }
+    );
+  }
 }

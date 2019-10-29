@@ -143,6 +143,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     entity: '',
     entityField: '',
     value: '',
+    disable: true
   },
   {
     id: 'field-8',
