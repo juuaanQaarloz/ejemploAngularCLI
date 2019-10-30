@@ -134,7 +134,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'La edad no es válida',
+    message: 'La edad no es válida, el rango de edad es entre 15 y 70 años',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',

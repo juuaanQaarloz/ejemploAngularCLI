@@ -23,8 +23,8 @@ export function calculateAge(birthDate: any): number {
 /**
  * Method to calculate RFC (Follows SAT rules)
  * All fields should be strings
- * Birthday should be in format DD/MM/YYYY
- */
+ * Birthday should be in format YYYY/MM/DD
+ * */
 export function calculateRFC(apellidoPaterno: string, apellidoMaterno: string, nombre: string, fechaNacimiento: string) {
 
   if ((apellidoPaterno === null && apellidoMaterno === null)) {

@@ -81,6 +81,10 @@ export function correctFieldValue(val) {
 }
 
 export function transformDate(date: Date, format: string) {
-  const newDate =  moment(date).format(format);
-  return newDate;
+  if (date) {
+    const newDate =  moment(date).format(format);
+    return newDate;
+  } else {
+    return null;
+  }
 }

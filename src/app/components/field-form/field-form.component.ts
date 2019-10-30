@@ -5,7 +5,7 @@ import {SelectOption} from '../../models/select-option-interface';
 import {ApplicationService} from '../../core/services';
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
-import {correctFieldValue} from '../../core/utilities';
+import {calculateAge, calculateRFC, correctFieldValue, transformDate} from '../../core/utilities';
 
 @Component({
   selector: 'app-field-form',
@@ -110,12 +110,36 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onKeyUp(event) {
+    console.log('event.key: ', event.key);
     let value;
     value = event.target.value;
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
     event.target.value = correctFieldValue(value);
     elem.setAttribute('value', event.target.value);
     this.form.controls[this.fieldObj.name].setValue(event.target.value);
+
+    if (this.fieldObj.name === 'rfc') {
+      if (value.length === 10 && event.key !== 'Backspace') { // calcutate rfc when the user capture the first 10 characters
+        const apellidoPaterno = this.form.controls.fatherLastName.value;
+        const apellidoMaterno = this.form.controls.motherLastName.value;
+        const nombre = this.form.controls.name.value;
+        const date = this.form.controls.birthDate.value;
+        const fechaNacimiento = transformDate(date, 'YYYY/MM/DD');
+
+        console.log('apellidoPaterno: ', apellidoPaterno );
+        console.log('apellidoMaterno: ', apellidoMaterno );
+        console.log('nombre: ', nombre );
+        console.log('fechaNacimiento: ', fechaNacimiento);
+        const calculatedRFC = calculateRFC(apellidoPaterno, apellidoMaterno, nombre, fechaNacimiento);
+        console.log('calculatedRFC: ', calculatedRFC);
+        if (calculatedRFC !== null) {
+          console.log('calculateRFC: ', calculatedRFC);
+          this.form.controls[this.fieldObj.name].setValue(calculatedRFC);
+          event.target.value = calculatedRFC;
+          elem.setAttribute('value', event.target.value);
+        }
+      }
+    }
   }
 
   onChange(event) {
