@@ -22,7 +22,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
     idHtml: 'app-content-form-2.19',
     fields: Beneficiarios,
     operations: BeneficiariesOperations,
-    showContent: false,
+    showContent: true,
     styleClass: 'modal-type',
     renderConditions: '',
     contentType: 'looseFields'
@@ -46,6 +46,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   formGroup: FormGroup;
   operationType: string;
   modalID = 'modal-warning';
+  modalMessage = 'La suma de las participaciones de los beneficiarios excede el 100%';
 
   constructor(private applicationService: ApplicationService,
               public config: DialogConfig,
@@ -71,10 +72,12 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   addNewBeneficiary() {
     console.log('formGroup value: ', this.formGroup.value);
     let newBeneficiary = this.mapNewBeneficiaryData();
+    const response = this.applicationService.addBeneficiary((newBeneficiary));
 
-    if (this.applicationService.addBeneficiary(newBeneficiary)) {
+    if (response.status) {
       this.closeDialog();
     } else {
+      this.modalMessage = response.message;
       this.modalService.open(this.modalID);
     }
   }

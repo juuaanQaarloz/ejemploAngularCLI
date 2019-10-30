@@ -22,7 +22,7 @@ export class ApplicationService {
   currentValue = this.currentStepSource.asObservable();
   beneficiaries = new BehaviorSubject(BENEFICIARIES);
   formGroup: FormGroup;
-  searchModalFrom: string
+  searchModalFrom: string;
 
   constructor(private httpClient: HttpClient,
               private modalService: ModalService) {}
@@ -110,6 +110,9 @@ export class ApplicationService {
     if (field.required) {
       validationFunctions.push(Validators.required);
     }
+    if (field.maxValue) {
+      validationFunctions.push(Validators.maxLength(field.maxValue));
+    }
     // console.log('validationFuntions: ', validationFunctions);
     return validationFunctions;
   }
@@ -138,13 +141,17 @@ export class ApplicationService {
   addBeneficiary(newBeneficiary: Beneficiary) {
     let currentTotalParticipationPercentage = this.getTotalParticipationPercentage();
     if (currentTotalParticipationPercentage + Number(newBeneficiary.participationPercentage) <= 100) {
-      // the new beneficiary can be added
       let currentBeneficiaries = this.beneficiaries.getValue();
-      currentBeneficiaries.push(newBeneficiary);
-      this.beneficiaries.next(currentBeneficiaries);
-      return true;
+      if (currentBeneficiaries.length <= 10) {
+        // the new beneficiary can be added
+        currentBeneficiaries.push(newBeneficiary);
+        this.beneficiaries.next(currentBeneficiaries);
+        return {status: true, message: ''};
+      } else {
+        return {status: false, message: 'No se pueden agregar más de 10 beneficiarios'};
+      }
     } else {
-      return false;
+      return {status: false, message: 'La suma de las participaciones de los beneficiarios excede el 100%'};
     }
   }
 

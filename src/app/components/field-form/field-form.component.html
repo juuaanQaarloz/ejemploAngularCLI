@@ -10,9 +10,10 @@
              placeholder="{{fieldObj.placeholder}}"
              value=""
              (keyup)="onKeyUp($event)"
-             (blur)="onBlur($event)">
+             (blur)="onBlur()"
+             >
 
-      <span>{{fieldObj.label}}</span>
+      <span [ngStyle]="{'background': this.disable ? '#EBEBE4':'#FFFFFF'}">{{fieldObj.label}}</span>
       <a *ngIf="fieldObj.canChangeType" href="javascript:;" (click)="onClickToggle()"
          class="ml-form-field-togglevisible"
          [ngClass]="[toggleVisible ? 'ml-form-field-togglevisible': 'ml-form-field-togglevisible occult']"
@@ -42,7 +43,7 @@
               [formControlName]="fieldObj.name"
               [id]="fieldObj.idHtml"
               (change)="onChangeSelect($event)"
-              (blur)="onBlur($event)">
+              (blur)="onBlur()">
         <option value="" [selected]="isSelected"> {{fieldObj.label}} </option>
         <option *ngFor="let opt of selectOptions" [value]="opt.value"
                 [selected]="checkValue(opt.value)">{{opt.name}}</option>

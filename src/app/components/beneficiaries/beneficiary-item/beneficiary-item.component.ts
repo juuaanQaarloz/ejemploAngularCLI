@@ -18,13 +18,14 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   @Input() beneficiary: Beneficiary;
   @Input() index: number;
   @Input() isLast: boolean;
+  @Input() totalBeneficiaries: number;
   // @Input() content: Content;
   fields = beneficiaryFields;
   formGroup: FormGroup;
   modalId;
   operations = BeneficiaryItemOperations;
 
-  constructor(private applicationService: ApplicationService,
+  constructor(public applicationService: ApplicationService,
               public dialog: DialogService,
               private modalService: ModalService) {
   }

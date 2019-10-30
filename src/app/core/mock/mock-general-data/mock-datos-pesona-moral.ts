@@ -27,7 +27,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   },
   {
     id: 'field-38',
@@ -55,7 +55,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   },
   {
     id: 'field-39',
@@ -83,7 +83,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   },
   {
     id: 'field-40',
@@ -140,7 +140,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   },
   {
     id: 'field-42',
@@ -169,7 +169,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   },
   {
     id: 'field-43',
@@ -198,7 +198,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   },
   {
     id: 'field-44',
@@ -227,6 +227,6 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     enableConditions: 'economicSector=OTRO',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   }
 ];

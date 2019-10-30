@@ -38,7 +38,7 @@
     <div style="text-align: right">
       <img class="button-close" (click)="closeModal(modalID)">
     </div>
-    <p>La suma de las participaciones de los beneficiarios excede el 100%</p>
+    <p>{{modalMessage}}</p>
 
     <div class="operation-modal">
       <app-operation-form [operationObj]= okOperation

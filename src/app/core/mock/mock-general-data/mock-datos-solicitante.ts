@@ -119,7 +119,7 @@ export const DatosGeneralesSolicitante: Field[] = [
   {
     id: 'field-71',
     idHtml: 'txtAgeS',
-    name: 'age',
+    name: 'ageS',
     orderAppearance: 5,
     label: 'Edad*',
     type: 'text',
@@ -143,6 +143,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     entity: '',
     entityField: '',
     value: '',
+    disable: true
   },
   {
     id: 'field-72',

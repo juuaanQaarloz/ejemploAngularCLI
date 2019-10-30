@@ -600,8 +600,8 @@ export const Beneficiarios: Field[] = [
     entity: '',
     entityField: '',
     value: ''
-  },
-  {
+  }
+  /*{
     id: 'field-107',
     idHtml: 'txtAdditionalInfo',
     name: 'additionalInfo',
@@ -628,7 +628,7 @@ export const Beneficiarios: Field[] = [
     entity: '',
     entityField: '',
     value: ''
-  }
+  }*/
 ];
 
 export const BENEFICIARIES: Beneficiary[] =  [

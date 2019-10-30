@@ -13,7 +13,7 @@ export class ContentFormComponent implements OnInit {
   @Input() form: FormGroup;
   payLoad = '';
 
-  constructor(private applicationService: ApplicationService) { }
+  constructor(public applicationService: ApplicationService) { }
 
   ngOnInit() {
     // console.log('content style class 2: ', this.contentObj.styleClass);

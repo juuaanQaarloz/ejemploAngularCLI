@@ -1,10 +1,8 @@
-import {AfterViewChecked, AfterViewInit, Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
 import {Field} from '../../models';
-import {ControlValueAccessor, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {MatDatepickerInputEvent} from '@angular/material/datepicker';
-import * as moment from 'moment';
-import {dateTitPattern} from '../../core/validators';
-import {transformDate} from '../../core/utilities';
+import {FormGroup} from '@angular/forms';
+import {calculateAge} from '../../core/utilities';
+import {ApplicationService} from '../../core/services';
 
 @Component({
   selector: 'app-custom-datepicker',
@@ -18,7 +16,7 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   @Output() validate = new EventEmitter<boolean>();
   isValid: boolean;
 
-  constructor() {
+  constructor(private appService: ApplicationService) {
   }
 
   ngOnInit() {
@@ -50,11 +48,18 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
     // const transformedDate = transformDate(event.target.value, this.dateFormat);
     // event.targetElement.value = transformedDate;
     elem.setAttribute('value', event.targetElement.value);
+
+    const age = calculateAge(event.targetElement.value);
+    console.log('edad: ', age);
+    this.appService.getFormGroup().controls.age.setValue(age);
+    const el2 = document.getElementById('txtAge');
+    el2.setAttribute('value', age.toString());
     this.validate.emit(true);
   }
 
   onBlur() {
     console.log('onBlur from custom-datepicker');
+    console.log('formControlValue: ', this.form.controls[this.fieldObj.name]);
     this.validate.emit(true);
   }
 }

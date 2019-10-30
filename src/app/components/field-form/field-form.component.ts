@@ -5,6 +5,7 @@ import {SelectOption} from '../../models/select-option-interface';
 import {ApplicationService} from '../../core/services';
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
+import {correctFieldValue} from '../../core/utilities';
 
 @Component({
   selector: 'app-field-form',
@@ -23,6 +24,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   datePickerClicked = false;
   show = true;
   valid = true;
+  disable: boolean;
 
   constructor(private applicationService: ApplicationService,
               private matIconRegistry: MatIconRegistry,
@@ -69,7 +71,17 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         this.form.controls[this.fieldObj.name].updateValueAndValidity();
       });
     }
-    // console.log('idHtml: ', this.fieldObj.idHtml);
+
+    if (this.fieldObj.disable) {
+      this.form.controls[this.fieldObj.name].disable();
+      this.disable = this.checkState();
+      this.form.controls[this.fieldObj.name].valueChanges.subscribe(() => {
+        this.disable = this.checkState();
+        console.log('onValueChanges disable: ', this.disable);
+
+      });
+      console.log('disable: ', this.disable);
+    }
   }
 
   ngAfterViewInit() {
@@ -98,24 +110,24 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onKeyUp(event) {
-    // console.log('onKeyUp: ');
     let value;
     value = event.target.value;
-    // console.log('value: ', value);
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
-    // console.log('elem: ', elem);
+    event.target.value = correctFieldValue(value);
     elem.setAttribute('value', event.target.value);
-    // console.log('elem.getAttribute: ', elem.getAttribute('value'));
+    this.form.controls[this.fieldObj.name].setValue(event.target.value);
   }
 
-  onBlur(event) {
-    // console.log('onBlur ', event);
+  onChange(event) {
+    console.log('onChange: ', event.target.value);
+    this.isValid();
+  }
+
+  onBlur() {
     this.isValid();
   }
 
   onValidate(event) {
-    // console.log('onValidate ', event);
-    // console.log('currentValue: ', this.form.controls[this.fieldObj.name].value);
     this.isValid();
   }
 
@@ -177,8 +189,9 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   isValid() {
-    // console.log('errors: ', this.form.controls[this.fieldObj.name].errors);
+    console.log('value: ', this.form.controls[this.fieldObj.name].value);
     this.valid =  this.form.controls[this.fieldObj.name].valid;
+    console.log('errors: ', this.form.controls[this.fieldObj.name].errors);
   }
 
   registerCustomIcons() {
@@ -211,6 +224,22 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       }
     }
     return  result;
+  }
+
+  setElementValue(htmlID: string, newValue) {
+    const el = document.getElementById(htmlID);
+    console.log('el: ', el);
+    el.setAttribute('value', newValue);
+  }
+
+  checkState() {
+    const status = this.form.controls[this.fieldObj.name].status;
+    console.log('state: ', status);
+    let result = false;
+    if (status === 'DISABLED') {
+      result = true;
+    }
+    return result;
   }
 }
 

@@ -71,7 +71,7 @@ export class SearchOccupationComponent implements OnInit {
   ];
   notResultsFound = false;
 
-  constructor(private appService: ApplicationService,
+  constructor(public appService: ApplicationService,
               private modalService: ModalService) {
   }
 

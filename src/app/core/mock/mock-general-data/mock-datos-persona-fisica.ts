@@ -6,10 +6,10 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     idHtml: 'txtName',
     name: 'name',
     orderAppearance: 1,
-    label: 'Nombres(s)*',
+    label: 'Nombre(s)*',
     type: 'text',
     required: true,
-    placeholder: 'Nombres(s)',
+    placeholder: 'Nombre(s)',
     length: '40',
     minValue: 0,
     maxValue: 40,
@@ -28,7 +28,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   },
   {
     id: 'field-4',
@@ -57,7 +57,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   },
   {
     id: 'field-5',
@@ -86,7 +86,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   },
   {
     id: 'field-6',
@@ -134,7 +134,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: '',
+    message: 'La edad no es válida',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
@@ -171,7 +171,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   },
   {
     id: 'field-9',
@@ -199,7 +199,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   },
   {
     id: 'field-10',
@@ -228,7 +228,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   },
   {
     id: 'field-11',
@@ -286,7 +286,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   },
   {
     id: 'field-13',
@@ -342,7 +342,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     renderConditions: '',
     enableConditions: 'txtEdad>18,chboxGender=Female',
     entity: '',
-    entityField: '',
+    entityField: ''
   },
   {
     id: 'field-15',
@@ -370,7 +370,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: ''
   },
   {
     id: 'field-16',
@@ -398,7 +398,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: ''
   },
   {
     id: 'field-17',
@@ -426,6 +426,6 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: ''
   }
 ];

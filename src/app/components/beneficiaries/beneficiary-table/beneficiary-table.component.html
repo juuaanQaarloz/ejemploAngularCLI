@@ -10,11 +10,17 @@
   <app-beneficiary-item *ngFor="let beneficiary of beneficiaries; let i = index; last as isLast"
                         [beneficiary]="beneficiary"
                         [index]="i"
-                        [isLast]="isLast">
+                        [isLast]="isLast"
+                        [totalBeneficiaries]="beneficiaries.length">
 
   </app-beneficiary-item>
   <div>
-
+    <div data-forms="floating-label" class="ml-form"
+         [ngClass]="content.styleClass">
+      <div *ngFor="let field of content.fields">
+        <app-field-form [fieldObj]="field" [form]="form"></app-field-form>
+      </div>
+    </div>
   </div>
 </div>
 
