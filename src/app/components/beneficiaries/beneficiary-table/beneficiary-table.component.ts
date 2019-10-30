@@ -15,16 +15,16 @@ const FIELDS: Field[] = [
     type: 'text',
     required: false,
     placeholder: '',
-    length: '200',
+    length: '750',
     minValue: 0,
-    maxValue: 200,
+    maxValue: 750,
     pattern: '',
     source: '',
     sourceID: '',
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: '',
+    message: 'La información adicional no pueden exceder los 750 caracteres',
     messageClass: '',
     messageError: '', // new
     messageErrorClass: '', // new
@@ -65,24 +65,18 @@ export class BeneficiaryTableComponent implements OnInit {
     contentType: 'looseFields'
   };
 
-  form: FormGroup;
-
-  constructor(private applicationService: ApplicationService,
+  constructor(public applicationService: ApplicationService,
               public dialog: DialogService) {
   }
 
   ngOnInit() {
-    // console.log('onInit of BeneficiaryTableComponent');
-    // console.log('content: ', this.content);
-    this.form = this.applicationService.createNewFormGroup(this.content.fields);
+
+    this.content.fields.forEach((field) => {
+      this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
+    });
+
     this.applicationService.beneficiaries.subscribe((value) => {
       this.beneficiaries = value;
-      if (this.beneficiaries.length === 3) {
-        this.form.controls.additionalComments.disable();
-      } else {
-        this.form.controls.additionalComments.enable();
-      }
-      console.log('beneficiaries.length: ', this.beneficiaries.length);
     });
   }
 

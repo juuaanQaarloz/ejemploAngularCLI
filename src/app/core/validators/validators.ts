@@ -193,7 +193,6 @@ export function validateTitularDateFormat(control: AbstractControl): {[key: stri
  * @returns (boolean) returns false if the given age is out of the rage permitted
  */
 export function validateAge(control: AbstractControl): {[key: string]: any} | null {
-  console.log('control value: ', control.value);
   if (control.value < 15 || control.value > 70) {
     return {invalidAge: { valid: false, value: control.value}};
     // return false;

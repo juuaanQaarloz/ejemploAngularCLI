@@ -18,7 +18,7 @@
     <div data-forms="floating-label" class="ml-form"
          [ngClass]="content.styleClass">
       <div *ngFor="let field of content.fields">
-        <app-field-form [fieldObj]="field" [form]="form"></app-field-form>
+        <app-field-form [fieldObj]="field" [form]="this.applicationService.getFormGroup()"></app-field-form>
       </div>
     </div>
   </div>

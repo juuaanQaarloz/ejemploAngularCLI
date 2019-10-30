@@ -4,7 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {BENEFICIARIES} from '../mock/mock-beneficiaries';
 import {Beneficiary} from '../../models/beneficiary-model';
-import {Form, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';
 import {Field, Occupation} from '../../models';
 import {validatorsObjects} from '../validators';
@@ -91,6 +91,12 @@ export class ApplicationService {
     return new FormGroup(group);
   }
 
+  addNewFormControl(formGroup: FormGroup, field: Field) {
+    formGroup.addControl(field.name, new FormControl(
+      field.value || '',
+      this.getValidationFunctions(field)));
+  }
+
   checkDisable(field: Field) {
     if (field.disable) {
       return true;
@@ -139,9 +145,9 @@ export class ApplicationService {
   }
 
   addBeneficiary(newBeneficiary: Beneficiary) {
-    let currentTotalParticipationPercentage = this.getTotalParticipationPercentage();
+    const currentTotalParticipationPercentage = this.getTotalParticipationPercentage();
     if (currentTotalParticipationPercentage + Number(newBeneficiary.participationPercentage) <= 100) {
-      let currentBeneficiaries = this.beneficiaries.getValue();
+      const currentBeneficiaries = this.beneficiaries.getValue();
       if (currentBeneficiaries.length <= 10) {
         // the new beneficiary can be added
         currentBeneficiaries.push(newBeneficiary);
@@ -162,7 +168,7 @@ export class ApplicationService {
   }
 
   getLastBeneficiaryId() {
-    let currentBeneficiaries = this.beneficiaries.getValue();
+    const currentBeneficiaries = this.beneficiaries.getValue();
     const beneficiariesLength = currentBeneficiaries.length;
     let lastId = 0;
     if (beneficiariesLength > 1) {
@@ -173,8 +179,8 @@ export class ApplicationService {
   }
 
   updateBeneficiary(updatedBeneficiary: Beneficiary) {
-    let currentBeneficiaries = this.beneficiaries.getValue();
-    let findedBeneficiary = currentBeneficiaries.filter(b => b.beneficiaryId === updatedBeneficiary.beneficiaryId)[0];
+    const currentBeneficiaries = this.beneficiaries.getValue();
+    const findedBeneficiary = currentBeneficiaries.filter(b => b.beneficiaryId === updatedBeneficiary.beneficiaryId)[0];
     console.log('findedBeneficiary: ', findedBeneficiary);
 
     const index = currentBeneficiaries.findIndex((b) => b.beneficiaryId === updatedBeneficiary.beneficiaryId);
@@ -212,14 +218,14 @@ export class ApplicationService {
   }
 
   booleanCalculator(renderConditions: string) {
-    let testExp = '((A && B) && C) || D';
+    const testExp = '((A && B) && C) || D';
     console.log('renderConditions: ', renderConditions);
     // eval && operator first when is no parenthesis
     // eval conditions that are inside parenthesis
   }
 
   getConditions(renderConditions: string) {
-    let result = [];
+    const result = [];
     let separatedRenderConditions = [];
 
     separatedRenderConditions = renderConditions.split(',');
