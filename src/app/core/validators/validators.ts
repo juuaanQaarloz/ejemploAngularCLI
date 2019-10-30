@@ -213,6 +213,18 @@ export function validateRFC(control: AbstractControl): {[key: string]: any} | nu
   // return true;
 }
 
+/**@param (string) rfc RFC to be checked for moral person
+ * @returns (boolean) false if the given RFC is not valid or empty
+ */
+export function validateRFCMoral(control: AbstractControl): {[key: string]: any} | null {
+  if (!rfcMoralPattern.test(control.value)) {
+    return {invalidRFC: { valid: false, value: control.value}};
+    // return false;
+  }
+  return null;
+  // return true;
+}
+
 /**@param (string) rfc RFC to be checked
  * @returns (boolean) false if the given RFC is not valid or empty, but in this case the RFC is not mandatory
  */

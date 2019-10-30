@@ -16,7 +16,15 @@ import { AppRoutingModule } from './app-routing.module';
 import {ModalModule} from './components/custom-modal';
 import {CoreModule} from './core/core.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {DateAdapter, MAT_DATE_FORMATS, MatDatepickerModule, MatIconModule, MatInputModule, MatNativeDateModule} from '@angular/material';
+import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MatDatepickerModule,
+  MatIconModule,
+  MatInputModule,
+  MatNativeDateModule,
+  MatSelectModule
+} from '@angular/material';
 import { CustomDatepickerComponent } from './components/custom-datepicker/custom-datepicker.component';
 import { BeneficiaryTableComponent } from './components/beneficiaries/beneficiary-table/beneficiary-table.component';
 import { BeneficiaryItemComponent } from './components/beneficiaries/beneficiary-item/beneficiary-item.component';
@@ -55,6 +63,7 @@ import { SearchOccupationComponent } from './components/search-occupation/search
     MatNativeDateModule,
     MatIconModule,
     DialogModule,
+    MatSelectModule,
     AppRoutingModule
   ],
   bootstrap: [AppComponent],

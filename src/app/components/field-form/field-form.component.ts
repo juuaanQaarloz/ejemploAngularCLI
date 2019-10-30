@@ -35,7 +35,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     // console.log('fieldObject: ', this.fieldObj);
-    if (this.fieldObj.type === 'radio' || this.fieldObj.type === 'select' || this.fieldObj.type === 'checkbox') {
+    if (this.fieldObj.type === 'radio' || this.fieldObj.type === 'select'
+      || this.fieldObj.type === 'checkbox' || this.fieldObj.type === 'select-multiple') {
       this.getOptions();
     }
     // this.form = this.applicationService.getFormGroup();
@@ -78,7 +79,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       this.form.controls[this.fieldObj.name].valueChanges.subscribe(() => {
         this.disable = this.checkState();
         console.log('onValueChanges disable: ', this.disable);
-
       });
       console.log('disable: ', this.disable);
     }
@@ -164,8 +164,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onChangeSelect(event) {
-    // console.log('onChangeSelect...');
-    // console.log('event.target.value: ', event.target.value);
+    console.log('onChangeSelect...');
+    console.log('event.target.value: ', event.target.value);
     if (event.target.value === '') {
       this.showSelectLabel = false;
     } else {
@@ -180,7 +180,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         options = results;
         if (options !== undefined) {
           options.forEach((selectItem) => {
-            if (this.fieldObj.type === 'select') {
+            if (this.fieldObj.type === 'select' || this.fieldObj.type === 'select-multiple') {
               this.selectOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
             } else if (this.fieldObj.type === 'radio') {
               this.radioOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));

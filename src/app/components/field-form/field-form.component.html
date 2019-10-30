@@ -2,7 +2,7 @@
 <div *ngIf="show" [ngSwitch]="fieldObj.type" [formGroup]="form">
 
   <fieldset *ngSwitchCase="'text'" class="ml-form-field"
-    [ngClass]="{'error': !valid}">
+            [ngClass]="{'error': !valid}">
     <label>
       <input [type]="toggleVisible ? 'text' : 'password'"
              [formControlName]="fieldObj.name"
@@ -11,7 +11,7 @@
              value=""
              (keyup)="onKeyUp($event)"
              (blur)="onBlur()"
-             >
+      >
 
       <span [ngStyle]="{'background': this.disable ? '#EBEBE4':''}">{{fieldObj.label}}</span>
       <a *ngIf="fieldObj.canChangeType" href="javascript:;" (click)="onClickToggle()"
@@ -23,7 +23,7 @@
   </fieldset>
 
   <fieldset *ngSwitchCase="'date'" class="ml-form-field"
-        [ngClass]="{'error': !valid}">
+            [ngClass]="{'error': !valid}">
     <label>
 
       <app-custom-datepicker
@@ -49,6 +49,34 @@
                 [selected]="checkValue(opt.value)">{{opt.name}}</option>
 
       </select>
+      <span *ngIf="showSelectLabel">{{fieldObj.label}}</span>
+      <div class="ml-form-field-errortext">{{fieldObj.message}}</div>
+    </label>
+  </fieldset>
+
+  <fieldset *ngSwitchCase="'select-multiple'" class="ml-form-field"
+            [ngClass]="{'error': !valid}">
+    <label>
+
+      <!--<select multiple name="{{fieldObj.label}}"
+              [formControlName]="fieldObj.name"
+              [id]="fieldObj.idHtml"
+              (change)="onChangeSelect($event)"
+              (blur)="onBlur()">
+        <option value="" [selected]="isSelected"> {{fieldObj.label}} </option>
+        <option *ngFor="let opt of selectOptions" [value]="opt.value"
+                [selected]="checkValue(opt.value)">
+          {{opt.name}}</option>
+      </select>-->
+
+      <mat-select multiple class="select"
+                  [formControlName]="fieldObj.name"
+                  [id]="fieldObj.idHtml"
+                  (change)="onChangeSelect($event)"
+                  (blur)="onBlur()">
+        <mat-option *ngFor="let opt of selectOptions" [value]="opt.value">{{opt.name}}</mat-option>
+      </mat-select>
+
       <span *ngIf="showSelectLabel">{{fieldObj.label}}</span>
       <div class="ml-form-field-errortext">{{fieldObj.message}}</div>
     </label>

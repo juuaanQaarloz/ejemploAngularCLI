@@ -148,7 +148,7 @@ export const DatosGeneralesSolicitante: Field[] = [
   {
     id: 'field-72',
     idHtml: 'txtRFCS',
-    name: 'rfc',
+    name: 'rfcS',
     orderAppearance: 6,
     label: 'RFC*',
     type: 'text',
