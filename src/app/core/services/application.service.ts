@@ -13,6 +13,7 @@ import {SepomexObj} from '../../models/sepomex-obj';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
+const URL_SEPOMEX = '../assets/catalogs/response-sepomex.json';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,8 @@ export class ApplicationService {
   searchModalFrom: string;
 
   constructor(private httpClient: HttpClient,
-              private modalService: ModalService) {}
+              private modalService: ModalService) {
+  }
 
   submitFunction(type) {
     console.log(type);
@@ -198,7 +200,7 @@ export class ApplicationService {
     const currentBeneficiaries = this.beneficiaries.getValue();
     let totalParticipationPercentage = 0;
     currentBeneficiaries.forEach((beneficiary) => {
-      totalParticipationPercentage =  totalParticipationPercentage + Number(beneficiary.participationPercentage);
+      totalParticipationPercentage = totalParticipationPercentage + Number(beneficiary.participationPercentage);
     });
     return totalParticipationPercentage;
   }
@@ -334,7 +336,7 @@ export class ApplicationService {
   }
 
   getInfoFromSepomex(zipCode: string): Observable<SepomexObj> {
-    const httpOptions = {
+    /*const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
       })
@@ -346,6 +348,12 @@ export class ApplicationService {
         map((response: any) => {
           return response.data.items[0].item as SepomexObj;
         }
-      ));
+      ));*/
+    return this.httpClient.get(URL_SEPOMEX)
+      .pipe(
+        map((response: any) => {
+          return response.data.items[0].item as SepomexObj;
+        })
+      );
   }
 }

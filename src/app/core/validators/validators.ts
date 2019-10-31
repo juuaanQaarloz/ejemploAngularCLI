@@ -501,3 +501,32 @@ export function validateZipCode(control: AbstractControl): {[key: string]: any} 
   // return true;
 }
 
+/** @param (number) number to be validated
+ *  @returns (boolean) returns false if the given value is  not a number with 2 decimals max
+ */
+export function validateNumberWith2Decimals(control: AbstractControl): {[key: string]: any} | null {
+    /*The next regular expression validates a string conformed by numbers and 2 decimals example:
+     * 200.00
+     * 2.0
+     * 20.00
+     * 2000.00
+     * 0.0
+     * .0
+     * .00
+     *  Invalid strings:
+     * 20.000
+     * aaaa
+     * qwerty
+     * */
+    const regexp = /\d+(\.\d{1,2})?/;
+
+    if (!regexp.test(control.value)) {
+      return {invalidZipCode: { valid: false, value: control.value}};
+      // return false;
+    }
+    // return true;
+    return null;
+}
+
+
+

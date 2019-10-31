@@ -16,7 +16,7 @@
       <img class="icon-delete" (click)="openModal(modalId)">
       <img class="icon-edit" (click)="editBeneficiary()">
     </div>
-    <div *ngIf="isLast && totalBeneficiaries < 10"><img src="../../../../assets/img/tables/plus_simbol.svg" (click)="addNewBeneficiary()">
+    <div *ngIf="isLast && totalBeneficiaries < 10 && totalParticipationPercentageBeneficiary < 100"><img src="../../../../assets/img/tables/plus_simbol.svg" (click)="addNewBeneficiary()">
     </div>
   </div>
 

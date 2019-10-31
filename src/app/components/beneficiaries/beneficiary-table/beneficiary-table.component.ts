@@ -3,7 +3,6 @@ import {ApplicationService} from '../../../core/services';
 import {NewBeneficiaryComponent} from '../new-beneficiary/new-beneficiary.component';
 import {DialogService} from '../../dialog/dialog.service';
 import {Field} from '../../../models';
-import {FormGroup} from '@angular/forms';
 
 const FIELDS: Field[] = [
   {
@@ -65,6 +64,8 @@ export class BeneficiaryTableComponent implements OnInit {
     contentType: 'looseFields'
   };
 
+  totalPercentageParticipation = 0;
+
   constructor(public applicationService: ApplicationService,
               public dialog: DialogService) {
   }
@@ -77,6 +78,7 @@ export class BeneficiaryTableComponent implements OnInit {
 
     this.applicationService.beneficiaries.subscribe((value) => {
       this.beneficiaries = value;
+      this.totalPercentageParticipation = this.applicationService.getTotalParticipationPercentage();
     });
   }
 

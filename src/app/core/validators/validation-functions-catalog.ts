@@ -3,7 +3,7 @@ import {
   validateAlphanumericValue,
   validateCURP,
   validateDateFormat, validateMail,
-  validateName, validatePhone,
+  validateName, validateNumberWith2Decimals, validatePhone,
   validateRFC, validateRFCMoral,
   validateStreet, validateStreetNum, validateZipCode
 } from './validators';
@@ -303,6 +303,74 @@ export const validatorsObjects = [
   },
   {
     nameField: 'additionalSalary',
+    validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'beneficiaryName',
+    validationFunctions: [validateAlphanumericValue, validateName]
+  },
+  {
+    nameField: 'participationPercentageI',
+    validationFunctions: [validateNumberWith2Decimals]
+  },
+  {
+    nameField: 'beneficiaryBusinessName',
+    validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'beneficiaryFaLastName',
+    validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'beneficiaryMoLastName',
+    validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'beneficiaryMoLastName',
+    validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'beneficiaryBirthDate',
+    validationFunctions: [validateDateFormat]
+  },
+  {
+    nameField: 'participationPercentage',
+    validationFunctions: [validateNumberWith2Decimals]
+  },
+  {
+    nameField: 'participationPercentage',
+    validationFunctions: [validateNumberWith2Decimals]
+  },
+  {
+    nameField: 'beneficiaryStreet',
+    validationFunctions: [validateStreet]
+  },
+  {
+    nameField: 'beneficiaryExteriorNumber',
+    validationFunctions: [validateStreetNum]
+  },
+  {
+    nameField: 'beneficiaryInteriorNumber',
+    validationFunctions: [validateStreetNum]
+  },
+  {
+    nameField: 'beneficiaryZipCode',
+    validationFunctions: [validateZipCode]
+  },
+  {
+    nameField: 'beneficiarySuburb',
+    validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'beneficiaryMunicipality',
+    validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'beneficiaryState',
+    validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'beneficiaryCity',
     validationFunctions: [validateAlphanumericValue]
   }
 ];

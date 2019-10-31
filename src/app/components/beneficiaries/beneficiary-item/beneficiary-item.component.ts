@@ -19,6 +19,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   @Input() index: number;
   @Input() isLast: boolean;
   @Input() totalBeneficiaries: number;
+  @Input() totalParticipationPercentageBeneficiary: number;
   // @Input() content: Content;
   fields = beneficiaryFields;
   formGroup: FormGroup;

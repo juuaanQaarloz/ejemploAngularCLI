@@ -6,6 +6,8 @@ import {ApplicationService} from '../../core/services';
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
 import {calculateAge, calculateRFC, correctFieldValue, transformDate} from '../../core/utilities';
+import {zip} from 'rxjs';
+import {SepomexObj} from '../../models/sepomex-obj';
 
 @Component({
   selector: 'app-field-form',
@@ -148,6 +150,18 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onBlur() {
+    if (this.fieldObj.name === 'zipCode' || this.fieldObj.name === 'zipCodeS' || this.fieldObj.name === 'zipCodeM') {
+      const zipCode = this.form.controls[this.fieldObj.name].value;
+      console.log('zipCode: ', zipCode);
+      if (zipCode) {
+        this.applicationService.getInfoFromSepomex(zipCode).subscribe((sepoMexResponse: SepomexObj) => {
+          console.log('sepoMexResponse: ', sepoMexResponse);
+          if (sepoMexResponse) {
+            this.setAddress(sepoMexResponse);
+          }
+        });
+      }
+    }
     this.isValid();
   }
 
@@ -264,6 +278,34 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       result = true;
     }
     return result;
+  }
+
+  setAddress(sepoMexResponse: SepomexObj) {
+    const colonia = correctFieldValue(sepoMexResponse.extension.settlement);
+    const municipio = correctFieldValue(sepoMexResponse.extension.townHall);
+    const estado = correctFieldValue(sepoMexResponse.stateDescription);
+
+    if (this.fieldObj.name === 'zipCode') {
+      this.setValueField('suburb', 'txtSuburb', colonia);
+      this.setValueField('municipality', 'txtMunicipality', municipio);
+      this.setValueField('state', 'txtState', estado);
+
+    } else if (this.fieldObj.name === 'zipCodeS') {
+      this.setValueField('suburbS', 'txtSuburbS', colonia);
+      this.setValueField('municipalityS', 'txtMunicipalityS', municipio);
+      this.setValueField('stateS', 'txtStateS', estado);
+
+    } else if (this.fieldObj.name === 'zipCodeM') {
+      this.setValueField('suburbM', 'txtSuburbM', colonia);
+      this.setValueField('municipalityM', 'txtMunicipalityM', municipio);
+      this.setValueField('stateM', 'txtStateM', estado);
+    }
+  }
+
+  setValueField(formControlName, htmlID, value) {
+    const el = document.getElementById(htmlID);
+    el.setAttribute('value', value);
+    this.form.controls[formControlName].setValue(value);
   }
 }
 
