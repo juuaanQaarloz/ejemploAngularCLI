@@ -39,6 +39,29 @@ export class ApplicationService {
       this.searchModalFrom = 'applicant';
       this.openOccupationModal('modal-search');
       console.log('searchModalFrom B: ', this.searchModalFrom);
+    } else if (type === 'nextStep') {
+      const currentStep = this.currentStepSource.getValue();
+      console.log('currentStep1: ', currentStep);
+
+      if (currentStep === 0) {
+        this.changeValue(1);
+      } else if (currentStep === 1) {
+        this.changeValue(2);
+      } else if (currentStep === 2) {
+        this.changeValue(7);
+      } else if (currentStep === 3) {
+        this.changeValue(4);
+      } else if (currentStep === 4) {
+        this.changeValue(7);
+      } else if (currentStep === 5) {
+        this.changeValue(6);
+      } else if (currentStep === 6) {
+        this.changeValue(7);
+      } else if (currentStep === 7) {
+        this.changeValue(0);
+      }
+
+      console.log('currentStep2: ', this.currentStepSource.getValue());
     }
   }
 

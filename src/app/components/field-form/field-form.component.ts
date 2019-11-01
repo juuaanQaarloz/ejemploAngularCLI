@@ -1,12 +1,11 @@
-import {AfterViewInit, Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {Field} from '../../models/field';
 import {FormGroup} from '@angular/forms';
 import {SelectOption} from '../../models/select-option-interface';
 import {ApplicationService} from '../../core/services';
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
-import {calculateAge, calculateRFC, correctFieldValue, transformDate} from '../../core/utilities';
-import {zip} from 'rxjs';
+import {calculateRFC, correctFieldValue, transformDate} from '../../core/utilities';
 import {SepomexObj} from '../../models/sepomex-obj';
 
 @Component({
@@ -80,9 +79,9 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       this.disable = this.checkState();
       this.form.controls[this.fieldObj.name].valueChanges.subscribe(() => {
         this.disable = this.checkState();
-        console.log('onValueChanges disable: ', this.disable);
+        // console.log('onValueChanges disable: ', this.disable);
       });
-      console.log('disable: ', this.disable);
+      // console.log('disable: ', this.disable);
     }
   }
 
@@ -112,7 +111,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onKeyUp(event) {
-    console.log('event.key: ', event.key);
+    if (this.fieldObj.name === 'age' || this.fieldObj.name === 'ageS') {
+      console.log('onKeyUp value:', this.form.controls[this.fieldObj.name].value);
+    }
+    // console.log('event.key: ', event.key);
     let value;
     value = event.target.value;
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
@@ -120,25 +122,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     elem.setAttribute('value', event.target.value);
     this.form.controls[this.fieldObj.name].setValue(event.target.value);
 
-    if (this.fieldObj.name === 'rfc') {
+    if (this.fieldObj.name === 'rfc' || this.fieldObj.name === 'rfcS') {
       if (value.length === 10 && event.key !== 'Backspace') { // calcutate rfc when the user capture the first 10 characters
-        const apellidoPaterno = this.form.controls.fatherLastName.value;
-        const apellidoMaterno = this.form.controls.motherLastName.value;
-        const nombre = this.form.controls.name.value;
-        const date = this.form.controls.birthDate.value;
-        const fechaNacimiento = transformDate(date, 'YYYY/MM/DD');
-
-        console.log('apellidoPaterno: ', apellidoPaterno );
-        console.log('apellidoMaterno: ', apellidoMaterno );
-        console.log('nombre: ', nombre );
-        console.log('fechaNacimiento: ', fechaNacimiento);
-        const calculatedRFC = calculateRFC(apellidoPaterno, apellidoMaterno, nombre, fechaNacimiento);
-        console.log('calculatedRFC: ', calculatedRFC);
-        if (calculatedRFC !== null) {
-          console.log('calculateRFC: ', calculatedRFC);
-          this.form.controls[this.fieldObj.name].setValue(calculatedRFC);
-          event.target.value = calculatedRFC;
-          elem.setAttribute('value', event.target.value);
+        const calcRFC = this.calculateRFC();
+        if (calcRFC !== null) {
+          // console.log('calculateRFC: ', calcRFC);
+          this.setCalculatedRFC(calcRFC);
         }
       }
     }
@@ -146,7 +135,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   onChange(event) {
     console.log('onChange: ', event.target.value);
-    this.isValid();
+    console.log('formControlName: ', this.fieldObj.name);
+    // this.isValid();
   }
 
   onBlur() {
@@ -227,7 +217,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   isValid() {
-    console.log('value: ', this.form.controls[this.fieldObj.name].value);
+    console.log('onIsValid value: ', this.form.controls[this.fieldObj.name].value);
     this.valid =  this.form.controls[this.fieldObj.name].valid;
     console.log('errors: ', this.form.controls[this.fieldObj.name].errors);
   }
@@ -264,20 +254,49 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     return  result;
   }
 
-  setElementValue(htmlID: string, newValue) {
-    const el = document.getElementById(htmlID);
-    console.log('el: ', el);
-    el.setAttribute('value', newValue);
-  }
-
   checkState() {
     const status = this.form.controls[this.fieldObj.name].status;
-    console.log('state: ', status);
+    // console.log('state: ', status);
     let result = false;
     if (status === 'DISABLED') {
       result = true;
     }
     return result;
+  }
+
+  calculateRFC() {
+    let apellidoPaterno;
+    let apellidoMaterno;
+    let nombre;
+    let date;
+    let fechaNacimiento;
+
+    if (this.fieldObj.name === 'rfc') {
+      apellidoPaterno = this.form.controls.fatherLastName.value;
+      apellidoMaterno = this.form.controls.motherLastName.value;
+      nombre = this.form.controls.name.value;
+      date = this.form.controls.birthDate.value;
+      fechaNacimiento = transformDate(date, 'YYYY/MM/DD');
+
+    } else if (this.fieldObj.name === 'rfcS') {
+      apellidoPaterno = this.form.controls.fatherLastNameS.value;
+      apellidoMaterno = this.form.controls.motherLastNameS.value;
+      nombre = this.form.controls.nameS.value;
+      date = this.form.controls.birthDateS.value;
+      fechaNacimiento = transformDate(date, 'YYYY/MM/DD');
+    }
+
+    const calculatedRFC = calculateRFC(apellidoPaterno, apellidoMaterno, nombre, fechaNacimiento);
+    console.log('calculatedRFC: ', calculatedRFC);
+    return calculatedRFC;
+  }
+
+  setCalculatedRFC(calculatedRFC) {
+    if (this.fieldObj.name === 'rfc') {
+      this.setValueField('rfc', 'txtRFC', calculatedRFC);
+    } else if (this.fieldObj.name === 'rfcS') {
+      this.setValueField('rfcS', 'txtRFCS', calculatedRFC);
+    }
   }
 
   setAddress(sepoMexResponse: SepomexObj) {

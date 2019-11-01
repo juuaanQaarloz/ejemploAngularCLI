@@ -1,4 +1,5 @@
-import { AbstractControl } from '@angular/forms';
+import {AbstractControl, FormControl} from '@angular/forms';
+import * as moment from 'moment';
 
 export const dateTitPattern = /(((19|20)([2468][048]|[13579][26]|0[48])|2000)\/02\/29|((19|20)[0-9]{2}\/(0[469]|11)\/(0[1-9]|[12][0-9]|30)|(19|20)[0-9]{2}\/(0[13578]|1[02])\/(0[1-9]|[12][0-9]|3[01])|(19|20)[0-9]{2}\/02\/(0[1-9]|1[0-9]|2[0-8])))/;
 export const datePattern = /(((0[1-9]|[12][0-9]|3[01])([/])(0[13578]|10|12)([/])(\d{4}))|(([0][1-9]|[12][0-9]|30)([/])(0[469]|11)([/])(\d{4}))|((0[1-9]|1[0-9]|2[0-8])([/])(02)([/])(\d{4}))|((29)(\.|-|\/)(02)([/])([02468][048]00))|((29)([/])(02)([/])([13579][26]00))|((29)([/])(02)([/])([0-9][0-9][0][48]))|((29)([/])(02)([/])([0-9][0-9][2468][048]))|((29)([/])(02)([/])([0-9][0-9][13579][26])))/;
@@ -141,16 +142,29 @@ export function validateNameNotMandatory(control: AbstractControl): {[key: strin
  * @returns (boolean) false if the given date is not in format DD/MM/YYYY, true otherwise
  */
 export function validateDateFormat(control: AbstractControl): {[key: string]: any} | null {
-  if (nullUndefinedOrEmptyValidation(control.value)) {
+  /*if (nullUndefinedOrEmptyValidation(control.value)) {
     return {invalidDate: { valid: false, value: control.value}};
     // return false;
-  }
+  }*/
+  console.log('onValidateFormat: ', control.value);
   if (!datePattern.test(control.value)) {
     return {invalidDate: { valid: false, value: control.value}};
     // return false;
   }
   return null;
   // return true;
+}
+
+export function DateValidator(format = 'YYYY/MM/DD'): any {
+  return (control: FormControl): { [key: string]: any } => {
+    const val = moment(control.value, format, true);
+
+    if (!val.isValid()) {
+      return { invalidDate: true };
+    }
+
+    return null;
+  };
 }
 
 /**

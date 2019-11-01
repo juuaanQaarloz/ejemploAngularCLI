@@ -23,8 +23,10 @@ export class StepFormComponent implements OnInit {
   ngOnInit() {
     // console.log('step: ', this.stepObj);
     this.applicationService.currentValue.subscribe(value => {
-      if (this.index === value) {
-        if (this.index === 0) {
+      // console.log('value: ', value);
+      // console.log('id step: ', this.stepObj.id);
+      if (Number(this.stepObj.id) === value) {
+        if (Number(this.stepObj.id) === 0) {
           this.accordionExpanded = false;
         } else {
           this.accordionExpanded = true;

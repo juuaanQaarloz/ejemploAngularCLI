@@ -1,8 +1,8 @@
 import {
+  DateValidator,
   validateAge, validateAlphanumericName,
   validateAlphanumericValue,
-  validateCURP,
-  validateDateFormat, validateMail,
+  validateCURP, validateMail,
   validateName, validateNumberWith2Decimals, validatePhone,
   validateRFC, validateRFCMoral,
   validateStreet, validateStreetNum, validateZipCode
@@ -22,8 +22,8 @@ export const validatorsObjects = [
     validationFunctions: [validateAlphanumericValue]
   },
   {
-    nameField: 'dteBirthDate',
-    validationFunctions: [validateDateFormat]
+    nameField: 'birthDate',
+    validationFunctions: [DateValidator]
   },
   {
     nameField: 'age',
@@ -111,11 +111,7 @@ export const validatorsObjects = [
   },
   {
     nameField: 'constitutionDate',
-    validationFunctions: [validateDateFormat]
-  },
-  {
-    nameField: 'constitutionDate',
-    validationFunctions: [validateDateFormat]
+    validationFunctions: [DateValidator]
   },
   {
     nameField: 'mercantilNumber',
@@ -186,8 +182,8 @@ export const validatorsObjects = [
     validationFunctions: [validateAlphanumericValue]
   },
   {
-    nameField: 'birthDate',
-    validationFunctions: [validateDateFormat]
+    nameField: 'birthDateS',
+    validationFunctions: [DateValidator]
   },
   {
     nameField: 'ageS',
@@ -331,7 +327,7 @@ export const validatorsObjects = [
   },
   {
     nameField: 'beneficiaryBirthDate',
-    validationFunctions: [validateDateFormat]
+    validationFunctions: [DateValidator]
   },
   {
     nameField: 'participationPercentage',

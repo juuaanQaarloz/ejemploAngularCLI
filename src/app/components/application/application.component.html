@@ -33,25 +33,36 @@
 
 <div class="menu-container"></div>
 
-<div style="text-align: center">
-  <h1 class="title">Solicitudes MetaLife</h1>
+<div id="content" #content style="background-color: white">
 
-  <!--<div *ngIf="payLoad" class="form-row">
-    <strong>Saved the following values</strong><br>{{payLoad}}
-  </div>-->
+  <div style="text-align: center">
+    <h1 class="title">Solicitudes MetaLife</h1>
 
-  <!--<button (click)="testSepoMexService()">FORM VALUE</button>-->
+    <!--<div *ngIf="payLoad" class="form-row">
+      <strong>Saved the following values</strong><br>{{payLoad}}
+    </div>-->
 
-  <jw-modal [id]="'modal-search'"
-            [modalType]="'overlay'">
-    <app-search-occupation [modalID]="'modal-search'"></app-search-occupation>
-  </jw-modal>
+
+
+    <jw-modal [id]="'modal-search'"
+              [modalType]="'overlay'">
+      <app-search-occupation [modalID]="'modal-search'"></app-search-occupation>
+    </jw-modal>
+
+  </div>
+
+  <div class="container" *ngFor="let section of applicationObj.sections">
+    <app-section-form [form]="formGroup" [sectionObj]="section"></app-section-form>
+  </div>
+
+  <a href="javascript:;"
+     class="ml-button-primary"
+     (click)="downloadPDF()">
+    PDF
+  </a>
 
 </div>
 
-<div class="container" *ngFor="let section of applicationObj.sections">
-  <app-section-form [form]="formGroup" [sectionObj]="section"></app-section-form>
-</div>
 
 
 <div class="footer">
@@ -59,4 +70,6 @@
   <div class="footer-center"></div>
   <div class="footer-right"></div>
 </div>
+
+
 

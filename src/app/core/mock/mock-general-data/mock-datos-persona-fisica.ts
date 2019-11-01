@@ -114,7 +114,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '1993/01/06'
+    value: ''
   },
   {
     id: 'field-7',
@@ -406,7 +406,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     name: 'nationality',
     orderAppearance: 15,
     label: 'Nacionalidad(es)*',
-    type: 'select-multiple',
+    type: 'select',
     required: false,
     placeholder: '',
     length: '',
@@ -427,8 +427,8 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: ''
-  }
-  /*{
+  },
+  {
     id: 'field-110',
     idHtml: 'slctNationality1',
     name: 'nationality1',
@@ -511,5 +511,5 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: ''
-  }*/
+  }
 ];

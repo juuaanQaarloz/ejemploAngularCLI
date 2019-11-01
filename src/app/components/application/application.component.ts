@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {ApplicationService, AuthService, StorageService} from '../../core/services';
 import {MockTemplate} from '../../core/mock/mock-template';
 import {DialogService} from '../dialog/dialog.service';
 import {ModalService} from '../custom-modal';
+import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-application',
@@ -17,6 +18,7 @@ export class ApplicationComponent implements OnInit {
   iconSecurity = 'security-icon';
   payLoad = '';
   formGroup: FormGroup;
+  @ViewChild('content', {static: false}) content: ElementRef;
   constructor(private appService: ApplicationService,
               private authService: AuthService,
               private storageService: StorageService,
@@ -79,5 +81,13 @@ export class ApplicationComponent implements OnInit {
         console.log('response: ', response);
       }
     );
+  }
+
+  downloadPDF() {
+    let doc = new jsPDF();
+
+    doc.addHTML(document.getElementById('content') , () => {
+      doc.save('solicitud.pdf');
+    });
   }
 }

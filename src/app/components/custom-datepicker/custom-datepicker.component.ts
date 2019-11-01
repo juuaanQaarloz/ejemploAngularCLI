@@ -42,24 +42,36 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   }
 
   onDateChange(event) {
-    console.log('onDateChange... ', event);
+    // console.log('onDateChange... ', event);
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
-    console.log('event.targetElement.value: ', event.targetElement.value);
+    // console.log('event.targetElement.value: ', event.targetElement.value);
     // const transformedDate = transformDate(event.target.value, this.dateFormat);
     // event.targetElement.value = transformedDate;
     elem.setAttribute('value', event.targetElement.value);
 
-    const age = calculateAge(event.targetElement.value);
-    console.log('edad: ', age);
-    this.appService.getFormGroup().controls.age.setValue(age);
-    const el2 = document.getElementById('txtAge');
-    el2.setAttribute('value', age.toString());
+    if (this.fieldObj.name === 'birthDate' || this.fieldObj.name === 'birthDateS') {
+      const age = calculateAge(event.targetElement.value);
+      // console.log('edad: ', age);
+      if (age) {
+        if (this.fieldObj.name === 'birthDate') {
+          this.setAge('age', 'txtAge', age);
+        } else if (this.fieldObj.name === 'birthDateS') {
+          this.setAge('ageS', 'txtAgeS', age);
+        }
+      }
+    }
     this.validate.emit(true);
   }
 
   onBlur() {
-    console.log('onBlur from custom-datepicker');
-    console.log('formControlValue: ', this.form.controls[this.fieldObj.name]);
+    // console.log('onBlur from custom-datepicker');
+    // console.log('formControlValue: ', this.form.controls[this.fieldObj.name]);
     this.validate.emit(true);
+  }
+
+  setAge(formControlName, htmlID, value) {
+    this.appService.getFormGroup().controls[formControlName].setValue(value);
+    const el2 = document.getElementById(htmlID);
+    el2.setAttribute('value', value.toString());
   }
 }
