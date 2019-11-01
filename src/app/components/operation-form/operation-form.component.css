@@ -1,0 +1,138 @@
+.ml-button-primary{
+  box-sizing: content-box;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  background-color: transparent;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 2px;
+  padding: 12px 14px;
+  border: 0;
+  display: inline-block;
+  margin-right: 15px;
+}
+
+.ml-button-primary:hover,
+.ml-button-primary:focus,
+.hover.ml-button-primary{
+  text-decoration: underline;
+}
+
+.ml-button-primary:focus,
+.focus.ml-button-primary{
+  outline-color: #333;
+  text-decoration: underline;
+}
+
+.focus.ml-button-primary{
+  box-shadow: 0 0 3px #333, 0 0 7px #333;
+}
+
+.ml-button-primary {
+  background-color: #007abc;
+  color: #fff;
+}
+
+.ml-button-primary:hover,
+.ml-button-primary:focus,
+.ml-button-primary.hover,
+.ml-button-primary.focus {
+  background-color: #0061a0;
+}
+
+.ml-button-secondary{
+  box-sizing: content-box;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  background-color: transparent;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 2px;
+  padding: 12px 14px;
+  border: 0;
+  display: inline-block;
+  margin-right: 15px;
+}
+
+
+.ml-button-secondary:hover,
+.ml-button-secondary:focus,
+.hover.ml-button-secondary{
+  text-decoration: underline;
+}
+
+.ml-button-secondary:focus,
+.focus.ml-button-secondary{
+  outline-color: #333;
+  text-decoration: underline;
+}
+
+
+.focus.ml-button-secondary{
+  box-shadow: 0 0 3px #333, 0 0 7px #333;
+}
+
+.ml-button-secondary {
+  background-color: #fff;
+  color: #007abc;
+  border: solid 2px #007abc;
+}
+
+.ml-button-secondary:focus,
+.ml-button-secondary:hover,
+.ml-button-secondary.hover,
+.ml-button-secondary.focus {
+  background-color: #007abc;
+  color: #fff;
+}
+
+.ml-button-disabled{
+  box-sizing: content-box;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 14px;
+  text-transform: uppercase;
+  background-color: transparent;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 2px;
+  padding: 12px 14px;
+  border: 0;
+  display: inline-block;
+  margin-right: 15px;
+}
+.ml-button-disabled,  .ml-button-disabled:hover, .ml-button-disabled:focus, .focus.ml-button-disabled
+{
+  background-color: #D9D9D9;
+  color: #333;
+  cursor: not-allowed;
+}
+
+.ml-link
+{
+  text-decoration: underline;
+  color: #007abc;
+  font-weight: bold;
+  display: inline-block;
+  margin: 15px;
+}
+
+.ml-link:hover,
+.ml-link:focus,
+.hover.ml-link
+{
+  text-decoration: none;
+}
+
+.ml-link:focus
+{
+  outline-color: #333;
+  text-decoration: none;
+}
+.focus.ml-link
+{
+  box-shadow: 0 0 4px #333, 0 0 10px #333;
+}
+
+

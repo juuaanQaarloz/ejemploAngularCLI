@@ -34,6 +34,16 @@
   bottom: 0;
   height: 16px;
 }
+
+.footer-buttons {
+  width: 100%;
+  /*position: fixed;*/
+  /*bottom: 20px;*/
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-gap: 15px;
+  margin-left: 56px;
+}
 .footer-left {
   width: 70%;
   background-color: #0090da;

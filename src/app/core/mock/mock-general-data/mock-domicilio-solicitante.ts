@@ -88,7 +88,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     idHtml: 'txtZipCodeS',
     name: 'zipCodeS',
     orderAppearance: 4,
-    label: 'Código postar*',
+    label: 'Código postal*',
     type: 'text',
     required: true,
     placeholder: '',

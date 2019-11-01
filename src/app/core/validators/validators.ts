@@ -155,6 +155,19 @@ export function validateDateFormat(control: AbstractControl): {[key: string]: an
   // return true;
 }
 
+export function AgeValidator(minAge = 15, maxAge = 70): any {
+  console.log('on AgeValidator');
+  return (control: FormControl): { [key: string]: any } => {
+    const val = control.value;
+
+    if (val < minAge || val > maxAge) {
+      return { invalidDate: true };
+    }
+
+    return null;
+  };
+}
+
 export function DateValidator(format = 'YYYY/MM/DD'): any {
   return (control: FormControl): { [key: string]: any } => {
     const val = moment(control.value, format, true);
@@ -207,6 +220,7 @@ export function validateTitularDateFormat(control: AbstractControl): {[key: stri
  * @returns (boolean) returns false if the given age is out of the rage permitted
  */
 export function validateAge(control: AbstractControl): {[key: string]: any} | null {
+  console.log('control age value: ', control.value);
   if (control.value < 15 || control.value > 70) {
     return {invalidAge: { valid: false, value: control.value}};
     // return false;

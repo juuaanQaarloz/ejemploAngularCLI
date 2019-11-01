@@ -83,6 +83,13 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       });
       // console.log('disable: ', this.disable);
     }
+
+    /*if (this.fieldObj.name === 'age') {
+      this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
+        console.log('onValueChange: ', value);
+        this.isValid('age');
+      });
+    }*/
   }
 
   ngAfterViewInit() {
@@ -131,6 +138,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         }
       }
     }
+  }
+
+  fileChange(event) {
+    console.log('event: ', event.target.files);
   }
 
   onChange(event) {
@@ -216,8 +227,14 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     return value;
   }
 
-  isValid() {
+  isValid(formControlName?) {
     console.log('onIsValid value: ', this.form.controls[this.fieldObj.name].value);
+    /*if (formControlName) {
+      console.log('formControlName: ', formControlName);
+      this.valid = this.form.controls[formControlName].valid;
+    } else {
+      this.valid =  this.form.controls[this.fieldObj.name].valid;
+    }*/
     this.valid =  this.form.controls[this.fieldObj.name].valid;
     console.log('errors: ', this.form.controls[this.fieldObj.name].errors);
   }

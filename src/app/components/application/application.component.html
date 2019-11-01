@@ -38,11 +38,8 @@
   <div style="text-align: center">
     <h1 class="title">Solicitudes MetaLife</h1>
 
-    <!--<div *ngIf="payLoad" class="form-row">
-      <strong>Saved the following values</strong><br>{{payLoad}}
-    </div>-->
-
-
+    <!--<input style="display: block" type="file" placeholder="Upload file" accept=".pdf,.doc,.docx"
+           (change)="fileChange($event)">-->
 
     <jw-modal [id]="'modal-search'"
               [modalType]="'overlay'">
@@ -55,16 +52,9 @@
     <app-section-form [form]="formGroup" [sectionObj]="section"></app-section-form>
   </div>
 
-  <a href="javascript:;"
-     class="ml-button-primary"
-     (click)="downloadPDF()">
-    PDF
-  </a>
+  <app-operation-form [operationObj]="pdfOperation" (click)="downloadPDF()"></app-operation-form>
 
 </div>
-
-
-
 <div class="footer">
   <div class="footer-left"></div>
   <div class="footer-center"></div>

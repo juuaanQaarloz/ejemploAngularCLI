@@ -1,4 +1,5 @@
 import {
+  AgeValidator,
   DateValidator,
   validateAge, validateAlphanumericName,
   validateAlphanumericValue,
@@ -25,10 +26,10 @@ export const validatorsObjects = [
     nameField: 'birthDate',
     validationFunctions: [DateValidator]
   },
-  {
+  /*{
     nameField: 'age',
-    validationFunctions: [validateAge]
-  },
+    validationFunctions: [AgeValidator]
+  },*/
   {
     nameField: 'rfc',
     validationFunctions: [validateRFC]
@@ -185,10 +186,10 @@ export const validatorsObjects = [
     nameField: 'birthDateS',
     validationFunctions: [DateValidator]
   },
-  {
+  /*{
     nameField: 'ageS',
-    validationFunctions: [validateAge]
-  },
+    validationFunctions: [AgeValidator]
+  },*/
   {
     nameField: 'rfcS',
     validationFunctions: [validateRFC]
@@ -267,7 +268,7 @@ export const validatorsObjects = [
   },
   {
     nameField: 'salary',
-    validationFunctions: [validateAlphanumericValue]
+    validationFunctions: [validateNumberWith2Decimals]
   },
   {
     nameField: 'occupationS',
@@ -287,7 +288,7 @@ export const validatorsObjects = [
   },
   {
     nameField: 'salaryS',
-    validationFunctions: [validateAlphanumericValue]
+    validationFunctions: [validateNumberWith2Decimals]
   },
   {
     nameField: 'additionalOccupation',
@@ -299,7 +300,7 @@ export const validatorsObjects = [
   },
   {
     nameField: 'additionalSalary',
-    validationFunctions: [validateAlphanumericValue]
+    validationFunctions: [validateNumberWith2Decimals]
   },
   {
     nameField: 'beneficiaryName',
