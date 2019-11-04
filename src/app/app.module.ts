@@ -32,6 +32,10 @@ import { NewBeneficiaryComponent } from './components/beneficiaries/new-benefici
 import {DialogModule} from './components/dialog/dialog.module';
 import {MY_DATE_FORMATS, MyDateAdapter} from './core/utilities/date.adapter';
 import { SearchOccupationComponent } from './components/search-occupation/search-occupation.component';
+import { HeaderComponent } from './components/header/header.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { MenuPageComponent } from './components/menu-page/menu-page.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +53,10 @@ import { SearchOccupationComponent } from './components/search-occupation/search
     BeneficiaryItemComponent,
     NewBeneficiaryComponent,
     SearchOccupationComponent,
+    HeaderComponent,
+    MenuComponent,
+    FooterComponent,
+    MenuPageComponent,
   ],
   imports: [
     BrowserModule,

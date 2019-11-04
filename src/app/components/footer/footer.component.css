@@ -1,0 +1,31 @@
+.footer {
+  width: 100%;
+  /*background-color: #d9d9d6;*/
+  position: fixed;
+  bottom: 0;
+  height: 16px;
+}
+
+.footer-left {
+  width: 70%;
+  background-color: #0090da;
+  display: inline-block;
+  height: 16px;
+  margin-bottom: 44px;
+}
+
+.footer-center {
+  width: 10%;
+  background-color: #0061a0;
+  display: inline-block;
+  height: 16px;
+  margin-bottom: 44px;
+}
+
+.footer-right {
+  width: 20%;
+  background-color: #a4ce4e;
+  display: inline-block;
+  height: 16px;
+  margin-bottom: 44px;
+}

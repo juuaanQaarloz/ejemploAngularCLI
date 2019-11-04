@@ -499,6 +499,14 @@ export const MockContentStep7Process1ContentSection2: Content[] = [
     parentType: 'Step',
     idHtml: 'app-content-form-2.19',
     title: '',
+    description: 'Advertencia: En el caso de que se desee nombrar beneficiarios a menores de edad, ' +
+      'no se debe señalar a un mayor de edad como representante de los menores para efecto de que, en su' +
+      'representación, cobre la indemnización. ' +
+      'Lo anterior porque legislaciones civiles previenen la forma en que debe designarse tutores, albaceas, representantes ' +
+      'de herederos u otros cargos similares  y no consideran al contrato de seguro como el instrumento adecuado para tales ' +
+      'designaciones. La designación que se hiciera de un mayor de edad como representante de menores beneficiarios, durante ' +
+      'la minoría de edad de ellos, legalmente puede implicar que se nombra de beneficiarios en un contrato de seguro le ' +
+      'concede el derecho incondicionado de disponer de la Suma Asegurada.',
     contentType: 'table-beneficiary',
     // process?: Process;
     // fields: Beneficiarios,

@@ -4,12 +4,14 @@ import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from './components/login/login.component';
 import {ApplicationComponent} from './components/application/application.component';
 import {AuthGuard} from './core/guards/auth.guard';
+import {MenuPageComponent} from './components/menu-page/menu-page.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'application2', component: ApplicationComponent, canActivate: [AuthGuard]},
-  { path: '', redirectTo: '/application2', pathMatch: 'full' },
-  { path: '**', redirectTo: '/application2'}
+  {path: 'menuPage', component: MenuPageComponent},
+  { path: '', redirectTo: '/menuPage', pathMatch: 'full' },
+  { path: '**', redirectTo: '/menuPage'}
   ];
 
 @NgModule({

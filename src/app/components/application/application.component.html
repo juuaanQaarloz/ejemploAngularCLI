@@ -1,37 +1,6 @@
-<div class="header" appTrackScroll (scrollOffset)="onScroll($event)"
-     [ngStyle]="{'height':resizeHeaderHeight ? '50px' : '70px' }">
-  <div class="header-left-container"
-       [ngClass]="resizeHeaderHeight ? 'header-left-container-minimized' : 'header-left-container' ">
-    <a href="" class="ml-icon-link-menu"
-       [ngStyle]="{'padding':resizeHeaderHeight ? '3px' : '9px' }">
-      <img id="iconHome" [src]='"../../../assets/icons/" + iconHome + ".svg"'
-           (mouseover)="onMouseMove($event)"
-           (mouseout)="onMouseMove($event)"/>
-      <span id="labelHome" (mouseover)="onMouseMove($event)"
-            (mouseout)="onMouseMove($event)">
-        INICIO</span>
-    </a>
-  </div>
+<app-header></app-header>
 
-  <img class="img-container" src="../../../assets/img/met-life-logo.png"
-       [ngClass]="resizeHeaderHeight ? 'img-container-minimized' : 'img-container' ">
-
-  <div class="header-right-container"
-       [ngClass]="resizeHeaderHeight ? 'header-right-container-minimized' : 'header-right-container' ">
-    <a href="" class="ml-icon-link-menu" (click)="logout()"
-       [ngStyle]="{'padding':resizeHeaderHeight ? '3px' : '9px' }">
-      <span id="labelSecurity" (mouseover)="onMouseMove($event)"
-            (mouseout)="onMouseMove($event)">
-        CERRAR SESION</span>
-      <img id="iconSecurity" [src]='"../../../assets/icons/" + iconSecurity + ".svg"'
-           (mouseover)="onMouseMove($event)"
-           (mouseout)="onMouseMove($event)"/>
-    </a>
-  </div>
-
-</div>
-
-<div class="menu-container"></div>
+<!--<app-menu></app-menu>-->
 
 <div id="content" #content style="background-color: white">
 
@@ -60,11 +29,8 @@
   <app-operation-form [operationObj]="pdfOperation" (click)="downloadPDF()"></app-operation-form>
 
 </div>
-<div class="footer">
-  <div class="footer-left"></div>
-  <div class="footer-center"></div>
-  <div class="footer-right"></div>
-</div>
+
+<app-footer></app-footer>
 
 
 

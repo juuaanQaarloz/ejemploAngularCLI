@@ -1,0 +1,35 @@
+.mega-menu {
+  height: 100%;
+  margin: 0;
+  /*padding: 0;*/
+  padding-top: 60px;
+  width: 100%;
+  max-width: 1200px;
+  list-style: none;
+  font-family: 'Noto Sans', sans-serif;
+  background: #0061A0;
+  display: inline-flex;
+  justify-content: center;
+  position: relative;
+}
+
+@media screen and (max-width: 400px) {
+  .mega-menu {
+    display: grid;
+    /*grid-gap: 15px*/
+  }
+}
+
+.menu-item {
+  float: left;
+  padding: 30px 10px 24px 10px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  /*text-decoration: none;*/
+  text-transform: uppercase;
+}
+
+.menu-item:hover {
+  background-color: #0079ca;
+}

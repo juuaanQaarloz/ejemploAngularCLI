@@ -16,8 +16,6 @@ import {HttpClient} from '@angular/common/http';
 })
 export class ApplicationComponent implements OnInit {
   applicationObj =  MockTemplate;
-  resizeHeaderHeight = false;
-  iconHome = 'home-icon';
   iconSecurity = 'security-icon';
   payLoad = '';
   formGroup: FormGroup;
@@ -33,41 +31,6 @@ export class ApplicationComponent implements OnInit {
   ngOnInit() {
     this.formGroup = this.appService.toFormGroup(this.applicationObj);
     this.appService.setFormGroup(this.formGroup);
-  }
-
-  onScroll(scrollOffset) {
-    if (scrollOffset > 0) {
-      this.resizeHeaderHeight = true;
-    } else {
-      this.resizeHeaderHeight = false;
-    }
-  }
-
-  onMouseMove(event) {
-    if (event.type === 'mouseover') {
-      if (event.target.id === 'labelHome' || event.target.id === 'iconHome') {
-        this.iconHome = 'home-icon-hover';
-      } else if (event.target.id === 'labelSecurity' || event.target.id === 'iconSecurity') {
-        this.iconSecurity = 'security-icon-hover';
-      }
-    } else if (event.type === 'mouseout') {
-      if (event.target.id === 'labelHome' || event.target.id === 'iconHome') {
-        this.iconHome = 'home-icon';
-      } else if (event.target.id === 'labelSecurity' || event.target.id === 'iconSecurity') {
-        this.iconSecurity = 'security-icon';
-      }
-    }
-    // console.log('event: ', event.target.id);
-  }
-
-  logout(): void {
-    this.authService.logout().subscribe(
-      response => {
-        if (response) {
-          this.storageService.logout();
-        }
-      }
-    );
   }
 
   getFormValue() {

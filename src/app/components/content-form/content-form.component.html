@@ -1,6 +1,8 @@
 <div *ngIf="contentObj.showContent === true" [id]="contentObj.idHtml">
   <p *ngIf="contentObj.title" class="title">{{contentObj.title}}</p>
 
+  <p *ngIf="contentObj.description" style="text-align: justify">{{contentObj.description}}</p>
+
   <div [ngSwitch]="contentObj.contentType">
 
     <div *ngSwitchCase="'looseFields'" data-forms="floating-label" class="ml-form"

@@ -184,14 +184,14 @@ export const DatosRepresentanteLegal: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'Una respuesta es requerida',
+    message: 'En caso de seleccionar SI, llenar sección de estructura corporativa y accionista del formato 4',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
-    value: true
+    entityField: ''
+    // value: true
   }
 ];

@@ -8,6 +8,7 @@ export interface Content {
   parentType: string;
   idHtml: string;
   title?: string;
+  description?: string;
   process?: Process;
   fields?: Field[];
   operations?: Operation[];
