@@ -272,6 +272,7 @@ export class ApplicationService {
 
   evaluateCondition(formGroup: FormGroup, elementsCondition) {
     const valueFormControl = this.getFormControlValueByName(formGroup, elementsCondition[1]);
+    console.log('valueFormControl: ', valueFormControl);
     let result: boolean;
 
     switch (elementsCondition[2]) {

@@ -87,6 +87,20 @@ export const BeneficiariesOperations: Operation[] = [
     delegateOperation: 'updateBeneficiary',
     renderConditions: '',
     enableConditions: '',
+  },
+  {
+    id: 'opt-4',
+    idHtml: 'btnUploadInstructionLetter',
+    name: 'uploadInstructionLetter',
+    label: 'CARGAR DOCUMENTOS',
+    type: 'button',
+    style: '',
+    styleClass: 'ml-button-primary',
+    message: '',
+    messageClass: '',
+    delegateOperation: 'uploadInstructionLetter',
+    renderConditions: 'beneficiaryType=fidPerson',
+    enableConditions: '',
   }
 ];
 

@@ -22,15 +22,15 @@
     </label>
   </fieldset>
 
-  <fieldset *ngSwitchCase="'file'" class="ml-form-field"
+  <!--<fieldset *ngSwitchCase="'file'" class="ml-button-primary"
             [ngClass]="{'error': !valid}">
     <label>
       <input [type]="'file'"
              [formControlName]="fieldObj.name"
              [id]="fieldObj.idHtml"
+             (change)="fileChange($event)"
              placeholder="{{fieldObj.placeholder}}"
-             value=""
-             (change)="fileChange($event)>
+             value="" >
 
       <span [ngStyle]="{'background': this.disable ? '#EBEBE4':''}">{{fieldObj.label}}</span>
       <a *ngIf="fieldObj.canChangeType" href="javascript:;" (click)="onClickToggle()"
@@ -39,7 +39,7 @@
       ></a>
       <div class="ml-form-field-errortext">{{fieldObj.message}}</div>
     </label>
-  </fieldset>
+  </fieldset>-->
 
   <fieldset *ngSwitchCase="'date'" class="ml-form-field"
             [ngClass]="{'error': !valid}">

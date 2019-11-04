@@ -600,19 +600,19 @@ export const Beneficiarios: Field[] = [
     entity: '',
     entityField: '',
     value: ''
-  }
-  /*{
+  },
+  {
     id: 'field-107',
-    idHtml: 'txtAdditionalInfo',
-    name: 'additionalInfo',
+    idHtml: 'fileLoadInstructionLetter',
+    name: 'loadInstructionLetter',
     orderAppearance: 21,
-    label: 'Información adicional',
-    type: 'text',
-    required: false,
-    placeholder: '',
-    length: '200',
+    label: 'Cargar documentos',
+    type: 'file',
+    required: true,
+    placeholder: 'Carta instrucción a la fiduciaria',
+    length: '',
     minValue: 0,
-    maxValue: 200,
+    maxValue: 0,
     pattern: '',
     source: '',
     sourceID: '',
@@ -623,12 +623,12 @@ export const Beneficiarios: Field[] = [
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
-    renderConditions: '',
+    renderConditions: 'beneficiaryType=fidPerson',
     enableConditions: '',
     entity: '',
     entityField: '',
     value: ''
-  }*/
+  }
 ];
 
 export const BENEFICIARIES: Beneficiary[] =  [
