@@ -1,5 +1,6 @@
 import {Step} from '../../models';
 import {
+  MockContentStep17Process1ContentSection2,
   MockContentStep1Process1ContentSection2,
   MockContentStep2Process1ContentSection2,
   MockContentStep3Process1ContentSection2,
@@ -99,6 +100,19 @@ export const MockStepsProcessContentSection2: Step[] = [
     renderConditions: '',
     previousStep: '6',
     nextStep: '1',
+    /*added extra from model*/
+    isCompleted: false,
+    show: true
+  },
+  {
+    id: '17',
+    idProcess: 'process-1',
+    idHtml: 'app-step-form-17',
+    title: 'Cuestionario de aviación deportes y / o aficiones del solicitante',
+    contents: MockContentStep17Process1ContentSection2,
+    renderConditions: '',
+    previousStep: '7',
+    nextStep: '18',
     /*added extra from model*/
     isCompleted: false,
     show: true

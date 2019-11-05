@@ -1,4 +1,4 @@
-import {Content, Field, Operation, Process} from '../../models';
+import {Content, Field} from '../../models';
 import {DatosGeneralesPersonaFisica} from './mock-general-data/mock-datos-persona-fisica';
 import {DatosDomicilio} from './mock-general-data/mock-domicilio';
 import {MockOperations, SearchOccupationOperations, SearchOccupationOperationsS} from './mock-operations';
@@ -9,7 +9,7 @@ import {DatosRepresentanteLegal} from './mock-general-data/legal-agent';
 import {DatosGeneralesSolicitante} from './mock-general-data/mock-datos-solicitante';
 import {DatosDomicilioSolicitante} from './mock-general-data/mock-domicilio-solicitante';
 import {InformacionLaboralSolicitante, InformacionLaboralSolicitante1} from './mock-laboral-data/mock-informacion-laboral-solicitante';
-import {Beneficiarios} from './mock-beneficiaries';
+import {sportsQuestions1} from './basic-questionnaires/sports-aviation-hobbies';
 
 export const MockFieldsContractorType: Field[] = [
   {
@@ -541,6 +541,29 @@ export const MockContentStep7Process1ContentSection2: Content[] = [
     contentType: 'looseFields'
     // enableConditions?: 'string';
     // styleClass: 'string',
+    // --------------------------
+  }
+];
+
+export const MockContentStep17Process1ContentSection2: Content[] = [
+  {
+    id: 'content-2.22',
+    idParent: 'step-17',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.22',
+    contentType: 'looseFields',
+    // process?: Process;
+    fields: sportsQuestions1,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    // enableConditions?: 'string';
+    styleClass: 'questions-type'
     // --------------------------
   }
 ];

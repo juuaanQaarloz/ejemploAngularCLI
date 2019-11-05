@@ -188,7 +188,7 @@ hr.ml-step-hr{
 }
 
 .ml-form.questions-type {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(1, 1fr);
 }
 
 .ml-form.modal-type {
@@ -203,8 +203,12 @@ hr.ml-step-hr{
 }
 
 @media screen and (max-width: 768px){
-  .ml-form, .ml-form.questions-type  {
+  .ml-form {
     grid-template-columns: repeat(2,minmax(240px, 240px));
+  }
+
+  .ml-form.questions-type  {
+    grid-template-columns: repeat(1,minmax(240px, 240px));
   }
 }
 

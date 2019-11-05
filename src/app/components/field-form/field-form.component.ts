@@ -280,6 +280,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         result = false;
       }
     }
+    console.log('result: ', result);
     return  result;
   }
 
@@ -354,6 +355,17 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     const el = document.getElementById(htmlID);
     el.setAttribute('value', value);
     this.form.controls[formControlName].setValue(value);
+  }
+
+  getStyle(style: string): any {
+    const obj: {[k: string]: any} = {};
+    const resultSplit = style.split(':');
+
+    // console.log('resultSplit: ', resultSplit);
+    obj[resultSplit[0]] = resultSplit[1];
+
+    // console.log('obj: ', obj);
+    return obj;
   }
 }
 
