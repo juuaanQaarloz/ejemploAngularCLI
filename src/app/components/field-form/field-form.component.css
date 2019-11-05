@@ -3,3 +3,9 @@
   grid-template-columns: repeat(4,1fr);
   grid-gap: 15px;
 }
+
+.radio-options{
+  display: grid;
+  grid-template-columns: repeat(3,60% 20% 20%);
+  grid-gap: 15px;
+}

@@ -101,18 +101,20 @@
     </label>
   </fieldset>
 
-  <fieldset *ngSwitchCase="'radio'" class="ml-form-field" style="display: grid; grid-template-columns: 85% 15%;"
-            [ngClass]="{'error': !valid}">
-    <label>{{fieldObj.label}}</label>
+  <fieldset *ngSwitchCase="'radio'" [ngClass]="{'error': !valid}" class="ml-form">
+    <!--style="display: grid; grid-template-columns: 85% 15%;">-->
+    <!--<div class="radio-options">-->
+      <label>{{fieldObj.label}}</label>
 
-    <div class="ml-form-field-radio-group" style="display: block" *ngFor="let radioOption of radioOptions; let first = first">
-      <input type="radio" [formControlName]="fieldObj.name"
-             [id]="radioOption.id + '-radio'"
-             [value]="radioOption.value"
-             [checked]="checkValue(radioOption.value)">
-      <label>{{radioOption.name}}</label>
+      <div class="ml-form-field-radio-group" *ngFor="let radioOption of radioOptions; let first = first">
+        <input type="radio" [formControlName]="fieldObj.name"
+               [id]="radioOption.id + '-radio'"
+               [value]="radioOption.value"
+               [checked]="checkValue(radioOption.value)">
+        <label>{{radioOption.name}}</label>
 
-    </div>
+      </div>
+    <!--</div>-->
 
   </fieldset>
 
