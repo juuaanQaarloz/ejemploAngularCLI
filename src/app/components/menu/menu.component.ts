@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -10,7 +11,7 @@ export class MenuComponent implements OnInit {
   menuOptions = [
     {
       menuLabel: 'NUEVOS NEGOCIOS',
-      redirectTo: '/application2'
+      redirectTo: 'application2'
     },
     {
       menuLabel: 'MESA DE CONTROL',
@@ -22,9 +23,13 @@ export class MenuComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  navigateTo(path) {
+    this.router.navigate([path]);
   }
 
 }

@@ -77,7 +77,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'El apellido materno es obligatorio y no puede contener más de 3 letras iguales consecutivas ni números.' +
+    message: 'El apellido materno no puede contener más de 3 letras iguales consecutivas ni números.' +
       ' No se permiten caracteres especiales.',
     messageClass: '',
     messageError: '',
@@ -123,7 +123,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     orderAppearance: 5,
     label: 'Edad*',
     type: 'text',
-    required: true,
+    required: false,
     placeholder: 'Edad',
     length: '3',
     minValue: 0,
@@ -407,7 +407,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     orderAppearance: 15,
     label: 'Nacionalidad(es)*',
     type: 'select',
-    required: false,
+    required: true,
     placeholder: '',
     length: '',
     minValue: 0,

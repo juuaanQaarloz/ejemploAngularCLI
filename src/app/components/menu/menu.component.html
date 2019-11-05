@@ -1,5 +1,5 @@
 <div class="mega-menu">
   <div *ngFor="let menuOpt of menuOptions">
-    <a href="{{menuOpt.redirectTo}}" class="menu-item">{{menuOpt.menuLabel}}</a>
+    <a class="menu-item" (click)="navigateTo(menuOpt.redirectTo)">{{menuOpt.menuLabel}}</a>
   </div>
 </div>

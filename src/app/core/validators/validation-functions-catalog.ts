@@ -2,11 +2,11 @@ import {
   AgeValidator,
   DateValidator,
   validateAge, validateAlphanumericName,
-  validateAlphanumericValue,
-  validateCURP, validateMail,
-  validateName, validateNumberWith2Decimals, validatePhone,
+  validateAlphanumericValue, validateAlphanumericValueNotRequired,
+  validateCURP, validateCURPNotRequired, validateMail,
+  validateName, validateNumberWith2Decimals, validatePhone, validatePhoneNotRequired,
   validateRFC, validateRFCMoral,
-  validateStreet, validateStreetNum, validateZipCode
+  validateStreet, validateStreetNum, validateStreetNumberNotRequired, validateZipCode
 } from './validators';
 
 export const validatorsObjects = [
@@ -20,23 +20,23 @@ export const validatorsObjects = [
   },
   {
     nameField: 'motherLastName',
-    validationFunctions: [validateAlphanumericValue]
+    validationFunctions: [validateAlphanumericValueNotRequired]
   },
   {
     nameField: 'birthDate',
     validationFunctions: [DateValidator]
   },
-  /*{
+  {
     nameField: 'age',
     validationFunctions: [AgeValidator]
-  },*/
+  },
   {
     nameField: 'rfc',
     validationFunctions: [validateRFC]
   },
   {
     nameField: 'curp',
-    validationFunctions: [validateCURP]
+    validationFunctions: [validateCURPNotRequired]
   },
   {
     nameField: 'idNumber',
@@ -60,7 +60,7 @@ export const validatorsObjects = [
   },
   {
     nameField: 'interiorNumber',
-    validationFunctions: [validateStreetNum]
+    validationFunctions: [validateStreetNumberNotRequired]
   },
   {
     nameField: 'zipCode',
@@ -180,7 +180,7 @@ export const validatorsObjects = [
   },
   {
     nameField: 'motherLastNameS',
-    validationFunctions: [validateAlphanumericValue]
+    validationFunctions: [validateAlphanumericValueNotRequired]
   },
   {
     nameField: 'birthDateS',
@@ -196,7 +196,7 @@ export const validatorsObjects = [
   },
   {
     nameField: 'curpS',
-    validationFunctions: [validateCURP]
+    validationFunctions: [validateCURPNotRequired]
   },
   {
     nameField: 'idNumberS',
@@ -236,7 +236,7 @@ export const validatorsObjects = [
   },
   {
     nameField: 'phoneS',
-    validationFunctions: [validatePhone]
+    validationFunctions: [validatePhoneNotRequired]
   },
   {
     nameField: 'cellPhoneS',

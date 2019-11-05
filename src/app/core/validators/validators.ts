@@ -51,6 +51,14 @@ export function validateAlphanumericValue(control: AbstractControl, apply?): {[k
   // return valid ? null : {invalidName: { valid: false, value: control.value}};
 }
 
+export function validateAlphanumericValueNotRequired(control: AbstractControl): {[key: string]: any} | null {
+  if (control.value) {
+    return validateAlphanumericValue(control);
+  } else {
+    return null;
+  }
+}
+
 export function validateAlphanumericValueFormat3(control: AbstractControl): {[key: string]: any} | null {
   // jirineoc Si contiene un valor nulo, vacío o indefinido, debe mandar error, por que es un campo requerido
   if (nullUndefinedOrEmptyValidation(control.value)) {
@@ -160,8 +168,10 @@ export function AgeValidator(minAge = 15, maxAge = 70): any {
   return (control: FormControl): { [key: string]: any } => {
     const val = control.value;
 
+    console.log('val: ', val);
+
     if (val < minAge || val > maxAge) {
-      return { invalidDate: true };
+      return { invalidAge: true };
     }
 
     return null;
@@ -220,7 +230,6 @@ export function validateTitularDateFormat(control: AbstractControl): {[key: stri
  * @returns (boolean) returns false if the given age is out of the rage permitted
  */
 export function validateAge(control: AbstractControl): {[key: string]: any} | null {
-  console.log('control age value: ', control.value);
   if (control.value < 15 || control.value > 70) {
     return {invalidAge: { valid: false, value: control.value}};
     // return false;
@@ -279,6 +288,19 @@ export function validateCURP(control: AbstractControl): {[key: string]: any} | n
   }
   return null;
   // return true;
+}
+
+export function validateCURPNotRequired(control: AbstractControl): {[key: string]: any} | null {
+  if (control.value) {
+    if (!curpPattern.test(control.value) && !nullUndefinedOrEmptyValidation(control.value)) { // review to allow empty curp
+      return {invalidCurp: { valid: false, value: control.value}};
+      // return false;
+    } else {
+      return null;
+    }
+  } else {
+    return null;
+  }
 }
 
 // TODO: make validation against catalog
@@ -376,6 +398,14 @@ export function validatePhone(control: AbstractControl): {[key: string]: any} | 
   }
   return null;
   // return true;
+}
+
+export function validatePhoneNotRequired(control: AbstractControl): {[key: string]: any} | null {
+  if (control.value) {
+    return validatePhone(control);
+  } else {
+    return null;
+  }
 }
 
 /**
@@ -514,6 +544,14 @@ export function validateStreetNum(control: AbstractControl): {[key: string]: any
 
   return {invalidStreetNumber: { valid: false, value: control.value}};
   // return false;
+}
+
+export function validateStreetNumberNotRequired(control: AbstractControl): {[key: string]: any} | null {
+  if (control.value) {
+    return validateStreetNum(control);
+  } else {
+    return null;
+  }
 }
 
 /** @param (string) cp the zip code to be validated

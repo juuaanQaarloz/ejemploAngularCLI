@@ -77,7 +77,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'El apellido materno es obligatorio y no puede contener más de 3 letras iguales consecutivas ni números.' +
+    message: 'El apellido materno no puede contener más de 3 letras iguales consecutivas ni números.' +
       ' No se permiten caracteres especiales.',
     messageClass: '',
     messageError: '',
@@ -134,7 +134,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: '',
+    message: 'La edad no es válida, el rango de edad es entre 15 y 70 años',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',

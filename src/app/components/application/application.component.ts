@@ -6,8 +6,7 @@ import {DialogService} from '../dialog/dialog.service';
 import {ModalService} from '../custom-modal';
 import * as jsPDF from 'jspdf';
 import {pdfOperation} from '../../core/mock/mock-operations';
-import {Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+
 
 @Component({
   selector: 'app-application',
