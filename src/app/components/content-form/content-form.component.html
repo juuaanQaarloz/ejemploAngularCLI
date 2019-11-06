@@ -13,7 +13,7 @@
     </div>
 
     <div *ngSwitchCase="'table-beneficiary'" class="ml-step-container">
-      <app-beneficiary-table></app-beneficiary-table>
+      <app-beneficiary-table [type]="contentObj.contentType"></app-beneficiary-table>
     </div>
   </div>
 

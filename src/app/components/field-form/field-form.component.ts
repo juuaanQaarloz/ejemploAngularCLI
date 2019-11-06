@@ -280,7 +280,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         result = false;
       }
     }
-    console.log('result: ', result);
+    // console.log('result: ', result);
     return  result;
   }
 

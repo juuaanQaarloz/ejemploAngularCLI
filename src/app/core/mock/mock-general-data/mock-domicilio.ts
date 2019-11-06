@@ -322,7 +322,7 @@ export const DatosDomicilio: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'El correo capturado debe cumplir con el formato correp@servidor.com y solo se aceptan . - _',
+    message: 'El correo capturado debe cumplir con el formato correo@servidor.com y solo se aceptan . - _',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',

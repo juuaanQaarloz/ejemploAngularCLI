@@ -6,6 +6,28 @@
 
 .radio-options{
   display: grid;
-  grid-template-columns: repeat(3,60% 20% 20%);
+  grid-template-columns: 60% 20% 20%;
   grid-gap: 15px;
 }
+
+@media screen and (max-width: 979px){
+  .radio-options {
+    grid-template-columns: repeat(1, 1fr);
+
+  }
+}
+
+/*@media screen and (max-width: 768px){
+  .radio-options {
+    grid-template-columns: 100%;
+  }
+}
+
+@media screen and (max-width: 421px){
+  .radio-options {
+    grid-template-columns: 100%;
+  }
+}*/
+
+
+

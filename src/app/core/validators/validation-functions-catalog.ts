@@ -369,5 +369,9 @@ export const validatorsObjects = [
   {
     nameField: 'beneficiaryCity',
     validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'frequency',
+    validationFunctions: [validateAlphanumericValue]
   }
 ];

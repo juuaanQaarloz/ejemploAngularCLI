@@ -9,7 +9,9 @@ import {DatosRepresentanteLegal} from './mock-general-data/legal-agent';
 import {DatosGeneralesSolicitante} from './mock-general-data/mock-datos-solicitante';
 import {DatosDomicilioSolicitante} from './mock-general-data/mock-domicilio-solicitante';
 import {InformacionLaboralSolicitante, InformacionLaboralSolicitante1} from './mock-laboral-data/mock-informacion-laboral-solicitante';
-import {sportsQuestions1} from './basic-questionnaires/sports-aviation-hobbies';
+import {sportQuestions2, sportsFields1, sportsQuestions1} from './basic-questionnaires/sports-aviation-hobbies';
+import {habitsQuestions} from './basic-questionnaires/habits';
+import {medialQuestions} from './basic-questionnaires/medical';
 
 export const MockFieldsContractorType: Field[] = [
   {
@@ -554,6 +556,91 @@ export const MockContentStep17Process1ContentSection2: Content[] = [
     contentType: 'looseFields',
     // process?: Process;
     fields: sportsQuestions1,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    // enableConditions?: 'string';
+    styleClass: 'questions-type'
+    // --------------------------
+  },
+  {
+    id: 'content-2.23',
+    idParent: 'step-17',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.23',
+    contentType: 'looseFields',
+    // process?: Process;
+    fields: sportsFields1,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    // enableConditions?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-2.24',
+    idParent: 'step-17',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.23',
+    contentType: 'looseFields',
+    // process?: Process;
+    fields: sportQuestions2,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    // enableConditions?: 'string';
+    styleClass: 'questions-type'
+    // --------------------------
+  }
+];
+
+export const MockContentStep18Process1ContentSection2: Content[] = [
+  {
+    id: 'content-2.27',
+    idParent: 'step-18',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.27',
+    contentType: 'looseFields',
+    // process?: Process;
+    fields: habitsQuestions,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    // enableConditions?: 'string';
+    styleClass: 'questions-type'
+    // --------------------------
+  }
+];
+
+export const MockContentStep19Process1ContentSection2: Content[] = [
+  {
+    id: 'content-2.28',
+    idParent: 'step-19',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.28',
+    contentType: 'looseFields',
+    // process?: Process;
+    fields: medialQuestions,
     // operations?: Operation[];
     renderConditions: '',
     // ---pending---
