@@ -1,8 +1,9 @@
 import {Step} from '../../models';
 import {
-  MockContentStep17Process1ContentSection2,
   MockContentStep16Process1ContentSection2,
-  MockContentStep17Process1ContentSection2, MockContentStep18Process1ContentSection2, MockContentStep19Process1ContentSection2,
+  MockContentStep17Process1ContentSection2,
+  MockContentStep18Process1ContentSection2,
+  MockContentStep19Process1ContentSection2,
   MockContentStep1Process1ContentSection2,
   MockContentStep2Process1ContentSection2,
   MockContentStep3Process1ContentSection2,

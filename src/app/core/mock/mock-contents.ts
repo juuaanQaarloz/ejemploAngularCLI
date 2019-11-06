@@ -9,12 +9,11 @@ import {DatosRepresentanteLegal, DatosRepresentanteLegal1, DatosRepresentanteLeg
 import {DatosGeneralesSolicitante} from './mock-general-data/mock-datos-solicitante';
 import {DatosDomicilioSolicitante} from './mock-general-data/mock-domicilio-solicitante';
 import {InformacionLaboralSolicitante, InformacionLaboralSolicitante1} from './mock-laboral-data/mock-informacion-laboral-solicitante';
-import {sportsQuestions1} from './basic-questionnaires/sports-aviation-hobbies';
-import {Plan1, Plan2} from './mock-plan/mock-plan';
 import {sportQuestions2, sportsFields1, sportsQuestions1} from './basic-questionnaires/sports-aviation-hobbies';
 import {habitsQuestions} from './basic-questionnaires/habits';
 import {medicalQuestions} from './basic-questionnaires/medical';
->>>>>>> 0f1ab029b0ece11bbe8ef7424b3421c4e7b3c82f
+
+import {Plan1, Plan2} from './mock-plan/mock-plan';
 
 export const MockFieldsContractorType: Field[] = [
   {
