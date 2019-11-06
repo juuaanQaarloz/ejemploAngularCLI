@@ -1760,6 +1760,49 @@
         "COLLECTION_TYPE_ID": "A",
         "LAST_UPDATE": "2005-10-05 10:00:00.0"
     }],
+    "packing": [
+    {
+      "id": 0,
+      "name": "Educacion",
+      "code": "edu"
+    },
+    {
+      "id": 1,
+      "name": "Mujer",
+      "code": "BR"
+    },
+    {
+      "id": 2,
+      "name": "Tu futuro",
+      "code": "US"
+    },
+    {
+      "id": 3,
+      "name": "Retiro",
+      "code": "CN"
+    }],
+    "coverageOptions": [
+    {
+      "id": 0,
+      "label": "A",
+      "value": true
+    },
+    {
+      "id": 1,
+      "label": "B",
+      "value": false
+    }],
+    "currency": [
+    {
+      "id": 0,
+      "name": "MXN",
+      "code": "mxn"
+    },
+    {
+      "id": 1,
+      "name": "USD",
+      "code": "usd"
+    }],
     "promotories": [
     {
         "promCode": 0,

@@ -10,6 +10,7 @@ import {DatosGeneralesSolicitante} from './mock-general-data/mock-datos-solicita
 import {DatosDomicilioSolicitante} from './mock-general-data/mock-domicilio-solicitante';
 import {InformacionLaboralSolicitante, InformacionLaboralSolicitante1} from './mock-laboral-data/mock-informacion-laboral-solicitante';
 import {sportsQuestions1} from './basic-questionnaires/sports-aviation-hobbies';
+import {Plan1, Plan2} from './mock-plan/mock-plan';
 
 export const MockFieldsContractorType: Field[] = [
   {
@@ -545,6 +546,69 @@ export const MockContentStep7Process1ContentSection2: Content[] = [
   }
 ];
 
+export const MockContentStep16Process1ContentSection2: Content[] = [
+  {
+    id: 'content-16.1',
+    idParent: 'step-16',
+    parentType: 'Step',
+    idHtml: 'app-content-form-16.1',
+    title: '',
+    // process?: Process;
+    fields: Plan1,
+    //  operations: SearchOccupationOperationsS,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },{
+    id: 'content-16.2',
+    idParent: 'step-16',
+    parentType: 'Step',
+    idHtml: 'app-content-form-16.2',
+    title: '',
+    // process?: Process;
+    fields: Plan2,
+    //  operations: SearchOccupationOperationsS,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },{
+    id: 'content-16.2',
+    idParent: 'step-16',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.20',
+    title: '',
+    // process?: Process;
+    // fields: DatosDomicilio,
+    operations: MockOperations,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass: 'string',
+    // --------------------------
+  }
+];
 export const MockContentStep17Process1ContentSection2: Content[] = [
   {
     id: 'content-2.22',
