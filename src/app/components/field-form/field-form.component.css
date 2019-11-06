@@ -8,14 +8,15 @@
   display: grid;
   grid-template-columns: 60% 20% 20%;
   grid-gap: 15px;
+  text-align: justify;
 }
 
-@media screen and (max-width: 979px){
+/*@media screen and (max-width: 979px){
   .radio-options {
     grid-template-columns: repeat(1, 1fr);
 
   }
-}
+}*/
 
 /*@media screen and (max-width: 768px){
   .radio-options {

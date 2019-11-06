@@ -2,7 +2,7 @@ import {Field} from '../../../models';
 
 export const InformacionLaboralSolicitante1: Field[] = [
   {
-    id: 'field-78',
+    id: 'field-85',
     idHtml: 'txtOccupationS',
     name: 'occupationS',
     orderAppearance: 1,
@@ -33,7 +33,7 @@ export const InformacionLaboralSolicitante1: Field[] = [
 
 export const InformacionLaboralSolicitante: Field[] = [
   {
-    id: 'field-79',
+    id: 'field-86',
     idHtml: 'txtDetailOccupationS',
     name: 'detailOccupationS',
     orderAppearance: 2,
@@ -61,7 +61,7 @@ export const InformacionLaboralSolicitante: Field[] = [
     value: '',
   },
   {
-    id: 'field-80',
+    id: 'field-87',
     idHtml: 'txtCompanyNameS',
     name: 'companyNameS',
     orderAppearance: 3,
@@ -89,7 +89,7 @@ export const InformacionLaboralSolicitante: Field[] = [
     value: '',
   },
   {
-    id: 'field-81',
+    id: 'field-88',
     idHtml: 'txtCompanyActivityS',
     name: 'companyActivityS',
     orderAppearance: 4,
@@ -117,7 +117,7 @@ export const InformacionLaboralSolicitante: Field[] = [
     value: '',
   },
   {
-    id: 'field-82',
+    id: 'field-89',
     idHtml: 'txtSalaryS',
     name: 'salaryS',
     orderAppearance: 5,
@@ -145,7 +145,7 @@ export const InformacionLaboralSolicitante: Field[] = [
     value: '',
   },
   {
-    id: 'field-83',
+    id: 'field-90',
     idHtml: 'slctAdditionalOccupation',
     name: 'additionalOccupation',
     orderAppearance: 13,
@@ -174,7 +174,7 @@ export const InformacionLaboralSolicitante: Field[] = [
     value: '',
   },
   {
-    id: 'field-84',
+    id: 'field-91',
     idHtml: 'txtWhichOne',
     name: 'whichOne',
     orderAppearance: 14,
@@ -202,7 +202,7 @@ export const InformacionLaboralSolicitante: Field[] = [
     value: '',
   },
   {
-    id: 'field-85',
+    id: 'field-92',
     idHtml: 'txtAdditionalSalary',
     name: 'additionalSalary',
     orderAppearance: 15,

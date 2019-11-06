@@ -2,7 +2,7 @@ import {Field} from '../../../models';
 
 export const DatosDomicilioSolicitante: Field[] = [
   {
-    id: 'field-67',
+    id: 'field-74',
     idHtml: 'txtStreetS',
     name: 'streetS',
     orderAppearance: 1,
@@ -30,7 +30,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-68',
+    id: 'field-75',
     idHtml: 'txtExteriorNumberS',
     name: 'exteriorNumberS',
     orderAppearance: 2,
@@ -57,7 +57,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-69',
+    id: 'field-76',
     idHtml: 'txtInteriorNumberS',
     name: 'interiorNumberS',
     orderAppearance: 3,
@@ -84,7 +84,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-70',
+    id: 'field-77',
     idHtml: 'txtZipCodeS',
     name: 'zipCodeS',
     orderAppearance: 4,
@@ -111,7 +111,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-71',
+    id: 'field-78',
     idHtml: 'txtSuburbS',
     name: 'suburbS',
     orderAppearance: 5,
@@ -139,7 +139,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-72',
+    id: 'field-79',
     idHtml: 'txtMunicipalityS',
     name: 'municipalityS',
     orderAppearance: 6,
@@ -167,7 +167,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-73',
+    id: 'field-80',
     idHtml: 'txtStateS',
     name: 'stateS',
     orderAppearance: 7,
@@ -194,7 +194,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-74',
+    id: 'field-81',
     idHtml: 'slctHomeCountryS',
     name: 'homeCountryS',
     orderAppearance: 8,
@@ -222,7 +222,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-75',
+    id: 'field-82',
     idHtml: 'txtPhoneS',
     name: 'phoneS',
     orderAppearance: 9,
@@ -249,7 +249,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-76',
+    id: 'field-83',
     idHtml: 'txtCellPhoneS',
     name: 'cellPhoneS',
     orderAppearance: 10,
@@ -276,7 +276,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-77',
+    id: 'field-84',
     idHtml: 'txtEmailS',
     name: 'emailS',
     orderAppearance: 12,

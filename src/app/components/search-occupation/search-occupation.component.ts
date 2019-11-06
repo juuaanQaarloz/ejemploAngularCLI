@@ -8,7 +8,7 @@ import {ModalService} from '../custom-modal';
 
 const FIELDS: Field[] = [
   {
-    id: 'field-108',
+    id: 'field-132',
     idHtml: 'txtSearchOccupation',
     name: 'searchOccupation',
     label: 'Criterio de búsqueda',

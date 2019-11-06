@@ -5,13 +5,13 @@ import {MockOperations, SearchOccupationOperations, SearchOccupationOperationsS}
 import {InformaciolLaboral1, InformacionLaboral} from './mock-laboral-data/mock-informacion-laboral';
 import {DatosGeneralesPersonaMoral} from './mock-general-data/mock-datos-pesona-moral';
 import {DatosDomicilioContactoMoral} from './mock-general-data/mock-domicilio-contacto-moral';
-import {DatosRepresentanteLegal} from './mock-general-data/legal-agent';
+import {DatosRepresentanteLegal, DatosRepresentanteLegal1, DatosRepresentanteLegal2} from './mock-general-data/legal-agent';
 import {DatosGeneralesSolicitante} from './mock-general-data/mock-datos-solicitante';
 import {DatosDomicilioSolicitante} from './mock-general-data/mock-domicilio-solicitante';
 import {InformacionLaboralSolicitante, InformacionLaboralSolicitante1} from './mock-laboral-data/mock-informacion-laboral-solicitante';
 import {sportQuestions2, sportsFields1, sportsQuestions1} from './basic-questionnaires/sports-aviation-hobbies';
 import {habitsQuestions} from './basic-questionnaires/habits';
-import {medialQuestions} from './basic-questionnaires/medical';
+import {medicalQuestions} from './basic-questionnaires/medical';
 
 export const MockFieldsContractorType: Field[] = [
   {
@@ -323,7 +323,7 @@ export const MockContentStep4Process1ContentSection2: Content[] = [
     idParent: 'step-4',
     parentType: 'Step',
     idHtml: 'app-content-form-2.11',
-    title: '',
+    title: 'Apoderado 1',
     // process?: Process;
     fields: DatosRepresentanteLegal,
     // operations?: Operation[];
@@ -344,6 +344,49 @@ export const MockContentStep4Process1ContentSection2: Content[] = [
     idParent: 'step-4',
     parentType: 'Step',
     idHtml: 'app-content-form-2.12',
+    title: 'Apoderado 2',
+    // process?: Process;
+    fields: DatosRepresentanteLegal1,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-2.13',
+    idParent: 'step-4',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.13',
+    title: '',
+    warningMessage: 'En caso de seleccionar SI, llenar sección de estructura corporativa y accionista del formato 4',
+    // process?: Process;
+    fields: DatosRepresentanteLegal2,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields',
+    // enableConditions?: 'string';
+    styleClass: 'questions-type'
+    // --------------------------
+  },
+  {
+    id: 'content-2.14',
+    idParent: 'step-4',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.14',
     title: '',
     // process?: Process;
     // fields: DatosDomicilio,
@@ -364,10 +407,10 @@ export const MockContentStep4Process1ContentSection2: Content[] = [
 
 export const MockContentStep5Process1ContentSection2: Content[] = [
   {
-    id: 'content-2.13',
+    id: 'content-2.15',
     idParent: 'step-5',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.13',
+    idHtml: 'app-content-form-2.15',
     title: 'Datos generales del solicitante',
     // process?: Process;
     fields: DatosGeneralesSolicitante,
@@ -385,10 +428,10 @@ export const MockContentStep5Process1ContentSection2: Content[] = [
     // --------------------------
   },
   {
-    id: 'content-2.14',
+    id: 'content-2.16',
     idParent: 'step-5',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.14',
+    idHtml: 'app-content-form-2.16',
     title: 'Domicilio y datos de contacto del solicitante',
     // process?: Process;
     fields: DatosDomicilioSolicitante,
@@ -406,10 +449,10 @@ export const MockContentStep5Process1ContentSection2: Content[] = [
     // --------------------------
   },
   {
-    id: 'content-2.15',
+    id: 'content-2.17',
     idParent: 'step-3',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.15',
+    idHtml: 'app-content-form-2.17',
     title: '',
     // process?: Process;
     // fields: DatosDomicilio,
@@ -430,10 +473,10 @@ export const MockContentStep5Process1ContentSection2: Content[] = [
 
 export const MockContentStep6Process1ContentSection2: Content[] = [
   {
-    id: 'content-2.16',
+    id: 'content-2.18',
     idParent: 'step-6',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.16',
+    idHtml: 'app-content-form-2.18',
     title: '',
     // process?: Process;
     fields: InformacionLaboralSolicitante1,
@@ -451,10 +494,10 @@ export const MockContentStep6Process1ContentSection2: Content[] = [
     // --------------------------
   },
   {
-    id: 'content-2.17',
+    id: 'content-2.19',
     idParent: 'step-6',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.17',
+    idHtml: 'app-content-form-2.19',
     title: '',
     // process?: Process;
     fields: InformacionLaboralSolicitante,
@@ -469,59 +512,6 @@ export const MockContentStep6Process1ContentSection2: Content[] = [
     contentType: 'looseFields'
     // enableConditions?: 'string';
     // styleClass?: 'string';
-    // --------------------------
-  },
-  {
-    id: 'content-2.18',
-    idParent: 'step-6',
-    parentType: 'Step',
-    idHtml: 'app-content-form-2.18',
-    title: '',
-    // process?: Process;
-    // fields: DatosDomicilio,
-    operations: MockOperations,
-    renderConditions: '',
-    // ---pending---
-    // contentChildren?: Array<Content>;
-    // -------------
-
-    // --added extra from model--
-    showContent: true,
-    contentType: 'looseFields'
-    // enableConditions?: 'string';
-    // styleClass: 'string',
-    // --------------------------
-  }
-];
-
-export const MockContentStep7Process1ContentSection2: Content[] = [
-  {
-    id: 'content-2.19',
-    idParent: 'step-7',
-    parentType: 'Step',
-    idHtml: 'app-content-form-2.19',
-    title: '',
-    description: 'Advertencia: En el caso de que se desee nombrar beneficiarios a menores de edad, ' +
-      'no se debe señalar a un mayor de edad como representante de los menores para efecto de que, en su' +
-      'representación, cobre la indemnización. ' +
-      'Lo anterior porque legislaciones civiles previenen la forma en que debe designarse tutores, albaceas, representantes ' +
-      'de herederos u otros cargos similares  y no consideran al contrato de seguro como el instrumento adecuado para tales ' +
-      'designaciones. La designación que se hiciera de un mayor de edad como representante de menores beneficiarios, durante ' +
-      'la minoría de edad de ellos, legalmente puede implicar que se nombra de beneficiarios en un contrato de seguro le ' +
-      'concede el derecho incondicionado de disponer de la Suma Asegurada.',
-    contentType: 'table-beneficiary',
-    // process?: Process;
-    // fields: Beneficiarios,
-    // operations?: Operation[];
-    renderConditions: '',
-    // ---pending---
-    // contentChildren?: Array<Content>;
-    // -------------
-
-    // --added extra from model--
-    showContent: true,
-    // enableConditions?: 'string';
-    styleClass: 'modal-type'
     // --------------------------
   },
   {
@@ -547,12 +537,65 @@ export const MockContentStep7Process1ContentSection2: Content[] = [
   }
 ];
 
-export const MockContentStep17Process1ContentSection2: Content[] = [
+export const MockContentStep7Process1ContentSection2: Content[] = [
+  {
+    id: 'content-2.21',
+    idParent: 'step-7',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.21',
+    title: '',
+    description: 'Advertencia: En el caso de que se desee nombrar beneficiarios a menores de edad, ' +
+      'no se debe señalar a un mayor de edad como representante de los menores para efecto de que, en su' +
+      'representación, cobre la indemnización. ' +
+      'Lo anterior porque legislaciones civiles previenen la forma en que debe designarse tutores, albaceas, representantes ' +
+      'de herederos u otros cargos similares  y no consideran al contrato de seguro como el instrumento adecuado para tales ' +
+      'designaciones. La designación que se hiciera de un mayor de edad como representante de menores beneficiarios, durante ' +
+      'la minoría de edad de ellos, legalmente puede implicar que se nombra de beneficiarios en un contrato de seguro le ' +
+      'concede el derecho incondicionado de disponer de la Suma Asegurada.',
+    contentType: 'table-beneficiary',
+    // process?: Process;
+    // fields: Beneficiarios,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    // enableConditions?: 'string';
+    styleClass: 'modal-type'
+    // --------------------------
+  },
   {
     id: 'content-2.22',
-    idParent: 'step-17',
+    idParent: 'step-6',
     parentType: 'Step',
     idHtml: 'app-content-form-2.22',
+    title: '',
+    // process?: Process;
+    // fields: DatosDomicilio,
+    operations: MockOperations,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass: 'string',
+    // --------------------------
+  }
+];
+
+export const MockContentStep17Process1ContentSection2: Content[] = [
+  {
+    id: 'content-2.23',
+    idParent: 'step-17',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.23',
     contentType: 'looseFields',
     // process?: Process;
     fields: sportsQuestions1,
@@ -569,10 +612,10 @@ export const MockContentStep17Process1ContentSection2: Content[] = [
     // --------------------------
   },
   {
-    id: 'content-2.23',
+    id: 'content-2.24',
     idParent: 'step-17',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.23',
+    idHtml: 'app-content-form-2.24',
     contentType: 'looseFields',
     // process?: Process;
     fields: sportsFields1,
@@ -588,10 +631,10 @@ export const MockContentStep17Process1ContentSection2: Content[] = [
     // --------------------------
   },
   {
-    id: 'content-2.24',
+    id: 'content-2.25',
     idParent: 'step-17',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.23',
+    idHtml: 'app-content-form-2.25',
     contentType: 'looseFields',
     // process?: Process;
     fields: sportQuestions2,
@@ -611,10 +654,10 @@ export const MockContentStep17Process1ContentSection2: Content[] = [
 
 export const MockContentStep18Process1ContentSection2: Content[] = [
   {
-    id: 'content-2.27',
+    id: 'content-2.26',
     idParent: 'step-18',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.27',
+    idHtml: 'app-content-form-2.26',
     contentType: 'looseFields',
     // process?: Process;
     fields: habitsQuestions,
@@ -634,13 +677,13 @@ export const MockContentStep18Process1ContentSection2: Content[] = [
 
 export const MockContentStep19Process1ContentSection2: Content[] = [
   {
-    id: 'content-2.28',
+    id: 'content-2.27',
     idParent: 'step-19',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.28',
+    idHtml: 'app-content-form-2.27',
     contentType: 'looseFields',
     // process?: Process;
-    fields: medialQuestions,
+    fields: medicalQuestions,
     // operations?: Operation[];
     renderConditions: '',
     // ---pending---

@@ -101,9 +101,9 @@
     </label>
   </fieldset>
 
-  <fieldset *ngSwitchCase="'radio'" [ngClass]="{'error': !valid}" class="ml-form">
+  <fieldset *ngSwitchCase="'radio'" [ngClass]="{'error': !valid}" class="ml-form-field ml-form-field-radio">
     <!--style="display: grid; grid-template-columns: 85% 15%;">-->
-    <div [ngClass]="fieldObj.styleClass">
+    <!---<div [ngClass]="fieldObj.styleClass">-->
       <label>{{fieldObj.label}}</label>
 
       <div class="ml-form-field-radio-group"
@@ -112,26 +112,26 @@
         <input type="radio" [formControlName]="fieldObj.name"
                [id]="radioOption.id + '-radio'"
                [value]="radioOption.value">
-               <!--[checked]="checkValue(radioOption.value)">-->
+        <!--[checked]="checkValue(radioOption.value)">-->
         <label>{{radioOption.name}}</label>
 
       </div>
-    </div>
+    <!--</div>-->
 
   </fieldset>
 
-  <fieldset *ngSwitchCase="'checkbox'" class="ml-form-field ml-form-field-checkboxes">
+  <fieldset *ngSwitchCase="'checkbox'" class="ml-form-field">
     <label>{{fieldObj.label}}</label>
-    <div class="checkbox-options">
-      <div class="ml-form-field-checkboxes-group" *ngFor="let checkBoxOption of checkBoxOptions">
-        <input type="checkbox" [formControlName]="fieldObj.name"
-               [id]="checkBoxOption.id + '-checkbox'"
-               [name]="checkBoxOption.name"
-               [value]="checkBoxOption.value"
-               [checked]="checkValue(checkBoxOption.value)">
-        <label [for]="checkBoxOption.id + '-checkbox'">{{checkBoxOption.name}}</label>
-      </div>
+    <!--<div class="checkbox-options">-->
+    <div class="ml-form-field-checkboxes-group" *ngFor="let checkBoxOption of checkBoxOptions">
+      <input type="checkbox" [formControlName]="fieldObj.name"
+             [id]="checkBoxOption.id + '-checkbox'"
+             [name]="checkBoxOption.name"
+             [value]="checkBoxOption.value">
+             <!--[checked]="checkValue(checkBoxOption.value)">-->
+      <label [for]="checkBoxOption.id + '-checkbox'">{{checkBoxOption.name}}</label>
     </div>
+    <!--</div>-->
   </fieldset>
 
 </div>

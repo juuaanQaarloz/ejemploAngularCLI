@@ -2,7 +2,7 @@ import {Field} from '../../../models';
 
 export const DatosGeneralesPersonaMoral: Field[] = [
   {
-    id: 'field-37',
+    id: 'field-40',
     idHtml: 'txtBusinessName',
     name: 'businessName',
     orderAppearance: 1,
@@ -30,7 +30,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     value: ''
   },
   {
-    id: 'field-38',
+    id: 'field-41',
     idHtml: 'txtComercialName',
     name: 'comercialName',
     orderAppearance: 2,
@@ -58,7 +58,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     value: ''
   },
   {
-    id: 'field-39',
+    id: 'field-42',
     idHtml: 'txtRFCmoral',
     name: 'RFCmoral',
     orderAppearance: 3,
@@ -86,7 +86,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     value: ''
   },
   {
-    id: 'field-40',
+    id: 'field-43',
     idHtml: 'dteConstitutionDate',
     name: 'constitutionDate',
     orderAppearance: 4,
@@ -114,7 +114,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     value: ''
   },
   {
-    id: 'field-41',
+    id: 'field-44',
     idHtml: 'slctNationalityMoral',
     name: 'nationalityMoral',
     orderAppearance: 5,
@@ -143,7 +143,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     value: ''
   },
   {
-    id: 'field-42',
+    id: 'field-45',
     idHtml: 'txtMercantilNumber',
     name: 'mercantilNumber',
     orderAppearance: 6,
@@ -172,7 +172,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     value: ''
   },
   {
-    id: 'field-43',
+    id: 'field-46',
     idHtml: 'slctEconomicSector',
     name: 'economicSector',
     orderAppearance: 7,
@@ -201,7 +201,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     value: ''
   },
   {
-    id: 'field-44',
+    id: 'field-47',
     idHtml: 'txtSpecificSector',
     name: 'specificSector',
     orderAppearance: 8,

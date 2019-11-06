@@ -2,7 +2,7 @@ import {Field} from '../../../models';
 
 export const DatosDomicilioContactoMoral: Field[] = [
   {
-    id: 'field-45',
+    id: 'field-43',
     idHtml: 'txtStreetM',
     name: 'streetM',
     orderAppearance: 1,
@@ -29,7 +29,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-46',
+    id: 'field-44',
     idHtml: 'txtExteriorNumberM',
     name: 'exteriorNumberM',
     orderAppearance: 2,
@@ -56,7 +56,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-47',
+    id: 'field-45',
     idHtml: 'txtInteriorNumberM',
     name: 'interiorNumberM',
     orderAppearance: 3,
@@ -83,7 +83,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-48',
+    id: 'field-46',
     idHtml: 'txtZipCodeM',
     name: 'zipCodeM',
     orderAppearance: 4,
@@ -110,7 +110,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-49',
+    id: 'field-47',
     idHtml: 'txtSuburbM',
     name: 'suburbM',
     orderAppearance: 5,
@@ -137,7 +137,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-50',
+    id: 'field-48',
     idHtml: 'txtMunicipalityM',
     name: 'municipalityM',
     orderAppearance: 6,
@@ -164,7 +164,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-51',
+    id: 'field-49',
     idHtml: 'txtStateM',
     name: 'stateM',
     orderAppearance: 7,
@@ -191,7 +191,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-52',
+    id: 'field-50',
     idHtml: 'slctHomeCountryM',
     name: 'homeCountryM',
     orderAppearance: 8,
@@ -219,7 +219,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-53',
+    id: 'field-51',
     idHtml: 'txtContactName',
     name: 'contactName',
     orderAppearance: 9,
@@ -246,7 +246,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-54',
+    id: 'field-52',
     idHtml: 'txtPosition',
     name: 'position',
     orderAppearance: 10,
@@ -273,7 +273,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-55',
+    id: 'field-53',
     idHtml: 'txtPhoneM',
     name: 'phoneM',
     orderAppearance: 11,
@@ -300,7 +300,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-56',
+    id: 'field-54',
     idHtml: 'txtWorkPhone',
     name: 'workPhone',
     orderAppearance: 12,
@@ -327,7 +327,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-57',
+    id: 'field-55',
     idHtml: 'txtExtentionPhone',
     name: 'extentionPhone',
     orderAppearance: 13,
@@ -354,7 +354,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-58',
+    id: 'field-56',
     idHtml: 'chboxEmailM',
     name: 'emailCheckM',
     orderAppearance: 14,
@@ -382,7 +382,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-59',
+    id: 'field-57',
     idHtml: 'txtWorkEmail',
     name: 'workEmail',
     orderAppearance: 15,

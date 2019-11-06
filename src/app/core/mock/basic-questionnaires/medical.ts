@@ -1,8 +1,8 @@
 import {Field} from '../../../models';
 
-export const medialQuestions: Field[] = [
+export const medicalQuestions: Field[] = [
   {
-    id: 'field-119',
+    id: 'field-126',
     idHtml: 'radioDiseasesQuestion',
     name: 'diseasesQuestion',
     orderAppearance: 1,
@@ -34,7 +34,7 @@ export const medialQuestions: Field[] = [
     value: ''
   },
   {
-    id: 'field-120',
+    id: 'field-127',
     idHtml: 'radioMedicalTestQuestion',
     name: 'medicalTestQuestion',
     orderAppearance: 2,
@@ -65,7 +65,7 @@ export const medialQuestions: Field[] = [
     value: ''
   },
   {
-    id: 'field-121',
+    id: 'field-128',
     idHtml: 'radioExtraDiseasesQuestion',
     name: 'extraDiseasesQuestion',
     orderAppearance: 3,
@@ -96,9 +96,9 @@ export const medialQuestions: Field[] = [
   }
 ];
 
-export const medialFields: Field[] = [
+export const medicalFields: Field[] = [
   {
-    id: 'field-122',
+    id: 'field-129',
     idHtml: 'radioDiseasesQuestion',
     name: 'diseasesQuestion',
     orderAppearance: 1,
@@ -130,7 +130,7 @@ export const medialFields: Field[] = [
     value: ''
   },
   {
-    id: 'field-123',
+    id: 'field-130',
     idHtml: 'radioMedicalTestQuestion',
     name: 'medicalTestQuestion',
     orderAppearance: 2,
@@ -161,7 +161,7 @@ export const medialFields: Field[] = [
     value: ''
   },
   {
-    id: 'field-124',
+    id: 'field-131',
     idHtml: 'radioExtraDiseasesQuestion',
     name: 'extraDiseasesQuestion',
     orderAppearance: 3,

@@ -2,7 +2,7 @@ import {Field} from '../../../models';
 
 export const DatosRepresentanteLegal: Field[] = [
   {
-    id: 'field-60',
+    id: 'field-48',
     idHtml: 'txtNameLegalAgent1',
     name: 'nameLegalAgent1',
     orderAppearance: 1,
@@ -29,7 +29,7 @@ export const DatosRepresentanteLegal: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-61',
+    id: 'field-49',
     idHtml: 'txtFatherLastNameLegalAgent1',
     name: 'fatherLastNameLegalAgent1',
     orderAppearance: 2,
@@ -56,7 +56,7 @@ export const DatosRepresentanteLegal: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-62',
+    id: 'field-50',
     idHtml: 'txtMotherLastNameLegalAgent1',
     name: 'motherLastNameLegalAgent1',
     orderAppearance: 3,
@@ -81,16 +81,19 @@ export const DatosRepresentanteLegal: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-  },
+  }
+];
+
+export const DatosRepresentanteLegal1: Field[] = [
   {
-    id: 'field-63',
+    id: 'field-51',
     idHtml: 'txtNameLegalAgent2',
     name: 'nameLegalAgent2',
     orderAppearance: 4,
-    label: 'Nombre1 (s)*',
+    label: 'Nombre (s)*',
     type: 'text',
     required: true,
-    placeholder: 'Nombre1 (s)',
+    placeholder: 'Nombre (s)',
     length: '40',
     minValue: 0,
     maxValue: 40,
@@ -110,14 +113,14 @@ export const DatosRepresentanteLegal: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-64',
+    id: 'field-52',
     idHtml: 'txtFatherLastNameLegalAgent2',
     name: 'fatherLastNameLegalAgent2',
     orderAppearance: 5,
-    label: 'Apellido1 paterno*',
+    label: 'Apellido paterno*',
     type: 'text',
     required: true,
-    placeholder: 'Apellido1 paterno',
+    placeholder: 'Apellido paterno',
     length: '40',
     minValue: 0,
     maxValue: 40,
@@ -137,14 +140,14 @@ export const DatosRepresentanteLegal: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-65',
+    id: 'field-53',
     idHtml: 'txtMotherLastNameLegalAgent2',
     name: 'motherLastNameLegalAgent2',
     orderAppearance: 6,
-    label: 'Apellido1 materno',
+    label: 'Apellido materno',
     type: 'text',
     required: false,
-    placeholder: 'Apellido1 materno',
+    placeholder: 'Apellido materno',
     length: '40',
     minValue: 0,
     maxValue: 40,
@@ -162,9 +165,12 @@ export const DatosRepresentanteLegal: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-  },
+  }
+];
+
+export const DatosRepresentanteLegal2: Field[] = [
   {
-    id: 'field-66',
+    id: 'field-54',
     idHtml: 'radioDeclarationM',
     name: 'declarationM',
     orderAppearance: 7,

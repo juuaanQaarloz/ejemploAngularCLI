@@ -1,7 +1,7 @@
 <div *ngIf="contentObj.showContent === true" [id]="contentObj.idHtml">
   <p *ngIf="contentObj.title" class="title">{{contentObj.title}}</p>
 
-  <p *ngIf="contentObj.description" style="text-align: justify">{{contentObj.description}}</p>
+  <p *ngIf="contentObj.description">{{contentObj.description}}</p>
 
   <div [ngSwitch]="contentObj.contentType">
 
@@ -16,6 +16,8 @@
       <app-beneficiary-table [type]="contentObj.contentType"></app-beneficiary-table>
     </div>
   </div>
+
+  <p *ngIf="contentObj.warningMessage">{{contentObj.warningMessage}}</p>
 
   <div *ngIf="contentObj.operations" class="operation">
     <app-operation-form *ngFor="let operation of contentObj.operations" [operationObj]="operation"></app-operation-form>

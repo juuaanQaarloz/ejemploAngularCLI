@@ -103,7 +103,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     /*added extra from model*/
     isCompleted: false,
     show: true
-  }/*,
+  },
   {
     id: '17',
     idProcess: 'process-1',
@@ -139,5 +139,5 @@ export const MockStepsProcessContentSection2: Step[] = [
     nextStep: '20',
     isCompleted: false,
     show: true
-  }*/
+  }
 ];

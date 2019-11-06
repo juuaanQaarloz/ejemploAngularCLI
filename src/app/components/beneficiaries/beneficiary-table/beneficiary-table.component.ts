@@ -6,7 +6,7 @@ import {Field} from '../../../models';
 
 const FIELDS: Field[] = [
   {
-    id: 'field-109',
+    id: 'field-117',
     idHtml: 'txtAdditionalComments',
     name: 'additionalComments',
     label: 'Información adicional',
