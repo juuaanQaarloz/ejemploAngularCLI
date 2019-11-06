@@ -567,12 +567,13 @@ export const MockContentStep16Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass?: 'string';
     // --------------------------
-  },{
+  },
+  {
     id: 'content-16.2',
     idParent: 'step-16',
     parentType: 'Step',
     idHtml: 'app-content-form-16.2',
-    title: '',
+    title: 'Cobertura básica',
     // process?: Process;
     fields: Plan2,
     //  operations: SearchOccupationOperationsS,
@@ -587,7 +588,29 @@ export const MockContentStep16Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass?: 'string';
     // --------------------------
-  },{
+  },
+  {
+    id: 'content-16.2',
+    idParent: 'step-16',
+    parentType: 'Step',
+    idHtml: 'app-content-form-16.2',
+    title: 'Beneficios adicionales',
+    // process?: Process;
+    fields: Plan2,
+    //  operations: SearchOccupationOperationsS,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
     id: 'content-16.2',
     idParent: 'step-16',
     parentType: 'Step',
