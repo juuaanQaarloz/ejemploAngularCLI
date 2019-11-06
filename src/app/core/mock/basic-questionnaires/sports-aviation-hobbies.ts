@@ -2,7 +2,7 @@ import {Field} from '../../../models';
 
 export const sportsQuestions1: Field[] = [
   {
-    id: 'field-108',
+    id: 'field-118',
     idHtml: 'radioAviationQuestion',
     name: 'aviationQuestion',
     orderAppearance: 1,
@@ -31,7 +31,7 @@ export const sportsQuestions1: Field[] = [
     value: ''
   },
   {
-    id: 'field-109',
+    id: 'field-119',
     idHtml: 'radioMotobickeQuestion',
     name: 'motobickeQuestion',
     orderAppearance: 2,
@@ -63,40 +63,75 @@ export const sportsQuestions1: Field[] = [
 
 export const sportsFields1: Field[] = [
   {
-    id: 'field-110',
-    idHtml: 'radioAviationQuestion',
-    name: 'aviationQuestion',
+    id: 'field-120',
+    idHtml: 'textFrequency',
+    name: 'frequency',
     orderAppearance: 1,
-    label: '¿Vuelas como piloto o pasajero en lineas o aeronaves privadas incluyendo helicóptero?',
-    type: 'radio',
-    required: true,
+    label: 'Frecuencia',
+    type: 'text',
+    required: false,
     placeholder: '',
     length: '',
     minValue: 0,
-    maxValue: 0,
+    maxValue: 10,
     pattern: '',
-    source: 'IPRE',
-    sourceID: 'guardBoxOptions',
-    sourceStructure: ['id', 'label', 'value'],
-    style: 'margin:0 auto',
-    styleClass: 'radio-options',
+    source: '',
+    sourceID: '',
+    style: '',
+    styleClass: '',
     styleClassError: '',
     message: '',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
-    renderConditions: '',
+    renderConditions: 'motobickeQuestion=true',
     enableConditions: '',
+    requiredConditions: 'motobickeQuestion=true',
     entity: '',
     entityField: '',
     value: ''
   },
   {
-    id: 'field-109',
-    idHtml: 'radioMotobickeQuestion',
-    name: 'motobickeQuestion',
+    id: 'field-121',
+    idHtml: 'textDisplacement',
+    name: 'displacement',
     orderAppearance: 2,
-    label: '¿Utilizas motocicleta?',
+    label: 'Cilindrada',
+    type: 'text',
+    required: false,
+    placeholder: '',
+    length: '',
+    minValue: 0,
+    maxValue: 10,
+    pattern: '',
+    source: '',
+    sourceID: '',
+    style: '',
+    styleClass: '',
+    styleClassError: '',
+    message: '',
+    messageClass: '',
+    messageError: '',
+    messageErrorClass: '',
+    renderConditions: 'motobickeQuestion=true',
+    enableConditions: '',
+    requiredConditions: 'motobickeQuestion=true',
+    entity: '',
+    entityField: '',
+    value: ''
+  }
+];
+
+export const sportQuestions2: Field[] = [
+  {
+    id: 'field-122',
+    idHtml: 'radioExtremeSportsQuestion',
+    name: 'extremeSportsQuestion',
+    orderAppearance: 1,
+    label: '3. En más de 5 veces al año, ' +
+      '¿Prácticas automovilismo, vuelos no motorizados ( paracaidismo, ala delta, vuelo sin motor), ' +
+      'o practicas caza, equitación, buceo, montañismo, lancha de motor, esquí de nieve, esquí acuático, ' +
+      'corrida de toros o cherrería o algún otro deporte o afición de alto riesgo o deportes externos?',
     type: 'radio',
     required: true,
     placeholder: '',

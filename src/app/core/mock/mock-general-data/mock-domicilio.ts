@@ -2,7 +2,7 @@ import {Field} from '../../../models';
 
 export const DatosDomicilio: Field[] = [
   {
-    id: 'field-18',
+    id: 'field-22',
     idHtml: 'txtStreet',
     name: 'street',
     orderAppearance: 1,
@@ -30,7 +30,7 @@ export const DatosDomicilio: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-19',
+    id: 'field-23',
     idHtml: 'txtExteriorNumber',
     name: 'exteriorNumber',
     orderAppearance: 2,
@@ -57,7 +57,7 @@ export const DatosDomicilio: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-20',
+    id: 'field-24',
     idHtml: 'txtInteriorNumber',
     name: 'interiorNumber',
     orderAppearance: 3,
@@ -84,7 +84,7 @@ export const DatosDomicilio: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-21',
+    id: 'field-25',
     idHtml: 'txtZipCode',
     name: 'zipCode',
     orderAppearance: 4,
@@ -111,7 +111,7 @@ export const DatosDomicilio: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-22',
+    id: 'field-26',
     idHtml: 'txtSuburb',
     name: 'suburb',
     orderAppearance: 5,
@@ -139,7 +139,7 @@ export const DatosDomicilio: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-23',
+    id: 'field-27',
     idHtml: 'txtMunicipality',
     name: 'municipality',
     orderAppearance: 6,
@@ -167,7 +167,7 @@ export const DatosDomicilio: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-24',
+    id: 'field-28',
     idHtml: 'txtState',
     name: 'state',
     orderAppearance: 7,
@@ -194,7 +194,7 @@ export const DatosDomicilio: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-25',
+    id: 'field-29',
     idHtml: 'slctHomeCountry',
     name: 'homeCountry',
     orderAppearance: 8,
@@ -222,7 +222,7 @@ export const DatosDomicilio: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-26',
+    id: 'field-30',
     idHtml: 'txtPhone',
     name: 'phone',
     orderAppearance: 9,
@@ -249,7 +249,7 @@ export const DatosDomicilio: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-27',
+    id: 'field-31',
     idHtml: 'txtCellPhone',
     name: 'cellPhone',
     orderAppearance: 10,
@@ -276,7 +276,7 @@ export const DatosDomicilio: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-28',
+    id: 'field-32',
     idHtml: 'chboxEmail',
     name: 'emailCheck',
     orderAppearance: 11,
@@ -305,7 +305,7 @@ export const DatosDomicilio: Field[] = [
     value: ''
   },
   {
-    id: 'field-29',
+    id: 'field-33',
     idHtml: 'txtEmail',
     name: 'email',
     orderAppearance: 12,
@@ -322,7 +322,7 @@ export const DatosDomicilio: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'El correo capturado debe cumplir con el formato correp@servidor.com y solo se aceptan . - _',
+    message: 'El correo capturado debe cumplir con el formato correo@servidor.com y solo se aceptan . - _',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
@@ -333,7 +333,7 @@ export const DatosDomicilio: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-30',
+    id: 'field-34',
     idHtml: 'txtEmailConfirmation',
     name: 'emailConfirmation',
     orderAppearance: 13,

@@ -369,5 +369,33 @@ export const validatorsObjects = [
   {
     nameField: 'beneficiaryCity',
     validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'frequency',
+    validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'nameLegalAgent1',
+    validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'fatherLastNameLegalAgent1',
+    validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'motherLastNameLegalAgent1',
+    validationFunctions: [validateAlphanumericValueNotRequired]
+  },
+  {
+    nameField: 'nameLegalAgent2',
+    validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'fatherLastNameLegalAgent2',
+    validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'motherLastNameLegalAgent2',
+    validationFunctions: [validateAlphanumericValueNotRequired]
   }
 ];

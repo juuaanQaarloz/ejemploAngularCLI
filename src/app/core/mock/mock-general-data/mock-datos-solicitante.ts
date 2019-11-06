@@ -2,7 +2,7 @@ import {Field} from '../../../models';
 
 export const DatosGeneralesSolicitante: Field[] = [
   {
-    id: 'field-67',
+    id: 'field-55',
     idHtml: 'txtNameS',
     name: 'nameS',
     orderAppearance: 1,
@@ -31,7 +31,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     value: '',
   },
   {
-    id: 'field-68',
+    id: 'field-56',
     idHtml: 'txtFatherLastNameS',
     name: 'fatherLastNameS',
     orderAppearance: 2,
@@ -60,7 +60,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     value: '',
   },
   {
-    id: 'field-69',
+    id: 'field-57',
     idHtml: 'txtMotherLastNameS',
     name: 'motherLastNameS',
     orderAppearance: 3,
@@ -89,7 +89,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     value: '',
   },
   {
-    id: 'field-70',
+    id: 'field-58',
     idHtml: 'dteBirthDateS',
     name: 'birthDateS',
     orderAppearance: 4,
@@ -117,7 +117,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     value: ''
   },
   {
-    id: 'field-71',
+    id: 'field-59',
     idHtml: 'txtAgeS',
     name: 'ageS',
     orderAppearance: 5,
@@ -146,7 +146,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     disable: true
   },
   {
-    id: 'field-72',
+    id: 'field-60',
     idHtml: 'txtRFCS',
     name: 'rfcS',
     orderAppearance: 6,
@@ -174,7 +174,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     value: '',
   },
   {
-    id: 'field-73',
+    id: 'field-61',
     idHtml: 'txtCurpS',
     name: 'curpS',
     orderAppearance: 7,
@@ -202,7 +202,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     value: '',
   },
   {
-    id: 'field-74',
+    id: 'field-62',
     idHtml: 'slctGenderS',
     name: 'genderS',
     orderAppearance: 8,
@@ -231,7 +231,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     value: '',
   },
   {
-    id: 'field-75',
+    id: 'field-63',
     idHtml: 'slctCivilStatusS',
     name: 'civilStatusS',
     orderAppearance: 9,
@@ -260,7 +260,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     value: ''
   },
   {
-    id: 'field-76',
+    id: 'field-64',
     idHtml: 'slctIdTypeS',
     name: 'idTypeS',
     orderAppearance: 10,
@@ -289,7 +289,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     value: '',
   },
   {
-    id: 'field-77',
+    id: 'field-65',
     idHtml: 'txtIdNumberS',
     name: 'idNumberS',
     orderAppearance: 11,
@@ -318,7 +318,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     value: ''
   },
   {
-    id: 'field-78',
+    id: 'field-66',
     idHtml: 'txtIdEmisorS',
     name: 'idEmisorS',
     orderAppearance: 12,
@@ -345,7 +345,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-79',
+    id: 'field-67',
     idHtml: 'slctBirthCountryS',
     name: 'birthCountryS',
     orderAppearance: 13,
@@ -373,7 +373,34 @@ export const DatosGeneralesSolicitante: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-80',
+    id: 'field-68',
+    idHtml: 'txtStateOfBirthS',
+    name: 'stateOfBirthS',
+    orderAppearance: 14,
+    label: 'Estado / Provincia*',
+    type: 'text',
+    required: true,
+    placeholder: 'Estado / Provincia',
+    length: '40',
+    minValue: 0,
+    maxValue: 40,
+    pattern: '',
+    source: '',
+    sourceID: '',
+    style: '',
+    styleClass: '',
+    styleClassError: '',
+    message: 'Estado / Provincia no existente.',
+    messageClass: '',
+    messageError: '',
+    messageErrorClass: '',
+    renderConditions: '',
+    enableConditions: '',
+    entity: '',
+    entityField: ''
+  },
+  {
+    id: 'field-69',
     idHtml: 'txtCityS',
     name: 'cityS',
     orderAppearance: 14,
@@ -401,7 +428,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-81',
+    id: 'field-70',
     idHtml: 'slctNationalityS',
     name: 'nationalityS',
     orderAppearance: 15,
@@ -429,7 +456,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     entityField: '',
   },
   {
-    id: 'field-113',
+    id: 'field-71',
     idHtml: 'slctNationalityS1',
     name: 'nationalityS1',
     orderAppearance: 15,
@@ -457,7 +484,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     entityField: ''
   },
   {
-    id: 'field-114',
+    id: 'field-72',
     idHtml: 'slctNationalityS2',
     name: 'nationalityS2',
     orderAppearance: 15,
@@ -485,7 +512,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     entityField: ''
   },
   {
-    id: 'field-115',
+    id: 'field-73',
     idHtml: 'slctNationalityS3',
     name: 'nationalityS3',
     orderAppearance: 15,

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {Beneficiary} from '../../../models/beneficiary-model';
 import {ApplicationService} from '../../../core/services';
 import {beneficiaryFields} from '../../../core/mock/mock-beneficiaries';

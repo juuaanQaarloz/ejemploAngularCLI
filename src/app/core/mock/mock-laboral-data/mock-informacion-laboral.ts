@@ -2,7 +2,7 @@ import {Field} from '../../../models';
 
 export const InformaciolLaboral1: Field[] = [
   {
-    id: 'field-31',
+    id: 'field-35',
     idHtml: 'txtOccupation',
     name: 'occupation',
     orderAppearance: 1,
@@ -33,7 +33,7 @@ export const InformaciolLaboral1: Field[] = [
 
 export const InformacionLaboral: Field[] = [
   {
-    id: 'field-32',
+    id: 'field-36',
     idHtml: 'txtDetailOccupation',
     name: 'detailOccupation',
     orderAppearance: 2,
@@ -61,7 +61,7 @@ export const InformacionLaboral: Field[] = [
     value: '',
   },
   {
-    id: 'field-33',
+    id: 'field-37',
     idHtml: 'txtCompanyName',
     name: 'companyName',
     orderAppearance: 3,
@@ -89,7 +89,7 @@ export const InformacionLaboral: Field[] = [
     value: '',
   },
   {
-    id: 'field-34',
+    id: 'field-38',
     idHtml: 'txtCompanyActivity',
     name: 'companyActivity',
     orderAppearance: 4,
@@ -117,7 +117,7 @@ export const InformacionLaboral: Field[] = [
     value: '',
   },
   {
-    id: 'field-35',
+    id: 'field-39',
     idHtml: 'txtSalary',
     name: 'salary',
     orderAppearance: 5,

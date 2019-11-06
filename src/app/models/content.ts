@@ -8,7 +8,6 @@ export interface Content {
   parentType: string;
   idHtml: string;
   title?: string;
-  description?: string;
   process?: Process;
   fields?: Field[];
   operations?: Operation[];
@@ -21,5 +20,7 @@ export interface Content {
   showContent?: boolean;
   styleClass?: string;
   contentType: string; // loose fields, table, questionary
+  description?: string;
+  warningMessage?: string;
   // --------------------------
 }

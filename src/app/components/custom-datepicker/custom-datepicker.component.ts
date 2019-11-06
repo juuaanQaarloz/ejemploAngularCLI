@@ -1,8 +1,9 @@
 import {AfterViewInit, Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
 import {Field} from '../../models';
 import {FormGroup} from '@angular/forms';
-import {calculateAge} from '../../core/utilities';
+import {addSlashesToDate, calculateAge} from '../../core/utilities';
 import {ApplicationService} from '../../core/services';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-custom-datepicker',
@@ -39,14 +40,17 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   }
 
   onDateInput(typeEvent: string, event) {
+    console.log('onDateInput...');
+    if (typeEvent === 'input') {
+      event.targetElement.value = addSlashesToDate(event.targetElement.value);
+    }
   }
 
   onDateChange(event) {
-    // console.log('onDateChange... ', event);
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
-    // console.log('event.targetElement.value: ', event.targetElement.value);
-    // const transformedDate = transformDate(event.target.value, this.dateFormat);
-    // event.targetElement.value = transformedDate;
+
+    console.log('event.targetElement.value: ', event.targetElement.value);
+    // console.log('type of event.targetElement.value: ', typeof event.targetElement.value);
     elem.setAttribute('value', event.targetElement.value);
 
     if (this.fieldObj.name === 'birthDate' || this.fieldObj.name === 'birthDateS') {
@@ -70,7 +74,7 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   }
 
   setAge(formControlName, htmlID, value) {
-    this.appService.getFormGroup().controls[formControlName].setValue(value);
+    this.form.controls[formControlName].setValue(value);
     const el2 = document.getElementById(htmlID);
     el2.setAttribute('value', value.toString());
   }

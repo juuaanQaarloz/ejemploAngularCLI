@@ -3,7 +3,7 @@ import {Field} from '../../models';
 
 export const Beneficiarios: Field[] = [
   {
-    id: 'field-86',
+    id: 'field-93',
     idHtml: 'radioBeneficiaryType',
     name: 'beneficiaryType',
     orderAppearance: 1,
@@ -32,7 +32,7 @@ export const Beneficiarios: Field[] = [
     value: 'phyPerson'
   },
   {
-    id: 'field-87',
+    id: 'field-94',
     idHtml: 'txtBeneficiaryName',
     name: 'beneficiaryName',
     orderAppearance: 2,
@@ -61,7 +61,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-88',
+    id: 'field-95',
     idHtml: 'txtBeneficiaryBusinessName',
     name: 'beneficiaryBusinessName',
     orderAppearance: 2,
@@ -89,7 +89,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-89',
+    id: 'field-96',
     idHtml: 'txtBeneficiaryFaLastName',
     name: 'beneficiaryFaLastName',
     orderAppearance: 3,
@@ -118,7 +118,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-90',
+    id: 'field-97',
     idHtml: 'txtBeneficiaryMoLastName',
     name: 'beneficiaryMoLastName',
     orderAppearance: 4,
@@ -147,7 +147,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-91',
+    id: 'field-98',
     idHtml: 'radioSuspensiveCondition',
     name: 'suspensiveCodition',
     orderAppearance: 5,
@@ -176,7 +176,7 @@ export const Beneficiarios: Field[] = [
     value: true
   },
   {
-    id: 'field-92',
+    id: 'field-99',
     idHtml: 'txtContractNumber',
     name: 'contractNumber',
     orderAppearance: 6,
@@ -204,7 +204,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-93',
+    id: 'field-100',
     idHtml: 'txtInstructionLetterNumber',
     name: 'instructionLetterNumber',
     orderAppearance: 7,
@@ -232,7 +232,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-94',
+    id: 'field-101',
     idHtml: 'slctBeneficiaryRelationship',
     name: 'beneficiaryRelationship',
     orderAppearance: 8,
@@ -261,7 +261,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-95',
+    id: 'field-102',
     idHtml: 'dateBeneficiaryBirthDate',
     name: 'beneficiaryBirthDate',
     orderAppearance: 9,
@@ -289,7 +289,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-96',
+    id: 'field-103',
     idHtml: 'txtParticipationPercentage',
     name: 'participationPercentage',
     orderAppearance: 10,
@@ -317,7 +317,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-97',
+    id: 'field-104',
     idHtml: 'radioSameAsTitular',
     name: 'sameAsTitular',
     orderAppearance: 11,
@@ -346,7 +346,7 @@ export const Beneficiarios: Field[] = [
     value: true
   },
   {
-    id: 'field-98',
+    id: 'field-105',
     idHtml: 'txtBeneficiaryStreet',
     name: 'beneficiaryStreet',
     orderAppearance: 12,
@@ -375,7 +375,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-99',
+    id: 'field-106',
     idHtml: 'txtBeneficiaryExteriorNumber',
     name: 'beneficiaryExteriorNumber',
     orderAppearance: 13,
@@ -403,7 +403,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-100',
+    id: 'field-107',
     idHtml: 'txtBeneficiaryInteriorNumber',
     name: 'beneficiaryInteriorNumber',
     orderAppearance: 14,
@@ -431,7 +431,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-101',
+    id: 'field-108',
     idHtml: 'txtBeneficiaryZipCode',
     name: 'beneficiaryZipCode',
     orderAppearance: 15,
@@ -459,7 +459,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-102',
+    id: 'field-109',
     idHtml: 'txtBeneficiarySuburb',
     name: 'beneficiarySuburb',
     orderAppearance: 16,
@@ -488,7 +488,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-103',
+    id: 'field-110',
     idHtml: 'txtBeneficiaryMunicipality',
     name: 'beneficiaryMunicipality',
     orderAppearance: 17,
@@ -517,7 +517,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-104',
+    id: 'field-111',
     idHtml: 'txtBeneficiaryState',
     name: 'beneficiaryState',
     orderAppearance: 18,
@@ -545,7 +545,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-105',
+    id: 'field-112',
     idHtml: 'txtBeneficiaryCity',
     name: 'beneficiaryCity',
     orderAppearance: 19,
@@ -573,7 +573,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-106',
+    id: 'field-113',
     idHtml: 'slctBeneficiaryCountry',
     name: 'beneficiaryCountry',
     orderAppearance: 20,
@@ -602,7 +602,7 @@ export const Beneficiarios: Field[] = [
     value: ''
   },
   {
-    id: 'field-107',
+    id: 'field-114',
     idHtml: 'fileLoadInstructionLetter',
     name: 'loadInstructionLetter',
     orderAppearance: 21,
@@ -678,7 +678,7 @@ export const BENEFICIARIES: Beneficiary[] =  [
 
 export const beneficiaryFields: Field[] = [
   {
-    id: 'field-93',
+    id: 'field-115',
     idHtml: 'slctBeneficiaryRelationshipI',
     name: 'beneficiaryRelationshipI',
     orderAppearance: 1,
@@ -707,7 +707,7 @@ export const beneficiaryFields: Field[] = [
     value: ''
   },
   {
-    id: 'field-95',
+    id: 'field-116',
     idHtml: 'txtParticipationPercentageI',
     name: 'participationPercentageI',
     orderAppearance: 2,

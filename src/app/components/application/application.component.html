@@ -1,36 +1,36 @@
-<app-header></app-header>
+<div id="content" #content>
+  <app-header></app-header>
 
-<app-menu></app-menu>
+  <app-menu></app-menu>
 
-<div id="content" #content style="background-color: white">
+  <div  style="background-color: white">
 
-  <div style="text-align: center">
-    <h1 class="title">Solicitudes MetaLife</h1>
+    <div style="text-align: center">
+      <h1 class="title">Solicitudes MetaLife</h1>
 
-    <!--<input style="display: block" type="file" placeholder="Upload file" accept=".pdf,.doc,.docx"
-           (change)="fileChange($event)">-->
+      <!--<input style="display: block" type="file" placeholder="Upload file" accept=".pdf,.doc,.docx"
+             (change)="fileChange($event)">-->
 
-    <!--<button type="button" (click)="fileInput.click()" class="ml-button-primary">
-      <span>Upload</span>
-      <input #fileInput type="file" (change)="fileChange($event)" style="display:none;" />
-    </button>-->
+      <!--<button type="button" (click)="fileInput.click()" class="ml-button-primary">
+        <span>Upload</span>
+        <input #fileInput type="file" (change)="fileChange($event)" style="display:none;" />
+      </button>-->
 
-    <jw-modal [id]="'modal-search'"
-              [modalType]="'overlay'">
-      <app-search-occupation [modalID]="'modal-search'"></app-search-occupation>
-    </jw-modal>
+      <jw-modal [id]="'modal-search'"
+                [modalType]="'overlay'">
+        <app-search-occupation [modalID]="'modal-search'"></app-search-occupation>
+      </jw-modal>
+
+    </div>
+
+    <div class="container" *ngFor="let section of applicationObj.sections">
+      <app-section-form [form]="formGroup" [sectionObj]="section"></app-section-form>
+    </div>
+
+    <app-operation-form [operationObj]="pdfOperation" (click)="downloadPDF()"></app-operation-form>
 
   </div>
 
-  <div class="container" *ngFor="let section of applicationObj.sections">
-    <app-section-form [form]="formGroup" [sectionObj]="section"></app-section-form>
-  </div>
-
-  <app-operation-form [operationObj]="pdfOperation" (click)="downloadPDF()"></app-operation-form>
+  <app-footer></app-footer>
 
 </div>
-
-<app-footer></app-footer>
-
-
-

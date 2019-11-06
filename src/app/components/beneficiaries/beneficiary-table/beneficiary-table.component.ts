@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ApplicationService} from '../../../core/services';
 import {NewBeneficiaryComponent} from '../new-beneficiary/new-beneficiary.component';
 import {DialogService} from '../../dialog/dialog.service';
@@ -6,7 +6,7 @@ import {Field} from '../../../models';
 
 const FIELDS: Field[] = [
   {
-    id: 'field-109',
+    id: 'field-117',
     idHtml: 'txtAdditionalComments',
     name: 'additionalComments',
     label: 'Información adicional',
@@ -43,6 +43,7 @@ const FIELDS: Field[] = [
   styleUrls: ['./beneficiary-table.component.css']
 })
 export class BeneficiaryTableComponent implements OnInit {
+  @Input() type: string;
   title = 'Datos de Beneficiario(s)';
   columnsNames = ['Tipo de Beneficiario',
     'Nombre / Razón social',
@@ -72,14 +73,20 @@ export class BeneficiaryTableComponent implements OnInit {
 
   ngOnInit() {
 
-    this.content.fields.forEach((field) => {
-      this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
-    });
+    if (this.type === 'table-beneficiary') {
+      this.title = 'Datos de Beneficiario(s)';
+      this.columnsNames = ['Tipo de Beneficiario', 'Nombre / Razón social', 'Fecha de nacimiento / constitución', 'Parentesco',
+        'Porcentaje de participación',
+      ];
+      this.content.fields.forEach((field) => {
+        this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
+      });
 
-    this.applicationService.beneficiaries.subscribe((value) => {
-      this.beneficiaries = value;
-      this.totalPercentageParticipation = this.applicationService.getTotalParticipationPercentage();
-    });
+      this.applicationService.beneficiaries.subscribe((value) => {
+        this.beneficiaries = value;
+        this.totalPercentageParticipation = this.applicationService.getTotalParticipationPercentage();
+      });
+    } else if (this.type === 'table-disseases') {}
   }
 
   addNewBeneficiary() {
