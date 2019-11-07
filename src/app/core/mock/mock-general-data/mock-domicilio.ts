@@ -280,7 +280,7 @@ export const DatosDomicilio: Field[] = [
     idHtml: 'chboxEmail',
     name: 'emailCheck',
     orderAppearance: 11,
-    label: '¿El cliente requiere copia de su solicitud vía correo?',
+    label: '',
     type: 'checkbox',
     required: false,
     placeholder: '',

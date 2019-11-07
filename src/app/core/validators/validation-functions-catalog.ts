@@ -1,6 +1,6 @@
 import {
   AgeValidator,
-  DateValidator,
+  DateValidator, DateValidator1,
   validateAge, validateAlphanumericName,
   validateAlphanumericValue, validateAlphanumericValueNotRequired,
   validateCURP, validateCURPNotRequired, validateMail,
@@ -24,7 +24,7 @@ export const validatorsObjects = [
   },
   {
     nameField: 'birthDate',
-    validationFunctions: [DateValidator]
+    validationFunctions: [DateValidator1]
   },
   {
     nameField: 'age',

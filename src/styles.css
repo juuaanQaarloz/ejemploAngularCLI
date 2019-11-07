@@ -312,7 +312,7 @@ select::-ms-expand {
 .ml-form-field label {
   position: relative;
   display: block;
-  text-align: left;
+  text-align: justify;
 }
 
 .ml-form-field label span {
@@ -512,7 +512,7 @@ select::-ms-expand {
 .ml-form-field-radio-group {
   width: auto;
   height: 18px;
-  position: relative;
+  /*position: relative;*/
   margin: 20px auto;
   transition: all 250ms;
 }

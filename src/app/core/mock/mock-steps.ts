@@ -9,7 +9,6 @@ import {
   MockContentStep6Process1ContentSection2,
   MockContentStep7Process1ContentSection2
 } from './mock-contents';
-import {templateJitUrl} from '@angular/compiler';
 
 export const MockStepsProcessContentSection2: Step[] = [
   {

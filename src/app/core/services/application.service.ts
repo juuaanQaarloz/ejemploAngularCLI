@@ -132,12 +132,14 @@ export class ApplicationService {
 
   getValidationFunctions(field: Field): any[] {
     let validationFunctions = [];
+
     validatorsObjects.forEach(validationObject => {
       if (validationObject.nameField === field.name) {
         // console.log('validationObject: ', validationObject);
         validationFunctions = validationObject.validationFunctions;
       }
     });
+
     if (field.required) {
       validationFunctions.push(Validators.required);
     }

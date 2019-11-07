@@ -103,11 +103,10 @@
 
   <fieldset *ngSwitchCase="'radio'" [ngClass]="{'error': !valid}" class="ml-form-field ml-form-field-radio">
     <!--style="display: grid; grid-template-columns: 85% 15%;">-->
-    <!---<div [ngClass]="fieldObj.styleClass">-->
+    <div [ngClass]="fieldObj.styleClass">
       <label>{{fieldObj.label}}</label>
 
       <div class="ml-form-field-radio-group"
-           [ngStyle]="getStyle(fieldObj.style)"
            *ngFor="let radioOption of radioOptions; let first = first">
         <input type="radio" [formControlName]="fieldObj.name"
                [id]="radioOption.id + '-radio'"
@@ -116,11 +115,11 @@
         <label>{{radioOption.name}}</label>
 
       </div>
-    <!--</div>-->
+    </div>
 
   </fieldset>
 
-  <fieldset *ngSwitchCase="'checkbox'" class="ml-form-field">
+  <fieldset *ngSwitchCase="'checkbox'" class="ml-form-field ml-form-field-checkboxes">
     <label>{{fieldObj.label}}</label>
     <!--<div class="checkbox-options">-->
     <div class="ml-form-field-checkboxes-group" *ngFor="let checkBoxOption of checkBoxOptions">
