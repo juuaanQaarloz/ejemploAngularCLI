@@ -1,9 +1,7 @@
 import {
   AgeValidator,
-  DateValidator, DateValidator1,
-  validateAge, validateAlphanumericName,
-  validateAlphanumericValue, validateAlphanumericValueNotRequired,
-  validateCURP, validateCURPNotRequired, validateMail,
+  DateValidator, validateAlphanumericName,
+  validateAlphanumericValue, validateAlphanumericValueNotRequired, validateCURPNotRequired, validateMail,
   validateName, validateNumberWith2Decimals, validatePhone, validatePhoneNotRequired,
   validateRFC, validateRFCMoral,
   validateStreet, validateStreetNum, validateStreetNumberNotRequired, validateZipCode
@@ -24,7 +22,7 @@ export const validatorsObjects = [
   },
   {
     nameField: 'birthDate',
-    validationFunctions: [DateValidator1]
+    validationFunctions: [DateValidator]
   },
   {
     nameField: 'age',

@@ -1,4 +1,4 @@
-import {AbstractControl, Form, FormControl} from '@angular/forms';
+import {AbstractControl, Form, FormControl, FormGroup, ValidatorFn} from '@angular/forms';
 import * as moment from 'moment';
 import {addSlashesToDate} from '../utilities';
 
@@ -179,7 +179,7 @@ export function AgeValidator(minAge = 15, maxAge = 70): any {
   };
 }
 
-export function DateValidator(format = 'YYYY/MM/DD'): any {
+/*export function DateValidator(format = 'YYYY/MM/DD'): any {
   console.log('onDateValidator...');
   return (control: FormControl): { [key: string]: any } => {
     const currentDate = moment().format(format);
@@ -195,9 +195,9 @@ export function DateValidator(format = 'YYYY/MM/DD'): any {
 
     return null;
   };
-}
+}*/
 
-export function DateValidator1(control: AbstractControl): { [key: string]: any } | null {
+export function DateValidator(control: AbstractControl): { [key: string]: any } | null {
   const format = 'YYYY/MM/DD';
   const currentDate = moment();
   const val = moment(control.value, format, true);
@@ -616,6 +616,17 @@ export function validateNumberWith2Decimals(control: AbstractControl): { [key: s
   }
   // return true;
   return null;
+}
+
+export function validateEmailConfirmation(targetKey: string, toMatchKey: string): ValidatorFn {
+  return (group: FormGroup): {[key: string]: any} => {
+    const email = group.controls[targetKey].value;
+    const emailConfirmation = group.controls[toMatchKey].value;
+    if (email !== emailConfirmation) {
+      return {invalidEmailConfirmation: {valid: false, value: emailConfirmation.value}};
+    }
+    return null;
+  };
 }
 
 

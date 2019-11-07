@@ -6,8 +6,6 @@ import {DialogService} from '../dialog/dialog.service';
 import {ModalService} from '../custom-modal';
 import * as jsPDF from 'jspdf';
 import {pdfOperation} from '../../core/mock/mock-operations';
-import * as moment from 'moment';
-
 
 @Component({
   selector: 'app-application',
@@ -16,11 +14,11 @@ import * as moment from 'moment';
 })
 export class ApplicationComponent implements OnInit {
   applicationObj =  MockTemplate;
-  iconSecurity = 'security-icon';
   payLoad = '';
   formGroup: FormGroup;
   @ViewChild('content', {static: false}) content: ElementRef;
   pdfOperation = pdfOperation;
+  items = [];
   constructor(private appService: ApplicationService,
               private authService: AuthService,
               private storageService: StorageService,
@@ -31,6 +29,8 @@ export class ApplicationComponent implements OnInit {
   ngOnInit() {
     this.formGroup = this.appService.toFormGroup(this.applicationObj);
     this.appService.setFormGroup(this.formGroup);
+    // an example array of 150 items to be paged
+    this.items = Array(150).fill(0).map((x, i) => ({ id: (i + 1), name: `Item ${i + 1}`}));
   }
 
   getFormValue() {

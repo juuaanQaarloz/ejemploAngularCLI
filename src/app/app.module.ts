@@ -39,6 +39,7 @@ import { MenuPageComponent } from './components/menu-page/menu-page.component';
 import { TableComponent } from './components/general-table/table/table.component';
 import { ItemTableComponent } from './components/general-table/item-table/item-table.component';
 import { AddEditItemTableComponent } from './components/general-table/add-edit-item-table/add-edit-item-table.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { AddEditItemTableComponent } from './components/general-table/add-edit-i
     MenuPageComponent,
     TableComponent,
     ItemTableComponent,
-    AddEditItemTableComponent
+    AddEditItemTableComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

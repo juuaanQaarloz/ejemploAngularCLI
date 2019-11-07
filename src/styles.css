@@ -68,14 +68,14 @@ hr.ml-step-hr{
   height:60px;
   padding: 20px 15px 20px 15px ;
   margin:0;
-  background:url(/assets/img/step-border-BG-active.png) repeat-y 0 0;
+  background:url(assets/img/step-border-BG-active.png) repeat-y 0 0;
 }
 
 .ml-step-header-expanded-first-child{
   height:60px;
   padding: 20px 15px 20px 15px ;
   margin:0;
-  background:url(/assets/img/step-border-BG-active.png) no-repeat 0 15px;
+  background:url(assets/img/step-border-BG-active.png) no-repeat 0 15px;
   background-size: 8px 100% !important;
 }
 
@@ -83,21 +83,21 @@ hr.ml-step-hr{
   height:60px;
   padding: 20px 15px 20px 15px ;
   margin:0;
-  background:url(/assets/img/step-border-BG-active.png) no-repeat 0 0 !important ;
+  background:url(assets/img/step-border-BG-active.png) no-repeat 0 0 !important ;
   background-size: 8px 50% !important;}
 
 .ml-step-header-completed{
   height:60px;
   padding: 20px 15px 20px 15px ;
   margin:0;
-  background:url(/assets/img/step-border-BG-complete.png) repeat-y 0 0;
+  background:url(assets/img/step-border-BG-complete.png) repeat-y 0 0;
 }
 
 .ml-step-header-completed-first-child{
   height:60px;
   padding: 20px 15px 20px 15px ;
   margin:0;
-  background:url(/assets/img/step-border-BG-complete.png) no-repeat 0 15px;
+  background:url(assets/img/step-border-BG-complete.png) no-repeat 0 15px;
   background-size: 8px 100% !important;
 }
 
@@ -105,7 +105,7 @@ hr.ml-step-hr{
   height:60px;
   padding: 20px 15px 20px 15px ;
   margin:0;
-  background:url(/assets/img/step-border-BG-complete.png) no-repeat 0 0 !important ;
+  background:url(assets/img/step-border-BG-complete.png) no-repeat 0 0 !important ;
   background-size: 8px 50% !important;}
 
 .ml-step-header-title-expanded{
@@ -122,7 +122,7 @@ hr.ml-step-hr{
 
 .ml-step-content {
   border-left:8px solid #007ABC;
-  background:#ffffff url(/assets/img/step-border-BG-active.png) repeat-y 0 0;
+  background:#ffffff url(assets/img/step-border-BG-active.png) repeat-y 0 0;
   padding: 0px 15px 0px 15px;
 }
 
