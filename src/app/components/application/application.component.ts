@@ -1,12 +1,11 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormGroup} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import {ApplicationService, AuthService, StorageService} from '../../core/services';
 import {MockTemplate} from '../../core/mock/mock-template';
 import {DialogService} from '../dialog/dialog.service';
 import {ModalService} from '../custom-modal';
 import * as jsPDF from 'jspdf';
 import {pdfOperation} from '../../core/mock/mock-operations';
-
 
 @Component({
   selector: 'app-application',
@@ -15,11 +14,11 @@ import {pdfOperation} from '../../core/mock/mock-operations';
 })
 export class ApplicationComponent implements OnInit {
   applicationObj =  MockTemplate;
-  iconSecurity = 'security-icon';
   payLoad = '';
   formGroup: FormGroup;
   @ViewChild('content', {static: false}) content: ElementRef;
   pdfOperation = pdfOperation;
+  items = [];
   constructor(private appService: ApplicationService,
               private authService: AuthService,
               private storageService: StorageService,
@@ -30,6 +29,8 @@ export class ApplicationComponent implements OnInit {
   ngOnInit() {
     this.formGroup = this.appService.toFormGroup(this.applicationObj);
     this.appService.setFormGroup(this.formGroup);
+    // an example array of 150 items to be paged
+    this.items = Array(150).fill(0).map((x, i) => ({ id: (i + 1), name: `Item ${i + 1}`}));
   }
 
   getFormValue() {
@@ -54,6 +55,47 @@ export class ApplicationComponent implements OnInit {
 
     doc.addHTML(document.getElementById('content') , () => {
       doc.save('solicitud.pdf');
+    });
+  }
+
+  validateForm() {
+    console.log('form status: ', this.formGroup.status);
+    console.log('form status: ', this.formGroup.value);
+    /*this.applicationObj.sections.forEach((section) => {
+      section.contents.forEach((contentFromSection) => {
+        if (contentFromSection.fields) {
+          contentFromSection.fields.forEach((fieldFromContentSection) => {
+            console.log('fieldFromContentSection: ', fieldFromContentSection);
+          });
+        } else {
+          if (contentFromSection.process) {
+            contentFromSection.process.steps.forEach((step) => {
+              step.contents.forEach((contentFromStep) => {
+                if (contentFromStep.fields) {
+                  contentFromStep.fields.forEach(fieldFromContentFromStep => {
+                    console.log('fieldFromContentStep: ', fieldFromContentFromStep);
+                  });
+                } else {
+                  if (contentFromStep.contentChildren) {
+                    contentFromStep.contentChildren.forEach(contentChild => {
+                      if (contentChild.fields) {
+                        contentChild.fields.forEach(fieldFromContentChild => {
+                          console.log('fieldFromContentChild: ', fieldFromContentChild);
+                        });
+                      }
+                    });
+                  }
+                }
+              });
+            });
+          }
+        }
+      });
+    });*/
+
+    Object.keys(this.formGroup.controls).forEach(key => {
+      console.log('formControlName: ', key);
+      console.log('formControl: ', this.formGroup.controls[key]);
     });
   }
 }

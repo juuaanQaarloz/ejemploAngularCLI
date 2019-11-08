@@ -1,9 +1,7 @@
 import {
   AgeValidator,
-  DateValidator,
-  validateAge, validateAlphanumericName,
-  validateAlphanumericValue, validateAlphanumericValueNotRequired,
-  validateCURP, validateCURPNotRequired, validateMail,
+  DateValidator, validateAlphanumericName,
+  validateAlphanumericValue, validateAlphanumericValueNotRequired, validateCURPNotRequired, validateMail,
   validateName, validateNumberWith2Decimals, validatePhone, validatePhoneNotRequired,
   validateRFC, validateRFCMoral,
   validateStreet, validateStreetNum, validateStreetNumberNotRequired, validateZipCode

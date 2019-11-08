@@ -1,0 +1,8 @@
+.occupation-row {
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr;
+}
+
+.result-attribute{
+  text-align: left;
+}

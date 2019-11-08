@@ -68,7 +68,7 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   }
 
   onBlur() {
-    // console.log('onBlur from custom-datepicker');
+    console.log('onBlur from custom-datepicker');
     // console.log('formControlValue: ', this.form.controls[this.fieldObj.name]);
     this.validate.emit(true);
   }

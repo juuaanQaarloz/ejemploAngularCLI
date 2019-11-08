@@ -1,4 +1,4 @@
-import {AbstractControl, FormControl} from '@angular/forms';
+import {AbstractControl, Form, FormControl, FormGroup, ValidatorFn} from '@angular/forms';
 import * as moment from 'moment';
 import {addSlashesToDate} from '../utilities';
 
@@ -24,25 +24,25 @@ export function nullUndefinedOrEmptyValidation(obj: any): boolean {
  * @param (string) word The word to be validated
  * @returns (boolean) returns false if the value is not a alphanumeric
  */
-export function validateAlphanumericValue(control: AbstractControl, apply?): {[key: string]: any} | null {
+export function validateAlphanumericValue(control: AbstractControl, apply?): { [key: string]: any } | null {
   // this line was commented by rmunozto because have conflicts with
   //               if (word == null || word == undefined || word == "" || /[^a-zA-Z0-9ÑÜ ]/.test(word)) {
   if (apply === null || apply === undefined || apply === '') {
     // jirineoc Si contiene un valor nulo, vacío o indefinido, debe mandar error, por que es un campo requerido
     if (nullUndefinedOrEmptyValidation(control.value)) {
-      return {invalidValue: { valid: false, value: control.value}};
+      return {invalidValue: {valid: false, value: control.value}};
       // return false;
     }
   }
 
   // added empty space becasu it was not allowing sentences -- if (/[^a-zA-Z0-9 ÑÜ\-.,\(\)\/]/.test(word))
   if (/[^a-zA-Z0-9. ÑÜ\-\(\)\/]/.test(control.value)) {
-    return {invalidValue: { valid: false, value: control.value}};
+    return {invalidValue: {valid: false, value: control.value}};
     // return false;
   }
 
   if (/([a-zA-Z0-9 ÑÜ]).*?\1\1\1/.test(control.value)) {
-    return {invalidValue: { valid: false, value: control.value}};
+    return {invalidValue: {valid: false, value: control.value}};
     // return false;
   }
 
@@ -52,7 +52,7 @@ export function validateAlphanumericValue(control: AbstractControl, apply?): {[k
   // return valid ? null : {invalidName: { valid: false, value: control.value}};
 }
 
-export function validateAlphanumericValueNotRequired(control: AbstractControl): {[key: string]: any} | null {
+export function validateAlphanumericValueNotRequired(control: AbstractControl): { [key: string]: any } | null {
   if (control.value) {
     return validateAlphanumericValue(control);
   } else {
@@ -60,20 +60,20 @@ export function validateAlphanumericValueNotRequired(control: AbstractControl): 
   }
 }
 
-export function validateAlphanumericValueFormat3(control: AbstractControl): {[key: string]: any} | null {
+export function validateAlphanumericValueFormat3(control: AbstractControl): { [key: string]: any } | null {
   // jirineoc Si contiene un valor nulo, vacío o indefinido, debe mandar error, por que es un campo requerido
   if (nullUndefinedOrEmptyValidation(control.value)) {
-    return {invalidValue: { valid: false, value: control.value}};
+    return {invalidValue: {valid: false, value: control.value}};
     // return false;
   }
   // added empty space becasu it was not allowing sentences
   if (/[^a-zA-Z0-9 ÑÜ\-.]/.test(control.value)) {
-    return {invalidValue: { valid: false, value: control.value}};
+    return {invalidValue: {valid: false, value: control.value}};
     // return false;
   }
 
   if (/(.)\1{3,}/g.test(control.value)) {
-    return {invalidValue: { valid: false, value: control.value}};
+    return {invalidValue: {valid: false, value: control.value}};
     // return false;
   }
   return null;
@@ -83,19 +83,19 @@ export function validateAlphanumericValueFormat3(control: AbstractControl): {[ke
 /**@param (string) name the given name to be checked
  * @returns (boolean) returns false if the name contains no valid characters or more than 3 of the same letter consecutive
  */
-export function validateName(control: AbstractControl): {[key: string]: any} | null {
+export function validateName(control: AbstractControl): { [key: string]: any } | null {
 
   if (nullUndefinedOrEmptyValidation(control.value)) {
-    return {invalidName: { valid: false, value: control.value}};
+    return {invalidName: {valid: false, value: control.value}};
     // return false;
   }
 
   if (/(.)\1{3,}/g.test(control.value)) {
-    return {invalidName: { valid: false, value: control.value}};
+    return {invalidName: {valid: false, value: control.value}};
     // return false;
   }
   if (!/^(([A-Z0-9 Ñ.\-'])(?![A-Z0-9 Ñ.-](([A-Z0-9 Ñ.-]){})\3))+$/.test(control.value)) {
-    return {invalidName: { valid: false, value: control.value}};
+    return {invalidName: {valid: false, value: control.value}};
     // return false;
   }
   return null;
@@ -105,20 +105,20 @@ export function validateName(control: AbstractControl): {[key: string]: any} | n
 /**@param (string) name the given name to be checked
  * @returns (boolean) returns false if the name contains no valid alphanumeric characters
  */
-export function validateAlphanumericName(control: AbstractControl): {[key: string]: any} | null {
+export function validateAlphanumericName(control: AbstractControl): { [key: string]: any } | null {
 
   if (nullUndefinedOrEmptyValidation(control.value)) {
-    return {invalidName: { valid: false, value: control.value}};
+    return {invalidName: {valid: false, value: control.value}};
     // return false;
   }
 
   if (!validateAlphanumericValueFormat3(control.value)) {
-    return {invalidName: { valid: false, value: control.value}};
+    return {invalidName: {valid: false, value: control.value}};
     // return false;
   }
 
   if (/(.)\1{3,}/g.test(control.value)) {
-    return {invalidName: { valid: false, value: control.value}};
+    return {invalidName: {valid: false, value: control.value}};
     // return false;
   }
 
@@ -129,17 +129,17 @@ export function validateAlphanumericName(control: AbstractControl): {[key: strin
 /**@param (string) name the given name to be checked
  * @returns (boolean) returns false if the name contains no valid characters or more than 3 of the same letter consecutive
  */
-export function validateNameNotMandatory(control: AbstractControl): {[key: string]: any} | null {
+export function validateNameNotMandatory(control: AbstractControl): { [key: string]: any } | null {
   if (nullUndefinedOrEmptyValidation(control.value)) {
     return null;
     // return true;
   }
   if (/(.)\1{3,}/g.test(control.value)) {
-    return {invalidName: { valid: false, value: control.value}};
+    return {invalidName: {valid: false, value: control.value}};
     // return false;
   }
   if (!/^(([A-Z Ñ.-])(?![A-Z Ñ.-](([A-Z Ñ.-]){})\3))+$/.test(control.value)) {
-    return {invalidName: { valid: false, value: control.value}};
+    return {invalidName: {valid: false, value: control.value}};
     // return false;
   }
   return null;
@@ -150,14 +150,14 @@ export function validateNameNotMandatory(control: AbstractControl): {[key: strin
  * @param (string) date the given date to be validated
  * @returns (boolean) false if the given date is not in format DD/MM/YYYY, true otherwise
  */
-export function validateDateFormat(control: AbstractControl): {[key: string]: any} | null {
+export function validateDateFormat(control: AbstractControl): { [key: string]: any } | null {
   /*if (nullUndefinedOrEmptyValidation(control.value)) {
     return {invalidDate: { valid: false, value: control.value}};
     // return false;
   }*/
   console.log('onValidateFormat: ', control.value);
   if (!datePattern.test(control.value)) {
-    return {invalidDate: { valid: false, value: control.value}};
+    return {invalidDate: {valid: false, value: control.value}};
     // return false;
   }
   return null;
@@ -172,35 +172,58 @@ export function AgeValidator(minAge = 15, maxAge = 70): any {
     console.log('val: ', val);
 
     if (val < minAge || val > maxAge) {
-      return { invalidAge: true };
+      return {invalidAge: true};
     }
 
     return null;
   };
 }
 
-export function DateValidator(format = 'YYYY/MM/DD'): any {
+/*export function DateValidator(format = 'YYYY/MM/DD'): any {
+  console.log('onDateValidator...');
   return (control: FormControl): { [key: string]: any } => {
+    const currentDate = moment().format(format);
     const val = moment(control.value, format, true);
+
     if (!val.isValid()) {
-      return { invalidDate: true };
+      return {invalidDate: true};
+    }
+
+    if (val.isAfter(currentDate)) {
+      return {invalidDate: true};
     }
 
     return null;
   };
+}*/
+
+export function DateValidator(control: AbstractControl): { [key: string]: any } | null {
+  const format = 'YYYY/MM/DD';
+  const currentDate = moment();
+  const val = moment(control.value, format, true);
+
+  if (!val.isValid()) {
+    return {invalidDate: true};
+  }
+
+  if (val.isAfter(currentDate)) {
+    return {invalidDate: true};
+  }
+
+  return null;
 }
 
 /**
  * @param (string) date the given date to be validated, but this case date it is not mandatory
  * @returns (boolean) false if the given date is not in format DD/MM/YYYY, true otherwise
  */
-export function validateDateFormatNotMandatory(control: AbstractControl): {[key: string]: any} | null {
+export function validateDateFormatNotMandatory(control: AbstractControl): { [key: string]: any } | null {
   if (nullUndefinedOrEmptyValidation(control.value)) {
     return null;
     // return true;
   }
   if (!datePattern.test(control.value)) {
-    return {invalidDate: { valid: false, value: control.value}};
+    return {invalidDate: {valid: false, value: control.value}};
     // return false;
   }
 
@@ -212,13 +235,13 @@ export function validateDateFormatNotMandatory(control: AbstractControl): {[key:
  * @param (string) date the given date to be validated
  * @returns (boolean) false if the given date is not in format YYYY/MM/DD, true otherwise
  */
-export function validateTitularDateFormat(control: AbstractControl): {[key: string]: any} | null {
+export function validateTitularDateFormat(control: AbstractControl): { [key: string]: any } | null {
   if (nullUndefinedOrEmptyValidation(control.value)) {
-    return {invalidDate: { valid: false, value: control.value}};
+    return {invalidDate: {valid: false, value: control.value}};
     // return false;
   }
   if (!dateTitPattern.test(control.value)) {
-    return {invalidDate: { valid: false, value: control.value}};
+    return {invalidDate: {valid: false, value: control.value}};
     // return false;
   }
   return null;
@@ -229,9 +252,9 @@ export function validateTitularDateFormat(control: AbstractControl): {[key: stri
  * @params (number, number, number) age the age to be validated in the  permitted range, the minimum age permitted, the maximum age permitted
  * @returns (boolean) returns false if the given age is out of the rage permitted
  */
-export function validateAge(control: AbstractControl): {[key: string]: any} | null {
+export function validateAge(control: AbstractControl): { [key: string]: any } | null {
   if (control.value < 15 || control.value > 70) {
-    return {invalidAge: { valid: false, value: control.value}};
+    return {invalidAge: {valid: false, value: control.value}};
     // return false;
   }
   return null;
@@ -241,9 +264,9 @@ export function validateAge(control: AbstractControl): {[key: string]: any} | nu
 /**@param (string) rfc RFC to be checked
  * @returns (boolean) false if the given RFC is not valid or empty
  */
-export function validateRFC(control: AbstractControl): {[key: string]: any} | null {
+export function validateRFC(control: AbstractControl): { [key: string]: any } | null {
   if (!rfcPattern.test(control.value)) {
-    return {invalidRFC: { valid: false, value: control.value}};
+    return {invalidRFC: {valid: false, value: control.value}};
     // return false;
   }
   return null;
@@ -253,9 +276,9 @@ export function validateRFC(control: AbstractControl): {[key: string]: any} | nu
 /**@param (string) rfc RFC to be checked for moral person
  * @returns (boolean) false if the given RFC is not valid or empty
  */
-export function validateRFCMoral(control: AbstractControl): {[key: string]: any} | null {
+export function validateRFCMoral(control: AbstractControl): { [key: string]: any } | null {
   if (!rfcMoralPattern.test(control.value)) {
-    return {invalidRFC: { valid: false, value: control.value}};
+    return {invalidRFC: {valid: false, value: control.value}};
     // return false;
   }
   return null;
@@ -265,13 +288,13 @@ export function validateRFCMoral(control: AbstractControl): {[key: string]: any}
 /**@param (string) rfc RFC to be checked
  * @returns (boolean) false if the given RFC is not valid or empty, but in this case the RFC is not mandatory
  */
-export function validateRFCNotMandatory(control: AbstractControl): {[key: string]: any} | null {
+export function validateRFCNotMandatory(control: AbstractControl): { [key: string]: any } | null {
   if (nullUndefinedOrEmptyValidation(control.value)) {
     return null;
     // return true;
   }
   if (!rfcPattern.test(control.value)) {
-    return {invalidRFC: { valid: false, value: control.value}};
+    return {invalidRFC: {valid: false, value: control.value}};
     // return false;
   }
   return null;
@@ -281,19 +304,19 @@ export function validateRFCNotMandatory(control: AbstractControl): {[key: string
 /** @param (string) curp the curp to be validated
  *  @returns (boolean) returns false if there is a value in the curp that doesn´t match a valid curp
  */
-export function validateCURP(control: AbstractControl): {[key: string]: any} | null {
+export function validateCURP(control: AbstractControl): { [key: string]: any } | null {
   if (!curpPattern.test(control.value) && !nullUndefinedOrEmptyValidation(control.value)) { // review to allow empty curp
-    return {invalidCurp: { valid: false, value: control.value}};
+    return {invalidCurp: {valid: false, value: control.value}};
     // return false;
   }
   return null;
   // return true;
 }
 
-export function validateCURPNotRequired(control: AbstractControl): {[key: string]: any} | null {
+export function validateCURPNotRequired(control: AbstractControl): { [key: string]: any } | null {
   if (control.value) {
     if (!curpPattern.test(control.value) && !nullUndefinedOrEmptyValidation(control.value)) { // review to allow empty curp
-      return {invalidCurp: { valid: false, value: control.value}};
+      return {invalidCurp: {valid: false, value: control.value}};
       // return false;
     } else {
       return null;
@@ -308,38 +331,39 @@ export function validateCURPNotRequired(control: AbstractControl): {[key: string
  * @param (string) nationality The nationality to be validated
  * @returns (boolean) false if the given nationality doesn't was found in the countries catalog, true otherwise
  */
-export function validateNationality(control: AbstractControl): {[key: string]: any} | null {
+export function validateNationality(control: AbstractControl): { [key: string]: any } | null {
   return validateAlphanumericValue(control.value, '');
 }
 
-export function validateNationalityFormat3(control: AbstractControl): {[key: string]: any} | null {
+export function validateNationalityFormat3(control: AbstractControl): { [key: string]: any } | null {
 
   if (/[^a-zA-Z0-9 ÑÜ ]/.test(control.value)) { // added empty space because it was not allowing sentences
-    return {invalidNationality: { valid: false, value: control.value}};
+    return {invalidNationality: {valid: false, value: control.value}};
     // return false;
   }
 
   if (/([a-zA-Z0-9 ÑÜ ]).*?\1\1\1/.test(control.value)) {
-    return {invalidNationality: { valid: false, value: control.value}};
+    return {invalidNationality: {valid: false, value: control.value}};
     // return false;
   }
   return null;
   // return true;
 }
+
 // TODO: make validation against catalog
-export function validateNationalityFormat4(control: AbstractControl): {[key: string]: any} | null {
+export function validateNationalityFormat4(control: AbstractControl): { [key: string]: any } | null {
   if (nullUndefinedOrEmptyValidation(control.value)) {
     return null;
     // return true;
   }
 
   if (/[^a-zA-Z0-9 ÑÜ\-.,\(\)\/]/.test(control.value)) { // added empty space because it was not allowing sentences
-    return {invalidNationality: { valid: false, value: control.value}};
+    return {invalidNationality: {valid: false, value: control.value}};
     // return false;
   }
 
   if (/([a-zA-Z0-9 ÑÜ]).*?\1\1\1/.test(control.value)) {
-    return {invalidNationality: { valid: false, value: control.value}};
+    return {invalidNationality: {valid: false, value: control.value}};
     // return false;
   }
   return null;
@@ -380,19 +404,19 @@ export function validateNationalityFormat4(control: AbstractControl): {[key: str
  * @param (string) phone the phone number to validate the right format
  * @returns (boolean) returns false if the given phone contain more tha 6 times the same number consecutive or any invalid character
  */
-export function validatePhone(control: AbstractControl): {[key: string]: any} | null {
+export function validatePhone(control: AbstractControl): { [key: string]: any } | null {
   // const phoneString = phone.toString();
   if (!nullUndefinedOrEmptyValidation(control.value)) {
     if (/(.)\1{6,}/g.test(control.value)) {
-      return {invalidPhoneNumber: { valid: false, value: control.value}};
+      return {invalidPhoneNumber: {valid: false, value: control.value}};
       // return false;
     }
     if (/\D/g.test(control.value)) {
-      return {invalidPhoneNumber: { valid: false, value: control.value}};
+      return {invalidPhoneNumber: {valid: false, value: control.value}};
       // return false;
     }
     if ((control.value.length > 0 && control.value.length < 10) || control.value.length > 10) {
-      return {invalidPhoneNumber: { valid: false, value: control.value}};
+      return {invalidPhoneNumber: {valid: false, value: control.value}};
       // return false;
     }
   }
@@ -400,7 +424,7 @@ export function validatePhone(control: AbstractControl): {[key: string]: any} | 
   // return true;
 }
 
-export function validatePhoneNotRequired(control: AbstractControl): {[key: string]: any} | null {
+export function validatePhoneNotRequired(control: AbstractControl): { [key: string]: any } | null {
   if (control.value) {
     return validatePhone(control);
   } else {
@@ -412,21 +436,21 @@ export function validatePhoneNotRequired(control: AbstractControl): {[key: strin
  * @param (string) cellphone the cellphone number to validate the right format
  * @returns (boolean) returns false if the given cellphone contain more tha 6 times the same number consecutive or any invalid character
  */
-export function validateCellPhoneMandatory(control: AbstractControl): {[key: string]: any} | null {
+export function validateCellPhoneMandatory(control: AbstractControl): { [key: string]: any } | null {
   if (nullUndefinedOrEmptyValidation(control.value)) {
-    return {invalidValue: { valid: false, value: control.value}};
+    return {invalidValue: {valid: false, value: control.value}};
     // return false;
   }
   if (/(.)\1{6,}/g.test(control.value)) {
-    return {invalidValue: { valid: false, value: control.value}};
+    return {invalidValue: {valid: false, value: control.value}};
     // return false;
   }
   if (/\D/g.test(control.value)) {
-    return {invalidValue: { valid: false, value: control.value}};
+    return {invalidValue: {valid: false, value: control.value}};
     // return false;
   }
   if ((control.value.length > 0 && control.value.length < 10) || control.value.length > 10) {
-    return {invalidValue: { valid: false, value: control.value}};
+    return {invalidValue: {valid: false, value: control.value}};
     // return false;
   }
   return null;
@@ -440,9 +464,9 @@ export function validateCellPhoneMandatory(control: AbstractControl): {[key: str
  *
  * can view of valid and invalid e-mail here https://regexr.com/3bcrb
  */
-export function validateMail(control: AbstractControl): {[key: string]: any} | null {
+export function validateMail(control: AbstractControl): { [key: string]: any } | null {
   if (!mailPattern.test(control.value) && !nullUndefinedOrEmptyValidation(control.value)) {
-    return {invalidEmail: { valid: false, value: control.value}};
+    return {invalidEmail: {valid: false, value: control.value}};
     // return false;
   }
   return null;
@@ -475,15 +499,15 @@ export function validateMailConfirmation(email: string, confirmationEmail: strin
  * @param (string) token to validate
  * @returns (boolean) returns false if the token doesn't match a correct format
  */
-export function validateKeyToken(control: AbstractControl): {[key: string]: any} | null {
+export function validateKeyToken(control: AbstractControl): { [key: string]: any } | null {
   const regexp = /^\d*$/;
 
   if (control.value.length !== 16 && control.value.length !== 18) {
-    return {invalidToken: { valid: false, value: control.value}};
+    return {invalidToken: {valid: false, value: control.value}};
     // return false;
   }
   if (!regexp.test(control.value)) {
-    return {invalidToken: { valid: false, value: control.value}};
+    return {invalidToken: {valid: false, value: control.value}};
     // return false;
   }
   return null;
@@ -506,13 +530,13 @@ export function validateTokenConfirmation(tokenConfirmation: string, token: stri
  * @param (string) street the given street string to be validated
  * @returns (boolean) returns false if the street contains invalid characters
  */
-export function validateStreet(control: AbstractControl): {[key: string]: any} | null {
+export function validateStreet(control: AbstractControl): { [key: string]: any } | null {
   if (!/^(([A-Z0-9 Ñ \-'.,_\(\)\[\]\/'\+&#])(?![A-Z0-9 Ñ\-'.,_\(\)\[\]\/\+&#](([A-Z0-9 Ñ\-'.,_\(\)\[\]\/\+&#]){})\3))+$/.test(control.value)) {
-    return {invalidStreet: { valid: false, value: control.value}};
+    return {invalidStreet: {valid: false, value: control.value}};
     // return false;
   }
   if (/(.)\1{3,}/g.test(control.value)) {
-    return {invalidStreet: { valid: false, value: control.value}};
+    return {invalidStreet: {valid: false, value: control.value}};
     // return false;
   }
   return null;
@@ -523,16 +547,16 @@ export function validateStreet(control: AbstractControl): {[key: string]: any} |
  * @param (string) num The street number to be validated
  * @returns (boolean) returns false if the street number contains invaid characters
  */
-export function validateStreetNum(control: AbstractControl): {[key: string]: any} | null {
+export function validateStreetNum(control: AbstractControl): { [key: string]: any } | null {
   if (nullUndefinedOrEmptyValidation(control.value)) {
-    return {invalidStreetNumber: { valid: false, value: control.value}};
+    return {invalidStreetNumber: {valid: false, value: control.value}};
     // return false;
   }
 
   const regexpZero = /^(?!.*(.)\1{3})/;
 
   if (!regexpZero.test(control.value)) {
-    return {invalidStreetNUmber: { valid: false, value: control.value}};
+    return {invalidStreetNUmber: {valid: false, value: control.value}};
     // return false;
   }
   const regexpAdmisibleCharacter = /^[a-zA-Z0-9ñÑ\#\-\.]*$/;
@@ -542,11 +566,11 @@ export function validateStreetNum(control: AbstractControl): {[key: string]: any
     // return true;
   }
 
-  return {invalidStreetNumber: { valid: false, value: control.value}};
+  return {invalidStreetNumber: {valid: false, value: control.value}};
   // return false;
 }
 
-export function validateStreetNumberNotRequired(control: AbstractControl): {[key: string]: any} | null {
+export function validateStreetNumberNotRequired(control: AbstractControl): { [key: string]: any } | null {
   if (control.value) {
     return validateStreetNum(control);
   } else {
@@ -557,9 +581,9 @@ export function validateStreetNumberNotRequired(control: AbstractControl): {[key
 /** @param (string) cp the zip code to be validated
  *  @returns (boolean) returns false if there is a value in the zipcode that doesn´t match a valid zipcode
  */
-export function validateZipCode(control: AbstractControl): {[key: string]: any} | null {
+export function validateZipCode(control: AbstractControl): { [key: string]: any } | null {
   if (!/^[0-9]{5}$/m.test(control.value)) {
-    return {invalidZipCode: { valid: false, value: control.value}};
+    return {invalidZipCode: {valid: false, value: control.value}};
     /// return false;
   }
 
@@ -570,28 +594,39 @@ export function validateZipCode(control: AbstractControl): {[key: string]: any} 
 /** @param (number) number to be validated
  *  @returns (boolean) returns false if the given value is  not a number with 2 decimals max
  */
-export function validateNumberWith2Decimals(control: AbstractControl): {[key: string]: any} | null {
-    /*The next regular expression validates a string conformed by numbers and 2 decimals example:
-     * 200.00
-     * 2.0
-     * 20.00
-     * 2000.00
-     * 0.0
-     * .0
-     * .00
-     *  Invalid strings:
-     * 20.000
-     * aaaa
-     * qwerty
-     * */
-    const regexp = /\d+(\.\d{1,2})?/;
+export function validateNumberWith2Decimals(control: AbstractControl): { [key: string]: any } | null {
+  /*The next regular expression validates a string conformed by numbers and 2 decimals example:
+   * 200.00
+   * 2.0
+   * 20.00
+   * 2000.00
+   * 0.0
+   * .0
+   * .00
+   *  Invalid strings:
+   * 20.000
+   * aaaa
+   * qwerty
+   * */
+  const regexp = /\d+(\.\d{1,2})?/;
 
-    if (!regexp.test(control.value)) {
-      return {invalidZipCode: { valid: false, value: control.value}};
-      // return false;
+  if (!regexp.test(control.value)) {
+    return {invalidZipCode: {valid: false, value: control.value}};
+    // return false;
+  }
+  // return true;
+  return null;
+}
+
+export function validateEmailConfirmation(targetKey: string, toMatchKey: string): ValidatorFn {
+  return (group: FormGroup): {[key: string]: any} => {
+    const email = group.controls[targetKey].value;
+    const emailConfirmation = group.controls[toMatchKey].value;
+    if (email !== emailConfirmation) {
+      return {invalidEmailConfirmation: {valid: false, value: emailConfirmation.value}};
     }
-    // return true;
     return null;
+  };
 }
 
 

@@ -1,8 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {ApplicationService} from '../../core/services';
-import {Beneficiarios} from '../../core/mock/mock-beneficiaries';
-import {BeneficiariesOperations, SearchOccupationOperations, SearchOccupationOperationsM} from '../../core/mock/mock-operations';
+import {SearchOccupationOperationsM} from '../../core/mock/mock-operations';
 import {Field, Occupation} from '../../models';
 import {ModalService} from '../custom-modal';
 

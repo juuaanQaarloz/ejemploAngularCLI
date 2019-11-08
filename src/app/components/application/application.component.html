@@ -3,7 +3,7 @@
 
   <app-menu></app-menu>
 
-  <div  style="background-color: white">
+  <div style="background-color: white">
 
     <div style="text-align: center">
       <h1 class="title">Solicitudes MetaLife</h1>
@@ -16,10 +16,7 @@
         <input #fileInput type="file" (change)="fileChange($event)" style="display:none;" />
       </button>-->
 
-      <jw-modal [id]="'modal-search'"
-                [modalType]="'overlay'">
-        <app-search-occupation [modalID]="'modal-search'"></app-search-occupation>
-      </jw-modal>
+      <button (click)="validateForm()">VALIDATE FORM</button>
 
     </div>
 
@@ -30,6 +27,11 @@
     <app-operation-form [operationObj]="pdfOperation" (click)="downloadPDF()"></app-operation-form>
 
   </div>
+
+  <jw-modal [id]="'modal-search'"
+            [modalType]="'overlay'">
+    <app-search-occupation [modalID]="'modal-search'"></app-search-occupation>
+  </jw-modal>
 
   <app-footer></app-footer>
 

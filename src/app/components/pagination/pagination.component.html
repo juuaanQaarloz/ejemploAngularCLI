@@ -1,0 +1,8 @@
+<div class="occupation-row" *ngFor="let item of items; let i = index;"
+     [ngStyle]="{'background-color':  this.appService.determinateEvenOrOdd(i) ? '#E5F4FB': '#FFFFFF'}">
+  <div class="result-attribute">
+    <a (click)="setOccupation(item)">{{item.specificOccupationCode}}</a>
+  </div>
+  <div class="result-attribute">{{item.specificOccupationName}}</div>
+  <div class="result-attribute">{{item.specificOccupationAlias}}</div>
+</div>

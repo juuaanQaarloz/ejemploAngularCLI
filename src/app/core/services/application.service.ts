@@ -7,7 +7,7 @@ import {Beneficiary} from '../../models/beneficiary-model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';
 import {Field, Occupation} from '../../models';
-import {validatorsObjects} from '../validators';
+import {validateEmailConfirmation, validateMailConfirmation, validatorsObjects} from '../validators';
 import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
 
@@ -113,7 +113,7 @@ export class ApplicationService {
       });
 
     });
-    return new FormGroup(group);
+    return new FormGroup(group, validateEmailConfirmation('email', 'emailConfirmation'));
   }
 
   addNewFormControl(formGroup: FormGroup, field: Field) {
@@ -132,12 +132,14 @@ export class ApplicationService {
 
   getValidationFunctions(field: Field): any[] {
     let validationFunctions = [];
+
     validatorsObjects.forEach(validationObject => {
       if (validationObject.nameField === field.name) {
         // console.log('validationObject: ', validationObject);
         validationFunctions = validationObject.validationFunctions;
       }
     });
+
     if (field.required) {
       validationFunctions.push(Validators.required);
     }

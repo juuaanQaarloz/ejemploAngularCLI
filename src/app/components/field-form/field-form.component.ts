@@ -64,10 +64,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.requiredConditions) {
       const requiredConditions = this.applicationService.getConditions(this.fieldObj.requiredConditions);
-      // console.log('requiredConditions: ', requiredConditions);
+      console.log('requiredConditions: ', requiredConditions);
       this.fieldObj.required = this.applicationService.evaluateCondition(this.form, requiredConditions[0]);
       this.form.controls[requiredConditions[0][1]].valueChanges.subscribe((value) => {
-        // console.log('value: ', value);
+        console.log('value: ', value);
         this.fieldObj.required = this.applicationService.evaluateCondition(this.form, requiredConditions[0]);
         this.form.controls[this.fieldObj.name].setValidators(this.applicationService.getValidationFunctions(this.fieldObj));
         this.form.controls[this.fieldObj.name].updateValueAndValidity();
@@ -165,6 +165,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onValidate(event) {
+    console.log('onValidate: ');
     this.isValid();
   }
 
@@ -245,7 +246,9 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       console.log('errors: ', this.form.controls[formControlName].errors);
 
     } else {
+      console.log('this.fieldObj.name: ', this.fieldObj.name);
       this.valid =  this.form.controls[this.fieldObj.name].valid;
+      console.log('valid: ', this.valid);
     }
     // this.valid =  this.form.controls[this.fieldObj.name].valid;
     // console.log('errors: ', this.form.controls[this.fieldObj.name].errors);

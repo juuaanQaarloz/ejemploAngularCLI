@@ -19,14 +19,16 @@
       <div class="even-occupation">
         <div class="name-column" *ngFor="let columnName of columnsNames">{{columnName}}</div>
       </div>
-      <div class="occupation-row" *ngFor="let foundOccupation of foundOccupations; let i = index;"
+
+      <app-pagination (changePage)="" [items]="foundOccupations"></app-pagination>
+      <!--<div class="occupation-row" *ngFor="let foundOccupation of foundOccupations; let i = index;"
            [ngStyle]="{'background-color':  this.appService.determinateEvenOrOdd(i) ? '#E5F4FB': '#FFFFFF'}">
         <div class="result-attribute">
           <a (click)="setOccupation(foundOccupation)">{{foundOccupation.specificOccupationCode}}</a>
         </div>
         <div class="result-attribute">{{foundOccupation.specificOccupationName}}</div>
         <div class="result-attribute">{{foundOccupation.specificOccupationAlias}}</div>
-      </div>
+      </div>-->
     </div>
   </div>
 
