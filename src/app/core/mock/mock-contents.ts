@@ -14,6 +14,7 @@ import {habitsQuestions} from './basic-questionnaires/habits';
 import {medicalQuestions} from './basic-questionnaires/medical';
 
 import {Plan1, Plan2} from './mock-plan/mock-plan';
+import {statements} from './statements/statements';
 
 export const MockFieldsContractorType: Field[] = [
   {
@@ -588,6 +589,29 @@ export const MockContentStep7Process1ContentSection2: Content[] = [
     contentType: 'looseFields'
     // enableConditions?: 'string';
     // styleClass: 'string',
+    // --------------------------
+  }
+];
+
+export const MockContentStep14Process1ContentSection2: Content[] = [
+  {
+    id: 'content-2.26',
+    idParent: 'step-18',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.26',
+    contentType: 'looseFields',
+    // process?: Process;
+    fields: statements,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    // enableConditions?: 'string';
+    styleClass: 'questions-type'
     // --------------------------
   }
 ];

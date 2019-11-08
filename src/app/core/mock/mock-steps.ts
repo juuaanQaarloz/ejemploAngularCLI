@@ -1,5 +1,6 @@
 import {Step} from '../../models';
 import {
+  MockContentStep14Process1ContentSection2,
   MockContentStep16Process1ContentSection2,
   MockContentStep17Process1ContentSection2,
   MockContentStep18Process1ContentSection2,
@@ -102,7 +103,20 @@ export const MockStepsProcessContentSection2: Step[] = [
     contents: MockContentStep7Process1ContentSection2,
     renderConditions: '',
     previousStep: '6',
-    nextStep: '1',
+    nextStep: '14',
+    /*added extra from model*/
+    isCompleted: false,
+    show: true
+  },
+  {
+    id: '14',
+    idProcess: 'process-1',
+    idHtml: 'app-step-form-16',
+    title: 'Declaraciones',
+    contents: MockContentStep14Process1ContentSection2,
+    renderConditions: '',
+    previousStep: '6',
+    nextStep: '17',
     /*added extra from model*/
     isCompleted: false,
     show: true
@@ -114,7 +128,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     title: 'Datos de Plan',
     contents: MockContentStep16Process1ContentSection2,
     renderConditions: '',
-    previousStep: '7',
+    previousStep: '14',
     nextStep: '17',
     /*added extra from model*/
     isCompleted: false,
