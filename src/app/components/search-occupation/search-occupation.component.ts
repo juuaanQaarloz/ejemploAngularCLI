@@ -117,4 +117,9 @@ export class SearchOccupationComponent implements OnInit {
     this.modalService.close(modalID);
   }
 
+  onChangePage(pageOfItems: Array<any>) {
+    // update current page of items
+    // this.pageOfItems = pageOfItems;
+  }
+
 }

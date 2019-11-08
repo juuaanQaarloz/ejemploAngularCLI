@@ -7,6 +7,7 @@
       <input [type]="toggleVisible ? 'text' : 'password'"
              [formControlName]="fieldObj.name"
              [id]="fieldObj.idHtml"
+             [maxlength]="fieldObj.maxValue"
              placeholder="{{fieldObj.placeholder}}"
              value=""
              (keyup)="onKeyUp($event)"

@@ -1,61 +1,37 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {ApplicationService} from '../../core/services';
-import {Occupation} from '../../models';
-import {ModalService} from '../custom-modal';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 
+export interface MyPagination {
+  itemsCount: number;
+  pageSize: number;
+}
 @Component({
   selector: 'app-pagination',
-  templateUrl: './pagination.component.html',
+  templateUrl: 'pagination.component.html',
   styleUrls: ['./pagination.component.css']
 })
-export class PaginationComponent implements OnInit, OnChanges {
-  @Input() items: Array<any>;
-  @Input() initialPage = 1;
-  @Input() pageSize = 10;
-  @Input() maxPages = 10;
-  @Output() changePage = new EventEmitter<any>(true);
+export class PaginationComponent {
+  public pagesArray: Array<number> = [];
+  public currentPage = 1;
+  @Output() goToPage = new EventEmitter<number>();
 
-  @Input() modalID: string;
-
-  pager: any = {};
-
-  constructor(public appService: ApplicationService,
-              private modalService: ModalService) { }
-
-  ngOnInit() {
-    // set page if items array isn't empty
-    if (this.items && this.items.length) {
-      this.setPage(this.initialPage);
+  @Input() set setPagination(pagination: MyPagination) {
+    if (pagination) {
+      const pagesAmount = Math.ceil(
+        pagination.itemsCount / pagination.pageSize
+      );
+      this.pagesArray = new Array(pagesAmount).fill(1);
     }
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    // reset page if items array has changed
-    if (changes.items.currentValue !== changes.items.previousValue) {
-      this.setPage(this.initialPage);
+  public setPage(pageNumber: number): void {
+    if (pageNumber === this.currentPage) {
+      return;
     }
+    this.currentPage = pageNumber;
+    this.goToPage.emit(pageNumber);
   }
 
-  private setPage(page: number) {
-    // get new pager object for specified page
-
-    // get new page of items from items array
-    const pageOfItems = this.items.slice(this.pager.startIndex, this.pager.endIndex + 1);
-
-    // call change page function in parent component
-    this.changePage.emit(pageOfItems);
+  selectPage(eventValue) {
+    console.log('eventValue: ', eventValue);
   }
-
-  setOccupation(selectedOccupation: Occupation) {
-    // console.log('selectedOccupation... ', selectedOccupation);
-    this.appService.setSelectedOccupation(selectedOccupation,);
-    this.closeModal(this.modalID);
-
-  }
-
-  closeModal(modalID: string) {
-    this.items = [];
-    this.modalService.close(modalID);
-  }
-
 }
