@@ -106,9 +106,11 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         if (this.fieldObj.value) { // set default value from configuration
           valueToSet = this.fieldObj.value;
           elem.setAttribute('value', valueToSet);
+          this.form.controls[this.fieldObj.name].setValue(valueToSet);
         } else if (this.form.controls[this.fieldObj.name].value) { // set value from an older capture
           valueToSet = this.form.controls[this.fieldObj.name].value;
           elem.setAttribute('value', valueToSet);
+          this.form.controls[this.fieldObj.name].setValue(valueToSet);
         }
       }
     }

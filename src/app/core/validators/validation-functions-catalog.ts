@@ -395,5 +395,9 @@ export const validatorsObjects = [
   {
     nameField: 'motherLastNameLegalAgent2',
     validationFunctions: [validateAlphanumericValueNotRequired]
+  },
+  {
+    nameField: 'searchOccupation',
+    validationFunctions: [validateAlphanumericValue]
   }
 ];

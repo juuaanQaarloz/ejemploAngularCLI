@@ -118,8 +118,8 @@ export const BeneficiaryFieldsP: Field[] = [
   },
   {
     id: 'field-98',
-    idHtml: 'slctBeneficiaryRelationship',
-    name: 'beneficiaryRelationshipPhy',
+    idHtml: 'slctBeneficiaryRelationshipP',
+    name: 'beneficiaryRelationshipP',
     orderAppearance: 6,
     label: 'Parentesco*',
     type: 'select',

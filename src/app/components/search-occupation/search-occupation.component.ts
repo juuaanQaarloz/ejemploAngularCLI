@@ -17,7 +17,7 @@ const FIELDS: Field[] = [
     placeholder: 'Criterio de búsqueda',
     length: '',
     minValue: 0,
-    maxValue: 0,
+    maxValue: 60,
     pattern: '',
     source: 'IPRE',
     sourceID: 'occupations',

@@ -20,13 +20,13 @@
         <div class="name-column" *ngFor="let columnName of columnsNames">{{columnName}}</div>
       </div>
 
-      <app-pagination
+      <!--<app-pagination
 
         [setPagination]="{
           itemsCount: foundOccupations.length,
           pageSize: 10}">
 
-      </app-pagination>
+      </app-pagination>-->
       <div class="occupation-row" *ngFor="let foundOccupation of foundOccupations; let i = index;"
            [ngStyle]="{'background-color':  this.appService.determinateEvenOrOdd(i) ? '#E5F4FB': '#FFFFFF'}">
         <div class="result-attribute">
