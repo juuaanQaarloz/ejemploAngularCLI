@@ -3,7 +3,7 @@ import {Field} from '../../../models';
 
 export const Plan1: Field[] = [
   {
-    id: 'field-1001',
+    id: 'field-1401',
     idHtml: 'slctPacking',
     name: 'packing',
     orderAppearance: 1,
@@ -30,7 +30,7 @@ export const Plan1: Field[] = [
     entity: '',
     entityField: ''
   },{
-    id: 'field-1002',
+    id: 'field-1402',
     idHtml: 'radioCoverageOptions',
     name: 'coverageOptions',
     orderAppearance: 2,
@@ -59,7 +59,7 @@ export const Plan1: Field[] = [
     value: ''
   },
   {
-    id: 'field-1003',
+    id: 'field-1403',
     idHtml: 'chboxCurrency',
     name: 'currency',
     orderAppearance: 3,
@@ -92,7 +92,7 @@ export const Plan1: Field[] = [
 
 export const Plan2: Field[] = [
   {
-    id: 'field-2001',
+    id: 'field-1401',
     idHtml: 'txtAssuredImport',
     name: 'assuredImport',
     orderAppearance: 4,
@@ -119,9 +119,9 @@ export const Plan2: Field[] = [
     entityField: '',
     value: ''
   },{
-    id: 'field-2002',
-    idHtml: 'txtAssuredImport',
-    name: 'assuredImport',
+    id: 'field-1402',
+    idHtml: 'txtCost',
+    name: 'cost',
     orderAppearance: 5,
     label: 'Prima',
     type: 'text',
@@ -146,9 +146,9 @@ export const Plan2: Field[] = [
     entityField: '',
     value: ''
   },{
-    id: 'field-2003',
-    idHtml: 'txtAssuredImport',
-    name: 'assuredImport',
+    id: 'field-1403',
+    idHtml: 'txtSavingsGoal',
+    name: 'savingsGoal',
     orderAppearance: 6,
     label: 'Meta de ahorro',
     type: 'text',
@@ -173,9 +173,9 @@ export const Plan2: Field[] = [
     entityField: '',
     value: ''
   },{
-    id: 'field-2003',
-    idHtml: 'txtAssuredImport',
-    name: 'assuredImport',
+    id: 'field-1404',
+    idHtml: 'txtYears',
+    name: 'years',
     orderAppearance: 7,
     label: 'Años',
     type: 'text',
@@ -200,4 +200,9 @@ export const Plan2: Field[] = [
     entityField: '',
     value: ''
   }
+];
+
+
+export const Plan3: Field[] = [
+
 ];
