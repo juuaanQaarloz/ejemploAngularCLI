@@ -2,12 +2,15 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ApplicationService} from '../../../core/services';
 import {DialogConfig} from '../../dialog/dialog-config';
 import {DialogRef} from '../../dialog/dialog-ref';
-import {Beneficiarios} from '../../../core/mock/mock-beneficiaries';
+import {NewBeneficiaryFields} from '../../../core/mock/mock-beneficiaries/mock-beneficiaries';
 import {BeneficiariesOperations} from '../../../core/mock/mock-operations';
 import {FormGroup} from '@angular/forms';
 import {transformDate} from '../../../core/utilities';
 import {ModalService} from '../../custom-modal';
 import {Operation} from '../../../models';
+import {BeneficiaryFieldsP} from '../../../core/mock/mock-beneficiaries/phy-beneficiary';
+import {BeneficiaryFieldsM} from '../../../core/mock/mock-beneficiaries/mor-beneficiary';
+import {BeneficiaryFieldsF} from '../../../core/mock/mock-beneficiaries/fid-beneficiary';
 
 @Component({
   selector: 'app-new-beneficiary',
@@ -20,7 +23,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
     idParent: 'step-7',
     parentType: 'Step',
     idHtml: 'app-content-form-2.19',
-    fields: Beneficiarios,
+    fields: this.setUpFields(),
     operations: BeneficiariesOperations,
     showContent: true,
     styleClass: 'modal-type',
@@ -72,7 +75,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
   addNewBeneficiary() {
     console.log('formGroup value: ', this.formGroup.value);
-    let newBeneficiary = this.mapNewBeneficiaryData();
+    const newBeneficiary = this.mapNewBeneficiaryData();
     const response = this.applicationService.addBeneficiary((newBeneficiary));
 
     if (response.status) {
@@ -84,7 +87,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   }
 
   updateBeneficiary() {
-    let updatedBeneficiary = this.mapBeneficiaryData();
+    const updatedBeneficiary = this.mapBeneficiaryData();
     this.applicationService.updateBeneficiary(updatedBeneficiary);
     this.closeDialog();
   }
@@ -205,7 +208,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
   fileChange(event) {
     console.log('event.target.files: ', event.target.files);
-    let fileList = event.target.files;
+    const fileList = event.target.files;
     if (fileList.length > 0) {
       this.fileNameUpload = fileList[0].name;
     }
@@ -227,5 +230,27 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           error => console.log(error)
         )
     }*/
+  }
+
+  setUpFields() {
+    let fields = [];
+
+    NewBeneficiaryFields.forEach((field) => {
+      fields.push(field);
+    });
+
+    BeneficiaryFieldsP.forEach((field) => {
+      fields.push(field);
+    });
+
+    BeneficiaryFieldsM.forEach((field) => {
+      fields.push(field);
+    });
+
+    BeneficiaryFieldsF.forEach((field) => {
+      fields.push(field);
+    });
+
+    return fields;
   }
 }

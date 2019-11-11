@@ -1,7 +1,7 @@
 import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {Beneficiary} from '../../../models/beneficiary-model';
 import {ApplicationService} from '../../../core/services';
-import {beneficiaryFields} from '../../../core/mock/mock-beneficiaries';
+import {beneficiaryFields} from '../../../core/mock/mock-beneficiaries/mock-beneficiaries';
 import {NewBeneficiaryComponent} from '../new-beneficiary/new-beneficiary.component';
 import {DialogService} from '../../dialog/dialog.service';
 import {FormGroup} from '@angular/forms';

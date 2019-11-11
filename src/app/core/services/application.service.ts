@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
-import {BENEFICIARIES} from '../mock/mock-beneficiaries';
+import {BENEFICIARIES} from '../mock/mock-beneficiaries/mock-beneficiaries';
 import {Beneficiary} from '../../models/beneficiary-model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';

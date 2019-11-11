@@ -15,7 +15,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     id: '1',
     idProcess: 'process-1',
     idHtml: 'app-step-form-1',
-    title: 'Infomación general del contratante persona física',
+    title: 'Información general del contratante persona física',
     contents: MockContentStep1Process1ContentSection2,
     renderConditions: 'typePerson=phyPerson',
     // renderConditions: 'A=B&C!=D|E>F&',
@@ -102,7 +102,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     /*added extra from model*/
     isCompleted: false,
     show: true
-  },
+  }/*,
   {
     id: '17',
     idProcess: 'process-1',
@@ -138,5 +138,5 @@ export const MockStepsProcessContentSection2: Step[] = [
     nextStep: '20',
     isCompleted: false,
     show: true
-  }
+  }*/
 ];
