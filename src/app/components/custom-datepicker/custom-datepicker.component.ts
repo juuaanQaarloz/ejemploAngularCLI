@@ -78,4 +78,9 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
     const el2 = document.getElementById(htmlID);
     el2.setAttribute('value', value.toString());
   }
+
+  onKeyUp() {
+    console.log('onKeyUp from custom-datepicker');
+    this.validate.emit(true);
+  }
 }

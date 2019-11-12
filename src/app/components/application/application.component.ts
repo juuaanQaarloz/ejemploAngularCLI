@@ -59,43 +59,16 @@ export class ApplicationComponent implements OnInit {
   }
 
   validateForm() {
-    console.log('form status: ', this.formGroup.status);
-    console.log('form status: ', this.formGroup.value);
-    /*this.applicationObj.sections.forEach((section) => {
-      section.contents.forEach((contentFromSection) => {
-        if (contentFromSection.fields) {
-          contentFromSection.fields.forEach((fieldFromContentSection) => {
-            console.log('fieldFromContentSection: ', fieldFromContentSection);
-          });
-        } else {
-          if (contentFromSection.process) {
-            contentFromSection.process.steps.forEach((step) => {
-              step.contents.forEach((contentFromStep) => {
-                if (contentFromStep.fields) {
-                  contentFromStep.fields.forEach(fieldFromContentFromStep => {
-                    console.log('fieldFromContentStep: ', fieldFromContentFromStep);
-                  });
-                } else {
-                  if (contentFromStep.contentChildren) {
-                    contentFromStep.contentChildren.forEach(contentChild => {
-                      if (contentChild.fields) {
-                        contentChild.fields.forEach(fieldFromContentChild => {
-                          console.log('fieldFromContentChild: ', fieldFromContentChild);
-                        });
-                      }
-                    });
-                  }
-                }
-              });
-            });
-          }
-        }
-      });
-    });*/
-
     Object.keys(this.formGroup.controls).forEach(key => {
       console.log('formControlName: ', key);
-      console.log('formControl: ', this.formGroup.controls[key]);
+      // console.log('formControl: ', this.formGroup.controls[key]);
+      const isValid =  this.formGroup.controls[key].valid;
+      if (!isValid) {
+        this.formGroup.controls[key].markAsTouched();
+      } else {
+        this.formGroup.controls[key].markAsUntouched();
+      }
+      console.log('isValid: ', isValid);
     });
   }
 }

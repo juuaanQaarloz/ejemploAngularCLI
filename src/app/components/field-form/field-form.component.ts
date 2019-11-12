@@ -120,6 +120,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onKeyUp(event) {
+    console.log('onKeyUp event: ', event);
     let value;
     value = event.target.value;
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
@@ -127,7 +128,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     elem.setAttribute('value', event.target.value);
     this.form.controls[this.fieldObj.name].setValue(event.target.value);
 
-    console.log('value.length: ', value.length);
+    // console.log('value.length: ', value.length);
     if (this.fieldObj.name === 'rfc' || this.fieldObj.name === 'rfcS') {
       if (value.length === 10 && event.key !== 'Backspace') { // calculate rfc when the user capture the first 10 characters
         const calcRFC = this.calculateRFC();
@@ -137,6 +138,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         }
       }
     }
+
+    if (value) {
+      this.isValid();
+    }
   }
 
   fileChange(event) {
@@ -144,8 +149,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onChange(event) {
-    console.log('onChange: ', event.target.value);
-    console.log('formControlName: ', this.fieldObj.name);
+    console.log('onChange event: ', event);
+    // console.log('formControlName: ', this.fieldObj.name);
     // this.isValid();
   }
 
@@ -250,10 +255,14 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     } else {
       console.log('this.fieldObj.name: ', this.fieldObj.name);
       this.valid =  this.form.controls[this.fieldObj.name].valid;
-      console.log('valid: ', this.valid);
     }
-    // this.valid =  this.form.controls[this.fieldObj.name].valid;
-    // console.log('errors: ', this.form.controls[this.fieldObj.name].errors);
+
+    if (!this.valid) {
+      this.form.controls[this.fieldObj.name].markAsTouched();
+    } else {
+      this.form.controls[this.fieldObj.name].markAsUntouched();
+    }
+
   }
 
   registerCustomIcons() {
