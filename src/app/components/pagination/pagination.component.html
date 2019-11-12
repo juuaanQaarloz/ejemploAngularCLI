@@ -1,26 +1,24 @@
-<div class="pagination">
-      <span
-        *ngIf="currentPage !== 1"
-        (click)="setPage(currentPage - 1)"> < </span>
-  <ng-container *ngIf="pagesArray.length <= 10">
-        <span
-          *ngFor="let page of pagesArray; let index = index"
-          [ngClass]="{ 'active': currentPage === index + 1 }"
-          (click)="setPage(index + 1)">
-          {{ index + 1 }}
-        </span>
-  </ng-container>
-  <ng-container *ngIf="pagesArray.length > 10">
-    <select
-      [ngModel]="currentPage"
-      (ngModelChange)="selectPage($event.target.value)">
-      <option
-        *ngFor="let p of pagesArray; let index = index"
-        [value]="(index + 1)">
-        {{ index + 1 }}
-      </option>
-    </select>
-  </ng-container>
-  <span *ngIf="currentPage !== pagesArray.length"
-        (click)="setPage(currentPage + 1)"> > </span>
+<div>
+  <!-- items being paged -->
+  <div>{{'items length: ' + pagedItems.length}}</div>
+  <div *ngFor="let item of pagedItems">{{item.toString() + 'here'}}</div>
+
+  <!-- pager -->
+  <ul *ngIf="pager.pages && pager.pages.length">
+    <li [ngClass]="{disabled:pager.currentPage === 1}">
+      <button (click)="setPage(1)">First</button>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === 1}">
+      <button (click)="setPage(pager.currentPage - 1)">Previous</button>
+    </li>
+    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+      <button (click)="setPage(page)">{{page}}</button>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+      <button (click)="setPage(pager.currentPage + 1)">Next</button>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+      <button (click)="setPage(pager.totalPages)">Last</button>
+    </li>
+  </ul>
 </div>

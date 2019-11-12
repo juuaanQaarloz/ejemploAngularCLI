@@ -1,37 +1,40 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {PagerService} from '../../core/services/pager.service';
 
-export interface MyPagination {
-  itemsCount: number;
-  pageSize: number;
-}
 @Component({
   selector: 'app-pagination',
   templateUrl: 'pagination.component.html',
   styleUrls: ['./pagination.component.css']
 })
-export class PaginationComponent {
-  public pagesArray: Array<number> = [];
-  public currentPage = 1;
-  @Output() goToPage = new EventEmitter<number>();
+export class PaginationComponent implements OnInit {
+  @Input() items: any[];
 
-  @Input() set setPagination(pagination: MyPagination) {
-    if (pagination) {
-      const pagesAmount = Math.ceil(
-        pagination.itemsCount / pagination.pageSize
-      );
-      this.pagesArray = new Array(pagesAmount).fill(1);
-    }
+  // array of all items to be paged
+  allItems: any[];
+
+  // pager object
+  pager: any = {};
+
+  // paged items
+  pagedItems: any[];
+
+  constructor(public pagerService: PagerService) {}
+
+  ngOnInit() {
+    this.allItems = this.items;
+    this.setPage(1);
   }
 
-  public setPage(pageNumber: number): void {
-    if (pageNumber === this.currentPage) {
+  setPage(page: number) {
+    if (page < 1 || page > this.pager.totalPages) {
       return;
     }
-    this.currentPage = pageNumber;
-    this.goToPage.emit(pageNumber);
+
+    // get pager object from service
+    this.pager = this.pagerService.getPager(this.allItems.length, page);
+
+    // get current page of items
+    this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
   }
 
-  selectPage(eventValue) {
-    console.log('eventValue: ', eventValue);
-  }
 }

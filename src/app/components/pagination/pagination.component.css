@@ -1,8 +1,61 @@
-.occupation-row {
-  display: grid;
-  grid-template-columns: 100px 1fr 1fr;
+@charset "UTF-8";
+/* CSS Document */
+
+
+.ml-pagination-numbers {
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  padding: 10px;
+  background: #D9D9D6;
+  font-size: 15px;
+  color: #333333;
+  text-align: center;
+  display:inline-block;
+  cursor:pointer;
+
+
+}
+.ml-pagination-numbers:hover {
+  background: #0061A0;
+  color: #fff;
 }
 
-.result-attribute{
-  text-align: left;
+.ml-current-page {
+  background: #0061A0;
+  color: #fff;
+}
+
+.pg-next {
+  background:#ffffff url(/assets/patterns/img/pagination/chevron-next.png) no-repeat 15px;
+  background-size:20px 30px;
+  border:1px solid #0061A0;
+  text-align:left;
+  padding-left:5px;
+  color:#0061A0;
+  font-weight:bold;
+}
+
+.pg-next:hover {
+
+  background:#0061A0 url(/assets/patterns/img/pagination/chevron-next-hover.png) no-repeat 15px;
+  background-size:20px 30px;
+
+}
+
+.pg-back {
+  background:#ffffff url(/assets/patterns/img/pagination/chevron-back.png) no-repeat 0px;
+  background-size:20px 30px;
+  border:1px solid #0061A0;
+  text-align:right;
+  padding-right:5px;
+  color:#0061A0;
+  font-weight:bold;
+}
+
+.pg-back:hover {
+
+  background:#0061A0 url(/assets/patterns/img/pagination/chevron-back-hover.png) no-repeat 0px;
+  background-size:20px 30px;
+
 }
