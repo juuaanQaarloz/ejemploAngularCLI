@@ -20,17 +20,19 @@
         <div class="name-column" *ngFor="let columnName of columnsNames">{{columnName}}</div>
       </div>
 
-      <app-pagination [items]="foundOccupations">
-
+      <app-pagination *ngIf="foundOccupations.length > 25" [items]="foundOccupations" [modalID]="modalID">
       </app-pagination>
-      <!--<div class="occupation-row" *ngFor="let foundOccupation of foundOccupations; let i = index;"
-           [ngStyle]="{'background-color':  this.appService.determinateEvenOrOdd(i) ? '#E5F4FB': '#FFFFFF'}">
-        <div class="result-attribute">
-          <a (click)="setOccupation(foundOccupation)">{{foundOccupation.specificOccupationCode}}</a>
+
+      <div *ngIf="foundOccupations.length <= 25">
+        <div class="occupation-row" *ngFor="let foundOccupation of foundOccupations; let i = index;"
+             [ngStyle]="{'background-color':  this.appService.determinateEvenOrOdd(i) ? '#E5F4FB': '#FFFFFF'}">
+          <div class="result-attribute">
+            <a (click)="setOccupation(foundOccupation)">{{foundOccupation.specificOccupationCode}}</a>
+          </div>
+          <div class="result-attribute">{{foundOccupation.specificOccupationName}}</div>
+          <div class="result-attribute">{{foundOccupation.specificOccupationAlias}}</div>
         </div>
-        <div class="result-attribute">{{foundOccupation.specificOccupationName}}</div>
-        <div class="result-attribute">{{foundOccupation.specificOccupationAlias}}</div>
-      </div>-->
+      </div>
     </div>
   </div>
 

@@ -1,5 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PagerService} from '../../core/services/pager.service';
+import {ApplicationService} from '../../core/services';
+import {Occupation} from '../../models';
+import {ModalService} from '../custom-modal';
 
 @Component({
   selector: 'app-pagination',
@@ -8,6 +11,7 @@ import {PagerService} from '../../core/services/pager.service';
 })
 export class PaginationComponent implements OnInit {
   @Input() items: any[];
+  @Input() modalID;
 
   // array of all items to be paged
   allItems: any[];
@@ -18,10 +22,13 @@ export class PaginationComponent implements OnInit {
   // paged items
   pagedItems: any[];
 
-  constructor(public pagerService: PagerService) {}
+  constructor(public pagerService: PagerService,
+              public appService: ApplicationService,
+              public modalService: ModalService) {}
 
   ngOnInit() {
     this.allItems = this.items;
+    console.log('allItems.length: ', this.allItems.length);
     this.setPage(1);
   }
 
@@ -35,6 +42,17 @@ export class PaginationComponent implements OnInit {
 
     // get current page of items
     this.pagedItems = this.allItems.slice(this.pager.startIndex, this.pager.endIndex + 1);
+  }
+
+  setOccupation(selectedOccupation: Occupation) {
+    // console.log('selectedOccupation... ', selectedOccupation);
+    this.appService.setSelectedOccupation(selectedOccupation,);
+    this.closeModal(this.modalID);
+  }
+
+  closeModal(modalID: string) {
+    // this.foundOccupations = [];
+    this.modalService.close(modalID);
   }
 
 }

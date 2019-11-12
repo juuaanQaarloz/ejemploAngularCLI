@@ -2,7 +2,7 @@ import {Field} from '../../../models';
 
 export const sportsQuestions1: Field[] = [
   {
-    id: 'field-118',
+    id: 'field-142',
     idHtml: 'radioAviationQuestion',
     name: 'aviationQuestion',
     orderAppearance: 1,
@@ -31,7 +31,7 @@ export const sportsQuestions1: Field[] = [
     value: ''
   },
   {
-    id: 'field-119',
+    id: 'field-143',
     idHtml: 'radioMotobickeQuestion',
     name: 'motobickeQuestion',
     orderAppearance: 2,
@@ -63,7 +63,7 @@ export const sportsQuestions1: Field[] = [
 
 export const sportsFields1: Field[] = [
   {
-    id: 'field-120',
+    id: 'field-144',
     idHtml: 'textFrequency',
     name: 'frequency',
     orderAppearance: 1,
@@ -92,7 +92,7 @@ export const sportsFields1: Field[] = [
     value: ''
   },
   {
-    id: 'field-121',
+    id: 'field-145',
     idHtml: 'textDisplacement',
     name: 'displacement',
     orderAppearance: 2,
@@ -124,7 +124,7 @@ export const sportsFields1: Field[] = [
 
 export const sportQuestions2: Field[] = [
   {
-    id: 'field-122',
+    id: 'field-146',
     idHtml: 'radioExtremeSportsQuestion',
     name: 'extremeSportsQuestion',
     orderAppearance: 1,

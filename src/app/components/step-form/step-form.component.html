@@ -14,7 +14,7 @@
                   ]">
   <div class="ml-step-header-elements">
     <span *ngIf="!completed"
-          [ngClass]="accordionExpanded ? 'ml-step-numbers ml-current-step' : 'ml-step-numbers' ">{{index + 1}}</span>
+          [ngClass]="accordionExpanded ? 'ml-step-numbers ml-current-step' : 'ml-step-numbers' ">{{stepObj.id}}</span>
     <span *ngIf="completed" class="ml-step-numbers ml-completed-step fa"></span>
     <h3 [ngClass]="accordionExpanded ? 'ml-step-header-title-expanded': 'ml-step-header-title'"
         (click)="toggleAccordion()">{{stepObj.title}}</h3>

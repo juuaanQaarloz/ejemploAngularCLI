@@ -1,24 +1,43 @@
 <div>
   <!-- items being paged -->
-  <div>{{'items length: ' + pagedItems.length}}</div>
-  <div *ngFor="let item of pagedItems">{{item.toString() + 'here'}}</div>
+  <div class="occupation-row" *ngFor="let foundOccupation of pagedItems; let i = index;"
+       [ngStyle]="{'background-color':  this.appService.determinateEvenOrOdd(i) ? '#E5F4FB': '#FFFFFF'}">
+    <div class="result-attribute">
+      <a (click)="setOccupation(foundOccupation)">{{foundOccupation.specificOccupationCode}}</a>
+    </div>
+    <div class="result-attribute">{{foundOccupation.specificOccupationName}}</div>
+    <div class="result-attribute">{{foundOccupation.specificOccupationAlias}}</div>
+  </div>
 
-  <!-- pager -->
-  <ul *ngIf="pager.pages && pager.pages.length">
-    <li [ngClass]="{disabled:pager.currentPage === 1}">
-      <button (click)="setPage(1)">First</button>
-    </li>
-    <li [ngClass]="{disabled:pager.currentPage === 1}">
-      <button (click)="setPage(pager.currentPage - 1)">Previous</button>
-    </li>
-    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-      <button (click)="setPage(page)">{{page}}</button>
-    </li>
-    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-      <button (click)="setPage(pager.currentPage + 1)">Next</button>
-    </li>
-    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-      <button (click)="setPage(pager.totalPages)">Last</button>
-    </li>
-  </ul>
+  <br>
+
+
+  <!--MetLife UX pager-->
+  <div class="my-pager">
+    <!--<div class="totalResultsLabel">
+      <p style="font-weight: bold">{{'Total de los resultados: ' + allItems.length}}</p>
+    </div>-->
+
+    <div *ngIf=" pager.totalPages > 7"
+         class="ml-pagination-numbers pg-back"
+         (click)="setPage(pager.currentPage - 1)">
+      ...
+    </div>
+
+    <div style="display: inline-block" *ngFor="let page of pager.pages">
+      <div class="ml-pagination-numbers"
+           [ngClass]="{'ml-current-page': pager.currentPage === page}"
+           (click)="setPage(page)">{{page}}</div>
+    </div>
+
+    <div *ngIf=" pager.totalPages > 7"
+         class="ml-pagination-numbers pg-next"
+         (click)="setPage(pager.currentPage + 1)">
+      ...
+    </div>
+
+    <!--<div class="totalResultsLabel">
+      <p style="font-weight: bold">{{'Se muestran: ' + pagedItems.length + ' elementos por pagina'}}</p>
+    </div>-->
+  </div>
 </div>

@@ -391,7 +391,203 @@
         "ocupationZipCode": null,
         "occupationDetails": null,
         "occupationIncome": null
-    }],
+    },{
+        "id": 5,
+        "specificOccupationName": "CHOFER/ DE DEPENDENCIA",
+        "specificOccupationAlias": "CHOFER",
+        "specificOccupationCode": 510977812,
+        "companyName": null,
+        "ocupationZipCode": null,
+        "occupationDetails": null,
+        "occupationIncome": null
+      },
+      {
+        "id": 6,
+        "specificOccupationName": "CHOFER DE CAMION DE BOMBEROS",
+        "specificOccupationAlias": "CHOFER DE CAMION DE BOMBEROS",
+        "specificOccupationCode": 510977813,
+        "companyName": null,
+        "ocupationZipCode": null,
+        "occupationDetails": null,
+        "occupationIncome": null
+      },
+      {
+        "id": 7,
+        "specificOccupationName": "CHOFER DE CAMION DE CARGA O VOLTEO",
+        "specificOccupationAlias": "CHOFER DE CAMION DE CARGA O VOLTEO",
+        "specificOccupationCode": 510977814,
+        "companyName": null,
+        "ocupationZipCode": null,
+        "occupationDetails": null,
+        "occupationIncome": null
+      },
+      {
+        "id": 8,
+        "specificOccupationName": "CHOFER DE CAMION URBANO",
+        "specificOccupationAlias": "CHOFER DE CAMION URBANO",
+        "specificOccupationCode": 510977815,
+        "companyName": null,
+        "ocupationZipCode": null,
+        "occupationDetails": null,
+        "occupationIncome": null
+      },
+      {
+        "id": 9,
+        "specificOccupationName": "CHOFER DE CAMION DE TURISTAS",
+        "specificOccupationAlias": "CHOFER DE CAMION DE TURISTAS",
+        "specificOccupationCode": 510977816,
+        "companyName": null,
+        "ocupationZipCode": null,
+        "occupationDetails": null,
+        "occupationIncome": null
+      },{
+        "id": 10,
+        "specificOccupationName": "CHOFER/ DE DEPENDENCIA",
+        "specificOccupationAlias": "CHOFER",
+        "specificOccupationCode": 510977812,
+        "companyName": null,
+        "ocupationZipCode": null,
+        "occupationDetails": null,
+        "occupationIncome": null
+      },
+      {
+        "id": 11,
+        "specificOccupationName": "CHOFER DE CAMION DE BOMBEROS",
+        "specificOccupationAlias": "CHOFER DE CAMION DE BOMBEROS",
+        "specificOccupationCode": 510977813,
+        "companyName": null,
+        "ocupationZipCode": null,
+        "occupationDetails": null,
+        "occupationIncome": null
+      },
+      {
+        "id": 12,
+        "specificOccupationName": "CHOFER DE CAMION DE CARGA O VOLTEO",
+        "specificOccupationAlias": "CHOFER DE CAMION DE CARGA O VOLTEO",
+        "specificOccupationCode": 510977814,
+        "companyName": null,
+        "ocupationZipCode": null,
+        "occupationDetails": null,
+        "occupationIncome": null
+      },
+      {
+        "id": 13,
+        "specificOccupationName": "CHOFER DE CAMION URBANO",
+        "specificOccupationAlias": "CHOFER DE CAMION URBANO",
+        "specificOccupationCode": 510977815,
+        "companyName": null,
+        "ocupationZipCode": null,
+        "occupationDetails": null,
+        "occupationIncome": null
+      },
+      {
+        "id": 14,
+        "specificOccupationName": "CHOFER DE CAMION DE TURISTAS",
+        "specificOccupationAlias": "CHOFER DE CAMION DE TURISTAS",
+        "specificOccupationCode": 510977816,
+        "companyName": null,
+        "ocupationZipCode": null,
+        "occupationDetails": null,
+        "occupationIncome": null
+      },{
+        "id": 15,
+        "specificOccupationName": "CHOFER/ DE DEPENDENCIA",
+        "specificOccupationAlias": "CHOFER",
+        "specificOccupationCode": 510977812,
+        "companyName": null,
+        "ocupationZipCode": null,
+        "occupationDetails": null,
+        "occupationIncome": null
+      },
+      {
+        "id": 16,
+        "specificOccupationName": "CHOFER DE CAMION DE BOMBEROS",
+        "specificOccupationAlias": "CHOFER DE CAMION DE BOMBEROS",
+        "specificOccupationCode": 510977813,
+        "companyName": null,
+        "ocupationZipCode": null,
+        "occupationDetails": null,
+        "occupationIncome": null
+      },
+      {
+        "id": 17,
+        "specificOccupationName": "CHOFER DE CAMION DE CARGA O VOLTEO",
+        "specificOccupationAlias": "CHOFER DE CAMION DE CARGA O VOLTEO",
+        "specificOccupationCode": 510977814,
+        "companyName": null,
+        "ocupationZipCode": null,
+        "occupationDetails": null,
+        "occupationIncome": null
+      },
+      {
+        "id": 18,
+        "specificOccupationName": "CHOFER DE CAMION URBANO",
+        "specificOccupationAlias": "CHOFER DE CAMION URBANO",
+        "specificOccupationCode": 510977815,
+        "companyName": null,
+        "ocupationZipCode": null,
+        "occupationDetails": null,
+        "occupationIncome": null
+      },
+      {
+        "id": 19,
+        "specificOccupationName": "CHOFER DE CAMION DE TURISTAS",
+        "specificOccupationAlias": "CHOFER DE CAMION DE TURISTAS",
+        "specificOccupationCode": 510977816,
+        "companyName": null,
+        "ocupationZipCode": null,
+        "occupationDetails": null,
+        "occupationIncome": null
+      },{
+        "id": 20,
+        "specificOccupationName": "CHOFER/ DE DEPENDENCIA",
+        "specificOccupationAlias": "CHOFER",
+        "specificOccupationCode": 510977812,
+        "companyName": null,
+        "ocupationZipCode": null,
+        "occupationDetails": null,
+        "occupationIncome": null
+      },
+      {
+        "id": 21,
+        "specificOccupationName": "CHOFER DE CAMION DE BOMBEROS",
+        "specificOccupationAlias": "CHOFER DE CAMION DE BOMBEROS",
+        "specificOccupationCode": 510977813,
+        "companyName": null,
+        "ocupationZipCode": null,
+        "occupationDetails": null,
+        "occupationIncome": null
+      },
+      {
+        "id": 22,
+        "specificOccupationName": "CHOFER DE CAMION DE CARGA O VOLTEO",
+        "specificOccupationAlias": "CHOFER DE CAMION DE CARGA O VOLTEO",
+        "specificOccupationCode": 510977814,
+        "companyName": null,
+        "ocupationZipCode": null,
+        "occupationDetails": null,
+        "occupationIncome": null
+      },
+      {
+        "id": 23,
+        "specificOccupationName": "CHOFER DE CAMION URBANO",
+        "specificOccupationAlias": "CHOFER DE CAMION URBANO",
+        "specificOccupationCode": 510977815,
+        "companyName": null,
+        "ocupationZipCode": null,
+        "occupationDetails": null,
+        "occupationIncome": null
+      },
+      {
+        "id": 24,
+        "specificOccupationName": "CHOFER DE CAMION DE TURISTAS",
+        "specificOccupationAlias": "CHOFER DE CAMION DE TURISTAS",
+        "specificOccupationCode": 510977816,
+        "companyName": null,
+        "ocupationZipCode": null,
+        "occupationDetails": null,
+        "occupationIncome": null
+      }],
     "terms": [
     {
         "id": 0,

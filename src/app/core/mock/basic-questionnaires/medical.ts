@@ -2,7 +2,7 @@ import {Field} from '../../../models';
 
 export const medicalQuestions: Field[] = [
   {
-    id: 'field-126',
+    id: 'field-150',
     idHtml: 'radioDiseasesQuestion',
     name: 'diseasesQuestion',
     orderAppearance: 1,
@@ -34,7 +34,7 @@ export const medicalQuestions: Field[] = [
     value: ''
   },
   {
-    id: 'field-127',
+    id: 'field-151',
     idHtml: 'radioMedicalTestQuestion',
     name: 'medicalTestQuestion',
     orderAppearance: 2,
@@ -65,7 +65,7 @@ export const medicalQuestions: Field[] = [
     value: ''
   },
   {
-    id: 'field-128',
+    id: 'field-152',
     idHtml: 'radioExtraDiseasesQuestion',
     name: 'extraDiseasesQuestion',
     orderAppearance: 3,
@@ -98,7 +98,7 @@ export const medicalQuestions: Field[] = [
 
 export const medicalFields: Field[] = [
   {
-    id: 'field-129',
+    id: 'field-153',
     idHtml: 'radioDiseasesQuestion',
     name: 'diseasesQuestion',
     orderAppearance: 1,
@@ -130,7 +130,7 @@ export const medicalFields: Field[] = [
     value: ''
   },
   {
-    id: 'field-130',
+    id: 'field-154',
     idHtml: 'radioMedicalTestQuestion',
     name: 'medicalTestQuestion',
     orderAppearance: 2,
@@ -161,7 +161,7 @@ export const medicalFields: Field[] = [
     value: ''
   },
   {
-    id: 'field-131',
+    id: 'field-155',
     idHtml: 'radioExtraDiseasesQuestion',
     name: 'extraDiseasesQuestion',
     orderAppearance: 3,
