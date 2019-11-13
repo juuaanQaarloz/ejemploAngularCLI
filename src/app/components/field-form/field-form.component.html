@@ -100,7 +100,9 @@
     </label>
   </fieldset>
 
-  <fieldset *ngSwitchCase="'radio'" [ngClass]="{'error': !valid}" class="ml-form-field ml-form-field-radio">
+  <fieldset *ngSwitchCase="'radio'" class="ml-form-field"
+            [ngClass]="{'error': !valid || this.form.controls[fieldObj.name].touched}"
+            >
     <!--style="display: grid; grid-template-columns: 85% 15%;">-->
     <div [ngClass]="fieldObj.styleClass">
       <label>{{fieldObj.label}}</label>
@@ -114,6 +116,8 @@
         <label>{{radioOption.name}}</label>
 
       </div>
+
+      <div class="ml-form-field-errortext">{{fieldObj.message}}</div>
     </div>
 
   </fieldset>

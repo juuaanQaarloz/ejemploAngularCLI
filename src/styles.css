@@ -420,6 +420,11 @@ select::-ms-expand {
   background-color: #FDE8E8;
 }
 
+/*.ml-form-field.error{
+  border: solid 1px #DB1818;
+  background-color: #FDE8E8;
+}*/
+
 .ml-form-field.error input:focus,
 .ml-form-field.error select:focus {
   background-color: #fff;
