@@ -1,0 +1,21 @@
+<div class="ml-table-container">
+  <div class="ml-table-title">{{title}}</div>
+  <div class="even">
+    <div class="field-name-column" *ngFor="let columnName of columnsNames">{{columnName}}</div>
+    <div class="field-name-column" *ngIf="formatoscuatro.length === 0 || formatoscuatro === null">
+      <img src="../../../../assets/img/tables/plus_simbol.svg" (click)="addNewFormatFour()">
+    </div>
+
+  </div>
+
+
+
+  <div>
+    <div data-forms="floating-label" class="ml-form"
+         [ngClass]="content.styleClass">
+      <div *ngFor="let field of content.fields">
+        <app-field-form [fieldObj]="field" [form]="this.applicationService.getFormGroup()"></app-field-form>
+      </div>
+    </div>
+  </div>
+</div>

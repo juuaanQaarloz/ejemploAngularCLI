@@ -40,6 +40,8 @@ import { TableComponent } from './components/general-table/table/table.component
 import { ItemTableComponent } from './components/general-table/item-table/item-table.component';
 import { AddEditItemTableComponent } from './components/general-table/add-edit-item-table/add-edit-item-table.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import {FormaTwoTableComponent} from './components/formatwo/formatwo-table/formatwo-table.component';
+import {FormaFourTableComponent} from './components/formatfour/formatfour-table/formatfour-table.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +66,9 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     TableComponent,
     ItemTableComponent,
     AddEditItemTableComponent,
-    PaginationComponent
+    PaginationComponent,
+    FormaTwoTableComponent,
+    FormaFourTableComponent
   ],
   imports: [
     BrowserModule,

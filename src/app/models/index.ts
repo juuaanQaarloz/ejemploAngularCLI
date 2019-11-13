@@ -12,3 +12,4 @@ export * from './step';
 export * from './user.interface';
 export * from './beneficiary-model/index';
 export * from './occupation';
+export * from './formatwo-model/index';

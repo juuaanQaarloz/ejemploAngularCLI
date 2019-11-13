@@ -23,8 +23,13 @@ export class ContentFormComponent implements OnInit {
     let meuArray = [{id:1},{id:2},{id:3},{id:4},{id:5},{id:6},{id:7},{id:8},{id:9},{id:10}];*/
     if (this.contentObj.renderConditions) {
       this.applicationService.getConditions(this.contentObj.renderConditions);
+      const renderConditions = this.applicationService.getConditions(this.contentObj.renderConditions);
+      console.log('renderConditions: ', renderConditions);
+      this.form.controls[renderConditions[0][1]].valueChanges.subscribe((value) => {
+        console.log('value: ', value);
+        this.contentObj.showContent = value;
+      });
     }
-
   }
 
   getFormValue() {

@@ -46,7 +46,7 @@ export const Plan1: Field[] = [
     sourceID: 'coverageOptions',
     sourceStructure: ['id', 'label', 'value'],
     style: 'margin:0 auto',
-    styleClass: 'radio-options',
+    styleClass: '',
     styleClassError: '',
     message: '',
     messageClass: '',
