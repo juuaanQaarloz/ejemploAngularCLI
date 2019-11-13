@@ -128,8 +128,8 @@
 
   <fieldset *ngSwitchCase="'radio'" class="ml-form-field">
 
-    <div class="ml-form-field-radio" [ngClass]="fieldObj.styleClass">
-
+    <div class="ml-form-field-radio" [ngClass]="{'radio-options': fieldObj.styleClass,
+                                                  'error-radio': !fieldObj.valid}">
       <label>{{fieldObj.label}}</label>
 
       <div class="ml-form-field-radio-group"
@@ -138,8 +138,6 @@
         <input type="radio" [formControlName]="fieldObj.name"
                [id]="radioOption.id + '-radio'"
                [value]="radioOption.value">
-               <!--(change)="onChange($event)">-->
-
         <label>{{radioOption.name}}</label>
 
       </div>

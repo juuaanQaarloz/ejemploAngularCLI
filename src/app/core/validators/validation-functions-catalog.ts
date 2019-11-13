@@ -399,5 +399,9 @@ export const validatorsObjects = [
   {
     nameField: 'searchOccupation',
     validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'dangerWorkName',
+    validationFunctions: [validateAlphanumericValueNotRequired]
   }
 ];
