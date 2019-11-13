@@ -2,7 +2,7 @@ import {
   AgeValidator,
   DateValidator, validateAlphanumericName,
   validateAlphanumericValue, validateAlphanumericValueNotRequired, validateCURPNotRequired, validateMail,
-  validateName, validateNumberWith2Decimals, validatePhone, validatePhoneNotRequired,
+  validateName, validateNumberWith2Decimals, validateNumberWith2DecimalsNotRequired, validatePhone, validatePhoneNotRequired,
   validateRFC, validateRFCMoral,
   validateStreet, validateStreetNum, validateStreetNumberNotRequired, validateZipCode
 } from './validators';
@@ -254,7 +254,7 @@ export const validatorsObjects = [
   },
   {
     nameField: 'detailOccupation',
-    validationFunctions: [validateAlphanumericValue]
+    validationFunctions: [validateAlphanumericValueNotRequired]
   },
   {
     nameField: 'companyName',
@@ -274,7 +274,7 @@ export const validatorsObjects = [
   },
   {
     nameField: 'detailOccupationS',
-    validationFunctions: [validateAlphanumericValue]
+    validationFunctions: [validateAlphanumericValueNotRequired]
   },
   {
     nameField: 'companyNameS',
@@ -294,11 +294,11 @@ export const validatorsObjects = [
   },
   {
     nameField: 'whichOne',
-    validationFunctions: [validateAlphanumericValue]
+    validationFunctions: [validateAlphanumericValueNotRequired]
   },
   {
     nameField: 'additionalSalary',
-    validationFunctions: [validateNumberWith2Decimals]
+    validationFunctions: [validateNumberWith2DecimalsNotRequired]
   },
   {
     nameField: 'beneficiaryName',

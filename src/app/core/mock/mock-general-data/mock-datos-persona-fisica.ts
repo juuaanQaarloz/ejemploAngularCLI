@@ -19,7 +19,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'El nombre es obligatorio y no puede contener más de 3 letras iguales consecutivas ni números.' +
+    message: 'El nombre es obligatorio y no puede contener más de 3 letras y/o 3 números iguales consecutivos.' +
       ' No se permiten caracteres especiales.',
     messageClass: '',
     messageError: '',
@@ -49,7 +49,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'El apellido paterno es obligatorio y no puede contener más de 3 letras iguales consecutivas ni números.' +
+    message: 'El apellido paterno es obligatorio y no puede contener más de 3 letras y/o 3 números iguales consecutivos.' +
       ' No se permiten caracteres especiales.',
     messageClass: '',
     messageError: '',
@@ -78,7 +78,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'El apellido materno no puede contener más de 3 letras iguales consecutivas ni números.' +
+    message: 'El apellido materno no puede contener más de 3 letras y/o 3 números iguales consecutivos.' +
       ' No se permiten caracteres especiales.',
     messageClass: '',
     messageError: '',
@@ -418,7 +418,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'Ciudad/Población es obligatorio. No puede contener más de 3 letras iguales consecutivas ni números.' +
+    message: 'Ciudad/Población es obligatorio. No puede contener más de 3 letras y/o 3 números iguales consecutivos.' +
       ' No se permiten caracteres especiales',
     messageClass: '',
     messageError: '',

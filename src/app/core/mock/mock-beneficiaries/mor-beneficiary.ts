@@ -132,7 +132,7 @@ export const BeneficiaryFieldsM: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'Calle / Avenida es obligatoria. Puede contener más de 3 letras iguales consecutivas ni números.' +
+    message: 'Calle / Avenida es obligatoria. Puede contener más de 3 letras y/o 3 números iguales consecutivos.' +
       ' No se permiten caracteres especiales.',
     messageClass: '',
     messageError: '',
@@ -245,7 +245,7 @@ export const BeneficiaryFieldsM: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'Colonia / Barrio es obligatorio. No puede contener más de 3 letras iguales consecutivas ni números.' +
+    message: 'Colonia / Barrio es obligatorio. No puede contener más de 3 letras y/o 3 números iguales consecutivos.' +
       ' No se permiten caracteres especiales.',
     messageClass: '',
     messageError: '',
@@ -274,7 +274,7 @@ export const BeneficiaryFieldsM: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'Municipio / Alcaldía. No puede contener más de 3 letras iguales consecutivas ni números.' +
+    message: 'Municipio / Alcaldía. No puede contener más de 3 letras y/o 3 números iguales consecutivos.' +
       ' No se permiten caracteres especiales.',
     messageClass: '',
     messageError: '',

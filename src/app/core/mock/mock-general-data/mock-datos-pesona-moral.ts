@@ -160,7 +160,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'El folio mercantil es obligatorio y no puede contener mas de 3 letras consecutivas ni números.' +
+    message: 'El folio mercantil es obligatorio y no puede contener mas de 3 letras y/o 3 números iguales consecutivos.' +
       ' No se permiten caracteres especiales.',
     messageClass: '',
     messageError: '',
@@ -218,7 +218,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'El Sector económico es obligatorio y no puede contener mas de 3 letras consecutivas ni números. ' +
+    message: 'El Sector económico es obligatorio y no puede contener mas de 3 letras y/o 3 números iguales consecutivos. ' +
       ' No se permiten caracteres especiales.',
     messageClass: '',
     messageError: '',

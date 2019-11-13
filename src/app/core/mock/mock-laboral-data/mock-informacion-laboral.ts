@@ -12,7 +12,7 @@ export const InformaciolLaboral1: Field[] = [
     placeholder: 'Ocupación o profesión',
     length: '',
     minValue: 0,
-    maxValue: 0,
+    maxValue: 60,
     pattern: '',
     source: '',
     sourceID: '',
@@ -27,7 +27,7 @@ export const InformaciolLaboral1: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   }
 ];
 
@@ -36,7 +36,7 @@ export const InformacionLaboral: Field[] = [
     id: 'field-36',
     idHtml: 'txtDetailOccupation',
     name: 'detailOccupation',
-    orderAppearance: 2,
+    orderAppearance: 1,
     label: 'Detalle de la ocupación o profesión',
     type: 'text',
     required: false,
@@ -58,13 +58,13 @@ export const InformacionLaboral: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   },
   {
     id: 'field-37',
     idHtml: 'txtCompanyName',
     name: 'companyName',
-    orderAppearance: 3,
+    orderAppearance: 2,
     label: 'Nombre de la empresa*',
     type: 'text',
     required: true,
@@ -86,13 +86,13 @@ export const InformacionLaboral: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   },
   {
     id: 'field-38',
     idHtml: 'txtCompanyActivity',
     name: 'companyActivity',
-    orderAppearance: 4,
+    orderAppearance: 3,
     label: 'Actividad o giro de la empresa*',
     type: 'text',
     required: true,
@@ -114,13 +114,13 @@ export const InformacionLaboral: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   },
   {
     id: 'field-39',
     idHtml: 'txtSalary',
     name: 'salary',
-    orderAppearance: 5,
+    orderAppearance: 4,
     label: 'Ingreso mensual aproximado* (pesos)',
     type: 'text',
     required: true,
@@ -142,6 +142,6 @@ export const InformacionLaboral: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
+    value: ''
   }
 ];

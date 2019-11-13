@@ -59,7 +59,7 @@ export class ApplicationComponent implements OnInit {
   }
 
   validateForm() {
-    Object.keys(this.formGroup.controls).forEach(key => {
+    /*Object.keys(this.formGroup.controls).forEach(key => {
       console.log('formControlName: ', key);
       // console.log('formControl: ', this.formGroup.controls[key]);
       const isValid =  this.formGroup.controls[key].valid;
@@ -69,6 +69,45 @@ export class ApplicationComponent implements OnInit {
         this.formGroup.controls[key].markAsUntouched();
       }
       console.log('isValid: ', isValid);
+    });*/
+
+    this.applicationObj.sections.forEach(section => {
+      section.contents.forEach((contentFromSection) => {
+        if (contentFromSection.fields) {
+          contentFromSection.fields.forEach(field => {
+            field.valid = this.formGroup.controls[field.name].valid;
+            console.log('formControlName: ', field.name);
+            console.log('valid: ', field.valid);
+          });
+        } else {
+          if (contentFromSection.process) {
+            contentFromSection.process.steps.forEach(step => {
+              step.contents.forEach((contentFromStep) => {
+                if (contentFromStep.fields) {
+                  contentFromStep.fields.forEach(field => {
+                    field.valid = this.formGroup.controls[field.name].valid;
+                    console.log('formControlName: ', field.name);
+                    console.log('valid: ', field.valid);
+                  });
+                } else {
+                  if (contentFromStep.contentChildren) {
+                    contentFromStep.contentChildren.forEach(contentChild => {
+                      if (contentChild.fields) {
+                        contentChild.fields.forEach(field => {
+                          field.valid = this.formGroup.controls[field.name].valid;
+                          console.log('formControlName: ', field.name);
+                          console.log('valid: ', field.valid);
+                        });
+                      }
+                    });
+                  }
+                }
+              });
+            });
+          }
+        }
+      });
+
     });
   }
 }
