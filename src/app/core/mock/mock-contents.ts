@@ -14,7 +14,7 @@ import {habitsQuestions} from './basic-questionnaires/habits';
 import {medicalQuestions} from './basic-questionnaires/medical';
 
 import {Plan1, Plan2} from './mock-plan/mock-plan';
-import {statements, statements1, statements2} from './statements/statements';
+import {statements, statements1, statements2, statements3} from './statements/statements';
 import {ifTrue} from 'codelyzer/util/function';
 
 export const MockFieldsContractorType: Field[] = [
@@ -784,6 +784,92 @@ export const MockContentStep14Process1ContentSection2: Content[] = [
     showContent: true,
     // enableConditions?: 'string';
     styleClass: 'questions-type'
+    // --------------------------
+  },
+  {
+    id: 'content-14.21',
+    idParent: 'step-14',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.21',
+    title: '',
+    description: '',
+    contentType: 'table-formatwo',
+    // process?: Process;
+    // fields: Beneficiarios,
+    // operations?: Operation[];
+    renderConditions: 'thirdPersonQuestion=true',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    // showContent: true,
+    // enableConditions?: 'publicFunctionQuestion=true',
+    styleClass: 'modal-type'
+    // --------------------------
+  },
+  {
+    id: 'content-14.26',
+    idParent: 'step-14',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.26',
+    contentType: 'looseFields',
+    // process?: Process;
+    fields: statements3,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    // enableConditions?: 'string';
+    styleClass: 'questions-type'
+    // --------------------------
+  },
+  {
+    id: 'content-14.21',
+    idParent: 'step-14',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.21',
+    title: '',
+    description: '',
+    contentType: 'table-formathree',
+    // process?: Process;
+    // fields: Beneficiarios,
+    // operations?: Operation[];
+    renderConditions: 'supplierQuestion=false' ,
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    // showContent: true,
+    // enableConditions?: 'publicFunctionQuestion=true',
+    styleClass: 'modal-type'
+    // --------------------------
+  },
+  {
+    id: 'content-14.21',
+    idParent: 'step-14',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.21',
+    title: '',
+    description: '',
+    contentType: 'table-formatwo',
+    // process?: Process;
+    // fields: Beneficiarios,
+    // operations?: Operation[];
+    renderConditions: 'typePerson=morPerson' ,
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    // showContent: true,
+    // enableConditions?: 'publicFunctionQuestion=true',
+    styleClass: 'modal-type'
     // --------------------------
   },
   {

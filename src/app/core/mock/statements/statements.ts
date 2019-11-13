@@ -209,35 +209,6 @@ export const statements1: Field[] = [
 
 export const statements2: Field[] = [
   {
-    id: 'field-1603',
-    idHtml: 'radioAssociationQuestion',
-    name: 'associationQuestion',
-    orderAppearance: 7,
-    label: '3. ¿Eres accionista (vínculo patrimonial) de alguna sociedad o asociación?*',
-    type: 'radio',
-    required: true,
-    placeholder: '',
-    length: '',
-    minValue: 0,
-    maxValue: 0,
-    pattern: '',
-    source: 'IPRE',
-    sourceID: 'guardBoxOptions',
-    sourceStructure: ['id', 'label', 'value'],
-    style: 'margin:0 auto',
-    styleClass: 'radio-options',
-    styleClassError: '',
-    message: '',
-    messageClass: '',
-    messageError: '',
-    messageErrorClass: '',
-    renderConditions: '',
-    enableConditions: '',
-    entity: '',
-    entityField: '',
-    value: ''
-  },
-  {
     id: 'field-1604',
     idHtml: 'radioThirdPersonQuestion',
     name: 'thirdPersonQuestion',
@@ -265,7 +236,11 @@ export const statements2: Field[] = [
     entity: '',
     entityField: '',
     value: ''
-  },
+  }
+];
+
+
+export const statements3: Field[] = [
   {
     id: 'field-1605',
     idHtml: 'radioSuppliersQuestion',

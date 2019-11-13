@@ -28,6 +28,7 @@ export class ContentFormComponent implements OnInit {
       this.form.controls[renderConditions[0][1]].valueChanges.subscribe((value) => {
         console.log('value: ', value);
         this.contentObj.showContent = value;
+        this.contentObj.showContent = this.applicationService.evaluateCondition(this.form, renderConditions[0]);
       });
     }
   }

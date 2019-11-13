@@ -38,19 +38,19 @@ const FIELDS: Field[] = [
 ];
 
 @Component({
-  selector: 'app-formatfour-table',
-  templateUrl: './formatfour-table.component.html',
-  styleUrls: ['./formatfour-table.component.css']
+  selector: 'app-formathree-table',
+  templateUrl: './formathree-table.component.html',
+  styleUrls: ['./formathree-table.component.css']
 })
-export class FormatFourTableComponent implements OnInit {
+export class FormaThreeTableComponent implements OnInit {
   @Input() type: string;
-  title = 'Formato cuatro';
-  columnsNames = ['Razon social',
+  title = 'Formato Tres';
+  columnsNames = ['Tipo de Persona',
+    'Nombre / Razón social',
+    'Fecha de nacimiento / constitución',
     'RFC',
-    'Fecha de constitución',
-    'Nombre comercial',
   ];
-  formatoscuatro = [];
+  formatostres = [];
 
   content = {
     id: 'content-2.21',
@@ -72,9 +72,9 @@ export class FormatFourTableComponent implements OnInit {
 
   ngOnInit() {
 
-    if (this.type === 'table-formatfour') {
-      this.title = 'Datos Formato Cuatro';
-      this.columnsNames = ['Razon social', 'RFC', 'Fecha de constitución', 'Nombre comercial',
+    if (this.type === 'table-formathree') {
+      this.title = 'Datos Formato Tres';
+      this.columnsNames = ['Tipo de Persona', 'Nombre / Razón social', 'Fecha de nacimiento / constitución', 'RFC',
       ];
       this.content.fields.forEach((field) => {
         this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
@@ -86,7 +86,7 @@ export class FormatFourTableComponent implements OnInit {
       }); */
     } else if (this.type === 'table-disseases') {}
   }
-  addNewFormatFour() {
+  addNewFormathree() {
     /* const ref = this.dialog.open(NewBeneficiaryComponent, {data: null});
     ref.afterClosed.subscribe((result) => {
       console.log('dialog closed FROM BENEFICIARY TABLE, result: ', result);

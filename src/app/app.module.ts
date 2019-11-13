@@ -41,7 +41,8 @@ import { ItemTableComponent } from './components/general-table/item-table/item-t
 import { AddEditItemTableComponent } from './components/general-table/add-edit-item-table/add-edit-item-table.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import {FormaTwoTableComponent} from './components/formatwo/formatwo-table/formatwo-table.component';
-import {FormaFourTableComponent} from './components/formatfour/formatfour-table/formatfour-table.component';
+import {FormatFourTableComponent} from './components/formatfour/formatfour-table/formatfour-table.component';
+import {FormaThreeTableComponent} from './components/formathree/formathree-table/formathree-table.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import {FormaFourTableComponent} from './components/formatfour/formatfour-table/
     AddEditItemTableComponent,
     PaginationComponent,
     FormaTwoTableComponent,
-    FormaFourTableComponent
+    FormatFourTableComponent,
+    FormaThreeTableComponent
   ],
   imports: [
     BrowserModule,
