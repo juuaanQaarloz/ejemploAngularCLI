@@ -386,11 +386,8 @@ export class ApplicationService {
         })
       );
   }
-
-<<<<<<< HEAD
-=======
   validateFormByStep(stepID: string) {
-    let step = this.getStepById(stepID);
+    const step = this.getStepById(stepID);
     if (step) {
       step.contents.forEach((contentFromStep) => {
         if (contentFromStep.fields) {
@@ -441,7 +438,4 @@ export class ApplicationService {
 
     return foundStep;
   }
-
->>>>>>> ddfbd7c089c96297bba56475ea3b74f330fb8509
-
 }

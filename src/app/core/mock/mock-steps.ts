@@ -90,24 +90,10 @@ export const MockStepsProcessContentSection2: Step[] = [
     contents: MockContentStep6Process1ContentSection2,
     renderConditions: 'contractorType=false',
     previousStep: '5',
-    nextStep: '7',
+    nextStep: '16',
     /*added extra from model*/
     isCompleted: false,
     show: false
-  },
-  {
-    id: '10',
-    idProcess: 'process-1',
-    idHtml: 'app-step-form-10',
-    title: 'Favor de contestar el siguiente cuestionario',
-    contents: MockContentStep7Process1ContentSection2,
-    renderConditions: '',
-    previousStep: '6',
-<<<<<<< HEAD
-    nextStep: '14',
-    /*added extra from model*/
-    isCompleted: false,
-    show: true
   },
   {
     id: '16',
@@ -131,26 +117,10 @@ export const MockStepsProcessContentSection2: Step[] = [
     renderConditions: '',
     previousStep: '16',
     nextStep: '17',
-=======
-    nextStep: '11',
->>>>>>> ddfbd7c089c96297bba56475ea3b74f330fb8509
     /*added extra from model*/
     isCompleted: false,
     show: true
   },
-  {
-    id: '11',
-    idProcess: 'process-1',
-    idHtml: 'app-step-form-11',
-    title: 'Beneficiarios del solicitante',
-    contents: MockContentStep8Process1ContentSection2,
-    renderConditions: '',
-    previousStep: '10',
-    nextStep: '1',
-    /*added extra from model*/
-    isCompleted: false,
-    show: true
-  }/*,
   {
     id: '17',
     idProcess: 'process-1',
@@ -158,7 +128,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     title: 'Cuestionario de aviación deportes y / o aficiones del solicitante',
     contents: MockContentStep17Process1ContentSection2,
     renderConditions: '',
-    previousStep: '16',
+    previousStep: '14',
     nextStep: '18',
     isCompleted: false,
     show: true
@@ -186,5 +156,5 @@ export const MockStepsProcessContentSection2: Step[] = [
     nextStep: '20',
     isCompleted: false,
     show: true
-  }*/
+  }
 ];

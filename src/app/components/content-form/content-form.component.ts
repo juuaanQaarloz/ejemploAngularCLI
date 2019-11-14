@@ -17,14 +17,13 @@ export class ContentFormComponent implements OnInit {
 
   ngOnInit() {
     this.orderFields();
-
     if (this.contentObj.renderConditions) {
       this.applicationService.getConditions(this.contentObj.renderConditions);
-      const renderConditions = this.applicationService.getConditions(this.contentObj.renderConditions);
-      console.log('renderConditions: ', renderConditions);
-      this.form.controls[renderConditions[0][1]].valueChanges.subscribe((value) => {
-        console.log('value: ', value);
-        this.contentObj.showContent = value;
+      // const renderConditions = this.applicationService.getConditions(this.contentObj.renderConditions);
+      // console.log('renderConditions: ', renderConditions);
+      // this.form.controls[renderConditions[0][1]].valueChanges.subscribe((value) => {
+      //  console.log('value: ', value);
+      //  this.contentObj.showContent = value;
       const renderConditions = this.applicationService.getConditions(this.contentObj.renderConditions);
 
       this.contentObj.showContent = this.applicationService.evaluateCondition(this.form, renderConditions[0]);
@@ -35,7 +34,6 @@ export class ContentFormComponent implements OnInit {
       });
     }
   }
-
   getFormValue() {
     this.payLoad = JSON.stringify(this.form.value);
     // console.log(this.form.value);
