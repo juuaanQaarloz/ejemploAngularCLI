@@ -6,6 +6,7 @@ import {DialogService} from '../dialog/dialog.service';
 import {ModalService} from '../custom-modal';
 import * as jsPDF from 'jspdf';
 import {pdfOperation} from '../../core/mock/mock-operations';
+import {Template} from '../../models/template';
 
 @Component({
   selector: 'app-application',
@@ -13,24 +14,28 @@ import {pdfOperation} from '../../core/mock/mock-operations';
   styleUrls: ['./application.component.css'],
 })
 export class ApplicationComponent implements OnInit {
-  applicationObj =  MockTemplate;
+  applicationObj: Template;
   payLoad = '';
   formGroup: FormGroup;
   @ViewChild('content', {static: false}) content: ElementRef;
   pdfOperation = pdfOperation;
   items = [];
+
   constructor(private appService: ApplicationService,
               private authService: AuthService,
               private storageService: StorageService,
               public dialog: DialogService,
               private modalService: ModalService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
+    this.appService.setApplicationObject(MockTemplate);
+    this.applicationObj = this.appService.getApplicationObject();
     this.formGroup = this.appService.toFormGroup(this.applicationObj);
     this.appService.setFormGroup(this.formGroup);
     // an example array of 150 items to be paged
-    this.items = Array(150).fill(0).map((x, i) => ({ id: (i + 1), name: `Item ${i + 1}`}));
+    this.items = Array(150).fill(0).map((x, i) => ({id: (i + 1), name: `Item ${i + 1}`}));
   }
 
   getFormValue() {
@@ -45,42 +50,58 @@ export class ApplicationComponent implements OnInit {
   testSepoMexService() {
     this.appService.getInfoFromSepomex('15220')
       .subscribe((response) => {
-        console.log('response: ', response);
-      }
-    );
+          console.log('response: ', response);
+        }
+      );
   }
 
   downloadPDF() {
     let doc = new jsPDF();
 
-    doc.addHTML(document.getElementById('content') , () => {
+    doc.addHTML(document.getElementById('content'), () => {
       doc.save('solicitud.pdf');
     });
   }
 
   validateForm() {
-    console.log('form status: ', this.formGroup.status);
-    console.log('form status: ', this.formGroup.value);
-    /*this.applicationObj.sections.forEach((section) => {
+    /*Object.keys(this.formGroup.controls).forEach(key => {
+      console.log('formControlName: ', key);
+      // console.log('formControl: ', this.formGroup.controls[key]);
+      const isValid =  this.formGroup.controls[key].valid;
+      if (!isValid) {
+        this.formGroup.controls[key].markAsTouched();
+      } else {
+        this.formGroup.controls[key].markAsUntouched();
+      }
+      console.log('isValid: ', isValid);
+    });*/
+
+    this.applicationObj.sections.forEach(section => {
       section.contents.forEach((contentFromSection) => {
         if (contentFromSection.fields) {
-          contentFromSection.fields.forEach((fieldFromContentSection) => {
-            console.log('fieldFromContentSection: ', fieldFromContentSection);
+          contentFromSection.fields.forEach(field => {
+            field.valid = this.formGroup.controls[field.name].valid;
+            console.log('formControlName: ', field.name);
+            console.log('valid: ', field.valid);
           });
         } else {
           if (contentFromSection.process) {
-            contentFromSection.process.steps.forEach((step) => {
+            contentFromSection.process.steps.forEach(step => {
               step.contents.forEach((contentFromStep) => {
                 if (contentFromStep.fields) {
-                  contentFromStep.fields.forEach(fieldFromContentFromStep => {
-                    console.log('fieldFromContentStep: ', fieldFromContentFromStep);
+                  contentFromStep.fields.forEach(field => {
+                    field.valid = this.formGroup.controls[field.name].valid;
+                    console.log('formControlName: ', field.name);
+                    console.log('valid: ', field.valid);
                   });
                 } else {
                   if (contentFromStep.contentChildren) {
                     contentFromStep.contentChildren.forEach(contentChild => {
                       if (contentChild.fields) {
-                        contentChild.fields.forEach(fieldFromContentChild => {
-                          console.log('fieldFromContentChild: ', fieldFromContentChild);
+                        contentChild.fields.forEach(field => {
+                          field.valid = this.formGroup.controls[field.name].valid;
+                          console.log('formControlName: ', field.name);
+                          console.log('valid: ', field.valid);
                         });
                       }
                     });
@@ -91,11 +112,7 @@ export class ApplicationComponent implements OnInit {
           }
         }
       });
-    });*/
 
-    Object.keys(this.formGroup.controls).forEach(key => {
-      console.log('formControlName: ', key);
-      console.log('formControl: ', this.formGroup.controls[key]);
     });
   }
 }

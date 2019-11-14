@@ -382,7 +382,7 @@ select::-ms-expand {
 }
 
 .ml-form-field-errortext {
-  display: none;
+  /*display: none;*/
   font-size: 12px;
   color: #DB1818;
   margin-top: 5px;
@@ -420,6 +420,11 @@ select::-ms-expand {
   background-color: #FDE8E8;
 }
 
+.error-radio{
+  border: solid 1px #DB1818;
+  background-color: #FDE8E8;
+}
+
 .ml-form-field.error input:focus,
 .ml-form-field.error select:focus {
   background-color: #fff;
@@ -436,7 +441,7 @@ select::-ms-expand {
   color: #DB1818;
 }
 
-.ml-form-field.error .ml-form-field-errortext {
+.ml-form-field.error .ml-form-field-errortext, .error-radio{
   display: inline-block;
 }
 

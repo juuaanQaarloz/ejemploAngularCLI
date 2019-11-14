@@ -11,7 +11,8 @@ import {
   MockContentStep4Process1ContentSection2,
   MockContentStep5Process1ContentSection2,
   MockContentStep6Process1ContentSection2,
-  MockContentStep7Process1ContentSection2
+  MockContentStep7Process1ContentSection2,
+  MockContentStep8Process1ContentSection2
 } from './mock-contents';
 
 export const MockStepsProcessContentSection2: Step[] = [
@@ -19,7 +20,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     id: '1',
     idProcess: 'process-1',
     idHtml: 'app-step-form-1',
-    title: 'Infomación general del contratante persona física',
+    title: 'Información general del contratante persona física',
     contents: MockContentStep1Process1ContentSection2,
     renderConditions: 'typePerson=phyPerson',
     // renderConditions: 'A=B&C!=D|E>F&',
@@ -95,13 +96,14 @@ export const MockStepsProcessContentSection2: Step[] = [
     show: false
   },
   {
-    id: '7',
+    id: '10',
     idProcess: 'process-1',
-    idHtml: 'app-step-form-7',
-    title: 'Beneficiarios del solicitante',
+    idHtml: 'app-step-form-10',
+    title: 'Favor de contestar el siguiente cuestionario',
     contents: MockContentStep7Process1ContentSection2,
     renderConditions: '',
     previousStep: '6',
+<<<<<<< HEAD
     nextStep: '14',
     /*added extra from model*/
     isCompleted: false,
@@ -129,10 +131,26 @@ export const MockStepsProcessContentSection2: Step[] = [
     renderConditions: '',
     previousStep: '16',
     nextStep: '17',
+=======
+    nextStep: '11',
+>>>>>>> ddfbd7c089c96297bba56475ea3b74f330fb8509
     /*added extra from model*/
     isCompleted: false,
     show: true
   },
+  {
+    id: '11',
+    idProcess: 'process-1',
+    idHtml: 'app-step-form-11',
+    title: 'Beneficiarios del solicitante',
+    contents: MockContentStep8Process1ContentSection2,
+    renderConditions: '',
+    previousStep: '10',
+    nextStep: '1',
+    /*added extra from model*/
+    isCompleted: false,
+    show: true
+  }/*,
   {
     id: '17',
     idProcess: 'process-1',
@@ -168,5 +186,5 @@ export const MockStepsProcessContentSection2: Step[] = [
     nextStep: '20',
     isCompleted: false,
     show: true
-  }
+  }*/
 ];

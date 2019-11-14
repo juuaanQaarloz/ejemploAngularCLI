@@ -17,7 +17,7 @@ const FIELDS: Field[] = [
     placeholder: 'Criterio de búsqueda',
     length: '',
     minValue: 0,
-    maxValue: 0,
+    maxValue: 60,
     pattern: '',
     source: 'IPRE',
     sourceID: 'occupations',
@@ -115,6 +115,11 @@ export class SearchOccupationComponent implements OnInit {
   closeModal(modalID: string) {
     this.foundOccupations = [];
     this.modalService.close(modalID);
+  }
+
+  onChangePage(pageOfItems: Array<any>) {
+    // update current page of items
+    // this.pageOfItems = pageOfItems;
   }
 
 }

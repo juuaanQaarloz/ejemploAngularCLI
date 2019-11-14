@@ -1,9 +1,8 @@
-import {AfterViewInit, Component, EventEmitter, forwardRef, Input, OnInit, Output} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Field} from '../../models';
 import {FormGroup} from '@angular/forms';
 import {addSlashesToDate, calculateAge} from '../../core/utilities';
 import {ApplicationService} from '../../core/services';
-import * as moment from 'moment';
 
 @Component({
   selector: 'app-custom-datepicker',
@@ -77,5 +76,10 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
     this.form.controls[formControlName].setValue(value);
     const el2 = document.getElementById(htmlID);
     el2.setAttribute('value', value.toString());
+  }
+
+  onKeyUp() {
+    console.log('onKeyUp from custom-datepicker');
+    this.validate.emit(true);
   }
 }

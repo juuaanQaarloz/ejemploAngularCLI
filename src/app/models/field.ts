@@ -28,9 +28,10 @@ export interface Field {
   requiredConditions?: string;
   entity: string;
   entityField: string;
-  // --added extra from modal--
+  // --added extra from model--
   value?: any;
   canChangeType?: boolean;
   disable?: boolean;
+  valid?: boolean;
   // --------------------------
 }

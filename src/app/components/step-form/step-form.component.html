@@ -1,5 +1,4 @@
 <!-- Progress Indicator Step -->
-
 <div *ngIf="stepObj.show" [ngClass]="[
                   (accordionExpanded && isFirst) ? 'ml-step-header-expanded-first-child':'',
                   (!accordionExpanded && isFirst) ? 'ml-step-header-first-child':'',
@@ -14,7 +13,7 @@
                   ]">
   <div class="ml-step-header-elements">
     <span *ngIf="!completed"
-          [ngClass]="accordionExpanded ? 'ml-step-numbers ml-current-step' : 'ml-step-numbers' ">{{index + 1}}</span>
+          [ngClass]="accordionExpanded ? 'ml-step-numbers ml-current-step' : 'ml-step-numbers' ">{{stepObj.id}}</span>
     <span *ngIf="completed" class="ml-step-numbers ml-completed-step fa"></span>
     <h3 [ngClass]="accordionExpanded ? 'ml-step-header-title-expanded': 'ml-step-header-title'"
         (click)="toggleAccordion()">{{stepObj.title}}</h3>
@@ -22,7 +21,8 @@
 
   <hr *ngIf="!accordionExpanded" class="ml-step-hr" [ngStyle]="{'display':  isLast ? 'none': ''}">
 </div>
-<div class="ml-step-content" id="step1"
+
+<div *ngIf="stepObj.show" class="ml-step-content" id="step1"
      [ngStyle]="{'border-left': isLast ? '8px solid #ffffff': ''}"
      [ngClass]="[
                   !accordionExpanded ? 'hide': '',

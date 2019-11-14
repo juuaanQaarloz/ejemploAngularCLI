@@ -9,9 +9,10 @@ import {DatosRepresentanteLegal, DatosRepresentanteLegal1, DatosRepresentanteLeg
 import {DatosGeneralesSolicitante} from './mock-general-data/mock-datos-solicitante';
 import {DatosDomicilioSolicitante} from './mock-general-data/mock-domicilio-solicitante';
 import {InformacionLaboralSolicitante, InformacionLaboralSolicitante1} from './mock-laboral-data/mock-informacion-laboral-solicitante';
-import {sportQuestions2, sportsFields1, sportsQuestions1} from './basic-questionnaires/sports-aviation-hobbies';
+import {sportQuestions2, sportsFields1, sportsFields2, sportsQuestions1} from './basic-questionnaires/sports-aviation-hobbies';
 import {habitsQuestions} from './basic-questionnaires/habits';
-import {medicalQuestions} from './basic-questionnaires/medical';
+import {weaponsFields, weaponsQuestions} from './basic-questionnaires/weapons-questions';
+import {medicalFields, medicalQuestions} from './basic-questionnaires/medical';
 
 import {Plan1, Plan2} from './mock-plan/mock-plan';
 import {statements, statements1, statements2, statements3} from './statements/statements';
@@ -543,10 +544,73 @@ export const MockContentStep6Process1ContentSection2: Content[] = [
 
 export const MockContentStep7Process1ContentSection2: Content[] = [
   {
-    id: 'content-2.21',
-    idParent: 'step-7',
+    id: 'content-2.28',
+    idParent: 'step-10',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.21',
+    idHtml: 'app-content-form-2.28',
+    contentType: 'looseFields',
+    // process?: Process;
+    fields: weaponsQuestions,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    // enableConditions?: 'string';
+    styleClass: 'questions-type'
+    // --------------------------
+  },
+  {
+    id: 'content-2.29',
+    idParent: 'step-10',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.29',
+    contentType: 'looseFields',
+    // process?: Process;
+    fields: weaponsFields,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    // enableConditions?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-2.30',
+    idParent: 'step-10',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.30',
+    title: '',
+    // process?: Process;
+    // fields: DatosDomicilio,
+    operations: MockOperations,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass: 'string',
+    // --------------------------
+  }
+];
+
+export const MockContentStep8Process1ContentSection2: Content[] = [
+  {
+    id: 'content-2.31',
+    idParent: 'step-10',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.31',
     title: '',
     description: 'Advertencia: En el caso de que se desee nombrar beneficiarios a menores de edad, ' +
       'no se debe señalar a un mayor de edad como representante de los menores para efecto de que, en su' +
@@ -572,10 +636,10 @@ export const MockContentStep7Process1ContentSection2: Content[] = [
     // --------------------------
   },
   {
-    id: 'content-2.22',
-    idParent: 'step-6',
+    id: 'content-2.32',
+    idParent: 'step-10',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.22',
+    idHtml: 'app-content-form-2.32',
     title: '',
     // process?: Process;
     // fields: DatosDomicilio,
@@ -898,10 +962,10 @@ export const MockContentStep14Process1ContentSection2: Content[] = [
 
 export const MockContentStep17Process1ContentSection2: Content[] = [
   {
-    id: 'content-2.23',
+    id: 'content-2.33',
     idParent: 'step-17',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.23',
+    idHtml: 'app-content-form-2.33',
     contentType: 'looseFields',
     // process?: Process;
     fields: sportsQuestions1,
@@ -918,10 +982,10 @@ export const MockContentStep17Process1ContentSection2: Content[] = [
     // --------------------------
   },
   {
-    id: 'content-2.24',
+    id: 'content-2.34',
     idParent: 'step-17',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.24',
+    idHtml: 'app-content-form-2.34',
     contentType: 'looseFields',
     // process?: Process;
     fields: sportsFields1,
@@ -937,10 +1001,10 @@ export const MockContentStep17Process1ContentSection2: Content[] = [
     // --------------------------
   },
   {
-    id: 'content-2.25',
+    id: 'content-2.35',
     idParent: 'step-17',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.25',
+    idHtml: 'app-content-form-2.35',
     contentType: 'looseFields',
     // process?: Process;
     fields: sportQuestions2,
@@ -955,15 +1019,34 @@ export const MockContentStep17Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     styleClass: 'questions-type'
     // --------------------------
+  },
+  {
+    id: 'content-2.26',
+    idParent: 'step-17',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.26',
+    contentType: 'looseFields',
+    // process?: Process;
+    fields: sportsFields2,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true
+    // enableConditions?: 'string';
+    // --------------------------
   }
 ];
 
 export const MockContentStep18Process1ContentSection2: Content[] = [
   {
-    id: 'content-2.26',
+    id: 'content-2.36',
     idParent: 'step-18',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.26',
+    idHtml: 'app-content-form-2.36',
     contentType: 'looseFields',
     // process?: Process;
     fields: habitsQuestions,
@@ -983,10 +1066,10 @@ export const MockContentStep18Process1ContentSection2: Content[] = [
 
 export const MockContentStep19Process1ContentSection2: Content[] = [
   {
-    id: 'content-2.27',
+    id: 'content-2.37',
     idParent: 'step-19',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.27',
+    idHtml: 'app-content-form-2.37',
     contentType: 'looseFields',
     // process?: Process;
     fields: medicalQuestions,
@@ -1000,6 +1083,25 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
     showContent: true,
     // enableConditions?: 'string';
     styleClass: 'questions-type'
+    // --------------------------
+  },
+  {
+    id: 'content-2.28',
+    idParent: 'step-17',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.28',
+    contentType: 'looseFields',
+    // process?: Process;
+    fields: medicalFields,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true
+    // enableConditions?: 'string';
     // --------------------------
   }
 ];

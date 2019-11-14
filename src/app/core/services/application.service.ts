@@ -1,13 +1,12 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
-import {BENEFICIARIES} from '../mock/mock-beneficiaries';
 import {Beneficiary} from '../../models/beneficiary-model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';
-import {Field, Occupation} from '../../models';
-import {validateEmailConfirmation, validateMailConfirmation, validatorsObjects} from '../validators';
+import {Field, Occupation, Step} from '../../models';
+import {validateEmailConfirmation, validatorsObjects} from '../validators';
 import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
 
@@ -24,6 +23,7 @@ export class ApplicationService {
   beneficiaries = new BehaviorSubject([]);
   formGroup: FormGroup;
   searchModalFrom: string;
+  applicationObj;
 
   constructor(private httpClient: HttpClient,
               private modalService: ModalService) {
@@ -62,6 +62,10 @@ export class ApplicationService {
       }
 
       console.log('currentStep2: ', this.currentStepSource.getValue());
+    } else if (type === 'validateStep') {
+      const currentStep = this.currentStepSource.getValue();
+      console.log('onValidateStep currentStep: ', currentStep + 1);
+      this.validateFormByStep((currentStep + 1).toString());
     }
   }
 
@@ -383,5 +387,61 @@ export class ApplicationService {
       );
   }
 
+<<<<<<< HEAD
+=======
+  validateFormByStep(stepID: string) {
+    let step = this.getStepById(stepID);
+    if (step) {
+      step.contents.forEach((contentFromStep) => {
+        if (contentFromStep.fields) {
+          contentFromStep.fields.forEach(field => {
+            field.valid = this.formGroup.controls[field.name].valid;
+            console.log('formControlName: ', field.name);
+            console.log('valid: ', field.valid);
+          });
+        } else {
+          if (contentFromStep.contentChildren) {
+            contentFromStep.contentChildren.forEach(contentChild => {
+              if (contentChild.fields) {
+                contentChild.fields.forEach(field => {
+                  field.valid = this.formGroup.controls[field.name].valid;
+                  console.log('formControlName: ', field.name);
+                  console.log('valid: ', field.valid);
+                });
+              }
+            });
+          }
+        }
+      });
+    }
+  }
+
+  setApplicationObject(applicationObj: Template) {
+    this.applicationObj = applicationObj;
+  }
+
+  getApplicationObject() {
+    return this.applicationObj;
+  }
+
+  getStepById(stepID: string) {
+    let foundStep = null;
+
+    this.applicationObj.sections.forEach(section => {
+      section.contents.forEach((contentFromSection) => {
+        if (contentFromSection.process) {
+          contentFromSection.process.steps.forEach(step => {
+            if (step.id === stepID) {
+              foundStep = step;
+            }
+          });
+        }
+      });
+    });
+
+    return foundStep;
+  }
+
+>>>>>>> ddfbd7c089c96297bba56475ea3b74f330fb8509
 
 }

@@ -2,23 +2,24 @@
 <div *ngIf="show" [ngSwitch]="fieldObj.type" [formGroup]="form">
 
   <fieldset *ngSwitchCase="'text'" class="ml-form-field"
-            [ngClass]="{'error': !valid}">
+            [ngClass]="{'error': !fieldObj.valid}">
     <label>
       <input [type]="toggleVisible ? 'text' : 'password'"
              [formControlName]="fieldObj.name"
-             [id]="fieldObj.idHtml"
-             placeholder="{{fieldObj.placeholder}}"
+             [id]="fieldObj.idHtml"placeholder="{{fieldObj.placeholder}}"
              value=""
+             [maxlength]="fieldObj.maxValue + 1"
              (keyup)="onKeyUp($event)"
-             (blur)="onBlur()"
-      >
+             (blur)="onBlur()">
 
       <span [ngStyle]="{'background': this.disable ? '#EBEBE4':''}">{{fieldObj.label}}</span>
       <a *ngIf="fieldObj.canChangeType" href="javascript:;" (click)="onClickToggle()"
          class="ml-form-field-togglevisible"
          [ngClass]="[toggleVisible ? 'ml-form-field-togglevisible': 'ml-form-field-togglevisible occult']"
       ></a>
-      <div class="ml-form-field-errortext">{{fieldObj.message}}</div>
+      <div class="ml-form-field-errortext"
+           *ngIf="!fieldObj.valid">
+        {{fieldObj.message}}</div>
     </label>
   </fieldset>
 
@@ -42,7 +43,7 @@
   </fieldset>-->
 
   <fieldset *ngSwitchCase="'date'" class="ml-form-field"
-            [ngClass]="{'error': !valid}">
+            [ngClass]="{'error': !fieldObj.valid }">
     <label>
 
       <app-custom-datepicker
@@ -51,12 +52,14 @@
         (validate)="onValidate($event)">
       </app-custom-datepicker>
 
-      <div class="ml-form-field-errortext">{{fieldObj.message}}</div>
+      <div class="ml-form-field-errortext"
+           *ngIf="!fieldObj.valid">
+        {{fieldObj.message}}</div>
     </label>
   </fieldset>
 
   <fieldset *ngSwitchCase="'select'" class="ml-form-field"
-            [ngClass]="{'error': !valid}">
+            [ngClass]="{'error': !fieldObj.valid }">
     <label>
       <select name="{{fieldObj.label}}"
               [formControlName]="fieldObj.name"
@@ -69,12 +72,14 @@
 
       </select>
       <span *ngIf="showSelectLabel">{{fieldObj.label}}</span>
-      <div class="ml-form-field-errortext">{{fieldObj.message}}</div>
+      <div class="ml-form-field-errortext"
+           *ngIf="!fieldObj.valid">
+        {{fieldObj.message}}</div>
     </label>
   </fieldset>
 
   <fieldset *ngSwitchCase="'select-multiple'" class="ml-form-field"
-            [ngClass]="{'error': !valid}">
+            [ngClass]="{'error': !fieldObj.valid}">
     <label>
 
       <!--<select multiple name="{{fieldObj.label}}"
@@ -101,8 +106,9 @@
     </label>
   </fieldset>
 
-  <fieldset *ngSwitchCase="'radio'" [ngClass]="{'error': !valid}" class="ml-form-field ml-form-field-radio">
-    <!--style="display: grid; grid-template-columns: 85% 15%;">-->
+  <!--<fieldset *ngSwitchCase="'radio'" class="ml-form-field ml-form-field-radio"
+            [ngClass]="{'error': !valid || this.form.controls[fieldObj.name].touched}"
+            >
     <div [ngClass]="fieldObj.styleClass">
       <label>{{fieldObj.label}}</label>
 
@@ -111,10 +117,36 @@
         <input type="radio" [formControlName]="fieldObj.name"
                [id]="radioOption.id + '-radio'"
                [value]="radioOption.value">
-        <!--[checked]="checkValue(radioOption.value)">-->
         <label>{{radioOption.name}}</label>
 
       </div>
+
+      <div class="ml-form-field-errortext">{{fieldObj.message}}</div>
+    </div>
+
+  </fieldset>-->
+
+  <fieldset *ngSwitchCase="'radio'" class="ml-form-field">
+
+    <div class="ml-form-field-radio" [ngClass]="{'radio-options': fieldObj.styleClass,
+                                                  'error-radio': !fieldObj.valid}">
+      <label>{{fieldObj.label}}</label>
+
+      <div class="ml-form-field-radio-group"
+           *ngFor="let radioOption of radioOptions; let first = first">
+
+        <input type="radio" [formControlName]="fieldObj.name"
+               [id]="radioOption.id + '-radio'"
+               [value]="radioOption.value">
+        <label>{{radioOption.name}}</label>
+
+      </div>
+
+    </div>
+
+    <div class="ml-form-field-errortext"
+         *ngIf="!fieldObj.valid">
+      Debe eligirse un valor
     </div>
 
   </fieldset>

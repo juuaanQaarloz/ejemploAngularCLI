@@ -2,12 +2,15 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ApplicationService} from '../../../core/services';
 import {DialogConfig} from '../../dialog/dialog-config';
 import {DialogRef} from '../../dialog/dialog-ref';
-import {Beneficiarios} from '../../../core/mock/mock-beneficiaries';
+import {NewBeneficiaryFields} from '../../../core/mock/mock-beneficiaries/mock-beneficiaries';
 import {BeneficiariesOperations} from '../../../core/mock/mock-operations';
 import {FormGroup} from '@angular/forms';
 import {transformDate} from '../../../core/utilities';
 import {ModalService} from '../../custom-modal';
 import {Operation} from '../../../models';
+import {BeneficiaryFieldsP} from '../../../core/mock/mock-beneficiaries/phy-beneficiary';
+import {BeneficiaryFieldsM} from '../../../core/mock/mock-beneficiaries/mor-beneficiary';
+import {BeneficiaryFieldsF} from '../../../core/mock/mock-beneficiaries/fid-beneficiary';
 
 @Component({
   selector: 'app-new-beneficiary',
@@ -20,7 +23,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
     idParent: 'step-7',
     parentType: 'Step',
     idHtml: 'app-content-form-2.19',
-    fields: Beneficiarios,
+    fields: this.setUpFormFields(),
     operations: BeneficiariesOperations,
     showContent: true,
     styleClass: 'modal-type',
@@ -48,6 +51,8 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   modalID = 'modal-warning';
   modalMessage = 'La suma de las participaciones de los beneficiarios excede el 100%';
   fileNameUpload = 'Ningún archivo seleccionado';
+  beneficiaryType = 'phyPerson';
+  fields = [];
 
   constructor(private applicationService: ApplicationService,
               public config: DialogConfig,
@@ -57,7 +62,17 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+
     this.formGroup = this.applicationService.createNewFormGroup(this.content.fields);
+
+    this.fields = this.getFields();
+
+    this.formGroup.controls.beneficiaryType.valueChanges.subscribe((value) => {
+      this.beneficiaryType = value;
+      // console.log('beneficiaryType');
+      this.fields = this.getFields();
+    });
+
     if (this.config.data !== null) {
       this.operationType = 'edit';
       this.setBeneficiaryValues();
@@ -72,7 +87,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
   addNewBeneficiary() {
     console.log('formGroup value: ', this.formGroup.value);
-    let newBeneficiary = this.mapNewBeneficiaryData();
+    const newBeneficiary = this.mapNewBeneficiaryData();
     const response = this.applicationService.addBeneficiary((newBeneficiary));
 
     if (response.status) {
@@ -84,7 +99,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   }
 
   updateBeneficiary() {
-    let updatedBeneficiary = this.mapBeneficiaryData();
+    const updatedBeneficiary = this.mapBeneficiaryData();
     this.applicationService.updateBeneficiary(updatedBeneficiary);
     this.closeDialog();
   }
@@ -144,31 +159,73 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   }
 
   mapNewBeneficiaryData() {
-    return {
+    const newBeneficiaryBase = {
       beneficiaryId: (this.applicationService.getLastBeneficiaryId() + 1).toString(),
-      beneficiaryType: this.formGroup.controls.beneficiaryType.value,
-      name: this.formGroup.controls.beneficiaryName.value,
-      fatherLastName: this.formGroup.controls.beneficiaryFaLastName.value,
-      motherLastName: this.formGroup.controls.beneficiaryMoLastName.value,
-      relationship: this.formGroup.controls.beneficiaryRelationship.value,
-      birthDateOrConstitution: transformDate(this.formGroup.controls.beneficiaryBirthDate.value, 'YYYY/MM/DD'),
-      address: {
-        street: this.formGroup.controls.beneficiaryStreet.value,
-        exteriorNumber: this.formGroup.controls.beneficiaryExteriorNumber.value,
-        interiorNumber: this.formGroup.controls.beneficiaryInteriorNumber.value,
-        zipCode: this.formGroup.controls.beneficiaryZipCode.value,
-        neighborhood: this.formGroup.controls.beneficiarySuburb.value,
-        municipality: this.formGroup.controls.beneficiaryMunicipality.value,
-        state: this.formGroup.controls.beneficiaryState.value,
-        city: this.formGroup.controls.beneficiaryCity.value,
-        country: this.formGroup.controls.beneficiaryCountry.value,
-      },
-      participationPercentage: this.formGroup.controls.participationPercentage.value,
-      businessName: this.formGroup.controls.beneficiaryBusinessName.value,
-      suspensiveCondition: this.formGroup.controls.suspensiveCodition.value,
-      contractNumber: this.formGroup.controls.contractNumber.value,
-      instructionLetterNumber: this.formGroup.controls.instructionLetterNumber.value,
+      beneficiaryType: this.formGroup.controls.beneficiaryType.value
     };
+
+    if (this.beneficiaryType === 'phyPerson') {
+      return {
+        ...newBeneficiaryBase,
+        name: this.formGroup.controls.beneficiaryName.value,
+        fatherLastName: this.formGroup.controls.beneficiaryFaLastName.value,
+        motherLastName: this.formGroup.controls.beneficiaryMoLastName.value,
+        relationship: this.formGroup.controls.beneficiaryRelationshipP.value,
+        birthDateOrConstitution: transformDate(this.formGroup.controls.beneficiaryBirthDate.value, 'YYYY/MM/DD'),
+        address: {
+          street: this.formGroup.controls.beneficiaryStreet.value,
+          exteriorNumber: this.formGroup.controls.beneficiaryExteriorNumber.value,
+          interiorNumber: this.formGroup.controls.beneficiaryInteriorNumber.value,
+          zipCode: this.formGroup.controls.beneficiaryZipCode.value,
+          neighborhood: this.formGroup.controls.beneficiarySuburb.value,
+          municipality: this.formGroup.controls.beneficiaryMunicipality.value,
+          state: this.formGroup.controls.beneficiaryState.value,
+          city: this.formGroup.controls.beneficiaryCity.value,
+          country: this.formGroup.controls.beneficiaryCountry.value,
+        },
+        participationPercentage: this.formGroup.controls.participationPercentageP.value,
+      };
+    } else if (this.beneficiaryType === 'morPerson') {
+      return {
+        ...newBeneficiaryBase,
+        businessName: this.formGroup.controls.beneficiaryBusinessName.value,
+        relationship: this.formGroup.controls.beneficiaryRelationshipM.value,
+        birthDateOrConstitution: transformDate(this.formGroup.controls.beneficiaryConstitutionDate.value, 'YYYY/MM/DD'),
+        address: {
+          street: this.formGroup.controls.beneficiaryStreetM.value,
+          exteriorNumber: this.formGroup.controls.beneficiaryExteriorNumberM.value,
+          interiorNumber: this.formGroup.controls.beneficiaryInteriorNumberM.value,
+          zipCode: this.formGroup.controls.beneficiaryZipCodeM.value,
+          neighborhood: this.formGroup.controls.beneficiarySuburbM.value,
+          municipality: this.formGroup.controls.beneficiaryMunicipalityM.value,
+          state: this.formGroup.controls.beneficiaryStateM.value,
+          city: this.formGroup.controls.beneficiaryCityM.value,
+          country: this.formGroup.controls.beneficiaryCountryM.value,
+        },
+        participationPercentage: this.formGroup.controls.participationPercentageM.value,
+      };
+    } else if (this.beneficiaryType === 'fidPerson') {
+      return {
+        ...newBeneficiaryBase,
+        suspensiveCondition: this.formGroup.controls.suspensiveCondition.value,
+        contractNumber: this.formGroup.controls.contractNumber.value,
+        instructionLetterNumber: this.formGroup.controls.instructionLetterNumber.value,
+        relationship: this.formGroup.controls.beneficiaryRelationshipF.value,
+        birthDateOrConstitution: transformDate(this.formGroup.controls.beneficiaryConstitutionDateF.value, 'YYYY/MM/DD'),
+        address: {
+          street: this.formGroup.controls.beneficiaryStreetF.value,
+          exteriorNumber: this.formGroup.controls.beneficiaryExteriorNumberF.value,
+          interiorNumber: this.formGroup.controls.beneficiaryInteriorNumberF.value,
+          zipCode: this.formGroup.controls.beneficiaryZipCodeF.value,
+          neighborhood: this.formGroup.controls.beneficiarySuburbF.value,
+          municipality: this.formGroup.controls.beneficiaryMunicipalityF.value,
+          state: this.formGroup.controls.beneficiaryStateF.value,
+          city: this.formGroup.controls.beneficiaryCityF.value,
+          country: this.formGroup.controls.beneficiaryCountryF.value,
+        },
+        participationPercentage: this.formGroup.controls.participationPercentageF.value,
+      };
+    }
   }
 
   mapBeneficiaryData() {
@@ -205,7 +262,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
   fileChange(event) {
     console.log('event.target.files: ', event.target.files);
-    let fileList = event.target.files;
+    const fileList = event.target.files;
     if (fileList.length > 0) {
       this.fileNameUpload = fileList[0].name;
     }
@@ -227,5 +284,48 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           error => console.log(error)
         )
     }*/
+  }
+
+  setUpFormFields() {
+    let fields = [];
+
+    NewBeneficiaryFields.forEach((field) => {
+      fields.push(field);
+    });
+
+    BeneficiaryFieldsP.forEach((field) => {
+      fields.push(field);
+    });
+    BeneficiaryFieldsM.forEach((field) => {
+      fields.push(field);
+    });
+
+    BeneficiaryFieldsF.forEach((field) => {
+      fields.push(field);
+    });
+    return fields;
+  }
+
+  getFields() {
+    let fields = [];
+
+    NewBeneficiaryFields.forEach((field) => {
+      fields.push(field);
+    });
+
+    if (this.beneficiaryType === 'phyPerson') {
+      BeneficiaryFieldsP.forEach((field) => {
+        fields.push(field);
+      });
+    } else if (this.beneficiaryType === 'morPerson') {
+      BeneficiaryFieldsM.forEach((field) => {
+        fields.push(field);
+      });
+    } else if (this.beneficiaryType === 'fidPerson') {
+      BeneficiaryFieldsF.forEach((field) => {
+        fields.push(field);
+      });
+    }
+    return fields;
   }
 }

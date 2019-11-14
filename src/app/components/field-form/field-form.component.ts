@@ -24,7 +24,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   toggleVisible = true;
   datePickerClicked = false;
   show = true;
-  valid = true;
   disable: boolean;
 
   constructor(private applicationService: ApplicationService,
@@ -35,30 +34,22 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    // console.log('fieldObject: ', this.fieldObj);
     if (this.fieldObj.type === 'radio' || this.fieldObj.type === 'select'
       || this.fieldObj.type === 'checkbox' || this.fieldObj.type === 'select-multiple') {
       this.getOptions();
     }
-    // this.form = this.applicationService.getFormGroup();
     if (this.fieldObj.type === 'select' && this.fieldObj.value) {
-      // console.log('...aqui');
-      // console.log('value: ', this.fieldObj.value);
       this.showSelectLabel = true;
     }
 
     if (this.fieldObj.renderConditions) {
       const renderConditions = this.applicationService.getConditions(this.fieldObj.renderConditions);
-      // console.log('----from Field----');
-      // console.log('renderConditions: ', renderConditions);
-      // console.log('renderConditions[0][1]: ', renderConditions[0][1]);
-      // console.log('this.form: field component: ', this.form);
+
       this.show = this.applicationService.evaluateCondition(this.form, renderConditions[0]);
       this.form.controls[renderConditions[0][1]].valueChanges.subscribe((value) => {
         console.log('onValueChanges: ', value);
         console.log('formControl : ', renderConditions[0][1]);
         this.show = this.applicationService.evaluateCondition(this.form, renderConditions[0]);
-        // console.log('show: after: ', this.show);
       });
     }
 
@@ -79,9 +70,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       this.disable = this.checkState();
       this.form.controls[this.fieldObj.name].valueChanges.subscribe(() => {
         this.disable = this.checkState();
-        // console.log('onValueChanges disable: ', this.disable);
       });
-      // console.log('disable: ', this.disable);
     }
 
     if (this.fieldObj.name === 'age' || this.fieldObj.name === 'ageS') {
@@ -90,13 +79,19 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         this.isValid(this.fieldObj.name);
       });
     }
+
+    this.fieldObj.valid = true;
+
+    this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
+      console.log('onValueChanges value: ', value);
+      console.log('formControlName: ', this.fieldObj.name);
+      this.isValid();
+    });
   }
 
   ngAfterViewInit() {
     const currentValue = this.form.controls[this.fieldObj.name].value;
-    // console.log('value: ', currentValue);
     const defaultValue = this.fieldObj.value;
-    // console.log('defaultValue: ', defaultValue);
 
     if (this.fieldObj.type === 'text') {
       const elem: Element = document.getElementById(this.fieldObj.idHtml);
@@ -106,9 +101,11 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         if (this.fieldObj.value) { // set default value from configuration
           valueToSet = this.fieldObj.value;
           elem.setAttribute('value', valueToSet);
+          this.form.controls[this.fieldObj.name].setValue(valueToSet);
         } else if (this.form.controls[this.fieldObj.name].value) { // set value from an older capture
           valueToSet = this.form.controls[this.fieldObj.name].value;
           elem.setAttribute('value', valueToSet);
+          this.form.controls[this.fieldObj.name].setValue(valueToSet);
         }
       }
     }
@@ -118,6 +115,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onKeyUp(event) {
+    console.log('onKeyUp event: ', event);
     let value;
     value = event.target.value;
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
@@ -125,7 +123,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     elem.setAttribute('value', event.target.value);
     this.form.controls[this.fieldObj.name].setValue(event.target.value);
 
-    console.log('value.length: ', value.length);
+    // console.log('value.length: ', value.length);
     if (this.fieldObj.name === 'rfc' || this.fieldObj.name === 'rfcS') {
       if (value.length === 10 && event.key !== 'Backspace') { // calculate rfc when the user capture the first 10 characters
         const calcRFC = this.calculateRFC();
@@ -135,6 +133,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         }
       }
     }
+
+    if (value) {
+      this.isValid();
+    }
   }
 
   fileChange(event) {
@@ -142,9 +144,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onChange(event) {
-    console.log('onChange: ', event.target.value);
-    console.log('formControlName: ', this.fieldObj.name);
-    // this.isValid();
+    console.log('onChange event.target.value: ', event.target.value);
+    // console.log('formControlName: ', this.fieldObj.name);
+    this.isValid();
+
   }
 
   onBlur() {
@@ -185,6 +188,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     } else {
       this.showSelectLabel = true;
     }
+
+    if (event.target.value) {
+      this.isValid();
+    }
+
+    this.isValid();
   }
 
   getOptions() {
@@ -229,29 +238,29 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   isValid(formControlName?) {
     // console.log('onIsValid value: ', this.form.controls[this.fieldObj.name].value);
     if (formControlName) {
-      console.log('formControlName: ', formControlName);
-      console.log('before valid: ', this.valid);
 
       const validateAgeResult = validateAge(this.form.controls[formControlName]);
 
-      console.log('validateAgeResult: ', validateAgeResult);
-
       if (validateAgeResult) {
-        this.valid = false;
+        this.fieldObj.valid = false;
+        // this.valid;
       } else {
-        this.valid = true;
+        this.fieldObj.valid = true;
+        // this.valid = true;
       }
 
-      console.log('after valid: ', this.valid);
-      console.log('errors: ', this.form.controls[formControlName].errors);
-
     } else {
-      console.log('this.fieldObj.name: ', this.fieldObj.name);
-      this.valid =  this.form.controls[this.fieldObj.name].valid;
-      console.log('valid: ', this.valid);
+      // this.valid =  this.form.controls[this.fieldObj.name].valid;
+      this.fieldObj.valid =  this.form.controls[this.fieldObj.name].valid;
     }
-    // this.valid =  this.form.controls[this.fieldObj.name].valid;
-    // console.log('errors: ', this.form.controls[this.fieldObj.name].errors);
+
+    // console.log('this.valid: ', this.valid);
+    console.log('errors: ', this.form.controls[this.fieldObj.name].errors);
+    console.log('this.valid: ', this.fieldObj.valid);
+    if (this.fieldObj.value === false) {
+      console.log('herrrrreeeeeeeeee');
+    }
+
   }
 
   registerCustomIcons() {
