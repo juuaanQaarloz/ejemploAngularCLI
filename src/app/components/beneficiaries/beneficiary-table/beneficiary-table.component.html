@@ -8,12 +8,13 @@
 
   </div>
 
-  <app-beneficiary-item *ngFor="let beneficiary of items; let i = index; last as isLast"
-                        [beneficiary]="beneficiary"
+  <app-beneficiary-item *ngFor="let item of items; let i = index; last as isLast"
+                        [item]="item"
+                        [itemType]="itemsType"
                         [index]="i"
                         [isLast]="isLast"
-                        [totalBeneficiaries]="items.length"
-                        [totalParticipationPercentageBeneficiary]="totalPercentageParticipation">
+                        [totalItems]="items.length"
+                        [totalParticipationPercentageItems]="totalPercentageParticipation">
 
   </app-beneficiary-item>
 

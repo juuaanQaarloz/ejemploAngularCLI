@@ -1,12 +1,13 @@
-<div class="beneficiary-row" [ngStyle]="{'background-color':  this.applicationService.determinateEvenOrOdd(index) ? '#E5F4FB': '#FFFFFF'}">
-  <div class="beneficiary-attribute">{{getBeneficiaryTypeLabel()}}</div>
-  <div class="beneficiary-attribute"
-       *ngIf="beneficiary.beneficiaryType === 'phyPerson'">{{beneficiary.name + ' ' + beneficiary.fatherLastName + ' ' + beneficiary.motherLastName}}</div>
-  <div class="beneficiary-attribute"
-       *ngIf="beneficiary.beneficiaryType === 'morPerson' || beneficiary.beneficiaryType === 'fidPerson'">{{beneficiary.businessName}}</div>
-  <div class="beneficiary-attribute">{{beneficiary.birthDateOrConstitution}}</div>
+<div [ngClass]="styleClass"
+     [ngStyle]="{'background-color':  this.applicationService.determinateEvenOrOdd(index) ? '#E5F4FB': '#FFFFFF'}">
+    <div *ngIf="itemType === 'beneficiary'" class="item-attribute">{{getBeneficiaryTypeLabel()}}</div>
+    <div class="item-attribute"
+         *ngIf="itemType === 'beneficiary' && item.beneficiaryType === 'phyPerson'" >{{item.name + ' ' + item.fatherLastName + ' ' + item.motherLastName}}</div>
+    <div class="item-attribute"
+         *ngIf="itemType === 'beneficiary' && (item.beneficiaryType === 'morPerson' || item.beneficiaryType === 'fidPerson')">{{item.businessName}}</div>
+    <div class="item-attribute" *ngIf="itemType === 'beneficiary'">{{item.birthDateOrConstitution}}</div>
 
-  <div class="beneficiary-attribute" *ngFor="let field of fields">
+  <div class="item-attribute" *ngFor="let field of fields">
     <app-field-form [fieldObj]="field" [form]="formGroup"></app-field-form>
     {{field.value}}
   </div>
@@ -14,12 +15,12 @@
   <div class="operations">
     <div>
       <img class="icon-delete" (click)="openModal(modalId)">
-      <img class="icon-edit" (click)="editBeneficiary()">
+      <img class="icon-edit" (click)="editItem()">
     </div>
-    <div *ngIf="isLast && totalBeneficiaries < 10 && totalParticipationPercentageBeneficiary < 100"><img src="../../../../assets/img/tables/plus_simbol.svg" (click)="addNewBeneficiary()">
+    <div *ngIf="isLast && totalItems < maxItems && totalParticipationPercentageItems < 100">
+      <img src="../../../../assets/img/tables/plus_simbol.svg" (click)="addNewItem()">
     </div>
   </div>
-
 </div>
 
 <jw-modal [id]="modalId" [modalType]="'overlay'">
@@ -27,7 +28,7 @@
     <div style="text-align: right">
       <img class="button-close" (click)="closeModal(modalId)">
     </div>
-    <p>¿Está seguro que desea eliminar al beneficiario de la lista?</p>
+    <p>{{questionModal}}</p>
 
     <div class="operation-modal">
       <app-operation-form *ngFor="let operation of operations" [operationObj]="operation"

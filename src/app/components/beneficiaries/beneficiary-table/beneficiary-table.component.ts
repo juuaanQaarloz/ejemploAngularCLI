@@ -3,6 +3,7 @@ import {ApplicationService} from '../../../core/services';
 import {NewBeneficiaryComponent} from '../new-beneficiary/new-beneficiary.component';
 import {DialogService} from '../../dialog/dialog.service';
 import {Field} from '../../../models';
+import {NewAgentComponent} from '../new-agent/new-agent.component';
 
 const FIELDS: Field[] = [
   {
@@ -47,6 +48,7 @@ export class BeneficiaryTableComponent implements OnInit {
   title;
   columnsNames;
   items = [];
+  itemsType;
   content: any;
   totalPercentageParticipation = 0;
   style;
@@ -62,6 +64,8 @@ export class BeneficiaryTableComponent implements OnInit {
       this.columnsNames = ['Tipo de Beneficiario', 'Nombre / Razón social', 'Fecha de nacimiento / constitución', 'Parentesco',
         'Porcentaje de participación',
       ];
+
+      this.itemsType = 'beneficiary';
 
       this.content = {
         id: 'content-2.21',
@@ -90,7 +94,13 @@ export class BeneficiaryTableComponent implements OnInit {
       this.columnsNames = ['Nombre', 'Promotoría', 'Clave', 'Participación'
       ];
 
+      this.itemsType = 'agent';
       this.style = 'even-agent';
+
+      this.applicationService.agents.subscribe((value) => {
+        this.items = value;
+        this.totalPercentageParticipation = this.applicationService.getTotalParticipationPercentage('agent');
+      });
     }
 
     const cssClass = document.getElementsByClassName('even');
@@ -100,10 +110,16 @@ export class BeneficiaryTableComponent implements OnInit {
   }
 
   addNewItem() {
+    let ref;
     if (this.type === 'table-beneficiary') {
-      const ref = this.dialog.open(NewBeneficiaryComponent, {data: null});
+      ref = this.dialog.open(NewBeneficiaryComponent, {data: null});
       ref.afterClosed.subscribe((result) => {
         console.log('dialog closed FROM BENEFICIARY TABLE, result: ', result);
+      });
+    } else if (this.type === 'table-agent') {
+      ref = this.dialog.open(NewAgentComponent, {data: null});
+      ref.afterClosed.subscribe((result) => {
+        console.log('dialog closed FROM AGENT TABLE, result: ', result);
       });
     }
   }

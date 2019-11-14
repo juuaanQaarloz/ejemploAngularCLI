@@ -1,23 +1,13 @@
 <!--Drawer Container-->
 <div class="drawer-container">
   <div>
+    <p class="content-title"> Datos del Agente</p>
     <div data-forms="floating-label" class="ml-form"
          [ngClass]="content.styleClass">
-      <div *ngFor="let field of fields">
+      <div *ngFor="let field of content.fields">
         <app-field-form [fieldObj]="field" [form]="formGroup"></app-field-form>
       </div>
-
-      <label *ngIf="this.formGroup.controls.beneficiaryType.value === 'fidPerson'">{{fileNameUpload}}</label>
-
-      <app-operation-form [operationObj]="content.operations[3]" [form]="formGroup"
-                          (click)="fileInput.click()">
-
-        <input #fileInput type="file" accept=".pdf" (change)="fileChange($event)" style="display:none;" />
-
-      </app-operation-form>
     </div>
-    <!--<app-content-form [contentObj]="content" [form]="applicationService.getFormGroup()">
-    </app-content-form>-->
   </div>
 
   <div *ngIf="content.operations" class="operation">

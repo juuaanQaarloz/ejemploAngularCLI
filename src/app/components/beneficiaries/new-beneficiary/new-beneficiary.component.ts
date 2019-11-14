@@ -125,28 +125,28 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
       let value;
       switch (field.name) {
         case 'beneficiaryType':
-          value = this.config.data.beneficiary.beneficiaryType;
+          value = this.config.data.item.beneficiaryType;
           break;
         case 'beneficiaryName':
-          value = this.config.data.beneficiary.name;
+          value = this.config.data.item.name;
           break;
         case 'beneficiaryFaLastName':
-          value = this.config.data.beneficiary.fatherLastName;
+          value = this.config.data.item.fatherLastName;
           break;
         case 'beneficiaryMoLastName':
-          value = this.config.data.beneficiary.motherLastName;
+          value = this.config.data.item.motherLastName;
           break;
         case 'suspensiveCodition':
-          value = this.config.data.beneficiary.suspensiveCondition;
+          value = this.config.data.item.suspensiveCondition;
           break;
         case 'contractNumber':
-          value = this.config.data.beneficiary.contractNumber;
+          value = this.config.data.item.contractNumber;
           break;
         case 'instructionLetterNumber':
-          value = this.config.data.beneficiary.instructionLetterNumber;
+          value = this.config.data.item.instructionLetterNumber;
           break;
         case 'beneficiaryRelationship':
-          value = this.config.data.beneficiary.instructionLetterNumber;
+          value = this.config.data.item.instructionLetterNumber;
           break;
         /*case 'beneficiaryBirthDate':
           value = this.config.data.beneficiary.birthDateOrConstitution;
@@ -230,7 +230,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
   mapBeneficiaryData() {
     return {
-      beneficiaryId: this.config.data.beneficiary.beneficiaryId,
+      beneficiaryId: this.config.data.item.beneficiaryId,
       beneficiaryType: this.formGroup.controls.beneficiaryType.value,
       name: this.formGroup.controls.beneficiaryName.value,
       fatherLastName: this.formGroup.controls.beneficiaryFaLastName.value,

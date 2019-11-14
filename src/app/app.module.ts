@@ -40,6 +40,7 @@ import { TableComponent } from './components/general-table/table/table.component
 import { ItemTableComponent } from './components/general-table/item-table/item-table.component';
 import { AddEditItemTableComponent } from './components/general-table/add-edit-item-table/add-edit-item-table.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { NewAgentComponent } from './components/beneficiaries/new-agent/new-agent.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     TableComponent,
     ItemTableComponent,
     AddEditItemTableComponent,
-    PaginationComponent
+    PaginationComponent,
+    NewAgentComponent
   ],
   imports: [
     BrowserModule,
@@ -83,7 +85,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     AppRoutingModule
   ],
   bootstrap: [AppComponent],
-  entryComponents: [NewBeneficiaryComponent],
+  entryComponents: [NewBeneficiaryComponent,
+                    NewAgentComponent],
   providers: [
     { provide: DateAdapter, useClass: MyDateAdapter},
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS}

@@ -7,6 +7,8 @@ import {DialogService} from '../../dialog/dialog.service';
 import {FormGroup} from '@angular/forms';
 import {ModalService} from '../../custom-modal';
 import {BeneficiaryItemOperations} from '../../../core/mock/mock-operations';
+import {NewAgentComponent} from '../new-agent/new-agent.component';
+import {AgentFields, AgentFieldsItem} from '../../../core/mock/mock-agents/mock-agents-questions';
 
 
 @Component({
@@ -15,16 +17,19 @@ import {BeneficiaryItemOperations} from '../../../core/mock/mock-operations';
   styleUrls: ['./beneficiary-item.component.css']
 })
 export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
-  @Input() beneficiary: Beneficiary;
+  @Input() item: any;
+  @Input() itemType: string;
   @Input() index: number;
   @Input() isLast: boolean;
-  @Input() totalBeneficiaries: number;
-  @Input() totalParticipationPercentageBeneficiary: number;
-  // @Input() content: Content;
-  fields = beneficiaryFields;
+  @Input() totalItems: number;
+  @Input() totalParticipationPercentageItems: number;
+  fields;
   formGroup: FormGroup;
   modalId;
   operations = BeneficiaryItemOperations;
+  questionModal;
+  maxItems;
+  styleClass;
 
   constructor(public applicationService: ApplicationService,
               public dialog: DialogService,
@@ -32,40 +37,70 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    if (this.itemType === 'beneficiary') {
+      this.fields = beneficiaryFields;
+      this.operations = BeneficiaryItemOperations;
+      this.questionModal = '¿Está seguro que desea eliminar al beneficiario de la lista?';
+      this.maxItems = 10;
+      this.styleClass = 'item-row-beneficiary';
+    } else if (this.itemType === 'agent') {
+      this.fields = AgentFieldsItem;
+      this.operations = BeneficiaryItemOperations;
+      this.questionModal = '¿Está seguro que desea eliminar al agente de la lista?';
+      this.maxItems = 2;
+      this.styleClass = 'item-row-agent';
+    }
+
     this.formGroup = this.applicationService.createNewFormGroup(this.fields);
-    // console.log('formGroup: ', this.formGroup);
-    // this.clearFields();
     this.setFieldsValues();
-    this.modalId = 'modal-' + this.beneficiary.beneficiaryId;
+    this.modalId = 'modal-' + this.itemType + this.index;
 
   }
 
   ngAfterViewInit(): void {
   }
 
-  addNewBeneficiary() {
-    const ref = this.dialog.open(NewBeneficiaryComponent, {data: null});
+  addNewItem() {
+    let ref;
+    if (this.itemType === 'beneficiary') {
+      ref = this.dialog.open(NewBeneficiaryComponent, {data: null});
+    } else if (this.itemType === 'agent') {
+      ref = this.dialog.open(NewAgentComponent, {data: null});
+    }
+
     ref.afterClosed.subscribe((result) => {
-      console.log('dialog closed FROM BENEFICIARY ITEM, result: ', result);
+      console.log('dialog closed FROM ITEM component, result: ', result);
     });
   }
 
-  deleteBeneficiary() {
-   this.applicationService.removeItem(this.beneficiary.beneficiaryId, 'beneficiary');
-   this.closeModal(this.modalId);
+  deleteItem() {
+    let propertyItem;
+    if (this.itemType === 'beneficiary') {
+      propertyItem = 'beneficiaryId';
+    } else if (this.itemType === 'agent') {
+      propertyItem = 'agentId';
+    }
+    this.applicationService.removeItem(this.item[propertyItem], this.itemType);
+    this.closeModal(this.modalId);
   }
 
-  editBeneficiary() {
-    const ref = this.dialog.open(NewBeneficiaryComponent, {data: { beneficiary: this.beneficiary}});
+  editItem() {
+    let ref;
+    if (this.itemType === 'beneficiary') {
+      ref = this.dialog.open(NewBeneficiaryComponent, {data: {item: this.item}});
+    } else if (this.itemType === 'agent') {
+      ref = this.dialog.open(NewAgentComponent, {data: {item: this.item}});
+    }
+
     ref.afterClosed.subscribe((result) => {
       console.log('dialog closed FROM BENEFICIARY ITEM, result: ', result);
     });
   }
 
   getBeneficiaryTypeLabel() {
-    if (this.beneficiary.beneficiaryType === 'phyPerson') {
+    if (this.item.beneficiaryType === 'phyPerson') {
       return 'Persona física';
-    } else if (this.beneficiary.beneficiaryType === 'morPerson') {
+    } else if (this.item.beneficiaryType === 'morPerson') {
       return 'Persona moral';
     } else {
       return 'MetLife fiduciaria';
@@ -73,10 +108,15 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   }
 
   setFieldsValues() {
-    this.formGroup.controls[this.fields[0].name].setValue(this.beneficiary.relationship);
-    this.formGroup.controls[this.fields[1].name].setValue(this.beneficiary.participationPercentage);
-    // this.fields[0].value = this.beneficiary.relationship;
-    // this.fields[1].value = this.beneficiary.participationPercentage;
+    if (this.itemType === 'beneficiary') {
+      this.formGroup.controls[this.fields[0].name].setValue(this.item.relationship);
+      this.formGroup.controls[this.fields[1].name].setValue(this.item.participationPercentage);
+    } else if (this.itemType === 'agent') {
+      this.formGroup.controls[this.fields[0].name].setValue(this.item.name);
+      this.formGroup.controls[this.fields[1].name].setValue(this.item.promotor);
+      this.formGroup.controls[this.fields[2].name].setValue(this.item.key);
+      this.formGroup.controls[this.fields[3].name].setValue(this.item.participation);
+    }
   }
 
   clearFields() {
@@ -99,7 +139,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
     if (delegateOperation === 'closeModal') {
       this.closeModal(this.modalId);
     } else if (delegateOperation === 'deleteBeneficiary') {
-      this.deleteBeneficiary();
+      this.deleteItem();
     }
   }
 }

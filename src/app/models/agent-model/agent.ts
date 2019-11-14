@@ -3,5 +3,5 @@ export interface Agent {
   name: string;
   promotor: string;
   key: string;
-  participationPercentage: string;
+  participation: string;
 }

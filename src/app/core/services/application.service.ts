@@ -182,19 +182,22 @@ export class ApplicationService {
     let maxLength;
     let responseMessage1;
     let responseMessage2;
+    let propertyName;
     if (itemType === 'beneficiary') {
       currentItems = this.beneficiaries.getValue();
       maxLength = 10;
       responseMessage1 = 'No se pueden agregar más de 10 beneficiarios';
       responseMessage2 = 'La suma de las participaciones de los beneficiarios excede el 100%';
+      propertyName = 'participationPercentage';
     } else if (itemType === 'agent') {
       currentItems = this.agents.getValue();
       maxLength = 2;
       responseMessage1 = 'No se pueden agregar más de 2 agentes';
       responseMessage2 = 'La suma de las participaciones de los agentes excede el 100%';
+      propertyName = 'participation';
     }
 
-    if (currentTotalParticipationPercentage + Number(newItem.participationPercentage) <= 100) {
+    if (currentTotalParticipationPercentage + Number(newItem[propertyName]) <= 100) {
       if (currentItems.length <= maxLength) {
         // the new beneficiary can be added
         currentItems.push(newItem);
@@ -268,14 +271,17 @@ export class ApplicationService {
   getTotalParticipationPercentage(itemType: string) {
     let totalParticipationPercentage = 0;
     let currentItems;
+    let propertyItem;
     if (itemType === 'beneficiary') {
       currentItems = this.beneficiaries.getValue();
+      propertyItem = 'participationPercentage';
     } else if (itemType === 'agent') {
-      currentItems. this.agents.getValue();
+      currentItems = this.agents.getValue();
+      propertyItem = 'participation';
     }
 
     currentItems.forEach((item) => {
-      totalParticipationPercentage = totalParticipationPercentage + Number(item.participationPercentage);
+      totalParticipationPercentage = totalParticipationPercentage + Number(item[propertyItem]);
     });
 
     return totalParticipationPercentage;
