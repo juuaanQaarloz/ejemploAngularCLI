@@ -638,14 +638,16 @@ export const MockContentStep16Process1ContentSection2: Content[] = [
     // --------------------------
   },
   {
-    id: 'content-16.2',
+    id: 'content-16.21',
     idParent: 'step-16',
     parentType: 'Step',
-    idHtml: 'app-content-form-16.2',
+    idHtml: 'app-content-form-2.21',
     title: 'Beneficios adicionales',
+    description: '',
+    contentType: 'table-formatwo',
     // process?: Process;
-    fields: Plan2,
-    //  operations: SearchOccupationOperationsS,
+    // fields: Beneficiarios,
+    // operations?: Operation[];
     renderConditions: '',
     // ---pending---
     // contentChildren?: Array<Content>;
@@ -653,9 +655,8 @@ export const MockContentStep16Process1ContentSection2: Content[] = [
 
     // --added extra from model--
     showContent: true,
-    contentType: 'looseFields'
-    // enableConditions?: 'string';
-    // styleClass?: 'string';
+    // enableConditions?: 'publicFunctionQuestion=true',
+    styleClass: 'modal-type'
     // --------------------------
   },
   {
