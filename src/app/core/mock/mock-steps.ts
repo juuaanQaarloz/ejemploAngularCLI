@@ -1,13 +1,13 @@
 import {Step} from '../../models';
 import {
-  MockContentStep17Process1ContentSection2, MockContentStep18Process1ContentSection2, MockContentStep19Process1ContentSection2,
   MockContentStep1Process1ContentSection2,
   MockContentStep2Process1ContentSection2,
   MockContentStep3Process1ContentSection2,
   MockContentStep4Process1ContentSection2,
   MockContentStep5Process1ContentSection2,
   MockContentStep6Process1ContentSection2,
-  MockContentStep7Process1ContentSection2, MockContentStep8Process1ContentSection2
+  MockContentStep7Process1ContentSection2,
+  MockContentStep8Process1ContentSection2
 } from './mock-contents';
 
 export const MockStepsProcessContentSection2: Step[] = [

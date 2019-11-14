@@ -7,7 +7,7 @@ import {BeneficiariesOperations} from '../../../core/mock/mock-operations';
 import {FormGroup} from '@angular/forms';
 import {transformDate} from '../../../core/utilities';
 import {ModalService} from '../../custom-modal';
-import {Beneficiary, Operation} from '../../../models';
+import {Operation} from '../../../models';
 import {BeneficiaryFieldsP} from '../../../core/mock/mock-beneficiaries/phy-beneficiary';
 import {BeneficiaryFieldsM} from '../../../core/mock/mock-beneficiaries/mor-beneficiary';
 import {BeneficiaryFieldsF} from '../../../core/mock/mock-beneficiaries/fid-beneficiary';

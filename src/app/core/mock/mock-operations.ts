@@ -14,6 +14,7 @@ export const MockOperations: Operation[] = [
     delegateOperation: 'closeStep',
     renderConditions: '',
     enableConditions: '',
+    delegateOperationParameters: null,
   },
   {
     id: '2',

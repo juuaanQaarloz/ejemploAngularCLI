@@ -11,4 +11,6 @@ export interface Operation {
   styleClass: string;
   message: string;
   messageClass: string;
+  /*added extra of original model*/
+  delegateOperationParameters?: any;
 }

@@ -62,5 +62,4 @@ export class StepFormComponent implements OnInit {
     this.accordionExpanded = false;
     this.applicationService.changeValue(this.index + 1);
   }
-
 }

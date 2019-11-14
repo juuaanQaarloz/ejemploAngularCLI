@@ -6,6 +6,7 @@ import {DialogService} from '../dialog/dialog.service';
 import {ModalService} from '../custom-modal';
 import * as jsPDF from 'jspdf';
 import {pdfOperation} from '../../core/mock/mock-operations';
+import {Template} from '../../models/template';
 
 @Component({
   selector: 'app-application',
@@ -13,7 +14,7 @@ import {pdfOperation} from '../../core/mock/mock-operations';
   styleUrls: ['./application.component.css'],
 })
 export class ApplicationComponent implements OnInit {
-  applicationObj = MockTemplate;
+  applicationObj: Template;
   payLoad = '';
   formGroup: FormGroup;
   @ViewChild('content', {static: false}) content: ElementRef;
@@ -29,6 +30,8 @@ export class ApplicationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.appService.setApplicationObject(MockTemplate);
+    this.applicationObj = this.appService.getApplicationObject();
     this.formGroup = this.appService.toFormGroup(this.applicationObj);
     this.appService.setFormGroup(this.formGroup);
     // an example array of 150 items to be paged
@@ -110,40 +113,6 @@ export class ApplicationComponent implements OnInit {
         }
       });
 
-    });
-  }
-
-  validateFormByStep(stepID: string) {
-    this.applicationObj.sections.forEach(section => {
-      section.contents.forEach((contentFromSection) => {
-        if (contentFromSection.process) {
-          contentFromSection.process.steps.forEach(step => {
-            if (step.id === stepID) {
-              step.contents.forEach((contentFromStep) => {
-                if (contentFromStep.fields) {
-                  contentFromStep.fields.forEach(field => {
-                    field.valid = this.formGroup.controls[field.name].valid;
-                    console.log('formControlName: ', field.name);
-                    console.log('valid: ', field.valid);
-                  });
-                } else {
-                  if (contentFromStep.contentChildren) {
-                    contentFromStep.contentChildren.forEach(contentChild => {
-                      if (contentChild.fields) {
-                        contentChild.fields.forEach(field => {
-                          field.valid = this.formGroup.controls[field.name].valid;
-                          console.log('formControlName: ', field.name);
-                          console.log('valid: ', field.valid);
-                        });
-                      }
-                    });
-                  }
-                }
-              });
-            }
-          });
-        }
-      });
     });
   }
 }
