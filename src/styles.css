@@ -899,8 +899,15 @@ select::-ms-expand {
 
 .even {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
   background-color: #FFFFFF;
+}
+
+.even-beneficiary {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.even-agent {
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .even-occupation {

@@ -1,6 +1,9 @@
 import {Step} from '../../models';
 import {
-  MockContentStep1Process1ContentSection2,
+  MockContentStep17Process1ContentSection2,
+  MockContentStep18Process1ContentSection2,
+  MockContentStep19Process1ContentSection2,
+  MockContentStep1Process1ContentSection2, MockContentStep20Process1ContentSection2,
   MockContentStep2Process1ContentSection2,
   MockContentStep3Process1ContentSection2,
   MockContentStep4Process1ContentSection2,
@@ -115,7 +118,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     /*added extra from model*/
     isCompleted: false,
     show: true
-  }/*,
+  },
   {
     id: '17',
     idProcess: 'process-1',
@@ -151,5 +154,17 @@ export const MockStepsProcessContentSection2: Step[] = [
     nextStep: '20',
     isCompleted: false,
     show: true
-  }*/
+  },
+  {
+    id: '20',
+    idProcess: 'process-1',
+    idHtml: 'app-step-form-20',
+    title: 'Información del agente (para aspectos internos de MetLife)',
+    contents: MockContentStep20Process1ContentSection2,
+    renderConditions: '',
+    previousStep: '19',
+    nextStep: '21',
+    isCompleted: false,
+    show: true
+  }
 ];

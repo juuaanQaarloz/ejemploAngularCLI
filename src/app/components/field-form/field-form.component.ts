@@ -82,11 +82,11 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     this.fieldObj.valid = true;
 
-    this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
+    /*this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
       console.log('onValueChanges value: ', value);
       console.log('formControlName: ', this.fieldObj.name);
       this.isValid();
-    });
+    });*/
   }
 
   ngAfterViewInit() {

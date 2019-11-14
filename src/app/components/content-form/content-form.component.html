@@ -15,6 +15,10 @@
     <div *ngSwitchCase="'table-beneficiary'" class="ml-step-container">
       <app-beneficiary-table [type]="contentObj.contentType"></app-beneficiary-table>
     </div>
+
+    <div *ngSwitchCase="'table-agent'" class="ml-step-container">
+      <app-beneficiary-table [type]="contentObj.contentType"></app-beneficiary-table>
+    </div>
   </div>
 
   <p *ngIf="contentObj.warningMessage">{{contentObj.warningMessage}}</p>

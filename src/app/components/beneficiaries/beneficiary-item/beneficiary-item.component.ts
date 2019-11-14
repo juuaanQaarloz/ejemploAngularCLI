@@ -51,7 +51,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   }
 
   deleteBeneficiary() {
-   this.applicationService.removeBeneficiary(this.beneficiary.beneficiaryId);
+   this.applicationService.removeItem(this.beneficiary.beneficiaryId, 'beneficiary');
    this.closeModal(this.modalId);
   }
 

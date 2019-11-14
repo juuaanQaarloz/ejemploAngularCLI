@@ -21,6 +21,7 @@ export class ApplicationService {
   private currentStepSource = new BehaviorSubject(0);
   currentValue = this.currentStepSource.asObservable();
   beneficiaries = new BehaviorSubject([]);
+  agents = new BehaviorSubject([]);
   formGroup: FormGroup;
   searchModalFrom: string;
   applicationObj;
@@ -175,63 +176,117 @@ export class ApplicationService {
       );
   }
 
-  addBeneficiary(newBeneficiary: Beneficiary) {
-    const currentTotalParticipationPercentage = this.getTotalParticipationPercentage();
-    if (currentTotalParticipationPercentage + Number(newBeneficiary.participationPercentage) <= 100) {
-      const currentBeneficiaries = this.beneficiaries.getValue();
-      if (currentBeneficiaries.length <= 10) {
+  addItem(newItem, itemType: string) {
+    const currentTotalParticipationPercentage = this.getTotalParticipationPercentage(itemType);
+    let currentItems;
+    let maxLength;
+    let responseMessage1;
+    let responseMessage2;
+    if (itemType === 'beneficiary') {
+      currentItems = this.beneficiaries.getValue();
+      maxLength = 10;
+      responseMessage1 = 'No se pueden agregar más de 10 beneficiarios';
+      responseMessage2 = 'La suma de las participaciones de los beneficiarios excede el 100%';
+    } else if (itemType === 'agent') {
+      currentItems = this.agents.getValue();
+      maxLength = 2;
+      responseMessage1 = 'No se pueden agregar más de 2 agentes';
+      responseMessage2 = 'La suma de las participaciones de los agentes excede el 100%';
+    }
+
+    if (currentTotalParticipationPercentage + Number(newItem.participationPercentage) <= 100) {
+      if (currentItems.length <= maxLength) {
         // the new beneficiary can be added
-        currentBeneficiaries.push(newBeneficiary);
-        this.beneficiaries.next(currentBeneficiaries);
+        currentItems.push(newItem);
+        this.setItems(itemType, currentItems);
         return {status: true, message: ''};
       } else {
-        return {status: false, message: 'No se pueden agregar más de 10 beneficiarios'};
+        return {status: false, message: responseMessage1 };
       }
     } else {
-      return {status: false, message: 'La suma de las participaciones de los beneficiarios excede el 100%'};
+      return {status: false, message: responseMessage2 };
     }
   }
 
-  removeBeneficiary(beneficiaryId: string) {
-    let currentBeneficiaries = this.beneficiaries.getValue();
-    currentBeneficiaries = currentBeneficiaries.filter(beneficiary => beneficiary.beneficiaryId !== beneficiaryId);
-    this.beneficiaries.next(currentBeneficiaries);
+  removeItem(itemId: string, itemType: string) {
+    let currentItems;
+    let propertyName;
+    if (itemType === 'beneficiary') {
+      currentItems = this.beneficiaries.getValue();
+      propertyName = 'beneficiaryId';
+    } else if (itemType === 'agent') {
+      currentItems = this.agents.getValue();
+      propertyName = 'agentId';
+    }
+    currentItems = currentItems.filter(item => item[propertyName] !== itemId);
+    console.log('currentItems: ', currentItems);
+    this.setItems(itemType, currentItems);
   }
 
-  getLastBeneficiaryId() {
-    const currentBeneficiaries = this.beneficiaries.getValue();
-    const beneficiariesLength = currentBeneficiaries.length;
+  getLastItemId(itemType: string) {
     let lastId = 0;
-    if (beneficiariesLength > 1) {
-      lastId = Number(currentBeneficiaries[beneficiariesLength - 1].beneficiaryId);
+    let currentItems;
+    let propertyItem;
+
+    if (itemType === 'beneficiary') {
+      currentItems = this.beneficiaries.getValue();
+      propertyItem = 'beneficiaryId';
+    } else if (itemType === 'agent') {
+      currentItems = this.agents.getValue();
+      propertyItem = 'agentId';
+    }
+    const itemsLength = currentItems.length;
+    console.log('itemsLength: ', itemsLength);
+
+    if (itemsLength >= 1) {
+      lastId = Number(currentItems[itemsLength - 1][propertyItem]);
     }
     console.log('lastId: ', lastId);
     return lastId;
   }
 
-  updateBeneficiary(updatedBeneficiary: Beneficiary) {
-    const currentBeneficiaries = this.beneficiaries.getValue();
-    const findedBeneficiary = currentBeneficiaries.filter(b => b.beneficiaryId === updatedBeneficiary.beneficiaryId)[0];
-    console.log('findedBeneficiary: ', findedBeneficiary);
+  updateItem(updatedItem, itemType) {
+    let currentItems;
+    let propertyItem;
 
-    const index = currentBeneficiaries.findIndex((b) => b.beneficiaryId === updatedBeneficiary.beneficiaryId);
+    if (itemType === 'beneficiary') {
+      currentItems = this.beneficiaries.getValue();
+      propertyItem = 'beneficiaryId';
+    } else if (itemType === 'agent') {
+      currentItems = this.agents.getValue();
+      propertyItem = 'agentId';
+    }
+    const foundItem = currentItems.filter(i => i[propertyItem] === updatedItem[propertyItem])[0];
 
-    console.log('index: ', index);
+    const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
 
-    currentBeneficiaries[index] = updatedBeneficiary;
+    currentItems[index] = updatedItem;
 
-    console.log('updated Beneficiaries: ', currentBeneficiaries);
-
-    this.beneficiaries.next(currentBeneficiaries);
+    this.setItems(itemType, currentItems);
   }
 
-  getTotalParticipationPercentage() {
-    const currentBeneficiaries = this.beneficiaries.getValue();
+  getTotalParticipationPercentage(itemType: string) {
     let totalParticipationPercentage = 0;
-    currentBeneficiaries.forEach((beneficiary) => {
-      totalParticipationPercentage = totalParticipationPercentage + Number(beneficiary.participationPercentage);
+    let currentItems;
+    if (itemType === 'beneficiary') {
+      currentItems = this.beneficiaries.getValue();
+    } else if (itemType === 'agent') {
+      currentItems. this.agents.getValue();
+    }
+
+    currentItems.forEach((item) => {
+      totalParticipationPercentage = totalParticipationPercentage + Number(item.participationPercentage);
     });
+
     return totalParticipationPercentage;
+  }
+
+  setItems(itemType: string, newItems) {
+    if (itemType === 'beneficiary') {
+      this.beneficiaries.next(newItems);
+    } else if (itemType === 'agent') {
+      this.agents.next(newItems);
+    }
   }
 
   setFormGroup(form: FormGroup) {

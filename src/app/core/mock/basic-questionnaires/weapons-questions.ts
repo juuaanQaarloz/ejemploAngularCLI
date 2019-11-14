@@ -29,9 +29,44 @@ export const weaponsQuestions: Field[] = [
     entity: '',
     entityField: '',
     value: ''
-  },
+  }
+];
+
+export const weaponsFields: Field[] = [
   {
     id: 'field-140',
+    idHtml: 'textWeaponDescription',
+    name: 'weaponDescription',
+    orderAppearance: 1,
+    label: '¿Cuál?*',
+    type: 'text',
+    required: false,
+    placeholder: '',
+    length: '',
+    minValue: 0,
+    maxValue: 300,
+    pattern: '',
+    source: '',
+    sourceID: '',
+    style: '',
+    styleClass: '',
+    styleClassError: '',
+    message: 'El campo es obligatorio',
+    messageClass: '',
+    messageError: '',
+    messageErrorClass: '',
+    renderConditions: 'weaponsQuestion=true',
+    enableConditions: '',
+    requiredConditions: 'weaponsQuestion=true',
+    entity: '',
+    entityField: '',
+    value: ''
+  }
+];
+
+export const weaponsQuestions1: Field[] = [
+  {
+    id: 'field-141',
     idHtml: 'radioDangerWorkQuestion',
     name: 'radioDangerWorkQuestion',
     orderAppearance: 2,
@@ -62,9 +97,9 @@ export const weaponsQuestions: Field[] = [
   }
 ];
 
-export const weaponsFields: Field[] = [
+export const weaponsFields1: Field[] = [
   {
-    id: 'field-141',
+    id: 'field-142',
     idHtml: 'textDangerWorkName',
     name: 'dangerWorkName',
     orderAppearance: 1,
@@ -74,7 +109,7 @@ export const weaponsFields: Field[] = [
     placeholder: '',
     length: '',
     minValue: 0,
-    maxValue: 40,
+    maxValue: 300,
     pattern: '',
     source: '',
     sourceID: '',

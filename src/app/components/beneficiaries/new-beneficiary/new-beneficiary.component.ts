@@ -88,7 +88,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   addNewBeneficiary() {
     console.log('formGroup value: ', this.formGroup.value);
     const newBeneficiary = this.mapNewBeneficiaryData();
-    const response = this.applicationService.addBeneficiary((newBeneficiary));
+    const response = this.applicationService.addItem(newBeneficiary, 'beneficiary');
 
     if (response.status) {
       this.closeDialog();
@@ -100,7 +100,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
   updateBeneficiary() {
     const updatedBeneficiary = this.mapBeneficiaryData();
-    this.applicationService.updateBeneficiary(updatedBeneficiary);
+    this.applicationService.updateItem(updatedBeneficiary, 'beneficiary');
     this.closeDialog();
   }
 
@@ -160,7 +160,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
   mapNewBeneficiaryData() {
     const newBeneficiaryBase = {
-      beneficiaryId: (this.applicationService.getLastBeneficiaryId() + 1).toString(),
+      beneficiaryId: (this.applicationService.getLastItemId('beneficiary') + 1).toString(),
       beneficiaryType: this.formGroup.controls.beneficiaryType.value
     };
 

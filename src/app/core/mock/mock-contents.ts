@@ -11,8 +11,9 @@ import {DatosDomicilioSolicitante} from './mock-general-data/mock-domicilio-soli
 import {InformacionLaboralSolicitante, InformacionLaboralSolicitante1} from './mock-laboral-data/mock-informacion-laboral-solicitante';
 import {sportQuestions2, sportsFields1, sportsFields2, sportsQuestions1} from './basic-questionnaires/sports-aviation-hobbies';
 import {habitsQuestions} from './basic-questionnaires/habits';
-import {weaponsFields, weaponsQuestions} from './basic-questionnaires/weapons-questions';
+import {weaponsFields, weaponsFields1, weaponsQuestions, weaponsQuestions1} from './basic-questionnaires/weapons-questions';
 import {medicalFields, medicalQuestions} from './basic-questionnaires/medical';
+import {AgentQuestion, AgentQuestion1} from './mock-agents/mock-agents-questions';
 
 export const MockFieldsContractorType: Field[] = [
   {
@@ -575,6 +576,7 @@ export const MockContentStep7Process1ContentSection2: Content[] = [
 
     // --added extra from model--
     showContent: true,
+    styleClass: 'modal-type'
     // enableConditions?: 'string';
     // --------------------------
   },
@@ -583,6 +585,46 @@ export const MockContentStep7Process1ContentSection2: Content[] = [
     idParent: 'step-10',
     parentType: 'Step',
     idHtml: 'app-content-form-2.30',
+    contentType: 'looseFields',
+    // process?: Process;
+    fields: weaponsQuestions1,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    // enableConditions?: 'string';
+    styleClass: 'questions-type'
+    // --------------------------
+  },
+  {
+    id: 'content-2.31',
+    idParent: 'step-10',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.31',
+    contentType: 'looseFields',
+    // process?: Process;
+    fields: weaponsFields1,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    styleClass: 'modal-type'
+    // enableConditions?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-2.32',
+    idParent: 'step-10',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.32',
     title: '',
     // process?: Process;
     // fields: DatosDomicilio,
@@ -781,7 +823,7 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
   },
   {
     id: 'content-2.28',
-    idParent: 'step-17',
+    idParent: 'step-19',
     parentType: 'Step',
     idHtml: 'app-content-form-2.28',
     contentType: 'looseFields',
@@ -795,6 +837,70 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
 
     // --added extra from model--
     showContent: true
+    // enableConditions?: 'string';
+    // --------------------------
+  }
+];
+
+export const MockContentStep20Process1ContentSection2: Content[] = [
+  {
+    id: 'content-2.29',
+    idParent: 'step-20',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.29',
+    contentType: 'looseFields',
+    // process?: Process;
+    fields: AgentQuestion,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    styleClass: 'modal-type'
+    // enableConditions?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-2.30',
+    idParent: 'step-20',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.30',
+    contentType: 'looseFields',
+    // process?: Process;
+    fields: AgentQuestion1,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    styleClass: 'questions-type'
+    // enableConditions?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-2.31',
+    idParent: 'step-20',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.31',
+    contentType: 'table-agent',
+    title: 'Datos del Agente',
+    // process?: Process;
+    // fields: AgentQuestion1,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    styleClass: 'modal-type'
     // enableConditions?: 'string';
     // --------------------------
   }

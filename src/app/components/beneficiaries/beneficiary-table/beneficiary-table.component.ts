@@ -44,28 +44,12 @@ const FIELDS: Field[] = [
 })
 export class BeneficiaryTableComponent implements OnInit {
   @Input() type: string;
-  title = 'Datos de Beneficiario(s)';
-  columnsNames = ['Tipo de Beneficiario',
-    'Nombre / Razón social',
-    'Fecha de nacimiento / constitución',
-    'Parentesco',
-    'Porcentaje de participación',
-  ];
-  beneficiaries = [];
-
-  content = {
-    id: 'content-2.21',
-    idParent: 'step-7',
-    parentType: 'Step',
-    idHtml: 'app-content-form-2.21',
-    fields: FIELDS,
-    showContent: true,
-    styleClass: 'modal-type',
-    renderConditions: '',
-    contentType: 'looseFields'
-  };
-
+  title;
+  columnsNames;
+  items = [];
+  content: any;
   totalPercentageParticipation = 0;
+  style;
 
   constructor(public applicationService: ApplicationService,
               public dialog: DialogService) {
@@ -78,21 +62,49 @@ export class BeneficiaryTableComponent implements OnInit {
       this.columnsNames = ['Tipo de Beneficiario', 'Nombre / Razón social', 'Fecha de nacimiento / constitución', 'Parentesco',
         'Porcentaje de participación',
       ];
+
+      this.content = {
+        id: 'content-2.21',
+        idParent: 'step-7',
+        parentType: 'Step',
+        idHtml: 'app-content-form-2.21',
+        fields: FIELDS,
+        showContent: true,
+        styleClass: 'modal-type',
+        renderConditions: '',
+        contentType: 'looseFields'
+      };
+
+      this.style = 'even-beneficiary';
+
       this.content.fields.forEach((field) => {
         this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
       });
 
       this.applicationService.beneficiaries.subscribe((value) => {
-        this.beneficiaries = value;
-        this.totalPercentageParticipation = this.applicationService.getTotalParticipationPercentage();
+        this.items = value;
+        this.totalPercentageParticipation = this.applicationService.getTotalParticipationPercentage('beneficiary');
       });
-    } else if (this.type === 'table-disseases') {}
+    } else if (this.type === 'table-agent') {
+      this.title = 'Datos de Agente(s)';
+      this.columnsNames = ['Nombre', 'Promotoría', 'Clave', 'Participación'
+      ];
+
+      this.style = 'even-agent';
+    }
+
+    const cssClass = document.getElementsByClassName('even');
+    console.log('cssClass: ', cssClass);
+
+    console.log('columnsNames.length: ', this.columnsNames.length);
   }
 
-  addNewBeneficiary() {
-    const ref = this.dialog.open(NewBeneficiaryComponent, {data: null});
-    ref.afterClosed.subscribe((result) => {
-      console.log('dialog closed FROM BENEFICIARY TABLE, result: ', result);
-    });
+  addNewItem() {
+    if (this.type === 'table-beneficiary') {
+      const ref = this.dialog.open(NewBeneficiaryComponent, {data: null});
+      ref.afterClosed.subscribe((result) => {
+        console.log('dialog closed FROM BENEFICIARY TABLE, result: ', result);
+      });
+    }
   }
 }
