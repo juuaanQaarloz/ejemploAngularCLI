@@ -9,10 +9,10 @@ import {DatosRepresentanteLegal, DatosRepresentanteLegal1, DatosRepresentanteLeg
 import {DatosGeneralesSolicitante} from './mock-general-data/mock-datos-solicitante';
 import {DatosDomicilioSolicitante} from './mock-general-data/mock-domicilio-solicitante';
 import {InformacionLaboralSolicitante, InformacionLaboralSolicitante1} from './mock-laboral-data/mock-informacion-laboral-solicitante';
-import {sportQuestions2, sportsFields1, sportsQuestions1} from './basic-questionnaires/sports-aviation-hobbies';
+import {sportQuestions2, sportsFields1, sportsFields2, sportsQuestions1} from './basic-questionnaires/sports-aviation-hobbies';
 import {habitsQuestions} from './basic-questionnaires/habits';
-import {medicalQuestions} from './basic-questionnaires/medical';
 import {weaponsFields, weaponsQuestions} from './basic-questionnaires/weapons-questions';
+import {medicalFields, medicalQuestions} from './basic-questionnaires/medical';
 
 export const MockFieldsContractorType: Field[] = [
   {
@@ -713,6 +713,25 @@ export const MockContentStep17Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     styleClass: 'questions-type'
     // --------------------------
+  },
+  {
+    id: 'content-2.26',
+    idParent: 'step-17',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.26',
+    contentType: 'looseFields',
+    // process?: Process;
+    fields: sportsFields2,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true
+    // enableConditions?: 'string';
+    // --------------------------
   }
 ];
 
@@ -758,6 +777,25 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
     showContent: true,
     // enableConditions?: 'string';
     styleClass: 'questions-type'
+    // --------------------------
+  },
+  {
+    id: 'content-2.28',
+    idParent: 'step-17',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.28',
+    contentType: 'looseFields',
+    // process?: Process;
+    fields: medicalFields,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true
+    // enableConditions?: 'string';
     // --------------------------
   }
 ];

@@ -2,7 +2,7 @@ import {Field} from '../../../models';
 
 export const habitsQuestions: Field[] = [
   {
-    id: 'field-147',
+    id: 'field-151',
     idHtml: 'radioSmokeQuestion',
     name: 'smokeQuestion',
     orderAppearance: 1,
@@ -31,7 +31,7 @@ export const habitsQuestions: Field[] = [
     value: ''
   },
   {
-    id: 'field-148',
+    id: 'field-152',
     idHtml: 'radioDrugsQuestion',
     name: 'drugsQuestion',
     orderAppearance: 2,
@@ -60,7 +60,7 @@ export const habitsQuestions: Field[] = [
     value: ''
   },
   {
-    id: 'field-149',
+    id: 'field-153',
     idHtml: 'radioWeightQuestion',
     name: 'weightQuestion',
     orderAppearance: 3,
