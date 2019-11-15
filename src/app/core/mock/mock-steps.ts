@@ -3,7 +3,7 @@ import {
   MockContentStep17Process1ContentSection2,
   MockContentStep18Process1ContentSection2,
   MockContentStep19Process1ContentSection2,
-  MockContentStep1Process1ContentSection2, MockContentStep20Process1ContentSection2,
+  MockContentStep1Process1ContentSection2, MockContentStep20Process1ContentSection2, MockContentStep21Process1ContentSection2,
   MockContentStep2Process1ContentSection2,
   MockContentStep3Process1ContentSection2,
   MockContentStep4Process1ContentSection2,
@@ -164,6 +164,18 @@ export const MockStepsProcessContentSection2: Step[] = [
     renderConditions: '',
     previousStep: '19',
     nextStep: '21',
+    isCompleted: false,
+    show: true
+  },
+  {
+    id: '21',
+    idProcess: 'process-1',
+    idHtml: 'app-step-form-21',
+    title: 'Autorizaciones',
+    contents: MockContentStep21Process1ContentSection2,
+    renderConditions: '',
+    previousStep: '20',
+    nextStep: '1',
     isCompleted: false,
     show: true
   }

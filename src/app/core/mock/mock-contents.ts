@@ -14,6 +14,7 @@ import {habitsQuestions} from './basic-questionnaires/habits';
 import {weaponsFields, weaponsFields1, weaponsQuestions, weaponsQuestions1} from './basic-questionnaires/weapons-questions';
 import {medicalFields, medicalQuestions} from './basic-questionnaires/medical';
 import {AgentQuestion, AgentQuestion1} from './mock-agents/mock-agents-questions';
+import {AuthorizationFields1, AuthorizationQuestions1, AuthorizationQuestions2} from './authorization/authorization-questions';
 
 export const MockFieldsContractorType: Field[] = [
   {
@@ -969,9 +970,98 @@ export const MockContentStep20Process1ContentSection2: Content[] = [
   },
   {
     id: 'content-2.48',
-    idParent: 'step-10',
+    idParent: 'step-20',
     parentType: 'Step',
     idHtml: 'app-content-form-2.48',
+    title: '',
+    // process?: Process;
+    // fields: DatosDomicilio,
+    operations: MockOperations,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass: 'string',
+    // --------------------------
+  }
+];
+
+export const MockContentStep21Process1ContentSection2: Content[] = [
+  {
+    id: 'content-2.49',
+    idParent: 'step-21',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.49',
+    contentType: 'looseFields',
+    description: 'De acuerdo a la Ley Sobre el Contrato de Seguro, el solicitante debe declarar todos los hechos ' +
+      'importantes para la apreciación del riesgo a que se refiere esta solicitud, tal como los conozca o deba ' +
+      'de conocer en el momento de firmar el mismo, en la inteligencia de que la declaración inexacta o falsa declaración ' +
+      'de los hechos importantes que se le pregunten podría originar la pérdida de los derechos del Asegurado o del ' +
+      'beneficiario en su caso.',
+    // process?: Process;
+    fields: AuthorizationQuestions1,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    styleClass: 'questions-type'
+    // enableConditions?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-2.50',
+    idParent: 'step-21',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.50',
+    contentType: 'looseFields',
+    // process?: Process;
+    fields: AuthorizationFields1,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    styleClass: 'modal-type'
+    // enableConditions?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-2.51',
+    idParent: 'step-21',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.51',
+    contentType: 'looseFields',
+    // process?: Process;
+    fields: AuthorizationQuestions2,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    styleClass: 'questions-type'
+    // enableConditions?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-2.52',
+    idParent: 'step-21',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.52',
     title: '',
     // process?: Process;
     // fields: DatosDomicilio,

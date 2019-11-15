@@ -502,5 +502,25 @@ export class ApplicationService {
     return foundStep;
   }
 
+  logicalExpressionEvaluation(str) {
+    console.log('onLogicalExpressionEvaluation...');
+
+    // Step 1. Use the split() method to return a new array
+    let splitString = str.split('');
+
+    // Step 2. Use the reverse() method to reverse the new created array
+    let reverseArray = splitString.reverse();
+
+    // Step 3. Use the join() method to join all elements of the array into a string
+    let joinArray = reverseArray.join('');
+
+    // tslint:disable-next-line:prefer-for-of
+    for (let i = 0; i < joinArray.length; i++) {
+      console.log('index, c: ', i + ',' + joinArray[i]);
+    }
+
+    // Step 4. Return the reversed string
+    return joinArray;
+  }
 
 }

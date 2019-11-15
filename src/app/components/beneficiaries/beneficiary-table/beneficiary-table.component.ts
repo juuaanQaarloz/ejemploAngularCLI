@@ -102,11 +102,6 @@ export class BeneficiaryTableComponent implements OnInit {
         this.totalPercentageParticipation = this.applicationService.getTotalParticipationPercentage('agent');
       });
     }
-
-    const cssClass = document.getElementsByClassName('even');
-    console.log('cssClass: ', cssClass);
-
-    console.log('columnsNames.length: ', this.columnsNames.length);
   }
 
   addNewItem() {

@@ -82,11 +82,13 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     this.fieldObj.valid = true;
 
-    /*this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
-      console.log('onValueChanges value: ', value);
-      console.log('formControlName: ', this.fieldObj.name);
-      this.isValid();
-    });*/
+    if (this.fieldObj.type === 'radio') {
+      this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
+        console.log('onValueChanges value: ', value);
+        console.log('formControlName: ', this.fieldObj.name);
+        this.isValid();
+      });
+    }
   }
 
   ngAfterViewInit() {
@@ -251,7 +253,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     } else {
       // this.valid =  this.form.controls[this.fieldObj.name].valid;
-      this.fieldObj.valid =  this.form.controls[this.fieldObj.name].valid;
+      this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
     }
 
     // console.log('this.valid: ', this.valid);
@@ -287,13 +289,13 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       }
     } else if (defaultValue) {
       if (defaultValue === value) {
-        result =  true;
+        result = true;
       } else {
         result = false;
       }
     }
     // console.log('result: ', result);
-    return  result;
+    return result;
   }
 
   checkState() {
@@ -370,7 +372,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   getStyle(style: string): any {
-    const obj: {[k: string]: any} = {};
+    const obj: { [k: string]: any } = {};
     const resultSplit = style.split(':');
 
     // console.log('resultSplit: ', resultSplit);

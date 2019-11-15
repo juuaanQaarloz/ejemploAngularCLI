@@ -36,7 +36,7 @@ export const AgentQuestion1: Field[] = [
   {
     id: 'field-161',
     idHtml: 'rdioSignAndReadConfirmation',
-    name: '1ignAndReadConfirmation',
+    name: 'signAndReadConfirmation',
     orderAppearance: 1,
     label: '2. ¿Te consta que el cliente llenó y firmo esta solicitud?',
     type: 'radio',
