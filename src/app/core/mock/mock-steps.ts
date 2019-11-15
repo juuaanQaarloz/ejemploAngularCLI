@@ -90,10 +90,23 @@ export const MockStepsProcessContentSection2: Step[] = [
     contents: MockContentStep6Process1ContentSection2,
     renderConditions: 'contractorType=false',
     previousStep: '5',
-    nextStep: '16',
+    nextStep: '7',
     /*added extra from model*/
     isCompleted: false,
     show: false
+  },
+  {
+    id: '8',
+    idProcess: 'process-1',
+    idHtml: 'app-step-form-8',
+    title: 'Beneficiarios del solicitante',
+    contents: MockContentStep8Process1ContentSection2,
+    renderConditions: '',
+    previousStep: '6',
+    nextStep: '16',
+    /*added extra from model*/
+    isCompleted: false,
+    show: true
   },
   {
     id: '16',

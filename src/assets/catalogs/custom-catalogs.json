@@ -34,5 +34,17 @@
       "name": "MetLife fiduciaria",
       "value": "fidPerson"
     }
+  ],
+  "typeFormatwo": [
+    {
+      "id": 0,
+      "name": "Cónyuge o concubina(o)",
+      "value": "spouse"
+    },
+    {
+      "id": 1,
+      "name": "Dependiente económico",
+      "value": "dependent"
+    }
   ]
 }

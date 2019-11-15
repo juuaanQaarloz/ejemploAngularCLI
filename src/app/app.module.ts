@@ -43,7 +43,12 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import {FormaTwoTableComponent} from './components/formatwo/formatwo-table/formatwo-table.component';
 import {FormatFourTableComponent} from './components/formatfour/formatfour-table/formatfour-table.component';
 import {FormaThreeTableComponent} from './components/formathree/formathree-table/formathree-table.component';
+import {FormaTwobTableComponent} from './components/formatwob/formatwob-table/formatwob-table.component';
+import {CoverageTableComponent} from './components/coverage/coverage-table/coverage-table.component';
+import {FormaTwoItemComponent} from './components/formatwo/formatwo-item/formatwo-item.component';
+import {NewFormatwoComponent} from './components/formatwo/new-formatwo/new-formatwo.component';
 
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +75,11 @@ import {FormaThreeTableComponent} from './components/formathree/formathree-table
     PaginationComponent,
     FormaTwoTableComponent,
     FormatFourTableComponent,
-    FormaThreeTableComponent
+    FormaThreeTableComponent,
+    FormaTwobTableComponent,
+    CoverageTableComponent,
+    FormaTwoItemComponent,
+    NewFormatwoComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,7 +98,7 @@ import {FormaThreeTableComponent} from './components/formathree/formathree-table
     AppRoutingModule
   ],
   bootstrap: [AppComponent],
-  entryComponents: [NewBeneficiaryComponent],
+  entryComponents: [NewBeneficiaryComponent, NewFormatwoComponent],
   providers: [
     { provide: DateAdapter, useClass: MyDateAdapter},
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS}

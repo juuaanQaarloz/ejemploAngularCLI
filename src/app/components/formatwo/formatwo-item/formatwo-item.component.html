@@ -1,0 +1,38 @@
+<div class="formatwo-row" [ngStyle]="{'background-color':  this.applicationService.determinateEvenOrOdd(index) ? '#E5F4FB': '#FFFFFF'}">
+  <div class="formatwo-attribute">{{getFormatwoTypeLabel()}}</div>
+  <div class="formatwo-attribute">{{formatwo.name + ' ' + formatwo.fatherLastName + ' ' + formatwo.motherLastName}}</div>
+  <!-- <div class="formatwo-attribute"
+       *ngIf="formatwo.formatwoType === 'morPerson' || beneficiary.beneficiaryType === 'fidPerson'">{{beneficiary.businessName}}</div>
+  -->
+  <div class="formatwo-attribute">{{formatwo.birthDate}}</div>
+
+  <div class="formatwo-attribute" *ngFor="let field of fields">
+    <app-field-form [fieldObj]="field" [form]="formGroup"></app-field-form>
+    {{field.value}}
+  </div>
+
+  <div class="operations">
+    <div>
+      <img class="icon-delete" (click)="openModal(modalId)">
+      <img class="icon-edit" (click)="editFormatwo()">
+    </div>
+    <div *ngIf="isLast && totalFormatos < 10 "><img src="../../../../assets/img/tables/plus_simbol.svg" (click)="addNewFormatwo()">
+    </div>
+  </div>
+
+</div>
+
+<jw-modal [id]="modalId" [modalType]="'overlay'">
+  <div class="overlay-container">
+    <div style="text-align: right">
+      <img class="button-close" (click)="closeModal(modalId)">
+    </div>
+    <p>¿Está seguro que desea eliminar el formato de la lista?</p>
+
+    <div class="operation-modal">
+      <app-operation-form *ngFor="let operation of operations" [operationObj]="operation"
+                          (click)="executeOperation(operation.delegateOperation)">
+      </app-operation-form>
+    </div>
+  </div>
+</jw-modal>

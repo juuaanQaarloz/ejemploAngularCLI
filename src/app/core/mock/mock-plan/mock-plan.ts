@@ -75,7 +75,7 @@ export const Plan1: Field[] = [
     sourceID: 'currency',
     sourceStructure: ['id', 'name', 'code'],
     style: 'margin:0 auto',
-    styleClass: 'checkbox-options',
+    styleClass: '',
     styleClassError: '',
     message: '',
     messageClass: '',

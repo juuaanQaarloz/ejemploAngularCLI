@@ -5,7 +5,7 @@ import {map} from 'rxjs/operators';
 import {Beneficiary} from '../../models/beneficiary-model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';
-import {Field, Occupation, Step} from '../../models';
+import {Field, Formatwo, Occupation, Step} from '../../models';
 import {validateEmailConfirmation, validatorsObjects} from '../validators';
 import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
@@ -21,6 +21,7 @@ export class ApplicationService {
   private currentStepSource = new BehaviorSubject(0);
   currentValue = this.currentStepSource.asObservable();
   beneficiaries = new BehaviorSubject([]);
+  formatosdos = new BehaviorSubject([]);
   formGroup: FormGroup;
   searchModalFrom: string;
   applicationObj;
@@ -437,5 +438,24 @@ export class ApplicationService {
     });
 
     return foundStep;
+  }
+
+  addFormatwo(newFormatwo: Formatwo) {
+    console.log('Formatwo: ', this.formatosdos.getValue());
+    const currentBeneficiaries = this.formatosdos.getValue();
+    currentBeneficiaries.push(newFormatwo);
+    this.formatosdos.next(currentBeneficiaries);
+    return {status: true, message: ''};
+  }
+
+  getLastFormatwoId() {
+    const currentBeneficiaries = this.formatosdos.getValue();
+    const beneficiariesLength = currentBeneficiaries.length;
+    let lastId = 0;
+    if (beneficiariesLength > 1) {
+      lastId = Number(currentBeneficiaries[beneficiariesLength - 1].formatwoId);
+    }
+    console.log('lastId: ', lastId);
+    return lastId;
   }
 }

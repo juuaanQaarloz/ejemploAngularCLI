@@ -18,11 +18,17 @@
     <div *ngSwitchCase="'table-formatwo'" class="ml-step-container">
       <app-formatwo-table [type]="contentObj.contentType"></app-formatwo-table>
     </div>
+    <div *ngSwitchCase="'table-formatwob'" class="ml-step-container">
+      <app-formatwob-table [type]="contentObj.contentType"></app-formatwob-table>
+    </div>
     <div *ngSwitchCase="'table-formathree'" class="ml-step-container">
       <app-formathree-table [type]="contentObj.contentType"></app-formathree-table>
     </div>
     <div *ngSwitchCase="'table-formatfour'" class="ml-step-container">
       <app-formatfour-table [type]="contentObj.contentType"></app-formatfour-table>
+    </div>
+    <div *ngSwitchCase="'table-coverage'" class="ml-step-container">
+      <app-coverage-table [type]="contentObj.contentType"></app-coverage-table>
     </div>
   </div>
 

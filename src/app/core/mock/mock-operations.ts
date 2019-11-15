@@ -233,3 +233,62 @@ export const FormattwoItemOperations: Operation[] = [
   }
 ];
 
+
+export const FormatwoOperations: Operation[] = [
+  {
+    id: 'opt-1',
+    idHtml: 'btnCancel',
+    name: 'cancelar',
+    label: 'Cancelar',
+    type: 'button',
+    style: '',
+    styleClass: 'ml-link',
+    message: '',
+    messageClass: '',
+    delegateOperation: 'closeDialog',
+    renderConditions: '',
+    enableConditions: '',
+  },
+  {
+    id: 'opt-2',
+    idHtml: 'btnAddBeneficiary',
+    name: 'addBeneficiary',
+    label: 'AGREGAR',
+    type: 'button',
+    style: '',
+    styleClass: 'ml-button-primary',
+    message: '',
+    messageClass: '',
+    delegateOperation: 'addNewBeneficiary',
+    renderConditions: '',
+    enableConditions: ''
+  },
+  {
+    id: 'opt-3',
+    idHtml: 'btnUpdateBeneficiary',
+    name: 'updateBeneficiary',
+    label: 'GUARDAR',
+    type: 'button',
+    style: '',
+    styleClass: 'ml-button-primary',
+    message: '',
+    messageClass: '',
+    delegateOperation: 'updateBeneficiary',
+    renderConditions: '',
+    enableConditions: '',
+  },
+  {
+    id: 'opt-4',
+    idHtml: 'btnUploadInstructionLetter',
+    name: 'uploadInstructionLetter',
+    label: 'CARGAR DOCUMENTOS',
+    type: 'button',
+    style: '',
+    styleClass: 'ml-button-primary',
+    message: '',
+    messageClass: '',
+    delegateOperation: 'uploadInstructionLetter',
+    renderConditions: 'beneficiaryType=fidPerson',
+    enableConditions: '',
+  }
+];

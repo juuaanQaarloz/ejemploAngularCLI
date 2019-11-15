@@ -1,40 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ApplicationService} from '../../../core/services';
-// import {NewBeneficiaryComponent} from '../new-beneficiary/new-beneficiary.component';
 import {DialogService} from '../../dialog/dialog.service';
 import {Field} from '../../../models';
+import {NewFormatwoComponent} from '../new-formatwo/new-formatwo.component';
 
 const FIELDS: Field[] = [
- /*  {
-    id: 'field-117',
-    idHtml: 'txtAdditionalComments',
-    name: 'additionalComments',
-    label: 'Información adicional',
-    orderAppearance: 1,
-    type: 'text',
-    required: false,
-    placeholder: '',
-    length: '750',
-    minValue: 0,
-    maxValue: 750,
-    pattern: '',
-    source: '',
-    sourceID: '',
-    style: '',
-    styleClass: '',
-    styleClassError: '',
-    message: 'La información adicional no pueden exceder los 750 caracteres',
-    messageClass: '',
-    messageError: '', // new
-    messageErrorClass: '', // new
-    renderConditions: '',
-    enableConditions: '',
-    requiredConditions: '',
-    entity: '',
-    entityField: '',
-    value: '',
-    disable: false
-  }  */
 ];
 
 @Component({
@@ -79,17 +49,16 @@ export class FormaTwoTableComponent implements OnInit {
       this.content.fields.forEach((field) => {
         this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
       });
-
-      /* this.applicationService.beneficiaries.subscribe((value) => {
-        this.beneficiaries = value;
-        this.totalPercentageParticipation = this.applicationService.getTotalParticipationPercentage();
-      }); */
+      this.applicationService.formatosdos.subscribe((value) => {
+        this.formatosdos = value;
+      });
     } else if (this.type === 'table-disseases') {}
   }
   addNewFormaTwo() {
-    /* const ref = this.dialog.open(NewBeneficiaryComponent, {data: null});
-    ref.afterClosed.subscribe((result) => {
-      console.log('dialog closed FROM BENEFICIARY TABLE, result: ', result);
-    }); */
+     console.log('addNewFormaTwo-table ', 'addNewFormaTwo');
+     const ref = this.dialog.open(NewFormatwoComponent, {data: null});
+     ref.afterClosed.subscribe((result) => {
+      console.log('dialog closed FROM FORMATWO TABLE, result: ', result);
+    });
   }
 }

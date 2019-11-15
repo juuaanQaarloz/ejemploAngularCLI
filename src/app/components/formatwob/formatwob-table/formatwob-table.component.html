@@ -2,16 +2,12 @@
   <div class="ml-table-title">{{title}}</div>
   <div class="even">
     <div class="field-name-column" *ngFor="let columnName of columnsNames">{{columnName}}</div>
-    <div class="field-name-column" *ngIf="formatosdos.length === 0 || formatosdos === null">
-      <img src="../../../../assets/img/tables/plus_simbol.svg" (click)="addNewFormaTwo()">
+    <div class="field-name-column" *ngIf="formatosdosb.length === 0 || formatosdosb === null">
+      <img src="../../../../assets/img/tables/plus_simbol.svg" (click)="addNewFormaTwob()">
     </div>
   </div>
-  <app-formatwo-item *ngFor="let formatwo of formatosdos; let i = index; last as isLast"
-                     [formatwo]="formatwo"
-                     [index]="i"
-                     [isLast]="isLast"
-                     [totalFormatos]="formatosdos.length">
-  </app-formatwo-item>
+
+
   <div>
     <div data-forms="floating-label" class="ml-form"
          [ngClass]="content.styleClass">
