@@ -2,13 +2,13 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
-import {Beneficiary} from '../../models/beneficiary-model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';
-import {Field, Occupation, Step} from '../../models';
+import {Beneficiary, Field, Occupation, Step} from '../../models';
 import {validateEmailConfirmation, validatorsObjects} from '../validators';
 import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
+import {Agent} from '../../models/agent-model/agent';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
@@ -177,6 +177,7 @@ export class ApplicationService {
   }
 
   addItem(newItem, itemType: string) {
+    console.log('typeItem: ', typeof newItem);
     const currentTotalParticipationPercentage = this.getTotalParticipationPercentage(itemType);
     let currentItems;
     let maxLength;
