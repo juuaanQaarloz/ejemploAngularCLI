@@ -3,6 +3,7 @@ import {ApplicationService} from '../../../core/services';
 import {NewBeneficiaryComponent} from '../new-beneficiary/new-beneficiary.component';
 import {DialogService} from '../../dialog/dialog.service';
 import {Field} from '../../../models';
+import {NewAgentComponent} from '../new-agent/new-agent.component';
 
 const FIELDS: Field[] = [
   {
@@ -44,28 +45,13 @@ const FIELDS: Field[] = [
 })
 export class BeneficiaryTableComponent implements OnInit {
   @Input() type: string;
-  title = 'Datos de Beneficiario(s)';
-  columnsNames = ['Tipo de Beneficiario',
-    'Nombre / Razón social',
-    'Fecha de nacimiento / constitución',
-    'Parentesco',
-    'Porcentaje de participación',
-  ];
-  beneficiaries = [];
-
-  content = {
-    id: 'content-2.21',
-    idParent: 'step-7',
-    parentType: 'Step',
-    idHtml: 'app-content-form-2.21',
-    fields: FIELDS,
-    showContent: true,
-    styleClass: 'modal-type',
-    renderConditions: '',
-    contentType: 'looseFields'
-  };
-
+  title;
+  columnsNames;
+  items = [];
+  itemsType;
+  content: any;
   totalPercentageParticipation = 0;
+  style;
 
   constructor(public applicationService: ApplicationService,
               public dialog: DialogService) {
@@ -78,21 +64,97 @@ export class BeneficiaryTableComponent implements OnInit {
       this.columnsNames = ['Tipo de Beneficiario', 'Nombre / Razón social', 'Fecha de nacimiento / constitución', 'Parentesco',
         'Porcentaje de participación',
       ];
+
+      this.itemsType = 'beneficiary';
+
+      this.content = {
+        id: 'content-2.21',
+        idParent: 'step-7',
+        parentType: 'Step',
+        idHtml: 'app-content-form-2.21',
+        fields: FIELDS,
+        showContent: true,
+        styleClass: 'modal-type',
+        renderConditions: '',
+        contentType: 'looseFields'
+      };
+
+      this.style = 'even-beneficiary';
+
       this.content.fields.forEach((field) => {
         this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
       });
 
       this.applicationService.beneficiaries.subscribe((value) => {
+        this.items = value;
+        this.totalPercentageParticipation = this.applicationService.getTotalParticipationPercentage('beneficiary');
+      });
+    } else if (this.type === 'table-agent') {
+      this.title = 'Datos de Agente(s)';
+      this.columnsNames = ['Nombre', 'Promotoría', 'Clave', 'Participación'
+      ];
+
+      this.itemsType = 'agent';
+      this.style = 'even-agent';
+
+      this.applicationService.agents.subscribe((value) => {
+        this.items = value;
+        this.totalPercentageParticipation = this.applicationService.getTotalParticipationPercentage('agent');
+      });
+    } else if (this.type ===  'table-formatfour') {
+      this.title = 'Datos Formato Cuatro';
+      this.columnsNames = ['Razon social', 'RFC', 'Fecha de constitución', 'Nombre comercial',
+      ];
+      this.style = 'even-beneficiary';
+      this.content.fields.forEach((field) => {
+        this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
+      });
+
+      /* this.applicationService.beneficiaries.subscribe((value) => {
         this.beneficiaries = value;
         this.totalPercentageParticipation = this.applicationService.getTotalParticipationPercentage();
+      }); */
+    } else if (this.type ===  'table-formathree') {
+      this.title = 'Datos Formato Tres';
+      this.columnsNames = ['Tipo de Persona', 'Nombre / Razón social', 'Fecha de nacimiento / constitución', 'RFC',
+      ];
+      this.style = 'even-beneficiary';
+      this.content.fields.forEach((field) => {
+        this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
       });
-    } else if (this.type === 'table-disseases') {}
+
+      /* this.applicationService.beneficiaries.subscribe((value) => {
+        this.beneficiaries = value;
+        this.totalPercentageParticipation = this.applicationService.getTotalParticipationPercentage();
+      }); */
+    } else if (this.type ===  'table-paises') {
+      this.title = 'Paises';
+      this.columnsNames = ['Pais', 'Numero de idenficación fiscal',
+      ];
+      this.style = 'even-beneficiary';
+      this.content.fields.forEach((field) => {
+        this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
+      });
+
+      /* this.applicationService.beneficiaries.subscribe((value) => {
+        this.beneficiaries = value;
+        this.totalPercentageParticipation = this.applicationService.getTotalParticipationPercentage();
+      }); */
+    }
   }
 
-  addNewBeneficiary() {
-    const ref = this.dialog.open(NewBeneficiaryComponent, {data: null});
-    ref.afterClosed.subscribe((result) => {
-      console.log('dialog closed FROM BENEFICIARY TABLE, result: ', result);
-    });
+  addNewItem() {
+    let ref;
+    if (this.type === 'table-beneficiary') {
+      ref = this.dialog.open(NewBeneficiaryComponent, {data: null});
+      ref.afterClosed.subscribe((result) => {
+        console.log('dialog closed FROM BENEFICIARY TABLE, result: ', result);
+      });
+    } else if (this.type === 'table-agent') {
+      ref = this.dialog.open(NewAgentComponent, {data: null});
+      ref.afterClosed.subscribe((result) => {
+        console.log('dialog closed FROM AGENT TABLE, result: ', result);
+      });
+    }
   }
 }

@@ -1,5 +1,8 @@
 <div class="overlay" (click)="onOverlayClicked($event)">
   <div class="dialog" (click)="onDialogClicked($event)" [@myAnimation]="animation ? true: false">
+    <div style="text-align: right">
+      <img class="button-close" (click)="onOverlayClicked($event)">
+    </div>
     <ng-template appInsertion>
 
     </ng-template>

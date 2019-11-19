@@ -1,9 +1,14 @@
-.beneficiary-row {
+.item-row-beneficiary {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
 }
 
-.beneficiary-attribute {
+.item-row-agent {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.item-attribute {
   text-align: center;
 }
 

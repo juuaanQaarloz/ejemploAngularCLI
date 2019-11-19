@@ -41,12 +41,11 @@ import { ItemTableComponent } from './components/general-table/item-table/item-t
 import { AddEditItemTableComponent } from './components/general-table/add-edit-item-table/add-edit-item-table.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import {FormaTwoTableComponent} from './components/formatwo/formatwo-table/formatwo-table.component';
-import {FormatFourTableComponent} from './components/formatfour/formatfour-table/formatfour-table.component';
-import {FormaThreeTableComponent} from './components/formathree/formathree-table/formathree-table.component';
 import {FormaTwobTableComponent} from './components/formatwob/formatwob-table/formatwob-table.component';
 import {CoverageTableComponent} from './components/coverage/coverage-table/coverage-table.component';
 import {FormaTwoItemComponent} from './components/formatwo/formatwo-item/formatwo-item.component';
 import {NewFormatwoComponent} from './components/formatwo/new-formatwo/new-formatwo.component';
+import { NewAgentComponent } from './components/beneficiaries/new-agent/new-agent.component';
 
 // @ts-ignore
 @NgModule({
@@ -74,12 +73,11 @@ import {NewFormatwoComponent} from './components/formatwo/new-formatwo/new-forma
     AddEditItemTableComponent,
     PaginationComponent,
     FormaTwoTableComponent,
-    FormatFourTableComponent,
-    FormaThreeTableComponent,
     FormaTwobTableComponent,
     CoverageTableComponent,
     FormaTwoItemComponent,
     NewFormatwoComponent,
+    NewAgentComponent
   ],
   imports: [
     BrowserModule,
@@ -98,7 +96,7 @@ import {NewFormatwoComponent} from './components/formatwo/new-formatwo/new-forma
     AppRoutingModule
   ],
   bootstrap: [AppComponent],
-  entryComponents: [NewBeneficiaryComponent, NewFormatwoComponent],
+  entryComponents: [NewBeneficiaryComponent, NewFormatwoComponent, NewAgentComponent],
   providers: [
     { provide: DateAdapter, useClass: MyDateAdapter},
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS}

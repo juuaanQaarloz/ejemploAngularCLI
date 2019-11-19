@@ -403,5 +403,21 @@ export const validatorsObjects = [
   {
     nameField: 'dangerWorkName',
     validationFunctions: [validateAlphanumericValueNotRequired]
+  },
+  {
+    nameField: 'agentName',
+    validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'agentPromotor',
+    validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'agentKey',
+    validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'agentParticipation',
+    validationFunctions: [validateNumberWith2Decimals]
   }
 ];

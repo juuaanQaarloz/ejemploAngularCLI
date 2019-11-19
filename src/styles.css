@@ -899,8 +899,15 @@ select::-ms-expand {
 
 .even {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
   background-color: #FFFFFF;
+}
+
+.even-beneficiary {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.even-agent {
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .even-occupation {
@@ -946,4 +953,19 @@ select::-ms-expand {
   /*grid-template-columns: repeat(4, 1fr);*/
 }
 
+/*newAgent / newBeneficiary*/
+.drawer-container{
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+}
 
+/*content style*/
+.content-title {
+  padding: 5px 5px 5px 5px;
+  text-align: left;
+  color: #007ABC;
+  font-weight: bold;
+  font-size: 14px;
+  /*margin-top: -2px;*/
+  text-decoration: none !important;
+}

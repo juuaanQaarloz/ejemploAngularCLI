@@ -48,6 +48,7 @@ export class CoverageTableComponent implements OnInit {
       this.content.fields.forEach((field) => {
         this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
       });
+      // this.style = 'even-beneficiary';
 
       /* this.applicationService.beneficiaries.subscribe((value) => {
         this.beneficiaries = value;

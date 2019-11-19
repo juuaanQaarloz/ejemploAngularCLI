@@ -1,5 +1,5 @@
 <div *ngIf="contentObj.showContent === true" [id]="contentObj.idHtml">
-  <p *ngIf="contentObj.title" class="title">{{contentObj.title}}</p>
+  <p *ngIf="contentObj.title" class="content-title">{{contentObj.title}}</p>
 
   <p *ngIf="contentObj.description">{{contentObj.description}}</p>
 
@@ -22,14 +22,20 @@
       <app-formatwob-table [type]="contentObj.contentType"></app-formatwob-table>
     </div>
     <div *ngSwitchCase="'table-formathree'" class="ml-step-container">
-      <app-formathree-table [type]="contentObj.contentType"></app-formathree-table>
+      <app-beneficiary-table [type]="contentObj.contentType"></app-beneficiary-table>
     </div>
     <div *ngSwitchCase="'table-formatfour'" class="ml-step-container">
-      <app-formatfour-table [type]="contentObj.contentType"></app-formatfour-table>
+      <app-beneficiary-table  [type]="contentObj.contentType"></app-beneficiary-table >
     </div>
     <div *ngSwitchCase="'table-coverage'" class="ml-step-container">
       <app-coverage-table [type]="contentObj.contentType"></app-coverage-table>
     </div>
+    <div *ngSwitchCase="'table-agent'" class="ml-step-container">
+      <app-beneficiary-table [type]="contentObj.contentType"></app-beneficiary-table>
+    </div>
+      <div *ngSwitchCase="'table-paises'" class="ml-step-container">
+        <app-beneficiary-table [type]="contentObj.contentType"></app-beneficiary-table>
+      </div>
   </div>
 
   <p *ngIf="contentObj.warningMessage">{{contentObj.warningMessage}}</p>

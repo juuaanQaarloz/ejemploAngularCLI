@@ -1,13 +1,3 @@
-.title {
-  padding: 5px 5px 5px 5px;
-  text-align: left;
-  color: #007ABC;
-  font-weight: bold;
-  font-size: 14px;
-  /*margin-top: -2px;*/
-  text-decoration: none !important;
-}
-
 .operation{
   padding: 8px;
   display: grid;

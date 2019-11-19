@@ -52,7 +52,7 @@ export class FormaTwoItemComponent implements OnInit, AfterViewInit {
   }
 
   deleteFormatwo() {
-    this.applicationService.removeBeneficiary(this.formatwo.formatwoId);
+    // this.applicationService.removeFormatwo(this.formatwo.formatwoId);
     this.closeModal(this.modalId);
   }
 
