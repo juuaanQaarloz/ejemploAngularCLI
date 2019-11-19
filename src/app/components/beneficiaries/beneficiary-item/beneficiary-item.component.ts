@@ -9,6 +9,8 @@ import {ModalService} from '../../custom-modal';
 import {BeneficiaryItemOperations} from '../../../core/mock/mock-operations';
 import {NewAgentComponent} from '../new-agent/new-agent.component';
 import {AgentFields, AgentFieldsItem} from '../../../core/mock/mock-agents/mock-agents-questions';
+import {NewFormatwoFields} from '../../../core/mock/formats/formatwo';
+import {NewFormatwoComponent} from '../new-formatwo/new-formatwo.component';
 
 
 @Component({
@@ -49,6 +51,12 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       this.questionModal = '¿Está seguro que desea eliminar al agente de la lista?';
       this.maxItems = 2;
       this.styleClass = 'item-row-agent';
+    } else if (this.itemType === 'formatwo') {
+      this.fields = NewFormatwoFields;
+      this.operations = BeneficiaryItemOperations;
+      this.questionModal = '¿Está seguro que desea eliminar al formato de la lista?';
+      this.maxItems = 2;
+      this.styleClass = 'item-row-formatwo';
     }
 
     this.formGroup = this.applicationService.createNewFormGroup(this.fields);
@@ -66,6 +74,8 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       ref = this.dialog.open(NewBeneficiaryComponent, {data: null});
     } else if (this.itemType === 'agent') {
       ref = this.dialog.open(NewAgentComponent, {data: null});
+    } else if (this.itemType === 'formatwo') {
+      ref = this.dialog.open(NewFormatwoComponent, {data: null});
     }
 
     ref.afterClosed.subscribe((result) => {
@@ -79,6 +89,8 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       propertyItem = 'beneficiaryId';
     } else if (this.itemType === 'agent') {
       propertyItem = 'agentId';
+    } else if (this.itemType === 'formatwo') {
+      propertyItem = 'formatwoId';
     }
     this.applicationService.removeItem(this.item[propertyItem], this.itemType);
     this.closeModal(this.modalId);
@@ -90,6 +102,8 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       ref = this.dialog.open(NewBeneficiaryComponent, {data: {item: this.item}});
     } else if (this.itemType === 'agent') {
       ref = this.dialog.open(NewAgentComponent, {data: {item: this.item}});
+    } else if (this.itemType === 'formatwo') {
+      ref = this.dialog.open(NewFormatwoComponent, {data: {item: this.item}});
     }
 
     ref.afterClosed.subscribe((result) => {
@@ -116,6 +130,10 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       this.formGroup.controls[this.fields[1].name].setValue(this.item.promotor);
       this.formGroup.controls[this.fields[2].name].setValue(this.item.key);
       this.formGroup.controls[this.fields[3].name].setValue(this.item.participation);
+    }  else if (this.itemType === 'formatwo') {
+      this.formGroup.controls[this.fields[0].name].setValue(this.item.formatwoType);
+      this.formGroup.controls[this.fields[1].name].setValue(this.item.formatwoName);
+
     }
   }
 

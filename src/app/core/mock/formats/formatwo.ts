@@ -121,8 +121,8 @@ export const NewFormatwoFields: Field[] = [
   },
   {
     id: 'field-6003',
-    idHtml: 'txtBeneficiaryFaLastName',
-    name: 'beneficiaryFaLastName',
+    idHtml: 'txtFormatwoFaLastName',
+    name: 'formatwoFaLastName',
     orderAppearance: 3,
     label: 'Apellido paterno*',
     type: 'text',
@@ -150,8 +150,8 @@ export const NewFormatwoFields: Field[] = [
   },
   {
     id: 'field-6004',
-    idHtml: 'txtBeneficiaryMoLastName',
-    name: 'beneficiaryMoLastName',
+    idHtml: 'txtFormatwoMoLastName',
+    name: 'formatwoMoLastName',
     orderAppearance: 4,
     label: 'Apellido materno*',
     type: 'text',
@@ -179,8 +179,8 @@ export const NewFormatwoFields: Field[] = [
   },
   {
     id: 'field-6005',
-    idHtml: 'dateBeneficiaryBirthDate',
-    name: 'beneficiaryBirthDate',
+    idHtml: 'dateFormatwoBirthDate',
+    name: 'formatwoBirthDate',
     orderAppearance: 5,
     label: 'Fecha de nacimiento*',
     type: 'date',

@@ -12,6 +12,11 @@
   text-align: center;
 }
 
+.item-row-formatwo {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+}
+
 .operations {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

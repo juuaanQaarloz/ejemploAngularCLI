@@ -109,9 +109,9 @@ export class NewFormatwoComponent implements OnInit, AfterViewInit {
     console.log('delegateOperation: ', delegateOperation);
     if (delegateOperation === 'closeDialog') {
       this.closeDialog();
-    } else if (delegateOperation === 'addNewFormatwo') {
+    } else if (delegateOperation === 'addNewBeneficiary') {
        this.addNewFormatwo();
-    } else if (delegateOperation === 'update<Formatwo') {
+    } else if (delegateOperation === 'updateBeneficiary') {
        this.updateFormatwo();
     } else if (delegateOperation === 'closeModal') {
        this.modalService.close(this.modalID);
@@ -168,12 +168,11 @@ export class NewFormatwoComponent implements OnInit, AfterViewInit {
     console.log('mapNew: ');
     return {
         ...newFormatwoBase,
-        name: this.formGroup.controls.beneficiaryName.value,
-        fatherLastName: this.formGroup.controls.beneficiaryFaLastName.value,
-        motherLastName: this.formGroup.controls.beneficiaryMoLastName.value,
-        relationship: this.formGroup.controls.beneficiaryRelationshipP.value,
-        birthDate: transformDate(this.formGroup.controls.beneficiaryBirthDate.value, 'YYYY/MM/DD'),
-        address: {
+        name: this.formGroup.controls.formatwoName.value,
+        fatherLastName: this.formGroup.controls.formatwoFaLastName.value,
+        motherLastName: this.formGroup.controls.formatwoMoLastName.value,
+        birthDate: transformDate(this.formGroup.controls.formatwoBirthDate.value, 'YYYY/MM/DD'),
+       /*  address: {
           street: this.formGroup.controls.beneficiaryStreet.value,
           exteriorNumber: this.formGroup.controls.beneficiaryExteriorNumber.value,
           interiorNumber: this.formGroup.controls.beneficiaryInteriorNumber.value,
@@ -183,19 +182,18 @@ export class NewFormatwoComponent implements OnInit, AfterViewInit {
           state: this.formGroup.controls.beneficiaryState.value,
           city: this.formGroup.controls.beneficiaryCity.value,
           country: this.formGroup.controls.beneficiaryCountry.value,
-        },
+        }, */
       };
   }
   mapFormatwoData() {
     return {
       formatwoId: this.config.data.formatwo.formatwoId,
       formatwoType: this.formGroup.controls.formatwoType.value,
-      name: this.formGroup.controls.beneficiaryName.value,
-      fatherLastName: this.formGroup.controls.beneficiaryFaLastName.value,
-      motherLastName: this.formGroup.controls.beneficiaryMoLastName.value,
-      relationship: this.formGroup.controls.beneficiaryRelationship.value,
-      birthDateOrConstitution: transformDate(this.formGroup.controls.beneficiaryBirthDate.value, 'YYYY/MM/DD'),
-      address: {
+      name: this.formGroup.controls.formatwoName.value,
+      fatherLastName: this.formGroup.controls.formatwoFaLastName.value,
+      motherLastName: this.formGroup.controls.formatwoMoLastName.value,
+      birthDate: transformDate(this.formGroup.controls.formatwoBirthDate.value, 'YYYY/MM/DD'),
+      /* address: {
         street: this.formGroup.controls.beneficiaryStreet.value,
         exteriorNumber: this.formGroup.controls.beneficiaryExteriorNumber.value,
         interiorNumber: this.formGroup.controls.beneficiaryInteriorNumber.value,
@@ -205,7 +203,7 @@ export class NewFormatwoComponent implements OnInit, AfterViewInit {
         state: this.formGroup.controls.beneficiaryState.value,
         city: this.formGroup.controls.beneficiaryCity.value,
         country: this.formGroup.controls.beneficiaryCountry.value,
-      },
+      },*/
     };
   }
   closeModal(modalID: string) {

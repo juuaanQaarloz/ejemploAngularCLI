@@ -4,6 +4,7 @@ import {NewBeneficiaryComponent} from '../new-beneficiary/new-beneficiary.compon
 import {DialogService} from '../../dialog/dialog.service';
 import {Field} from '../../../models';
 import {NewAgentComponent} from '../new-agent/new-agent.component';
+import {NewFormatwoComponent} from '../new-formatwo/new-formatwo.component';
 
 const FIELDS: Field[] = [
   {
@@ -106,9 +107,9 @@ export class BeneficiaryTableComponent implements OnInit {
       this.columnsNames = ['Razon social', 'RFC', 'Fecha de constitución', 'Nombre comercial',
       ];
       this.style = 'even-beneficiary';
-      this.content.fields.forEach((field) => {
+      /* this.content.fields.forEach((field) => {
         this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
-      });
+      }); */
 
       /* this.applicationService.beneficiaries.subscribe((value) => {
         this.beneficiaries = value;
@@ -119,9 +120,9 @@ export class BeneficiaryTableComponent implements OnInit {
       this.columnsNames = ['Tipo de Persona', 'Nombre / Razón social', 'Fecha de nacimiento / constitución', 'RFC',
       ];
       this.style = 'even-beneficiary';
-      this.content.fields.forEach((field) => {
+     /*  this.content.fields.forEach((field) => {
         this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
-      });
+      }); */
 
       /* this.applicationService.beneficiaries.subscribe((value) => {
         this.beneficiaries = value;
@@ -132,14 +133,25 @@ export class BeneficiaryTableComponent implements OnInit {
       this.columnsNames = ['Pais', 'Numero de idenficación fiscal',
       ];
       this.style = 'even-beneficiary';
-      this.content.fields.forEach((field) => {
+      /* this.content.fields.forEach((field) => {
         this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
-      });
+      }); */
 
       /* this.applicationService.beneficiaries.subscribe((value) => {
         this.beneficiaries = value;
         this.totalPercentageParticipation = this.applicationService.getTotalParticipationPercentage();
       }); */
+    } else if (this.type ===  'table-formatwo') {
+      this.title = 'Datos Formato dos';
+      this.columnsNames = ['Caracter', 'Nombre', 'Fecha de nacimiento', 'RFC',
+      ];
+      this.style = 'even-beneficiary';
+      /*this.content.fields.forEach((field) => {
+        this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
+      });*/
+      this.applicationService.formatosdos.subscribe((value) => {
+        this.items = value;
+      });
     }
   }
 
@@ -154,6 +166,11 @@ export class BeneficiaryTableComponent implements OnInit {
       ref = this.dialog.open(NewAgentComponent, {data: null});
       ref.afterClosed.subscribe((result) => {
         console.log('dialog closed FROM AGENT TABLE, result: ', result);
+      });
+    } else if (this.type === 'table-formatwo') {
+      ref = this.dialog.open(NewFormatwoComponent, {data: null});
+      ref.afterClosed.subscribe((result) => {
+        console.log('dialog closed FROM FORMATWO TABLE, result: ', result);
       });
     }
   }

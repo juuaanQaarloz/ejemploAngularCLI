@@ -40,11 +40,9 @@ import { TableComponent } from './components/general-table/table/table.component
 import { ItemTableComponent } from './components/general-table/item-table/item-table.component';
 import { AddEditItemTableComponent } from './components/general-table/add-edit-item-table/add-edit-item-table.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
-import {FormaTwoTableComponent} from './components/formatwo/formatwo-table/formatwo-table.component';
 import {FormaTwobTableComponent} from './components/formatwob/formatwob-table/formatwob-table.component';
 import {CoverageTableComponent} from './components/coverage/coverage-table/coverage-table.component';
-import {FormaTwoItemComponent} from './components/formatwo/formatwo-item/formatwo-item.component';
-import {NewFormatwoComponent} from './components/formatwo/new-formatwo/new-formatwo.component';
+import {NewFormatwoComponent} from './components/beneficiaries/new-formatwo/new-formatwo.component';
 import { NewAgentComponent } from './components/beneficiaries/new-agent/new-agent.component';
 
 // @ts-ignore
@@ -72,10 +70,8 @@ import { NewAgentComponent } from './components/beneficiaries/new-agent/new-agen
     ItemTableComponent,
     AddEditItemTableComponent,
     PaginationComponent,
-    FormaTwoTableComponent,
     FormaTwobTableComponent,
     CoverageTableComponent,
-    FormaTwoItemComponent,
     NewFormatwoComponent,
     NewAgentComponent
   ],
