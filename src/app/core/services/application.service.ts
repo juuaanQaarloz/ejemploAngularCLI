@@ -340,8 +340,7 @@ export class ApplicationService {
 
   evaluateCondition(formGroup: FormGroup, elementsCondition) {
     const valueFormControl = this.getFormControlValueByName(formGroup, elementsCondition[1]);
-    console.log('valueFormControl: ', valueFormControl);
-    let result: boolean;
+    let result = false;
 
     switch (elementsCondition[2]) {
       case '=':
@@ -502,25 +501,100 @@ export class ApplicationService {
     return foundStep;
   }
 
-  logicalExpressionEvaluation(str) {
-    console.log('onLogicalExpressionEvaluation...');
-
+  reverseString(str) {
     // Step 1. Use the split() method to return a new array
-    let splitString = str.split('');
-
+    const splitString = str.split('');
     // Step 2. Use the reverse() method to reverse the new created array
-    let reverseArray = splitString.reverse();
-
+    const reverseArray = splitString.reverse();
     // Step 3. Use the join() method to join all elements of the array into a string
-    let joinArray = reverseArray.join('');
+    const joinArray = reverseArray.join('');
 
-    // tslint:disable-next-line:prefer-for-of
-    for (let i = 0; i < joinArray.length; i++) {
-      console.log('index, c: ', i + ',' + joinArray[i]);
-    }
-
-    // Step 4. Return the reversed string
     return joinArray;
   }
 
+  stringToBoolean(str) {
+    return (/true/i).test(str);
+  }
+
+  /*inputs test:
+    * input 1: ((campo1=true,&,campo1=true),|,campo3=true)
+    * input 2: (campo1=true)
+    * */
+
+  evaluateConditions(exp = '((campo1=true,&,campo1=true),|,campo3=true)', formGroup: FormGroup) {
+    console.log('onGetExpressionElements...');
+    const arr = [];
+    const reversedString = this.reverseString(exp);
+
+    for (const ctr of reversedString) {
+      if (ctr === '(') {
+        const s = [];
+        while (arr[arr.length - 1] !== ')') {
+          s.push(arr[arr.length - 1]);
+          arr.pop();
+        }
+
+        arr.pop();
+
+        let sAsString = '';
+        s.forEach((sItem) => {
+          sAsString = sAsString + sItem;
+        });
+        console.log('sAsString: ', sAsString);
+
+        // for one single operation
+        const z = sAsString.split(',');
+        console.log('z: ', z);
+        if (z.length === 1) {
+          const conditionsZ = this.getConditions(z[0]);
+          const resEvalZ = this.evaluateCondition(formGroup, conditionsZ[0]);
+          arr.push(resEvalZ);
+        } else if (z.length === 3) { // for AND and OR operation (more than one operation)
+          const a = z[0];
+          console.log('a: ', a);
+          const b = z[2];
+          console.log('b: ', b);
+          let c;
+
+          let resEvalA;
+          let resEvalB;
+
+          if (a.includes('=') || a.includes('<') || a.includes('>') || a.includes('!=')) {
+            const conditionsA = this.getConditions(a);
+            resEvalA = this.evaluateCondition(formGroup, conditionsA[0]);
+          } else {
+            if (a === 'true' || a === 'false') {
+              resEvalA = this.stringToBoolean(a);
+            } else {
+              resEvalA = a;
+            }
+          }
+
+          if (b.includes('=') || b.includes('<') || b.includes('>') || b.includes('!=')) {
+            const conditionsB = this.getConditions(b);
+            resEvalB = this.evaluateCondition(formGroup, conditionsB[0]);
+          } else {
+            if (b === 'true' || b === 'false') {
+              resEvalB = this.stringToBoolean(resEvalB);
+            } else {
+              resEvalB = b;
+            }
+          }
+          console.log('resEvalA: ', resEvalA);
+          console.log('resEvalB: ', resEvalB);
+
+          if (z[1] === '&') {
+            c = resEvalA && resEvalB;
+          } else {
+            c = resEvalA || resEvalB;
+          }
+          console.log('c: ', c);
+          arr.push((c));
+        }
+      } else {
+        arr.push(ctr);
+      }
+    }
+    return arr[arr.length - 1];
+  }
 }

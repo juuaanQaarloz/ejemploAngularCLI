@@ -84,9 +84,9 @@ export const sportsFields1: Field[] = [
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
-    renderConditions: 'motobickeQuestion=true',
+    renderConditions: '(motobickeQuestion=true)',
     enableConditions: '',
-    requiredConditions: 'motobickeQuestion=true',
+    requiredConditions: '(motobickeQuestion=true)',
     entity: '',
     entityField: '',
     value: ''
@@ -113,9 +113,9 @@ export const sportsFields1: Field[] = [
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
-    renderConditions: 'motobickeQuestion=true',
+    renderConditions: '(motobickeQuestion=true)',
     enableConditions: '',
-    requiredConditions: 'motobickeQuestion=true',
+    requiredConditions: '(motobickeQuestion=true)',
     entity: '',
     entityField: '',
     value: ''

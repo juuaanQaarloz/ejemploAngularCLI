@@ -36,8 +36,8 @@ export class ApplicationComponent implements OnInit {
     this.appService.setFormGroup(this.formGroup);
     // an example array of 150 items to be paged
     this.items = Array(150).fill(0).map((x, i) => ({id: (i + 1), name: `Item ${i + 1}`}));
+    console.log('onInit from ApplicationComponent ');
 
-    this.appService.logicalExpressionEvaluation('[[0,&,1],|,[!,1]]');
   }
 
   getFormValue() {
