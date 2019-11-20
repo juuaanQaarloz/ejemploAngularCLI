@@ -21,10 +21,10 @@ export class StepFormComponent implements OnInit {
   constructor(private applicationService: ApplicationService) { }
 
   ngOnInit() {
-    // console.log('step: ', this.stepObj);
+    // // console.log('step: ', this.stepObj);
     this.applicationService.currentValue.subscribe(value => {
-      // console.log('value: ', value);
-      // console.log('id step: ', this.stepObj.id);
+      // // console.log('value: ', value);
+      // // console.log('id step: ', this.stepObj.id);
       if (Number(this.stepObj.id) === value) {
         if (Number(this.stepObj.id) === 0) {
           this.accordionExpanded = false;
@@ -34,27 +34,27 @@ export class StepFormComponent implements OnInit {
       } else {
         this.accordionExpanded = false;
       }
-      // console.log('from child', this.accordionExpanded);
+      // // console.log('from child', this.accordionExpanded);
     });
 
     if (this.stepObj.renderConditions) {
-      // console.log('renderConditions: ', this.applicationService.getRenderConditions(this.stepObj.renderConditions));
+      // // console.log('renderConditions: ', this.applicationService.getRenderConditions(this.stepObj.renderConditions));
       this.renderCondition = this.applicationService.getConditions(this.stepObj.renderConditions);
-      // console.log('this.renderCondition[0][1]: ', this.renderCondition[0][1]);
+      // // console.log('this.renderCondition[0][1]: ', this.renderCondition[0][1]);
       // this.applicationService.getRenderConditionsTwin(this.stepObj.renderConditions);
       this.stepObj.show = this.applicationService.evaluateCondition(this.form, this.renderCondition[0]);
       this.form.controls[this.renderCondition[0][1]].valueChanges.subscribe(() => {
-        // console.log('value: ', value);
+        // // console.log('value: ', value);
         this.stepObj.show = this.applicationService.evaluateCondition(this.form, this.renderCondition[0]);
-        // console.log('show: ', this.stepObj.show);
+        // // console.log('show: ', this.stepObj.show);
       });
     }
   }
 
   toggleAccordion() {
-    // console.log('before: ', this.accordionExpanded);
+    // // console.log('before: ', this.accordionExpanded);
     this.accordionExpanded = this.accordionExpanded ? false : true;
-    // console.log('after: ', this.accordionExpanded);
+    // // console.log('after: ', this.accordionExpanded);
   }
 
   completeStep() {

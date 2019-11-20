@@ -405,7 +405,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
-    requiredConditions: 'emailCheckM=true',
+    requiredConditions: '(emailCheckM=true)',
     entity: '',
     entityField: '',
   }

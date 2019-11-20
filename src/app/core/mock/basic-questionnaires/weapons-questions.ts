@@ -55,9 +55,9 @@ export const weaponsFields: Field[] = [
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
-    renderConditions: 'weaponsQuestion=true',
+    renderConditions: '(weaponsQuestion=true)',
     enableConditions: '',
-    requiredConditions: 'weaponsQuestion=true',
+    requiredConditions: '(weaponsQuestion=true)',
     entity: '',
     entityField: '',
     value: ''
@@ -120,9 +120,9 @@ export const weaponsFields1: Field[] = [
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
-    renderConditions: 'radioDangerWorkQuestion=true',
+    renderConditions: '(radioDangerWorkQuestion=true)',
     enableConditions: '',
-    requiredConditions: 'radioDangerWorkQuestion=true',
+    requiredConditions: '(radioDangerWorkQuestion=true)',
     entity: '',
     entityField: '',
     value: ''

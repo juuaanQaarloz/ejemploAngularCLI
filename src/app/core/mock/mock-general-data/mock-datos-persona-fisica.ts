@@ -26,7 +26,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
-    requiredConditions: 'typePerson=phyPerson',
+    requiredConditions: '(typePerson=phyPerson)',
     entity: '',
     entityField: '',
     value: ''
@@ -341,7 +341,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
-    enableConditions: 'txtEdad>18,chboxGender=Female',
+    enableConditions: '',
     entity: '',
     entityField: ''
   },

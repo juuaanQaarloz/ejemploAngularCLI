@@ -340,7 +340,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
-    enableConditions: 'txtEdad>18,chboxGender=Female',
+    enableConditions: '',
     entity: '',
     entityField: '',
   },

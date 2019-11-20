@@ -89,7 +89,7 @@ export class SearchOccupationComponent implements OnInit {
   }
 
   searchOccupation(keyWord: string) {
-    // console.log('buscando ocupacion...', keyWord);
+    // // console.log('buscando ocupacion...', keyWord);
     this.foundOccupations = [];
     this.appService.getCatalogById(FIELDS[0].sourceID, FIELDS[0].source).subscribe((occupations: Occupation[]) => {
       occupations.forEach((occupation) => {
@@ -106,7 +106,7 @@ export class SearchOccupationComponent implements OnInit {
   }
 
   setOccupation(selectedOccupation: Occupation) {
-    // console.log('selectedOccupation... ', selectedOccupation);
+    // // console.log('selectedOccupation... ', selectedOccupation);
     this.appService.setSelectedOccupation(selectedOccupation,);
     this.closeModal(this.modalID);
 

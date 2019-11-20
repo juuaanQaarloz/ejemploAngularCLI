@@ -36,25 +36,16 @@ export class ApplicationComponent implements OnInit {
     this.appService.setFormGroup(this.formGroup);
     // an example array of 150 items to be paged
     this.items = Array(150).fill(0).map((x, i) => ({id: (i + 1), name: `Item ${i + 1}`}));
-    console.log('onInit from ApplicationComponent ');
 
   }
 
   getFormValue() {
     this.payLoad = JSON.stringify(this.formGroup.value);
-    console.log(this.formGroup.value);
+    // // console.log(this.formGroup.value);
   }
 
   openDialog(modalID: string) {
     this.modalService.open(modalID);
-  }
-
-  testSepoMexService() {
-    this.appService.getInfoFromSepomex('15220')
-      .subscribe((response) => {
-          console.log('response: ', response);
-        }
-      );
   }
 
   downloadPDF() {
@@ -67,15 +58,15 @@ export class ApplicationComponent implements OnInit {
 
   validateForm() {
     /*Object.keys(this.formGroup.controls).forEach(key => {
-      console.log('formControlName: ', key);
-      // console.log('formControl: ', this.formGroup.controls[key]);
+      // // console.log('formControlName: ', key);
+      // // // console.log('formControl: ', this.formGroup.controls[key]);
       const isValid =  this.formGroup.controls[key].valid;
       if (!isValid) {
         this.formGroup.controls[key].markAsTouched();
       } else {
         this.formGroup.controls[key].markAsUntouched();
       }
-      console.log('isValid: ', isValid);
+      // // console.log('isValid: ', isValid);
     });*/
 
     this.applicationObj.sections.forEach(section => {
@@ -83,8 +74,8 @@ export class ApplicationComponent implements OnInit {
         if (contentFromSection.fields) {
           contentFromSection.fields.forEach(field => {
             field.valid = this.formGroup.controls[field.name].valid;
-            console.log('formControlName: ', field.name);
-            console.log('valid: ', field.valid);
+            // // console.log('formControlName: ', field.name);
+            // // console.log('valid: ', field.valid);
           });
         } else {
           if (contentFromSection.process) {
@@ -93,8 +84,8 @@ export class ApplicationComponent implements OnInit {
                 if (contentFromStep.fields) {
                   contentFromStep.fields.forEach(field => {
                     field.valid = this.formGroup.controls[field.name].valid;
-                    console.log('formControlName: ', field.name);
-                    console.log('valid: ', field.valid);
+                    // // console.log('formControlName: ', field.name);
+                    // // console.log('valid: ', field.valid);
                   });
                 } else {
                   if (contentFromStep.contentChildren) {
@@ -102,8 +93,8 @@ export class ApplicationComponent implements OnInit {
                       if (contentChild.fields) {
                         contentChild.fields.forEach(field => {
                           field.valid = this.formGroup.controls[field.name].valid;
-                          console.log('formControlName: ', field.name);
-                          console.log('valid: ', field.valid);
+                          // // console.log('formControlName: ', field.name);
+                          // // console.log('valid: ', field.valid);
                         });
                       }
                     });

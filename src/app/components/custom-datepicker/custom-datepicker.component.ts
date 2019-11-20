@@ -23,23 +23,23 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    /*console.log('onAfterViewInit datepicker: ');
+    /*// console.log('onAfterViewInit datepicker: ');
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
     let value;
-    console.log('value before: ', value);
+    // console.log('value before: ', value);
     if (this.fieldObj.value) {
       value = this.fieldObj.value;
-      console.log('attributesNames: ', elem.getAttributeNames());
+      // console.log('attributesNames: ', elem.getAttributeNames());
       elem.setAttribute('value', value);
     } else if (this.form.controls[this.fieldObj.name].value) {
       value = this.form.controls[this.fieldObj.name].value;
       elem.setAttribute('value', value);
     }
-    console.log('value after: ', elem.getAttribute('value'));*/
+    // console.log('value after: ', elem.getAttribute('value'));*/
   }
 
   onDateInput(typeEvent: string, event) {
-    console.log('onDateInput...');
+    // console.log('onDateInput...');
     if (typeEvent === 'input') {
       event.targetElement.value = addSlashesToDate(event.targetElement.value);
     }
@@ -48,13 +48,13 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   onDateChange(event) {
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
 
-    console.log('event.targetElement.value: ', event.targetElement.value);
-    // console.log('type of event.targetElement.value: ', typeof event.targetElement.value);
+    // console.log('event.targetElement.value: ', event.targetElement.value);
+    // // console.log('type of event.targetElement.value: ', typeof event.targetElement.value);
     elem.setAttribute('value', event.targetElement.value);
 
     if (this.fieldObj.name === 'birthDate' || this.fieldObj.name === 'birthDateS') {
       const age = calculateAge(event.targetElement.value);
-      // console.log('edad: ', age);
+      // // console.log('edad: ', age);
       if (age) {
         if (this.fieldObj.name === 'birthDate') {
           this.setAge('age', 'txtAge', age);
@@ -67,8 +67,8 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   }
 
   onBlur() {
-    console.log('onBlur from custom-datepicker');
-    // console.log('formControlValue: ', this.form.controls[this.fieldObj.name]);
+    // console.log('onBlur from custom-datepicker');
+    // // console.log('formControlValue: ', this.form.controls[this.fieldObj.name]);
     this.validate.emit(true);
   }
 
@@ -79,7 +79,7 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   }
 
   onKeyUp() {
-    console.log('onKeyUp from custom-datepicker');
+    // console.log('onKeyUp from custom-datepicker');
     this.validate.emit(true);
   }
 }

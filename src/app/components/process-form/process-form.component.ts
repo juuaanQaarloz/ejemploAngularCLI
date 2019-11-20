@@ -17,7 +17,7 @@ export class ProcessFormComponent implements OnInit {
 
   ngOnInit() {
     this.totalSteps = this.processObj.steps.length;
-    // console.log('process: ', this.processObj);
+    // // console.log('process: ', this.processObj);
   }
 
 }

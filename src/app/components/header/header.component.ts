@@ -37,11 +37,11 @@ export class HeaderComponent implements OnInit {
         this.iconSecurity = 'security-icon';
       }
     }
-    // console.log('event: ', event.target.id);
+    // // console.log('event: ', event.target.id);
   }
 
   logout(): void {
-    console.log('on LogOut...');
+    // console.log('on LogOut...');
     /*this.authService.logout().subscribe(
       response => {
         if (response) {

@@ -16,7 +16,7 @@ export class TableComponent implements OnInit {
   }
 
   addNewItem() {
-    console.log('onAddNewItem ...');
+    // console.log('onAddNewItem ...');
   }
 
 }

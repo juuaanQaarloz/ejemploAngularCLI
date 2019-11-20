@@ -109,12 +109,12 @@ export class BeneficiaryTableComponent implements OnInit {
     if (this.type === 'table-beneficiary') {
       ref = this.dialog.open(NewBeneficiaryComponent, {data: null});
       ref.afterClosed.subscribe((result) => {
-        console.log('dialog closed FROM BENEFICIARY TABLE, result: ', result);
+        // console.log('dialog closed FROM BENEFICIARY TABLE, result: ', result);
       });
     } else if (this.type === 'table-agent') {
       ref = this.dialog.open(NewAgentComponent, {data: null});
       ref.afterClosed.subscribe((result) => {
-        console.log('dialog closed FROM AGENT TABLE, result: ', result);
+        // console.log('dialog closed FROM AGENT TABLE, result: ', result);
       });
     }
   }
