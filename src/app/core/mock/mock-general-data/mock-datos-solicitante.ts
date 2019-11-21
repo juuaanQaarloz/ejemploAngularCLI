@@ -163,7 +163,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'El RFC no puede estart vacío o no parece ser válido.',
+    message: 'El RFC no puede estar vacío o no parece ser válido.',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',

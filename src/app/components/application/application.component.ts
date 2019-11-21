@@ -1,12 +1,13 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {ApplicationService, AuthService, StorageService} from '../../core/services';
+import {ApplicationService, AuthService, StorageService, validateEmailConfirmation} from '../../core/services';
 import {MockTemplate} from '../../core/mock/mock-template';
 import {DialogService} from '../dialog/dialog.service';
 import {ModalService} from '../custom-modal';
 import * as jsPDF from 'jspdf';
 import {pdfOperation} from '../../core/mock/mock-operations';
 import {Template} from '../../models/template';
+import {error} from 'util';
 
 @Component({
   selector: 'app-application',
@@ -107,5 +108,12 @@ export class ApplicationComponent implements OnInit {
       });
 
     });
+  }
+
+  getValidateField() {
+    const errors = this.formGroup.errors;
+    if (errors) {
+      console.log('result: ', errors.invalidEmailConfirmation);
+    }
   }
 }

@@ -4,11 +4,10 @@ import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';
-import {Beneficiary, Field, Occupation, Step} from '../../models';
-import {validateEmailConfirmation, validatorsObjects} from '../validators';
+import {Field, Occupation} from '../../models';
+import {equalEmailsValidator, validatorsObjects} from '../validators';
 import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
-import {Agent} from '../../models/agent-model/agent';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
@@ -118,7 +117,7 @@ export class ApplicationService {
       });
 
     });
-    return new FormGroup(group, validateEmailConfirmation('email', 'emailConfirmation'));
+    return new FormGroup(group, equalEmailsValidator);
   }
 
   addNewFormControl(formGroup: FormGroup, field: Field) {
@@ -310,13 +309,6 @@ export class ApplicationService {
     return value;
   }
 
-  booleanCalculator(renderConditions: string) {
-    const testExp = '((A && B) && C) || D';
-    // console.log('renderConditions: ', renderConditions);
-    // eval && operator first when is no parenthesis
-    // eval conditions that are inside parenthesis
-  }
-
   getConditions(renderConditions: string) {
     const result = [];
     let separatedRenderConditions;
@@ -504,7 +496,6 @@ export class ApplicationService {
   }
 
   reverseString(str) {
-    console.log('onReverseString: ', str);
     // Step 1. Use the split() method to return a new array
     const splitString = str.split('');
     // Step 2. Use the reverse() method to reverse the new created array
@@ -602,7 +593,6 @@ export class ApplicationService {
   }
 
   removeParenthesis(str) {
-    console.log('onRemoveParenthesis: ', str);
     return str.replace(/[()]/g, '');
   }
 

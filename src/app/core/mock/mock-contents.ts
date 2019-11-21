@@ -48,38 +48,6 @@ export const MockFieldsContractorType: Field[] = [
   }
 ];
 
-/*export const MockFieldsContractorTypeM: Field[] = [
-  {
-    id: 'field-36',
-    idHtml: 'rdiotyContractorTypeM',
-    name: 'contractorTypeM',
-    orderAppearance: 1,
-    label: '¿El solicitante es el mismo que el contratante?',
-    type: 'radio',
-    required: true,
-    placeholder: '',
-    length: '',
-    minValue: 0,
-    maxValue: 0,
-    pattern: '',
-    source: 'IPRE',
-    sourceID: 'guardBoxOptions',
-    sourceStructure: ['id', 'label', 'value'],
-    style: '',
-    styleClass: '',
-    styleClassError: '',
-    message: '',
-    messageClass: '',
-    messageError: '',
-    messageErrorClass: '',
-    renderConditions: '',
-    enableConditions: '',
-    entity: '',
-    entityField: '',
-    value: true
-  }
-];*/
-
 export const MockContentStep1Process1ContentSection2: Content[] = [
   {
     id: 'content-2.1',
@@ -652,7 +620,7 @@ export const MockContentStep8Process1ContentSection2: Content[] = [
     idHtml: 'app-content-form-2.33',
     title: '',
     description: 'Advertencia: En el caso de que se desee nombrar beneficiarios a menores de edad, ' +
-      'no se debe señalar a un mayor de edad como representante de los menores para efecto de que, en su' +
+      'no se debe señalar a un mayor de edad como representante de los menores para efecto de que, en su ' +
       'representación, cobre la indemnización. ' +
       'Lo anterior porque legislaciones civiles previenen la forma en que debe designarse tutores, albaceas, representantes ' +
       'de herederos u otros cargos similares  y no consideran al contrato de seguro como el instrumento adecuado para tales ' +

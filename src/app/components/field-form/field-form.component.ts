@@ -43,16 +43,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
 
     if (this.fieldObj.renderConditions) {
-      /*const renderConditions = this.applicationService.getConditions(this.fieldObj.renderConditions);
-      this.show = this.applicationService.evaluateCondition(this.form, renderConditions[0]);
-      this.form.controls[renderConditions[0][1]].valueChanges.subscribe((value) => {
-        // console.log('onValueChanges: ', value);
-        // console.log('formControl : ', renderConditions[0][1]);
-        this.show = this.applicationService.evaluateCondition(this.form, renderConditions[0]);
-      });*/
-      const dependedFields = this.applicationService.getDependedFields(this.fieldObj.requiredConditions);
-      console.log('dependedFields: ', dependedFields);
-      this.show = this.applicationService.evaluateConditions(this.fieldObj.requiredConditions, this.form);
+      const dependedFields = this.applicationService.getDependedFields(this.fieldObj.renderConditions);
+      this.show = this.applicationService.evaluateConditions(this.fieldObj.renderConditions, this.form);
       dependedFields.forEach((dependedField) => {
         this.form.controls[dependedField].valueChanges.subscribe((value) => {
           this.show = this.applicationService.evaluateConditions(this.fieldObj.renderConditions, this.form);
@@ -61,16 +53,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
 
     if (this.fieldObj.requiredConditions) {
-      /*const requiredConditions = this.applicationService.getConditions(this.fieldObj.requiredConditions);
-      // console.log('requiredConditions: ', requiredConditions);
-      this.fieldObj.required = this.applicationService.evaluateCondition(this.form, requiredConditions[0]);
-      this.form.controls[requiredConditions[0][1]].valueChanges.subscribe((value) => {
-        // console.log('value: ', value);
-        this.fieldObj.required = this.applicationService.evaluateCondition(this.form, requiredConditions[0]);
-        this.form.controls[this.fieldObj.name].setValidators(this.applicationService.getValidationFunctions(this.fieldObj));
-        this.form.controls[this.fieldObj.name].updateValueAndValidity();
-      });*/
-
       const dependedFields = this.applicationService.getDependedFields(this.fieldObj.requiredConditions);
       this.fieldObj.required = this.applicationService.evaluateConditions(this.fieldObj.requiredConditions, this.form);
 
@@ -110,9 +92,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    const currentValue = this.form.controls[this.fieldObj.name].value;
-    const defaultValue = this.fieldObj.value;
-
     if (this.fieldObj.type === 'text') {
       const elem: Element = document.getElementById(this.fieldObj.idHtml);
       // // console.log('elem: ', elem);
@@ -129,9 +108,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         }
       }
     }
-    /*if (this.fieldObj.disable) {
-      this.form.controls[this.fieldObj.name].disable();
-    }*/
   }
 
   onKeyUp(event) {

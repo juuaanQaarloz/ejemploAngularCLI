@@ -1,4 +1,4 @@
-import {AbstractControl, Form, FormControl, FormGroup, ValidatorFn} from '@angular/forms';
+import {AbstractControl, Form, FormControl, FormGroup, ValidationErrors, ValidatorFn} from '@angular/forms';
 import * as moment from 'moment';
 import {addSlashesToDate} from '../utilities';
 
@@ -654,11 +654,25 @@ export function validateEmailConfirmation(targetKey: string, toMatchKey: string)
     const email = group.controls[targetKey].value;
     const emailConfirmation = group.controls[toMatchKey].value;
     if (email !== emailConfirmation) {
+      console.log('not valid email confirmation');
       return {invalidEmailConfirmation: {valid: false, value: emailConfirmation.value}};
     }
+    console.log('valid email conformation');
     return null;
   };
 }
+
+export const equalEmailsValidator: ValidatorFn = (group: FormGroup): ValidationErrors | null => {
+  const email = group.controls.email.value;
+  const confirmationEmail = group.controls.emailConfirmation.value;
+
+  if (email !== confirmationEmail) {
+    return { invalidEmailConfirmation: true };
+  }
+
+  return null;
+};
+
 
 
 
