@@ -197,10 +197,16 @@ export class ApplicationService {
       responseMessage1 = 'No se pueden agregar más de 2 agentes';
       responseMessage2 = 'La suma de las participaciones de los agentes excede el 100%';
       propertyName = 'participation';
+    }  else if (itemType === 'formatwo') {
+      currentItems = this.formatosdos.getValue();
+      maxLength = 5;
+      responseMessage1 = 'No se pueden agregar más de 2 formatos';
+      responseMessage2 = 'La suma de las participaciones de los formatos excede el 100%';
+      propertyName = 'participation';
     }
 
     if (currentTotalParticipationPercentage + Number(newItem[propertyName]) <= 100) {
-      if (currentItems.length <= maxLength) {
+    if (currentItems.length <= maxLength) {
         // the new beneficiary can be added
         currentItems.push(newItem);
         this.setItems(itemType, currentItems);
@@ -222,6 +228,9 @@ export class ApplicationService {
     } else if (itemType === 'agent') {
       currentItems = this.agents.getValue();
       propertyName = 'agentId';
+    } else if (itemType === 'formatwo') {
+      currentItems = this.formatosdos.getValue();
+      propertyName = 'formatwoId';
     }
     currentItems = currentItems.filter(item => item[propertyName] !== itemId);
     console.log('currentItems: ', currentItems);
@@ -239,6 +248,9 @@ export class ApplicationService {
     } else if (itemType === 'agent') {
       currentItems = this.agents.getValue();
       propertyItem = 'agentId';
+    } else if (itemType === 'formatwo') {
+      currentItems = this.formatosdos.getValue();
+      propertyItem = 'formatwoId';
     }
     const itemsLength = currentItems.length;
     console.log('itemsLength: ', itemsLength);
@@ -260,6 +272,9 @@ export class ApplicationService {
     } else if (itemType === 'agent') {
       currentItems = this.agents.getValue();
       propertyItem = 'agentId';
+    } else if (itemType === 'formatwo') {
+      currentItems = this.formatosdos.getValue();
+      propertyItem = 'formatwoId';
     }
     const foundItem = currentItems.filter(i => i[propertyItem] === updatedItem[propertyItem])[0];
 
@@ -280,6 +295,9 @@ export class ApplicationService {
     } else if (itemType === 'agent') {
       currentItems = this.agents.getValue();
       propertyItem = 'participation';
+    } else if (itemType === 'formatwo') {
+      currentItems = this.formatosdos.getValue();
+      propertyItem = 'participation';
     }
 
     currentItems.forEach((item) => {
@@ -294,6 +312,8 @@ export class ApplicationService {
       this.beneficiaries.next(newItems);
     } else if (itemType === 'agent') {
       this.agents.next(newItems);
+    } else if (itemType === 'formatwo') {
+      this.formatosdos.next(newItems);
     }
   }
 
@@ -501,13 +521,6 @@ export class ApplicationService {
 
     return foundStep;
   }
-  addFormatwo(newFormatwo: Formatwo) {
-    console.log('Formatwo: ', this.formatosdos.getValue());
-    const currentBeneficiaries = this.formatosdos.getValue();
-    currentBeneficiaries.push(newFormatwo);
-    this.formatosdos.next(currentBeneficiaries);
-    return {status: true, message: ''};
-  }
   logicalExpressionEvaluation(str) {
     console.log('onLogicalExpressionEvaluation...');
 
@@ -527,16 +540,5 @@ export class ApplicationService {
 
     // Step 4. Return the reversed string
     return joinArray;
-  }
-
-  getLastFormatwoId() {
-    const currentBeneficiaries = this.formatosdos.getValue();
-    const beneficiariesLength = currentBeneficiaries.length;
-    let lastId = 0;
-    if (beneficiariesLength > 1) {
-      lastId = Number(currentBeneficiaries[beneficiariesLength - 1].formatwoId);
-    }
-    console.log('lastId: ', lastId);
-    return lastId;
   }
 }

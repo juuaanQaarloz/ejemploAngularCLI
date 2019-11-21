@@ -143,8 +143,9 @@ export class BeneficiaryTableComponent implements OnInit {
       }); */
     } else if (this.type ===  'table-formatwo') {
       this.title = 'Datos Formato dos';
-      this.columnsNames = ['Caracter', 'Nombre', 'Fecha de nacimiento', 'RFC',
+      this.columnsNames = ['Caracter', 'Nombre', 'Fecha de nacimiento',
       ];
+      this.itemsType = 'formatwo';
       this.style = 'even-beneficiary';
       /*this.content.fields.forEach((field) => {
         this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);

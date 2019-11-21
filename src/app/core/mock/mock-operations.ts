@@ -202,52 +202,6 @@ export const pdfOperation = {
   enableConditions: ''
 };
 
-export const FormattwoItemOperations: Operation[] = [
-  {
-    id: 'opt-1',
-    idHtml: 'btnCancel',
-    name: 'cancelar',
-    label: 'Cancelar',
-    type: 'button',
-    style: '',
-    styleClass: 'ml-link',
-    message: '',
-    messageClass: '',
-    delegateOperation: 'closeModal',
-    // delegateOperation: 'closeDialog',
-    renderConditions: '',
-    enableConditions: '',
-  },
-  {
-    id: 'opt-2',
-    idHtml: 'btnDeleteBeneficiary',
-    name: 'deleteBeneficiary',
-    label: 'ELIMINAR',
-    type: 'button',
-    style: '',
-    styleClass: 'ml-button-primary',
-    message: '',
-    messageClass: '',
-    delegateOperation: 'deleteBeneficiary',
-    renderConditions: '',
-    enableConditions: ''
-  },
-  {
-    id: 'opt-3',
-    idHtml: 'btnUpdateBeneficiary',
-    name: 'updateBeneficiary',
-    label: 'GUARDAR',
-    type: 'button',
-    style: '',
-    styleClass: 'ml-button-primary',
-    message: '',
-    messageClass: '',
-    delegateOperation: 'updateBeneficiary',
-    renderConditions: '',
-    enableConditions: '',
-  }
-];
-
 export const AgentsOperations: Operation[] = [
   {
     id: 'opt-1',
@@ -259,25 +213,21 @@ export const AgentsOperations: Operation[] = [
     styleClass: 'ml-link',
     message: '',
     messageClass: '',
-    delegateOperation: 'closeModal',
-    // delegateOperation: 'closeDialog',
+    delegateOperation: 'closeDialog',
     renderConditions: '',
     enableConditions: '',
   },
   {
     id: 'opt-2',
-    idHtml: 'btnDeleteBeneficiary',
-    name: 'deleteBeneficiary',
-    label: 'ELIMINAR',
-    // idHtml: 'btnAddBeneficiary',
-    // name: 'addBeneficiary',
-    // label: 'AGREGAR',
+    idHtml: 'btnAddBeneficiary',
+    name: 'addBeneficiary',
+    label: 'AGREGAR',
     type: 'button',
     style: '',
     styleClass: 'ml-button-primary',
     message: '',
     messageClass: '',
-    delegateOperation: 'deleteBeneficiary',
+    delegateOperation: 'addNewBeneficiary',
     renderConditions: '',
     enableConditions: ''
   },

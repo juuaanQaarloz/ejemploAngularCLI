@@ -8,23 +8,20 @@ import {ModalService} from '../../custom-modal';
 import {Operation} from '../../../models';
 import {FormatwoOperations} from '../../../core/mock/mock-operations';
 import {NewFormatwoFields} from '../../../core/mock/formats/formatwo';
-// import {BeneficiariesOperations} from '../../../core/mock/mock-operations';
-// import {BeneficiaryFieldsP} from '../../../core/mock/mock-beneficiaries/phy-beneficiary';
-// import {BeneficiaryFieldsM} from '../../../core/mock/mock-beneficiaries/mor-beneficiary';
-// import {BeneficiaryFieldsF} from '../../../core/mock/mock-beneficiaries/fid-beneficiary';
+
 
 @Component({
   selector: 'app-new-formatwo',
   templateUrl: './new-formatwo.component.html',
   styleUrls: ['./new-formatwo.component.css']
 })
-export class NewFormatwoComponent implements OnInit, AfterViewInit {
+export class NewFormatwoComponent implements OnInit {
   content = {
     id: 'content-2.19',
     idParent: 'step-7',
     parentType: 'Step',
     idHtml: 'app-content-form-2.19',
-    fields: this.setUpFormFields(),
+    fields: NewFormatwoFields,
     operations: FormatwoOperations,
     showContent: true,
     styleClass: 'modal-type',
@@ -52,7 +49,6 @@ export class NewFormatwoComponent implements OnInit, AfterViewInit {
   modalID = 'modal-warning';
   modalMessage = 'La suma de las participaciones de los beneficiarios excede el 100%';
   fileNameUpload = 'Ningún archivo seleccionado';
-  formatwoType = 'spouse';
   fields = [];
 
   constructor(private applicationService: ApplicationService,
@@ -68,7 +64,7 @@ export class NewFormatwoComponent implements OnInit, AfterViewInit {
     this.fields = this.getFields();
 
     this.formGroup.controls.formatwoType.valueChanges.subscribe((value) => {
-      this.formatwoType = value;
+      // this.formatwoType = value;
       console.log('formatwoType');
       this.fields = this.getFields();
     });
@@ -82,14 +78,11 @@ export class NewFormatwoComponent implements OnInit, AfterViewInit {
 
   }
 
-  ngAfterViewInit(): void {
-  }
-
   addNewFormatwo() {
     console.log('addNewFormatwo-component ');
     console.log('formGroup value: ', this.formGroup.value);
     const newFormatwo = this.mapNewFormatwoData();
-    const response = this.applicationService.addFormatwo((newFormatwo));
+    const response = this.applicationService.addItem(newFormatwo, 'formatwo');
 
     if (response.status) {
       this.closeDialog();
@@ -100,8 +93,8 @@ export class NewFormatwoComponent implements OnInit, AfterViewInit {
   }
 
   updateFormatwo() {
-    const updatedBeneficiary = this.mapNewFormatwoData();
-    // this.applicationService.updateBeneficiary(updatedBeneficiary);
+    const updatedBeneficiary = this.mapFormatwoData();
+    // this.applicationService.updateItem(updatedBeneficiary, 'beneficiary');
     this.closeDialog();
   }
 
@@ -123,35 +116,24 @@ export class NewFormatwoComponent implements OnInit, AfterViewInit {
   }
 
   setFormatwoValues() {
-    this.content.fields.forEach((field) => {
+    this.fields.forEach((field) => {
       let value;
       switch (field.name) {
         case 'formatwoType':
-          value = this.config.data.formatwo.formatwoType;
+          value = this.config.data.item.formatwoType;
           break;
-         case 'beneficiaryName':
-          value = this.config.data.beneficiary.name;
+         case 'formatwoName':
+          value = this.config.data.item.name;
           break;
-        case 'beneficiaryFaLastName':
-          value = this.config.data.beneficiary.fatherLastName;
+        case 'formatwoFaLastName':
+          value = this.config.data.item.fatherLastName;
           break;
-        case 'beneficiaryMoLastName':
-          value = this.config.data.beneficiary.motherLastName;
+        case 'formatwoMoLastName':
+          value = this.config.data.item.motherLastName;
           break;
-        case 'suspensiveCodition':
-          value = this.config.data.beneficiary.suspensiveCondition;
-          break;
-        case 'contractNumber':
-          value = this.config.data.beneficiary.contractNumber;
-          break;
-        case 'instructionLetterNumber':
-          value = this.config.data.beneficiary.instructionLetterNumber;
-          break;
-        case 'beneficiaryRelationship':
-          value = this.config.data.beneficiary.instructionLetterNumber;
-          break; /*
-        case 'beneficiaryBirthDate':
-          value = this.config.data.beneficiary.birthDateOrConstitution;
+         /*
+        case 'formatwoBirthDate':
+          value = this.config.data.beneficiary.birthDate;
           break; */
       }
       this.formGroup.controls[field.name].setValue(value);
@@ -162,49 +144,15 @@ export class NewFormatwoComponent implements OnInit, AfterViewInit {
 
   mapNewFormatwoData() {
     const newFormatwoBase = {
-      formatwoId: (this.applicationService.getLastFormatwoId() + 1).toString(),
-      formatwoType: this.formGroup.controls.formatwoType.value
-    };
-    console.log('mapNew: ');
-    return {
-        ...newFormatwoBase,
-        name: this.formGroup.controls.formatwoName.value,
-        fatherLastName: this.formGroup.controls.formatwoFaLastName.value,
-        motherLastName: this.formGroup.controls.formatwoMoLastName.value,
-        birthDate: transformDate(this.formGroup.controls.formatwoBirthDate.value, 'YYYY/MM/DD'),
-       /*  address: {
-          street: this.formGroup.controls.beneficiaryStreet.value,
-          exteriorNumber: this.formGroup.controls.beneficiaryExteriorNumber.value,
-          interiorNumber: this.formGroup.controls.beneficiaryInteriorNumber.value,
-          zipCode: this.formGroup.controls.beneficiaryZipCode.value,
-          neighborhood: this.formGroup.controls.beneficiarySuburb.value,
-          municipality: this.formGroup.controls.beneficiaryMunicipality.value,
-          state: this.formGroup.controls.beneficiaryState.value,
-          city: this.formGroup.controls.beneficiaryCity.value,
-          country: this.formGroup.controls.beneficiaryCountry.value,
-        }, */
-      };
-  }
-  mapFormatwoData() {
-    return {
-      formatwoId: this.config.data.formatwo.formatwoId,
+      formatwoId: (this.applicationService.getLastItemId('formatwo') + 1).toString(),
       formatwoType: this.formGroup.controls.formatwoType.value,
       name: this.formGroup.controls.formatwoName.value,
       fatherLastName: this.formGroup.controls.formatwoFaLastName.value,
       motherLastName: this.formGroup.controls.formatwoMoLastName.value,
       birthDate: transformDate(this.formGroup.controls.formatwoBirthDate.value, 'YYYY/MM/DD'),
-      /* address: {
-        street: this.formGroup.controls.beneficiaryStreet.value,
-        exteriorNumber: this.formGroup.controls.beneficiaryExteriorNumber.value,
-        interiorNumber: this.formGroup.controls.beneficiaryInteriorNumber.value,
-        zipCode: this.formGroup.controls.beneficiaryZipCode.value,
-        neighborhood: this.formGroup.controls.beneficiarySuburb.value,
-        municipality: this.formGroup.controls.beneficiaryMunicipality.value,
-        state: this.formGroup.controls.beneficiaryState.value,
-        city: this.formGroup.controls.beneficiaryCity.value,
-        country: this.formGroup.controls.beneficiaryCountry.value,
-      },*/
+      participation: '0',
     };
+    return newFormatwoBase;
   }
   closeModal(modalID: string) {
     this.modalService.close(modalID);
@@ -236,15 +184,6 @@ export class NewFormatwoComponent implements OnInit, AfterViewInit {
     }*/
   }
 
-  setUpFormFields() {
-    let fields = [];
-    NewFormatwoFields.forEach((field) => {
-      fields.push(field);
-    });
-    console.log('setUpFormFields: ', fields);
-    return fields;
-  }
-
   getFields() {
     let fields = [];
     NewFormatwoFields.forEach((field) => {
@@ -252,5 +191,18 @@ export class NewFormatwoComponent implements OnInit, AfterViewInit {
     });
     console.log('getFields: ', fields);
     return fields;
+  }
+
+  mapFormatwoData() {
+    const formatwoBase = {
+      formatwoId: this.config.data.item.formatwoId,
+      formatwoType: this.formGroup.controls.formatwoType.value,
+      name: this.formGroup.controls.formatwoName.value,
+      fatherLastName: this.formGroup.controls.formatwoFaLastName.value,
+      motherLastName: this.formGroup.controls.formatwoMoLastName.value,
+      birthDate: transformDate(this.formGroup.controls.formatwoBirthDate.value, 'YYYY/MM/DD'),
+      participation: '0',
+    };
+    return formatwoBase;
   }
 }

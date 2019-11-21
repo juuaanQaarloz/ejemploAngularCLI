@@ -9,7 +9,7 @@ import {ModalService} from '../../custom-modal';
 import {BeneficiaryItemOperations} from '../../../core/mock/mock-operations';
 import {NewAgentComponent} from '../new-agent/new-agent.component';
 import {AgentFields, AgentFieldsItem} from '../../../core/mock/mock-agents/mock-agents-questions';
-import {NewFormatwoFields} from '../../../core/mock/formats/formatwo';
+import {NewFormatwoFields, FormaTwoFieldsItem} from '../../../core/mock/formats/formatwo';
 import {NewFormatwoComponent} from '../new-formatwo/new-formatwo.component';
 
 
@@ -52,10 +52,10 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       this.maxItems = 2;
       this.styleClass = 'item-row-agent';
     } else if (this.itemType === 'formatwo') {
-      this.fields = NewFormatwoFields;
+      this.fields = FormaTwoFieldsItem;
       this.operations = BeneficiaryItemOperations;
       this.questionModal = '¿Está seguro que desea eliminar al formato de la lista?';
-      this.maxItems = 2;
+      this.maxItems = 5;
       this.styleClass = 'item-row-formatwo';
     }
 
@@ -121,6 +121,14 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
     }
   }
 
+  getFormaTwoTypeLabel() {
+    if (this.item.formatwoType === 'spouse') {
+      return 'Cónyuge o concubina(o)';
+    } else if (this.item.formatwoType === 'dependent') {
+      return 'Dependiente económico';
+    }
+  }
+
   setFieldsValues() {
     if (this.itemType === 'beneficiary') {
       this.formGroup.controls[this.fields[0].name].setValue(this.item.relationship);
@@ -131,9 +139,11 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       this.formGroup.controls[this.fields[2].name].setValue(this.item.key);
       this.formGroup.controls[this.fields[3].name].setValue(this.item.participation);
     }  else if (this.itemType === 'formatwo') {
-      this.formGroup.controls[this.fields[0].name].setValue(this.item.formatwoType);
-      this.formGroup.controls[this.fields[1].name].setValue(this.item.formatwoName);
-
+      console.log('item: ', this.item);
+      this.formGroup.controls[this.fields[0].name].setValue(this.getFormaTwoTypeLabel());
+      let nombre = this.item.name +' '+ this.item.fatherLastName +' '+ this.item.motherLastName;
+      this.formGroup.controls[this.fields[1].name].setValue(nombre);
+      this.formGroup.controls[this.fields[2].name].setValue(this.item.birthDate); // fatherLastName
     }
   }
 
