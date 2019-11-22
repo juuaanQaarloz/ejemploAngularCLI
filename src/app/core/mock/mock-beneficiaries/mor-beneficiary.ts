@@ -19,7 +19,7 @@ export const BeneficiaryFieldsM: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'La denominación / razón social es obligatoria',
+    message: 'La razón social es obligatorio. No se permiten caracteres especiales ni 3 letras consecutivas iguales.',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',

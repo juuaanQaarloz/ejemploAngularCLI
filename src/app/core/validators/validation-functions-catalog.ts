@@ -49,6 +49,17 @@ export const validatorsObjects = [
     validationFunctions: [validateAlphanumericValue]
   },
   {
+    nameField: 'cityS',
+    validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'stateOfBirth',
+    validationFunctions: [validateAlphanumericValue]
+  },{
+    nameField: 'stateOfBirthS',
+    validationFunctions: [validateAlphanumericValue]
+  },
+  {
     nameField: 'street',
     validationFunctions: [validateStreet]
   },
@@ -419,5 +430,13 @@ export const validatorsObjects = [
   {
     nameField: 'agentParticipation',
     validationFunctions: [validateNumberWith2Decimals]
+  },
+  {
+    nameField: 'contractNumber',
+    validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'instructionLetterNumber',
+    validationFunctions: [validateAlphanumericValue]
   }
 ];

@@ -51,6 +51,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   modalID = 'modal-warning';
   modalMessage = 'La suma de las participaciones de los beneficiarios excede el 100%';
   fileNameUpload = 'Ningún archivo seleccionado';
+  fidMessage = 'Se requiere adjuntar documentos:  Carta instrucción a la fiduciaria';
   beneficiaryType = 'phyPerson';
   fields = [];
 

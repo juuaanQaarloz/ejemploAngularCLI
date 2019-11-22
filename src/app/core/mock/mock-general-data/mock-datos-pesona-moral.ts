@@ -12,7 +12,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     placeholder: 'Denomicación/ Razón social*',
     length: '40',
     minValue: 0,
-    maxValue: 40,
+    maxValue: 60,
     pattern: '',
     source: '',
     sourceID: '',
