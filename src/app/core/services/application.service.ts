@@ -150,6 +150,9 @@ export class ApplicationService {
     if (field.maxValue) {
       validationFunctions.push(Validators.maxLength(field.maxValue));
     }
+    if (field.pattern) {
+      validationFunctions.push((Validators.pattern(field.pattern)));
+    }
     // // console.log('validationFuntions: ', validationFunctions);
     return validationFunctions;
   }

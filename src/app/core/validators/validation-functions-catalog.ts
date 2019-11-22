@@ -8,10 +8,10 @@ import {
 } from './validators';
 
 export const validatorsObjects = [
-  {
+  /*{
     nameField: 'name',
     validationFunctions: [validateAlphanumericValue, validateName]
-  },
+  },*/
   {
     nameField: 'fatherLastName',
     validationFunctions: [validateAlphanumericValue]

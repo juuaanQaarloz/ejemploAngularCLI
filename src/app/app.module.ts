@@ -66,8 +66,7 @@ import { NewAgentComponent } from './components/beneficiaries/new-agent/new-agen
     ItemTableComponent,
     AddEditItemTableComponent,
     PaginationComponent,
-    NewAgentComponent
-  ],
+    NewAgentComponent],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
