@@ -88,3 +88,8 @@ export function transformDate(date: Date, format: string) {
     return null;
   }
 }
+
+export function stringToRegExp(str) {
+  const match = (/^\/(.*)\/([a-z]*)$/).exec(str);
+  return new RegExp(match[1], match[2]);
+}

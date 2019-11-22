@@ -5,7 +5,7 @@ import {SelectOption} from '../../models/select-option-interface';
 import {ApplicationService, validateAge} from '../../core/services';
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
-import {calculateRFC, correctFieldValue, transformDate} from '../../core/utilities';
+import {calculateRFC, correctFieldValue, stringToRegExp, transformDate} from '../../core/utilities';
 import {SepomexObj} from '../../models/sepomex-obj';
 
 @Component({
@@ -25,6 +25,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   datePickerClicked = false;
   show = true;
   disable: boolean;
+  patternRexExp;
 
   constructor(private applicationService: ApplicationService,
               private matIconRegistry: MatIconRegistry,
@@ -89,6 +90,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         this.isValid();
       });
     }
+
+    /*if (this.fieldObj.pattern) {
+      this.patternRexExp = stringToRegExp(this.fieldObj.pattern);
+    }*/
   }
 
   ngAfterViewInit() {
@@ -250,11 +255,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
     }
 
-    // // console.log('this.valid: ', this.valid);
-    // console.log('errors: ', this.form.controls[this.fieldObj.name].errors);
-    // console.log('this.valid: ', this.fieldObj.valid);
-    if (this.fieldObj.value === false) {
-      // console.log('herrrrreeeeeeeeee');
+    if (!this.fieldObj.valid) {
+      console.log('errors: ', this.form.controls[this.fieldObj.name].errors);
     }
 
   }

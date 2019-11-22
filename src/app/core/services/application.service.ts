@@ -150,10 +150,15 @@ export class ApplicationService {
     if (field.maxValue) {
       validationFunctions.push(Validators.maxLength(field.maxValue));
     }
-    if (field.pattern) {
+    /*if (field.pattern) {
+      console.log('setting pattern validator: ', field.pattern);
       validationFunctions.push((Validators.pattern(field.pattern)));
+    }*/
+
+    if (field.name === 'name') {
+      console.log('validationFunctions: ', validationFunctions);
     }
-    // // console.log('validationFuntions: ', validationFunctions);
+
     return validationFunctions;
   }
 

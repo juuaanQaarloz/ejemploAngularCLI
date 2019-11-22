@@ -6,6 +6,7 @@
     <label>
 
       <input appOnlyGivenCharacters
+             [noAllowedCharactersPattern]="fieldObj.noAllowedCharactersPattern"
              [pattern]="fieldObj.pattern"
              [type]="toggleVisible ? 'text' : 'password'"
              [formControlName]="fieldObj.name"
