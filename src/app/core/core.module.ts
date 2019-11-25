@@ -3,14 +3,17 @@ import { CommonModule } from '@angular/common';
 import {AuthGuard} from './guards/auth.guard';
 import {mockBackendProvider} from './mock/mock-backend';
 import {TrackScrollDirective} from './directives/track-scroll.directive';
+import { OnlyGivenCharactersDirective } from './directives/only-given-characters.directive';
 
 @NgModule({
   imports: [CommonModule],
   declarations: [
-    TrackScrollDirective
+    TrackScrollDirective,
+    OnlyGivenCharactersDirective
   ],
   exports: [
-    TrackScrollDirective
+    TrackScrollDirective,
+    OnlyGivenCharactersDirective
   ],
   providers: [
     AuthGuard,

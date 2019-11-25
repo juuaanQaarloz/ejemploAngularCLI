@@ -5,7 +5,7 @@ import {map} from 'rxjs/operators';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';
 import {Beneficiary, Formatwo, Field, Occupation, Step} from '../../models';
-import {validateEmailConfirmation, validatorsObjects} from '../validators';
+import {equalEmailsValidator, validateEmailConfirmation, validatorsObjects} from '../validators';
 import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
 import {Agent} from '../../models/agent-model/agent';
@@ -34,18 +34,18 @@ export class ApplicationService {
   }
 
   submitFunction(type) {
-    console.log(type);
+    // console.log(type);
     if (type === 'searchOccupation') {
       this.searchModalFrom = 'contractor';
       this.openOccupationModal('modal-search');
-      console.log('searchModalFrom A: ', this.searchModalFrom);
+      // console.log('searchModalFrom A: ', this.searchModalFrom);
     } else if (type === 'searchOccupationS') {
       this.searchModalFrom = 'applicant';
       this.openOccupationModal('modal-search');
-      console.log('searchModalFrom B: ', this.searchModalFrom);
+      // console.log('searchModalFrom B: ', this.searchModalFrom);
     } else if (type === 'nextStep') {
       const currentStep = this.currentStepSource.getValue();
-      console.log('currentStep1: ', currentStep);
+      // console.log('currentStep1: ', currentStep);
 
       if (currentStep === 0) {
         this.changeValue(1);
@@ -65,10 +65,10 @@ export class ApplicationService {
         this.changeValue(0);
       }
 
-      console.log('currentStep2: ', this.currentStepSource.getValue());
+      // console.log('currentStep2: ', this.currentStepSource.getValue());
     } else if (type === 'validateStep') {
       const currentStep = this.currentStepSource.getValue();
-      console.log('onValidateStep currentStep: ', currentStep + 1);
+      // console.log('onValidateStep currentStep: ', currentStep + 1);
       this.validateFormByStep((currentStep + 1).toString());
     }
   }
@@ -121,7 +121,7 @@ export class ApplicationService {
       });
 
     });
-    return new FormGroup(group, validateEmailConfirmation('email', 'emailConfirmation'));
+    return new FormGroup(group, equalEmailsValidator);
   }
 
   addNewFormControl(formGroup: FormGroup, field: Field) {
@@ -143,7 +143,7 @@ export class ApplicationService {
 
     validatorsObjects.forEach(validationObject => {
       if (validationObject.nameField === field.name) {
-        // console.log('validationObject: ', validationObject);
+        // // console.log('validationObject: ', validationObject);
         validationFunctions = validationObject.validationFunctions;
       }
     });
@@ -154,7 +154,15 @@ export class ApplicationService {
     if (field.maxValue) {
       validationFunctions.push(Validators.maxLength(field.maxValue));
     }
-    // console.log('validationFuntions: ', validationFunctions);
+    /*if (field.pattern) {
+      console.log('setting pattern validator: ', field.pattern);
+      validationFunctions.push((Validators.pattern(field.pattern)));
+    }*/
+
+    if (field.name === 'name') {
+      console.log('validationFunctions: ', validationFunctions);
+    }
+
     return validationFunctions;
   }
 
@@ -180,7 +188,7 @@ export class ApplicationService {
   }
 
   addItem(newItem, itemType: string) {
-    console.log('typeItem: ', typeof newItem);
+    // console.log('typeItem: ', typeof newItem);
     const currentTotalParticipationPercentage = this.getTotalParticipationPercentage(itemType);
     let currentItems;
     let maxLength;
@@ -235,7 +243,7 @@ export class ApplicationService {
       propertyName = 'formatwoId';
     }
     currentItems = currentItems.filter(item => item[propertyName] !== itemId);
-    console.log('currentItems: ', currentItems);
+    // console.log('currentItems: ', currentItems);
     this.setItems(itemType, currentItems);
   }
 
@@ -255,12 +263,12 @@ export class ApplicationService {
       propertyItem = 'formatwoId';
     }
     const itemsLength = currentItems.length;
-    console.log('itemsLength: ', itemsLength);
+    // console.log('itemsLength: ', itemsLength);
 
     if (itemsLength >= 1) {
       lastId = Number(currentItems[itemsLength - 1][propertyItem]);
     }
-    console.log('lastId: ', lastId);
+    // console.log('lastId: ', lastId);
     return lastId;
   }
 
@@ -329,27 +337,22 @@ export class ApplicationService {
 
   getFormControlValueByName(formGroup: FormGroup, formControlName: string) {
     const value = formGroup.get(formControlName).value;
-    // console.log(`value of ${formControlName} : ${value} from step ${stepId}`);
+    // // console.log(`value of ${formControlName} : ${value} from step ${stepId}`);
     return value;
-  }
-
-  booleanCalculator(renderConditions: string) {
-    const testExp = '((A && B) && C) || D';
-    console.log('renderConditions: ', renderConditions);
-    // eval && operator first when is no parenthesis
-    // eval conditions that are inside parenthesis
   }
 
   getConditions(renderConditions: string) {
     const result = [];
-    let separatedRenderConditions = [];
+    let separatedRenderConditions;
+
+    renderConditions = this.removeParenthesis(renderConditions);
 
     separatedRenderConditions = renderConditions.split(',');
 
     separatedRenderConditions.forEach((condition: string) => {
       const reExp = '^(.*?)([!<>=|]=?)(.*?)$'; // regular expresion for logic operators
       const res = condition.match(reExp);
-      // console.log('res: ', res);
+      // // console.log('res: ', res);
       if (res !== null) {
         // res[1] --variableName
         // res[2] --simbolCondition
@@ -363,8 +366,7 @@ export class ApplicationService {
 
   evaluateCondition(formGroup: FormGroup, elementsCondition) {
     const valueFormControl = this.getFormControlValueByName(formGroup, elementsCondition[1]);
-    console.log('valueFormControl: ', valueFormControl);
-    let result: boolean;
+    let result = false;
 
     switch (elementsCondition[2]) {
       case '=':
@@ -378,7 +380,7 @@ export class ApplicationService {
           }
         } else {
           if (valueFormControl === elementsCondition[3]) {
-            // console.log('case = ', elementsCondition[3]);
+            // // console.log('case = ', elementsCondition[3]);
             result = true;
           }
         }
@@ -434,7 +436,7 @@ export class ApplicationService {
   }
 
   setSelectedOccupation(selectedOccupation: Occupation) {
-    console.log('searchModalFrom: ', this.searchModalFrom);
+    // console.log('searchModalFrom: ', this.searchModalFrom);
     let formControlName;
     let htmlID;
     if (this.searchModalFrom === 'contractor') {
@@ -478,8 +480,8 @@ export class ApplicationService {
         if (contentFromStep.fields) {
           contentFromStep.fields.forEach(field => {
             field.valid = this.formGroup.controls[field.name].valid;
-            console.log('formControlName: ', field.name);
-            console.log('valid: ', field.valid);
+            // console.log('formControlName: ', field.name);
+            // console.log('valid: ', field.valid);
           });
         } else {
           if (contentFromStep.contentChildren) {
@@ -487,8 +489,8 @@ export class ApplicationService {
               if (contentChild.fields) {
                 contentChild.fields.forEach(field => {
                   field.valid = this.formGroup.controls[field.name].valid;
-                  console.log('formControlName: ', field.name);
-                  console.log('valid: ', field.valid);
+                  // console.log('formControlName: ', field.name);
+                  // console.log('valid: ', field.valid);
                 });
               }
             });
@@ -523,24 +525,126 @@ export class ApplicationService {
 
     return foundStep;
   }
-  logicalExpressionEvaluation(str) {
-    console.log('onLogicalExpressionEvaluation...');
-
+   logicalExpressionEvaluation(str) {
+     console.log('onLogicalExpressionEvaluation...');
+   }
+   reverseString(str) {
     // Step 1. Use the split() method to return a new array
-    let splitString = str.split('');
-
+    const splitString = str.split('');
     // Step 2. Use the reverse() method to reverse the new created array
-    let reverseArray = splitString.reverse();
-
+    const reverseArray = splitString.reverse();
     // Step 3. Use the join() method to join all elements of the array into a string
-    let joinArray = reverseArray.join('');
+    const joinArray = reverseArray.join('');
 
-    // tslint:disable-next-line:prefer-for-of
-    for (let i = 0; i < joinArray.length; i++) {
-      console.log('index, c: ', i + ',' + joinArray[i]);
-    }
-
-    // Step 4. Return the reversed string
     return joinArray;
+   }
+
+  stringToBoolean(str) {
+    return (/true/i).test(str);
+  }
+
+  /*inputs test:
+    * input 1: ((campo1=true,&,campo1=true),|,campo3=true)
+    * input 2: (campo1=true)
+    * */
+
+  evaluateConditions(exp, formGroup: FormGroup) {
+    // console.log('onGetExpressionElements...');
+    const arr = [];
+    const reversedString = this.reverseString(exp);
+
+    for (const ctr of reversedString) {
+      if (ctr === '(') {
+        const s = [];
+        while (arr[arr.length - 1] !== ')') {
+          s.push(arr[arr.length - 1]);
+          arr.pop();
+        }
+
+        arr.pop();
+
+        let sAsString = '';
+        s.forEach((sItem) => {
+          sAsString = sAsString + sItem;
+        });
+        // console.log('sAsString: ', sAsString);
+
+        // for one single operation
+        const z = sAsString.split(',');
+        // console.log('z: ', z);
+        if (z.length === 1) {
+          const conditionsZ = this.getConditions(z[0]);
+          const resEvalZ = this.evaluateCondition(formGroup, conditionsZ[0]);
+          arr.push(resEvalZ);
+        } else if (z.length === 3) { // for AND and OR operation (more than one operation)
+          const a = z[0];
+          // console.log('a: ', a);
+          const b = z[2];
+          // console.log('b: ', b);
+          let c;
+
+          let resEvalA;
+          let resEvalB;
+
+          if (a.includes('=') || a.includes('<') || a.includes('>') || a.includes('!=')) {
+            const conditionsA = this.getConditions(a);
+            resEvalA = this.evaluateCondition(formGroup, conditionsA[0]);
+          } else {
+            if (a === 'true' || a === 'false') {
+              resEvalA = this.stringToBoolean(a);
+            } else {
+              resEvalA = a;
+            }
+          }
+
+          if (b.includes('=') || b.includes('<') || b.includes('>') || b.includes('!=')) {
+            const conditionsB = this.getConditions(b);
+            resEvalB = this.evaluateCondition(formGroup, conditionsB[0]);
+          } else {
+            if (b === 'true' || b === 'false') {
+              resEvalB = this.stringToBoolean(resEvalB);
+            } else {
+              resEvalB = b;
+            }
+          }
+          // console.log('resEvalA: ', resEvalA);
+          // console.log('resEvalB: ', resEvalB);
+
+          if (z[1] === '&') {
+            c = resEvalA && resEvalB;
+          } else {
+            c = resEvalA || resEvalB;
+          }
+          // console.log('c: ', c);
+          arr.push((c));
+        }
+      } else {
+        arr.push(ctr);
+      }
+    }
+    return arr[arr.length - 1];
+  }
+    removeParenthesis(str) {
+    return str.replace(/[()]/g, '');
+    }
+  /*inputs test:
+   * input 1: ((campo1=true,&,campo1=true),|,campo3=true)
+   * input 2: (campo1=true)
+   * */
+  getDependedFields(exp) {
+    // remove parenthesis
+    const expWithoutParenthesis = this.removeParenthesis(exp);
+
+    const aux = expWithoutParenthesis.split(',');
+    const dependedFields = [];
+
+    aux.forEach((auxElem) => {
+      if (!auxElem.includes('&') && !auxElem.includes('|')) {
+        const conditionElements = this.getConditions(auxElem);
+        dependedFields.push(conditionElements[0][1]);
+      }
+    });
+
+    return dependedFields;
   }
 }

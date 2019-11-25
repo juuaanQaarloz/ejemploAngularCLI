@@ -1,4 +1,4 @@
-import {AbstractControl, Form, FormControl, FormGroup, ValidatorFn} from '@angular/forms';
+import {AbstractControl, Form, FormControl, FormGroup, ValidationErrors, ValidatorFn} from '@angular/forms';
 import * as moment from 'moment';
 import {addSlashesToDate} from '../utilities';
 
@@ -155,7 +155,7 @@ export function validateDateFormat(control: AbstractControl): { [key: string]: a
     return {invalidDate: { valid: false, value: control.value}};
     // return false;
   }*/
-  console.log('onValidateFormat: ', control.value);
+  // console.log('onValidateFormat: ', control.value);
   if (!datePattern.test(control.value)) {
     return {invalidDate: {valid: false, value: control.value}};
     // return false;
@@ -165,11 +165,11 @@ export function validateDateFormat(control: AbstractControl): { [key: string]: a
 }
 
 export function AgeValidator(minAge = 15, maxAge = 70): any {
-  console.log('on AgeValidator');
+  // console.log('on AgeValidator');
   return (control: FormControl): { [key: string]: any } => {
     const val = control.value;
 
-    console.log('val: ', val);
+    // console.log('val: ', val);
 
     if (val < minAge || val > maxAge) {
       return {invalidAge: true};
@@ -180,7 +180,7 @@ export function AgeValidator(minAge = 15, maxAge = 70): any {
 }
 
 /*export function DateValidator(format = 'YYYY/MM/DD'): any {
-  console.log('onDateValidator...');
+  // console.log('onDateValidator...');
   return (control: FormControl): { [key: string]: any } => {
     const currentDate = moment().format(format);
     const val = moment(control.value, format, true);
@@ -654,11 +654,25 @@ export function validateEmailConfirmation(targetKey: string, toMatchKey: string)
     const email = group.controls[targetKey].value;
     const emailConfirmation = group.controls[toMatchKey].value;
     if (email !== emailConfirmation) {
+      console.log('not valid email confirmation');
       return {invalidEmailConfirmation: {valid: false, value: emailConfirmation.value}};
     }
+    console.log('valid email conformation');
     return null;
   };
 }
+
+export const equalEmailsValidator: ValidatorFn = (group: FormGroup): ValidationErrors | null => {
+  const email = group.controls.email.value;
+  const confirmationEmail = group.controls.emailConfirmation.value;
+
+  if (email !== confirmationEmail) {
+    return { invalidEmailConfirmation: true };
+  }
+
+  return null;
+};
+
 
 
 

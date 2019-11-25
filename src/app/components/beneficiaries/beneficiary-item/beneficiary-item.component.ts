@@ -93,7 +93,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
     }
 
     ref.afterClosed.subscribe((result) => {
-      console.log('dialog closed FROM ITEM component, result: ', result);
+      // console.log('dialog closed FROM ITEM component, result: ', result);
     });
   }
 
@@ -125,7 +125,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
     }
 
     ref.afterClosed.subscribe((result) => {
-      console.log('dialog closed FROM BENEFICIARY ITEM, result: ', result);
+      // console.log('dialog closed FROM BENEFICIARY ITEM, result: ', result);
     });
   }
 
@@ -169,9 +169,9 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   }
 
   clearFields() {
-    console.log('onClear...', this.index);
+    // console.log('onClear...', this.index);
     this.fields.forEach((field) => {
-      console.log('onClear...', field.value);
+      // console.log('onClear...', field.value);
       field.value = '';
     });
   }

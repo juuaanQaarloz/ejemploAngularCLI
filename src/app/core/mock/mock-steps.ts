@@ -22,8 +22,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     idHtml: 'app-step-form-1',
     title: 'Información general del contratante persona física',
     contents: MockContentStep1Process1ContentSection2,
-    renderConditions: 'typePerson=phyPerson',
-    // renderConditions: 'A=B&C!=D|E>F&',
+    renderConditions: '(typePerson=phyPerson)',
     previousStep: '0',
     nextStep: '2',
     /*added extra from model*/
@@ -36,7 +35,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     idHtml: 'app-step-form-2',
     title: 'Ocupación del contratante persona física',
     contents: MockContentStep2Process1ContentSection2,
-    renderConditions: 'typePerson=phyPerson',
+    renderConditions: '(typePerson=phyPerson)',
     previousStep: '1',
     nextStep: '7',
     /*added extra from model*/
@@ -49,7 +48,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     idHtml: 'app-step-form-3',
     title: 'Información general del contratante persona moral',
     contents: MockContentStep3Process1ContentSection2,
-    renderConditions: 'typePerson=morPerson',
+    renderConditions: '(typePerson=morPerson)',
     previousStep: '0',
     nextStep: '4',
     /*added extra from model*/
@@ -62,7 +61,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     idHtml: 'app-step-form-4',
     title: ' Apoderado o representante legal (llenar para empresas nacionales)',
     contents: MockContentStep4Process1ContentSection2,
-    renderConditions: 'typePerson=morPerson',
+    renderConditions: '(typePerson=morPerson)',
     previousStep: '3',
     nextStep: '7',
     /*added extra from model*/
@@ -75,7 +74,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     idHtml: 'app-step-form-5',
     title: 'Datos generales del solicitante',
     contents: MockContentStep5Process1ContentSection2,
-    renderConditions: 'contractorType=false',
+    renderConditions: '(contractorType=false)',
     previousStep: '2',
     nextStep: '6',
     /*added extra from model*/
@@ -88,7 +87,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     idHtml: 'app-step-form-6',
     title: 'Ocupación del solicitante',
     contents: MockContentStep6Process1ContentSection2,
-    renderConditions: 'contractorType=false',
+    renderConditions: '(contractorType=false)',
     previousStep: '5',
     nextStep: '7',
     /*added extra from model*/

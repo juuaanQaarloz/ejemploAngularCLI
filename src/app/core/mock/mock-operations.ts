@@ -100,7 +100,7 @@ export const BeneficiariesOperations: Operation[] = [
     message: '',
     messageClass: '',
     delegateOperation: 'uploadInstructionLetter',
-    renderConditions: 'beneficiaryType=fidPerson',
+    renderConditions: '(beneficiaryType=fidPerson)',
     enableConditions: '',
   }
 ];

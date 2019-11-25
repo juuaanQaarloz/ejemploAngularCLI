@@ -196,9 +196,8 @@ export const InformacionLaboralSolicitante: Field[] = [
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
-    renderConditions: 'additionalOccupation=true',
+    renderConditions: '(additionalOccupation=true)',
     enableConditions: '',
-    // requiredConditions: 'additionalOccupation=true',
     entity: '',
     entityField: '',
     value: ''
@@ -225,9 +224,8 @@ export const InformacionLaboralSolicitante: Field[] = [
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
-    renderConditions: 'additionalOccupation=true',
+    renderConditions: '(additionalOccupation=true)',
     enableConditions: '',
-    // requiredConditions: 'additionalOccupation=true',
     entity: '',
     entityField: '',
     value: ''

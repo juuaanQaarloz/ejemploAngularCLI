@@ -28,15 +28,15 @@ export class ContentFormComponent implements OnInit {
 
       this.contentObj.showContent = this.applicationService.evaluateCondition(this.form, renderConditions[0]);
       this.form.controls[renderConditions[0][1]].valueChanges.subscribe((value) => {
-        console.log('onValueChanges: ', value);
-        console.log('formControl : ', renderConditions[0][1]);
+        // console.log('onValueChanges: ', value);
+        // console.log('formControl : ', renderConditions[0][1]);
         this.contentObj.showContent = this.applicationService.evaluateCondition(this.form, renderConditions[0]);
       });
     }
   }
   getFormValue() {
     this.payLoad = JSON.stringify(this.form.value);
-    // console.log(this.form.value);
+    // // console.log(this.form.value);
   }
 
   orderFields() {

@@ -7,6 +7,8 @@
         <app-field-form [fieldObj]="field" [form]="formGroup"></app-field-form>
       </div>
 
+      <label *ngIf="this.formGroup.controls.beneficiaryType.value === 'fidPerson'">{{fidMessage}}</label>
+
       <label *ngIf="this.formGroup.controls.beneficiaryType.value === 'fidPerson'">{{fileNameUpload}}</label>
 
       <app-operation-form [operationObj]="content.operations[3]" [form]="formGroup"

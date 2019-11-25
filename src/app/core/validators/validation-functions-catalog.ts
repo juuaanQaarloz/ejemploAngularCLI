@@ -8,10 +8,10 @@ import {
 } from './validators';
 
 export const validatorsObjects = [
-  {
+  /*{
     nameField: 'name',
     validationFunctions: [validateAlphanumericValue, validateName]
-  },
+  },*/
   {
     nameField: 'fatherLastName',
     validationFunctions: [validateAlphanumericValue]
@@ -46,6 +46,18 @@ export const validatorsObjects = [
   },
   {
     nameField: 'city',
+    validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'cityS',
+    validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'stateOfBirth',
+    validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'stateOfBirthS',
     validationFunctions: [validateAlphanumericValue]
   },
   {
@@ -419,5 +431,13 @@ export const validatorsObjects = [
   {
     nameField: 'agentParticipation',
     validationFunctions: [validateNumberWith2Decimals]
+  },
+  {
+    nameField: 'contractNumber',
+    validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'instructionLetterNumber',
+    validationFunctions: [validateAlphanumericValue]
   }
 ];

@@ -1,12 +1,13 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {ApplicationService, AuthService, StorageService} from '../../core/services';
+import {ApplicationService, AuthService, StorageService, validateEmailConfirmation} from '../../core/services';
 import {MockTemplate} from '../../core/mock/mock-template';
 import {DialogService} from '../dialog/dialog.service';
 import {ModalService} from '../custom-modal';
 import * as jsPDF from 'jspdf';
 import {pdfOperation} from '../../core/mock/mock-operations';
 import {Template} from '../../models/template';
+import {error} from 'util';
 
 @Component({
   selector: 'app-application',
@@ -37,24 +38,15 @@ export class ApplicationComponent implements OnInit {
     // an example array of 150 items to be paged
     this.items = Array(150).fill(0).map((x, i) => ({id: (i + 1), name: `Item ${i + 1}`}));
 
-    this.appService.logicalExpressionEvaluation('[[0,&,1],|,[!,1]]');
   }
 
   getFormValue() {
     this.payLoad = JSON.stringify(this.formGroup.value);
-    console.log(this.formGroup.value);
+    // // console.log(this.formGroup.value);
   }
 
   openDialog(modalID: string) {
     this.modalService.open(modalID);
-  }
-
-  testSepoMexService() {
-    this.appService.getInfoFromSepomex('15220')
-      .subscribe((response) => {
-          console.log('response: ', response);
-        }
-      );
   }
 
   downloadPDF() {
@@ -67,15 +59,15 @@ export class ApplicationComponent implements OnInit {
 
   validateForm() {
     /*Object.keys(this.formGroup.controls).forEach(key => {
-      console.log('formControlName: ', key);
-      // console.log('formControl: ', this.formGroup.controls[key]);
+      // // console.log('formControlName: ', key);
+      // // // console.log('formControl: ', this.formGroup.controls[key]);
       const isValid =  this.formGroup.controls[key].valid;
       if (!isValid) {
         this.formGroup.controls[key].markAsTouched();
       } else {
         this.formGroup.controls[key].markAsUntouched();
       }
-      console.log('isValid: ', isValid);
+      // // console.log('isValid: ', isValid);
     });*/
 
     this.applicationObj.sections.forEach(section => {
@@ -83,8 +75,8 @@ export class ApplicationComponent implements OnInit {
         if (contentFromSection.fields) {
           contentFromSection.fields.forEach(field => {
             field.valid = this.formGroup.controls[field.name].valid;
-            console.log('formControlName: ', field.name);
-            console.log('valid: ', field.valid);
+            // // console.log('formControlName: ', field.name);
+            // // console.log('valid: ', field.valid);
           });
         } else {
           if (contentFromSection.process) {
@@ -93,8 +85,8 @@ export class ApplicationComponent implements OnInit {
                 if (contentFromStep.fields) {
                   contentFromStep.fields.forEach(field => {
                     field.valid = this.formGroup.controls[field.name].valid;
-                    console.log('formControlName: ', field.name);
-                    console.log('valid: ', field.valid);
+                    // // console.log('formControlName: ', field.name);
+                    // // console.log('valid: ', field.valid);
                   });
                 } else {
                   if (contentFromStep.contentChildren) {
@@ -102,8 +94,8 @@ export class ApplicationComponent implements OnInit {
                       if (contentChild.fields) {
                         contentChild.fields.forEach(field => {
                           field.valid = this.formGroup.controls[field.name].valid;
-                          console.log('formControlName: ', field.name);
-                          console.log('valid: ', field.valid);
+                          // // console.log('formControlName: ', field.name);
+                          // // console.log('valid: ', field.valid);
                         });
                       }
                     });
@@ -116,5 +108,12 @@ export class ApplicationComponent implements OnInit {
       });
 
     });
+  }
+
+  getValidateField() {
+    const errors = this.formGroup.errors;
+    if (errors) {
+      console.log('result: ', errors.invalidEmailConfirmation);
+    }
   }
 }

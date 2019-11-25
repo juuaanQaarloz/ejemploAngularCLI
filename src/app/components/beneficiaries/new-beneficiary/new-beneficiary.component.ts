@@ -51,6 +51,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   modalID = 'modal-warning';
   modalMessage = 'La suma de las participaciones de los beneficiarios excede el 100%';
   fileNameUpload = 'Ningún archivo seleccionado';
+  fidMessage = 'Se requiere adjuntar documentos:  Carta instrucción a la fiduciaria';
   beneficiaryType = 'phyPerson';
   showplus = false;
   fields = [];
@@ -70,7 +71,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
     this.formGroup.controls.beneficiaryType.valueChanges.subscribe((value) => {
       this.beneficiaryType = value;
-      // console.log('beneficiaryType');
+      // // console.log('beneficiaryType');
       this.fields = this.getFields();
     });
 
@@ -87,7 +88,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   }
 
   addNewBeneficiary() {
-    console.log('formGroup value: ', this.formGroup.value);
+    // console.log('formGroup value: ', this.formGroup.value);
     const newBeneficiary = this.mapNewBeneficiaryData();
     const response = this.applicationService.addItem(newBeneficiary, 'beneficiary');
 
@@ -155,8 +156,8 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
       }
       this.formGroup.controls[field.name].setValue(value);
     });
-    console.log('form values: ');
-    console.log(this.formGroup.value);
+    // console.log('form values: ');
+    // console.log(this.formGroup.value);
   }
 
   mapNewBeneficiaryData() {
@@ -262,7 +263,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   }
 
   fileChange(event) {
-    console.log('event.target.files: ', event.target.files);
+    // console.log('event.target.files: ', event.target.files);
     const fileList = event.target.files;
     if (fileList.length > 0) {
       this.fileNameUpload = fileList[0].name;
@@ -281,8 +282,8 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         .map(res => res.json())
         .catch(error => Observable.throw(error))
         .subscribe(
-          data => console.log('success'),
-          error => console.log(error)
+          data => // console.log('success'),
+          error => // console.log(error)
         )
     }*/
   }

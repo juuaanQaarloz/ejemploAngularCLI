@@ -56,9 +56,9 @@ export const AuthorizationFields1: Field[] = [
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
-    renderConditions: 'declarationQuestion=true',
+    renderConditions: '(declarationQuestion=true)',
     enableConditions: '',
-    requiredConditions: 'declarationQuestion=true',
+    requiredConditions: '(declarationQuestion=true)',
     entity: '',
     entityField: '',
     value: ''

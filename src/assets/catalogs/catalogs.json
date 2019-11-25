@@ -29,12 +29,12 @@
     "genders": [
     {
         "id": 0,
-        "name": "Mujer",
+        "name": "Femenino",
         "code": "F"
     },
     {
         "id": 1,
-        "name": "Hombre",
+        "name": "Masculino",
         "code": "M"
     }],
     "collectionMethods": [

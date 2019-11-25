@@ -33,5 +33,6 @@ export interface Field {
   canChangeType?: boolean;
   disable?: boolean;
   valid?: boolean;
+  noAllowedCharactersPattern?;
   // --------------------------
 }
