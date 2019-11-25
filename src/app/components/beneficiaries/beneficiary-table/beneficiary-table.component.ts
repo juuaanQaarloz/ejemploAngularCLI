@@ -46,6 +46,7 @@ const FIELDS: Field[] = [
 })
 export class BeneficiaryTableComponent implements OnInit {
   @Input() type: string;
+  @Input() showplus: boolean;
   title;
   columnsNames;
   items = [];
@@ -67,6 +68,7 @@ export class BeneficiaryTableComponent implements OnInit {
       ];
 
       this.itemsType = 'beneficiary';
+      this.showplus = true;
 
       this.content = {
         id: 'content-2.21',
@@ -97,6 +99,7 @@ export class BeneficiaryTableComponent implements OnInit {
 
       this.itemsType = 'agent';
       this.style = 'even-agent';
+      this.showplus = true;
 
       this.applicationService.agents.subscribe((value) => {
         this.items = value;
@@ -107,6 +110,7 @@ export class BeneficiaryTableComponent implements OnInit {
       this.columnsNames = ['Razon social', 'RFC', 'Fecha de constitución', 'Nombre comercial',
       ];
       this.style = 'even-beneficiary';
+      this.showplus = true;
       /* this.content.fields.forEach((field) => {
         this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
       }); */
@@ -120,6 +124,7 @@ export class BeneficiaryTableComponent implements OnInit {
       this.columnsNames = ['Tipo de Persona', 'Nombre / Razón social', 'Fecha de nacimiento / constitución', 'RFC',
       ];
       this.style = 'even-beneficiary';
+      this.showplus = true;
      /*  this.content.fields.forEach((field) => {
         this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
       }); */
@@ -133,6 +138,7 @@ export class BeneficiaryTableComponent implements OnInit {
       this.columnsNames = ['Pais', 'Numero de idenficación fiscal',
       ];
       this.style = 'even-beneficiary';
+      this.showplus = true;
       /* this.content.fields.forEach((field) => {
         this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
       }); */
@@ -147,10 +153,25 @@ export class BeneficiaryTableComponent implements OnInit {
       ];
       this.itemsType = 'formatwo';
       this.style = 'even-beneficiary';
+      this.showplus = true;
       /*this.content.fields.forEach((field) => {
         this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
       });*/
       this.applicationService.formatosdos.subscribe((value) => {
+        this.items = value;
+      });
+    } else if (this.type ===  'table-coverage') {
+      this.title = 'Beneficios adicionales disponibles para el plan';
+      this.columnsNames = ['Contratar:', 'Cobertura', 'Suma asegurada', 'Prima', 'Detalle',
+      ];
+      this.itemsType = 'coverage';
+      this.style = 'even-beneficiary';
+      this.showplus = false;
+      /*this.content.fields.forEach((field) => {
+        this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
+      });*/
+      // coberturas = asignar
+      this.applicationService.coverages.subscribe((value) => {
         this.items = value;
       });
     }
@@ -173,6 +194,11 @@ export class BeneficiaryTableComponent implements OnInit {
       ref.afterClosed.subscribe((result) => {
         console.log('dialog closed FROM FORMATWO TABLE, result: ', result);
       });
+    } else if (this.type === 'table-coverage') {
+      // ref = this.dialog.open(NewFormatwoComponent, {data: null});
+      /* ref.afterClosed.subscribe((result) => {
+        console.log('dialog closed FROM FORMATWO TABLE, result: ', result);
+      }); */
     }
   }
 }

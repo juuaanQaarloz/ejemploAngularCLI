@@ -6,6 +6,16 @@
     <div class="item-attribute"
          *ngIf="itemType === 'beneficiary' && (item.beneficiaryType === 'morPerson' || item.beneficiaryType === 'fidPerson')">{{item.businessName}}</div>
     <div class="item-attribute" *ngIf="itemType === 'beneficiary'">{{item.birthDateOrConstitution}}</div>
+    <div *ngIf="itemType === 'formatwo'" class="item-attribute">{{getFormaTwoTypeLabel()}}</div>
+    <div class="item-attribute"
+       *ngIf="itemType === 'formatwo'" >{{item.name + ' ' + item.fatherLastName + ' ' + item.motherLastName}}</div>
+  <!--
+  <div class="item-attribute"
+       *ngIf="itemType === 'coverage'" class="item-attribute">
+      <input type="checkbox" value=""> <br>
+    </div>
+  <div class="item-attribute"
+       *ngIf="itemType === 'covarage'" >{{item.coveragename}}</div> -->
 
   <div class="item-attribute" *ngFor="let field of fields">
     <app-field-form [fieldObj]="field" [form]="formGroup"></app-field-form>
@@ -13,11 +23,11 @@
   </div>
 
   <div class="operations">
-    <div>
+    <div *ngIf="showplus==true">
       <img class="icon-delete" (click)="openModal(modalId)">
       <img class="icon-edit" (click)="editItem()">
     </div>
-    <div *ngIf="isLast && totalItems < maxItems && totalParticipationPercentageItems < 100">
+    <div *ngIf="isLast && totalItems < maxItems && totalParticipationPercentageItems < 100 && showplus==true">
       <img src="../../../../assets/img/tables/plus_simbol.svg" (click)="addNewItem()">
     </div>
   </div>

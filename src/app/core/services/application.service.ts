@@ -9,6 +9,7 @@ import {validateEmailConfirmation, validatorsObjects} from '../validators';
 import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
 import {Agent} from '../../models/agent-model/agent';
+import {COVERAGES} from '../mock/coverage/coverage';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
@@ -23,6 +24,7 @@ export class ApplicationService {
   beneficiaries = new BehaviorSubject([]);
   formatosdos = new BehaviorSubject([]);
   agents = new BehaviorSubject([]);
+  coverages = new BehaviorSubject(COVERAGES);
   formGroup: FormGroup;
   searchModalFrom: string;
   applicationObj;
@@ -200,7 +202,7 @@ export class ApplicationService {
     }  else if (itemType === 'formatwo') {
       currentItems = this.formatosdos.getValue();
       maxLength = 5;
-      responseMessage1 = 'No se pueden agregar más de 2 formatos';
+      responseMessage1 = 'No se pueden agregar más de 5 formatos';
       responseMessage2 = 'La suma de las participaciones de los formatos excede el 100%';
       propertyName = 'participation';
     }

@@ -52,6 +52,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   modalMessage = 'La suma de las participaciones de los beneficiarios excede el 100%';
   fileNameUpload = 'Ningún archivo seleccionado';
   beneficiaryType = 'phyPerson';
+  showplus = false;
   fields = [];
 
   constructor(private applicationService: ApplicationService,

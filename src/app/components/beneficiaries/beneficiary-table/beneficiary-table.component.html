@@ -2,7 +2,7 @@
   <div class="ml-table-title">{{title}}</div>
   <div class="even" [ngClass]="style">
     <div class="field-name-column" *ngFor="let columnName of columnsNames">{{columnName}}</div>
-    <div class="field-name-column" *ngIf="items.length === 0 || items === null">
+    <div class="field-name-column" *ngIf="(items.length === 0 || items === null) && showplus==true">
       <img src="../../../../assets/img/tables/plus_simbol.svg" (click)="addNewItem()">
     </div>
 

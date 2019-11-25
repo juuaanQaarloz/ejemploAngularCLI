@@ -64,7 +64,7 @@ export const Plan1: Field[] = [
     name: 'currency',
     orderAppearance: 3,
     label: 'Tipo de moneda',
-    type: 'checkbox',
+    type: 'radio',
     required: false,
     placeholder: '',
     length: '',
@@ -85,24 +85,24 @@ export const Plan1: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: ''
+    value: 'mxn'
   }
 
 ];
 
 export const Plan2: Field[] = [
   {
-    id: 'field-1401',
-    idHtml: 'txtAssuredImport',
+    id: 'field-1404',
+    idHtml: 'txtAssuredImportMXN',
     name: 'assuredImport',
     orderAppearance: 4,
     label: 'Suma asegurada',
     type: 'text',
     required: true,
     placeholder: 'Suma asegurada',
-    length: '40',
+    length: '12',
     minValue: 0,
-    maxValue: 40,
+    maxValue: 9999999,
     pattern: '',
     source: '',
     sourceID: '',
@@ -114,18 +114,20 @@ export const Plan2: Field[] = [
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
+    // minConditions: '',
     enableConditions: '',
     entity: '',
     entityField: '',
     value: ''
-  },{
-    id: 'field-1402',
+  },
+  {
+    id: 'field-1405',
     idHtml: 'txtCost',
     name: 'cost',
     orderAppearance: 5,
     label: 'Prima',
     type: 'text',
-    required: true,
+    required: false,
     placeholder: 'Prima',
     length: '40',
     minValue: 0,
@@ -144,7 +146,8 @@ export const Plan2: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: ''
+    value: '',
+    disable: true
   },{
     id: 'field-1403',
     idHtml: 'txtSavingsGoal',

@@ -41,9 +41,9 @@ import { ItemTableComponent } from './components/general-table/item-table/item-t
 import { AddEditItemTableComponent } from './components/general-table/add-edit-item-table/add-edit-item-table.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import {FormaTwobTableComponent} from './components/formatwob/formatwob-table/formatwob-table.component';
-import {CoverageTableComponent} from './components/coverage/coverage-table/coverage-table.component';
 import {NewFormatwoComponent} from './components/beneficiaries/new-formatwo/new-formatwo.component';
 import { NewAgentComponent } from './components/beneficiaries/new-agent/new-agent.component';
+import {NewCountryComponent} from './components/beneficiaries/new-country/new-country.component';
 
 // @ts-ignore
 @NgModule({
@@ -71,9 +71,9 @@ import { NewAgentComponent } from './components/beneficiaries/new-agent/new-agen
     AddEditItemTableComponent,
     PaginationComponent,
     FormaTwobTableComponent,
-    CoverageTableComponent,
     NewFormatwoComponent,
-    NewAgentComponent
+    NewAgentComponent,
+    NewCountryComponent
   ],
   imports: [
     BrowserModule,

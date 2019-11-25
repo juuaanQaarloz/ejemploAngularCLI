@@ -11,6 +11,7 @@ import {NewAgentComponent} from '../new-agent/new-agent.component';
 import {AgentFields, AgentFieldsItem} from '../../../core/mock/mock-agents/mock-agents-questions';
 import {NewFormatwoFields, FormaTwoFieldsItem} from '../../../core/mock/formats/formatwo';
 import {NewFormatwoComponent} from '../new-formatwo/new-formatwo.component';
+import {CoverageFieldsItem} from '../../../core/mock/coverage/coverage';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   @Input() isLast: boolean;
   @Input() totalItems: number;
   @Input() totalParticipationPercentageItems: number;
+  @Input() showplus: boolean;
   fields;
   formGroup: FormGroup;
   modalId;
@@ -45,18 +47,28 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       this.questionModal = '¿Está seguro que desea eliminar al beneficiario de la lista?';
       this.maxItems = 10;
       this.styleClass = 'item-row-beneficiary';
+      this.showplus = true;
     } else if (this.itemType === 'agent') {
       this.fields = AgentFieldsItem;
       this.operations = BeneficiaryItemOperations;
       this.questionModal = '¿Está seguro que desea eliminar al agente de la lista?';
       this.maxItems = 2;
       this.styleClass = 'item-row-agent';
+      this.showplus = true;
     } else if (this.itemType === 'formatwo') {
       this.fields = FormaTwoFieldsItem;
       this.operations = BeneficiaryItemOperations;
       this.questionModal = '¿Está seguro que desea eliminar al formato de la lista?';
       this.maxItems = 5;
       this.styleClass = 'item-row-formatwo';
+      this.showplus = true;
+    } else if (this.itemType === 'coverage') {
+      this.fields = CoverageFieldsItem;
+      // this.operations = BeneficiaryItemOperations;
+      this.questionModal = '';
+      this.maxItems = 50;
+      this.styleClass = 'item-row-formatwo';
+      this.showplus = false;
     }
 
     this.formGroup = this.applicationService.createNewFormGroup(this.fields);
@@ -76,6 +88,8 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       ref = this.dialog.open(NewAgentComponent, {data: null});
     } else if (this.itemType === 'formatwo') {
       ref = this.dialog.open(NewFormatwoComponent, {data: null});
+    } else if (this.itemType === 'coverage') {
+      // ref = this.dialog.open(NewFormatwoComponent, {data: null});
     }
 
     ref.afterClosed.subscribe((result) => {
@@ -91,6 +105,8 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       propertyItem = 'agentId';
     } else if (this.itemType === 'formatwo') {
       propertyItem = 'formatwoId';
+    } else if (this.itemType === 'coverage') {
+      propertyItem = 'coverageId';
     }
     this.applicationService.removeItem(this.item[propertyItem], this.itemType);
     this.closeModal(this.modalId);
@@ -104,6 +120,8 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       ref = this.dialog.open(NewAgentComponent, {data: {item: this.item}});
     } else if (this.itemType === 'formatwo') {
       ref = this.dialog.open(NewFormatwoComponent, {data: {item: this.item}});
+    } else if (this.itemType === 'coverage') {
+      // ref = this.dialog.open(NewFormatwoComponent, {data: {item: this.item}});
     }
 
     ref.afterClosed.subscribe((result) => {
@@ -139,11 +157,14 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       this.formGroup.controls[this.fields[2].name].setValue(this.item.key);
       this.formGroup.controls[this.fields[3].name].setValue(this.item.participation);
     }  else if (this.itemType === 'formatwo') {
+      this.formGroup.controls[this.fields[0].name].setValue(this.item.birthDate); // fatherLastName
+    } else if (this.itemType === 'coverage') {
       console.log('item: ', this.item);
-      this.formGroup.controls[this.fields[0].name].setValue(this.getFormaTwoTypeLabel());
-      let nombre = this.item.name +' '+ this.item.fatherLastName +' '+ this.item.motherLastName;
-      this.formGroup.controls[this.fields[1].name].setValue(nombre);
-      this.formGroup.controls[this.fields[2].name].setValue(this.item.birthDate); // fatherLastName
+      this.formGroup.controls[this.fields[0].name].setValue(this.item.isSelected); // fatherLastName
+      this.formGroup.controls[this.fields[1].name].setValue(this.item.coverageName);
+      this.formGroup.controls[this.fields[2].name].setValue(this.item.assuredImport);
+      this.formGroup.controls[this.fields[3].name].setValue(this.item.cost);
+      this.formGroup.controls[this.fields[4].name].setValue(this.item.detail);
     }
   }
 

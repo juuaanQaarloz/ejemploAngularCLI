@@ -6,6 +6,13 @@
       "code": "noEmail"
     }
   ],
+  "selectCheckbox": [
+    {
+      "id": 0,
+      "name": " ",
+      "code": "false"
+    }
+  ],
   "typePerson": [
     {
       "id": 0,
