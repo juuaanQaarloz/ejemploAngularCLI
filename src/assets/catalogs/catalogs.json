@@ -1,4 +1,26 @@
 {
+  "cilindrada": [
+    {
+      "id": 0,
+      "name": "0-49",
+      "code": "R1"
+    },
+    {
+      "id": 1,
+      "name": "50-125",
+      "code": "R2"
+    },
+    {
+      "id": 2,
+      "name": "126-2000",
+      "code": "R3"
+    },
+    {
+      "id": 3,
+      "name": "2001-9999",
+      "code": "R4"
+    }
+  ],
   "sector": [
     {
       "id": 0,
@@ -1764,22 +1786,22 @@
     {
       "id": 0,
       "name": "Educacion",
-      "code": "1"
+      "code": "edu"
     },
     {
       "id": 1,
       "name": "Mujer",
-      "code": "2"
+      "code": "BR"
     },
     {
       "id": 2,
       "name": "Tu futuro",
-      "code": "3"
+      "code": "US"
     },
     {
       "id": 3,
       "name": "Retiro",
-      "code": "4"
+      "code": "CN"
     }],
     "coverageOptions": [
     {

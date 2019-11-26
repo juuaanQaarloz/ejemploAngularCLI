@@ -1,10 +1,10 @@
 import {
   AgeValidator,
-  DateValidator, validateAlphanumericName,
+  DateValidator, rangeValidator, validateAlphanumericName,
   validateAlphanumericValue, validateAlphanumericValueNotRequired, validateCURPNotRequired, validateMail,
   validateName, validateNumberWith2Decimals, validateNumberWith2DecimalsNotRequired, validatePhone, validatePhoneNotRequired,
   validateRFC, validateRFCMoral,
-  validateStreet, validateStreetNum, validateStreetNumberNotRequired, validateZipCode
+  validateStreet, validateStreetNum, validateStreetNumberNotRequired, validateZipCode,
 } from './validators';
 
 export const validatorsObjects = [
@@ -439,5 +439,13 @@ export const validatorsObjects = [
   {
     nameField: 'instructionLetterNumber',
     validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'weight',
+    validationFunctions: [rangeValidator(10, 400)]
+  },
+  {
+    nameField: 'height',
+    validationFunctions: [rangeValidator(1.0, 2.5)]
   }
 ];
