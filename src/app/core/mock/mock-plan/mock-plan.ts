@@ -60,11 +60,11 @@ export const Plan1: Field[] = [
   },
   {
     id: 'field-1403',
-    idHtml: 'chboxCurrency',
+    idHtml: 'slctCurrency',
     name: 'currency',
     orderAppearance: 3,
     label: 'Tipo de moneda',
-    type: 'radio',
+    type: 'select',
     required: false,
     placeholder: '',
     length: '',
@@ -85,7 +85,7 @@ export const Plan1: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: 'mxn'
+    value: ''
   }
 
 ];
@@ -121,34 +121,6 @@ export const Plan2: Field[] = [
     value: ''
   },
   {
-    id: 'field-1405',
-    idHtml: 'txtCost',
-    name: 'cost',
-    orderAppearance: 5,
-    label: 'Prima',
-    type: 'text',
-    required: false,
-    placeholder: 'Prima',
-    length: '40',
-    minValue: 0,
-    maxValue: 40,
-    pattern: '',
-    source: '',
-    sourceID: '',
-    style: '',
-    styleClass: '',
-    styleClassError: '',
-    message: 'El importe no puede ser 0.',
-    messageClass: '',
-    messageError: '',
-    messageErrorClass: '',
-    renderConditions: '',
-    enableConditions: '',
-    entity: '',
-    entityField: '',
-    value: '',
-    disable: true
-  },{
     id: 'field-1403',
     idHtml: 'txtSavingsGoal',
     name: 'savingsGoal',
@@ -170,7 +142,7 @@ export const Plan2: Field[] = [
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
-    renderConditions: '',
+    renderConditions: '(packing=3)',
     enableConditions: '',
     entity: '',
     entityField: '',
@@ -197,7 +169,7 @@ export const Plan2: Field[] = [
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
-    renderConditions: '',
+    renderConditions: '(packing=3)',
     enableConditions: '',
     entity: '',
     entityField: '',
