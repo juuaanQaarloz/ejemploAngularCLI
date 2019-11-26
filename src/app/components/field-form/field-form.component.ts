@@ -25,8 +25,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   datePickerClicked = false;
   show = true;
   disable: boolean;
-  patternRexExp;
-
+  regExpPattern;
   constructor(private applicationService: ApplicationService,
               private matIconRegistry: MatIconRegistry,
               private domSanitizer: DomSanitizer) {
@@ -91,9 +90,9 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       });
     }
 
-    /*if (this.fieldObj.pattern) {
-      this.patternRexExp = stringToRegExp(this.fieldObj.pattern);
-    }*/
+    if (this.fieldObj.pattern) {
+      this.regExpPattern = stringToRegExp(this.fieldObj.pattern);
+    }
   }
 
   ngAfterViewInit() {

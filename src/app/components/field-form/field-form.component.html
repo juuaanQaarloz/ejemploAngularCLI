@@ -7,7 +7,7 @@
 
       <input appOnlyGivenCharacters
              [noAllowedCharactersPattern]="fieldObj.noAllowedCharactersPattern"
-             [pattern]="fieldObj.pattern"
+             [pattern]="regExpPattern"
              [type]="toggleVisible ? 'text' : 'password'"
              [formControlName]="fieldObj.name"
              [id]="fieldObj.idHtml"
