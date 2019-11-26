@@ -13,7 +13,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     length: '40',
     minValue: 0,
     maxValue: 40,
-    pattern: '[A-Z-.Ñ ]*',
+    pattern: '/^[+ A-Z]{5}$/g',
     noAllowedCharactersPattern: '/[0-9]*/g',
     source: '',
     sourceID: '',
