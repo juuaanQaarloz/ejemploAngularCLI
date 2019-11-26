@@ -12,6 +12,8 @@ import {AgentFields, AgentFieldsItem} from '../../../core/mock/mock-agents/mock-
 import {NewFormatwoFields, FormaTwoFieldsItem} from '../../../core/mock/formats/formatwo';
 import {NewFormatwoComponent} from '../new-formatwo/new-formatwo.component';
 import {CoverageFieldsItem} from '../../../core/mock/coverage/coverage';
+import {countryFieldsItems} from '../../../core/mock/formats/country';
+import {NewCountryComponent} from '../new-country/new-country.component';
 
 
 @Component({
@@ -69,6 +71,13 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       this.maxItems = 50;
       this.styleClass = 'item-row-formatwo';
       this.showplus = false;
+    } else if (this.itemType === 'country') {
+      this.fields = countryFieldsItems;
+      this.operations = BeneficiaryItemOperations;
+      this.questionModal = '¿Está seguro que desea eliminar al formato de la lista?';
+      this.maxItems = 5;
+      this.styleClass = 'item-row-formatwo';
+      this.showplus = true;
     }
 
     this.formGroup = this.applicationService.createNewFormGroup(this.fields);
@@ -90,6 +99,8 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       ref = this.dialog.open(NewFormatwoComponent, {data: null});
     } else if (this.itemType === 'coverage') {
       // ref = this.dialog.open(NewFormatwoComponent, {data: null});
+    } else if (this.itemType === 'country') {
+      ref = this.dialog.open(NewCountryComponent, {data: null});
     }
 
     ref.afterClosed.subscribe((result) => {
@@ -107,6 +118,8 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       propertyItem = 'formatwoId';
     } else if (this.itemType === 'coverage') {
       propertyItem = 'coverageId';
+    } else if (this.itemType === 'country') {
+      propertyItem = 'countryId';
     }
     this.applicationService.removeItem(this.item[propertyItem], this.itemType);
     this.closeModal(this.modalId);
@@ -122,6 +135,8 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       ref = this.dialog.open(NewFormatwoComponent, {data: {item: this.item}});
     } else if (this.itemType === 'coverage') {
       // ref = this.dialog.open(NewFormatwoComponent, {data: {item: this.item}});
+    } else if (this.itemType === 'country') {
+      ref = this.dialog.open(NewCountryComponent, {data: {item: this.item}});
     }
 
     ref.afterClosed.subscribe((result) => {
@@ -159,12 +174,14 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
     }  else if (this.itemType === 'formatwo') {
       this.formGroup.controls[this.fields[0].name].setValue(this.item.birthDate); // fatherLastName
     } else if (this.itemType === 'coverage') {
-      console.log('item: ', this.item);
       this.formGroup.controls[this.fields[0].name].setValue(this.item.isSelected); // fatherLastName
       this.formGroup.controls[this.fields[1].name].setValue(this.item.coverageName);
       this.formGroup.controls[this.fields[2].name].setValue(this.item.assuredImport);
       this.formGroup.controls[this.fields[3].name].setValue(this.item.cost);
       this.formGroup.controls[this.fields[4].name].setValue(this.item.detail);
+    } else if (this.itemType === 'country') {
+      console.log('item: ', this.item);
+      this.formGroup.controls[this.fields[0].name].setValue(this.item.taxCountryId); // fatherLastName
     }
   }
 

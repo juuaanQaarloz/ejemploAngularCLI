@@ -24,6 +24,7 @@ export class ApplicationService {
   beneficiaries = new BehaviorSubject([]);
   formatosdos = new BehaviorSubject([]);
   agents = new BehaviorSubject([]);
+  countries = new BehaviorSubject([]);
   coverages = new BehaviorSubject(COVERAGES);
   formGroup: FormGroup;
   searchModalFrom: string;
@@ -213,6 +214,12 @@ export class ApplicationService {
       responseMessage1 = 'No se pueden agregar más de 5 formatos';
       responseMessage2 = 'La suma de las participaciones de los formatos excede el 100%';
       propertyName = 'participation';
+    } else if (itemType === 'country') {
+      currentItems = this.countries.getValue();
+      maxLength = 5;
+      responseMessage1 = 'No se pueden agregar más de 5 paises';
+      responseMessage2 = 'La suma de las participaciones de los formatos excede el 100%';
+      propertyName = 'participation';
     }
 
     if (currentTotalParticipationPercentage + Number(newItem[propertyName]) <= 100) {
@@ -241,6 +248,9 @@ export class ApplicationService {
     } else if (itemType === 'formatwo') {
       currentItems = this.formatosdos.getValue();
       propertyName = 'formatwoId';
+    } else if (itemType === 'country') {
+      currentItems = this.countries.getValue();
+      propertyName = 'countryId';
     }
     currentItems = currentItems.filter(item => item[propertyName] !== itemId);
     // console.log('currentItems: ', currentItems);
@@ -261,6 +271,9 @@ export class ApplicationService {
     } else if (itemType === 'formatwo') {
       currentItems = this.formatosdos.getValue();
       propertyItem = 'formatwoId';
+    } else if (itemType === 'country') {
+      currentItems = this.countries.getValue();
+      propertyItem = 'countryId';
     }
     const itemsLength = currentItems.length;
     // console.log('itemsLength: ', itemsLength);
@@ -285,6 +298,9 @@ export class ApplicationService {
     } else if (itemType === 'formatwo') {
       currentItems = this.formatosdos.getValue();
       propertyItem = 'formatwoId';
+    } else if (itemType === 'country') {
+      currentItems = this.countries.getValue();
+      propertyItem = 'countryId';
     }
     const foundItem = currentItems.filter(i => i[propertyItem] === updatedItem[propertyItem])[0];
 
@@ -308,6 +324,9 @@ export class ApplicationService {
     } else if (itemType === 'formatwo') {
       currentItems = this.formatosdos.getValue();
       propertyItem = 'participation';
+    } else if (itemType === 'country') {
+      currentItems = this.countries.getValue();
+      propertyItem = 'participation';
     }
 
     currentItems.forEach((item) => {
@@ -324,6 +343,8 @@ export class ApplicationService {
       this.agents.next(newItems);
     } else if (itemType === 'formatwo') {
       this.formatosdos.next(newItems);
+    } else if (itemType === 'country') {
+      this.countries.next(newItems);
     }
   }
 

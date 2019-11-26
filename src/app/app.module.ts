@@ -93,7 +93,7 @@ import {NewCountryComponent} from './components/beneficiaries/new-country/new-co
     AppRoutingModule
   ],
   bootstrap: [AppComponent],
-  entryComponents: [NewBeneficiaryComponent, NewFormatwoComponent, NewAgentComponent],
+  entryComponents: [NewBeneficiaryComponent, NewFormatwoComponent, NewAgentComponent, NewCountryComponent],
   providers: [
     { provide: DateAdapter, useClass: MyDateAdapter},
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS}

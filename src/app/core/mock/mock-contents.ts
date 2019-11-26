@@ -784,7 +784,7 @@ export const MockContentStep14Process1ContentSection2: Content[] = [
     idHtml: 'app-content-form-2.21',
     title: '',
     description: '',
-    contentType: 'table-paises',
+    contentType: 'table-country',
     // process?: Process;
     // fields: Beneficiarios,
     // operations?: Operation[];

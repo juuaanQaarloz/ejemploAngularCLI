@@ -7,7 +7,7 @@ import {transformDate} from '../../../core/utilities';
 import {ModalService} from '../../custom-modal';
 import {Operation} from '../../../models';
 import {FormatwoOperations} from '../../../core/mock/mock-operations';
-import {NewFormatwoFields} from '../../../core/mock/formats/formatwo';
+import {NewCountryFields} from '../../../core/mock/formats/country';
 
 
 @Component({
@@ -21,7 +21,7 @@ export class NewCountryComponent implements OnInit {
     idParent: 'step-7',
     parentType: 'Step',
     idHtml: 'app-content-form-2.19',
-    fields: NewFormatwoFields,
+    fields: NewCountryFields,
     operations: FormatwoOperations,
     showContent: true,
     styleClass: 'modal-type',
@@ -62,27 +62,28 @@ export class NewCountryComponent implements OnInit {
     this.formGroup = this.applicationService.createNewFormGroup(this.content.fields);
     console.log('formGroup', this.formGroup);
     this.fields = this.getFields();
+    console.log('country-fields', this.fields);
 
-    this.formGroup.controls.formatwoType.valueChanges.subscribe((value) => {
+    this.formGroup.controls.statCountry.valueChanges.subscribe((value) => {
       // this.formatwoType = value;
-      console.log('formatwoType');
+      console.log('statCountry');
       this.fields = this.getFields();
     });
 
     if (this.config.data !== null) {
       this.operationType = 'edit';
-      this.setFormatwoValues();
+      this.setCountryValues();
     } else {
       this.operationType = 'add';
     }
 
   }
 
-  addNewFormatwo() {
-    console.log('addNewFormatwo-component ');
+  addNewCountry() {
+    console.log('addNewCountry-component ');
     console.log('formGroup value: ', this.formGroup.value);
-    const newFormatwo = this.mapNewFormatwoData();
-    const response = this.applicationService.addItem(newFormatwo, 'formatwo');
+    const newCountry = this.mapNewCountryData();
+    const response = this.applicationService.addItem(newCountry, 'country');
 
     if (response.status) {
       this.closeDialog();
@@ -93,7 +94,7 @@ export class NewCountryComponent implements OnInit {
   }
 
   updateFormatwo() {
-    const updatedBeneficiary = this.mapFormatwoData();
+    const updatedBeneficiary = this.mapCountryData();
     // this.applicationService.updateItem(updatedBeneficiary, 'beneficiary');
     this.closeDialog();
   }
@@ -103,7 +104,7 @@ export class NewCountryComponent implements OnInit {
     if (delegateOperation === 'closeDialog') {
       this.closeDialog();
     } else if (delegateOperation === 'addNewBeneficiary') {
-      this.addNewFormatwo();
+      this.addNewCountry();
     } else if (delegateOperation === 'updateBeneficiary') {
       this.updateFormatwo();
     } else if (delegateOperation === 'closeModal') {
@@ -115,21 +116,15 @@ export class NewCountryComponent implements OnInit {
     this.dialog.close();
   }
 
-  setFormatwoValues() {
+  setCountryValues() {
     this.fields.forEach((field) => {
       let value;
       switch (field.name) {
-        case 'formatwoType':
-          value = this.config.data.item.formatwoType;
+        case 'name':
+          value = this.config.data.item.statCountry.value;
           break;
-        case 'formatwoName':
-          value = this.config.data.item.name;
-          break;
-        case 'formatwoFaLastName':
-          value = this.config.data.item.fatherLastName;
-          break;
-        case 'formatwoMoLastName':
-          value = this.config.data.item.motherLastName;
+        case 'taxCountryId':
+          value = this.config.data.item.taxCountryId;
           break;
         /*
        case 'formatwoBirthDate':
@@ -142,17 +137,14 @@ export class NewCountryComponent implements OnInit {
     console.log(this.formGroup.value);
   }
 
-  mapNewFormatwoData() {
-    const newFormatwoBase = {
-      formatwoId: (this.applicationService.getLastItemId('formatwo') + 1).toString(),
-      formatwoType: this.formGroup.controls.formatwoType.value,
-      name: this.formGroup.controls.formatwoName.value,
-      fatherLastName: this.formGroup.controls.formatwoFaLastName.value,
-      motherLastName: this.formGroup.controls.formatwoMoLastName.value,
-      birthDate: transformDate(this.formGroup.controls.formatwoBirthDate.value, 'YYYY/MM/DD'),
+  mapNewCountryData() {
+    const newCountryBase = {
+      countryId: (this.applicationService.getLastItemId('country') + 1).toString(),
+      statCountry: this.formGroup.controls.statCountry.value,
+      taxCountryId: this.formGroup.controls.taxCountryId.value,
       participation: '0',
     };
-    return newFormatwoBase;
+    return newCountryBase;
   }
   closeModal(modalID: string) {
     this.modalService.close(modalID);
@@ -186,23 +178,20 @@ export class NewCountryComponent implements OnInit {
 
   getFields() {
     let fields = [];
-    NewFormatwoFields.forEach((field) => {
+    NewCountryFields.forEach((field) => {
       fields.push(field);
     });
     console.log('getFields: ', fields);
     return fields;
   }
 
-  mapFormatwoData() {
-    const formatwoBase = {
-      formatwoId: this.config.data.item.formatwoId,
-      formatwoType: this.formGroup.controls.formatwoType.value,
-      name: this.formGroup.controls.formatwoName.value,
-      fatherLastName: this.formGroup.controls.formatwoFaLastName.value,
-      motherLastName: this.formGroup.controls.formatwoMoLastName.value,
-      birthDate: transformDate(this.formGroup.controls.formatwoBirthDate.value, 'YYYY/MM/DD'),
+  mapCountryData() {
+    const countryBase = {
+      countryId: this.config.data.item.countryId,
+      statCountry: this.formGroup.controls.statCountry.value,
+      taxCountryId: this.formGroup.controls.taxCountryId.value,
       participation: '0',
     };
-    return formatwoBase;
+    return countryBase;
   }
 }
