@@ -102,6 +102,19 @@ export const MockStepsProcessContentSection2: Step[] = [
     contents: MockContentStep8Process1ContentSection2,
     renderConditions: '',
     previousStep: '6',
+    nextStep: '14',
+    /*added extra from model*/
+    isCompleted: false,
+    show: true
+  },
+  {
+    id: '14',
+    idProcess: 'process-1',
+    idHtml: 'app-step-form-16',
+    title: 'Declaraciones',
+    contents: MockContentStep14Process1ContentSection2,
+    renderConditions: '',
+    previousStep: '14',
     nextStep: '16',
     /*added extra from model*/
     isCompleted: false,
@@ -115,19 +128,6 @@ export const MockStepsProcessContentSection2: Step[] = [
     contents: MockContentStep16Process1ContentSection2,
     renderConditions: '',
     previousStep: '6',
-    nextStep: '14',
-    /*added extra from model*/
-    isCompleted: false,
-    show: true
-  },
-  {
-    id: '14',
-    idProcess: 'process-1',
-    idHtml: 'app-step-form-16',
-    title: 'Declaraciones',
-    contents: MockContentStep14Process1ContentSection2,
-    renderConditions: '',
-    previousStep: '16',
     nextStep: '17',
     /*added extra from model*/
     isCompleted: false,
