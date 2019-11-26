@@ -512,7 +512,7 @@ export const MockContentStep6Process1ContentSection2: Content[] = [
   }
 ];
 
-export const MockContentStep7Process1ContentSection2: Content[] = [
+export const MockContentStep10Process1ContentSection2: Content[] = [
   {
     id: 'content-2.28',
     idParent: 'step-10',
@@ -615,7 +615,7 @@ export const MockContentStep7Process1ContentSection2: Content[] = [
   }
 ];
 
-export const MockContentStep8Process1ContentSection2: Content[] = [
+export const MockContentStep11Process1ContentSection2: Content[] = [
   {
     id: 'content-2.33',
     idParent: 'step-10',
