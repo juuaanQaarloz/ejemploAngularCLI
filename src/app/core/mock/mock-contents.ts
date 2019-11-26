@@ -10,7 +10,7 @@ import {DatosGeneralesSolicitante} from './mock-general-data/mock-datos-solicita
 import {DatosDomicilioSolicitante} from './mock-general-data/mock-domicilio-solicitante';
 import {InformacionLaboralSolicitante, InformacionLaboralSolicitante1} from './mock-laboral-data/mock-informacion-laboral-solicitante';
 import {sportQuestions2, sportsFields1, sportsFields2, sportsQuestions1} from './basic-questionnaires/sports-aviation-hobbies';
-import {habitsQuestions} from './basic-questionnaires/habits';
+import {habitsFields, habitsQuestions} from './basic-questionnaires/habits';
 import {weaponsFields, weaponsFields1, weaponsQuestions, weaponsQuestions1} from './basic-questionnaires/weapons-questions';
 import {medicalFields, medicalQuestions} from './basic-questionnaires/medical';
 import {AgentQuestion, AgentQuestion1} from './mock-agents/mock-agents-questions';
@@ -1133,6 +1133,26 @@ export const MockContentStep18Process1ContentSection2: Content[] = [
     showContent: true,
     // enableConditions?: 'string';
     styleClass: 'questions-type'
+    // --------------------------
+  },
+  {
+    id: 'content-2.53',
+    idParent: 'step-18',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.53',
+    contentType: 'looseFields',
+    // process?: Process;
+    fields: habitsFields,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    // enableConditions?: 'string';
+    styleClass: ''
     // --------------------------
   },
   {

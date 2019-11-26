@@ -673,6 +673,15 @@ export const equalEmailsValidator: ValidatorFn = (group: FormGroup): ValidationE
   return null;
 };
 
+export function rangeValidator(min: number, max: number) {
+  return (control: AbstractControl): { [key: string]: boolean} | null => {
+
+    if ( control.value !== null && (isNaN(control.value) || control.value < min  || control.value > max)) {
+      return { rangeValidator: true};
+    }
+    return null;
+  };
+}
 
 
 
