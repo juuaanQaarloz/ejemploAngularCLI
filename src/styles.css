@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+:root {
+  --columnNumber: 0;
+}
+
 html,body{
   font-family: 'Noto Sans', sans-serif;
   /*height: 100vh;*/
@@ -895,6 +899,12 @@ select::-ms-expand {
 
 .odd {
   background-color: #E5F4FB;
+}
+
+.even-row {
+  display: grid;
+  grid-template-columns: repeat(var(--columnNumber), 1fr);
+  background-color: #FFFFFF;
 }
 
 .even {

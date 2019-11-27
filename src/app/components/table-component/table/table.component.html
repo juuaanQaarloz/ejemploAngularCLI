@@ -1,0 +1,12 @@
+<div class="ml-table-container">
+  <div class="ml-table-title">{{header}}</div>
+  <!--<div class="even" [ngClass]="style">-->
+  <div class="even-row">
+    <div class="field-name-column" *ngFor="let rowName of rows">{{rowName}}</div>
+  </div>
+
+  <app-table-row *ngFor="let itemRow of rows; let i = index;"
+                 [itemRow]="itemRow"
+                 [index]="i"
+  ></app-table-row>
+</div>
