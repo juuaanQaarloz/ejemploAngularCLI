@@ -175,6 +175,19 @@ export class BeneficiaryTableComponent implements OnInit {
       this.applicationService.coverages.subscribe((value) => {
         this.items = value;
       });
+    } else if (this.type ===  'table-formatwob') {
+      this.title = 'Datos Formato dos';
+      this.columnsNames = ['Caracter', 'Nombre', 'Fecha de nacimiento',
+      ];
+      this.itemsType = 'formatwob';
+      this.style = 'even-beneficiary';
+      this.showplus = true;
+      /*this.content.fields.forEach((field) => {
+        this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
+      });*/
+      this.applicationService.formatosdos.subscribe((value) => {
+        this.items = value;
+      });
     }
   }
 

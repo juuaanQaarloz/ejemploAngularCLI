@@ -788,7 +788,7 @@ export const MockContentStep14Process1ContentSection2: Content[] = [
     // process?: Process;
     // fields: Beneficiarios,
     // operations?: Operation[];
-    renderConditions: 'taxQuestion=true',
+    renderConditions: '(taxQuestion=true)',
     // ---pending---
     // contentChildren?: Array<Content>;
     // -------------
@@ -830,7 +830,7 @@ export const MockContentStep14Process1ContentSection2: Content[] = [
     // process?: Process;
     // fields: Beneficiarios,
     // operations?: Operation[];
-    renderConditions: 'publicFunctionQuestion=true',
+    renderConditions: '(publicFunctionQuestion=true)',
     // ---pending---
     // contentChildren?: Array<Content>;
     // -------------
@@ -872,7 +872,7 @@ export const MockContentStep14Process1ContentSection2: Content[] = [
     // process?: Process;
     // fields: Beneficiarios,
     // operations?: Operation[];
-    renderConditions: 'associationQuestion=true',
+    renderConditions: '(associationQuestion=true)',
     // ---pending---
     // contentChildren?: Array<Content>;
     // -------------
@@ -914,7 +914,7 @@ export const MockContentStep14Process1ContentSection2: Content[] = [
     // process?: Process;
     // fields: Beneficiarios,
     // operations?: Operation[];
-    renderConditions: 'thirdPersonQuestion=true',
+    renderConditions: '(thirdPersonQuestion=true)',
     // ---pending---
     // contentChildren?: Array<Content>;
     // -------------
@@ -956,7 +956,29 @@ export const MockContentStep14Process1ContentSection2: Content[] = [
     // process?: Process;
     // fields: Beneficiarios,
     // operations?: Operation[];
-    renderConditions: 'supplierQuestion=false' ,
+    renderConditions: '(supplierQuestion=false)' ,
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    // showContent: true,
+    // enableConditions?: 'publicFunctionQuestion=true',
+    styleClass: 'modal-type'
+    // --------------------------
+  },
+  {
+    id: 'content-14.21',
+    idParent: 'step-14',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.21',
+    title: '',
+    description: '',
+    contentType: 'table-formathree',
+    // process?: Process;
+    // fields: Beneficiarios,
+    // operations?: Operation[];
+    renderConditions: '(typePerson=morPerson,&,supplierQuestion=false)' ,
     // ---pending---
     // contentChildren?: Array<Content>;
     // -------------
@@ -978,7 +1000,7 @@ export const MockContentStep14Process1ContentSection2: Content[] = [
     // process?: Process;
     // fields: Beneficiarios,
     // operations?: Operation[];
-    renderConditions: 'typePerson=morPerson' ,
+    renderConditions: '(typePerson=morPerson)' ,
     // ---pending---
     // contentChildren?: Array<Content>;
     // -------------
