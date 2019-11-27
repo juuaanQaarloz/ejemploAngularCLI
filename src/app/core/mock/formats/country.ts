@@ -61,34 +61,4 @@ export const NewCountryFields: Field[] = [
 ];
 
 export const countryFieldsItems: Field[] = [
-  {
-    id: 'field-1102',
-    idHtml: 'txtCountryTaxId',
-    name: 'taxCountryId',
-    orderAppearance: 2,
-    label: '',
-    type: 'text',
-    required: true,
-    placeholder: '',
-    length: '',
-    minValue: 0,
-    maxValue: 40,
-    pattern: '',
-    source: '',
-    sourceID: '',
-    style: '',
-    styleClass: '',
-    styleClassError: '',
-    message: 'El nombre es obligatorio y no puede contener más de 3 letras y/o 3 números iguales consecutivos. ' +
-      ' No se permiten caracteres especiales.',
-    messageClass: '',
-    messageError: '',
-    messageErrorClass: '',
-    renderConditions: '',
-    enableConditions: '',
-    entity: '',
-    entityField: '',
-    value: '',
-    disable: true
-  },
 ];

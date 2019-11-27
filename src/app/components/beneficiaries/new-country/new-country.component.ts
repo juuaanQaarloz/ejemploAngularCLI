@@ -80,8 +80,8 @@ export class NewCountryComponent implements OnInit {
   }
 
   addNewCountry() {
-    console.log('addNewCountry-component ');
-    console.log('formGroup value: ', this.formGroup.value);
+    // console.log('addNewCountry-component ');
+    // console.log('formGroup value: ', this.formGroup.value);
     const newCountry = this.mapNewCountryData();
     const response = this.applicationService.addItem(newCountry, 'country');
 

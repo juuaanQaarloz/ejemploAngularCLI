@@ -146,7 +146,6 @@ export class BeneficiaryTableComponent implements OnInit {
       }); */
       this.applicationService.countries.subscribe((value) => {
         this.items = value;
-        // this.totalPercentageParticipation = this.applicationService.getTotalParticipationPercentage();
       });
     } else if (this.type ===  'table-formatwo') {
       this.title = 'Datos Formato dos';

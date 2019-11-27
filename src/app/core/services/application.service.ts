@@ -216,14 +216,14 @@ export class ApplicationService {
       currentItems = this.formatosdos.getValue();
       maxLength = 5;
       responseMessage1 = 'No se pueden agregar más de 5 formatos';
-      responseMessage2 = 'Lvalidacion2';
+      responseMessage2 = 'Validacion2';
       propertyName = 'participation';
     } else if (itemType === 'country') {
       currentTotalParticipationPercentage = 1;
       currentItems = this.countries.getValue();
       maxLength = 3;
-      responseMessage1 = 'No se pueden agregar más de 5 paises';
-      responseMessage2 = 'validacion2';
+      responseMessage1 = 'No se pueden agregar más de 3 paises';
+      responseMessage2 = 'Validacion2';
       propertyName = 'participation';
     } else if (itemType === 'disease') {
       currentItems = this.diseases.getValue();
