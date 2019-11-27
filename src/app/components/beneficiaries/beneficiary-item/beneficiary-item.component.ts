@@ -159,7 +159,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
     }  else if (this.itemType === 'formatwo') {
       this.formGroup.controls[this.fields[0].name].setValue(this.item.birthDate); // fatherLastName
     } else if (this.itemType === 'coverage') {
-      console.log('item: ', this.item);
+      // console.log('item: ', this.item);
       this.formGroup.controls[this.fields[0].name].setValue(this.item.isSelected); // fatherLastName
       this.formGroup.controls[this.fields[1].name].setValue(this.item.coverageName);
       this.formGroup.controls[this.fields[2].name].setValue(this.item.assuredImport);

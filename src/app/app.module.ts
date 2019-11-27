@@ -36,14 +36,13 @@ import { HeaderComponent } from './components/header/header.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MenuPageComponent } from './components/menu-page/menu-page.component';
-import { TableComponent } from './components/general-table/table/table.component';
-import { ItemTableComponent } from './components/general-table/item-table/item-table.component';
-import { AddEditItemTableComponent } from './components/general-table/add-edit-item-table/add-edit-item-table.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import {FormaTwobTableComponent} from './components/formatwob/formatwob-table/formatwob-table.component';
 import {NewFormatwoComponent} from './components/beneficiaries/new-formatwo/new-formatwo.component';
 import { NewAgentComponent } from './components/beneficiaries/new-agent/new-agent.component';
 import {NewCountryComponent} from './components/beneficiaries/new-country/new-country.component';
+import { TableComponent } from './components/table-component/table/table.component';
+import { TableRowComponent } from './components/table-component/table-row/table-row.component';
 
 // @ts-ignore
 @NgModule({
@@ -66,15 +65,14 @@ import {NewCountryComponent} from './components/beneficiaries/new-country/new-co
     MenuComponent,
     FooterComponent,
     MenuPageComponent,
-    TableComponent,
-    ItemTableComponent,
-    AddEditItemTableComponent,
     PaginationComponent,
     FormaTwobTableComponent,
     NewFormatwoComponent,
     NewAgentComponent,
-    NewCountryComponent
-  ],
+    NewCountryComponent,
+    TableComponent,
+    TableRowComponent
+    ],
 
   imports: [
     BrowserModule,

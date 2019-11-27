@@ -501,3 +501,16 @@ export function calculateRFC(apellidoPaterno: string, apellidoMaterno: string, n
   return null;
 }
 
+/**
+ * @param (number) Number to be determined as even or odd
+ * @return (boolean) true if the given number is even or false when the given number is odd
+ */
+export function determinateEvenOrOdd(num: number): boolean {
+  if (num % 2 === 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
