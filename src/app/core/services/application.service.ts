@@ -25,6 +25,7 @@ export class ApplicationService {
   formatosdos = new BehaviorSubject([]);
   agents = new BehaviorSubject([]);
   coverages = new BehaviorSubject(COVERAGES);
+  diseases = new BehaviorSubject([]);
   formGroup: FormGroup;
   searchModalFrom: string;
   applicationObj;
@@ -189,43 +190,48 @@ export class ApplicationService {
 
   addItem(newItem, itemType: string) {
     // console.log('typeItem: ', typeof newItem);
-    const currentTotalParticipationPercentage = this.getTotalParticipationPercentage(itemType);
+    let currentTotalParticipationPercentage;
     let currentItems;
     let maxLength;
     let responseMessage1;
     let responseMessage2;
     let propertyName;
     if (itemType === 'beneficiary') {
+      currentTotalParticipationPercentage = this.getTotalParticipationPercentage(itemType);
       currentItems = this.beneficiaries.getValue();
       maxLength = 10;
       responseMessage1 = 'No se pueden agregar más de 10 beneficiarios';
       responseMessage2 = 'La suma de las participaciones de los beneficiarios excede el 100%';
       propertyName = 'participationPercentage';
     } else if (itemType === 'agent') {
+      currentTotalParticipationPercentage = this.getTotalParticipationPercentage(itemType);
       currentItems = this.agents.getValue();
       maxLength = 2;
       responseMessage1 = 'No se pueden agregar más de 2 agentes';
       responseMessage2 = 'La suma de las participaciones de los agentes excede el 100%';
       propertyName = 'participation';
-    }  else if (itemType === 'formatwo') {
+    } else if (itemType === 'formatwo') {
+      currentTotalParticipationPercentage = this.getTotalParticipationPercentage(itemType);
       currentItems = this.formatosdos.getValue();
       maxLength = 5;
       responseMessage1 = 'No se pueden agregar más de 5 formatos';
       responseMessage2 = 'La suma de las participaciones de los formatos excede el 100%';
       propertyName = 'participation';
+    } else if (itemType === 'disease') {
+      currentItems = this.diseases.getValue();
     }
 
-    if (currentTotalParticipationPercentage + Number(newItem[propertyName]) <= 100) {
-    if (currentItems.length <= maxLength) {
-        // the new beneficiary can be added
+    if ((currentTotalParticipationPercentage) && (currentTotalParticipationPercentage + Number(newItem[propertyName]) <= 100)) {
+      if (currentItems.length <= maxLength) {
+        // the new item can be added
         currentItems.push(newItem);
         this.setItems(itemType, currentItems);
         return {status: true, message: ''};
       } else {
-        return {status: false, message: responseMessage1 };
+        return {status: false, message: responseMessage1};
       }
     } else {
-      return {status: false, message: responseMessage2 };
+      return {status: false, message: responseMessage2};
     }
   }
 
@@ -473,6 +479,7 @@ export class ApplicationService {
         })
       );
   }
+
   validateFormByStep(stepID: string) {
     const step = this.getStepById(stepID);
     if (step) {
@@ -525,10 +532,12 @@ export class ApplicationService {
 
     return foundStep;
   }
-   logicalExpressionEvaluation(str) {
-     console.log('onLogicalExpressionEvaluation...');
-   }
-   reverseString(str) {
+
+  logicalExpressionEvaluation(str) {
+    console.log('onLogicalExpressionEvaluation...');
+  }
+
+  reverseString(str) {
     // Step 1. Use the split() method to return a new array
     const splitString = str.split('');
     // Step 2. Use the reverse() method to reverse the new created array
@@ -537,7 +546,7 @@ export class ApplicationService {
     const joinArray = reverseArray.join('');
 
     return joinArray;
-   }
+  }
 
   stringToBoolean(str) {
     return (/true/i).test(str);
@@ -624,9 +633,11 @@ export class ApplicationService {
     }
     return arr[arr.length - 1];
   }
-    removeParenthesis(str) {
+
+  removeParenthesis(str) {
     return str.replace(/[()]/g, '');
-    }
+  }
+
   /*inputs test:
    * input 1: ((campo1=true,&,campo1=true),|,campo3=true)
    * input 2: (campo1=true)
