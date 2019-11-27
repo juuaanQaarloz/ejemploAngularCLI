@@ -212,22 +212,24 @@ export class ApplicationService {
       responseMessage2 = 'La suma de las participaciones de los agentes excede el 100%';
       propertyName = 'participation';
     } else if (itemType === 'formatwo') {
-      currentTotalParticipationPercentage = this.getTotalParticipationPercentage(itemType);
+      currentTotalParticipationPercentage = 1;
       currentItems = this.formatosdos.getValue();
       maxLength = 5;
       responseMessage1 = 'No se pueden agregar más de 5 formatos';
-      responseMessage2 = 'La suma de las participaciones de los formatos excede el 100%';
+      responseMessage2 = 'Lvalidacion2';
       propertyName = 'participation';
     } else if (itemType === 'country') {
+      currentTotalParticipationPercentage = 1;
       currentItems = this.countries.getValue();
-      maxLength = 5;
+      maxLength = 3;
       responseMessage1 = 'No se pueden agregar más de 5 paises';
-      responseMessage2 = 'La suma de las participaciones de los formatos excede el 100%';
+      responseMessage2 = 'validacion2';
       propertyName = 'participation';
     } else if (itemType === 'disease') {
       currentItems = this.diseases.getValue();
     }
-
+    console.log('currentTotalParticipationPercentage: ', currentTotalParticipationPercentage);
+    console.log('newItem[propertyName]: ', Number(newItem[propertyName]));
     if ((currentTotalParticipationPercentage) && (currentTotalParticipationPercentage + Number(newItem[propertyName]) <= 100)) {
       if (currentItems.length <= maxLength) {
         // the new item can be added

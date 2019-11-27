@@ -150,7 +150,7 @@ export class NewFormatwoComponent implements OnInit {
       fatherLastName: this.formGroup.controls.formatwoFaLastName.value,
       motherLastName: this.formGroup.controls.formatwoMoLastName.value,
       birthDate: transformDate(this.formGroup.controls.formatwoBirthDate.value, 'YYYY/MM/DD'),
-      participation: '0',
+      participation: '1',
     };
     return newFormatwoBase;
   }
@@ -201,7 +201,7 @@ export class NewFormatwoComponent implements OnInit {
       fatherLastName: this.formGroup.controls.formatwoFaLastName.value,
       motherLastName: this.formGroup.controls.formatwoMoLastName.value,
       birthDate: transformDate(this.formGroup.controls.formatwoBirthDate.value, 'YYYY/MM/DD'),
-      participation: '0',
+      participation: '1',
     };
     return formatwoBase;
   }
