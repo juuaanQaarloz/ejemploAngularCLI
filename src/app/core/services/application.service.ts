@@ -23,6 +23,10 @@ export class ApplicationService {
   currentValue = this.currentStepSource.asObservable();
   beneficiaries = new BehaviorSubject([]);
   formatosdos = new BehaviorSubject([]);
+  formatosdosb = new BehaviorSubject([]);
+  formatosocho = new BehaviorSubject([]);
+  formatos426 = new BehaviorSubject([]);
+  formatos427 = new BehaviorSubject([]);
   agents = new BehaviorSubject([]);
   countries = new BehaviorSubject([]);
   coverages = new BehaviorSubject(COVERAGES);

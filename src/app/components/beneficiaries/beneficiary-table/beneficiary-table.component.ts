@@ -178,13 +178,65 @@ export class BeneficiaryTableComponent implements OnInit {
       this.title = 'Datos Formato dos';
       this.columnsNames = ['Caracter', 'Nombre', 'Fecha de nacimiento',
       ];
-      this.itemsType = 'formatwob';
+      this.itemsType = 'formatwo';
       this.style = 'even-beneficiary';
       this.showplus = true;
       /*this.content.fields.forEach((field) => {
         this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
       });*/
-      this.applicationService.formatosdos.subscribe((value) => {
+      this.applicationService.formatosdosb.subscribe((value) => {
+        this.items = value;
+      });
+    } else if (this.type ===  'table-formatw8') {
+      this.title = 'Datos Formato W8BEN-E';
+      this.columnsNames = ['Formato',
+      ];
+      this.itemsType = 'formatw8';
+      this.style = 'even-beneficiary';
+      this.showplus = true;
+      /*this.content.fields.forEach((field) => {
+        this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
+      });*/
+      this.applicationService.formatosocho.subscribe((value) => {
+        this.items = value;
+      });
+    } else if (this.type ===  'table-formatw8') {
+      this.title = 'Datos Formato W8BEN-E';
+      this.columnsNames = ['Formato',
+      ];
+      this.itemsType = 'formatw8';
+      this.style = 'even-beneficiary';
+      this.showplus = true;
+      /*this.content.fields.forEach((field) => {
+        this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
+      });*/
+      this.applicationService.formatosocho.subscribe((value) => {
+        this.items = value;
+      });
+    } else if (this.type ===  'table-formatIV-2-426') {
+      this.title = 'Datos Formato IV-2-426';
+      this.columnsNames = ['Formato',
+      ];
+      this.itemsType = 'formatw8';
+      this.style = 'even-beneficiary';
+      this.showplus = true;
+      /*this.content.fields.forEach((field) => {
+        this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
+      });*/
+      this.applicationService.formatos426.subscribe((value) => {
+        this.items = value;
+      });
+    } else if (this.type ===  'table-formatIV-2-427') {
+      this.title = 'Datos Formato IV-2-427';
+      this.columnsNames = ['Formato',
+      ];
+      this.itemsType = 'formatw8';
+      this.style = 'even-beneficiary';
+      this.showplus = true;
+      /*this.content.fields.forEach((field) => {
+        this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
+      });*/
+      this.applicationService.formatos427.subscribe((value) => {
         this.items = value;
       });
     }

@@ -974,7 +974,7 @@ export const MockContentStep14Process1ContentSection2: Content[] = [
     idHtml: 'app-content-form-2.21',
     title: '',
     description: '',
-    contentType: 'table-formathree',
+    contentType: 'table-formatw8',
     // process?: Process;
     // fields: Beneficiarios,
     // operations?: Operation[];
@@ -996,7 +996,7 @@ export const MockContentStep14Process1ContentSection2: Content[] = [
     idHtml: 'app-content-form-2.21',
     title: '',
     description: '',
-    contentType: 'table-formatwo',
+    contentType: 'table-formatIV-2-426',
     // process?: Process;
     // fields: Beneficiarios,
     // operations?: Operation[];
