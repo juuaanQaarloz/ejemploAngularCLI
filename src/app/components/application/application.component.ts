@@ -8,6 +8,8 @@ import * as jsPDF from 'jspdf';
 import {pdfOperation} from '../../core/mock/mock-operations';
 import {Template} from '../../models/template';
 import {error} from 'util';
+import {RowItem} from '../../models/table-model/row-item';
+import {ColumnSetting} from '../../models/table-model/column-setting';
 
 @Component({
   selector: 'app-application',
@@ -21,6 +23,44 @@ export class ApplicationComponent implements OnInit {
   @ViewChild('content', {static: false}) content: ElementRef;
   pdfOperation = pdfOperation;
   items = [];
+
+  columnsSettings: ColumnSetting[] = [
+    {
+      primaryKey: 'rowId',
+      header: 'ID',
+      // alternativeKeys: ['alternativeKey1', 'alternative2']
+    },
+    {
+      primaryKey: 'rowName',
+      header: 'NAME'
+    },
+    {
+      primaryKey: 'rowObject',
+      header: 'OBJECT'
+    }
+  ];
+  rows: RowItem<string>[] = [
+    {
+      rowId: '1',
+      rowName: 'row1',
+      rowObject: 'item1'
+    },
+    {
+      rowId: '2',
+      rowName: 'row2',
+      rowObject: 'item2'
+    },
+    {
+      rowId: '3',
+      rowName: 'row3',
+      rowObject: 'item3'
+    },
+    {
+      rowId: '4',
+      rowName: 'row4',
+      rowObject: 'item4'
+    }
+  ];
 
   constructor(private appService: ApplicationService,
               private authService: AuthService,

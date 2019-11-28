@@ -12,8 +12,9 @@
     <!--<button (click)="getValidateField()">VALIDATE ALL FORM</button>-->
 
     <!--<p *ngIf="formGroup.errors?.['invalidEmailConfirmation']"></p>-->
-    <app-table [header]="'Table example'"
-               [rows]="['item1', 'item2', 'item3', 'item4', 'item5', 'item6', 'item7', 'item8']">
+    <app-table [caption]="'Caption Table'"
+               [records]="rows"
+               [settings]="columnsSettings">
 
     </app-table>
 

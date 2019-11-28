@@ -284,7 +284,7 @@ export const AgentFieldsItem: Field[] = [
     placeholder: '',
     length: '',
     minValue: 0,
-    maxValue: 3,
+    maxValue: 5,
     pattern: '',
     source: '',
     sourceID: '',
