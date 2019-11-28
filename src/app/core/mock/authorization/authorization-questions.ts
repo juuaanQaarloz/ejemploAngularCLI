@@ -71,7 +71,7 @@ export const AuthorizationQuestions2: Field[] = [
     idHtml: 'rdioDocumentationAuthorizationQuestion',
     name: 'documentationAuthorizationQuestion',
     orderAppearance: 1,
-    label: '2. Autoriza el Cliente / Contratante recibir información y documentación de mi seguro y en su caso la póliza' +
+    label: '2. Autoriza el Cliente / Contratante recibir información y documentación de su seguro y en su caso la póliza ' +
           'de su seguro resultante por medio de correo electrónico antes señalado',
     type: 'radio',
     required: true,
@@ -132,7 +132,7 @@ export const AuthorizationQuestions2: Field[] = [
     idHtml: 'rdioRightsConfirmationQuestion',
     name: 'rightsConfirmationQuestion',
     orderAppearance: 3,
-    label: '4. El Cliente / Contratante ha recibido toda la información de los derechos básicos de los contratantes,' +
+    label: '4. El Cliente / Contratante ha recibido toda la información de los derechos básicos de los contratantes, ' +
       'asegurados y beneficiarios',
     type: 'radio',
     required: true,

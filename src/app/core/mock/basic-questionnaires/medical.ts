@@ -8,8 +8,8 @@ export const medicalQuestions: Field[] = [
     orderAppearance: 1,
     label: '1. ¿Te ha sido diagnosticado o estas bajo seguimiento médico o en tratamiento de alguno de los siguientes ' +
       'padecimientos: presión alta, hipertensión, diabetes, cardiovasculares, infarto al miocardio, insuficiencia renal, ' +
-      'cáncer o tumor, SIDA, parálisis, paraplejia, enfisema, asma o cualquier enfermedad del púlmon (salvo bronquitis aguda),' +
-      ' higado, riñones, digestivo, prostata o matriz o consumes algún medicamento?',
+      'cáncer o tumor, SIDA, parálisis, paraplejia, enfisema, asma o cualquier enfermedad del pulmón (salvo bronquitis aguda),' +
+      ' hígado, riñones, digestivo, próstata o matriz o consumes algún medicamento?',
     type: 'radio',
     required: true,
     placeholder: '',
@@ -39,7 +39,7 @@ export const medicalQuestions: Field[] = [
     name: 'medicalTestQuestion',
     orderAppearance: 2,
     label: '2. En los últimos 10 años, ¿Haz estado hospitalizado o en urgencias por una operación, ' +
-      'tratamiento o te han prácticado estudios de laboratorio y/o gabinete como electrocardiogramas, ' +
+      'tratamiento o te han practicado estudios de laboratorio y/o gabinete como electrocardiogramas, ' +
       'ultrasonido, radiografías, tomografías, resonancias, etc. (excepto check up o chequeos de rutina)',
     type: 'radio',
     required: true,
@@ -70,7 +70,7 @@ export const medicalQuestions: Field[] = [
     name: 'extraDiseasesQuestion',
     orderAppearance: 3,
     label: '3. ¿Tienes o has tenido algún padecimiento, condición, afección, cirugía y/o molestia física y/o enfermedad a parte ' +
-      'de las ya mencionadas, asi mismo has solicitado o percibido alguna indemnización por incapacidad de cualquier tipo?',
+      'de las ya mencionadas, así mismo has solicitado o percibido alguna indemnización por incapacidad de cualquier tipo?',
     type: 'radio',
     required: true,
     placeholder: '',

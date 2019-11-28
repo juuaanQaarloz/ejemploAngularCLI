@@ -6,7 +6,7 @@ export const habitsQuestions: Field[] = [
     idHtml: 'radioSmokeQuestion',
     name: 'smokeQuestion',
     orderAppearance: 1,
-    label: '1. ¿Fuma? (conciderar cigarro electrónico)',
+    label: '1. ¿Fuma? (considerar cigarro electrónico)',
     type: 'radio',
     required: true,
     placeholder: '',

@@ -1,23 +1,57 @@
-import {Component, HostBinding, Input, OnInit} from '@angular/core';
-import {DomSanitizer} from '@angular/platform-browser';
+import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {ColumnSetting} from '../../../models/table-model/column-setting';
+import {determinateEvenOrOdd} from '../../../core/utilities';
+import {ColumnMap} from '../../../models/table-model/column-map';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TableComponent implements OnInit {
-  @Input() header: string;
-  @Input() rows: [];
+export class TableComponent implements OnInit, OnChanges {
+  /*@Input() header: string;
+  @Input() columns: [];
+  @Input() rows: Array<RowItem<any>>;*/
+
+  // from example
+  @Input() records: any[];
+  @Input() caption: string;
+  @Input() settings: ColumnSetting[];
+  // columnMaps: ColumnSetting[];
+  columnMaps: ColumnMap[];
+  ngOnChanges() {
+    /*if (this.settings) { // when settings provided
+      this.columnMaps = this.settings;
+    } else { // no settings, create column maps with defaults
+      this.columnMaps = Object.keys(this.records[0])
+        .map( key => {
+          return {
+            primaryKey: key,
+            header: key.slice(0, 1).toUpperCase() +
+              key.replace(/_/g, ' ' ).slice(1)
+          };
+        });
+    }*/
+    if (this.settings) {
+      this.columnMaps = this.settings
+        .map(col => new ColumnMap(col));
+    } else {
+      this.columnMaps = Object.keys(this.records[0])
+        .map( key => {
+          return new ColumnMap( { primaryKey: key });
+        });
+    }
+  }
 
   constructor() { }
 
   ngOnInit() {
-    this.rows.forEach((itemRow) => {
-      console.log('itemRow: ', itemRow);
-    });
     // set the number of columns
-    document.documentElement.style.setProperty('--columnNumber', this.rows.length.toString());
+    // document.documentElement.style.setProperty('--columnNumber', this.columns.length.toString());
+    document.documentElement.style.setProperty('--columnNumber', this.columnMaps.length.toString());
   }
 
+  determinateEvenOrOdd(num: number) {
+    return determinateEvenOrOdd(num);
+  }
 }

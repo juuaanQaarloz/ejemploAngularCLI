@@ -173,7 +173,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     id: '19',
     idProcess: 'process-1',
     idHtml: 'app-step-form-19',
-    title: 'Cuestionario de médico del solicitante',
+    title: 'Cuestionario médico del solicitante',
     contents: MockContentStep19Process1ContentSection2,
     renderConditions: '',
     previousStep: '18',

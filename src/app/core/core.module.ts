@@ -4,16 +4,22 @@ import {AuthGuard} from './guards/auth.guard';
 import {mockBackendProvider} from './mock/mock-backend';
 import {TrackScrollDirective} from './directives/track-scroll.directive';
 import { OnlyGivenCharactersDirective } from './directives/only-given-characters.directive';
+import { FormatCellPipe } from './pipes/format-cell.pipe';
+import { StyleCellDirective } from './directives/style-cell.directive';
 
 @NgModule({
   imports: [CommonModule],
   declarations: [
     TrackScrollDirective,
-    OnlyGivenCharactersDirective
+    OnlyGivenCharactersDirective,
+    FormatCellPipe,
+    StyleCellDirective
   ],
   exports: [
     TrackScrollDirective,
-    OnlyGivenCharactersDirective
+    OnlyGivenCharactersDirective,
+    FormatCellPipe,
+    StyleCellDirective
   ],
   providers: [
     AuthGuard,

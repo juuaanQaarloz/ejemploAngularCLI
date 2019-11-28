@@ -372,7 +372,8 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: ''
+    entityField: '',
+    value: 'MX'
   },
   {
     id: 'field-16',
