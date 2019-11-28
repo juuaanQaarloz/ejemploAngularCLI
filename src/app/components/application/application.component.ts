@@ -28,18 +28,20 @@ export class ApplicationComponent implements OnInit {
     {
       primaryKey: 'rowId',
       header: 'ID',
-      // alternativeKeys: ['alternativeKey1', 'alternative2']
+      alternativeKeys: ['alternativeKey1_rowId', 'alternative2_rowId']
     },
     {
       primaryKey: 'rowName',
-      header: 'NAME'
+      header: 'NAME',
+      alternativeKeys: ['alternativeKey1_rowName', 'alternative2_rowName']
     },
     {
       primaryKey: 'rowObject',
-      header: 'OBJECT'
+      header: 'OBJECT',
+      alternativeKeys: ['alternativeKey1_rowObject', 'alternative2_rowObject']
     }
   ];
-  rows: RowItem<string>[] = [
+  rows: RowItem<any>[] = [
     {
       rowId: '1',
       rowName: 'row1',
@@ -48,17 +50,31 @@ export class ApplicationComponent implements OnInit {
     {
       rowId: '2',
       rowName: 'row2',
-      rowObject: 'item2'
+      rowObject: {
+        idDisease: '01',
+        name: 'Disease1',
+        diagnosticDate: '2001/08/09',
+        duration: '1 año',
+        actualCondition: 'sin incidencias',
+        hasQuestionnaire: false
+      }
     },
     {
       rowId: '3',
       rowName: 'row3',
-      rowObject: 'item3'
+      rowObject: 8
     },
     {
       rowId: '4',
       rowName: 'row4',
-      rowObject: 'item4'
+      rowObject: {
+        coverageId: '01',
+        isSelected: false,
+        coverageName: 'Coverage1',
+        assuredImport: 'Assured import1',
+        cost: '1000',
+        detail: 'Coverage detail 1'
+      }
     }
   ];
 

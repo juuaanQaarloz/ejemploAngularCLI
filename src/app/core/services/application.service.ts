@@ -221,7 +221,9 @@ export class ApplicationService {
       currentItems = this.diseases.getValue();
     }
 
-    if ((currentTotalParticipationPercentage) && (currentTotalParticipationPercentage + Number(newItem[propertyName]) <= 100)) {
+    console.log('currentTotalParticipationPercentage: ', currentTotalParticipationPercentage);
+    if ((currentTotalParticipationPercentage !== undefined)
+      && (currentTotalParticipationPercentage + Number(newItem[propertyName]) <= 100)) {
       if (currentItems.length <= maxLength) {
         // the new item can be added
         currentItems.push(newItem);

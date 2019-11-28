@@ -1,33 +1,20 @@
 <div class="ml-table-container">
-  <div class="ml-table-title">{{caption}}</div>
+  <div *ngIf="caption" class="ml-table-title">{{caption}}</div>
   <div class="even-row">
     <div class="field-name-column" *ngFor="let map of columnMaps">{{map.header}}</div>
   </div>
 
-  <div class="even-row" *ngFor="let record of records; let i = index;"
+  <!--<div class="even-row" *ngFor="let record of records; let i = index;"
        [ngStyle]="{'background-color':  determinateEvenOrOdd(i) ? '#E5F4FB': '#FFFFFF'}">
     <div *ngFor="let map of columnMaps"
          [appStyleCell]="record[map.access(record)]">
       {{ record[map.access(record)] | formatCell}}</div>
-  </div>
+  </div>-->
 
-  <!--<app-table-row *ngFor="let itemRow of rows; let i = index;"
-                 [itemRow]="itemRow"
+  <app-table-row *ngFor="let record of records; let i = index;"
+                 [record]="record"
                  [index]="i"
-  ></app-table-row>-->
+                 [columnMaps]="columnMaps"
+  ></app-table-row>
 
 </div>
-
-<!--<table class="table">
-  <caption *ngIf="caption">{{ caption }}</caption>
-  <thead>
-  <tr>
-    <th *ngFor="let map of columnMaps">{{ map.header }}</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let record of records">
-    <td *ngFor="let map of columnMaps">{{ record[map.primaryKey] }}</td>
-  </tr>
-  </tbody>
-</table>-->

@@ -17,22 +17,10 @@ export class TableComponent implements OnInit, OnChanges {
   @Input() records: any[];
   @Input() caption: string;
   @Input() settings: ColumnSetting[];
-  // columnMaps: ColumnSetting[];
   columnMaps: ColumnMap[];
+
   ngOnChanges() {
-    /*if (this.settings) { // when settings provided
-      this.columnMaps = this.settings;
-    } else { // no settings, create column maps with defaults
-      this.columnMaps = Object.keys(this.records[0])
-        .map( key => {
-          return {
-            primaryKey: key,
-            header: key.slice(0, 1).toUpperCase() +
-              key.replace(/_/g, ' ' ).slice(1)
-          };
-        });
-    }*/
-    if (this.settings) {
+    if (this.settings) { // when settings is provided
       this.columnMaps = this.settings
         .map(col => new ColumnMap(col));
     } else {
@@ -47,7 +35,6 @@ export class TableComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     // set the number of columns
-    // document.documentElement.style.setProperty('--columnNumber', this.columns.length.toString());
     document.documentElement.style.setProperty('--columnNumber', this.columnMaps.length.toString());
   }
 
