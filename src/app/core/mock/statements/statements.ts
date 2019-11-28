@@ -102,7 +102,7 @@ export const statements1: Field[] = [
     type: 'text',
     required: true,
     placeholder: '',
-    length: '100',
+    length: '360',
     minValue: 0,
     maxValue: 200,
     pattern: '',
