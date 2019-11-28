@@ -75,7 +75,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       this.fields = countryFieldsItems;
       this.operations = BeneficiaryItemOperations;
       this.questionModal = '¿Está seguro que desea eliminar al formato de la lista?';
-      this.maxItems = 5;
+      this.maxItems = 3;
       this.styleClass = 'item-row-formatwo';
       this.showplus = true;
     }
@@ -172,7 +172,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       this.formGroup.controls[this.fields[2].name].setValue(this.item.key);
       this.formGroup.controls[this.fields[3].name].setValue(this.item.participation);
     }  else if (this.itemType === 'formatwo') {
-      this.formGroup.controls[this.fields[0].name].setValue(this.item.birthDate); // fatherLastName
+      this.formGroup.controls[this.fields[0].name].setValue(this.item.formatwoBirthDate); // fatherLastName
     } else if (this.itemType === 'coverage') {
       this.formGroup.controls[this.fields[0].name].setValue(this.item.isSelected); // fatherLastName
       this.formGroup.controls[this.fields[1].name].setValue(this.item.coverageName);

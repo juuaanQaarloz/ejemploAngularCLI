@@ -47,8 +47,8 @@ export class NewFormatwoComponent implements OnInit {
   formGroup: FormGroup;
   operationType: string;
   modalID = 'modal-warning';
-  modalMessage = 'La suma de las participaciones de los beneficiarios excede el 100%';
-  fileNameUpload = 'Ningún archivo seleccionado';
+  modalMessage = 'La suma de las participaciones de los formatos excede el 100%';
+
   fields = [];
 
   constructor(private applicationService: ApplicationService,
@@ -123,13 +123,13 @@ export class NewFormatwoComponent implements OnInit {
           value = this.config.data.item.formatwoType;
           break;
          case 'formatwoName':
-          value = this.config.data.item.name;
+          value = this.config.data.item.formatwoName;
           break;
-        case 'formatwoFaLastName':
-          value = this.config.data.item.fatherLastName;
+        case 'formatwoFatherLastName':
+          value = this.config.data.item.formatwoFatherLastName;
           break;
-        case 'formatwoMoLastName':
-          value = this.config.data.item.motherLastName;
+        case 'formatwoMotherLastName':
+          value = this.config.data.item.formatwoMotherLastName;
           break;
          /*
         case 'formatwoBirthDate':
@@ -146,42 +146,16 @@ export class NewFormatwoComponent implements OnInit {
     const newFormatwoBase = {
       formatwoId: (this.applicationService.getLastItemId('formatwo') + 1).toString(),
       formatwoType: this.formGroup.controls.formatwoType.value,
-      name: this.formGroup.controls.formatwoName.value,
-      fatherLastName: this.formGroup.controls.formatwoFaLastName.value,
-      motherLastName: this.formGroup.controls.formatwoMoLastName.value,
-      birthDate: transformDate(this.formGroup.controls.formatwoBirthDate.value, 'YYYY/MM/DD'),
+      formatwoName: this.formGroup.controls.formatwoName.value,
+      formatwoFatherLastName: this.formGroup.controls.formatwoFatherLastName.value,
+      formatwoMotherLastName: this.formGroup.controls.formatwoMotherLastName.value,
+      formatwoBirthDate: transformDate(this.formGroup.controls.formatwoBirthDate.value, 'YYYY/MM/DD'),
       participation: '1',
     };
     return newFormatwoBase;
   }
   closeModal(modalID: string) {
     this.modalService.close(modalID);
-  }
-
-  fileChange(event) {
-    console.log('event.target.files: ', event.target.files);
-    const fileList = event.target.files;
-    if (fileList.length > 0) {
-      this.fileNameUpload = fileList[0].name;
-    }
-    /*let fileList: FileList = event.target.files;
-    if (fileList.length > 0) {
-      let file: File = fileList[0];
-      let formData:FormData = new FormData();
-      formData.append('uploadFile', file, file.name);
-      let headers = new Headers();
-      // In Angular 5, including the header Content-Type can invalidate your request
-      headers.append('Content-Type', 'multipart/form-data');
-      headers.append('Accept', 'application/json');
-      let options = new RequestOptions({ headers: headers });
-      this.http.post(`${this.apiEndPoint}`, formData, options)
-        .map(res => res.json())
-        .catch(error => Observable.throw(error))
-        .subscribe(
-          data => console.log('success'),
-          error => console.log(error)
-        )
-    }*/
   }
 
   getFields() {
@@ -197,10 +171,10 @@ export class NewFormatwoComponent implements OnInit {
     const formatwoBase = {
       formatwoId: this.config.data.item.formatwoId,
       formatwoType: this.formGroup.controls.formatwoType.value,
-      name: this.formGroup.controls.formatwoName.value,
-      fatherLastName: this.formGroup.controls.formatwoFaLastName.value,
-      motherLastName: this.formGroup.controls.formatwoMoLastName.value,
-      birthDate: transformDate(this.formGroup.controls.formatwoBirthDate.value, 'YYYY/MM/DD'),
+      formatwoName: this.formGroup.controls.formatwoName.value,
+      formatwoFatherLastName: this.formGroup.controls.formatwoFatherLastName.value,
+      formatwoMotherLastName: this.formGroup.controls.formatwoMotherLastName.value,
+      formatwoBirthDate: transformDate(this.formGroup.controls.formatwoBirthDate.value, 'YYYY/MM/DD'),
       participation: '1',
     };
     return formatwoBase;

@@ -8,7 +8,7 @@
     <div class="item-attribute" *ngIf="itemType === 'beneficiary'">{{item.birthDateOrConstitution}}</div>
     <div *ngIf="itemType === 'formatwo'" class="item-attribute">{{getFormaTwoTypeLabel()}}</div>
     <div class="item-attribute"
-       *ngIf="itemType === 'formatwo'" >{{item.name + ' ' + item.fatherLastName + ' ' + item.motherLastName}}</div>
+       *ngIf="itemType === 'formatwo'" >{{item.formatwoName + ' ' + item.formatwoFatherLastName + ' ' + item.formatwoMotherLastName}}</div>
     <div class="item-attribute"
        *ngIf="itemType === 'country'" >{{item.statCountry}}</div>
     <div class="item-attribute"

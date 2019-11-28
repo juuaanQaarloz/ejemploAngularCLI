@@ -447,5 +447,17 @@ export const validatorsObjects = [
   {
     nameField: 'height',
     validationFunctions: [rangeValidator(1.0, 2.5)]
-  }
+  },
+  {
+    nameField: 'formatwoBirthDate',
+    validationFunctions: [DateValidator]
+  },
+  {
+    nameField: 'formatwoAge',
+    validationFunctions: [AgeValidator]
+  },
+  {
+    nameField: 'taxCountryId',
+    validationFunctions: [validateAlphanumericValue]
+  },
 ];

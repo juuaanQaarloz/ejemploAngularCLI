@@ -37,12 +37,13 @@ import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MenuPageComponent } from './components/menu-page/menu-page.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
-import {FormaTwobTableComponent} from './components/formatwob/formatwob-table/formatwob-table.component';
 import {NewFormatwoComponent} from './components/beneficiaries/new-formatwo/new-formatwo.component';
 import { NewAgentComponent } from './components/beneficiaries/new-agent/new-agent.component';
 import {NewCountryComponent} from './components/beneficiaries/new-country/new-country.component';
 import { TableComponent } from './components/table-component/table/table.component';
 import { TableRowComponent } from './components/table-component/table-row/table-row.component';
+import { QuestionnaireComponent } from './components/questionnaire/questionnaire/questionnaire.component';
+import { QuestionComponent } from './components/questionnaire/question/question.component';
 
 // @ts-ignore
 @NgModule({
@@ -66,12 +67,13 @@ import { TableRowComponent } from './components/table-component/table-row/table-
     FooterComponent,
     MenuPageComponent,
     PaginationComponent,
-    FormaTwobTableComponent,
     NewFormatwoComponent,
     NewAgentComponent,
     NewCountryComponent,
     TableComponent,
-    TableRowComponent
+    TableRowComponent,
+    QuestionnaireComponent,
+    QuestionComponent,
     ],
 
   imports: [

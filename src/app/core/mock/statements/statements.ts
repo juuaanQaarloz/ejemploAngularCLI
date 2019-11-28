@@ -47,7 +47,7 @@ export const statements: Field[] = [
     source: 'IPRE',
     sourceID: 'guardBoxOptions',
     sourceStructure: ['id', 'label', 'value'],
-    style: 'margin:0 auto',
+    style: '',
     styleClass: '',
     styleClassError: '',
     message: '',

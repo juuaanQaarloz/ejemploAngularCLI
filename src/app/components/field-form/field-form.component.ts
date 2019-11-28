@@ -124,7 +124,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     this.form.controls[this.fieldObj.name].setValue(event.target.value);
 
     // // console.log('value.length: ', value.length);
-    if (this.fieldObj.name === 'rfc' || this.fieldObj.name === 'rfcS') {
+    if (this.fieldObj.name === 'rfc' || this.fieldObj.name === 'rfcS' || this.fieldObj.name === 'formatwoRfc') {
       if (value.length === 10 && event.key !== 'Backspace') { // calculate rfc when the user capture the first 10 characters
         const calcRFC = this.calculateRFC();
         if (calcRFC !== null) {
@@ -323,6 +323,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       nombre = this.form.controls.nameS.value;
       date = this.form.controls.birthDateS.value;
       fechaNacimiento = transformDate(date, 'YYYY/MM/DD');
+    } else if (this.fieldObj.name === 'formatwoRfc') {
+      apellidoPaterno = this.form.controls.formatwoFatherLastName.value;
+      apellidoMaterno = this.form.controls.formatwoMotherLastName.value;
+      nombre = this.form.controls.formatwoName.value;
+      date = this.form.controls.formatwoBirthDate.value;
+      fechaNacimiento = transformDate(date, 'YYYY/MM/DD');
     }
 
     const calculatedRFC = calculateRFC(apellidoPaterno, apellidoMaterno, nombre, fechaNacimiento);
@@ -335,6 +341,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       this.setValueField('rfc', 'txtRFC', calculatedRFC);
     } else if (this.fieldObj.name === 'rfcS') {
       this.setValueField('rfcS', 'txtRFCS', calculatedRFC);
+    } else if (this.fieldObj.name === 'formatwoRfc') {
+      this.setValueField('formatwoRfc', 'txtFormatwoRFC', calculatedRFC);
     }
   }
 

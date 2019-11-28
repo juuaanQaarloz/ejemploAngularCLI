@@ -38,7 +38,7 @@ export const NewCountryFields: Field[] = [
     type: 'text',
     required: true,
     placeholder: 'Identificación fiscal*',
-    length: '',
+    length: '60',
     minValue: 0,
     maxValue: 40,
     pattern: '',
