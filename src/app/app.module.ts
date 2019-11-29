@@ -37,14 +37,13 @@ import { MenuComponent } from './components/menu/menu.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MenuPageComponent } from './components/menu-page/menu-page.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
-import {FormaTwobTableComponent} from './components/formatwob/formatwob-table/formatwob-table.component';
 import {NewFormatwoComponent} from './components/beneficiaries/new-formatwo/new-formatwo.component';
 import { NewAgentComponent } from './components/beneficiaries/new-agent/new-agent.component';
 import {NewCountryComponent} from './components/beneficiaries/new-country/new-country.component';
 import { TableComponent } from './components/table-component/table/table.component';
 import { TableRowComponent } from './components/table-component/table-row/table-row.component';
-import { QuestionaryComponent } from './components/questonary/questionary/questionary.component';
-import { QuestionComponent } from './components/questonary/question/question.component';
+import { QuestionnaireComponent } from './components/questionnaire/questionnaire/questionnaire.component';
+import { QuestionComponent } from './components/questionnaire/question/question.component';
 
 // @ts-ignore
 @NgModule({
@@ -68,14 +67,13 @@ import { QuestionComponent } from './components/questonary/question/question.com
     FooterComponent,
     MenuPageComponent,
     PaginationComponent,
-    FormaTwobTableComponent,
     NewFormatwoComponent,
     NewAgentComponent,
     NewCountryComponent,
     TableComponent,
     TableRowComponent,
-    QuestionaryComponent,
-    QuestionComponent
+    QuestionnaireComponent,
+    QuestionComponent,
     ],
 
   imports: [
@@ -95,7 +93,7 @@ import { QuestionComponent } from './components/questonary/question/question.com
     AppRoutingModule
   ],
   bootstrap: [AppComponent],
-  entryComponents: [NewBeneficiaryComponent, NewFormatwoComponent, NewAgentComponent],
+  entryComponents: [NewBeneficiaryComponent, NewFormatwoComponent, NewAgentComponent, NewCountryComponent],
   providers: [
     { provide: DateAdapter, useClass: MyDateAdapter},
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS}
