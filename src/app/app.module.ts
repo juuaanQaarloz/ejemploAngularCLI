@@ -43,6 +43,8 @@ import { NewAgentComponent } from './components/beneficiaries/new-agent/new-agen
 import {NewCountryComponent} from './components/beneficiaries/new-country/new-country.component';
 import { TableComponent } from './components/table-component/table/table.component';
 import { TableRowComponent } from './components/table-component/table-row/table-row.component';
+import { QuestionaryComponent } from './components/questonary/questionary/questionary.component';
+import { QuestionComponent } from './components/questonary/question/question.component';
 
 // @ts-ignore
 @NgModule({
@@ -71,7 +73,9 @@ import { TableRowComponent } from './components/table-component/table-row/table-
     NewAgentComponent,
     NewCountryComponent,
     TableComponent,
-    TableRowComponent
+    TableRowComponent,
+    QuestionaryComponent,
+    QuestionComponent
     ],
 
   imports: [

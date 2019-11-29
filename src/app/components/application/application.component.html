@@ -11,11 +11,10 @@
 
     <!--<button (click)="getValidateField()">VALIDATE ALL FORM</button>-->
     <!--<p *ngIf="formGroup.errors?.['invalidEmailConfirmation']"></p>-->
-    <app-table [header]="'Tabla Agente(s)'"
+    <!--<app-table [header]="'Tabla Agente(s)'"
                [rows]="rows"
                [settings]="columnsSettings">
-
-    </app-table>
+    </app-table>-->
 
     <div class="container" *ngFor="let section of applicationObj.sections">
       <app-section-form [form]="formGroup" [sectionObj]="section"></app-section-form>
