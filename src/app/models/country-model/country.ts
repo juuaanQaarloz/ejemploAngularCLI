@@ -1,5 +1,6 @@
 export interface Country {
   countryId: string;
-  country: string;
+  statCountry: string;
   taxCountryId: string;
+  participacion: string;
 }

@@ -8,14 +8,11 @@
     <div class="item-attribute" *ngIf="itemType === 'beneficiary'">{{item.birthDateOrConstitution}}</div>
     <div *ngIf="itemType === 'formatwo'" class="item-attribute">{{getFormaTwoTypeLabel()}}</div>
     <div class="item-attribute"
-       *ngIf="itemType === 'formatwo'" >{{item.name + ' ' + item.fatherLastName + ' ' + item.motherLastName}}</div>
-  <!--
-  <div class="item-attribute"
-       *ngIf="itemType === 'coverage'" class="item-attribute">
-      <input type="checkbox" value=""> <br>
-    </div>
-  <div class="item-attribute"
-       *ngIf="itemType === 'covarage'" >{{item.coveragename}}</div> -->
+       *ngIf="itemType === 'formatwo'" >{{item.formatwoName + ' ' + item.formatwoFatherLastName + ' ' + item.formatwoMotherLastName}}</div>
+    <div class="item-attribute"
+       *ngIf="itemType === 'country'" >{{item.statCountry}}</div>
+    <div class="item-attribute"
+       *ngIf="itemType === 'country'" >{{item.taxCountryId}}</div>
 
   <div class="item-attribute" *ngFor="let field of fields">
     <app-field-form [fieldObj]="field" [form]="formGroup"></app-field-form>

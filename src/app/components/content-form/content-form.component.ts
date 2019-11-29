@@ -12,25 +12,21 @@ export class ContentFormComponent implements OnInit {
   @Input() contentObj: Content;
   @Input() form: FormGroup;
   payLoad = '';
+  show = true;
 
   constructor(public applicationService: ApplicationService) { }
 
   ngOnInit() {
     this.orderFields();
     if (this.contentObj.renderConditions) {
-      this.applicationService.getConditions(this.contentObj.renderConditions);
-      // const renderConditions = this.applicationService.getConditions(this.contentObj.renderConditions);
-      // console.log('renderConditions: ', renderConditions);
-      // this.form.controls[renderConditions[0][1]].valueChanges.subscribe((value) => {
-      //  console.log('value: ', value);
-      //  this.contentObj.showContent = value;
-      const renderConditions = this.applicationService.getConditions(this.contentObj.renderConditions);
-
-      this.contentObj.showContent = this.applicationService.evaluateCondition(this.form, renderConditions[0]);
-      this.form.controls[renderConditions[0][1]].valueChanges.subscribe((value) => {
-        // console.log('onValueChanges: ', value);
-        // console.log('formControl : ', renderConditions[0][1]);
-        this.contentObj.showContent = this.applicationService.evaluateCondition(this.form, renderConditions[0]);
+      const renderConditions = this.applicationService.getDependedFields(this.contentObj.renderConditions);
+      this.show = this.applicationService.evaluateConditions(this.contentObj.renderConditions, this.form);
+      // console.log('renderConditions : ', renderConditions );
+      renderConditions.forEach((renderCondition) => {
+        this.form.controls[renderCondition].valueChanges.subscribe((value) => {
+          // this.show = this.applicationService.evaluateConditions(this.contentObj.renderConditions, this.form);
+          this.contentObj.showContent = this.applicationService.evaluateConditions(this.contentObj.renderConditions, this.form);
+        });
       });
     }
   }

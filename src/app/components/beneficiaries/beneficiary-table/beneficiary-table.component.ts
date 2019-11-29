@@ -5,6 +5,7 @@ import {DialogService} from '../../dialog/dialog.service';
 import {Field} from '../../../models';
 import {NewAgentComponent} from '../new-agent/new-agent.component';
 import {NewFormatwoComponent} from '../new-formatwo/new-formatwo.component';
+import {NewCountryComponent} from '../new-country/new-country.component';
 
 const FIELDS: Field[] = [
   {
@@ -133,20 +134,19 @@ export class BeneficiaryTableComponent implements OnInit {
         this.beneficiaries = value;
         this.totalPercentageParticipation = this.applicationService.getTotalParticipationPercentage();
       }); */
-    } else if (this.type ===  'table-paises') {
+    } else if (this.type ===  'table-country') {
       this.title = 'Paises';
       this.columnsNames = ['Pais', 'Numero de idenficación fiscal',
       ];
+      this.itemsType = 'country';
       this.style = 'even-beneficiary';
       this.showplus = true;
       /* this.content.fields.forEach((field) => {
         this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
       }); */
-
-      /* this.applicationService.beneficiaries.subscribe((value) => {
-        this.beneficiaries = value;
-        this.totalPercentageParticipation = this.applicationService.getTotalParticipationPercentage();
-      }); */
+      this.applicationService.countries.subscribe((value) => {
+        this.items = value;
+      });
     } else if (this.type ===  'table-formatwo') {
       this.title = 'Datos Formato dos';
       this.columnsNames = ['Caracter', 'Nombre', 'Fecha de nacimiento',
@@ -174,6 +174,71 @@ export class BeneficiaryTableComponent implements OnInit {
       this.applicationService.coverages.subscribe((value) => {
         this.items = value;
       });
+    } else if (this.type ===  'table-formatwob') {
+      this.title = 'Datos Formato dos';
+      this.columnsNames = ['Caracter', 'Nombre', 'Fecha de nacimiento',
+      ];
+      this.itemsType = 'formatwo';
+      this.style = 'even-beneficiary';
+      this.showplus = true;
+      /*this.content.fields.forEach((field) => {
+        this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
+      });*/
+      this.applicationService.formatosdosb.subscribe((value) => {
+        this.items = value;
+      });
+    } else if (this.type ===  'table-formatw8') {
+      this.title = 'Datos Formato W8BEN-E';
+      this.columnsNames = ['Formato',
+      ];
+      this.itemsType = 'formatw8';
+      this.style = 'even-beneficiary';
+      this.showplus = true;
+      /*this.content.fields.forEach((field) => {
+        this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
+      });*/
+      this.applicationService.formatosocho.subscribe((value) => {
+        this.items = value;
+      });
+    } else if (this.type ===  'table-formatw8') {
+      this.title = 'Datos Formato W8BEN-E';
+      this.columnsNames = ['Formato',
+      ];
+      this.itemsType = 'formatw8';
+      this.style = 'even-beneficiary';
+      this.showplus = true;
+      /*this.content.fields.forEach((field) => {
+        this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
+      });*/
+      this.applicationService.formatosocho.subscribe((value) => {
+        this.items = value;
+      });
+    } else if (this.type ===  'table-formatIV-2-426') {
+      this.title = 'Datos Formato IV-2-426';
+      this.columnsNames = ['Formato',
+      ];
+      this.itemsType = 'formatw8';
+      this.style = 'even-beneficiary';
+      this.showplus = true;
+      /*this.content.fields.forEach((field) => {
+        this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
+      });*/
+      this.applicationService.formatos426.subscribe((value) => {
+        this.items = value;
+      });
+    } else if (this.type ===  'table-formatIV-2-427') {
+      this.title = 'Datos Formato IV-2-427';
+      this.columnsNames = ['Formato',
+      ];
+      this.itemsType = 'formatw8';
+      this.style = 'even-beneficiary';
+      this.showplus = true;
+      /*this.content.fields.forEach((field) => {
+        this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
+      });*/
+      this.applicationService.formatos427.subscribe((value) => {
+        this.items = value;
+      });
     }
   }
 
@@ -199,6 +264,11 @@ export class BeneficiaryTableComponent implements OnInit {
       /* ref.afterClosed.subscribe((result) => {
         console.log('dialog closed FROM FORMATWO TABLE, result: ', result);
       }); */
+    } else if (this.type === 'table-country') {
+      ref = this.dialog.open(NewCountryComponent, {data: null});
+      ref.afterClosed.subscribe((result) => {
+        console.log('dialog closed FROM OUNTRY TABLE, result: ', result);
+      });
     }
   }
 }

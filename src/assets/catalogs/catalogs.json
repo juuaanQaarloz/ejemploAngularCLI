@@ -1786,22 +1786,22 @@
     {
       "id": 0,
       "name": "Educacion",
-      "code": "edu"
+      "code": "1"
     },
     {
       "id": 1,
       "name": "Mujer",
-      "code": "BR"
+      "code": "2"
     },
     {
       "id": 2,
       "name": "Tu futuro",
-      "code": "US"
+      "code": "3"
     },
     {
       "id": 3,
       "name": "Retiro",
-      "code": "CN"
+      "code": "4"
     }],
     "coverageOptions": [
     {

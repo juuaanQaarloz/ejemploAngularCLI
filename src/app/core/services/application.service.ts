@@ -23,7 +23,12 @@ export class ApplicationService {
   currentValue = this.currentStepSource.asObservable();
   beneficiaries = new BehaviorSubject([]);
   formatosdos = new BehaviorSubject([]);
+  formatosdosb = new BehaviorSubject([]);
+  formatosocho = new BehaviorSubject([]);
+  formatos426 = new BehaviorSubject([]);
+  formatos427 = new BehaviorSubject([]);
   agents = new BehaviorSubject([]);
+  countries = new BehaviorSubject([]);
   coverages = new BehaviorSubject(COVERAGES);
   diseases = new BehaviorSubject([]);
   formGroup: FormGroup;
@@ -161,7 +166,7 @@ export class ApplicationService {
     }*/
 
     if (field.name === 'name') {
-      console.log('validationFunctions: ', validationFunctions);
+      // console.log('validationFunctions: ', validationFunctions);
     }
 
     return validationFunctions;
@@ -211,19 +216,26 @@ export class ApplicationService {
       responseMessage2 = 'La suma de las participaciones de los agentes excede el 100%';
       propertyName = 'participation';
     } else if (itemType === 'formatwo') {
-      currentTotalParticipationPercentage = this.getTotalParticipationPercentage(itemType);
+      currentTotalParticipationPercentage = 1;
       currentItems = this.formatosdos.getValue();
       maxLength = 5;
       responseMessage1 = 'No se pueden agregar más de 5 formatos';
-      responseMessage2 = 'La suma de las participaciones de los formatos excede el 100%';
+      responseMessage2 = 'Validacion2';
+      propertyName = 'participation';
+    } else if (itemType === 'country') {
+      currentTotalParticipationPercentage = 1;
+      currentItems = this.countries.getValue();
+      maxLength = 3;
+      responseMessage1 = 'No se pueden agregar más de 3 paises';
+      responseMessage2 = 'Validacion2';
       propertyName = 'participation';
     } else if (itemType === 'disease') {
       currentItems = this.diseases.getValue();
     }
-
     console.log('currentTotalParticipationPercentage: ', currentTotalParticipationPercentage);
     if ((currentTotalParticipationPercentage !== undefined)
       && (currentTotalParticipationPercentage + Number(newItem[propertyName]) <= 100)) {
+
       if (currentItems.length <= maxLength) {
         // the new item can be added
         currentItems.push(newItem);
@@ -249,6 +261,9 @@ export class ApplicationService {
     } else if (itemType === 'formatwo') {
       currentItems = this.formatosdos.getValue();
       propertyName = 'formatwoId';
+    } else if (itemType === 'country') {
+      currentItems = this.countries.getValue();
+      propertyName = 'countryId';
     }
     currentItems = currentItems.filter(item => item[propertyName] !== itemId);
     // console.log('currentItems: ', currentItems);
@@ -269,6 +284,9 @@ export class ApplicationService {
     } else if (itemType === 'formatwo') {
       currentItems = this.formatosdos.getValue();
       propertyItem = 'formatwoId';
+    } else if (itemType === 'country') {
+      currentItems = this.countries.getValue();
+      propertyItem = 'countryId';
     }
     const itemsLength = currentItems.length;
     // console.log('itemsLength: ', itemsLength);
@@ -293,6 +311,9 @@ export class ApplicationService {
     } else if (itemType === 'formatwo') {
       currentItems = this.formatosdos.getValue();
       propertyItem = 'formatwoId';
+    } else if (itemType === 'country') {
+      currentItems = this.countries.getValue();
+      propertyItem = 'countryId';
     }
     const foundItem = currentItems.filter(i => i[propertyItem] === updatedItem[propertyItem])[0];
 
@@ -316,6 +337,9 @@ export class ApplicationService {
     } else if (itemType === 'formatwo') {
       currentItems = this.formatosdos.getValue();
       propertyItem = 'participation';
+    } else if (itemType === 'country') {
+      currentItems = this.countries.getValue();
+      propertyItem = 'participation';
     }
 
     currentItems.forEach((item) => {
@@ -332,6 +356,8 @@ export class ApplicationService {
       this.agents.next(newItems);
     } else if (itemType === 'formatwo') {
       this.formatosdos.next(newItems);
+    } else if (itemType === 'country') {
+      this.countries.next(newItems);
     }
   }
 

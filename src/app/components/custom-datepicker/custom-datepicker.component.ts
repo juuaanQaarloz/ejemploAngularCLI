@@ -52,7 +52,7 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
     // // console.log('type of event.targetElement.value: ', typeof event.targetElement.value);
     elem.setAttribute('value', event.targetElement.value);
 
-    if (this.fieldObj.name === 'birthDate' || this.fieldObj.name === 'birthDateS') {
+    if (this.fieldObj.name === 'birthDate' || this.fieldObj.name === 'birthDateS' || this.fieldObj.name === 'formatwoBirthDate') {
       const age = calculateAge(event.targetElement.value);
       // // console.log('edad: ', age);
       if (age) {
@@ -60,6 +60,8 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
           this.setAge('age', 'txtAge', age);
         } else if (this.fieldObj.name === 'birthDateS') {
           this.setAge('ageS', 'txtAgeS', age);
+        }  else if (this.fieldObj.name === 'formatwoBirthDate') {
+          this.setAge('formatwoAge', 'txtFormatwoAge', age);
         }
       }
     }

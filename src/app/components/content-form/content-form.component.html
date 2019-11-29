@@ -19,7 +19,7 @@
       <app-beneficiary-table [type]="contentObj.contentType"></app-beneficiary-table>
     </div>
     <div *ngSwitchCase="'table-formatwob'" class="ml-step-container">
-      <app-formatwob-table [type]="contentObj.contentType"></app-formatwob-table>
+      <app-beneficiary-table [type]="contentObj.contentType"></app-beneficiary-table>
     </div>
     <div *ngSwitchCase="'table-formathree'" class="ml-step-container">
       <app-beneficiary-table [type]="contentObj.contentType"></app-beneficiary-table>
@@ -33,9 +33,15 @@
     <div *ngSwitchCase="'table-agent'" class="ml-step-container">
       <app-beneficiary-table [type]="contentObj.contentType"></app-beneficiary-table>
     </div>
-      <div *ngSwitchCase="'table-paises'" class="ml-step-container">
+      <div *ngSwitchCase="'table-country'" class="ml-step-container">
         <app-beneficiary-table [type]="contentObj.contentType"></app-beneficiary-table>
       </div>
+    <div *ngSwitchCase="'table-formatw8'" class="ml-step-container">
+      <app-beneficiary-table [type]="contentObj.contentType"></app-beneficiary-table>
+    </div>
+    <div *ngSwitchCase="'table-formatIV-2-426'" class="ml-step-container">
+      <app-beneficiary-table [type]="contentObj.contentType"></app-beneficiary-table>
+    </div>
   </div>
 
   <p *ngIf="contentObj.warningMessage">{{contentObj.warningMessage}}</p>
