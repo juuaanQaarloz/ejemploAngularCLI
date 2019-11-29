@@ -8,13 +8,13 @@ import {ColumnMap} from '../../../models/table-model/column-map';
   styleUrls: ['./table-row.component.css']
 })
 export class TableRowComponent implements OnInit, OnChanges {
-  @Input() record;
+  @Input() row;
   @Input() index;
   @Input() columnMaps: ColumnMap[];
   constructor() { }
 
   ngOnInit() {
-    // console.log('itemRow: ', this.record);
+    console.log('itemRow: ', this.row);
   }
 
   ngOnChanges() {

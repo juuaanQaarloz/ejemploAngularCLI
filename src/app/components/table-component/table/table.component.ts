@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnInit} from '@angular/core';
-import {ColumnSetting} from '../../../models/table-model/column-setting';
+import {ColumnSettings} from '../../../models/table-model/column-settings';
 import {determinateEvenOrOdd} from '../../../core/utilities';
 import {ColumnMap} from '../../../models/table-model/column-map';
 
@@ -14,17 +14,17 @@ export class TableComponent implements OnInit, OnChanges {
   @Input() rows: Array<RowItem<any>>;*/
 
   // from example
-  @Input() records: any[];
-  @Input() caption: string;
-  @Input() settings: ColumnSetting[];
+  @Input() rows: any[];
+  @Input() header: string;
+  @Input() settings: ColumnSettings[];
   columnMaps: ColumnMap[];
 
   ngOnChanges() {
     if (this.settings) { // when settings is provided
       this.columnMaps = this.settings
         .map(col => new ColumnMap(col));
-    } else {
-      this.columnMaps = Object.keys(this.records[0])
+    } else { // when settings is no provided
+      this.columnMaps = Object.keys(this.rows[0])
         .map( key => {
           return new ColumnMap( { primaryKey: key });
         });

@@ -9,7 +9,8 @@ import {pdfOperation} from '../../core/mock/mock-operations';
 import {Template} from '../../models/template';
 import {error} from 'util';
 import {RowItem} from '../../models/table-model/row-item';
-import {ColumnSetting} from '../../models/table-model/column-setting';
+import {ColumnSettings} from '../../models/table-model/column-settings';
+import {Beneficiary} from '../../models/beneficiary-model';
 
 @Component({
   selector: 'app-application',
@@ -24,56 +25,49 @@ export class ApplicationComponent implements OnInit {
   pdfOperation = pdfOperation;
   items = [];
 
-  columnsSettings: ColumnSetting[] = [
+  columnsSettings: ColumnSettings[] = [
     {
-      primaryKey: 'rowId',
-      header: 'ID',
-      alternativeKeys: ['alternativeKey1_rowId', 'alternative2_rowId']
+      primaryKey: 'name',
+      type: 'label',
+      header: 'Nombre'
     },
     {
-      primaryKey: 'rowName',
-      header: 'NAME',
-      alternativeKeys: ['alternativeKey1_rowName', 'alternative2_rowName']
+      primaryKey: 'promotor',
+      type: 'label',
+      header: 'Promotoría'
     },
     {
-      primaryKey: 'rowObject',
-      header: 'OBJECT',
-      alternativeKeys: ['alternativeKey1_rowObject', 'alternative2_rowObject']
+      primaryKey: 'key',
+      type: 'label',
+      header: 'Clave'
+    },
+    {
+      primaryKey: 'participation',
+      type: 'label',
+      header: 'Participación'
     }
   ];
   rows: RowItem<any>[] = [
     {
       rowId: '1',
       rowName: 'row1',
-      rowObject: 'item1'
+      rowObject: {
+        agentId: '01',
+        name: 'Agente1',
+        promotor: 'Promotor1',
+        key: '12345678',
+        participation: '50'
+      }
     },
     {
       rowId: '2',
       rowName: 'row2',
       rowObject: {
-        idDisease: '01',
-        name: 'Disease1',
-        diagnosticDate: '2001/08/09',
-        duration: '1 año',
-        actualCondition: 'sin incidencias',
-        hasQuestionnaire: false
-      }
-    },
-    {
-      rowId: '3',
-      rowName: 'row3',
-      rowObject: 8
-    },
-    {
-      rowId: '4',
-      rowName: 'row4',
-      rowObject: {
-        coverageId: '01',
-        isSelected: false,
-        coverageName: 'Coverage1',
-        assuredImport: 'Assured import1',
-        cost: '1000',
-        detail: 'Coverage detail 1'
+        agentId: '02',
+        name: 'Agente2',
+        promotor: 'Promotor2',
+        key: '9101112',
+        participation: '50'
       }
     }
   ];

@@ -32,7 +32,7 @@ export class StyleCellDirective implements OnInit {
 
     const cellType = this.getTypeObject(this.appStyleCell);
 
-    console.log('cellType: ', cellType);
+    // console.log('cellType: ', cellType);
 
     if (typeof this.appStyleCell === 'string') {
       this.renderer.setStyle(
@@ -63,7 +63,7 @@ export class StyleCellDirective implements OnInit {
     let type;
 
     typeOfResult = typeof obj;
-    console.log('typeOfResult: ', typeOfResult);
+    // console.log('typeOfResult: ', typeOfResult);
 
     if (typeOfResult === 'object') {
       if (this.isAgent(obj)) {

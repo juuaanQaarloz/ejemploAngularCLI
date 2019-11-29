@@ -1,5 +1,5 @@
 import {NgModule, Optional, SkipSelf} from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, CurrencyPipe} from '@angular/common';
 import {AuthGuard} from './guards/auth.guard';
 import {mockBackendProvider} from './mock/mock-backend';
 import {TrackScrollDirective} from './directives/track-scroll.directive';
@@ -23,7 +23,8 @@ import { StyleCellDirective } from './directives/style-cell.directive';
   ],
   providers: [
     AuthGuard,
-    mockBackendProvider
+    mockBackendProvider,
+    CurrencyPipe
   ],
 })
 export class CoreModule {

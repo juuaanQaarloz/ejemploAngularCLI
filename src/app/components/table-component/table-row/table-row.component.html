@@ -1,6 +1,6 @@
 <div class="even-row"
      [ngStyle]="{'background-color':  determinateEvenOrOdd(index) ? '#E5F4FB': '#FFFFFF'}">
   <div *ngFor="let map of columnMaps"
-       [appStyleCell]="record[map.access(record)]">
-    {{ record[map.access(record)] | formatCell}}</div>
+       [appStyleCell]="row[map.access(row)]">
+    {{ row[map.access(row)] | formatCell}}</div>
 </div>
