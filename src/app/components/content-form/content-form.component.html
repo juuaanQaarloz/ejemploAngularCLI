@@ -42,6 +42,10 @@
     <div *ngSwitchCase="'table-formatIV-2-426'" class="ml-step-container">
       <app-beneficiary-table [type]="contentObj.contentType"></app-beneficiary-table>
     </div>
+
+    <div *ngSwitchCase="'table-diseases'">
+      <p>Here goes the dynamic table for diseases</p>
+    </div>
   </div>
 
   <p *ngIf="contentObj.warningMessage">{{contentObj.warningMessage}}</p>

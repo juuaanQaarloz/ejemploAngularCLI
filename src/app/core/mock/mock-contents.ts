@@ -1226,17 +1226,21 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
     idParent: 'step-19',
     parentType: 'Step',
     idHtml: 'app-content-form-2.43',
-    contentType: 'looseFields',
+    contentType: 'table-diseases',
+    // title: 'Enfermedad(es)',
     // process?: Process;
-    fields: medicalFields,
+    // fields: AgentQuestion1,
     // operations?: Operation[];
-    renderConditions: '',
+    renderConditions: '(diseasesQuestion=true,|,medicalTestQuestion=true,|,extraDiseasesQuestion=true)',
+    // (diseasesQuestion=true,|,medicalTestQuestion=true,|,extraDiseasesQuestion=true)
+    // renderConditions: '(diseasesQuestion=true,|,medicalTestQuestion=true,|,extraDiseasesQuestion=true)',
     // ---pending---
     // contentChildren?: Array<Content>;
     // -------------
 
     // --added extra from model--
-    showContent: true
+    showContent: false,
+    styleClass: 'modal-type'
     // enableConditions?: 'string';
     // --------------------------
   },

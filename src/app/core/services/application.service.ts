@@ -402,6 +402,12 @@ export class ApplicationService {
     const valueFormControl = this.getFormControlValueByName(formGroup, elementsCondition[1]);
     let result = false;
 
+    if (valueFormControl) {
+      result = false;
+    }
+
+    console.log('valueFormControl: ', valueFormControl);
+
     switch (elementsCondition[2]) {
       case '=':
         if (elementsCondition[3] === 'false') {
@@ -449,6 +455,8 @@ export class ApplicationService {
         result = false;
         break;
     }
+
+    console.log('result: ', result);
 
     return result;
   }
@@ -612,6 +620,7 @@ export class ApplicationService {
         if (z.length === 1) {
           const conditionsZ = this.getConditions(z[0]);
           const resEvalZ = this.evaluateCondition(formGroup, conditionsZ[0]);
+          console.log('resEvalZ: ', resEvalZ);
           arr.push(resEvalZ);
         } else if (z.length === 3) { // for AND and OR operation (more than one operation)
           const a = z[0];
@@ -644,15 +653,15 @@ export class ApplicationService {
               resEvalB = b;
             }
           }
-          // console.log('resEvalA: ', resEvalA);
-          // console.log('resEvalB: ', resEvalB);
+          console.log('resEvalA: ', resEvalA);
+          console.log('resEvalB: ', resEvalB);
 
           if (z[1] === '&') {
             c = resEvalA && resEvalB;
           } else {
             c = resEvalA || resEvalB;
           }
-          // console.log('c: ', c);
+          console.log('c: ', c);
           arr.push((c));
         }
       } else {
