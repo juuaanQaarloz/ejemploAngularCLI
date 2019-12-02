@@ -2,6 +2,7 @@ import {Component, Input, OnChanges, OnInit} from '@angular/core';
 import {ColumnSettings} from '../../../models/table-model/column-settings';
 import {determinateEvenOrOdd} from '../../../core/utilities';
 import {ColumnMap} from '../../../models/table-model/column-map';
+import {BehaviorSubject} from 'rxjs';
 
 @Component({
   selector: 'app-table',
@@ -9,15 +10,12 @@ import {ColumnMap} from '../../../models/table-model/column-map';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit, OnChanges {
-  /*@Input() header: string;
-  @Input() columns: [];
-  @Input() rows: Array<RowItem<any>>;*/
-
   // from example
   @Input() rows: any[];
   @Input() header: string;
   @Input() settings: ColumnSettings[];
   columnMaps: ColumnMap[];
+  rowsBehavior = new BehaviorSubject(this.rows);
 
   ngOnChanges() {
     if (this.settings) { // when settings is provided
@@ -40,5 +38,20 @@ export class TableComponent implements OnInit, OnChanges {
 
   determinateEvenOrOdd(num: number) {
     return determinateEvenOrOdd(num);
+  }
+
+  addRow(item) {
+    const currentRows = this.rowsBehavior.getValue();
+    this.rowsBehavior.next(item);
+  }
+
+  deleteRow(idItem: string, propertyName) {
+    let currentRows;
+    currentRows = currentRows.filter(item => item[propertyName] !== idItem);
+    this.rowsBehavior.next(currentRows);
+  }
+
+  editRow(idItem: string) {
+
   }
 }

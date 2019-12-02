@@ -1071,6 +1071,7 @@ export const MockContentStep17Process1ContentSection2: Content[] = [
 
     // --added extra from model--
     showContent: true,
+    styleClass: ''
     // enableConditions?: 'string';
     // --------------------------
   },
@@ -1099,17 +1100,18 @@ export const MockContentStep17Process1ContentSection2: Content[] = [
     idParent: 'step-17',
     parentType: 'Step',
     idHtml: 'app-content-form-2.38',
-    contentType: 'looseFields',
+    contentType: 'table-sports',
     // process?: Process;
-    fields: sportsFields2,
+    // fields: sportsFields2,
     // operations?: Operation[];
-    renderConditions: '',
+    renderConditions: '(extremeSportsQuestion=true)',
     // ---pending---
     // contentChildren?: Array<Content>;
     // -------------
 
     // --added extra from model--
-    showContent: true
+    showContent: false,
+    styleClass: 'modal-type'
     // enableConditions?: 'string';
     // --------------------------
   },
@@ -1231,9 +1233,8 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
     // process?: Process;
     // fields: AgentQuestion1,
     // operations?: Operation[];
-    renderConditions: '(diseasesQuestion=true,|,medicalTestQuestion=true,|,extraDiseasesQuestion=true)',
-    // (diseasesQuestion=true,|,medicalTestQuestion=true,|,extraDiseasesQuestion=true)
-    // renderConditions: '(diseasesQuestion=true,|,medicalTestQuestion=true,|,extraDiseasesQuestion=true)',
+    renderConditions: '((diseasesQuestion=true),|,(medicalTestQuestion=true),|,(extraDiseasesQuestion=false))',
+    // ((diseasesQuestion=true),|,(medicalTestQuestion=true),|,(extraDiseasesQuestion=false))
     // ---pending---
     // contentChildren?: Array<Content>;
     // -------------

@@ -44,7 +44,14 @@
     </div>
 
     <div *ngSwitchCase="'table-diseases'">
-      <p>Here goes the dynamic table for diseases</p>
+      <app-table [header]="'Tabla Agente(s)'"
+                 [rows]="rows"
+                 [settings]="columnsSettings">
+      </app-table>
+    </div>
+
+    <div *ngSwitchCase="'table-sports'">
+      <p>Here goes the sports table</p>
     </div>
   </div>
 
@@ -65,11 +72,5 @@
       <app-content-form [form]="form" [contentObj]="contentChild"></app-content-form>
     </div>
   </div>
-
-  <!--<div *ngIf="payLoad" class="form-row">
-    <strong>Saved the following values</strong><br>{{payLoad}}
-  </div>
-
-  <button (click)="getFormValue()">get form value</button>-->
 </div>
 

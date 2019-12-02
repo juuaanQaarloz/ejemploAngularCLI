@@ -25,53 +25,6 @@ export class ApplicationComponent implements OnInit {
   pdfOperation = pdfOperation;
   items = [];
 
-  columnsSettings: ColumnSettings[] = [
-    {
-      primaryKey: 'name',
-      type: 'label',
-      header: 'Nombre'
-    },
-    {
-      primaryKey: 'promotor',
-      type: 'label',
-      header: 'Promotoría'
-    },
-    {
-      primaryKey: 'key',
-      type: 'label',
-      header: 'Clave'
-    },
-    {
-      primaryKey: 'participation',
-      type: 'label',
-      header: 'Participación'
-    }
-  ];
-  rows: RowItem<any>[] = [
-    {
-      rowId: '1',
-      rowName: 'row1',
-      rowObject: {
-        agentId: '01',
-        name: 'Agente1',
-        promotor: 'Promotor1',
-        key: '12345678',
-        participation: '50'
-      }
-    },
-    {
-      rowId: '2',
-      rowName: 'row2',
-      rowObject: {
-        agentId: '02',
-        name: 'Agente2',
-        promotor: 'Promotor2',
-        key: '9101112',
-        participation: '50'
-      }
-    }
-  ];
-
   constructor(private appService: ApplicationService,
               private authService: AuthService,
               private storageService: StorageService,
