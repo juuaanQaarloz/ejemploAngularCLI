@@ -1,5 +1,4 @@
 import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
-import {Beneficiary} from '../../../models/beneficiary-model';
 import {ApplicationService} from '../../../core/services';
 import {beneficiaryFields} from '../../../core/mock/mock-beneficiaries/mock-beneficiaries';
 import {NewBeneficiaryComponent} from '../new-beneficiary/new-beneficiary.component';
@@ -8,8 +7,8 @@ import {FormGroup} from '@angular/forms';
 import {ModalService} from '../../custom-modal';
 import {BeneficiaryItemOperations} from '../../../core/mock/mock-operations';
 import {NewAgentComponent} from '../new-agent/new-agent.component';
-import {AgentFields, AgentFieldsItem} from '../../../core/mock/mock-agents/mock-agents-questions';
-import {NewFormatwoFields, FormaTwoFieldsItem} from '../../../core/mock/formats/formatwo';
+import { AgentFieldsItem} from '../../../core/mock/mock-agents/mock-agents-questions';
+import {FormaTwoFieldsItem} from '../../../core/mock/formats/formatwo';
 import {NewFormatwoComponent} from '../new-formatwo/new-formatwo.component';
 import {CoverageFieldsItem} from '../../../core/mock/coverage/coverage';
 import {countryFieldsItems} from '../../../core/mock/formats/country';

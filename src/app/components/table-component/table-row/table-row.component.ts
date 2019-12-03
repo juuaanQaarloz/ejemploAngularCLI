@@ -14,7 +14,8 @@ export class TableRowComponent implements OnInit, OnChanges {
   @Input() fields?;
   @Input() formGroup?;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     console.log('itemRow: ', this.row);

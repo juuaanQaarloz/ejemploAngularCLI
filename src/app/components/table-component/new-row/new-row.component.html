@@ -3,27 +3,20 @@
   <div>
     <p class="content-title" *ngIf="drawerTitle">{{ drawerTitle }}</p>
     <div data-forms="floating-label" class="ml-form modal-type">
-      <div *ngFor="let field of fields">
+      <div *ngFor="let field of content.fields">
         <app-field-form [fieldObj]="field" [form]="formGroup"></app-field-form>
       </div>
     </div>
   </div>
 
-  <!--<div *ngIf="content.operations" class="operation">
+  <div *ngIf="foundedOperations" class="operation">
 
-    <app-operation-form [operationObj]="content.operations[0]"
-                        (click)="executeOperation(content.operations[0].delegateOperation)">
+    <app-operation-form *ngFor="let operation of foundedOperations"
+                        [operationObj]="operation"
+                        (click)="executeOperation(operation.delegateOperation)">
     </app-operation-form>
 
-    <app-operation-form *ngIf="operationType === 'add'" [operationObj]="content.operations[1]"
-                        (click)="executeOperation(content.operations[1].delegateOperation)">
-    </app-operation-form>
-
-    <app-operation-form *ngIf="operationType === 'edit'" [operationObj]="content.operations[2]"
-                        (click)="executeOperation(content.operations[2].delegateOperation)">
-    </app-operation-form>
-
-  </div>-->
+  </div>
 </div>
 
 <!--<jw-modal [id]="modalID"

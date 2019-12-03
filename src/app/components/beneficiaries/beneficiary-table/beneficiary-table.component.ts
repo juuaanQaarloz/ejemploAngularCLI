@@ -2,10 +2,11 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ApplicationService} from '../../../core/services';
 import {NewBeneficiaryComponent} from '../new-beneficiary/new-beneficiary.component';
 import {DialogService} from '../../dialog/dialog.service';
-import {Field} from '../../../models';
+import {Content, Field} from '../../../models';
 import {NewAgentComponent} from '../new-agent/new-agent.component';
 import {NewFormatwoComponent} from '../new-formatwo/new-formatwo.component';
 import {NewCountryComponent} from '../new-country/new-country.component';
+import {NewRowComponent} from '../../table-component/new-row/new-row.component';
 
 const FIELDS: Field[] = [
   {
@@ -47,12 +48,12 @@ const FIELDS: Field[] = [
 })
 export class BeneficiaryTableComponent implements OnInit {
   @Input() type: string;
-  @Input() showplus: boolean;
+  @Input() content: Content;
+  showplus: boolean;
   title;
   columnsNames;
   items = [];
   itemsType;
-  content: any;
   totalPercentageParticipation = 0;
   style;
 
@@ -105,6 +106,24 @@ export class BeneficiaryTableComponent implements OnInit {
         this.items = value;
         this.totalPercentageParticipation = this.applicationService.getTotalParticipationPercentage('agent');
       });
+    } else if (this.type === 'table-sports') {
+      this.title = 'Deporte(s) / Actividad(es)';
+      this.columnsNames = ['Deporte / Actividad', 'Frecuencia', 'Describir otra actividad'];
+      this.itemsType = 'sport';
+      this.showplus = true;
+      this.style = 'even-sport';
+
+      this.applicationService.diseases.subscribe((value) => {
+        this.items = value;
+      });
+    } else if (this.type === 'table-diseases') {
+      this.title = 'Enfermedad(es)';
+      this.columnsNames = ['Nombre de las enfermedades, lesiones, estudios o tratamientos',
+        'Fecha en que las sufriste o se te practicaron',
+        'Duración', 'Condición física actual'];
+      this.itemsType = 'disease';
+      this.showplus = true;
+      this.style = 'even-agent';
     } else if (this.type ===  'table-formatfour') {
       this.title = 'Datos Formato Cuatro';
       this.columnsNames = ['Razon social', 'RFC', 'Fecha de constitución', 'Nombre comercial',
@@ -248,15 +267,7 @@ export class BeneficiaryTableComponent implements OnInit {
       this.applicationService.formatos427.subscribe((value) => {
         this.items = value;
       });
-    } else if (this.type === 'table-sports') {
-      this.title = 'Deporte(s) / Actividad(es)';
-      this.columnsNames = [];
     }
-
-    // set the number of columns
-    document.documentElement.style.setProperty('--columnNumber', this.calculateNumOfColumns());
-
-    // console.log('--columnNumber: ', document.documentElement.style.getPropertyValue('--columnNumber'));
   }
 
   addNewItem() {
@@ -264,13 +275,34 @@ export class BeneficiaryTableComponent implements OnInit {
     if (this.type === 'table-beneficiary') {
       ref = this.dialog.open(NewBeneficiaryComponent, {data: null});
       ref.afterClosed.subscribe((result) => {
-        // console.log('dialog closed FROM BENEFICIARY TABLE, result: ', result);
+        console.log('dialog closed FROM BENEFICIARY TABLE, result: ', result);
       });
     } else if (this.type === 'table-agent') {
       ref = this.dialog.open(NewAgentComponent, {data: null});
       ref.afterClosed.subscribe((result) => {
-        // console.log('dialog closed FROM AGENT TABLE, result: ', result);
+        console.log('dialog closed FROM AGENT TABLE, result: ', result);
       });
+    } else if (this.type === 'table-sports') {
+      ref = this.dialog.open(NewRowComponent,
+        {
+          data: {
+            operations: ['cancelOperationR', 'addItemR'],
+            content: this.content,
+            drawerTitle: 'Deporte / Actividad',
+            itemType: 'sport'
+          }});
+      ref.afterClosed.subscribe((result) => {
+        console.log('dialog closed FROM DISEASES TABLE, result: ', result);
+      });
+    } else if (this.type === 'table-diseases') {
+      this.dialog.open(NewRowComponent,
+        {
+          data: {
+            operations: ['cancelOperationR', 'addItemR'],
+            content: this.content,
+            drawerTitle: 'Enfermedad, lesión, estudio o tratamiento',
+            itemType: 'disease'
+          }});
     } else if (this.type === 'table-formatwo') {
       ref = this.dialog.open(NewFormatwoComponent, {data: null});
       ref.afterClosed.subscribe((result) => {
@@ -287,14 +319,5 @@ export class BeneficiaryTableComponent implements OnInit {
         console.log('dialog closed FROM OUNTRY TABLE, result: ', result);
       });
     }
-  }
-
-  calculateNumOfColumns() {
-    if (this.type === 'even-beneficiary') {
-      console.log('columnsNames length: ', this.columnsNames.length + 1);
-      console.log('this.columnsNames.length + 1).toString(): ', (this.columnsNames.length + 1).toString());
-    }
-
-    return (this.columnsNames.length + 1).toString();
   }
 }

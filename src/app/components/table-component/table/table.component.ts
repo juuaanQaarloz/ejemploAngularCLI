@@ -16,7 +16,6 @@ import {NewRowComponent} from '../new-row/new-row.component';
 })
 
 export class TableComponent implements OnInit, OnChanges {
-  // from example
   @Input() rows: any[];
   @Input() header: string;
   @Input() settings: ColumnSettings[];
@@ -57,6 +56,7 @@ export class TableComponent implements OnInit, OnChanges {
     let ref;
     ref = this.dialogService.open(NewRowComponent,
       {data: {
+        typeOperation: 'addRow',
         fields: this.fields,
         drawerTitle: 'Enfermedad(s)'
       }});
@@ -65,17 +65,15 @@ export class TableComponent implements OnInit, OnChanges {
     });
   }
 
-  deleteRow(idItem: string, propertyName) {
-    let currentRows;
-    currentRows = currentRows.filter(item => item[propertyName] !== idItem);
-    this.rowsBehavior.next(currentRows);
-  }
-
-  editRow(idItem: string) {
-
-  }
-
   calculateNumOfColumns() {
     return (this.columnMaps.length + 1).toString();
+  }
+
+  setFieldsIds() {
+    let i = 0;
+    this.fields.forEach((field) => {
+      field.name = field.name + i;
+      i++;
+    });
   }
 }

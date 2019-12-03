@@ -921,6 +921,10 @@ select::-ms-expand {
   grid-template-columns: repeat(5, 1fr);
 }
 
+.even-sport {
+  grid-template-columns: repeat(4, 1fr);
+}
+
 .even-occupation {
   display: grid;
   grid-template-columns: 100px 1fr 1fr;

@@ -44,21 +44,29 @@
     </div>
 
     <div *ngSwitchCase="'table-sports'">
-      <app-table [header]="'Deporte(s)'"
+      <!--<app-table [header]="'Deporte(s)'"
                  [rows]="rows"
                  [settings]="columnsSettingsSports"
                  [fields]="contentObj.fields">
-      </app-table>
-      <!--<app-beneficiary-table [type]="contentObj.contentType"></app-beneficiary-table>-->
+      </app-table>-->
+      <app-beneficiary-table [type]="contentObj.contentType"
+                             [content]="contentObj"
+      >
+      </app-beneficiary-table>
+
     </div>
 
     <div *ngSwitchCase="'table-diseases'">
-      <app-table [header]="'Enfermedad(es)'"
+      <!--<app-table [header]="'Enfermedad(es)'"
                  [rows]="rows"
                  [settings]="columnsSettingsDiseases"
                  [fields]="contentObj.fields">
-      </app-table>
-      <!--<app-beneficiary-table [type]="contentObj.contentType"></app-beneficiary-table>-->
+      </app-table>-->
+      <app-beneficiary-table [type]="contentObj.contentType"
+                             [content]="contentObj"
+      >
+
+      </app-beneficiary-table>
     </div>
 
 

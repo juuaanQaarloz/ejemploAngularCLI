@@ -4,11 +4,10 @@ import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';
-import {Beneficiary, Formatwo, Field, Occupation, Step} from '../../models';
-import {equalEmailsValidator, validateEmailConfirmation, validatorsObjects} from '../validators';
+import {Field, Occupation} from '../../models';
+import {equalEmailsValidator, validatorsObjects} from '../validators';
 import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
-import {Agent} from '../../models/agent-model/agent';
 import {COVERAGES} from '../mock/coverage/coverage';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
@@ -22,15 +21,17 @@ export class ApplicationService {
   private currentStepSource = new BehaviorSubject(0);
   currentValue = this.currentStepSource.asObservable();
   beneficiaries = new BehaviorSubject([]);
+  agents = new BehaviorSubject([]);
+  sports = new BehaviorSubject([]);
+  diseases = new BehaviorSubject([]);
+
   formatosdos = new BehaviorSubject([]);
   formatosdosb = new BehaviorSubject([]);
   formatosocho = new BehaviorSubject([]);
   formatos426 = new BehaviorSubject([]);
   formatos427 = new BehaviorSubject([]);
-  agents = new BehaviorSubject([]);
   countries = new BehaviorSubject([]);
   coverages = new BehaviorSubject(COVERAGES);
-  diseases = new BehaviorSubject([]);
   formGroup: FormGroup;
   searchModalFrom: string;
   applicationObj;

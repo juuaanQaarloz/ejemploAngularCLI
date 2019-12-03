@@ -103,7 +103,7 @@ export class ContentFormComponent implements OnInit {
 
   getFormValue() {
     this.payLoad = JSON.stringify(this.form.value);
-    // // console.log(this.form.value);
+    // console.log(this.form.value);
   }
 
   orderFields() {

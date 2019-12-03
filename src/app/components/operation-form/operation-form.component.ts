@@ -17,16 +17,12 @@ export class OperationFormComponent implements OnInit {
 
   ngOnInit() {
     if (this.operationObj.renderConditions) {
-      const renderConditions = this.applicationService.getConditions(this.operationObj.renderConditions);
-      // console.log('onInit Operation renderConditions: ', renderConditions);
-      this.show = this.applicationService.evaluateCondition(this.form, renderConditions[0]);
-      // console.log('onInit Operation show: ', this.show);
-      this.form.controls[renderConditions[0][1]].valueChanges.subscribe((value) => {
-        // console.log('onValueChanges: ', value);
-        // console.log('formControl : ', renderConditions[0][1]);
-        // console.log('show: before: ', this.show);
-        this.show = this.applicationService.evaluateCondition(this.form, renderConditions[0]);
-        // console.log('show: after: ', this.show);
+      const dependedFields = this.applicationService.getDependedFields(this.operationObj.renderConditions);
+      this.show = this.applicationService.evaluateConditions(this.operationObj.renderConditions, this.form);
+      dependedFields.forEach((dependedField) => {
+        this.form.controls[dependedField].valueChanges.subscribe((value) => {
+          this.show = this.applicationService.evaluateConditions(this.operationObj.renderConditions, this.form);
+        });
       });
     }
   }

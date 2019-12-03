@@ -1,7 +1,7 @@
 import {Content, Field} from '../../models';
 import {DatosGeneralesPersonaFisica} from './mock-general-data/mock-datos-persona-fisica';
 import {DatosDomicilio} from './mock-general-data/mock-domicilio';
-import {MockOperations, SearchOccupationOperations, SearchOccupationOperationsS} from './mock-operations';
+import {MockOperations, RowOperations, SearchOccupationOperations, SearchOccupationOperationsS} from './mock-operations';
 import {InformaciolLaboral1, InformacionLaboral} from './mock-laboral-data/mock-informacion-laboral';
 import {DatosGeneralesPersonaMoral} from './mock-general-data/mock-datos-pesona-moral';
 import {DatosDomicilioContactoMoral} from './mock-general-data/mock-domicilio-contacto-moral';
@@ -1103,7 +1103,7 @@ export const MockContentStep17Process1ContentSection2: Content[] = [
     contentType: 'table-sports',
     // process?: Process;
     fields: sportsFields2,
-    // operations?: Operation[];
+    // operations: [],
     renderConditions: '(extremeSportsQuestion=true)',
     // ---pending---
     // contentChildren?: Array<Content>;

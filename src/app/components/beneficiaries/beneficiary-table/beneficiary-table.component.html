@@ -18,8 +18,8 @@
                         [totalParticipationPercentageItems]="totalPercentageParticipation">
   </app-beneficiary-item>
 
-  <div>
-    <div *ngIf="content" data-forms="floating-label" class="ml-form"
+  <div *ngIf="itemsType === 'beneficiary'">
+    <div data-forms="floating-label" class="ml-form"
          [ngClass]="content.styleClass">
       <div *ngFor="let field of content.fields">
         <app-field-form [fieldObj]="field" [form]="this.applicationService.getFormGroup()"></app-field-form>

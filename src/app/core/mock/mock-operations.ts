@@ -247,6 +247,51 @@ export const AgentsOperations: Operation[] = [
   }
 ];
 
+export const RowOperations: Operation[] = [
+  {
+    id: 'opt-1',
+    idHtml: 'btnCancelR',
+    name: 'cancelOperationR',
+    label: 'Cancelar',
+    type: 'button',
+    style: '',
+    styleClass: 'ml-link',
+    message: '',
+    messageClass: '',
+    delegateOperation: 'closeDialog',
+    renderConditions: '',
+    enableConditions: '',
+  },
+  {
+    id: 'opt-2',
+    idHtml: 'btnAddNewItemR',
+    name: 'addItemR',
+    label: 'AGREGAR',
+    type: 'button',
+    style: '',
+    styleClass: 'ml-button-primary',
+    message: '',
+    messageClass: '',
+    delegateOperation: 'addNewItem',
+    renderConditions: '',
+    enableConditions: ''
+  },
+  {
+    id: 'opt-3',
+    idHtml: 'btnUpdateItemR',
+    name: 'updateItemR',
+    label: 'GUARDAR',
+    type: 'button',
+    style: '',
+    styleClass: 'ml-button-primary',
+    message: '',
+    messageClass: '',
+    delegateOperation: 'updateItem',
+    renderConditions: '',
+    enableConditions: '',
+  }
+];
+
 
 export const FormatwoOperations: Operation[] = [
   {
