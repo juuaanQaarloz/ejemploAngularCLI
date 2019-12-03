@@ -8,6 +8,16 @@
                  [row]="row.rowObject"
                  [index]="i"
                  [columnMaps]="columnMaps"
+                 [fields]="fields"
+                 [formGroup]="formGroup"
   ></app-table-row>
+
+  <!--<div data-forms="floating-label" class="ml-form even-row">
+    <div *ngFor="let field of fields">
+      <app-field-form [fieldObj]="field" [form]="formGroup"></app-field-form>
+    </div>
+
+    <button (click)="addRow()">Agregar</button>
+  </div>-->
 
 </div>

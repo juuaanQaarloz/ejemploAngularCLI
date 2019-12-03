@@ -11,10 +11,18 @@ export class TableRowComponent implements OnInit, OnChanges {
   @Input() row;
   @Input() index;
   @Input() columnMaps: ColumnMap[];
+  @Input() fields?;
+  @Input() formGroup?;
+
   constructor() { }
 
   ngOnInit() {
     console.log('itemRow: ', this.row);
+    console.log('columnMaps: ', this.columnMaps);
+    console.log('index: ', this.index);
+    if (this.fields) {
+      console.log('from TableRowComponent fieldObj: ', this.fields);
+    }
   }
 
   ngOnChanges() {

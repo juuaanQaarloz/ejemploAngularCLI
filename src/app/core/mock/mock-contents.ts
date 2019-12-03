@@ -1231,7 +1231,7 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
     contentType: 'table-diseases',
     // title: 'Enfermedad(es)',
     // process?: Process;
-    // fields: AgentQuestion1,
+    fields: medicalFields,
     // operations?: Operation[];
     renderConditions: '((diseasesQuestion=true),|,(medicalTestQuestion=true),|,(extraDiseasesQuestion=false))',
     // ((diseasesQuestion=true),|,(medicalTestQuestion=true),|,(extraDiseasesQuestion=false))

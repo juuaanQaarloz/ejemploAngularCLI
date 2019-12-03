@@ -44,9 +44,10 @@
     </div>
 
     <div *ngSwitchCase="'table-diseases'">
-      <app-table [header]="'Tabla Agente(s)'"
+      <app-table [header]="'Enfermedad(es)'"
                  [rows]="rows"
-                 [settings]="columnsSettings">
+                 [settings]="columnsSettings"
+                 [fields]="contentObj.fields">
       </app-table>
     </div>
 

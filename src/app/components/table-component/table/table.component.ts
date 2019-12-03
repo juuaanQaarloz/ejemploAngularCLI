@@ -3,19 +3,24 @@ import {ColumnSettings} from '../../../models/table-model/column-settings';
 import {determinateEvenOrOdd} from '../../../core/utilities';
 import {ColumnMap} from '../../../models/table-model/column-map';
 import {BehaviorSubject} from 'rxjs';
+import {FormGroup} from '@angular/forms';
+import {ApplicationService} from '../../../core/services';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
+
 export class TableComponent implements OnInit, OnChanges {
   // from example
   @Input() rows: any[];
   @Input() header: string;
   @Input() settings: ColumnSettings[];
+  @Input() fields;
   columnMaps: ColumnMap[];
   rowsBehavior = new BehaviorSubject(this.rows);
+  formGroup: FormGroup;
 
   ngOnChanges() {
     if (this.settings) { // when settings is provided
@@ -29,20 +34,21 @@ export class TableComponent implements OnInit, OnChanges {
     }
   }
 
-  constructor() { }
+  constructor(private applicationService: ApplicationService) { }
 
   ngOnInit() {
     // set the number of columns
-    document.documentElement.style.setProperty('--columnNumber', this.columnMaps.length.toString());
+    document.documentElement.style.setProperty('--columnNumber', this.calculateNumOfColumns());
+
+    this.formGroup = this.applicationService.createNewFormGroup(this.fields);
   }
 
   determinateEvenOrOdd(num: number) {
     return determinateEvenOrOdd(num);
   }
 
-  addRow(item) {
-    const currentRows = this.rowsBehavior.getValue();
-    this.rowsBehavior.next(item);
+  addRow() {
+    console.log('addRow clicked...');
   }
 
   deleteRow(idItem: string, propertyName) {
@@ -53,5 +59,9 @@ export class TableComponent implements OnInit, OnChanges {
 
   editRow(idItem: string) {
 
+  }
+
+  calculateNumOfColumns() {
+    return (this.columnMaps.length + 1).toString();
   }
 }
