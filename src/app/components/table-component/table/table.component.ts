@@ -5,6 +5,9 @@ import {ColumnMap} from '../../../models/table-model/column-map';
 import {BehaviorSubject} from 'rxjs';
 import {FormGroup} from '@angular/forms';
 import {ApplicationService} from '../../../core/services';
+import {DialogService} from '../../dialog/dialog.service';
+import {NewBeneficiaryComponent} from '../../beneficiaries/new-beneficiary/new-beneficiary.component';
+import {NewRowComponent} from '../new-row/new-row.component';
 
 @Component({
   selector: 'app-table',
@@ -28,13 +31,15 @@ export class TableComponent implements OnInit, OnChanges {
         .map(col => new ColumnMap(col));
     } else { // when settings is no provided
       this.columnMaps = Object.keys(this.rows[0])
-        .map( key => {
-          return new ColumnMap( { primaryKey: key });
+        .map(key => {
+          return new ColumnMap({primaryKey: key});
         });
     }
   }
 
-  constructor(private applicationService: ApplicationService) { }
+  constructor(private applicationService: ApplicationService,
+              public dialogService: DialogService) {
+  }
 
   ngOnInit() {
     // set the number of columns
@@ -49,6 +54,15 @@ export class TableComponent implements OnInit, OnChanges {
 
   addRow() {
     console.log('addRow clicked...');
+    let ref;
+    ref = this.dialogService.open(NewRowComponent,
+      {data: {
+        fields: this.fields,
+        drawerTitle: 'Enfermedad(s)'
+      }});
+    ref.afterClosed.subscribe((result) => {
+      // console.log('dialog closed FROM BENEFICIARY TABLE, result: ', result);
+    });
   }
 
   deleteRow(idItem: string, propertyName) {

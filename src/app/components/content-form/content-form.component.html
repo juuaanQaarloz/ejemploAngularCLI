@@ -43,17 +43,25 @@
       <app-beneficiary-table [type]="contentObj.contentType"></app-beneficiary-table>
     </div>
 
+    <div *ngSwitchCase="'table-sports'">
+      <app-table [header]="'Deporte(s)'"
+                 [rows]="rows"
+                 [settings]="columnsSettingsSports"
+                 [fields]="contentObj.fields">
+      </app-table>
+      <!--<app-beneficiary-table [type]="contentObj.contentType"></app-beneficiary-table>-->
+    </div>
+
     <div *ngSwitchCase="'table-diseases'">
       <app-table [header]="'Enfermedad(es)'"
                  [rows]="rows"
-                 [settings]="columnsSettings"
+                 [settings]="columnsSettingsDiseases"
                  [fields]="contentObj.fields">
       </app-table>
+      <!--<app-beneficiary-table [type]="contentObj.contentType"></app-beneficiary-table>-->
     </div>
 
-    <div *ngSwitchCase="'table-sports'">
-      <p>Here goes the sports table</p>
-    </div>
+
   </div>
 
   <p *ngIf="contentObj.warningMessage">{{contentObj.warningMessage}}</p>

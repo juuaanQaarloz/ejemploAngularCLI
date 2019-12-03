@@ -1,6 +1,6 @@
 <div data-forms="floating-label" class="ml-form even-row"
            [ngStyle]="{'background-color':  determinateEvenOrOdd(index) ? '#E5F4FB': '#FFFFFF'}">
-  <div *ngFor="let map of columnMaps"
+  <div *ngFor="let map of columnMaps; let i = index;"
        [appStyleCell]="row[map.access(row)]">
 
    <div [ngSwitch]="map.format">
@@ -8,9 +8,8 @@
 
       <app-field-form *ngSwitchCase="'field'"
                       [form]="formGroup"
-                      [fieldObj]="fieldObj">
+                      [fieldObj]="fields[i]">
       </app-field-form>
-
     </div>
 
     <!--{{ row[map.access(row)] | formatCell}}-->

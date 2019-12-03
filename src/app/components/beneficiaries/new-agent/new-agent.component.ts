@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AgentsOperations, BeneficiariesOperations} from '../../../core/mock/mock-operations';
+import {AgentsOperations} from '../../../core/mock/mock-operations';
 import {AgentFields} from '../../../core/mock/mock-agents/mock-agents-questions';
 import {FormGroup} from '@angular/forms';
 import {ApplicationService} from '../../../core/services';

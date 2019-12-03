@@ -97,7 +97,6 @@ export class BeneficiaryTableComponent implements OnInit {
       this.title = 'Datos de Agente(s)';
       this.columnsNames = ['Nombre', 'Promotoría', 'Clave', 'Participación'
       ];
-
       this.itemsType = 'agent';
       this.style = 'even-agent';
       this.showplus = true;
@@ -110,6 +109,7 @@ export class BeneficiaryTableComponent implements OnInit {
       this.title = 'Datos Formato Cuatro';
       this.columnsNames = ['Razon social', 'RFC', 'Fecha de constitución', 'Nombre comercial',
       ];
+
       this.style = 'even-beneficiary';
       this.showplus = true;
       /* this.content.fields.forEach((field) => {
@@ -124,6 +124,7 @@ export class BeneficiaryTableComponent implements OnInit {
       this.title = 'Datos Formato Tres';
       this.columnsNames = ['Tipo de Persona', 'Nombre / Razón social', 'Fecha de nacimiento / constitución', 'RFC',
       ];
+
       this.style = 'even-beneficiary';
       this.showplus = true;
      /*  this.content.fields.forEach((field) => {
@@ -138,6 +139,7 @@ export class BeneficiaryTableComponent implements OnInit {
       this.title = 'Paises';
       this.columnsNames = ['Pais', 'Numero de idenficación fiscal',
       ];
+
       this.itemsType = 'country';
       this.style = 'even-beneficiary';
       this.showplus = true;
@@ -151,6 +153,7 @@ export class BeneficiaryTableComponent implements OnInit {
       this.title = 'Datos Formato dos';
       this.columnsNames = ['Caracter', 'Nombre', 'Fecha de nacimiento',
       ];
+
       this.itemsType = 'formatwo';
       this.style = 'even-beneficiary';
       this.showplus = true;
@@ -164,6 +167,7 @@ export class BeneficiaryTableComponent implements OnInit {
       this.title = 'Beneficios adicionales disponibles para el plan';
       this.columnsNames = ['Contratar:', 'Cobertura', 'Suma asegurada', 'Prima', 'Detalle',
       ];
+
       this.itemsType = 'coverage';
       this.style = 'even-beneficiary';
       this.showplus = false;
@@ -178,6 +182,7 @@ export class BeneficiaryTableComponent implements OnInit {
       this.title = 'Datos Formato dos';
       this.columnsNames = ['Caracter', 'Nombre', 'Fecha de nacimiento',
       ];
+
       this.itemsType = 'formatwo';
       this.style = 'even-beneficiary';
       this.showplus = true;
@@ -191,6 +196,7 @@ export class BeneficiaryTableComponent implements OnInit {
       this.title = 'Datos Formato W8BEN-E';
       this.columnsNames = ['Formato',
       ];
+
       this.itemsType = 'formatw8';
       this.style = 'even-beneficiary';
       this.showplus = true;
@@ -204,6 +210,7 @@ export class BeneficiaryTableComponent implements OnInit {
       this.title = 'Datos Formato W8BEN-E';
       this.columnsNames = ['Formato',
       ];
+
       this.itemsType = 'formatw8';
       this.style = 'even-beneficiary';
       this.showplus = true;
@@ -217,6 +224,7 @@ export class BeneficiaryTableComponent implements OnInit {
       this.title = 'Datos Formato IV-2-426';
       this.columnsNames = ['Formato',
       ];
+
       this.itemsType = 'formatw8';
       this.style = 'even-beneficiary';
       this.showplus = true;
@@ -230,6 +238,7 @@ export class BeneficiaryTableComponent implements OnInit {
       this.title = 'Datos Formato IV-2-427';
       this.columnsNames = ['Formato',
       ];
+
       this.itemsType = 'formatw8';
       this.style = 'even-beneficiary';
       this.showplus = true;
@@ -239,7 +248,15 @@ export class BeneficiaryTableComponent implements OnInit {
       this.applicationService.formatos427.subscribe((value) => {
         this.items = value;
       });
+    } else if (this.type === 'table-sports') {
+      this.title = 'Deporte(s) / Actividad(es)';
+      this.columnsNames = [];
     }
+
+    // set the number of columns
+    document.documentElement.style.setProperty('--columnNumber', this.calculateNumOfColumns());
+
+    // console.log('--columnNumber: ', document.documentElement.style.getPropertyValue('--columnNumber'));
   }
 
   addNewItem() {
@@ -270,5 +287,14 @@ export class BeneficiaryTableComponent implements OnInit {
         console.log('dialog closed FROM OUNTRY TABLE, result: ', result);
       });
     }
+  }
+
+  calculateNumOfColumns() {
+    if (this.type === 'even-beneficiary') {
+      console.log('columnsNames length: ', this.columnsNames.length + 1);
+      console.log('this.columnsNames.length + 1).toString(): ', (this.columnsNames.length + 1).toString());
+    }
+
+    return (this.columnsNames.length + 1).toString();
   }
 }

@@ -42,7 +42,7 @@ export class ContentFormComponent implements OnInit {
     }
   ];
 
-  columnsSettings: ColumnSettings[] = [
+  columnsSettingsDiseases: ColumnSettings[] = [
     {
       primaryKey: 'name',
       format: 'field',
@@ -62,6 +62,24 @@ export class ContentFormComponent implements OnInit {
       primaryKey: 'actualCondition',
       format: 'field',
       header: 'Condición física actual'
+    }
+  ];
+
+  columnsSettingsSports: ColumnSettings[] = [
+    {
+      primaryKey: 'name',
+      format: 'field',
+      header: 'Deporte / Actividad'
+    },
+    {
+      primaryKey: 'periodicity',
+      format: 'field',
+      header: 'Frecuencia'
+    },
+    {
+      primaryKey: 'description',
+      format: 'field',
+      header: 'Describir otra actividad'
     }
   ];
 

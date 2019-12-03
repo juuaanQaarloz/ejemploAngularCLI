@@ -44,6 +44,7 @@ import { TableComponent } from './components/table-component/table/table.compone
 import { TableRowComponent } from './components/table-component/table-row/table-row.component';
 import { QuestionnaireComponent } from './components/questionnaire/questionnaire/questionnaire.component';
 import { QuestionComponent } from './components/questionnaire/question/question.component';
+import { NewRowComponent } from './components/table-component/new-row/new-row.component';
 
 // @ts-ignore
 @NgModule({
@@ -74,6 +75,7 @@ import { QuestionComponent } from './components/questionnaire/question/question.
     TableRowComponent,
     QuestionnaireComponent,
     QuestionComponent,
+    NewRowComponent,
     ],
 
   imports: [
@@ -93,7 +95,7 @@ import { QuestionComponent } from './components/questionnaire/question/question.
     AppRoutingModule
   ],
   bootstrap: [AppComponent],
-  entryComponents: [NewBeneficiaryComponent, NewFormatwoComponent, NewAgentComponent, NewCountryComponent],
+  entryComponents: [NewBeneficiaryComponent, NewFormatwoComponent, NewAgentComponent, NewCountryComponent, NewRowComponent],
   providers: [
     { provide: DateAdapter, useClass: MyDateAdapter},
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS}

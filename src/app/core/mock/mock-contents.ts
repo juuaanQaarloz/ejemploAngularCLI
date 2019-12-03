@@ -1102,7 +1102,7 @@ export const MockContentStep17Process1ContentSection2: Content[] = [
     idHtml: 'app-content-form-2.38',
     contentType: 'table-sports',
     // process?: Process;
-    // fields: sportsFields2,
+    fields: sportsFields2,
     // operations?: Operation[];
     renderConditions: '(extremeSportsQuestion=true)',
     // ---pending---
