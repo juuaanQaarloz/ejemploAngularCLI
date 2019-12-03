@@ -1,17 +1,26 @@
 import {Step} from '../../models';
 import {
-  MockContentStep10Process1ContentSection2, MockContentStep11Process1ContentSection2,
-  MockContentStep14Process1ContentSection2,
-  MockContentStep16Process1ContentSection2,
-  MockContentStep17Process1ContentSection2,
-  MockContentStep18Process1ContentSection2,
-  MockContentStep19Process1ContentSection2,
-  MockContentStep1Process1ContentSection2, MockContentStep20Process1ContentSection2, MockContentStep21Process1ContentSection2,
+  MockContentStep1Process1ContentSection2, 
   MockContentStep2Process1ContentSection2,
   MockContentStep3Process1ContentSection2,
   MockContentStep4Process1ContentSection2,
   MockContentStep5Process1ContentSection2,
-  MockContentStep6Process1ContentSection2
+  MockContentStep6Process1ContentSection2,
+  MockContentStep7Process1ContentSection2,
+  MockContentStep8Process1ContentSection2,
+  MockContentStep9Process1ContentSection2,
+  MockContentStep10Process1ContentSection2, 
+  MockContentStep11Process1ContentSection2,
+  MockContentStep12Process1ContentSection2,
+  MockContentStep13Process1ContentSection2,
+  MockContentStep14Process1ContentSection2,
+  MockContentStep15Process1ContentSection2,
+  MockContentStep16Process1ContentSection2,
+  MockContentStep17Process1ContentSection2,
+  MockContentStep18Process1ContentSection2,
+  MockContentStep19Process1ContentSection2,
+  MockContentStep20Process1ContentSection2, 
+  MockContentStep21Process1ContentSection2,
 } from './mock-contents';
 
 export const MockStepsProcessContentSection2: Step[] = [
@@ -32,11 +41,11 @@ export const MockStepsProcessContentSection2: Step[] = [
     id: '2',
     idProcess: 'process-1',
     idHtml: 'app-step-form-2',
-    title: 'Ocupación del contratante persona física',
+    title: 'Domicilio y datos del Contratante persona física',
     contents: MockContentStep2Process1ContentSection2,
     renderConditions: '(typePerson=phyPerson)',
     previousStep: '1',
-    nextStep: '7',
+    nextStep: '3',
     /*added extra from model*/
     isCompleted: false,
     show: true
@@ -45,11 +54,11 @@ export const MockStepsProcessContentSection2: Step[] = [
     id: '3',
     idProcess: 'process-1',
     idHtml: 'app-step-form-3',
-    title: 'Información general del contratante persona moral',
+    title: 'Ocupación del Contratante persona física',
     contents: MockContentStep3Process1ContentSection2,
-    renderConditions: '(typePerson=morPerson)',
-    previousStep: '0',
-    nextStep: '4',
+    renderConditions: '(typePerson=phyPerson)',
+    previousStep: '2',
+    nextStep: '10',
     /*added extra from model*/
     isCompleted: false,
     show: false
@@ -58,11 +67,11 @@ export const MockStepsProcessContentSection2: Step[] = [
     id: '4',
     idProcess: 'process-1',
     idHtml: 'app-step-form-4',
-    title: ' Apoderado o representante legal (llenar para empresas nacionales)',
+    title: ' Datos generales del Contratante persona moral',
     contents: MockContentStep4Process1ContentSection2,
     renderConditions: '(typePerson=morPerson)',
-    previousStep: '3',
-    nextStep: '7',
+    previousStep: '0',
+    nextStep: '5',
     /*added extra from model*/
     isCompleted: false,
     show: false
@@ -71,10 +80,10 @@ export const MockStepsProcessContentSection2: Step[] = [
     id: '5',
     idProcess: 'process-1',
     idHtml: 'app-step-form-5',
-    title: 'Datos generales del solicitante',
+    title: 'Domicilio y datos de contacto del Contratante persona moral',
     contents: MockContentStep5Process1ContentSection2,
-    renderConditions: '(contractorType=false)',
-    previousStep: '2',
+    renderConditions: '(typePerson=morPerson)',
+    previousStep: '4',
     nextStep: '6',
     /*added extra from model*/
     isCompleted: false,
@@ -84,9 +93,48 @@ export const MockStepsProcessContentSection2: Step[] = [
     id: '6',
     idProcess: 'process-1',
     idHtml: 'app-step-form-6',
-    title: 'Ocupación del solicitante',
+    title: ' Apoderado o representante legal (llenar para empresas nacionales)',
     contents: MockContentStep6Process1ContentSection2,
-    renderConditions: '(contractorType=false)',
+    renderConditions: '(typePerson=morPerson)',
+    previousStep: '5',
+    nextStep: '7',
+    /*added extra from model*/
+    isCompleted: false,
+    show: false
+  },
+  {
+    id: '7',
+    idProcess: 'process-1',
+    idHtml: 'app-step-form-7',
+    title: 'Datos generales del solicitante',
+    contents: MockContentStep7Process1ContentSection2,
+    renderConditions: '(typePerson=morPerson)',
+    previousStep: '6',
+    nextStep: '8',
+    /*added extra from model*/
+    isCompleted: false,
+    show: false
+  },
+  {
+    id: '8',
+    idProcess: 'process-1',
+    idHtml: 'app-step-form-8',
+    title: 'Domicilio y datos de contacto del solicitante',
+    contents: MockContentStep8Process1ContentSection2,
+    renderConditions: '(typePerson=morPerson)',
+    previousStep: '6',
+    nextStep: '9',
+    /*added extra from model*/
+    isCompleted: false,
+    show: false
+  },
+  {
+    id: '9',
+    idProcess: 'process-1',
+    idHtml: 'app-step-form-9',
+    title: 'Ocupación del solicitante',
+    contents: MockContentStep9Process1ContentSection2,
+    renderConditions: '(typePerson=morPerson)',
     previousStep: '5',
     nextStep: '7',
     /*added extra from model*/
@@ -114,6 +162,32 @@ export const MockStepsProcessContentSection2: Step[] = [
     contents: MockContentStep11Process1ContentSection2,
     renderConditions: '',
     previousStep: '10',
+    nextStep: '12',
+    /*added extra from model*/
+    isCompleted: false,
+    show: true
+  },
+  {
+    id: '12',
+    idProcess: 'process-1',
+    idHtml: 'app-step-form-12',
+    title: 'Formas de pago',
+    contents: MockContentStep12Process1ContentSection2,
+    renderConditions: '',
+    previousStep: '11',
+    nextStep: '13',
+    /*added extra from model*/
+    isCompleted: false,
+    show: true
+  },
+  {
+    id: '13',
+    idProcess: 'process-1',
+    idHtml: 'app-step-form-13',
+    title: 'Perfil transaccional',
+    contents: MockContentStep13Process1ContentSection2,
+    renderConditions: '',
+    previousStep: '12',
     nextStep: '14',
     /*added extra from model*/
     isCompleted: false,
@@ -122,9 +196,22 @@ export const MockStepsProcessContentSection2: Step[] = [
   {
     id: '14',
     idProcess: 'process-1',
-    idHtml: 'app-step-form-16',
+    idHtml: 'app-step-form-14',
     title: 'Declaraciones',
     contents: MockContentStep14Process1ContentSection2,
+    renderConditions: '',
+    previousStep: '13',
+    nextStep: '15',
+    /*added extra from model*/
+    isCompleted: false,
+    show: true
+  },
+  {
+    id: '15',
+    idProcess: 'process-1',
+    idHtml: 'app-step-form-15',
+    title: 'Otros seguros de vida del solicitante',
+    contents: MockContentStep15Process1ContentSection2,
     renderConditions: '',
     previousStep: '14',
     nextStep: '16',
@@ -139,7 +226,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     title: 'Datos de Plan',
     contents: MockContentStep16Process1ContentSection2,
     renderConditions: '',
-    previousStep: '6',
+    previousStep: '15',
     nextStep: '17',
     /*added extra from model*/
     isCompleted: false,
@@ -149,10 +236,10 @@ export const MockStepsProcessContentSection2: Step[] = [
     id: '17',
     idProcess: 'process-1',
     idHtml: 'app-step-form-17',
-    title: 'Cuestionario de aviación deportes y / o aficiones del solicitante',
+    title: 'Aviación, deportes y/o aficiones del solicitante',
     contents: MockContentStep17Process1ContentSection2,
     renderConditions: '',
-    previousStep: '14',
+    previousStep: '16',
     nextStep: '18',
     isCompleted: false,
     show: true
@@ -185,7 +272,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     id: '20',
     idProcess: 'process-1',
     idHtml: 'app-step-form-20',
-    title: 'Información del agente (para aspectos internos de MetLife)',
+    title: 'Información del agente (para aspectos internos de MetLife México, S. A.)',
     contents: MockContentStep20Process1ContentSection2,
     renderConditions: '',
     previousStep: '19',

@@ -14,7 +14,7 @@ export class TableRowComponent implements OnInit, OnChanges {
   constructor() { }
 
   ngOnInit() {
-    console.log('itemRow: ', this.row);
+    //console.log('itemRow: ', this.row);
   }
 
   ngOnChanges() {
