@@ -351,3 +351,18 @@ export const FormatwoOperations: Operation[] = [
     enableConditions: '',
   }
 ];
+
+export const OKOPT: Operation = {
+  id: 'opt-1',
+  idHtml: 'btnOK',
+  name: 'OK',
+  label: 'OK',
+  type: 'button',
+  style: '',
+  styleClass: 'ml-button-primary',
+  message: '',
+  messageClass: '',
+  delegateOperation: 'closeModal',
+  renderConditions: '',
+  enableConditions: ''
+};

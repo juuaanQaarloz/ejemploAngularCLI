@@ -113,7 +113,7 @@ export class BeneficiaryTableComponent implements OnInit {
       this.showplus = true;
       this.style = 'even-sport';
 
-      this.applicationService.diseases.subscribe((value) => {
+      this.applicationService.sports.subscribe((value) => {
         this.items = value;
       });
     } else if (this.type === 'table-diseases') {
@@ -124,6 +124,10 @@ export class BeneficiaryTableComponent implements OnInit {
       this.itemsType = 'disease';
       this.showplus = true;
       this.style = 'even-agent';
+
+      this.applicationService.diseases.subscribe((value) => {
+        this.items = value;
+      });
     } else if (this.type ===  'table-formatfour') {
       this.title = 'Datos Formato Cuatro';
       this.columnsNames = ['Razon social', 'RFC', 'Fecha de constitución', 'Nombre comercial',

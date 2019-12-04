@@ -19,11 +19,12 @@
   </div>
 
   <div class="operations">
-    <div *ngIf="showplus==true">
+    <div *ngIf="enableOperations">
       <img class="icon-delete" (click)="openModal(modalId)">
       <img class="icon-edit" (click)="editItem()">
     </div>
-    <div *ngIf="isLast && totalItems < maxItems && totalParticipationPercentageItems < 100 && showplus==true">
+
+    <div *ngIf="(isLast && totalItems < maxItems && totalParticipationPercentageItems < 100) || (isLast && showplus === true)">
       <img src="../../../../assets/img/tables/plus_simbol.svg" (click)="addNewItem()">
     </div>
   </div>

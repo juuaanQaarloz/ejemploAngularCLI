@@ -195,7 +195,6 @@ export class ApplicationService {
   }
 
   addItem(newItem, itemType: string) {
-    // console.log('typeItem: ', typeof newItem);
     let currentTotalParticipationPercentage;
     let currentItems;
     let maxLength;
@@ -232,11 +231,27 @@ export class ApplicationService {
       propertyName = 'participation';
     } else if (itemType === 'disease') {
       currentItems = this.diseases.getValue();
+    } else if (itemType === 'sport') {
+      currentItems = this.sports.getValue();
     }
-    console.log('currentTotalParticipationPercentage: ', currentTotalParticipationPercentage);
-    if ((currentTotalParticipationPercentage !== undefined)
-      && (currentTotalParticipationPercentage + Number(newItem[propertyName]) <= 100)) {
 
+    if (currentTotalParticipationPercentage !== undefined) {
+      // when is a max participation limit
+      if (currentTotalParticipationPercentage + Number(newItem[propertyName]) <= 100) {
+        // when is a maxItems limit
+        if (currentItems.length <= maxLength) {
+          // the new item can be added
+          currentItems.push(newItem);
+          this.setItems(itemType, currentItems);
+          return {status: true, message: ''};
+        } else {
+          return {status: false, message: responseMessage1};
+        }
+      } else {
+        return {status: false, message: responseMessage2};
+      }
+    } else if (maxLength !== undefined) {
+      // when is a maxItems limit
       if (currentItems.length <= maxLength) {
         // the new item can be added
         currentItems.push(newItem);
@@ -246,7 +261,9 @@ export class ApplicationService {
         return {status: false, message: responseMessage1};
       }
     } else {
-      return {status: false, message: responseMessage2};
+      currentItems.push(newItem);
+      this.setItems(itemType, currentItems);
+      return {status: true, message: ''};
     }
   }
 
@@ -265,6 +282,12 @@ export class ApplicationService {
     } else if (itemType === 'country') {
       currentItems = this.countries.getValue();
       propertyName = 'countryId';
+    } else if (itemType === 'disease') {
+      currentItems = this.diseases.getValue();
+      propertyName = 'idDisease';
+    } else if (itemType === 'sport') {
+      currentItems = this.sports.getValue();
+      propertyName = 'idSportActivity';
     }
     currentItems = currentItems.filter(item => item[propertyName] !== itemId);
     // console.log('currentItems: ', currentItems);
@@ -288,6 +311,12 @@ export class ApplicationService {
     } else if (itemType === 'country') {
       currentItems = this.countries.getValue();
       propertyItem = 'countryId';
+    } else if (itemType === 'disease') {
+      currentItems = this.diseases.getValue();
+      propertyItem = 'idDisease';
+    } else if (itemType === 'sport') {
+      currentItems = this.sports.getValue();
+      propertyItem = 'idSportActivity';
     }
     const itemsLength = currentItems.length;
     // console.log('itemsLength: ', itemsLength);
@@ -315,6 +344,12 @@ export class ApplicationService {
     } else if (itemType === 'country') {
       currentItems = this.countries.getValue();
       propertyItem = 'countryId';
+    } else if (itemType === 'disease') {
+      currentItems = this.diseases.getValue();
+      propertyItem = 'idDisease';
+    } else if (itemType === 'sport') {
+      currentItems =  this.sports .getValue();
+      propertyItem = 'idSportActivity';
     }
     const foundItem = currentItems.filter(i => i[propertyItem] === updatedItem[propertyItem])[0];
 
@@ -359,6 +394,10 @@ export class ApplicationService {
       this.formatosdos.next(newItems);
     } else if (itemType === 'country') {
       this.countries.next(newItems);
+    } else if (itemType === 'disease') {
+      this.diseases.next(newItems);
+    } else if (itemType === 'sport') {
+      this.sports.next(newItems);
     }
   }
 

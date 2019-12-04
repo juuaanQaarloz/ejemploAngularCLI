@@ -1,16 +1,13 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {ApplicationService, AuthService, StorageService, validateEmailConfirmation} from '../../core/services';
+import { FormGroup} from '@angular/forms';
+import {ApplicationService, AuthService, StorageService} from '../../core/services';
 import {MockTemplate} from '../../core/mock/mock-template';
 import {DialogService} from '../dialog/dialog.service';
 import {ModalService} from '../custom-modal';
 import * as jsPDF from 'jspdf';
 import {pdfOperation} from '../../core/mock/mock-operations';
 import {Template} from '../../models/template';
-import {error} from 'util';
-import {RowItem} from '../../models/table-model/row-item';
-import {ColumnSettings} from '../../models/table-model/column-settings';
-import {Beneficiary} from '../../models/beneficiary-model';
+
 
 @Component({
   selector: 'app-application',
