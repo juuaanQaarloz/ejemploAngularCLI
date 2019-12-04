@@ -158,7 +158,8 @@
   </fieldset>
 
   <fieldset *ngSwitchCase="'checkbox'" class="ml-form-field ml-form-field-checkboxes">
-    <label>{{fieldObj.label}}</label>
+
+    <label *ngIf="fieldObj.label != null">{{fieldObj.label}}</label>
     <!--<div class="checkbox-options">-->
     <div class="ml-form-field-checkboxes-group" *ngFor="let checkBoxOption of checkBoxOptions">
       <input type="checkbox" [formControlName]="fieldObj.name"

@@ -3,33 +3,35 @@ import {Field} from '../../../models';
 
 export const Plan1: Field[] = [
   {
-    id: 'field-1401',
-    idHtml: 'slctPacking',
-    name: 'packing',
+    id: 'field-1403',
+    idHtml: 'slctCurrency',
+    name: 'currency',
     orderAppearance: 1,
-    label: 'Empaquetamiento',
+    label: 'Tipo de moneda',
     type: 'select',
-    required: true,
+    required: false,
     placeholder: '',
     length: '',
     minValue: 0,
     maxValue: 0,
     pattern: '',
     source: 'IPRE',
-    sourceID: 'packing',
+    sourceID: 'currency',
     sourceStructure: ['id', 'name', 'code'],
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'Seleccionar un tipo de empaquetamiento.',
+    message: '',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: ''
-  },{
+    entityField: '',
+    value: ''
+  },
+  {
     id: 'field-1402',
     idHtml: 'radioCoverageOptions',
     name: 'coverageOptions',
@@ -59,33 +61,32 @@ export const Plan1: Field[] = [
     value: ''
   },
   {
-    id: 'field-1403',
-    idHtml: 'slctCurrency',
-    name: 'currency',
+    id: 'field-1401',
+    idHtml: 'slctPacking',
+    name: 'packing',
     orderAppearance: 3,
-    label: 'Tipo de moneda',
+    label: 'Empaquetamiento',
     type: 'select',
-    required: false,
+    required: true,
     placeholder: '',
     length: '',
     minValue: 0,
     maxValue: 0,
     pattern: '',
     source: 'IPRE',
-    sourceID: 'currency',
+    sourceID: 'packing',
     sourceStructure: ['id', 'name', 'code'],
-    style: 'margin:0 auto',
+    style: '',
     styleClass: '',
     styleClassError: '',
-    message: '',
+    message: 'Seleccionar un tipo de empaquetamiento.',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
-    value: ''
+    entityField: ''
   }
 
 ];
@@ -180,4 +181,68 @@ export const Plan2: Field[] = [
 
 export const Plan3: Field[] = [
 
+];
+
+export const Plan4: Field[] = [
+  {
+    id: 'field-1405',
+    idHtml: 'epCheckboxH',
+    name: 'epCheckbox',
+    orderAppearance: 1,
+    label: '',
+    type: 'checkbox',
+    required: false,
+    placeholder: '',
+    length: '',
+    minValue: 0,
+    maxValue: 0,
+    pattern: '',
+    source: 'CUSTOM',
+    sourceID: 'epCheckbox',
+    sourceStructure: ['id', 'name', 'code'],
+    style: 'checkbox-options-coverage',
+    styleClass: '',
+    styleClassError: '',
+    message: '',
+    messageClass: '',
+    messageError: '',
+    messageErrorClass: '',
+    renderConditions: '',
+    enableConditions: '',
+    entity: '',
+    entityField: '',
+    value: ''
+  },
+];
+
+export const Plan5: Field[] = [
+  {
+    id: 'field-1406',
+    idHtml: 'pasiCheckboxH',
+    name: 'pasiCheckbox',
+    orderAppearance: 1,
+    label: '',
+    type: 'checkbox',
+    required: false,
+    placeholder: '',
+    length: '',
+    minValue: 0,
+    maxValue: 0,
+    pattern: '',
+    source: 'CUSTOM',
+    sourceID: 'pasiCheckbox',
+    sourceStructure: ['id', 'name', 'code'],
+    style: 'checkbox-options-coverage',
+    styleClass: '',
+    styleClassError: '',
+    message: '',
+    messageClass: '',
+    messageError: '',
+    messageErrorClass: '',
+    renderConditions: '',
+    enableConditions: '',
+    entity: '',
+    entityField: '',
+    value: ''
+  },
 ];

@@ -35,7 +35,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     if (this.fieldObj.type === 'radio' || this.fieldObj.type === 'select'
-      || this.fieldObj.type === 'checkbox' || this.fieldObj.type === 'select-multiple') {
+      || this.fieldObj.type === 'checkbox' || this.fieldObj.type === 'select-multiple' ) {
       this.getOptions();
     }
     if (this.fieldObj.type === 'select' && this.fieldObj.value) {
@@ -144,8 +144,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onChange(event) {
-    // console.log('onChange event.target.value: ', event.target.value);
-    // // console.log('formControlName: ', this.fieldObj.name);
+    console.log('onChange event.target.value: ', event.target.value);
+    console.log('formControlName: ', this.fieldObj.name);
     this.isValid();
 
   }
@@ -181,8 +181,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onChangeSelect(event) {
-    // // console.log('onChangeSelect...');
-    // // console.log('event.target.value: ', event.target.value);
+    console.log('onChangeSelect...');
+    console.log('event.target.value: ', event.target.value);
     if (event.target.value === '') {
       this.showSelectLabel = false;
     } else {
@@ -208,6 +208,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
             } else if (this.fieldObj.type === 'radio') {
               this.radioOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
             } else if (this.fieldObj.type === 'checkbox') {
+              console.log('selectItem-checkbox: ', selectItem);
+              this.checkBoxOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
+            } else if (this.fieldObj.type === 'checkboxcoverage') {
+              // console.log('selectItem-checkbox: ', selectItem);
               this.checkBoxOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
             }
           });
@@ -236,7 +240,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   isValid(formControlName?) {
-    // // console.log('onIsValid value: ', this.form.controls[this.fieldObj.name].value);
+    console.log('onIsValid value: ', this.form.controls[this.fieldObj.name].value);
     if (formControlName) {
 
       const validateAgeResult = validateAge(this.form.controls[formControlName]);

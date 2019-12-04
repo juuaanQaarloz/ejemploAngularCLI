@@ -3,6 +3,12 @@
   grid-template-columns: repeat(4,1fr);
   grid-gap: 15px;
 }
+.checkbox-options-coverage{
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-gap: 15px;
+  text-align: justify;
+}
 
 .radio-options{
   display: grid;

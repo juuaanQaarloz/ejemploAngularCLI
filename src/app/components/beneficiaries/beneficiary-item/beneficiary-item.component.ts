@@ -174,11 +174,10 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
     }  else if (this.itemType === 'formatwo') {
       this.formGroup.controls[this.fields[0].name].setValue(this.item.formatwoBirthDate); // fatherLastName
     } else if (this.itemType === 'coverage') {
-      this.formGroup.controls[this.fields[0].name].setValue(this.item.isSelected); // fatherLastName
-      this.formGroup.controls[this.fields[1].name].setValue(this.item.coverageName);
-      this.formGroup.controls[this.fields[2].name].setValue(this.item.assuredImport);
-      this.formGroup.controls[this.fields[3].name].setValue(this.item.cost);
-      this.formGroup.controls[this.fields[4].name].setValue(this.item.detail);
+      // this.formGroup.controls[this.fields[0].name].setValue(this.item.coverageName);
+      this.formGroup.controls[this.fields[0].name].setValue(this.item.assuredImport);
+      this.formGroup.controls[this.fields[1].name].setValue(this.item.cost);
+      //this.formGroup.controls[this.fields[2].name].setValue(this.item.detail);
     } else if (this.itemType === 'country') {
       // console.log('item: ', this.item);
       // this.formGroup.controls[this.fields[0].name].setValue(this.item.taxCountryId); // fatherLastName

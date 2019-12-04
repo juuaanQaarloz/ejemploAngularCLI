@@ -3,63 +3,6 @@ import {Coverage} from '../../../models/coverage-model/coverage';
 
 export const CoverageFieldsItem: Field[] = [
   {
-    id: 'field-10001',
-    idHtml: 'chboxSelected',
-    name: 'selectedCheck',
-    orderAppearance: 1,
-    label: '',
-    type: 'checkbox',
-    required: true,
-    placeholder: '',
-    length: '',
-    minValue: 0,
-    maxValue: 0,
-    pattern: '',
-    source: 'CUSTOM',
-    sourceID: 'selectCheckbox',
-    sourceStructure: ['id', 'name', 'code'],
-    style: 'checkBoxOption',
-    styleClass: '',
-    styleClassError: '',
-    message: '',
-    messageClass: '',
-    messageError: '',
-    messageErrorClass: '',
-    renderConditions: '',
-    enableConditions: '',
-    entity: '',
-    entityField: '',
-  },
-  {
-    id: 'field-10002',
-    idHtml: 'txtCoverageName',
-    name: 'coverageName',
-    orderAppearance: 2,
-    label: '',
-    type: 'text',
-    required: true,
-    placeholder: '',
-    length: '120',
-    minValue: 0,
-    maxValue: 80,
-    pattern: '',
-    source: '',
-    sourceID: '',
-    style: '',
-    styleClass: '',
-    styleClassError: '',
-    message: '',
-    messageClass: '',
-    messageError: '',
-    messageErrorClass: '',
-    renderConditions: '',
-    enableConditions: '',
-    entity: '',
-    entityField: '',
-    value: '',
-    disable: true
-  },
-  {
     id: 'field-10002',
     idHtml: 'txtAssuredImport',
     name: 'assuredImport',
@@ -85,7 +28,8 @@ export const CoverageFieldsItem: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: ''
+    value: '',
+    disable: true
   },
   {
     id: 'field-10004',
@@ -116,7 +60,7 @@ export const CoverageFieldsItem: Field[] = [
     value: '',
     disable: true
   },
-  {
+  /* {
     id: 'field-10005',
     idHtml: 'txtDetail',
     name: 'detail',
@@ -144,7 +88,7 @@ export const CoverageFieldsItem: Field[] = [
     entityField: '',
     value: '',
     disable: true
-  },
+  }, */
 ];
 
 
@@ -199,7 +143,7 @@ export const COVERAGES: Coverage[] =  [
   },
   {
     coverageId: '7',
-    isSelected: true,
+    isSelected: false,
     coverageName: 'Enfermedades en fase Terminal ( cobertura sin costo preseleccionada) ',   // ET
     assuredImport: ' ',
     cost: ' ',
