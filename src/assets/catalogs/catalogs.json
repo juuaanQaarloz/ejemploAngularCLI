@@ -135,15 +135,78 @@
     "maritalStatuses": [
     {
         "id": 0,
+        "status": "Soltero(a)",
+        "value": "S"
+	},
+	{
+        "id": 1,
         "status": "Casado(a)",
         "value": "C"
     },
-    {
-        "id": 1,
-        "status": "Soltero(a)",
-        "value": "S"
+	{
+        "id": 2,
+        "status": "Divorciado(a)",
+        "value": "D"
+    },
+	{
+        "id": 3,
+        "status": "Union libre",
+        "value": "U"
+    },
+	{
+        "id": 4,
+        "status": "Viudo(a)",
+        "value": "V"
     }],
-    "relationships": [
+    "paymentMethods": [
+	{
+		"id": 0,
+		"status": "Mensual",
+		"value": "M"
+	},
+	{
+		"id": 1,
+		"status": "Trimestral",
+		"value": "T"
+	},
+	{
+		"id": 2,
+		"status": "Semestral",
+		"value": "S"
+	},
+	{
+		"id": 3,
+		"status": "Anual",
+		"value": "A"
+	}],
+    "payMode": [
+	{
+		"id": 0,
+		"status": "Efectivo",
+		"value": "E"
+	},
+	{
+		"id": 1,
+		"status": "Cargo automático a tarjeta de crédito / débito / CLABE",
+		"value": "T"
+	}],
+    "contactMedium": [
+	{
+		"id": 0,
+		"status": "Mensaje de texto",
+		"value": "M"
+	},
+	{
+		"id": 1,
+		"status": "Llamada",
+		"value": "T"
+	},
+	{
+		"id": 2,
+		"status": "Correo electrónico",
+		"value": "E"
+	}],
+	"relationships": [
     {
         "relationshipId": 0,
         "relationship": "Padre",

@@ -20,6 +20,7 @@ import {Plan1, Plan2} from './mock-plan/mock-plan';
 import {statements, statements0, statements1, statements2, statements3} from './statements/statements';
 import {ifTrue} from 'codelyzer/util/function';
 import { DatosTelefonoSolicitante } from './mock-general-data/mock-telefono-solicitante';
+import { FormasPago, FormasPagoAutorizo } from './mock-general-data/mock-formas-pago';
 
 export const MockFieldsContractorType: Field[] = [
   {
@@ -742,6 +743,48 @@ export const MockContentStep11Process1ContentSection2: Content[] = [
 ];
 
 export const MockContentStep12Process1ContentSection2: Content[] = [
+  {
+    id: 'content-2.1',
+    idParent: 'step-12',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.1',
+    title: '',
+    // process?: Process;
+    fields: FormasPago,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-2.17',
+    idParent: 'step-12',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.2',
+    title: 'Autorizo a MetLife, me contacte a través de los siguientes medios (seleccionar una opción):',
+    // process?: Process;
+    fields: FormasPagoAutorizo,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
   {
     id: 'content-2.34',
     idParent: 'step-12',
