@@ -21,6 +21,8 @@ import {statements, statements0, statements1, statements2, statements3} from './
 import {ifTrue} from 'codelyzer/util/function';
 import { DatosTelefonoSolicitante } from './mock-general-data/mock-telefono-solicitante';
 import { FormasPago, FormasPagoAutorizo } from './mock-general-data/mock-formas-pago';
+import { PerfilTransaccionalNumero, PerfilTransaccionalMonto } from './mock-general-data/mock-perfil-transaccional';
+import { OtrosSeguros } from './mock-general-data/mock-other-insurance';
 
 export const MockFieldsContractorType: Field[] = [
   {
@@ -810,6 +812,48 @@ export const MockContentStep12Process1ContentSection2: Content[] = [
 
 export const MockContentStep13Process1ContentSection2: Content[] = [
   {
+    id: 'content-13.1',
+    idParent: 'step-13',
+    parentType: 'Step',
+    idHtml: 'app-content-form-13.1',
+    title: 'Número aproximado de transacciones anuales',
+    // process?: Process;
+    fields: PerfilTransaccionalNumero,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-13.1',
+    idParent: 'step-13',
+    parentType: 'Step',
+    idHtml: 'app-content-form-13.1',
+    title: 'Monto aproximado de transacciones anuales (en Moneda Nacional)',
+    // process?: Process;
+    fields: PerfilTransaccionalMonto,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
     id: 'content-2.34',
     idParent: 'step-12',
     parentType: 'Step',
@@ -1111,6 +1155,27 @@ export const MockContentStep14Process1ContentSection2: Content[] = [
 ];
 
 export const MockContentStep15Process1ContentSection2: Content[] = [
+  {
+    id: 'content-13.1',
+    idParent: 'step-13',
+    parentType: 'Step',
+    idHtml: 'app-content-form-13.1',
+    title: 'Esta información no faculta a la compañía para rescindir el contrato en los términos del artículo 47 de la Ley Sobre el Contrato de Seguro.',
+    // process?: Process;
+    fields: OtrosSeguros,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields',
+    // enableConditions?: 'string';
+    styleClass: 'questions-type'
+    // --------------------------
+  },
   {
     id: 'content-2.34',
     idParent: 'step-15',
