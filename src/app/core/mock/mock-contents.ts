@@ -16,7 +16,7 @@ import {medicalFields, medicalQuestions} from './basic-questionnaires/medical';
 import {AgentQuestion, AgentQuestion1} from './mock-agents/mock-agents-questions';
 import {AuthorizationFields1, AuthorizationQuestions1, AuthorizationQuestions2} from './authorization/authorization-questions';
 
-import {Plan1, Plan2, Plan3, Plan4, Plan5} from './mock-plan/mock-plan';
+import {Plan1, Plan2, Plan3, Plan4, Plan5, Plan6} from './mock-plan/mock-plan';
 import {statements, statements0, statements1, statements2, statements3} from './statements/statements';
 import {ifTrue} from 'codelyzer/util/function';
 
@@ -754,13 +754,55 @@ export const MockContentStep16Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass?: 'string';
     // --------------------------
+  }, */
+  {
+    id: 'content-16.2',
+    idParent: 'step-16',
+    parentType: 'Step',
+    idHtml: 'app-content-form-16.2',
+    title: 'Prima adicional anual y / o aportaciones anuales programadas',
+    // process?: Process;
+    fields: Plan3,
+    //  operations: SearchOccupationOperationsS,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
   },
   {
     id: 'content-16.2',
     idParent: 'step-16',
     parentType: 'Step',
     idHtml: 'app-content-form-16.2',
-    title: '',
+    title: 'Distribución de fondos',
+    // process?: Process;
+    fields: Plan4,
+    //  operations: SearchOccupationOperationsS,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-16.2',
+    idParent: 'step-16',
+    parentType: 'Step',
+    idHtml: 'app-content-form-16.2',
+    title: 'Plan Personal Retiro',
     // process?: Process;
     fields: Plan5,
     //  operations: SearchOccupationOperationsS,
@@ -775,7 +817,28 @@ export const MockContentStep16Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass?: 'string';
     // --------------------------
-  }, */
+  },
+  {
+    id: 'content-16.2',
+    idParent: 'step-16',
+    parentType: 'Step',
+    idHtml: 'app-content-form-16.2',
+    title: 'Cuenta Personal Especial para el Ahorro',
+    // process?: Process;
+    fields: Plan6,
+    //  operations: SearchOccupationOperationsS,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
   {
     id: 'content-16.2',
     idParent: 'step-16',

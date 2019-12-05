@@ -73,6 +73,21 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       });
     }
 
+    if (this.fieldObj.enableConditions) {
+      const dependedFields = this.applicationService.getDependedFields(this.fieldObj.enableConditions);
+      dependedFields.forEach((dependedField) => {
+        this.form.controls[dependedField].valueChanges.subscribe((value) => {
+          this.disable = this.checkState2(this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form));
+          console.log('disable2: ', this.disable);
+          if (this.disable === true){
+            this.form.controls[this.fieldObj.name].disable();
+          } else {
+            this.form.controls[this.fieldObj.name].enable();
+          }
+        });
+      });
+    }
+
     if (this.fieldObj.name === 'age' || this.fieldObj.name === 'ageS') {
       this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
         // console.log('onValueChange age: ', value);
@@ -299,7 +314,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   checkState() {
     const status = this.form.controls[this.fieldObj.name].status;
-    // // console.log('state: ', status);
+    // console.log('state: ', status);
     let result = false;
     if (status === 'DISABLED') {
       result = true;
@@ -307,7 +322,19 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     return result;
   }
 
-  calculateRFC() {
+  checkState2(acceso: boolean) {
+    const status = this.form.controls[this.fieldObj.name].status;
+    console.log('state2: ', status);
+    let result = false;
+    if (status === 'DISABLED' && acceso === true) {
+      result = true;
+    } else {
+      result = acceso;
+    }
+    return result;
+  }
+
+    calculateRFC() {
     let apellidoPaterno;
     let apellidoMaterno;
     let nombre;
