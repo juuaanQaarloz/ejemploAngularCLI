@@ -6,6 +6,9 @@ import {TrackScrollDirective} from './directives/track-scroll.directive';
 import { OnlyGivenCharactersDirective } from './directives/only-given-characters.directive';
 import { FormatCellPipe } from './pipes/format-cell.pipe';
 import { StyleCellDirective } from './directives/style-cell.directive';
+import { AutocompleteDirective } from './directives/autocomplete.directive';
+import { AutocompleteContentDirective } from './directives/autocomplete-content.directive';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   imports: [CommonModule],
@@ -13,13 +16,19 @@ import { StyleCellDirective } from './directives/style-cell.directive';
     TrackScrollDirective,
     OnlyGivenCharactersDirective,
     FormatCellPipe,
-    StyleCellDirective
+    StyleCellDirective,
+    AutocompleteDirective,
+    AutocompleteContentDirective,
+    FilterPipe
   ],
   exports: [
     TrackScrollDirective,
     OnlyGivenCharactersDirective,
     FormatCellPipe,
-    StyleCellDirective
+    StyleCellDirective,
+    AutocompleteDirective,
+    AutocompleteContentDirective,
+    FilterPipe
   ],
   providers: [
     AuthGuard,

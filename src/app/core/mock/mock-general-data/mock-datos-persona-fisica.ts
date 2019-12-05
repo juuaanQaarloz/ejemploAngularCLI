@@ -38,7 +38,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     name: 'fatherLastName',
     orderAppearance: 2,
     label: 'Apellido paterno*',
-    type: 'text',
+    type: 'autocomplete',
     required: true,
     placeholder: 'Apellido paterno',
     length: '40',

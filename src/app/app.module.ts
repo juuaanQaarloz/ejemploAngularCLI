@@ -45,6 +45,8 @@ import { TableRowComponent } from './components/table-component/table-row/table-
 import { QuestionnaireComponent } from './components/questionnaire/questionnaire/questionnaire.component';
 import { QuestionComponent } from './components/questionnaire/question/question.component';
 import { NewRowComponent } from './components/table-component/new-row/new-row.component';
+import { OptionComponent } from './components/option/option.component';
+import {AutocompleteComponent} from './components/autocomplete/autocomplete.component';
 
 // @ts-ignore
 @NgModule({
@@ -76,6 +78,8 @@ import { NewRowComponent } from './components/table-component/new-row/new-row.co
     QuestionnaireComponent,
     QuestionComponent,
     NewRowComponent,
+    OptionComponent,
+    AutocompleteComponent
     ],
 
   imports: [

@@ -6,6 +6,8 @@ import {DialogConfig} from '../../dialog/dialog-config';
 import {DialogRef} from '../../dialog/dialog-ref';
 import {OKOPT, RowOperations} from '../../../core/mock/mock-operations';
 import {ModalService} from '../../custom-modal';
+import {medicalFieldsDialog} from '../../../core/mock/basic-questionnaires/medical';
+import {sportsFieldsDialog} from '../../../core/mock/basic-questionnaires/sports-aviation-hobbies';
 
 @Component({
   selector: 'app-new-row',
@@ -38,6 +40,7 @@ export class NewRowComponent implements OnInit {
       this.itemType = this.config.data.itemType;
       this.item = this.config.data.item;
 
+      this.setContentFields();
       this.formGroup = this.appService.createNewFormGroup(this.content.fields);
       this.foundedOperations = this.getOperations();
 
@@ -46,6 +49,16 @@ export class NewRowComponent implements OnInit {
         // setFieldsValues
         this.setFieldsItemValues();
       }
+
+
+    }
+  }
+
+  setContentFields() {
+    if (this.itemType === 'disease') {
+      this.content.fields = medicalFieldsDialog;
+    } else if (this.itemType === 'sport') {
+      this.content.fields = sportsFieldsDialog;
     }
   }
 
@@ -84,19 +97,19 @@ export class NewRowComponent implements OnInit {
     if (this.itemType === 'disease') {
       newMappedItem = {
         idDisease: (this.appService.getLastItemId(this.itemType) + 1).toString(),
-        name: this.formGroup.controls.describeDiseases.value,
-        diagnosticDate: this.formGroup.controls.diagnosticDate.value,
-        duration: this.formGroup.controls.durationDiseases.value,
-        actualCondition: this.formGroup.controls.actualMedicalCondition.value,
+        name: this.formGroup.controls.describeDiseasesD.value,
+        diagnosticDate: this.formGroup.controls.diagnosticDateD.value,
+        duration: this.formGroup.controls.durationDiseasesD.value,
+        actualCondition: this.formGroup.controls.actualMedicalConditionD.value,
         hasQuestionnaire: false
       };
 
     } else if (this.itemType === 'sport') {
       newMappedItem = {
         idSportActivity: (this.appService.getLastItemId(this.itemType) + 1).toString(),
-        name: this.formGroup.controls.extremeSports.value,
-        periodicity: this.formGroup.controls.periodicity.value,
-        description: this.formGroup.controls.otherActivity.value,
+        name: this.formGroup.controls.extremeSportsD.value,
+        periodicity: this.formGroup.controls.periodicityD.value,
+        description: this.formGroup.controls.otherActivityD.value,
       };
 
     }
@@ -115,19 +128,19 @@ export class NewRowComponent implements OnInit {
     if (this.itemType === 'disease') {
       newMappedItem = {
         idDisease: this.item.idDisease,
-        name: this.formGroup.controls.describeDiseases.value,
-        diagnosticDate: this.formGroup.controls.diagnosticDate.value,
-        duration: this.formGroup.controls.durationDiseases.value,
-        actualCondition: this.formGroup.controls.actualMedicalCondition.value,
+        name: this.formGroup.controls.describeDiseasesD.value,
+        diagnosticDate: this.formGroup.controls.diagnosticDateD.value,
+        duration: this.formGroup.controls.durationDiseasesD.value,
+        actualCondition: this.formGroup.controls.actualMedicalConditionD.value,
         hasQuestionnaire: false
       };
 
     } else if (this.itemType === 'sport') {
       newMappedItem = {
         idSportActivity: this.item.idSportActivity,
-        name: this.formGroup.controls.extremeSports.value,
-        periodicity: this.formGroup.controls.periodicity.value,
-        description: this.formGroup.controls.otherActivity.value,
+        name: this.formGroup.controls.extremeSportsD.value,
+        periodicity: this.formGroup.controls.periodicityD.value,
+        description: this.formGroup.controls.otherActivityD.value,
       };
 
     }

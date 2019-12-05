@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import { FormGroup} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import {ApplicationService, AuthService, StorageService} from '../../core/services';
 import {MockTemplate} from '../../core/mock/mock-template';
 import {DialogService} from '../dialog/dialog.service';
@@ -15,6 +15,7 @@ import {Template} from '../../models/template';
   styleUrls: ['./application.component.css'],
 })
 export class ApplicationComponent implements OnInit {
+
   applicationObj: Template;
   payLoad = '';
   formGroup: FormGroup;

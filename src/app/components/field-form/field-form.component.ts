@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {Field} from '../../models/field';
-import {FormGroup} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import {SelectOption} from '../../models/select-option-interface';
 import {ApplicationService, validateAge} from '../../core/services';
 import {MatIconRegistry} from '@angular/material';
@@ -26,6 +26,16 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   show = true;
   disable: boolean;
   regExpPattern;
+
+  // for test component
+  options = [
+    { id: 1, label: 'ONE' , description: 'Description One'},
+    { id: 2, label: 'TWO' , description: 'Description Two'},
+    { id: 3, label: 'THREE', description: 'Description Three' }
+  ];
+  control = new FormControl();
+  // for test component
+
   constructor(private applicationService: ApplicationService,
               private matIconRegistry: MatIconRegistry,
               private domSanitizer: DomSanitizer) {
@@ -151,6 +161,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onBlur() {
+    console.log('onBlur...');
     if (this.fieldObj.name === 'zipCode' || this.fieldObj.name === 'zipCodeS' || this.fieldObj.name === 'zipCodeM') {
       const zipCode = this.form.controls[this.fieldObj.name].value;
       // // console.log('zipCode: ', zipCode);
