@@ -390,13 +390,13 @@ export const Plan6: Field[] = [
 export const Plan7: Field[] = [
   {
     id: 'field-1405',
-    idHtml: 'txtAdditionalCost',
-    name: 'additionalCost',
+    idHtml: 'txtAdditionalCost2',
+    name: 'additionalCost2',
     orderAppearance: 15,
-    label: 'Prima adicional anual',
+    label: 'Prima Total  Anual y Aportaciones',
     type: 'text',
     required: false,
-    placeholder: 'Prima adicional anual',
+    placeholder: 'Prima Total  Anual y Aportaciones',
     length: '40',
     minValue: 0,
     maxValue: 40,
