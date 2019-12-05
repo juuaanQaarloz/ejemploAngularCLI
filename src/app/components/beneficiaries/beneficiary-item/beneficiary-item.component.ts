@@ -106,7 +106,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
     this.setFieldsValues();
     this.modalId = 'modal-' + this.itemType + this.index;
 
-    console.log('item: ', this.item);
+    // console.log('item: ', this.item);
   }
 
   ngAfterViewInit(): void {

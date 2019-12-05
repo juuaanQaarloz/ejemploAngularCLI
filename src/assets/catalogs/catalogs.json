@@ -413,7 +413,8 @@
         "ocupationZipCode": null,
         "occupationDetails": null,
         "occupationIncome": null
-    }],
+    }
+    ],
     "terms": [
     {
         "id": 0,

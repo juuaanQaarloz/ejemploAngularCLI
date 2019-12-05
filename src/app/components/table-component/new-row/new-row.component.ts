@@ -155,7 +155,7 @@ export class NewRowComponent implements OnInit {
         foundedOperations.push(filterResult);
       }
     });
-    console.log('foundedOperations: ', foundedOperations);
+    // console.log('foundedOperations: ', foundedOperations);
     return foundedOperations;
   }
 

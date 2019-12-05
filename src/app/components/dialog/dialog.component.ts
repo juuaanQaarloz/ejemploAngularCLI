@@ -49,6 +49,7 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
   }
 
   onDialogClicked(evt: MouseEvent) {
+    console.log('onDialogClicked');
     evt.stopPropagation();
   }
 

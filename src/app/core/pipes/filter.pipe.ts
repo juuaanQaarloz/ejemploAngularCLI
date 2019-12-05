@@ -12,7 +12,7 @@ export class FilterPipe implements PipeTransform {
 
     return items.filter(
       item =>
-        item[labelKey || 'label']
+        item[labelKey || 'name']
           .toLowerCase()
           .includes(searchTerm.toLowerCase()) === true
     );

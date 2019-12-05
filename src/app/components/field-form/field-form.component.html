@@ -178,14 +178,14 @@
                [noAllowedCharactersPattern]="fieldObj.noAllowedCharactersPattern"
                [pattern]="regExpPattern"
                [type]="toggleVisible ? 'text' : 'password'"
-               [formControlName]="fieldObj.name"
+               [formControl]="control"
                [id]="fieldObj.idHtml"
                placeholder="{{fieldObj.placeholder}}"
                value=""
                [maxlength]="fieldObj.maxValue + 1"
                [appAutocomplete]="autocomplete"
-               (keyup)="onKeyUp($event)">
-               <!--(blur)="onBlur()"-->
+               (keyup)="onKeyUp($event)"
+               (blur)="onBlur()">
 
         <span [ngStyle]="{'background': this.disable ? '#EBEBE4':''}">{{fieldObj.label}}</span>
         <a *ngIf="fieldObj.canChangeType" href="javascript:;" (click)="onClickToggle()"
@@ -201,11 +201,15 @@
 
     <app-autocomplete #autocomplete="appAutocomplete">
       <ng-template appAutocompleteContent>
-        <ng-container *ngIf="(options | filter: control.value) as result">
-          <app-option *ngFor="let option of result" [value]="option.label">
-            {{ option.label}}
+        <ng-container *ngIf="loading">
+          <p >Buscando... </p>
+        </ng-container>
+
+        <ng-container *ngIf="(autocompleteOptions | filter: control.value) as result">
+          <app-option *ngFor="let option of result" [value]="option.name">
+            {{ option.name}}
           </app-option>
-          <app-option *ngIf="!result.length">No result...</app-option>
+          <app-option *ngIf="(!result.length) && (!loading)">No se encontraron resultados...</app-option>
         </ng-container>
       </ng-template>
     </app-autocomplete>

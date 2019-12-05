@@ -21,11 +21,13 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   radioOptions = [];
   selectOptions = [];
   checkBoxOptions = [];
+  autocompleteOptions = [];
   toggleVisible = true;
   datePickerClicked = false;
   show = true;
   disable: boolean;
   regExpPattern;
+  loading = true;
 
   // for test component
   options = [
@@ -45,7 +47,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     if (this.fieldObj.type === 'radio' || this.fieldObj.type === 'select'
-      || this.fieldObj.type === 'checkbox' || this.fieldObj.type === 'select-multiple') {
+      || this.fieldObj.type === 'checkbox' || this.fieldObj.type === 'select-multiple'
+      || this.fieldObj.type === 'autocomplete') {
       this.getOptions();
     }
     if (this.fieldObj.type === 'select' && this.fieldObj.value) {
@@ -161,13 +164,13 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onBlur() {
-    console.log('onBlur...');
+    // console.log('onBlur...');
     if (this.fieldObj.name === 'zipCode' || this.fieldObj.name === 'zipCodeS' || this.fieldObj.name === 'zipCodeM') {
       const zipCode = this.form.controls[this.fieldObj.name].value;
-      // // console.log('zipCode: ', zipCode);
+      // console.log('zipCode: ', zipCode);
       if (zipCode) {
         this.applicationService.getInfoFromSepomex(zipCode).subscribe((sepoMexResponse: SepomexObj) => {
-          // // console.log('sepoMexResponse: ', sepoMexResponse);
+          // console.log('sepoMexResponse: ', sepoMexResponse);
           if (sepoMexResponse) {
             this.setAddress(sepoMexResponse);
           }
@@ -192,8 +195,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onChangeSelect(event) {
-    // // console.log('onChangeSelect...');
-    // // console.log('event.target.value: ', event.target.value);
+    // console.log('onChangeSelect...');
+    // console.log('event.target.value: ', event.target.value);
     if (event.target.value === '') {
       this.showSelectLabel = false;
     } else {
@@ -220,8 +223,11 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
               this.radioOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
             } else if (this.fieldObj.type === 'checkbox') {
               this.checkBoxOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
+            } else if (this.fieldObj.type === 'autocomplete') {
+              this.autocompleteOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
             }
           });
+          this.loading = false;
         }
       });
   }
