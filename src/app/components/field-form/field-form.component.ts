@@ -114,7 +114,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         console.log('itemFromFieldComponent: ', this.item);
         if (this.fieldObj.detonateFunction === 'updateItem') {
           this.item.participationPercentage = value;
-          this.applicationService.updateItem(this.item, 'beneficiary');
+          const result = this.applicationService.updateItem(this.item, 'beneficiary');
+          console.log('result: ', result);
+          if (!result.status) {
+            this.fieldObj.valid = false;
+            this.fieldObj.message = '';
+          }
         }
       });
     }
