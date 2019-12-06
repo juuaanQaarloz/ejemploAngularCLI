@@ -106,6 +106,13 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     if (this.fieldObj.pattern) {
       this.regExpPattern = stringToRegExp(this.fieldObj.pattern);
     }
+
+    this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
+      console.log('onValueChanges...');
+      console.log('formGroup: ', this.form);
+      console.log('formControlName: ', this.fieldObj.name);
+      console.log('value: ',  value);
+    });
   }
 
   ngAfterViewInit() {

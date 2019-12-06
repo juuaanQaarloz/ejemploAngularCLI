@@ -47,6 +47,7 @@ import { QuestionComponent } from './components/questionnaire/question/question.
 import { NewRowComponent } from './components/table-component/new-row/new-row.component';
 import { OptionComponent } from './components/option/option.component';
 import {AutocompleteComponent} from './components/autocomplete/autocomplete.component';
+import {ApplicationService} from './core/services';
 
 // @ts-ignore
 @NgModule({
@@ -103,6 +104,6 @@ import {AutocompleteComponent} from './components/autocomplete/autocomplete.comp
   providers: [
     { provide: DateAdapter, useClass: MyDateAdapter},
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS}
-  ]
+    ]
 })
 export class AppModule { }

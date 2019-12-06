@@ -40,6 +40,10 @@ export class ApplicationService {
               private modalService: ModalService) {
   }
 
+  getErrorMsg() {
+    return 'Error desde Servicio';
+  }
+
   submitFunction(type) {
     // console.log(type);
     if (type === 'searchOccupation') {

@@ -34,10 +34,7 @@ export class AutocompleteDirective implements OnInit, OnDestroy {
       this.appAutocomplete.optionsClick()
         .pipe(takeUntil(this.overlayRef.detachments()))
         .subscribe(( value: string ) => {
-          console.log('onOptionsClick... ', value);
           this.control.setValue(value);
-          console.log('this.control: ', this.control);
-          console.log('this.host: ', this.host);
           this.close();
         });
     });
@@ -55,7 +52,10 @@ export class AutocompleteDirective implements OnInit, OnDestroy {
     const template = new TemplatePortal(this.appAutocomplete.rootTemplate, this.vcr);
     this.overlayRef.attach(template);
 
-    overlayClickOutside(this.overlayRef, this.origin).subscribe(() => this.close());
+    overlayClickOutside(this.overlayRef, this.origin).subscribe(() => {
+      console.log('overlayClickOutside');
+      this.close();
+    });
   }
 
   private close() {

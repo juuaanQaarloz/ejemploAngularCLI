@@ -1,4 +1,4 @@
-<div class="ml-table-container">
+<div class="ml-table-container" [formGroup]="this.applicationService.getFormGroup()">
   <div class="ml-table-title">{{title}}</div>
   <div class="even" [ngClass]="style">
   <!--<div class="even-row">-->
