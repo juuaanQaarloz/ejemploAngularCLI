@@ -16,6 +16,7 @@ import {SepomexObj} from '../../models/sepomex-obj';
 export class FieldFormComponent implements OnInit, AfterViewInit {
   @Input() fieldObj: Field;
   @Input() form: FormGroup;
+  @Input() item?: any;
   showSelectLabel = false;
   isSelected = true;
   radioOptions = [];
@@ -107,12 +108,23 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       this.regExpPattern = stringToRegExp(this.fieldObj.pattern);
     }
 
-    this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
+    if (this.fieldObj.detonateFunction) {
+      this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
+        console.log('detonateFunction: ', this.fieldObj.detonateFunction);
+        console.log('itemFromFieldComponent: ', this.item);
+        if (this.fieldObj.detonateFunction === 'updateItem') {
+          this.item.participationPercentage = value;
+          this.applicationService.updateItem(this.item, 'beneficiary');
+        }
+      });
+    }
+
+    /*this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
       console.log('onValueChanges...');
       console.log('formGroup: ', this.form);
       console.log('formControlName: ', this.fieldObj.name);
       console.log('value: ',  value);
-    });
+    });*/
   }
 
   ngAfterViewInit() {

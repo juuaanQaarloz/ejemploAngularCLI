@@ -15,7 +15,12 @@
        *ngIf="itemType === 'country'" >{{item.taxCountryId}}</div>
 
   <div class="item-attribute" *ngFor="let field of fields">
-    <app-field-form [fieldObj]="field" [form]="formGroup"></app-field-form>
+    <app-field-form
+      [fieldObj]="field"
+      [form]="formGroup"
+      [item]="item">
+
+    </app-field-form>
   </div>
 
   <div class="operations">
