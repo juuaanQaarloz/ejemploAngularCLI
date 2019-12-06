@@ -4,13 +4,8 @@ import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';
-<<<<<<< HEAD
 import {Beneficiary, Formatwo, Field, Occupation, Step} from '../../models';
 import {equalEmailsValidator, higherAssuredImport, validateEmailConfirmation, validatorsObjects} from '../validators';
-=======
-import {Field, Occupation} from '../../models';
-import {equalEmailsValidator, validatorsObjects} from '../validators';
->>>>>>> 2d90faacf2fafa6302e231d47dd55f9a79ff8697
 import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
 import {COVERAGES} from '../mock/coverage/coverage';
@@ -760,7 +755,6 @@ export class ApplicationService {
               resEvalA = a;
             }
           }
-
           if (b.includes('=') || b.includes('<') || b.includes('>') || b.includes('!=')) {
             const conditionsB = this.getConditions(b);
             resEvalB = this.evaluateCondition(formGroup, conditionsB[0]);

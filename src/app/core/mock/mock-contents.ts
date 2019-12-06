@@ -832,133 +832,6 @@ export const MockContentStep13Process1ContentSection2: Content[] = [
     // styleClass?: 'string';
     // --------------------------
   },
-  /*
-  {
-    id: 'content-16.2',
-    idParent: 'step-16',
-    parentType: 'Step',
-    idHtml: 'app-content-form-16.2',
-    title: 'Invalidez Total y Permanente',
-    // process?: Process;
-    fields: Plan4,
-    //  operations: SearchOccupationOperationsS,
-    renderConditions: '',
-    // ---pending---
-    // contentChildren?: Array<Content>;
-    // -------------
-
-    // --added extra from model--
-    showContent: true,
-    contentType: 'looseFields'
-    // enableConditions?: 'string';
-    // styleClass?: 'string';
-    // --------------------------
-  }, */
-  {
-    id: 'content-16.2',
-    idParent: 'step-16',
-    parentType: 'Step',
-    idHtml: 'app-content-form-16.2',
-    title: 'Prima adicional anual y / o aportaciones anuales programadas',
-    // process?: Process;
-    fields: Plan3,
-    //  operations: SearchOccupationOperationsS,
-    renderConditions: '',
-    // ---pending---
-    // contentChildren?: Array<Content>;
-    // -------------
-
-    // --added extra from model--
-    showContent: true,
-    contentType: 'looseFields'
-    // enableConditions?: 'string';
-    // styleClass?: 'string';
-    // --------------------------
-  },
-  {
-    id: 'content-16.2',
-    idParent: 'step-16',
-    parentType: 'Step',
-    idHtml: 'app-content-form-16.2',
-    title: 'Distribución de fondos',
-    // process?: Process;
-    fields: Plan4,
-    //  operations: SearchOccupationOperationsS,
-    renderConditions: '',
-    // ---pending---
-    // contentChildren?: Array<Content>;
-    // -------------
-
-    // --added extra from model--
-    showContent: true,
-    contentType: 'looseFields'
-    // enableConditions?: 'string';
-    // styleClass?: 'string';
-    // --------------------------
-  },
-  {
-    id: 'content-16.2',
-    idParent: 'step-16',
-    parentType: 'Step',
-    idHtml: 'app-content-form-16.2',
-    title: 'Plan Personal Retiro',
-    // process?: Process;
-    fields: Plan5,
-    //  operations: SearchOccupationOperationsS,
-    renderConditions: '',
-    // ---pending---
-    // contentChildren?: Array<Content>;
-    // -------------
-
-    // --added extra from model--
-    showContent: true,
-    contentType: 'looseFields'
-    // enableConditions?: 'string';
-    // styleClass?: 'string';
-    // --------------------------
-  },
-  {
-    id: 'content-16.2',
-    idParent: 'step-16',
-    parentType: 'Step',
-    idHtml: 'app-content-form-16.2',
-    title: 'Cuenta Personal Especial para el Ahorro',
-    // process?: Process;
-    fields: Plan6,
-    //  operations: SearchOccupationOperationsS,
-    renderConditions: '',
-    // ---pending---
-    // contentChildren?: Array<Content>;
-    // -------------
-
-    // --added extra from model--
-    showContent: true,
-    contentType: 'looseFields'
-    // enableConditions?: 'string';
-    // styleClass?: 'string';
-    // --------------------------
-  },
-  {
-    id: 'content-16.2',
-    idParent: 'step-16',
-    parentType: 'Step',
-    idHtml: 'app-content-form-16.2',
-    title: 'Prima Total  Anual y Aportaciones',
-    // process?: Process;
-    fields: Plan7,
-    //  operations: SearchOccupationOperationsS,
-    renderConditions: '',
-    // ---pending---
-    // contentChildren?: Array<Content>;
-    // -------------
-
-    // --added extra from model--
-    showContent: true,
-    contentType: 'looseFields'
-    // enableConditions?: 'string';
-    // styleClass?: 'string';
-    // --------------------------
-  },
   {
     id: 'content-13.1',
     idParent: 'step-13',
@@ -1389,6 +1262,133 @@ export const MockContentStep16Process1ContentSection2: Content[] = [
     showContent: true,
     // enableConditions?: 'publicFunctionQuestion=true',
     styleClass: 'modal-type'
+    // --------------------------
+  },
+  /*
+  {
+    id: 'content-16.2',
+    idParent: 'step-16',
+    parentType: 'Step',
+    idHtml: 'app-content-form-16.2',
+    title: 'Invalidez Total y Permanente',
+    // process?: Process;
+    fields: Plan4,
+    //  operations: SearchOccupationOperationsS,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  }, */
+  {
+    id: 'content-16.2',
+    idParent: 'step-16',
+    parentType: 'Step',
+    idHtml: 'app-content-form-16.2',
+    title: 'Prima adicional anual y / o aportaciones anuales programadas',
+    // process?: Process;
+    fields: Plan3,
+    //  operations: SearchOccupationOperationsS,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-16.2',
+    idParent: 'step-16',
+    parentType: 'Step',
+    idHtml: 'app-content-form-16.2',
+    title: 'Distribución de fondos',
+    // process?: Process;
+    fields: Plan4,
+    //  operations: SearchOccupationOperationsS,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-16.2',
+    idParent: 'step-16',
+    parentType: 'Step',
+    idHtml: 'app-content-form-16.2',
+    title: 'Plan Personal Retiro',
+    // process?: Process;
+    fields: Plan5,
+    //  operations: SearchOccupationOperationsS,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-16.2',
+    idParent: 'step-16',
+    parentType: 'Step',
+    idHtml: 'app-content-form-16.2',
+    title: 'Cuenta Personal Especial para el Ahorro',
+    // process?: Process;
+    fields: Plan6,
+    //  operations: SearchOccupationOperationsS,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-16.2',
+    idParent: 'step-16',
+    parentType: 'Step',
+    idHtml: 'app-content-form-16.2',
+    title: 'Prima Total  Anual y Aportaciones',
+    // process?: Process;
+    fields: Plan7,
+    //  operations: SearchOccupationOperationsS,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
     // --------------------------
   },
   {
