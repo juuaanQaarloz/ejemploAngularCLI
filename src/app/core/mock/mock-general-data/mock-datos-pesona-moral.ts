@@ -147,7 +147,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     idHtml: 'txtMercantilNumber',
     name: 'mercantilNumber',
     orderAppearance: 6,
-    label: 'Folio mercantil de empresa (nacionalidad mexicana)*',
+    label: 'Folio mercantil (empresas de nacionalidad mexicana)*',
     type: 'text',
     required: true,
     placeholder: 'Folio mercantil',

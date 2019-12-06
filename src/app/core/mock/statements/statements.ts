@@ -69,7 +69,7 @@ export const statements1: Field[] = [
     idHtml: 'radioForeignQuestion',
     name: 'foreignQuestion',
     orderAppearance: 5,
-    label: '¿Eres extranjero?*',
+    label: 'En caso de ser extranjero, o tener residencia en el extranjero, especifica las razones para contratar un seguro en territorio nacional*',
     type: 'radio',
     required: true,
     placeholder: '',

@@ -58,22 +58,51 @@ export class ApplicationService {
       const currentStep = this.currentStepSource.getValue();
       // console.log('currentStep1: ', currentStep);
 
+      let contractorType = this.formGroup.controls["contractorType"].value;
       if (currentStep === 0) {
         this.changeValue(1);
       } else if (currentStep === 1) {
         this.changeValue(2);
       } else if (currentStep === 2) {
+        this.changeValue(3);
+      } else if (currentStep === 3 && contractorType) {
+        this.changeValue(10);
+      } else if (currentStep === 3 && !contractorType) {
         this.changeValue(7);
-      } else if (currentStep === 3) {
-        this.changeValue(4);
       } else if (currentStep === 4) {
-        this.changeValue(7);
+        this.changeValue(5);
       } else if (currentStep === 5) {
         this.changeValue(6);
       } else if (currentStep === 6) {
         this.changeValue(7);
       } else if (currentStep === 7) {
-        this.changeValue(0);
+        this.changeValue(8);
+      } else if (currentStep === 8) {
+        this.changeValue(9);
+      } else if (currentStep === 9) {
+        this.changeValue(10);
+      } else if (currentStep === 10) {
+        this.changeValue(11);
+      } else if (currentStep === 11) {
+        this.changeValue(12);
+      } else if (currentStep === 12) {
+        this.changeValue(13);
+      } else if (currentStep === 13) {
+        this.changeValue(14);
+      } else if (currentStep === 14) {
+        this.changeValue(15);
+      } else if (currentStep === 15) {
+        this.changeValue(16);
+      } else if (currentStep === 16) {
+        this.changeValue(17);
+      } else if (currentStep === 17) {
+        this.changeValue(18);
+      } else if (currentStep === 18) {
+        this.changeValue(19);
+      } else if (currentStep === 19) {
+        this.changeValue(20);
+      } else if (currentStep === 20) {
+        this.changeValue(21);
       }
 
       // console.log('currentStep2: ', this.currentStepSource.getValue());

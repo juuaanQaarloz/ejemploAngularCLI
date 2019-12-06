@@ -65,7 +65,7 @@ export const InformacionLaboral: Field[] = [
     idHtml: 'txtCompanyName',
     name: 'companyName',
     orderAppearance: 2,
-    label: 'Nombre de la empresa*',
+    label: 'Nombre de la empresa donde laboras*',
     type: 'text',
     required: true,
     placeholder: 'Nombre de la empresa',
