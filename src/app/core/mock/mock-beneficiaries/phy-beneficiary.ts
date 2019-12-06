@@ -171,7 +171,7 @@ export const BeneficiaryFieldsP: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: ''
+    value: '',
   },
   {
     id: 'field-100',

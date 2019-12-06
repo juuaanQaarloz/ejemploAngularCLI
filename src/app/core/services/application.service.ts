@@ -9,6 +9,7 @@ import {equalEmailsValidator, validatorsObjects} from '../validators';
 import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
 import {COVERAGES} from '../mock/coverage/coverage';
+import {BENEFICIARIES} from '../mock/mock-beneficiaries/mock-beneficiaries';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
@@ -20,7 +21,7 @@ const URL_SEPOMEX = '../assets/catalogs/response-sepomex.json';
 export class ApplicationService {
   private currentStepSource = new BehaviorSubject(0);
   currentValue = this.currentStepSource.asObservable();
-  beneficiaries = new BehaviorSubject([]);
+  beneficiaries = new BehaviorSubject(BENEFICIARIES);
   agents = new BehaviorSubject([]);
   sports = new BehaviorSubject([]);
   diseases = new BehaviorSubject([]);
@@ -335,10 +336,18 @@ export class ApplicationService {
   updateItem(updatedItem, itemType) {
     let currentItems;
     let propertyItem;
+    let currentTotalParticipationPercentage;
+    let maxLength;
+    let responseMessage1;
+    let responseMessage2;
 
     if (itemType === 'beneficiary') {
       currentItems = this.beneficiaries.getValue();
       propertyItem = 'beneficiaryId';
+      currentTotalParticipationPercentage = this.getTotalParticipationPercentage(itemType);
+      maxLength = 10;
+      responseMessage1 = 'No se pueden agregar más de 10 beneficiarios';
+      responseMessage2 = 'La suma de las participaciones de los beneficiarios excede el 100%';
     } else if (itemType === 'agent') {
       currentItems = this.agents.getValue();
       propertyItem = 'agentId';
@@ -355,12 +364,43 @@ export class ApplicationService {
       currentItems =  this.sports .getValue();
       propertyItem = 'idSportActivity';
     }
-    const foundItem = currentItems.filter(i => i[propertyItem] === updatedItem[propertyItem])[0];
+    // const foundItem = currentItems.filter(i => i[propertyItem] === updatedItem[propertyItem])[0];
+
+    if (currentTotalParticipationPercentage !== undefined) {
+      // when is a max participation limit
+      if (currentTotalParticipationPercentage + Number(updatedItem[propertyItem]) <= 100) {
+        // when is a maxItems limit
+        if (currentItems.length <= maxLength) {
+          // the new item can be added
+          const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
+          currentItems[index] = updatedItem;
+          this.setItems(itemType, currentItems);
+          return {status: true, message: ''};
+        } else {
+          return {status: false, message: responseMessage1};
+        }
+      } else {
+        return {status: false, message: responseMessage2};
+      }
+    } else if (maxLength !== undefined) {
+      // when is a maxItems limit
+      if (currentItems.length <= maxLength) {
+        // the new item can be added
+        const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
+        currentItems[index] = updatedItem;
+        this.setItems(itemType, currentItems);
+        return {status: true, message: ''};
+      } else {
+        return {status: false, message: responseMessage1};
+      }
+    } else {
+      const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
+      currentItems[index] = updatedItem;
+      this.setItems(itemType, currentItems);
+    }
 
     const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
-
     currentItems[index] = updatedItem;
-
     this.setItems(itemType, currentItems);
   }
 

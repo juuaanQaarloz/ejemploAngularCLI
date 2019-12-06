@@ -6,6 +6,7 @@ import {fromEvent} from 'rxjs';
 import {filter, takeUntil} from 'rxjs/operators';
 import {TemplatePortal} from '@angular/cdk/portal';
 import {untilDestroyed} from 'ngx-take-until-destroy';
+import {correctFieldValue} from '../utilities';
 
 @Directive({
   selector: '[appAutocomplete]'
@@ -34,6 +35,9 @@ export class AutocompleteDirective implements OnInit, OnDestroy {
       this.appAutocomplete.optionsClick()
         .pipe(takeUntil(this.overlayRef.detachments()))
         .subscribe(( value: string ) => {
+          const elem: Element = document.getElementById(this.host.nativeElement.id);
+          elem.setAttribute('value', value);
+          // console.log('this.host: ', this.host.nativeElement.id);
           this.control.setValue(value);
           this.close();
         });

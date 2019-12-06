@@ -178,14 +178,14 @@
                [noAllowedCharactersPattern]="fieldObj.noAllowedCharactersPattern"
                [pattern]="regExpPattern"
                [type]="toggleVisible ? 'text' : 'password'"
-               [formControl]="control"
+               [formControlName]="fieldObj.name"
                [id]="fieldObj.idHtml"
                placeholder="{{fieldObj.placeholder}}"
                value=""
                [maxlength]="fieldObj.maxValue + 1"
                [appAutocomplete]="autocomplete"
-               (keyup)="onKeyUp($event)"
-               (blur)="onBlur()">
+               (keyup)="onKeyUp($event)">
+               <!--(blur)="onBlur()">-->
 
         <span [ngStyle]="{'background': this.disable ? '#EBEBE4':''}">{{fieldObj.label}}</span>
         <a *ngIf="fieldObj.canChangeType" href="javascript:;" (click)="onClickToggle()"
@@ -205,7 +205,7 @@
           <p >Buscando... </p>
         </ng-container>
 
-        <ng-container *ngIf="(autocompleteOptions | filter: control.value) as result">
+        <ng-container *ngIf="(autocompleteOptions | filter: form.controls[fieldObj.name].value) as result">
           <app-option *ngFor="let option of result" [value]="option.name">
             {{ option.name}}
           </app-option>

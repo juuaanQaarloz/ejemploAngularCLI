@@ -38,6 +38,11 @@ export class ApplicationComponent implements OnInit {
     this.appService.setFormGroup(this.formGroup);
     // an example array of 150 items to be paged
     this.items = Array(150).fill(0).map((x, i) => ({id: (i + 1), name: `Item ${i + 1}`}));
+    /*this.appService.updateItemProperty(
+      'beneficiary',
+      '1',
+      'participationPercentage',
+      '40');*/
 
   }
 
