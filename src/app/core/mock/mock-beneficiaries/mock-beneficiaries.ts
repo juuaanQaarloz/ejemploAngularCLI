@@ -135,5 +135,6 @@ export const beneficiaryFields: Field[] = [
     entity: '',
     entityField: '',
     value: '',
+    detonateFunction: 'updateItem'
   }
 ];

@@ -1,9 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans&display=swap');
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-:root {
-  --columnNumber: 0;
-}
 
 html,body{
   font-family: 'Noto Sans', sans-serif;
@@ -901,6 +898,10 @@ select::-ms-expand {
   background-color: #E5F4FB;
 }
 
+:root{
+  --columnNumber: 0;
+}
+
 .even-row {
   display: grid;
   grid-template-columns: repeat(var(--columnNumber), 1fr);
@@ -918,6 +919,10 @@ select::-ms-expand {
 
 .even-agent {
   grid-template-columns: repeat(5, 1fr);
+}
+
+.even-sport {
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .even-occupation {

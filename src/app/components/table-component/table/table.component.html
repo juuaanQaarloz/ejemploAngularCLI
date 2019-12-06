@@ -1,33 +1,27 @@
 <div class="ml-table-container">
-  <div class="ml-table-title">{{caption}}</div>
+  <div *ngIf="header" class="ml-table-title">{{header}}</div>
   <div class="even-row">
     <div class="field-name-column" *ngFor="let map of columnMaps">{{map.header}}</div>
+
+    <div class="field-name-column">
+      <img src="../../../../assets/img/tables/plus_simbol.svg" (click)="addRow()">
+    </div>
   </div>
 
-  <div class="even-row" *ngFor="let record of records; let i = index;"
-       [ngStyle]="{'background-color':  determinateEvenOrOdd(i) ? '#E5F4FB': '#FFFFFF'}">
-    <div *ngFor="let map of columnMaps"
-         [appStyleCell]="record[map.access(record)]">
-      {{ record[map.access(record)] | formatCell}}</div>
-  </div>
-
-  <!--<app-table-row *ngFor="let itemRow of rows; let i = index;"
-                 [itemRow]="itemRow"
+  <app-table-row *ngFor="let row of rows; let i = index;"
+                 [row]="row.rowObject"
                  [index]="i"
-  ></app-table-row>-->
+                 [columnMaps]="columnMaps"
+                 [fields]="fields"
+                 [formGroup]="formGroup"
+  ></app-table-row>
+
+  <!--<div data-forms="floating-label" class="ml-form even-row">
+    <div *ngFor="let field of fields">
+      <app-field-form [fieldObj]="field" [form]="formGroup"></app-field-form>
+    </div>
+
+    <button (click)="addRow()">Agregar</button>
+  </div>-->
 
 </div>
-
-<!--<table class="table">
-  <caption *ngIf="caption">{{ caption }}</caption>
-  <thead>
-  <tr>
-    <th *ngFor="let map of columnMaps">{{ map.header }}</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr *ngFor="let record of records">
-    <td *ngFor="let map of columnMaps">{{ record[map.primaryKey] }}</td>
-  </tr>
-  </tbody>
-</table>-->

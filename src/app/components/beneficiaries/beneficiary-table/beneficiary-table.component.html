@@ -1,6 +1,7 @@
-<div class="ml-table-container">
+<div class="ml-table-container" [formGroup]="this.applicationService.getFormGroup()">
   <div class="ml-table-title">{{title}}</div>
   <div class="even" [ngClass]="style">
+  <!--<div class="even-row">-->
     <div class="field-name-column" *ngFor="let columnName of columnsNames">{{columnName}}</div>
     <div class="field-name-column" *ngIf="(items.length === 0 || items === null) && showplus==true">
       <img src="../../../../assets/img/tables/plus_simbol.svg" (click)="addNewItem()">
@@ -14,11 +15,12 @@
                         [index]="i"
                         [isLast]="isLast"
                         [totalItems]="items.length"
-                        [totalParticipationPercentageItems]="totalPercentageParticipation">
+                        [totalParticipationPercentageItems]="totalPercentageParticipation"
+                        [content]="this.content">
   </app-beneficiary-item>
 
-  <div>
-    <div *ngIf="content" data-forms="floating-label" class="ml-form"
+  <div *ngIf="itemsType === 'beneficiary'">
+    <div data-forms="floating-label" class="ml-form"
          [ngClass]="content.styleClass">
       <div *ngFor="let field of content.fields">
         <app-field-form [fieldObj]="field" [form]="this.applicationService.getFormGroup()"></app-field-form>

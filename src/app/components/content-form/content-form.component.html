@@ -42,6 +42,34 @@
     <div *ngSwitchCase="'table-formatIV-2-426'" class="ml-step-container">
       <app-beneficiary-table [type]="contentObj.contentType"></app-beneficiary-table>
     </div>
+
+    <div *ngSwitchCase="'table-sports'">
+      <!--<app-table [header]="'Deporte(s)'"
+                 [rows]="rows"
+                 [settings]="columnsSettingsSports"
+                 [fields]="contentObj.fields">
+      </app-table>-->
+      <app-beneficiary-table [type]="contentObj.contentType"
+                             [content]="contentObj"
+      >
+      </app-beneficiary-table>
+
+    </div>
+
+    <div *ngSwitchCase="'table-diseases'">
+      <!--<app-table [header]="'Enfermedad(es)'"
+                 [rows]="rows"
+                 [settings]="columnsSettingsDiseases"
+                 [fields]="contentObj.fields">
+      </app-table>-->
+      <app-beneficiary-table [type]="contentObj.contentType"
+                             [content]="contentObj"
+      >
+
+      </app-beneficiary-table>
+    </div>
+
+
   </div>
 
   <p *ngIf="contentObj.warningMessage">{{contentObj.warningMessage}}</p>
@@ -61,11 +89,5 @@
       <app-content-form [form]="form" [contentObj]="contentChild"></app-content-form>
     </div>
   </div>
-
-  <!--<div *ngIf="payLoad" class="form-row">
-    <strong>Saved the following values</strong><br>{{payLoad}}
-  </div>
-
-  <button (click)="getFormValue()">get form value</button>-->
 </div>
 

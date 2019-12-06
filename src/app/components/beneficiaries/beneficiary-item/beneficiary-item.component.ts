@@ -1,5 +1,4 @@
 import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
-import {Beneficiary} from '../../../models/beneficiary-model';
 import {ApplicationService} from '../../../core/services';
 import {beneficiaryFields} from '../../../core/mock/mock-beneficiaries/mock-beneficiaries';
 import {NewBeneficiaryComponent} from '../new-beneficiary/new-beneficiary.component';
@@ -8,12 +7,16 @@ import {FormGroup} from '@angular/forms';
 import {ModalService} from '../../custom-modal';
 import {BeneficiaryItemOperations} from '../../../core/mock/mock-operations';
 import {NewAgentComponent} from '../new-agent/new-agent.component';
-import {AgentFields, AgentFieldsItem} from '../../../core/mock/mock-agents/mock-agents-questions';
-import {NewFormatwoFields, FormaTwoFieldsItem} from '../../../core/mock/formats/formatwo';
+import { AgentFieldsItem} from '../../../core/mock/mock-agents/mock-agents-questions';
+import {FormaTwoFieldsItem} from '../../../core/mock/formats/formatwo';
 import {NewFormatwoComponent} from '../new-formatwo/new-formatwo.component';
 import {CoverageFieldsItem} from '../../../core/mock/coverage/coverage';
 import {countryFieldsItems} from '../../../core/mock/formats/country';
 import {NewCountryComponent} from '../new-country/new-country.component';
+import {medicalFields} from '../../../core/mock/basic-questionnaires/medical';
+import {sportsFields2} from '../../../core/mock/basic-questionnaires/sports-aviation-hobbies';
+import {NewRowComponent} from '../../table-component/new-row/new-row.component';
+import {Content} from '../../../models';
 
 
 @Component({
@@ -29,6 +32,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   @Input() totalItems: number;
   @Input() totalParticipationPercentageItems: number;
   @Input() showplus: boolean;
+  @Input() content?: Content;
   fields;
   formGroup: FormGroup;
   modalId;
@@ -36,6 +40,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   questionModal;
   maxItems;
   styleClass;
+  enableOperations: boolean;
 
   constructor(public applicationService: ApplicationService,
               public dialog: DialogService,
@@ -49,41 +54,59 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       this.questionModal = '¿Está seguro que desea eliminar al beneficiario de la lista?';
       this.maxItems = 10;
       this.styleClass = 'item-row-beneficiary';
-      this.showplus = true;
+      this.enableOperations = true;
+
     } else if (this.itemType === 'agent') {
       this.fields = AgentFieldsItem;
       this.operations = BeneficiaryItemOperations;
       this.questionModal = '¿Está seguro que desea eliminar al agente de la lista?';
       this.maxItems = 2;
       this.styleClass = 'item-row-agent';
+      this.enableOperations = true;
+    } else if (this.itemType === 'disease') {
+      this.fields =  medicalFields;
+      this.operations = BeneficiaryItemOperations;
+      this.questionModal = '¿Está seguro que desea eliminar la enfermedad, lesión, estudio o tratamiento de la lista?';
+      this.styleClass = 'item-row-agent';
       this.showplus = true;
+      this.enableOperations = true;
+
+    } else if (this.itemType === 'sport') {
+      this.fields =  sportsFields2;
+      this.operations = BeneficiaryItemOperations;
+      this.questionModal = '¿Está seguro que desea eliminar la deporte / actividad de la lista?';
+      this.styleClass = 'item-row-sport';
+      this.showplus = true;
+      this.enableOperations = true;
+
     } else if (this.itemType === 'formatwo') {
       this.fields = FormaTwoFieldsItem;
       this.operations = BeneficiaryItemOperations;
       this.questionModal = '¿Está seguro que desea eliminar al formato de la lista?';
       this.maxItems = 5;
       this.styleClass = 'item-row-formatwo';
-      this.showplus = true;
+      this.enableOperations = true;
     } else if (this.itemType === 'coverage') {
       this.fields = CoverageFieldsItem;
       // this.operations = BeneficiaryItemOperations;
       this.questionModal = '';
       this.maxItems = 50;
       this.styleClass = 'item-row-formatwo';
-      this.showplus = false;
+      this.enableOperations = false;
     } else if (this.itemType === 'country') {
       this.fields = countryFieldsItems;
       this.operations = BeneficiaryItemOperations;
       this.questionModal = '¿Está seguro que desea eliminar al formato de la lista?';
       this.maxItems = 3;
       this.styleClass = 'item-row-formatwo';
-      this.showplus = true;
+      this.enableOperations = true;
     }
 
     this.formGroup = this.applicationService.createNewFormGroup(this.fields);
     this.setFieldsValues();
     this.modalId = 'modal-' + this.itemType + this.index;
 
+    // console.log('item: ', this.item);
   }
 
   ngAfterViewInit(): void {
@@ -101,11 +124,25 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       // ref = this.dialog.open(NewFormatwoComponent, {data: null});
     } else if (this.itemType === 'country') {
       ref = this.dialog.open(NewCountryComponent, {data: null});
+    } else if (this.itemType === 'disease') {
+      this.dialog.open(NewRowComponent,
+        {
+          data: {
+            operations: ['cancelOperationR', 'addItemR'],
+            content: this.content,
+            drawerTitle: 'Enfermedad, lesión, estudio o tratamiento',
+            itemType: 'disease'
+          }});
+    } else if (this.itemType === 'sport') {
+      ref = this.dialog.open(NewRowComponent,
+        {
+          data: {
+            operations: ['cancelOperationR', 'addItemR'],
+            content: this.content,
+            drawerTitle: 'Deporte / Actividad',
+            itemType: 'sport'
+          }});
     }
-
-    ref.afterClosed.subscribe((result) => {
-      // console.log('dialog closed FROM ITEM component, result: ', result);
-    });
   }
 
   deleteItem() {
@@ -120,6 +157,10 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       propertyItem = 'coverageId';
     } else if (this.itemType === 'country') {
       propertyItem = 'countryId';
+    } else if (this.itemType === 'disease') {
+      propertyItem = 'idDisease';
+    } else if (this.itemType === 'sport') {
+      propertyItem = 'idSportActivity';
     }
     this.applicationService.removeItem(this.item[propertyItem], this.itemType);
     this.closeModal(this.modalId);
@@ -137,11 +178,27 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       // ref = this.dialog.open(NewFormatwoComponent, {data: {item: this.item}});
     } else if (this.itemType === 'country') {
       ref = this.dialog.open(NewCountryComponent, {data: {item: this.item}});
+    } else if (this.itemType === 'disease') {
+      this.dialog.open(NewRowComponent,
+        {
+          data: {
+            operations: ['cancelOperationR', 'updateItemR'],
+            content: this.content,
+            drawerTitle: 'Enfermedad, lesión, estudio o tratamiento',
+            itemType: 'disease',
+            item: this.item
+          }});
+    } else if (this.itemType === 'sport') {
+      this.dialog.open(NewRowComponent,
+        {
+          data: {
+            operations: ['cancelOperationR', 'updateItemR'],
+            content: this.content,
+            drawerTitle: 'Deporte / Actividad',
+            itemType: 'sport',
+            item: this.item
+          }});
     }
-
-    ref.afterClosed.subscribe((result) => {
-      // console.log('dialog closed FROM BENEFICIARY ITEM, result: ', result);
-    });
   }
 
   getBeneficiaryTypeLabel() {
@@ -171,7 +228,13 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       this.formGroup.controls[this.fields[1].name].setValue(this.item.promotor);
       this.formGroup.controls[this.fields[2].name].setValue(this.item.key);
       this.formGroup.controls[this.fields[3].name].setValue(this.item.participation);
-    }  else if (this.itemType === 'formatwo') {
+    } else if (this.itemType === 'disease') {
+      this.setFieldsValuesDynamically();
+
+    } else if (this.itemType === 'sport') {
+      this.setFieldsValuesDynamically();
+
+    } else if (this.itemType === 'formatwo') {
       this.formGroup.controls[this.fields[0].name].setValue(this.item.formatwoBirthDate); // fatherLastName
     } else if (this.itemType === 'coverage') {
       // this.formGroup.controls[this.fields[0].name].setValue(this.item.coverageName);
@@ -182,6 +245,19 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       // console.log('item: ', this.item);
       // this.formGroup.controls[this.fields[0].name].setValue(this.item.taxCountryId); // fatherLastName
     }
+  }
+
+  setFieldsValuesDynamically() {
+    const itemAttrNames = [];
+    Object.keys(this.item).forEach((key, index) => {
+      if (index !== 0) { // skip the id attr to coindice with the fields
+        itemAttrNames.push(key);
+      }
+    });
+
+    this.fields.forEach((field, index) => {
+      this.formGroup.controls[field.name].setValue(this.item[itemAttrNames[index]]);
+    });
   }
 
   clearFields() {
@@ -207,4 +283,5 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       this.deleteItem();
     }
   }
+
 }

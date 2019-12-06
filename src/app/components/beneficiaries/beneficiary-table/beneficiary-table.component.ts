@@ -2,10 +2,11 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ApplicationService} from '../../../core/services';
 import {NewBeneficiaryComponent} from '../new-beneficiary/new-beneficiary.component';
 import {DialogService} from '../../dialog/dialog.service';
-import {Field} from '../../../models';
+import {Content, Field} from '../../../models';
 import {NewAgentComponent} from '../new-agent/new-agent.component';
 import {NewFormatwoComponent} from '../new-formatwo/new-formatwo.component';
 import {NewCountryComponent} from '../new-country/new-country.component';
+import {NewRowComponent} from '../../table-component/new-row/new-row.component';
 
 const FIELDS: Field[] = [
   {
@@ -47,12 +48,12 @@ const FIELDS: Field[] = [
 })
 export class BeneficiaryTableComponent implements OnInit {
   @Input() type: string;
-  @Input() showplus: boolean;
+  @Input() content: Content;
+  showplus: boolean;
   title;
   columnsNames;
   items = [];
   itemsType;
-  content: any;
   totalPercentageParticipation = 0;
   style;
 
@@ -97,7 +98,6 @@ export class BeneficiaryTableComponent implements OnInit {
       this.title = 'Datos de Agente(s)';
       this.columnsNames = ['Nombre', 'Promotoría', 'Clave', 'Participación'
       ];
-
       this.itemsType = 'agent';
       this.style = 'even-agent';
       this.showplus = true;
@@ -106,10 +106,33 @@ export class BeneficiaryTableComponent implements OnInit {
         this.items = value;
         this.totalPercentageParticipation = this.applicationService.getTotalParticipationPercentage('agent');
       });
+    } else if (this.type === 'table-sports') {
+      this.title = 'Deporte(s) / Actividad(es)';
+      this.columnsNames = ['Deporte / Actividad', 'Frecuencia', 'Describir otra actividad'];
+      this.itemsType = 'sport';
+      this.showplus = true;
+      this.style = 'even-sport';
+
+      this.applicationService.sports.subscribe((value) => {
+        this.items = value;
+      });
+    } else if (this.type === 'table-diseases') {
+      this.title = 'Enfermedad(es)';
+      this.columnsNames = ['Nombre de las enfermedades, lesiones, estudios o tratamientos',
+        'Fecha en que las sufriste o se te practicaron',
+        'Duración', 'Condición física actual'];
+      this.itemsType = 'disease';
+      this.showplus = true;
+      this.style = 'even-agent';
+
+      this.applicationService.diseases.subscribe((value) => {
+        this.items = value;
+      });
     } else if (this.type ===  'table-formatfour') {
       this.title = 'Datos Formato Cuatro';
       this.columnsNames = ['Razon social', 'RFC', 'Fecha de constitución', 'Nombre comercial',
       ];
+
       this.style = 'even-beneficiary';
       this.showplus = true;
       /* this.content.fields.forEach((field) => {
@@ -124,6 +147,7 @@ export class BeneficiaryTableComponent implements OnInit {
       this.title = 'Datos Formato Tres';
       this.columnsNames = ['Tipo de Persona', 'Nombre / Razón social', 'Fecha de nacimiento / constitución', 'RFC',
       ];
+
       this.style = 'even-beneficiary';
       this.showplus = true;
      /*  this.content.fields.forEach((field) => {
@@ -138,6 +162,7 @@ export class BeneficiaryTableComponent implements OnInit {
       this.title = 'Paises';
       this.columnsNames = ['Pais', 'Numero de idenficación fiscal',
       ];
+
       this.itemsType = 'country';
       this.style = 'even-beneficiary';
       this.showplus = true;
@@ -151,6 +176,7 @@ export class BeneficiaryTableComponent implements OnInit {
       this.title = 'Datos Formato dos';
       this.columnsNames = ['Caracter', 'Nombre', 'Fecha de nacimiento',
       ];
+
       this.itemsType = 'formatwo';
       this.style = 'even-beneficiary';
       this.showplus = true;
@@ -164,6 +190,7 @@ export class BeneficiaryTableComponent implements OnInit {
       this.title = 'Beneficios adicionales disponibles para el plan';
       this.columnsNames = ['Contratar:', 'Cobertura', 'Suma asegurada', 'Prima', 'Detalle',
       ];
+
       this.itemsType = 'coverage';
       this.style = 'even-beneficiary';
       this.showplus = false;
@@ -178,6 +205,7 @@ export class BeneficiaryTableComponent implements OnInit {
       this.title = 'Datos Formato dos';
       this.columnsNames = ['Caracter', 'Nombre', 'Fecha de nacimiento',
       ];
+
       this.itemsType = 'formatwo';
       this.style = 'even-beneficiary';
       this.showplus = true;
@@ -191,6 +219,7 @@ export class BeneficiaryTableComponent implements OnInit {
       this.title = 'Datos Formato W8BEN-E';
       this.columnsNames = ['Formato',
       ];
+
       this.itemsType = 'formatw8';
       this.style = 'even-beneficiary';
       this.showplus = true;
@@ -204,6 +233,7 @@ export class BeneficiaryTableComponent implements OnInit {
       this.title = 'Datos Formato W8BEN-E';
       this.columnsNames = ['Formato',
       ];
+
       this.itemsType = 'formatw8';
       this.style = 'even-beneficiary';
       this.showplus = true;
@@ -217,6 +247,7 @@ export class BeneficiaryTableComponent implements OnInit {
       this.title = 'Datos Formato IV-2-426';
       this.columnsNames = ['Formato',
       ];
+
       this.itemsType = 'formatw8';
       this.style = 'even-beneficiary';
       this.showplus = true;
@@ -230,6 +261,7 @@ export class BeneficiaryTableComponent implements OnInit {
       this.title = 'Datos Formato IV-2-427';
       this.columnsNames = ['Formato',
       ];
+
       this.itemsType = 'formatw8';
       this.style = 'even-beneficiary';
       this.showplus = true;
@@ -247,13 +279,34 @@ export class BeneficiaryTableComponent implements OnInit {
     if (this.type === 'table-beneficiary') {
       ref = this.dialog.open(NewBeneficiaryComponent, {data: null});
       ref.afterClosed.subscribe((result) => {
-        // console.log('dialog closed FROM BENEFICIARY TABLE, result: ', result);
+        console.log('dialog closed FROM BENEFICIARY TABLE, result: ', result);
       });
     } else if (this.type === 'table-agent') {
       ref = this.dialog.open(NewAgentComponent, {data: null});
       ref.afterClosed.subscribe((result) => {
-        // console.log('dialog closed FROM AGENT TABLE, result: ', result);
+        console.log('dialog closed FROM AGENT TABLE, result: ', result);
       });
+    } else if (this.type === 'table-sports') {
+      ref = this.dialog.open(NewRowComponent,
+        {
+          data: {
+            operations: ['cancelOperationR', 'addItemR'],
+            content: this.content,
+            drawerTitle: 'Deporte / Actividad',
+            itemType: 'sport'
+          }});
+      ref.afterClosed.subscribe((result) => {
+        console.log('dialog closed FROM DISEASES TABLE, result: ', result);
+      });
+    } else if (this.type === 'table-diseases') {
+      this.dialog.open(NewRowComponent,
+        {
+          data: {
+            operations: ['cancelOperationR', 'addItemR'],
+            content: this.content,
+            drawerTitle: 'Enfermedad, lesión, estudio o tratamiento',
+            itemType: 'disease'
+          }});
     } else if (this.type === 'table-formatwo') {
       ref = this.dialog.open(NewFormatwoComponent, {data: null});
       ref.afterClosed.subscribe((result) => {

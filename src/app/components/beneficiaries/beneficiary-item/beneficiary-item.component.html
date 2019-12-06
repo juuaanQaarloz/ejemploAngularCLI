@@ -31,19 +31,24 @@
        *ngIf="itemType === 'coverage'" >{{item.coverageName}}</div>
 
   <div class="item-attribute" *ngFor="let field of fields">
-    <app-field-form [fieldObj]="field" [form]="formGroup"></app-field-form>
-    {{field.value}}
+    <app-field-form
+      [fieldObj]="field"
+      [form]="formGroup"
+      [item]="item">
+
+    </app-field-form>
   </div>
 
   <div class="item-attribute"
        *ngIf="itemType === 'coverage'" >{{item.detail}}</div>
 
   <div class="operations">
-    <div *ngIf="showplus==true">
+    <div *ngIf="enableOperations">
       <img class="icon-delete" (click)="openModal(modalId)">
       <img class="icon-edit" (click)="editItem()">
     </div>
-    <div *ngIf="isLast && totalItems < maxItems && totalParticipationPercentageItems < 100 && showplus==true">
+
+    <div *ngIf="(isLast && totalItems < maxItems && totalParticipationPercentageItems < 100) || (isLast && showplus === true)">
       <img src="../../../../assets/img/tables/plus_simbol.svg" (click)="addNewItem()">
     </div>
   </div>

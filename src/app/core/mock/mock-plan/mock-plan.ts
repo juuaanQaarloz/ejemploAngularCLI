@@ -6,8 +6,13 @@ export const Plan1: Field[] = [
     id: 'field-1403',
     idHtml: 'slctCurrency',
     name: 'currency',
+<<<<<<< HEAD
     orderAppearance: 1,
     label: 'Tipo de moneda',
+=======
+    orderAppearance: 3,
+    label: 'Moneda',
+>>>>>>> 2d90faacf2fafa6302e231d47dd55f9a79ff8697
     type: 'select',
     required: false,
     placeholder: '',
@@ -18,7 +23,7 @@ export const Plan1: Field[] = [
     source: 'IPRE',
     sourceID: 'currency',
     sourceStructure: ['id', 'name', 'code'],
-    style: '',
+    style: 'margin:0 auto',
     styleClass: '',
     styleClassError: '',
     message: '',
@@ -36,7 +41,7 @@ export const Plan1: Field[] = [
     idHtml: 'radioCoverageOptions',
     name: 'coverageOptions',
     orderAppearance: 2,
-    label: 'Tipo de cobertura',
+    label: 'Cobertura',
     type: 'radio',
     required: true,
     placeholder: '',
@@ -64,7 +69,11 @@ export const Plan1: Field[] = [
     id: 'field-1401',
     idHtml: 'slctPacking',
     name: 'packing',
+<<<<<<< HEAD
     orderAppearance: 3,
+=======
+    orderAppearance: 1,
+>>>>>>> 2d90faacf2fafa6302e231d47dd55f9a79ff8697
     label: 'Empaquetamiento',
     type: 'select',
     required: true,

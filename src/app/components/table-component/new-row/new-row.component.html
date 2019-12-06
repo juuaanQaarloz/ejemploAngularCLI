@@ -1,0 +1,36 @@
+<!--Drawer Container-->
+<div class="drawer-container">
+  <div>
+    <p class="content-title" *ngIf="drawerTitle">{{ drawerTitle }}</p>
+    <div data-forms="floating-label" class="ml-form modal-type">
+      <div *ngFor="let field of content.fields">
+        <app-field-form [fieldObj]="field" [form]="formGroup"></app-field-form>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="foundedOperations" class="operation">
+
+    <app-operation-form *ngFor="let operation of foundedOperations"
+                        [operationObj]="operation"
+                        (click)="executeOperation(operation.delegateOperation)">
+    </app-operation-form>
+
+  </div>
+</div>
+
+<jw-modal [id]="modalID"
+          [modalType]="'overlay'">
+  <div class="overlay-container">
+    <div style="text-align: right">
+      <img class="button-close" (click)="closeModal(modalID)">
+    </div>
+    <p>{{modalMessage}}</p>
+
+    <div class="operation-modal">
+      <app-operation-form [operationObj]= okOperation
+                          (click)="executeOperation(okOperation.delegateOperation)">
+      </app-operation-form>
+    </div>
+  </div>
+</jw-modal>

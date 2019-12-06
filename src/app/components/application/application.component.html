@@ -9,15 +9,6 @@
       <h1 class="title">Solicitudes MetaLife</h1>
     </div>
 
-    <!--<button (click)="getValidateField()">VALIDATE ALL FORM</button>-->
-
-    <!--<p *ngIf="formGroup.errors?.['invalidEmailConfirmation']"></p>-->
-    <app-table [caption]="'Caption Table'"
-               [records]="rows"
-               [settings]="columnsSettings">
-
-    </app-table>
-
     <div class="container" *ngFor="let section of applicationObj.sections">
       <app-section-form [form]="formGroup" [sectionObj]="section"></app-section-form>
     </div>

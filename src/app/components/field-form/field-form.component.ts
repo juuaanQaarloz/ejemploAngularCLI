@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {Field} from '../../models/field';
-import {FormGroup} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import {SelectOption} from '../../models/select-option-interface';
 import {ApplicationService, validateAge} from '../../core/services';
 import {MatIconRegistry} from '@angular/material';
@@ -16,16 +16,29 @@ import {SepomexObj} from '../../models/sepomex-obj';
 export class FieldFormComponent implements OnInit, AfterViewInit {
   @Input() fieldObj: Field;
   @Input() form: FormGroup;
+  @Input() item?: any;
   showSelectLabel = false;
   isSelected = true;
   radioOptions = [];
   selectOptions = [];
   checkBoxOptions = [];
+  autocompleteOptions = [];
   toggleVisible = true;
   datePickerClicked = false;
   show = true;
   disable: boolean;
   regExpPattern;
+  loading = true;
+
+  // for test component
+  options = [
+    { id: 1, label: 'ONE' , description: 'Description One'},
+    { id: 2, label: 'TWO' , description: 'Description Two'},
+    { id: 3, label: 'THREE', description: 'Description Three' }
+  ];
+  control = new FormControl();
+  // for test component
+
   constructor(private applicationService: ApplicationService,
               private matIconRegistry: MatIconRegistry,
               private domSanitizer: DomSanitizer) {
@@ -35,7 +48,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     if (this.fieldObj.type === 'radio' || this.fieldObj.type === 'select'
+<<<<<<< HEAD
       || this.fieldObj.type === 'checkbox' || this.fieldObj.type === 'select-multiple' ) {
+=======
+      || this.fieldObj.type === 'checkbox' || this.fieldObj.type === 'select-multiple'
+      || this.fieldObj.type === 'autocomplete') {
+>>>>>>> 2d90faacf2fafa6302e231d47dd55f9a79ff8697
       this.getOptions();
     }
     if (this.fieldObj.type === 'select' && this.fieldObj.value) {
@@ -108,6 +126,24 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     if (this.fieldObj.pattern) {
       this.regExpPattern = stringToRegExp(this.fieldObj.pattern);
     }
+
+    if (this.fieldObj.detonateFunction) {
+      this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
+        console.log('detonateFunction: ', this.fieldObj.detonateFunction);
+        console.log('itemFromFieldComponent: ', this.item);
+        if (this.fieldObj.detonateFunction === 'updateItem') {
+          this.item.participationPercentage = value;
+          this.applicationService.updateItem(this.item, 'beneficiary');
+        }
+      });
+    }
+
+    /*this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
+      console.log('onValueChanges...');
+      console.log('formGroup: ', this.form);
+      console.log('formControlName: ', this.fieldObj.name);
+      console.log('value: ',  value);
+    });*/
   }
 
   ngAfterViewInit() {
@@ -173,12 +209,13 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onBlur() {
+    // console.log('onBlur...');
     if (this.fieldObj.name === 'zipCode' || this.fieldObj.name === 'zipCodeS' || this.fieldObj.name === 'zipCodeM') {
       const zipCode = this.form.controls[this.fieldObj.name].value;
-      // // console.log('zipCode: ', zipCode);
+      // console.log('zipCode: ', zipCode);
       if (zipCode) {
         this.applicationService.getInfoFromSepomex(zipCode).subscribe((sepoMexResponse: SepomexObj) => {
-          // // console.log('sepoMexResponse: ', sepoMexResponse);
+          // console.log('sepoMexResponse: ', sepoMexResponse);
           if (sepoMexResponse) {
             this.setAddress(sepoMexResponse);
           }
@@ -203,8 +240,13 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onChangeSelect(event) {
+<<<<<<< HEAD
     console.log('onChangeSelect...');
     console.log('event.target.value: ', event.target.value);
+=======
+    // console.log('onChangeSelect...');
+    // console.log('event.target.value: ', event.target.value);
+>>>>>>> 2d90faacf2fafa6302e231d47dd55f9a79ff8697
     if (event.target.value === '') {
       this.showSelectLabel = false;
     } else {
@@ -235,8 +277,11 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
             } else if (this.fieldObj.type === 'checkboxcoverage') {
               // console.log('selectItem-checkbox: ', selectItem);
               this.checkBoxOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
+            } else if (this.fieldObj.type === 'autocomplete') {
+              this.autocompleteOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
             }
           });
+          this.loading = false;
         }
       });
   }

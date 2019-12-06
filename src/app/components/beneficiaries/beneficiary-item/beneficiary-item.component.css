@@ -8,6 +8,11 @@
   grid-template-columns: repeat(5, 1fr);
 }
 
+.item-row-sport {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
 .item-attribute {
   text-align: center;
 }

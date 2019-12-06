@@ -4,12 +4,17 @@ import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';
+<<<<<<< HEAD
 import {Beneficiary, Formatwo, Field, Occupation, Step} from '../../models';
 import {equalEmailsValidator, higherAssuredImport, validateEmailConfirmation, validatorsObjects} from '../validators';
+=======
+import {Field, Occupation} from '../../models';
+import {equalEmailsValidator, validatorsObjects} from '../validators';
+>>>>>>> 2d90faacf2fafa6302e231d47dd55f9a79ff8697
 import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
-import {Agent} from '../../models/agent-model/agent';
 import {COVERAGES} from '../mock/coverage/coverage';
+import {BENEFICIARIES} from '../mock/mock-beneficiaries/mock-beneficiaries';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
@@ -21,22 +26,28 @@ const URL_SEPOMEX = '../assets/catalogs/response-sepomex.json';
 export class ApplicationService {
   private currentStepSource = new BehaviorSubject(0);
   currentValue = this.currentStepSource.asObservable();
-  beneficiaries = new BehaviorSubject([]);
+  beneficiaries = new BehaviorSubject(BENEFICIARIES);
+  agents = new BehaviorSubject([]);
+  sports = new BehaviorSubject([]);
+  diseases = new BehaviorSubject([]);
+
   formatosdos = new BehaviorSubject([]);
   formatosdosb = new BehaviorSubject([]);
   formatosocho = new BehaviorSubject([]);
   formatos426 = new BehaviorSubject([]);
   formatos427 = new BehaviorSubject([]);
-  agents = new BehaviorSubject([]);
   countries = new BehaviorSubject([]);
   coverages = new BehaviorSubject(COVERAGES);
-  diseases = new BehaviorSubject([]);
   formGroup: FormGroup;
   searchModalFrom: string;
   applicationObj;
 
   constructor(private httpClient: HttpClient,
               private modalService: ModalService) {
+  }
+
+  getErrorMsg() {
+    return 'Error desde Servicio';
   }
 
   submitFunction(type) {
@@ -53,22 +64,51 @@ export class ApplicationService {
       const currentStep = this.currentStepSource.getValue();
       // console.log('currentStep1: ', currentStep);
 
+      let contractorType = this.formGroup.controls["contractorType"].value;
       if (currentStep === 0) {
         this.changeValue(1);
       } else if (currentStep === 1) {
         this.changeValue(2);
       } else if (currentStep === 2) {
+        this.changeValue(3);
+      } else if (currentStep === 3 && contractorType) {
+        this.changeValue(10);
+      } else if (currentStep === 3 && !contractorType) {
         this.changeValue(7);
-      } else if (currentStep === 3) {
-        this.changeValue(4);
       } else if (currentStep === 4) {
-        this.changeValue(7);
+        this.changeValue(5);
       } else if (currentStep === 5) {
         this.changeValue(6);
       } else if (currentStep === 6) {
         this.changeValue(7);
       } else if (currentStep === 7) {
-        this.changeValue(0);
+        this.changeValue(8);
+      } else if (currentStep === 8) {
+        this.changeValue(9);
+      } else if (currentStep === 9) {
+        this.changeValue(10);
+      } else if (currentStep === 10) {
+        this.changeValue(11);
+      } else if (currentStep === 11) {
+        this.changeValue(12);
+      } else if (currentStep === 12) {
+        this.changeValue(13);
+      } else if (currentStep === 13) {
+        this.changeValue(14);
+      } else if (currentStep === 14) {
+        this.changeValue(15);
+      } else if (currentStep === 15) {
+        this.changeValue(16);
+      } else if (currentStep === 16) {
+        this.changeValue(17);
+      } else if (currentStep === 17) {
+        this.changeValue(18);
+      } else if (currentStep === 18) {
+        this.changeValue(19);
+      } else if (currentStep === 19) {
+        this.changeValue(20);
+      } else if (currentStep === 20) {
+        this.changeValue(21);
       }
 
       // console.log('currentStep2: ', this.currentStepSource.getValue());
@@ -194,7 +234,6 @@ export class ApplicationService {
   }
 
   addItem(newItem, itemType: string) {
-    // console.log('typeItem: ', typeof newItem);
     let currentTotalParticipationPercentage;
     let currentItems;
     let maxLength;
@@ -231,10 +270,27 @@ export class ApplicationService {
       propertyName = 'participation';
     } else if (itemType === 'disease') {
       currentItems = this.diseases.getValue();
+    } else if (itemType === 'sport') {
+      currentItems = this.sports.getValue();
     }
-    console.log('currentTotalParticipationPercentage: ', currentTotalParticipationPercentage);
-    console.log('newItem[propertyName]: ', Number(newItem[propertyName]));
-    if ((currentTotalParticipationPercentage) && (currentTotalParticipationPercentage + Number(newItem[propertyName]) <= 100)) {
+
+    if (currentTotalParticipationPercentage !== undefined) {
+      // when is a max participation limit
+      if (currentTotalParticipationPercentage + Number(newItem[propertyName]) <= 100) {
+        // when is a maxItems limit
+        if (currentItems.length <= maxLength) {
+          // the new item can be added
+          currentItems.push(newItem);
+          this.setItems(itemType, currentItems);
+          return {status: true, message: ''};
+        } else {
+          return {status: false, message: responseMessage1};
+        }
+      } else {
+        return {status: false, message: responseMessage2};
+      }
+    } else if (maxLength !== undefined) {
+      // when is a maxItems limit
       if (currentItems.length <= maxLength) {
         // the new item can be added
         currentItems.push(newItem);
@@ -244,7 +300,9 @@ export class ApplicationService {
         return {status: false, message: responseMessage1};
       }
     } else {
-      return {status: false, message: responseMessage2};
+      currentItems.push(newItem);
+      this.setItems(itemType, currentItems);
+      return {status: true, message: ''};
     }
   }
 
@@ -263,6 +321,12 @@ export class ApplicationService {
     } else if (itemType === 'country') {
       currentItems = this.countries.getValue();
       propertyName = 'countryId';
+    } else if (itemType === 'disease') {
+      currentItems = this.diseases.getValue();
+      propertyName = 'idDisease';
+    } else if (itemType === 'sport') {
+      currentItems = this.sports.getValue();
+      propertyName = 'idSportActivity';
     }
     currentItems = currentItems.filter(item => item[propertyName] !== itemId);
     // console.log('currentItems: ', currentItems);
@@ -286,6 +350,12 @@ export class ApplicationService {
     } else if (itemType === 'country') {
       currentItems = this.countries.getValue();
       propertyItem = 'countryId';
+    } else if (itemType === 'disease') {
+      currentItems = this.diseases.getValue();
+      propertyItem = 'idDisease';
+    } else if (itemType === 'sport') {
+      currentItems = this.sports.getValue();
+      propertyItem = 'idSportActivity';
     }
     const itemsLength = currentItems.length;
     // console.log('itemsLength: ', itemsLength);
@@ -300,10 +370,18 @@ export class ApplicationService {
   updateItem(updatedItem, itemType) {
     let currentItems;
     let propertyItem;
+    let currentTotalParticipationPercentage;
+    let maxLength;
+    let responseMessage1;
+    let responseMessage2;
 
     if (itemType === 'beneficiary') {
       currentItems = this.beneficiaries.getValue();
       propertyItem = 'beneficiaryId';
+      currentTotalParticipationPercentage = this.getTotalParticipationPercentage(itemType);
+      maxLength = 10;
+      responseMessage1 = 'No se pueden agregar más de 10 beneficiarios';
+      responseMessage2 = 'La suma de las participaciones de los beneficiarios excede el 100%';
     } else if (itemType === 'agent') {
       currentItems = this.agents.getValue();
       propertyItem = 'agentId';
@@ -313,13 +391,50 @@ export class ApplicationService {
     } else if (itemType === 'country') {
       currentItems = this.countries.getValue();
       propertyItem = 'countryId';
+    } else if (itemType === 'disease') {
+      currentItems = this.diseases.getValue();
+      propertyItem = 'idDisease';
+    } else if (itemType === 'sport') {
+      currentItems =  this.sports .getValue();
+      propertyItem = 'idSportActivity';
     }
-    const foundItem = currentItems.filter(i => i[propertyItem] === updatedItem[propertyItem])[0];
+    // const foundItem = currentItems.filter(i => i[propertyItem] === updatedItem[propertyItem])[0];
+
+    if (currentTotalParticipationPercentage !== undefined) {
+      // when is a max participation limit
+      if (currentTotalParticipationPercentage + Number(updatedItem[propertyItem]) <= 100) {
+        // when is a maxItems limit
+        if (currentItems.length <= maxLength) {
+          // the new item can be added
+          const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
+          currentItems[index] = updatedItem;
+          this.setItems(itemType, currentItems);
+          return {status: true, message: ''};
+        } else {
+          return {status: false, message: responseMessage1};
+        }
+      } else {
+        return {status: false, message: responseMessage2};
+      }
+    } else if (maxLength !== undefined) {
+      // when is a maxItems limit
+      if (currentItems.length <= maxLength) {
+        // the new item can be added
+        const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
+        currentItems[index] = updatedItem;
+        this.setItems(itemType, currentItems);
+        return {status: true, message: ''};
+      } else {
+        return {status: false, message: responseMessage1};
+      }
+    } else {
+      const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
+      currentItems[index] = updatedItem;
+      this.setItems(itemType, currentItems);
+    }
 
     const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
-
     currentItems[index] = updatedItem;
-
     this.setItems(itemType, currentItems);
   }
 
@@ -357,6 +472,10 @@ export class ApplicationService {
       this.formatosdos.next(newItems);
     } else if (itemType === 'country') {
       this.countries.next(newItems);
+    } else if (itemType === 'disease') {
+      this.diseases.next(newItems);
+    } else if (itemType === 'sport') {
+      this.sports.next(newItems);
     }
   }
 
@@ -401,6 +520,12 @@ export class ApplicationService {
     const valueFormControl = this.getFormControlValueByName(formGroup, elementsCondition[1]);
     let result = false;
 
+    if (valueFormControl) {
+      result = false;
+    }
+
+    // console.log('valueFormControl: ', valueFormControl);
+
     switch (elementsCondition[2]) {
       case '=':
         if (elementsCondition[3] === 'false') {
@@ -413,7 +538,7 @@ export class ApplicationService {
           }
         } else {
           if (valueFormControl === elementsCondition[3]) {
-            // // console.log('case = ', elementsCondition[3]);
+            // console.log('case = ', elementsCondition[3]);
             result = true;
           }
         }
@@ -448,6 +573,8 @@ export class ApplicationService {
         result = false;
         break;
     }
+
+    // console.log('result: ', result);
 
     return result;
   }
@@ -607,12 +734,13 @@ export class ApplicationService {
 
         // for one single operation
         const z = sAsString.split(',');
-        //console.log('z: ', z);
+        // console.log('z: ', z);
         if (z.length === 1) {
           const conditionsZ = this.getConditions(z[0]);
           const resEvalZ = this.evaluateCondition(formGroup, conditionsZ[0]);
+          // console.log('resEvalZ: ', resEvalZ);
           arr.push(resEvalZ);
-        } else if (z.length === 3) { // for AND and OR operation (more than one operation)
+        } else if (z.length === 5) { // for AND and OR operation (more than one operation)
           const a = z[0];
           // console.log('a: ', a);
           const b = z[2];
@@ -638,7 +766,7 @@ export class ApplicationService {
             resEvalB = this.evaluateCondition(formGroup, conditionsB[0]);
           } else {
             if (b === 'true' || b === 'false') {
-              resEvalB = this.stringToBoolean(resEvalB);
+              resEvalB = this.stringToBoolean(b);
             } else {
               resEvalB = b;
             }
