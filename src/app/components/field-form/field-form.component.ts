@@ -78,7 +78,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       dependedFields.forEach((dependedField) => {
         this.form.controls[dependedField].valueChanges.subscribe((value) => {
           this.disable = this.checkState2(this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form));
-          console.log('disable2: ', this.disable);
+          // console.log('disable2: ', this.disable);
           if (this.disable === true){
             this.form.controls[this.fieldObj.name].disable();
           } else {
@@ -147,6 +147,13 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           this.setCalculatedRFC(calcRFC);
         }
       }
+    }
+    // validar
+    if (this.fieldObj.name === 'fixedFunds' || this.fieldObj.name === 'variableFunds' || this.fieldObj.name === 'fixedRetirement') {
+
+    }
+    if (this.fieldObj.name === 'assuredImport') {
+        // console.log('Entro assuredImport: ');
     }
 
     if (value) {
@@ -256,8 +263,9 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   isValid(formControlName?) {
     console.log('onIsValid value: ', this.form.controls[this.fieldObj.name].value);
+    // console.log('formControlName: ', formControlName);
     if (formControlName) {
-
+      console.log('formControlNameEntro: ', formControlName);
       const validateAgeResult = validateAge(this.form.controls[formControlName]);
 
       if (validateAgeResult) {
@@ -324,7 +332,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   checkState2(acceso: boolean) {
     const status = this.form.controls[this.fieldObj.name].status;
-    console.log('state2: ', status);
+    // console.log('state2: ', status);
     let result = false;
     if (status === 'DISABLED' && acceso === true) {
       result = true;

@@ -460,4 +460,9 @@ export const validatorsObjects = [
     nameField: 'taxCountryId',
     validationFunctions: [validateAlphanumericValue]
   },
+  {
+    nameField: 'assuredImport',
+    validationFunctions: [rangeValidator(0.0, 9999999.00)]
+    // validationFunctions: [validateAlphanumericValue, validateAssuredImport]
+  },
 ];

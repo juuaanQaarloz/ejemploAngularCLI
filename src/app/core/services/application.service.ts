@@ -5,7 +5,7 @@ import {map} from 'rxjs/operators';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';
 import {Beneficiary, Formatwo, Field, Occupation, Step} from '../../models';
-import {equalEmailsValidator, validateEmailConfirmation, validatorsObjects} from '../validators';
+import {equalEmailsValidator, higherAssuredImport, validateEmailConfirmation, validatorsObjects} from '../validators';
 import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
 import {Agent} from '../../models/agent-model/agent';
@@ -127,7 +127,7 @@ export class ApplicationService {
       });
 
     });
-    return new FormGroup(group, equalEmailsValidator);
+    return new FormGroup(group, equalEmailsValidator && higherAssuredImport);
   }
 
   addNewFormControl(formGroup: FormGroup, field: Field) {

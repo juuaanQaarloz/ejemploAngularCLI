@@ -94,7 +94,7 @@ export const Plan1: Field[] = [
 export const Plan2: Field[] = [
   {
     id: 'field-1404',
-    idHtml: 'txtAssuredImportMXN',
+    idHtml: 'txtAssuredImport',
     name: 'assuredImport',
     orderAppearance: 4,
     label: 'Suma asegurada',
@@ -103,7 +103,7 @@ export const Plan2: Field[] = [
     placeholder: 'Suma asegurada',
     length: '12',
     minValue: 0,
-    maxValue: 9999999,
+    maxValue: 9999999.00,
     pattern: '',
     source: '',
     sourceID: '',
@@ -220,9 +220,9 @@ export const Plan4: Field[] = [
     type: 'text',
     required: false,
     placeholder: 'Fijos',
-    length: '40',
+    length: '3',
     minValue: 0,
-    maxValue: 40,
+    maxValue: 100,
     pattern: '',
     source: '',
     sourceID: '',
@@ -237,7 +237,7 @@ export const Plan4: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: ''
+    value: '100'
   },
   {
     id: 'field-1407',
@@ -248,9 +248,9 @@ export const Plan4: Field[] = [
     type: 'text',
     required: false,
     placeholder: 'Variables',
-    length: '40',
+    length: '3',
     minValue: 0,
-    maxValue: 40,
+    maxValue: 100,
     pattern: '',
     source: '',
     sourceID: '',
@@ -265,7 +265,7 @@ export const Plan4: Field[] = [
     enableConditions: '(currency=usd)',
     entity: '',
     entityField: '',
-    value: ''
+    value: '0'
   }
 ];
 
@@ -279,9 +279,9 @@ export const Plan5: Field[] = [
     type: 'text',
     required: false,
     placeholder: 'Fijos',
-    length: '40',
+    length: '3',
     minValue: 0,
-    maxValue: 40,
+    maxValue: 100,
     pattern: '',
     source: '',
     sourceID: '',
@@ -296,7 +296,7 @@ export const Plan5: Field[] = [
     enableConditions: '(packing!=4)',
     entity: '',
     entityField: '',
-    value: ''
+    value: '0'
   },
   {
     id: 'field-1409',
@@ -307,9 +307,9 @@ export const Plan5: Field[] = [
     type: 'text',
     required: false,
     placeholder: 'Variables',
-    length: '40',
+    length: '3',
     minValue: 0,
-    maxValue: 40,
+    maxValue: 100,
     pattern: '',
     source: '',
     sourceID: '',
@@ -324,23 +324,23 @@ export const Plan5: Field[] = [
     enableConditions: '(currency=usd,|,packing!=4)',
     entity: '',
     entityField: '',
-    value: ''
+    value: '0'
   }
 ];
 
 export const Plan6: Field[] = [
   {
     id: 'field-1408',
-    idHtml: 'txtFixedRetirement',
-    name: 'fixedRetirement',
+    idHtml: 'txtFixedSaving',
+    name: 'fixedSaving',
     orderAppearance: 13,
     label: 'Fijos',
     type: 'text',
     required: false,
     placeholder: 'Fijos',
-    length: '40',
+    length: '3',
     minValue: 0,
-    maxValue: 40,
+    maxValue: 100,
     pattern: '',
     source: '',
     sourceID: '',
@@ -355,20 +355,20 @@ export const Plan6: Field[] = [
     enableConditions: '(packing!=4)',
     entity: '',
     entityField: '',
-    value: ''
+    value: '0'
   },
   {
     id: 'field-1409',
-    idHtml: 'txtVariableRetirement',
-    name: 'variableRetirement',
+    idHtml: 'txtVariableSaving',
+    name: 'variableSaving',
     orderAppearance: 14,
     label: 'Variables',
     type: 'text',
     required: false,
     placeholder: 'Variables',
-    length: '40',
+    length: '3',
     minValue: 0,
-    maxValue: 40,
+    maxValue: 100,
     pattern: '',
     source: '',
     sourceID: '',
@@ -383,23 +383,23 @@ export const Plan6: Field[] = [
     enableConditions: '(currency=usd,|,packing!=4)',
     entity: '',
     entityField: '',
-    value: ''
+    value: '0'
   }
 ];
 
 export const Plan7: Field[] = [
   {
     id: 'field-1405',
-    idHtml: 'txtAdditionalCost2',
-    name: 'additionalCost2',
+    idHtml: 'txtCostContributions',
+    name: 'costContributions',
     orderAppearance: 15,
     label: 'Prima Total  Anual y Aportaciones',
     type: 'text',
     required: false,
     placeholder: 'Prima Total  Anual y Aportaciones',
-    length: '40',
+    length: '12',
     minValue: 0,
-    maxValue: 40,
+    maxValue: 9999999999,
     pattern: '',
     source: '',
     sourceID: '',

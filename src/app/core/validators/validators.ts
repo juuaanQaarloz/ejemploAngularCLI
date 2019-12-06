@@ -683,5 +683,14 @@ export function rangeValidator(min: number, max: number) {
   };
 }
 
-
-
+export const higherAssuredImport: ValidatorFn = (group: FormGroup): ValidationErrors | null => {
+  const currency = group.controls.currency.value;
+  const assuredImport = group.controls.assuredImport.value;
+  console.log('currency', currency);
+  console.log('assuredImport', assuredImport);
+  if (Number(assuredImport) < 4000.00) {
+    return { invalidAssuredImport: true};
+  } else {
+    return null;
+  }
+};
