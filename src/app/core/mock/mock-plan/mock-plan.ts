@@ -322,7 +322,7 @@ export const Plan5: Field[] = [
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
-    enableConditions: '(currency=usd,|,packing!=4)',
+    enableConditions: '((currency=usd),|,(packing!=4))',
     entity: '',
     entityField: '',
     value: '0'
@@ -381,7 +381,7 @@ export const Plan6: Field[] = [
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
-    enableConditions: '(currency=usd,|,packing!=4)',
+    enableConditions: '((currency=usd),|,packing!=4)',
     entity: '',
     entityField: '',
     value: '0'

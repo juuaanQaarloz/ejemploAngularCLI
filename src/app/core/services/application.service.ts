@@ -707,7 +707,7 @@ export class ApplicationService {
     * */
 
   evaluateConditions(exp, formGroup: FormGroup) {
-    // console.log('onGetExpressionElements...');
+    console.log('onGetExpressionElements...');
     const arr = [];
     const reversedString = this.reverseString(exp);
 
@@ -725,7 +725,7 @@ export class ApplicationService {
         s.forEach((sItem) => {
           sAsString = sAsString + sItem;
         });
-        // console.log('sAsString: ', sAsString);
+         console.log('sAsString: ', sAsString);
 
         // for one single operation
         const z = sAsString.split(',');
@@ -735,7 +735,7 @@ export class ApplicationService {
           const resEvalZ = this.evaluateCondition(formGroup, conditionsZ[0]);
           // console.log('resEvalZ: ', resEvalZ);
           arr.push(resEvalZ);
-        } else if (z.length === 5) { // for AND and OR operation (more than one operation)
+        } else if (z.length > 1) { // for AND and OR operation (more than one operation)
           const a = z[0];
           // console.log('a: ', a);
           const b = z[2];
@@ -765,21 +765,23 @@ export class ApplicationService {
               resEvalB = b;
             }
           }
-          // console.log('resEvalA: ', resEvalA);
-          // console.log('resEvalB: ', resEvalB);
+          console.log('resEvalA: ', resEvalA);
+          console.log('resEvalB: ', resEvalB);
 
           if (z[1] === '&') {
             c = resEvalA && resEvalB;
           } else {
             c = resEvalA || resEvalB;
           }
-          // console.log('c: ', c);
+          console.log('c: ', c);
           arr.push((c));
         }
       } else {
         arr.push(ctr);
       }
     }
+    console.log('arr: ', arr);
+    console.log('arr.length - 1: ', arr.length - 1);
     return arr[arr.length - 1];
   }
 

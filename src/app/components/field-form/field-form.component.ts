@@ -369,7 +369,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   checkState2(acceso: boolean) {
     const status = this.form.controls[this.fieldObj.name].status;
-    // console.log('state2: ', status);
+    console.log('state2: ', status);
+    console.log('acceso: ', acceso);
     let result = false;
     if (status === 'DISABLED' && acceso === true) {
       result = true;

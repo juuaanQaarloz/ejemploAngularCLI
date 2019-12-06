@@ -143,7 +143,7 @@ export const COVERAGES: Coverage[] =  [
   },
   {
     coverageId: '7',
-    isSelected: false,
+    isSelected: true,
     coverageName: 'Enfermedades en fase Terminal ( cobertura sin costo preseleccionada) ',   // ET
     assuredImport: ' ',
     cost: ' ',
