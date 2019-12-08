@@ -14,6 +14,8 @@ import {NewFormatwoComponent} from '../new-formatwo/new-formatwo.component';
 import {CoverageFieldsItem} from '../../../core/mock/coverage/coverage';
 import {countryFieldsItems} from '../../../core/mock/formats/country';
 import {NewCountryComponent} from '../new-country/new-country.component';
+import { NewPaymentComponent } from '../new-payment/new-payment.component';
+import { paymentFieldsItems } from 'src/app/core/mock/formats/payment';
 
 
 @Component({
@@ -78,6 +80,13 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       this.maxItems = 3;
       this.styleClass = 'item-row-formatwo';
       this.showplus = true;
+    } else if (this.itemType === 'payment') {
+      this.fields = paymentFieldsItems;
+      this.operations = BeneficiaryItemOperations;
+      this.questionModal = '¿Está seguro que desea eliminar el registro de la lista?';
+      this.maxItems = 3;
+      this.styleClass = 'item-row-formatwo';
+      this.showplus = true;
     }
 
     this.formGroup = this.applicationService.createNewFormGroup(this.fields);
@@ -101,6 +110,8 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       // ref = this.dialog.open(NewFormatwoComponent, {data: null});
     } else if (this.itemType === 'country') {
       ref = this.dialog.open(NewCountryComponent, {data: null});
+    } else if (this.itemType === 'payment') {
+      ref = this.dialog.open(NewPaymentComponent, {data: null});
     }
 
     ref.afterClosed.subscribe((result) => {
@@ -137,6 +148,8 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       // ref = this.dialog.open(NewFormatwoComponent, {data: {item: this.item}});
     } else if (this.itemType === 'country') {
       ref = this.dialog.open(NewCountryComponent, {data: {item: this.item}});
+    } else if (this.itemType === 'payment') {
+      ref = this.dialog.open(NewPaymentComponent, {data: {item: this.item}});
     }
 
     ref.afterClosed.subscribe((result) => {

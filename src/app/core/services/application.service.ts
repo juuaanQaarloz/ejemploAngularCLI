@@ -29,6 +29,7 @@ export class ApplicationService {
   formatos427 = new BehaviorSubject([]);
   agents = new BehaviorSubject([]);
   countries = new BehaviorSubject([]);
+  payments = new BehaviorSubject([]);
   coverages = new BehaviorSubject(COVERAGES);
   diseases = new BehaviorSubject([]);
   formGroup: FormGroup;
@@ -258,6 +259,16 @@ export class ApplicationService {
       responseMessage1 = 'No se pueden agregar más de 3 paises';
       responseMessage2 = 'Validacion2';
       propertyName = 'participation';
+    } else if (itemType === 'payment') {
+      currentTotalParticipationPercentage = 1;
+      currentItems = this.payments.getValue();
+      maxLength = 5;
+      responseMessage1 = 'No se pueden agregar más de 5 instrumentos bancarios';
+      responseMessage2 = 'Validacion2';
+      propertyName = 'paymentId';
+
+      console.log("AMPI AddItem");
+      console.log(currentItems);
     } else if (itemType === 'disease') {
       currentItems = this.diseases.getValue();
     }
@@ -293,6 +304,9 @@ export class ApplicationService {
     } else if (itemType === 'country') {
       currentItems = this.countries.getValue();
       propertyName = 'countryId';
+    } else if (itemType === 'payment') {
+      currentItems = this.payments.getValue();
+      propertyName = 'paymentId';
     }
     currentItems = currentItems.filter(item => item[propertyName] !== itemId);
     // console.log('currentItems: ', currentItems);
@@ -316,6 +330,9 @@ export class ApplicationService {
     } else if (itemType === 'country') {
       currentItems = this.countries.getValue();
       propertyItem = 'countryId';
+    } else if (itemType === 'payment') {
+      currentItems = this.payments.getValue();
+      propertyItem = 'paymentId';
     }
     const itemsLength = currentItems.length;
     // console.log('itemsLength: ', itemsLength);
@@ -343,6 +360,9 @@ export class ApplicationService {
     } else if (itemType === 'country') {
       currentItems = this.countries.getValue();
       propertyItem = 'countryId';
+    } else if (itemType === 'payment') {
+      currentItems = this.payments.getValue();
+      propertyItem = 'paymentId';
     }
     const foundItem = currentItems.filter(i => i[propertyItem] === updatedItem[propertyItem])[0];
 
@@ -369,6 +389,9 @@ export class ApplicationService {
     } else if (itemType === 'country') {
       currentItems = this.countries.getValue();
       propertyItem = 'participation';
+    } else if (itemType === 'payment') {
+      currentItems = this.payments.getValue();
+      propertyItem = 'participation';
     }
 
     currentItems.forEach((item) => {
@@ -387,6 +410,8 @@ export class ApplicationService {
       this.formatosdos.next(newItems);
     } else if (itemType === 'country') {
       this.countries.next(newItems);
+    } else if (itemType === 'payment') {
+      this.payments.next(newItems);
     }
   }
 

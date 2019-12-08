@@ -68,7 +68,7 @@ export const InformacionLaboral: Field[] = [
     label: 'Nombre de la empresa donde laboras*',
     type: 'text',
     required: true,
-    placeholder: 'Nombre de la empresa',
+    placeholder: 'Nombre de la empresa donde laboras',
     length: '',
     minValue: 0,
     maxValue: 60,

@@ -6,6 +6,7 @@ import {Field} from '../../../models';
 import {NewAgentComponent} from '../new-agent/new-agent.component';
 import {NewFormatwoComponent} from '../new-formatwo/new-formatwo.component';
 import {NewCountryComponent} from '../new-country/new-country.component';
+import { NewPaymentComponent } from '../new-payment/new-payment.component';
 
 const FIELDS: Field[] = [
   {
@@ -239,6 +240,19 @@ export class BeneficiaryTableComponent implements OnInit {
       this.applicationService.formatos427.subscribe((value) => {
         this.items = value;
       });
+    } else if (this.type ===  'table-payment') {
+      this.title = 'Información bancaria';
+      this.columnsNames = ['Banco emisor de tarjeta/CLABE', 'CLABE', 'Tarjeta', 'Número de tarjeta',
+      ];
+      this.itemsType = 'payment';
+      this.style = 'even-beneficiary';
+      this.showplus = true;
+      /* this.content.fields.forEach((field) => {
+        this.applicationService.addNewFormControl(this.applicationService.getFormGroup(), field);
+      }); */
+      this.applicationService.payments.subscribe((value) => {
+        this.items = value;
+      });
     }
   }
 
@@ -266,6 +280,11 @@ export class BeneficiaryTableComponent implements OnInit {
       }); */
     } else if (this.type === 'table-country') {
       ref = this.dialog.open(NewCountryComponent, {data: null});
+      ref.afterClosed.subscribe((result) => {
+        console.log('dialog closed FROM OUNTRY TABLE, result: ', result);
+      });
+    } else if (this.type === 'table-payment') {
+      ref = this.dialog.open(NewPaymentComponent, {data: null});
       ref.afterClosed.subscribe((result) => {
         console.log('dialog closed FROM OUNTRY TABLE, result: ', result);
       });

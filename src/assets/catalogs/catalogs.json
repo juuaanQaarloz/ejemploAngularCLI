@@ -206,6 +206,17 @@
 		"status": "Correo electrónico",
 		"value": "E"
 	}],
+    "cards": [
+		{
+			"id": 0,
+			"name": "Crédito",
+			"value": "Crédito"
+		},
+		{
+			"id": 1,
+			"name": "Débito",
+			"value": "Débito"
+		}],
 	"relationships": [
     {
         "relationshipId": 0,
