@@ -155,35 +155,6 @@ export const sportQuestions2: Field[] = [
     entity: '',
     entityField: '',
     value: ''
-  },
-  {
-    id: 'field-149',
-    idHtml: 'which',
-    name: 'which',
-    orderAppearance: 2,
-    label: '¿Cúal?',
-    type: 'text',
-    required: false,
-    placeholder: '',
-    length: '',
-    minValue: 0,
-    maxValue: 0,
-    pattern: '',
-    source: '',
-    sourceID: '',
-    style: '',
-    styleClass: '',
-    styleClassError: '',
-    message: '¿Cúal?',
-    messageClass: '',
-    messageError: '',
-    messageErrorClass: '',
-    renderConditions: '(extremeSportsQuestion=true)',
-    enableConditions: '',
-    requiredConditions: '(extremeSportsQuestion=true)',
-    entity: '',
-    entityField: '',
-    value: ''
   }
 ];
 

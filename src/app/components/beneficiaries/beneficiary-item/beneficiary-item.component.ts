@@ -109,7 +109,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       this.questionModal = '¿Está seguro que desea eliminar el registro de la lista?';
       this.maxItems = 3;
       this.styleClass = 'item-row-formatwo';
-      this.enableOpertations= true;
+      this.enableOperations = true;
       this.showplus = true;
     }
 

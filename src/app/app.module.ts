@@ -81,8 +81,8 @@ import { NewPaymentComponent } from './components/beneficiaries/new-payment/new-
     QuestionComponent,
     NewRowComponent,
     OptionComponent,
-    AutocompleteComponent
-    NewPaymentComponent,
+    AutocompleteComponent,
+    NewPaymentComponent
     ],
 
   imports: [
@@ -102,7 +102,8 @@ import { NewPaymentComponent } from './components/beneficiaries/new-payment/new-
     AppRoutingModule
   ],
   bootstrap: [AppComponent],
-  entryComponents: [NewBeneficiaryComponent, NewFormatwoComponent, NewAgentComponent, NewCountryComponent, NewPaymentComponent, NewRowComponent],
+  entryComponents: [NewBeneficiaryComponent, NewFormatwoComponent, NewAgentComponent, NewCountryComponent,
+    NewPaymentComponent, NewRowComponent],
   providers: [
     { provide: DateAdapter, useClass: MyDateAdapter},
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS}
