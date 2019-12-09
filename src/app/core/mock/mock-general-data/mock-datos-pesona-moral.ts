@@ -150,7 +150,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     label: 'Folio mercantil (empresas de nacionalidad mexicana)*',
     type: 'text',
     required: true,
-    placeholder: 'Folio mercantil',
+    placeholder: 'Folio mercantil (empresas de nacionalidad mexicana)',
     length: '40',
     minValue: 0,
     maxValue: 40,

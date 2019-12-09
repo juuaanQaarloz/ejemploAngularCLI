@@ -1,0 +1,52 @@
+<!--Drawer Container-->
+<div class="drawer-container">
+    <div>
+      <div data-forms="floating-label" class="ml-form"
+           [ngClass]="content.styleClass">
+        <div *ngFor="let field of fields">
+          <app-field-form [fieldObj]="field" [form]="formGroup"></app-field-form>
+        </div>
+        <!-- <app-operation-form [operationObj]="content.operations[3]" [form]="formGroup"
+                            (click)="fileInput.click()">
+  
+          <input #fileInput type="file" accept=".pdf" (change)="fileChange($event)" style="display:none;" />
+  
+        </app-operation-form>  -->
+      </div>
+      <!--<app-content-form [contentObj]="content" [form]="applicationService.getFormGroup()">
+      </app-content-form>-->
+    </div>
+  
+    <div *ngIf="content.operations" class="operation">
+  
+      <app-operation-form [operationObj]="content.operations[0]"
+                          (click)="executeOperation(content.operations[0].delegateOperation)">
+      </app-operation-form>
+  
+      <app-operation-form *ngIf="operationType === 'add'" [operationObj]="content.operations[1]"
+                          (click)="executeOperation(content.operations[1].delegateOperation)">
+      </app-operation-form>
+  
+      <app-operation-form *ngIf="operationType === 'edit'" [operationObj]="content.operations[2]"
+                          (click)="executeOperation(content.operations[2].delegateOperation)">
+      </app-operation-form>
+  
+    </div>
+  </div>
+  
+  <jw-modal [id]="modalID"
+            [modalType]="'overlay'">
+    <div class="overlay-container">
+      <div style="text-align: right">
+        <img class="button-close" (click)="closeModal(modalID)">
+      </div>
+      <p>{{modalMessage}}</p>
+  
+      <div class="operation-modal">
+        <app-operation-form [operationObj]= okOperation
+                            (click)="executeOperation(okOperation.delegateOperation)">
+        </app-operation-form>
+      </div>
+    </div>
+  </jw-modal>
+  

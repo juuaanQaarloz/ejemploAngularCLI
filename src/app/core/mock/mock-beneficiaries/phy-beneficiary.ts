@@ -6,7 +6,7 @@ export const BeneficiaryFieldsP: Field[] = [
     idHtml: 'txtBeneficiaryName',
     name: 'beneficiaryName',
     orderAppearance: 2,
-    label: 'Nombres(s)*',
+    label: 'Nombre(s)*',
     type: 'text',
     required: true,
     placeholder: 'Nombre(s)*',

@@ -48,6 +48,7 @@ import { NewRowComponent } from './components/table-component/new-row/new-row.co
 import { OptionComponent } from './components/option/option.component';
 import {AutocompleteComponent} from './components/autocomplete/autocomplete.component';
 import {ApplicationService} from './core/services';
+import { NewPaymentComponent } from './components/beneficiaries/new-payment/new-payment.component';
 
 // @ts-ignore
 @NgModule({
@@ -81,6 +82,7 @@ import {ApplicationService} from './core/services';
     NewRowComponent,
     OptionComponent,
     AutocompleteComponent
+    NewPaymentComponent,
     ],
 
   imports: [
@@ -100,7 +102,7 @@ import {ApplicationService} from './core/services';
     AppRoutingModule
   ],
   bootstrap: [AppComponent],
-  entryComponents: [NewBeneficiaryComponent, NewFormatwoComponent, NewAgentComponent, NewCountryComponent, NewRowComponent],
+  entryComponents: [NewBeneficiaryComponent, NewFormatwoComponent, NewAgentComponent, NewCountryComponent, NewPaymentComponent, NewRowComponent],
   providers: [
     { provide: DateAdapter, useClass: MyDateAdapter},
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS}
