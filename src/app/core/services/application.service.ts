@@ -4,8 +4,8 @@ import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';
-import {Field, Occupation} from '../../models';
-import {equalEmailsValidator, validatorsObjects} from '../validators';
+import {Beneficiary, Formatwo, Field, Occupation, Step} from '../../models';
+import {equalEmailsValidator, higherAssuredImport, validateEmailConfirmation, validatorsObjects} from '../validators';
 import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
 import {COVERAGES} from '../mock/coverage/coverage';
@@ -163,7 +163,7 @@ export class ApplicationService {
       });
 
     });
-    return new FormGroup(group, equalEmailsValidator);
+    return new FormGroup(group, equalEmailsValidator && higherAssuredImport);
   }
 
   addNewFormControl(formGroup: FormGroup, field: Field) {
@@ -732,7 +732,7 @@ export class ApplicationService {
     * */
 
   evaluateConditions(exp, formGroup: FormGroup) {
-    // console.log('onGetExpressionElements...');
+    console.log('onGetExpressionElements...');
     const arr = [];
     const reversedString = this.reverseString(exp);
 
@@ -750,7 +750,7 @@ export class ApplicationService {
         s.forEach((sItem) => {
           sAsString = sAsString + sItem;
         });
-        // console.log('sAsString: ', sAsString);
+         console.log('sAsString: ', sAsString);
 
         // for one single operation
         const z = sAsString.split(',');
@@ -760,7 +760,7 @@ export class ApplicationService {
           const resEvalZ = this.evaluateCondition(formGroup, conditionsZ[0]);
           // console.log('resEvalZ: ', resEvalZ);
           arr.push(resEvalZ);
-        } else if (z.length === 5) { // for AND and OR operation (more than one operation)
+        } else if (z.length > 1) { // for AND and OR operation (more than one operation)
           const a = z[0];
           // console.log('a: ', a);
           const b = z[2];
@@ -780,7 +780,6 @@ export class ApplicationService {
               resEvalA = a;
             }
           }
-
           if (b.includes('=') || b.includes('<') || b.includes('>') || b.includes('!=')) {
             const conditionsB = this.getConditions(b);
             resEvalB = this.evaluateCondition(formGroup, conditionsB[0]);
@@ -791,21 +790,23 @@ export class ApplicationService {
               resEvalB = b;
             }
           }
-          // console.log('resEvalA: ', resEvalA);
-          // console.log('resEvalB: ', resEvalB);
+          console.log('resEvalA: ', resEvalA);
+          console.log('resEvalB: ', resEvalB);
 
           if (z[1] === '&') {
             c = resEvalA && resEvalB;
           } else {
             c = resEvalA || resEvalB;
           }
-          // console.log('c: ', c);
+          console.log('c: ', c);
           arr.push((c));
         }
       } else {
         arr.push(ctr);
       }
     }
+    console.log('arr: ', arr);
+    console.log('arr.length - 1: ', arr.length - 1);
     return arr[arr.length - 1];
   }
 

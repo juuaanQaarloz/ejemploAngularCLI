@@ -120,6 +120,7 @@ export class ApplicationComponent implements OnInit {
     const errors = this.formGroup.errors;
     if (errors) {
       console.log('result: ', errors.invalidEmailConfirmation);
+      console.log('result: ', errors);
     }
   }
 }

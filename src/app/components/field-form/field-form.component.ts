@@ -87,6 +87,22 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       });
     }
 
+    if (this.fieldObj.enableConditions) {
+      const dependedFields = this.applicationService.getDependedFields(this.fieldObj.enableConditions);
+      dependedFields.forEach((dependedField) => {
+        this.form.controls[dependedField].valueChanges.subscribe((value) => {
+          this.disable = this.checkState2(this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form));
+          console.log('disable2: ', this.disable);
+          console.log('this.fieldObj.name: ', this.fieldObj.name);
+          if (this.disable === true) {
+            this.form.controls[this.fieldObj.name].disable();
+          } else {
+            this.form.controls[this.fieldObj.name].enable();
+          }
+        });
+      });
+    }
+
     if (this.fieldObj.name === 'age' || this.fieldObj.name === 'ageS') {
       this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
         // console.log('onValueChange age: ', value);
@@ -165,6 +181,13 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         }
       }
     }
+    // validar
+    if (this.fieldObj.name === 'fixedFunds' || this.fieldObj.name === 'variableFunds' || this.fieldObj.name === 'fixedRetirement') {
+
+    }
+    if (this.fieldObj.name === 'assuredImport') {
+        // console.log('Entro assuredImport: ');
+    }
 
     if (value) {
       this.isValid();
@@ -176,8 +199,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onChange(event) {
-    // console.log('onChange event.target.value: ', event.target.value);
-    // // console.log('formControlName: ', this.fieldObj.name);
+    console.log('onChange event.target.value: ', event.target.value);
+    console.log('formControlName: ', this.fieldObj.name);
     this.isValid();
 
   }
@@ -241,6 +264,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
             } else if (this.fieldObj.type === 'radio') {
               this.radioOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
             } else if (this.fieldObj.type === 'checkbox') {
+              console.log('selectItem-checkbox: ', selectItem);
+              this.checkBoxOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
+            } else if (this.fieldObj.type === 'checkboxcoverage') {
+              // console.log('selectItem-checkbox: ', selectItem);
               this.checkBoxOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
             } else if (this.fieldObj.type === 'autocomplete') {
               this.autocompleteOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
@@ -272,9 +299,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   isValid(formControlName?) {
-    // // console.log('onIsValid value: ', this.form.controls[this.fieldObj.name].value);
+    console.log('onIsValid value: ', this.form.controls[this.fieldObj.name].value);
+    // console.log('formControlName: ', formControlName);
     if (formControlName) {
-
+      console.log('formControlNameEntro: ', formControlName);
       const validateAgeResult = validateAge(this.form.controls[formControlName]);
 
       if (validateAgeResult) {
@@ -331,7 +359,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   checkState() {
     const status = this.form.controls[this.fieldObj.name].status;
-    // // console.log('state: ', status);
+    // console.log('state: ', status);
     let result = false;
     if (status === 'DISABLED') {
       result = true;
@@ -339,7 +367,20 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     return result;
   }
 
-  calculateRFC() {
+  checkState2(acceso: boolean) {
+    const status = this.form.controls[this.fieldObj.name].status;
+    console.log('state2: ', status);
+    console.log('acceso: ', acceso);
+    let result = false;
+    if (status === 'DISABLED' && acceso === true) {
+      result = true;
+    } else {
+      result = acceso;
+    }
+    return result;
+  }
+
+    calculateRFC() {
     let apellidoPaterno;
     let apellidoMaterno;
     let nombre;
