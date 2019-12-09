@@ -73,7 +73,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       dependedFields.forEach((dependedField) => {
         this.form.controls[dependedField].valueChanges.subscribe((value) => {
           this.fieldObj.required = this.applicationService.evaluateConditions(this.fieldObj.requiredConditions, this.form);
-          this.form.controls[this.fieldObj.name].setValidators(this.applicationService.getValidationFunctions(this.fieldObj));
+          this.form.controls[this.fieldObj.name].setValidators(this.applicationService.getValidationFunctions2(this.fieldObj));
           this.form.controls[this.fieldObj.name].updateValueAndValidity();
         });
       });
