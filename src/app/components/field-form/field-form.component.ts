@@ -73,7 +73,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       dependedFields.forEach((dependedField) => {
         this.form.controls[dependedField].valueChanges.subscribe((value) => {
           this.fieldObj.required = this.applicationService.evaluateConditions(this.fieldObj.requiredConditions, this.form);
-          this.form.controls[this.fieldObj.name].setValidators(this.applicationService.getValidationFunctions2(this.fieldObj));
+          this.form.controls[this.fieldObj.name].setValidators(this.applicationService.getValidationFunctions(this.fieldObj));
           this.form.controls[this.fieldObj.name].updateValueAndValidity();
         });
       });
@@ -106,6 +106,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.pattern) {
       this.regExpPattern = stringToRegExp(this.fieldObj.pattern);
+      // console.log('regExpPattern: ', this.regExpPattern);
     }
 
     if (this.fieldObj.detonateFunction) {
@@ -156,7 +157,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     let value;
     value = event.target.value;
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
-    event.target.value = correctFieldValue(value);
+    // event.target.value = correctFieldValue(value);
     elem.setAttribute('value', event.target.value);
     this.form.controls[this.fieldObj.name].setValue(event.target.value);
 

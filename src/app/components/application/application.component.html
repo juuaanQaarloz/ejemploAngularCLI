@@ -9,6 +9,8 @@
       <h1 class="title">Solicitudes MetaLife</h1>
     </div>
 
+    <button (click)="getValidateField()">GET ERRORS </button>
+
     <div class="container" *ngFor="let section of applicationObj.sections">
       <app-section-form [form]="formGroup" [sectionObj]="section"></app-section-form>
     </div>

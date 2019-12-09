@@ -663,14 +663,17 @@ export function validateEmailConfirmation(targetKey: string, toMatchKey: string)
 }
 
 export const equalEmailsValidator: ValidatorFn = (group: FormGroup): ValidationErrors | null => {
+  // console.log('on EqualEmailsValidator');
   const email = group.controls.email.value;
   const confirmationEmail = group.controls.emailConfirmation.value;
 
   if (email !== confirmationEmail) {
+    // console.log('not equals emails');
     return { invalidEmailConfirmation: true };
+  } else {
+    // console.log('equal emails valid');
+    return null;
   }
-
-  return null;
 };
 
 export function rangeValidator(min: number, max: number) {
