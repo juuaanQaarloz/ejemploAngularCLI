@@ -3,8 +3,8 @@
   <div *ngFor="let map of columnMaps; let i = index;"
        [appStyleCell]="row[map.access(row)]">
 
-   <div [ngSwitch]="map.format">
-      <p *ngSwitchCase="'label'">{{ row[map.access(row)] | formatCell}}</p>
+    <div [ngSwitch]="map.format">
+      <!-- <p *ngSwitchCase="'label'">{{ row[map.access(row)] | formatCell}}</p> -->
 
       <app-field-form *ngSwitchCase="'field'"
                       [form]="formGroup"
