@@ -55,6 +55,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   beneficiaryType = 'phyPerson';
   showplus = false;
   fields = [];
+  status = '';
 
   constructor(private applicationService: ApplicationService,
               public config: DialogConfig,
@@ -65,14 +66,18 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
-    this.formGroup = this.applicationService.createNewFormGroup(this.content.fields);
-
     this.fields = this.getFields();
+
+    this.formGroup = this.applicationService.createNewFormGroup(this.fields);
+
+    console.log('new beneficiary fields: ', this.fields);
+    console.log('forms controls: ', this.formGroup.controls);
+    console.log('form controls: ', this.applicationService.updateFormGroup(this.formGroup, this.fields));
 
     this.formGroup.controls.beneficiaryType.valueChanges.subscribe((value) => {
       this.beneficiaryType = value;
-      // // console.log('beneficiaryType');
       this.fields = this.getFields();
+      console.log('new beneficiary fields: ', this.fields);
     });
 
     if (this.config.data !== null) {
@@ -340,6 +345,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
     BeneficiaryFieldsP.forEach((field) => {
       fields.push(field);
     });
+
     BeneficiaryFieldsM.forEach((field) => {
       fields.push(field);
     });
@@ -371,5 +377,10 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
       });
     }
     return fields;
+  }
+
+  getFormStatus() {
+    console.log('form controls: ', this.formGroup.controls);
+    this.status = this.formGroup.status;
   }
 }

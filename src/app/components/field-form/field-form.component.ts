@@ -122,15 +122,21 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.pattern) {
       this.regExpPattern = stringToRegExp(this.fieldObj.pattern);
+      // console.log('regExpPattern: ', this.regExpPattern);
     }
 
     if (this.fieldObj.detonateFunction) {
       this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
-        console.log('detonateFunction: ', this.fieldObj.detonateFunction);
-        console.log('itemFromFieldComponent: ', this.item);
+        // console.log('detonateFunction: ', this.fieldObj.detonateFunction);
+        // console.log('itemFromFieldComponent: ', this.item);
         if (this.fieldObj.detonateFunction === 'updateItem') {
           this.item.participationPercentage = value;
-          this.applicationService.updateItem(this.item, 'beneficiary');
+          const result = this.applicationService.updateItem(this.item, 'beneficiary');
+          // console.log('result: ', result);
+          if (!result.status) {
+            this.fieldObj.valid = false;
+            this.fieldObj.message = '';
+          }
         }
       });
     }
@@ -318,9 +324,9 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
     }
 
-    if (!this.fieldObj.valid) {
+    /*if (!this.fieldObj.valid) {
       console.log('errors: ', this.form.controls[this.fieldObj.name].errors);
-    }
+    }*/
 
   }
 

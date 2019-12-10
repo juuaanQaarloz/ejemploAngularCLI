@@ -134,7 +134,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'La edad no es válida, el rango de edad es entre 15 y 70 años',
+    message: 'La edad no es válida, el rango de edad es entre 18 y 70 años',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',

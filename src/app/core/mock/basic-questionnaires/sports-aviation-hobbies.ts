@@ -6,7 +6,7 @@ export const sportsQuestions1: Field[] = [
     idHtml: 'radioAviationQuestion',
     name: 'aviationQuestion',
     orderAppearance: 1,
-    label: '1. ¿Vuelas como piloto o pasajero en lineas o aeronaves privadas incluyendo helicóptero?',
+    label: '1. ¿Vuelas como piloto o pasajero en líneas o aeronaves privadas incluyendo helicóptero?',
     type: 'radio',
     required: true,
     placeholder: '',

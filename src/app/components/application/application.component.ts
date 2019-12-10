@@ -56,7 +56,7 @@ export class ApplicationComponent implements OnInit {
   }
 
   downloadPDF() {
-    let doc = new jsPDF();
+    const doc = new jsPDF();
 
     doc.addHTML(document.getElementById('content'), () => {
       doc.save('solicitud.pdf');
@@ -116,11 +116,12 @@ export class ApplicationComponent implements OnInit {
     });
   }
 
-  getValidateField() {
+  /*getValidateField() {
     const errors = this.formGroup.errors;
+    console.log('erros: ', errors);
     if (errors) {
       console.log('result: ', errors.invalidEmailConfirmation);
       console.log('result: ', errors);
     }
-  }
+  }*/
 }
