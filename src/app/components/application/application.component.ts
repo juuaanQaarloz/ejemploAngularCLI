@@ -121,6 +121,7 @@ export class ApplicationComponent implements OnInit {
     console.log('erros: ', errors);
     if (errors) {
       console.log('result: ', errors.invalidEmailConfirmation);
+      console.log('result: ', errors);
     }
   }*/
 }

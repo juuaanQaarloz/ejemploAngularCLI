@@ -461,6 +461,11 @@ export const validatorsObjects = [
     validationFunctions: [validateAlphanumericValue]
   },
   {
+    nameField: 'assuredImport',
+    validationFunctions: [rangeValidator(0.0, 9999999.00)]
+    // validationFunctions: [validateAlphanumericValue, validateAssuredImport]
+  },
+  {
     nameField: 'periodicityD',
     validationFunctions: [validateAlphanumericValue]
   },

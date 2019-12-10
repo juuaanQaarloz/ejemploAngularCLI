@@ -16,9 +16,13 @@ import {medicalFields, medicalQuestions} from './basic-questionnaires/medical';
 import {AgentQuestion, AgentQuestion1} from './mock-agents/mock-agents-questions';
 import {AuthorizationFields1, AuthorizationQuestions1, AuthorizationQuestions2} from './authorization/authorization-questions';
 
-import {Plan1, Plan2} from './mock-plan/mock-plan';
+import {Plan1, Plan2, Plan3, Plan4, Plan5, Plan6, Plan7} from './mock-plan/mock-plan';
 import {statements, statements0, statements1, statements2, statements3} from './statements/statements';
 import {ifTrue} from 'codelyzer/util/function';
+import { DatosTelefonoSolicitante } from './mock-general-data/mock-telefono-solicitante';
+import { FormasPago, FormasPagoAutorizo } from './mock-general-data/mock-formas-pago';
+import { PerfilTransaccionalNumero, PerfilTransaccionalMonto } from './mock-general-data/mock-perfil-transaccional';
+import { OtrosSeguros } from './mock-general-data/mock-other-insurance';
 
 export const MockFieldsContractorType: Field[] = [
   {
@@ -100,27 +104,6 @@ export const MockContentStep1Process1ContentSection2: Content[] = [
     idParent: 'step-1',
     parentType: 'Step',
     idHtml: 'app-content-form-2.3',
-    title: 'Domicilio del contratante persona física',
-    // process?: Process;
-    fields: DatosDomicilio,
-    // operations?: Operation[];
-    renderConditions: '',
-    // ---pending---
-    // contentChildren?: Array<Content>;
-    // -------------
-
-    // --added extra from model--
-    showContent: true,
-    contentType: 'looseFields'
-    // enableConditions?: 'string';
-    // styleClass?: 'string';
-    // --------------------------
-  },
-  {
-    id: 'content-2.4',
-    idParent: 'step-1',
-    parentType: 'Step',
-    idHtml: 'app-content-form-2.4',
     title: '',
     // process?: Process;
     // fields: DatosDomicilio,
@@ -141,34 +124,13 @@ export const MockContentStep1Process1ContentSection2: Content[] = [
 
 export const MockContentStep2Process1ContentSection2: Content[] = [
   {
-    id: 'content-2.5',
-    idParent: 'step-2',
+    id: 'content-2.4',
+    idParent: 'step-1',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.5',
+    idHtml: 'app-content-form-2.4',
     title: '',
     // process?: Process;
-    fields: InformaciolLaboral1,
-    operations: SearchOccupationOperations,
-    renderConditions: '',
-    // ---pending---
-    // contentChildren?: Array<Content>;
-    // -------------
-
-    // --added extra from model--
-    showContent: true,
-    contentType: 'looseFields'
-    // enableConditions?: 'string';
-    // styleClass?: 'string';
-    // --------------------------
-  },
-  {
-    id: 'content-2.6',
-    idParent: 'step-2',
-    parentType: 'Step',
-    idHtml: 'app-content-form-2.6',
-    title: '',
-    // process?: Process;
-    fields: InformacionLaboral,
+    fields: DatosDomicilio,
     // operations?: Operation[];
     renderConditions: '',
     // ---pending---
@@ -182,11 +144,11 @@ export const MockContentStep2Process1ContentSection2: Content[] = [
     // styleClass?: 'string';
     // --------------------------
   },
-  {
-    id: 'content-2.7',
+    {
+    id: 'content-2.5',
     idParent: 'step-2',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.7',
+    idHtml: 'app-content-form-2.5',
     title: '',
     // process?: Process;
     // fields: DatosDomicilio,
@@ -206,14 +168,35 @@ export const MockContentStep2Process1ContentSection2: Content[] = [
 ];
 
 export const MockContentStep3Process1ContentSection2: Content[] = [
-  /*{
+  {
+    id: 'content-2.6',
+    idParent: 'step-3',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.6',
+    title: '',
+    // process?: Process;
+    fields: InformaciolLaboral1,
+    operations: SearchOccupationOperations,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
     id: 'content-2.7',
     idParent: 'step-3',
     parentType: 'Step',
     idHtml: 'app-content-form-2.7',
-    // title?: 'string',
+    title: '',
     // process?: Process;
-    fields: MockFieldsContractorTypeM,
+    fields: InformacionLaboral,
     // operations?: Operation[];
     renderConditions: '',
     // ---pending---
@@ -226,54 +209,12 @@ export const MockContentStep3Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass?: 'string';
     // --------------------------
-  },*/
+  },
   {
     id: 'content-2.8',
     idParent: 'step-3',
     parentType: 'Step',
     idHtml: 'app-content-form-2.8',
-    title: 'Datos generales del contratante persona moral',
-    // process?: Process;
-    fields: DatosGeneralesPersonaMoral,
-    // operations?: Operation[];
-    renderConditions: '',
-    // ---pending---
-    // contentChildren?: Array<Content>;
-    // -------------
-
-    // --added extra from model--
-    showContent: true,
-    contentType: 'looseFields'
-    // enableConditions?: 'string';
-    // styleClass?: 'string';
-    // --------------------------
-  },
-  {
-    id: 'content-2.9',
-    idParent: 'step-3',
-    parentType: 'Step',
-    idHtml: 'app-content-form-2.9',
-    title: 'Domicilio del contratante persona moral',
-    // process?: Process;
-    fields: DatosDomicilioContactoMoral,
-    // operations?: Operation[];
-    renderConditions: '',
-    // ---pending---
-    // contentChildren?: Array<Content>;
-    // -------------
-
-    // --added extra from model--
-    showContent: true,
-    contentType: 'looseFields'
-    // enableConditions?: 'string';
-    // styleClass?: 'string';
-    // --------------------------
-  },
-  {
-    id: 'content-2.10',
-    idParent: 'step-3',
-    parentType: 'Step',
-    idHtml: 'app-content-form-2.10',
     title: '',
     // process?: Process;
     // fields: DatosDomicilio,
@@ -294,56 +235,13 @@ export const MockContentStep3Process1ContentSection2: Content[] = [
 
 export const MockContentStep4Process1ContentSection2: Content[] = [
   {
-    id: 'content-2.11',
+    id: 'content-2.9',
     idParent: 'step-4',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.11',
-    title: 'Apoderado 1',
-    // process?: Process;
-    fields: DatosRepresentanteLegal,
-    // operations?: Operation[];
-    renderConditions: '',
-    // ---pending---
-    // contentChildren?: Array<Content>;
-    // -------------
-
-    // --added extra from model--
-    showContent: true,
-    contentType: 'looseFields'
-    // enableConditions?: 'string';
-    // styleClass?: 'string';
-    // --------------------------
-  },
-  {
-    id: 'content-2.12',
-    idParent: 'step-4',
-    parentType: 'Step',
-    idHtml: 'app-content-form-2.12',
-    title: 'Apoderado 2',
-    // process?: Process;
-    fields: DatosRepresentanteLegal1,
-    // operations?: Operation[];
-    renderConditions: '',
-    // ---pending---
-    // contentChildren?: Array<Content>;
-    // -------------
-
-    // --added extra from model--
-    showContent: true,
-    contentType: 'looseFields'
-    // enableConditions?: 'string';
-    // styleClass?: 'string';
-    // --------------------------
-  },
-  {
-    id: 'content-2.13',
-    idParent: 'step-4',
-    parentType: 'Step',
-    idHtml: 'app-content-form-2.13',
+    idHtml: 'app-content-form-2.9',
     title: '',
-    warningMessage: 'En caso de seleccionar SI, llenar sección de estructura corporativa y accionista del formato 4',
     // process?: Process;
-    fields: DatosRepresentanteLegal2,
+    fields: DatosGeneralesPersonaMoral,
     // operations?: Operation[];
     renderConditions: '',
     // ---pending---
@@ -352,16 +250,16 @@ export const MockContentStep4Process1ContentSection2: Content[] = [
 
     // --added extra from model--
     showContent: true,
-    contentType: 'looseFields',
+    contentType: 'looseFields'
     // enableConditions?: 'string';
-    styleClass: 'questions-type'
+    // styleClass?: 'string';
     // --------------------------
   },
   {
-    id: 'content-2.14',
+    id: 'content-2.10',
     idParent: 'step-4',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.14',
+    idHtml: 'app-content-form-2.10',
     title: '',
     // process?: Process;
     // fields: DatosDomicilio,
@@ -382,13 +280,13 @@ export const MockContentStep4Process1ContentSection2: Content[] = [
 
 export const MockContentStep5Process1ContentSection2: Content[] = [
   {
-    id: 'content-2.15',
+    id: 'content-2.11',
     idParent: 'step-5',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.15',
-    title: 'Datos generales del solicitante',
+    idHtml: 'app-content-form-2.11',
+    title: '',
     // process?: Process;
-    fields: DatosGeneralesSolicitante,
+    fields: DatosDomicilioContactoMoral,
     // operations?: Operation[];
     renderConditions: '',
     // ---pending---
@@ -403,31 +301,10 @@ export const MockContentStep5Process1ContentSection2: Content[] = [
     // --------------------------
   },
   {
-    id: 'content-2.16',
-    idParent: 'step-5',
-    parentType: 'Step',
-    idHtml: 'app-content-form-2.16',
-    title: 'Domicilio y datos de contacto del solicitante',
-    // process?: Process;
-    fields: DatosDomicilioSolicitante,
-    // operations?: Operation[];
-    renderConditions: '',
-    // ---pending---
-    // contentChildren?: Array<Content>;
-    // -------------
-
-    // --added extra from model--
-    showContent: true,
-    contentType: 'looseFields'
-    // enableConditions?: 'string';
-    // styleClass?: 'string';
-    // --------------------------
-  },
-  {
-    id: 'content-2.17',
+    id: 'content-2.12',
     idParent: 'step-3',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.17',
+    idHtml: 'app-content-form-2.12',
     title: '',
     // process?: Process;
     // fields: DatosDomicilio,
@@ -448,10 +325,209 @@ export const MockContentStep5Process1ContentSection2: Content[] = [
 
 export const MockContentStep6Process1ContentSection2: Content[] = [
   {
-    id: 'content-2.18',
+    id: 'content-2.13',
     idParent: 'step-6',
     parentType: 'Step',
+    idHtml: 'app-content-form-2.13',
+    title: 'Apoderado 1',
+    // process?: Process;
+    fields: DatosRepresentanteLegal,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-2.14',
+    idParent: 'step-6',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.14',
+    title: 'Apoderado 2',
+    // process?: Process;
+    fields: DatosRepresentanteLegal1,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-2.15',
+    idParent: 'step-6',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.15',
+    title: '',
+    warningMessage: 'En caso de seleccionar SI, llenar sección de estructura corporativa y accionista del formato 4',
+    // process?: Process;
+    fields: DatosRepresentanteLegal2,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields',
+    // enableConditions?: 'string';
+    styleClass: 'questions-type'
+    // --------------------------
+  },
+  {
+    id: 'content-2.16',
+    idParent: 'step-6',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.16',
+    title: '',
+    // process?: Process;
+    // fields: DatosDomicilio,
+    operations: MockOperations,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass: 'string',
+    // --------------------------
+  }
+];
+
+export const MockContentStep7Process1ContentSection2: Content[] = [
+  {
+    id: 'content-2.17',
+    idParent: 'step-7',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.17',
+    title: '',
+    // process?: Process;
+    fields: DatosGeneralesSolicitante,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-2.18',
+    idParent: 'step-7',
+    parentType: 'Step',
     idHtml: 'app-content-form-2.18',
+    title: '',
+    // process?: Process;
+    // fields: DatosDomicilio,
+    operations: MockOperations,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass: 'string',
+    // --------------------------
+  }
+];
+
+export const MockContentStep8Process1ContentSection2: Content[] = [
+  {
+    id: 'content-2.19',
+    idParent: 'step-8',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.19',
+    title: 'Domicilio particular',
+    // process?: Process;
+    fields: DatosDomicilioSolicitante,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-2.20',
+    idParent: 'step-8',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.20',
+    title: 'Teléfonos',
+    // process?: Process;
+    fields: DatosTelefonoSolicitante,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-2.21',
+    idParent: 'step-8',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.21',
+    title: '',
+    // process?: Process;
+    // fields: DatosDomicilio,
+    operations: MockOperations,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass: 'string',
+    // --------------------------
+  }
+];
+
+export const MockContentStep9Process1ContentSection2: Content[] = [
+  {
+    id: 'content-2.22',
+    idParent: 'step-9',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.22',
     title: '',
     // process?: Process;
     fields: InformacionLaboralSolicitante1,
@@ -469,10 +545,10 @@ export const MockContentStep6Process1ContentSection2: Content[] = [
     // --------------------------
   },
   {
-    id: 'content-2.19',
-    idParent: 'step-6',
+    id: 'content-2.23',
+    idParent: 'step-9',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.19',
+    idHtml: 'app-content-form-2.23',
     title: '',
     // process?: Process;
     fields: InformacionLaboralSolicitante,
@@ -490,10 +566,10 @@ export const MockContentStep6Process1ContentSection2: Content[] = [
     // --------------------------
   },
   {
-    id: 'content-2.20',
-    idParent: 'step-6',
+    id: 'content-2.24',
+    idParent: 'step-9',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.20',
+    idHtml: 'app-content-form-2.24',
     title: '',
     // process?: Process;
     // fields: DatosDomicilio,
@@ -514,10 +590,10 @@ export const MockContentStep6Process1ContentSection2: Content[] = [
 
 export const MockContentStep10Process1ContentSection2: Content[] = [
   {
-    id: 'content-2.28',
+    id: 'content-2.21',
     idParent: 'step-10',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.28',
+    idHtml: 'app-content-form-2.21',
     contentType: 'looseFields',
     // process?: Process;
     fields: weaponsQuestions,
@@ -534,10 +610,10 @@ export const MockContentStep10Process1ContentSection2: Content[] = [
     // --------------------------
   },
   {
-    id: 'content-2.29',
+    id: 'content-2.22',
     idParent: 'step-10',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.29',
+    idHtml: 'app-content-form-2.22',
     contentType: 'looseFields',
     // process?: Process;
     fields: weaponsFields,
@@ -553,10 +629,10 @@ export const MockContentStep10Process1ContentSection2: Content[] = [
     // --------------------------
   },
   {
-    id: 'content-2.30',
+    id: 'content-2.23',
     idParent: 'step-10',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.30',
+    idHtml: 'app-content-form-2.23',
     contentType: 'looseFields',
     // process?: Process;
     fields: weaponsQuestions1,
@@ -573,10 +649,10 @@ export const MockContentStep10Process1ContentSection2: Content[] = [
     // --------------------------
   },
   {
-    id: 'content-2.31',
+    id: 'content-2.24',
     idParent: 'step-10',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.31',
+    idHtml: 'app-content-form-2.24',
     contentType: 'looseFields',
     // process?: Process;
     fields: weaponsFields1,
@@ -593,10 +669,10 @@ export const MockContentStep10Process1ContentSection2: Content[] = [
     // --------------------------
   },
   {
-    id: 'content-2.32',
+    id: 'content-2.25',
     idParent: 'step-10',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.32',
+    idHtml: 'app-content-form-2.25',
     title: '',
     // process?: Process;
     // fields: DatosDomicilio,
@@ -618,7 +694,7 @@ export const MockContentStep10Process1ContentSection2: Content[] = [
 export const MockContentStep11Process1ContentSection2: Content[] = [
   {
     id: 'content-2.33',
-    idParent: 'step-10',
+    idParent: 'step-11',
     parentType: 'Step',
     idHtml: 'app-content-form-2.33',
     title: '',
@@ -647,7 +723,7 @@ export const MockContentStep11Process1ContentSection2: Content[] = [
   },
   {
     id: 'content-2.34',
-    idParent: 'step-10',
+    idParent: 'step-11',
     parentType: 'Step',
     idHtml: 'app-content-form-2.34',
     title: '',
@@ -668,59 +744,15 @@ export const MockContentStep11Process1ContentSection2: Content[] = [
   }
 ];
 
-export const MockContentStep16Process1ContentSection2: Content[] = [
+export const MockContentStep12Process1ContentSection2: Content[] = [
   {
-    id: 'content-16.1',
-    idParent: 'step-16',
+    id: 'content-2.1',
+    idParent: 'step-12',
     parentType: 'Step',
-    idHtml: 'app-content-form-16.1',
+    idHtml: 'app-content-form-2.1',
     title: '',
     // process?: Process;
-    fields: Plan1,
-    //  operations: SearchOccupationOperationsS,
-    renderConditions: '',
-    // ---pending---
-    // contentChildren?: Array<Content>;
-    // -------------
-
-    // --added extra from model--
-    showContent: true,
-    contentType: 'looseFields'
-    // enableConditions?: 'string';
-    // styleClass?: 'string';
-    // --------------------------
-  },
-  {
-    id: 'content-16.2',
-    idParent: 'step-16',
-    parentType: 'Step',
-    idHtml: 'app-content-form-16.2',
-    title: 'Cobertura básica',
-    // process?: Process;
-    fields: Plan2,
-    //  operations: SearchOccupationOperationsS,
-    renderConditions: '',
-    // ---pending---
-    // contentChildren?: Array<Content>;
-    // -------------
-
-    // --added extra from model--
-    showContent: true,
-    contentType: 'looseFields'
-    // enableConditions?: 'string';
-    // styleClass?: 'string';
-    // --------------------------
-  },
-  {
-    id: 'content-16.21',
-    idParent: 'step-16',
-    parentType: 'Step',
-    idHtml: 'app-content-form-2.21',
-    title: 'Beneficios adicionales',
-    description: '',
-    contentType: 'table-coverage',
-    // process?: Process;
-    // fields: Beneficiarios,
+    fields: FormasPago,
     // operations?: Operation[];
     renderConditions: '',
     // ---pending---
@@ -729,15 +761,103 @@ export const MockContentStep16Process1ContentSection2: Content[] = [
 
     // --added extra from model--
     showContent: true,
-    // enableConditions?: 'publicFunctionQuestion=true',
-    styleClass: 'modal-type'
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
     // --------------------------
   },
   {
-    id: 'content-16.2',
-    idParent: 'step-16',
+    id: 'content-2.17',
+    idParent: 'step-12',
     parentType: 'Step',
-    idHtml: 'app-content-form-2.20',
+    idHtml: 'app-content-form-2.2',
+    title: 'Autorizo a MetLife, me contacte a través de los siguientes medios (seleccionar una opción):',
+    // process?: Process;
+    fields: FormasPagoAutorizo,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-2.34',
+    idParent: 'step-12',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.34',
+    title: '',
+    // process?: Process;
+    // fields: DatosDomicilio,
+    operations: MockOperations,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass: 'string',
+    // --------------------------
+  }
+];
+
+export const MockContentStep13Process1ContentSection2: Content[] = [
+  {
+    id: 'content-13.1',
+    idParent: 'step-13',
+    parentType: 'Step',
+    idHtml: 'app-content-form-13.1',
+    title: 'Número aproximado de transacciones anuales',
+    // process?: Process;
+    fields: PerfilTransaccionalNumero,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-13.1',
+    idParent: 'step-13',
+    parentType: 'Step',
+    idHtml: 'app-content-form-13.1',
+    title: 'Monto aproximado de transacciones anuales (en Moneda Nacional)',
+    // process?: Process;
+    fields: PerfilTransaccionalMonto,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-2.34',
+    idParent: 'step-12',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.34',
     title: '',
     // process?: Process;
     // fields: DatosDomicilio,
@@ -1014,6 +1134,266 @@ export const MockContentStep14Process1ContentSection2: Content[] = [
   {
     id: 'content-14.2',
     idParent: 'step-14',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.20',
+    title: '',
+    // process?: Process;
+    // fields: DatosDomicilio,
+    operations: MockOperations,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass: 'string',
+    // --------------------------
+  }
+];
+
+export const MockContentStep15Process1ContentSection2: Content[] = [
+  {
+    id: 'content-13.1',
+    idParent: 'step-13',
+    parentType: 'Step',
+    idHtml: 'app-content-form-13.1',
+    title: 'Esta información no faculta a la compañía para rescindir el contrato en los términos del artículo 47 de la Ley Sobre el Contrato de Seguro.',
+    // process?: Process;
+    fields: OtrosSeguros,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields',
+    // enableConditions?: 'string';
+    styleClass: 'questions-type'
+    // --------------------------
+  },
+  {
+    id: 'content-2.34',
+    idParent: 'step-15',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.34',
+    title: '',
+    // process?: Process;
+    // fields: DatosDomicilio,
+    operations: MockOperations,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass: 'string',
+    // --------------------------
+  }
+];
+
+export const MockContentStep16Process1ContentSection2: Content[] = [
+  {
+    id: 'content-16.1',
+    idParent: 'step-16',
+    parentType: 'Step',
+    idHtml: 'app-content-form-16.1',
+    title: '',
+    // process?: Process;
+    fields: Plan1,
+    //  operations: SearchOccupationOperationsS,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-16.2',
+    idParent: 'step-16',
+    parentType: 'Step',
+    idHtml: 'app-content-form-16.2',
+    title: 'Cobertura básica',
+    // process?: Process;
+    fields: Plan2,
+    //  operations: SearchOccupationOperationsS,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-16.21',
+    idParent: 'step-16',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.21',
+    title: 'Beneficios adicionales',
+    description: '',
+    contentType: 'table-coverage',
+    // process?: Process;
+    // fields: Beneficiarios,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    // enableConditions?: 'publicFunctionQuestion=true',
+    styleClass: 'modal-type'
+    // --------------------------
+  },
+  /*
+  {
+    id: 'content-16.2',
+    idParent: 'step-16',
+    parentType: 'Step',
+    idHtml: 'app-content-form-16.2',
+    title: 'Invalidez Total y Permanente',
+    // process?: Process;
+    fields: Plan4,
+    //  operations: SearchOccupationOperationsS,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  }, */
+  {
+    id: 'content-16.2',
+    idParent: 'step-16',
+    parentType: 'Step',
+    idHtml: 'app-content-form-16.2',
+    title: 'Prima adicional anual y / o aportaciones anuales programadas',
+    // process?: Process;
+    fields: Plan3,
+    //  operations: SearchOccupationOperationsS,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-16.2',
+    idParent: 'step-16',
+    parentType: 'Step',
+    idHtml: 'app-content-form-16.2',
+    title: 'Distribución de fondos',
+    // process?: Process;
+    fields: Plan4,
+    //  operations: SearchOccupationOperationsS,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-16.2',
+    idParent: 'step-16',
+    parentType: 'Step',
+    idHtml: 'app-content-form-16.2',
+    title: 'Plan Personal Retiro',
+    // process?: Process;
+    fields: Plan5,
+    //  operations: SearchOccupationOperationsS,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-16.2',
+    idParent: 'step-16',
+    parentType: 'Step',
+    idHtml: 'app-content-form-16.2',
+    title: 'Cuenta Personal Especial para el Ahorro',
+    // process?: Process;
+    fields: Plan6,
+    //  operations: SearchOccupationOperationsS,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-16.2',
+    idParent: 'step-16',
+    parentType: 'Step',
+    idHtml: 'app-content-form-16.2',
+    title: 'Prima Total  Anual y Aportaciones',
+    // process?: Process;
+    fields: Plan7,
+    //  operations: SearchOccupationOperationsS,
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-16.2',
+    idParent: 'step-16',
     parentType: 'Step',
     idHtml: 'app-content-form-2.20',
     title: '',

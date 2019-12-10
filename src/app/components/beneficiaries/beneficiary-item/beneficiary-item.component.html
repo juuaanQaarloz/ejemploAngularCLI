@@ -13,6 +13,22 @@
        *ngIf="itemType === 'country'" >{{item.statCountry}}</div>
     <div class="item-attribute"
        *ngIf="itemType === 'country'" >{{item.taxCountryId}}</div>
+    <div class="item-attribute"
+       *ngIf="itemType === 'coverage'" >
+
+      <div class="ml-form-field-checkboxes-group">
+          <input type="checkbox"
+             [id]="item.detail + '-checkbox'"
+             [name]="item.coverageName"
+             [value]="item.detail"
+             [checked]="item.isSelected">
+        <label [for]="item.detail + '-checkbox'"></label>
+      </div>
+
+    </div>
+
+    <div class="item-attribute"
+       *ngIf="itemType === 'coverage'" >{{item.coverageName}}</div>
 
   <div class="item-attribute" *ngFor="let field of fields">
     <app-field-form
@@ -22,6 +38,9 @@
 
     </app-field-form>
   </div>
+
+  <div class="item-attribute"
+       *ngIf="itemType === 'coverage'" >{{item.detail}}</div>
 
   <div class="operations">
     <div *ngIf="enableOperations">
