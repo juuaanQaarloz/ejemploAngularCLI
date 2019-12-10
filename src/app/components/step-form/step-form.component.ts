@@ -38,10 +38,12 @@ export class StepFormComponent implements OnInit {
     });
 
     if (this.stepObj.renderConditions) {
-      this.renderCondition = this.applicationService.getConditions(this.stepObj.renderConditions);
-      this.stepObj.show = this.applicationService.evaluateCondition(this.form, this.renderCondition[0]);
-      this.form.controls[this.renderCondition[0][1]].valueChanges.subscribe(() => {
-        this.stepObj.show = this.applicationService.evaluateCondition(this.form, this.renderCondition[0]);
+      this.renderCondition = this.applicationService.getDependedFields(this.stepObj.renderConditions);
+      this.stepObj.show = this.applicationService.evaluateConditions(this.stepObj.renderConditions, this.form);
+      this.renderCondition.forEach((item) => {
+        this.form.controls[item].valueChanges.subscribe(() => {
+          this.stepObj.show = this.applicationService.evaluateConditions(this.stepObj.renderConditions, this.form);
+        });
       });
     }
   }
