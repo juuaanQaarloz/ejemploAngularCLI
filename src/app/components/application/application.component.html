@@ -9,7 +9,9 @@
       <h1 class="title">Solicitudes MetaLife</h1>
     </div>
 
-    <!--<button (click)="getValidateField()">GET ERRORS </button>-->
+    <button (click)="getValidateField()">GET ERRORS </button>
+    <p *ngIf="errors"> {{'errors: ' + errors.invalidAssuredImport}} </p>
+    <!--<p *ngIf="this.errors.invalidAssuredImport">{{'error: ' + this.errors.invalidAssuredImport}}</p>-->
 
     <div class="container" *ngFor="let section of applicationObj.sections">
       <app-section-form [form]="formGroup" [sectionObj]="section"></app-section-form>
