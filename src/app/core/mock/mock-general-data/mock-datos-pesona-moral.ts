@@ -13,7 +13,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     length: '40',
     minValue: 0,
     maxValue: 60,
-    pattern: '/[A-ZÑ0-9_\\/&\\s\\-\\.\\,\\(\\)]/g',
+    pattern: '/[A-ZÑ0-9_\\/&\\s\\-\\.\\,\\(\\)]/',
     source: '',
     sourceID: '',
     style: '',

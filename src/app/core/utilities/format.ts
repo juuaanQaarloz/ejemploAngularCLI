@@ -92,6 +92,6 @@ export function transformDate(date: Date, format: string) {
 export function stringToRegExp(str) {
   const match = (/^\/(.*)\/([a-z]*)$/).exec(str);
   const result = new RegExp(match[1], match[2]);
-  console.log('result: ', result);
+  // console.log('result: ', result);
   return result;
 }

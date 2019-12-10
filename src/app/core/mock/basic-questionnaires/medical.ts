@@ -7,7 +7,7 @@ export const medicalQuestions: Field[] = [
     name: 'diseasesQuestion',
     orderAppearance: 1,
     label: '1. ¿Te ha sido diagnosticado o estas bajo seguimiento médico o en tratamiento de alguno de los siguientes ' +
-      'padecimientos: presión alta, hipertensión, diabetes, cardiovasculares, infarto al miocardio, insuficiencia renal, ' +
+      'padecimientos: presión arterial alta, hipertensión, diabetes, cardiovasculares, infarto al miocardio, insuficiencia renal, ' +
       'cáncer o tumor, SIDA, parálisis, paraplejia, enfisema, asma o cualquier enfermedad del pulmón (salvo bronquitis aguda),' +
       ' hígado, riñones, digestivo, próstata o matriz o consumes algún medicamento?',
     type: 'radio',
@@ -40,7 +40,7 @@ export const medicalQuestions: Field[] = [
     orderAppearance: 2,
     label: '2. En los últimos 10 años, ¿Haz estado hospitalizado o en urgencias por una operación, ' +
       'tratamiento o te han practicado estudios de laboratorio y/o gabinete como electrocardiogramas, ' +
-      'ultrasonido, radiografías, tomografías, resonancias, etc. (excepto check up o chequeos de rutina)',
+      'ultrasonido, radiografías, tomografías, resonancias, etc. (excepto check up o chequeos de rutina)?',
     type: 'radio',
     required: true,
     placeholder: '',

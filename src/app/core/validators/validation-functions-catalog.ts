@@ -26,7 +26,7 @@ export const validatorsObjects = [
   },
   {
     nameField: 'age',
-    validationFunctions: [AgeValidator]
+    validationFunctions: [rangeValidator(18, 70)]
   },
   {
     nameField: 'rfc',
@@ -196,10 +196,10 @@ export const validatorsObjects = [
     nameField: 'birthDateS',
     validationFunctions: [DateValidator]
   },
-  /*{
+  {
     nameField: 'ageS',
-    validationFunctions: [AgeValidator]
-  },*/
+    validationFunctions: [rangeValidator(18, 70)]
+  },
   {
     nameField: 'rfcS',
     validationFunctions: [validateRFC]
@@ -460,4 +460,13 @@ export const validatorsObjects = [
     nameField: 'taxCountryId',
     validationFunctions: [validateAlphanumericValue]
   },
+  {
+    nameField: 'periodicityD',
+    validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'periodicity',
+    validationFunctions: [validateAlphanumericValue]
+  },
+
 ];

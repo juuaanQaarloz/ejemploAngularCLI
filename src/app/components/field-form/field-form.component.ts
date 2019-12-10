@@ -111,12 +111,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.detonateFunction) {
       this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
-        console.log('detonateFunction: ', this.fieldObj.detonateFunction);
-        console.log('itemFromFieldComponent: ', this.item);
+        // console.log('detonateFunction: ', this.fieldObj.detonateFunction);
+        // console.log('itemFromFieldComponent: ', this.item);
         if (this.fieldObj.detonateFunction === 'updateItem') {
           this.item.participationPercentage = value;
           const result = this.applicationService.updateItem(this.item, 'beneficiary');
-          console.log('result: ', result);
+          // console.log('result: ', result);
           if (!result.status) {
             this.fieldObj.valid = false;
             this.fieldObj.message = '';
@@ -157,7 +157,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     let value;
     value = event.target.value;
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
-    // event.target.value = correctFieldValue(value);
+    event.target.value = correctFieldValue(value);
     elem.setAttribute('value', event.target.value);
     this.form.controls[this.fieldObj.name].setValue(event.target.value);
 
@@ -296,9 +296,9 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
     }
 
-    if (!this.fieldObj.valid) {
+    /*if (!this.fieldObj.valid) {
       console.log('errors: ', this.form.controls[this.fieldObj.name].errors);
-    }
+    }*/
 
   }
 
