@@ -118,9 +118,10 @@ export class ApplicationComponent implements OnInit {
 
   getValidateField() {
     const errors = this.formGroup.errors;
+    console.log('Errors: ', errors);
     if (errors) {
-      console.log('result: ', errors.invalidEmailConfirmation);
-      console.log('result: ', errors);
+       console.log('result: ', errors.invalidEmailConfirmation);
+       console.log('result: ', errors.invalidAssuredImport);
     }
   }
 }

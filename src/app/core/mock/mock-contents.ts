@@ -1613,7 +1613,7 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
     // process?: Process;
     fields: medicalFields,
     // operations?: Operation[];
-    renderConditions: '((diseasesQuestion=true),|,(medicalTestQuestion=true),|,(extraDiseasesQuestion=false))',
+    renderConditions: '(diseasesQuestion=true,|,medicalTestQuestion=true,|,extraDiseasesQuestion=false)',
     // ((diseasesQuestion=true),|,(medicalTestQuestion=true),|,(extraDiseasesQuestion=false))
     // ---pending---
     // contentChildren?: Array<Content>;
