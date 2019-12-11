@@ -121,8 +121,7 @@ export class ApplicationComponent implements OnInit {
     this.errors = this.formGroup.errors;
     console.log('erros: ', this.errors);
     if (this.errors) {
-      console.log('result: ', this.errors.invalidAssuredImport);
-      console.log('result: ', this.errors);
+      console.log('invalidEmailConfirmation: ', this.errors.invalidEmailConfirmation);
     }
   }
 }

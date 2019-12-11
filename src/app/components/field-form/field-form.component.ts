@@ -305,7 +305,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   isValid(formControlName?) {
-    console.log('onIsValid value: ', this.form.controls[this.fieldObj.name].value);
+    // console.log('onIsValid value: ', this.form.controls[this.fieldObj.name].value);
     // console.log('formControlName: ', formControlName);
     if (formControlName) {
       console.log('formControlNameEntro: ', formControlName);

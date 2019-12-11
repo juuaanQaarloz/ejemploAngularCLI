@@ -162,7 +162,7 @@ export class ApplicationService {
       });
 
     });
-    return new FormGroup(group, equalEmailsValidator && higherAssuredImport);
+    return new FormGroup(group, [equalEmailsValidator, higherAssuredImport]);
   }
 
   addNewFormControl(formGroup: FormGroup, field: Field) {
@@ -833,5 +833,19 @@ export class ApplicationService {
     });
 
     return dependedFields;
+  }
+
+  getStatusError(errorId) {
+    const errors = this.formGroup.errors;
+    if (errors) {
+      if (errors[errorId]) {
+        console.log('errors[errorId]: ', errors[errorId]);
+        return errors[errorId];
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
   }
 }

@@ -57,4 +57,11 @@ export class StepFormComponent implements OnInit {
     this.accordionExpanded = false;
     this.applicationService.changeValue(this.index + 1);
   }
+
+  getErrorStatus(errorId) {
+    const status = this.applicationService.getStatusError(errorId);
+    console.log('status: ', status);
+    return status;
+  }
 }
+
