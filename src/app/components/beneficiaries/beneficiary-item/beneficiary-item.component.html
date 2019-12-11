@@ -15,16 +15,18 @@
        *ngIf="itemType === 'country'" >{{item.taxCountryId}}</div>
     <div class="item-attribute"
        *ngIf="itemType === 'coverage'" >
-
+      <fieldset class="ml-form-field ml-form-field-checkboxes">
+      <div [formGroup]="this.applicationService.getFormGroup()">
       <div class="ml-form-field-checkboxes-group">
-          <input type="checkbox"
-             [id]="item.detail + '-checkbox'"
+          <input type="checkbox" [formControlName]="item.detail + 'checkbox'"
+             [id]="item.detail + 'checkbox'"
              [name]="item.coverageName"
              [value]="item.detail"
              [checked]="item.isSelected">
-        <label [for]="item.detail + '-checkbox'"></label>
+        <label [for]="item.detail + 'checkbox'"></label>
       </div>
-
+      </div>
+      </fieldset>
     </div>
 
     <div class="item-attribute"
