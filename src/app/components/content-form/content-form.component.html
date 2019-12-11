@@ -74,6 +74,8 @@
 
   <p *ngIf="contentObj.warningMessage">{{contentObj.warningMessage}}</p>
 
+  <p *ngIf="contentObj.legend">{{contentObj.legend}}</p>
+
   <div *ngIf="contentObj.operations" class="operation">
     <app-operation-form *ngFor="let operation of contentObj.operations" [operationObj]="operation"></app-operation-form>
   </div>

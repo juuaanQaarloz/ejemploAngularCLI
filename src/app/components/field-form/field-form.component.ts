@@ -30,15 +30,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   regExpPattern;
   loading = true;
 
-  // for test component
-  options = [
-    { id: 1, label: 'ONE' , description: 'Description One'},
-    { id: 2, label: 'TWO' , description: 'Description Two'},
-    { id: 3, label: 'THREE', description: 'Description Three' }
-  ];
-  control = new FormControl();
-  // for test component
-
   constructor(private applicationService: ApplicationService,
               private matIconRegistry: MatIconRegistry,
               private domSanitizer: DomSanitizer) {
@@ -81,9 +72,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.disable) {
       this.form.controls[this.fieldObj.name].disable();
+      // console.log('this.disable: ', this.disable);
       this.disable = this.checkState();
+      // console.log('this.disable: ', this.disable);
       this.form.controls[this.fieldObj.name].valueChanges.subscribe(() => {
         this.disable = this.checkState();
+        // console.log('this.disable: ', this.disable);
       });
     }
 
@@ -99,7 +93,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           } else {
             this.form.controls[this.fieldObj.name].enable();
           }
-        });
+      });
       });
     }
 
@@ -122,6 +116,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.pattern) {
       this.regExpPattern = stringToRegExp(this.fieldObj.pattern);
+      // this.regExpPattern = this.fieldObj.pattern;
       // console.log('regExpPattern: ', this.regExpPattern);
     }
 
@@ -150,6 +145,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    // console.log('on ngAfterViewInit...');
     if (this.fieldObj.type === 'text') {
       const elem: Element = document.getElementById(this.fieldObj.idHtml);
       // // console.log('elem: ', elem);

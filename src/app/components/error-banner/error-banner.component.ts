@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {ApplicationService} from '../../core/services';
 
 @Component({
   selector: 'app-error-banner',
@@ -7,11 +8,14 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ErrorBannerComponent implements OnInit {
   showBanner = true;
-  @Input() message;
+  message = 'Please check the information below';
 
-  constructor() { }
+  constructor(private appService: ApplicationService) { }
 
   ngOnInit() {
+  }
+
+  getErrorStatus() {
   }
 
 }

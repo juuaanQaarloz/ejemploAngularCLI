@@ -22,5 +22,6 @@ export interface Content {
   contentType: string; // loose fields, table, questionary
   description?: string;
   warningMessage?: string;
+  legend?: string;
   // --------------------------
 }

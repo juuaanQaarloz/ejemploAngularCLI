@@ -29,8 +29,12 @@
                   (completed && !isLast) ? 'completed': ''
                   ]">
 
-  <app-error-banner *ngIf="getErrorStatus(stepObj.errorId) | async"
+  <!--<app-error-banner *ngIf="getErrorStatus(stepObj.errorId) | async"
                     [message]="'Please check the information below.'">
+
+  </app-error-banner>-->
+
+  <app-error-banner *ngIf="stepObj.id === '16'">
 
   </app-error-banner>
 
