@@ -28,6 +28,9 @@
                   !accordionExpanded ? 'hide': '',
                   (completed && !isLast) ? 'completed': ''
                   ]">
+
+  <!--<app-error-banner *ngIf="getErrorStatus(stepObj.errorId) | async"></app-error-banner>-->
+
   <div class="ml-step-content-div">
     <app-content-form *ngFor="let content of stepObj.contents" [form]="form" [contentObj]="content"></app-content-form>
     <!--<div *ngIf="stepObj.content.operations" class="operation">

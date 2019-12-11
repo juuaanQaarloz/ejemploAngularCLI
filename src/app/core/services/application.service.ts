@@ -179,6 +179,27 @@ export class ApplicationService {
     }
   }
 
+  getValidationFunctions2(field: Field): any[] {
+    let validationFunctions = [];
+
+    if (field.required) {
+      validationFunctions.push(Validators.required);
+
+      validatorsObjects.forEach(validationObject => {
+        if (validationObject.nameField === field.name) {
+          // // console.log('validationObject: ', validationObject);
+          validationFunctions = validationObject.validationFunctions;
+        }
+      });
+
+      if (field.maxValue) {
+        validationFunctions.push(Validators.maxLength(field.maxValue));
+      }
+    }
+
+    return validationFunctions;
+  }
+
   getValidationFunctions(field: Field): any[] {
     let validationFunctions = [];
 
@@ -188,6 +209,7 @@ export class ApplicationService {
         validationFunctions = validationObject.validationFunctions;
       }
     });
+
 
     if (field.required) {
       validationFunctions.push(Validators.required);
@@ -199,10 +221,6 @@ export class ApplicationService {
       console.log('setting pattern validator: ', field.pattern);
       validationFunctions.push((Validators.pattern(field.pattern)));
     }*/
-
-    if (field.name === 'name') {
-      // console.log('validationFunctions: ', validationFunctions);
-    }
 
     return validationFunctions;
   }
@@ -426,11 +444,12 @@ export class ApplicationService {
       const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
       currentItems[index] = updatedItem;
       this.setItems(itemType, currentItems);
+      return {status: true, message: ''};
     }
 
-    const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
+    /*const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
     currentItems[index] = updatedItem;
-    this.setItems(itemType, currentItems);
+    this.setItems(itemType, currentItems);*/
   }
 
   getTotalParticipationPercentage(itemType: string) {
@@ -580,6 +599,12 @@ export class ApplicationService {
       group[field.name] = new FormControl(field.value || '', this.getValidationFunctions(field));
     });
     return new FormGroup(group);
+  }
+
+  updateFormGroup(formGroup: FormGroup, fields: Field[]) {
+    const currentFormControls = formGroup.controls;
+
+    console.log('currentFormControls: ', currentFormControls);
   }
 
   determinateEvenOrOdd(num: number): boolean {
@@ -808,5 +833,19 @@ export class ApplicationService {
     });
 
     return dependedFields;
+  }
+
+  getStatusError(errorId) {
+    const errors = this.formGroup.errors;
+    if (errors) {
+      if (errors[errorId]) {
+        console.log('errors[errorId]: ', errors[errorId]);
+        return errors[errorId];
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
   }
 }

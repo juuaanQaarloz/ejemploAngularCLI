@@ -36,6 +36,9 @@
                         (click)="executeOperation(content.operations[2].delegateOperation)">
     </app-operation-form>
 
+    <button (click)="getFormStatus()"> GET STATUS</button>
+    <p *ngIf="status">{{'form status: ' + status}}</p>
+
   </div>
 </div>
 

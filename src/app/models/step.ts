@@ -12,4 +12,5 @@ export interface Step {
   /*added extra from model*/
   isCompleted: boolean;
   show: boolean;
+  errorId?: string;
 }

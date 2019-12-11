@@ -22,6 +22,7 @@ export class ApplicationComponent implements OnInit {
   @ViewChild('content', {static: false}) content: ElementRef;
   pdfOperation = pdfOperation;
   items = [];
+  errors;
 
   constructor(private appService: ApplicationService,
               private authService: AuthService,
@@ -56,7 +57,7 @@ export class ApplicationComponent implements OnInit {
   }
 
   downloadPDF() {
-    let doc = new jsPDF();
+    const doc = new jsPDF();
 
     doc.addHTML(document.getElementById('content'), () => {
       doc.save('solicitud.pdf');
@@ -117,11 +118,10 @@ export class ApplicationComponent implements OnInit {
   }
 
   getValidateField() {
-    const errors = this.formGroup.errors;
-    console.log('Errors: ', errors);
-    if (errors) {
-       console.log('result: ', errors.invalidEmailConfirmation);
-       console.log('result: ', errors.invalidAssuredImport);
+    this.errors = this.formGroup.errors;
+    console.log('erros: ', this.errors);
+    if (this.errors) {
+      console.log('invalidEmailConfirmation: ', this.errors.invalidEmailConfirmation);
     }
   }
 }

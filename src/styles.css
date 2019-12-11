@@ -984,3 +984,117 @@ select::-ms-expand {
   /*margin-top: -2px;*/
   text-decoration: none !important;
 }
+
+/*alert message by step styles*/
+.ml-msg-container{
+
+  width:100%;
+}
+
+.ml-msg{
+  min-height:37px;
+  line-height:1.4;
+  padding: 8px 0px 8px 0px;
+  text-align:left;
+  color: #333333;
+  margin-bottom:5px;
+  /*added extra from UX guide*/
+  /*position: fixed;*/
+
+}
+
+.ml-msg-left{
+  min-height:37px;
+  line-height:1.4;
+  padding: 8px 0px 8px 0px;
+  text-align:left;
+  color: #333333;
+  margin-bottom:5px;
+  font-weight:bold;
+}
+
+.ml-msg-txt{
+  display:inline-block;
+  margin-left:15px;
+  margin-right:10px;
+  font-weight: bold;
+}
+
+/* ============ for mobile =========== */
+.msg-indent{
+  text-align:left;
+  top:0;
+  margin-top:-15px;
+  margin-bottom:15px;
+  padding: 0px 15px 0px 15px;
+
+}
+
+.ml-msg img{
+  vertical-align:middle;
+  margin-top:-5px;
+  height:20px;
+}
+
+.ml-msg-msg{
+  background: #D8EEF9;
+}
+
+.ml-msg-error {
+  background: #FDE8E8;
+
+}
+
+.ml-msg-confirmation {
+  background: #EDF5DC;
+
+}
+.ml-msg-error a{
+  color: #0061A0;
+  font-weight:bold;
+  text-decoration:underline;
+}
+.ml-msg-error a:hover{
+  text-decoration:none;
+}
+
+.ml-msg-error-text {
+  color:#333333/*#DB1818*/;
+  font-weight:700;
+}
+
+.high-priority{
+  color:#DB1818;
+  font-size:18px;
+  padding-right:5px;
+}
+.low-priority{
+  color:#0061A0;
+  font-size:18px;
+  padding-right:5px;
+}
+
+.confirmation{
+  color:#73982A/*#A4CE4E*/ ;
+  font-size:18px;
+  padding-right:5px;
+}
+
+.ml-msg-close{
+  float:right;
+  padding: 2px 8px 2px 8px;
+  cursor:pointer;
+  color:#0061A0;
+}
+
+.ml-msg-close:after{
+  content:url(/assets/img/modal/close-icon.svg);
+  display:block;
+  width:16px;
+}
+
+.ml-msg-close:hover:after{
+  content:url(/assets/img/modal/close-icon-over.svg);
+  width:16px;
+}
+/*ends alert message by step styles*/

@@ -164,12 +164,12 @@ export function validateDateFormat(control: AbstractControl): { [key: string]: a
   // return true;
 }
 
-export function AgeValidator(minAge = 15, maxAge = 70): any {
+export function AgeValidator(minAge = 18, maxAge = 70): any {
   // console.log('on AgeValidator');
   return (control: FormControl): { [key: string]: any } => {
     const val = control.value;
 
-    // console.log('val: ', val);
+    console.log('val: ', val);
 
     if (val < minAge || val > maxAge) {
       return {invalidAge: true};
@@ -253,7 +253,7 @@ export function validateTitularDateFormat(control: AbstractControl): { [key: str
  * @returns (boolean) returns false if the given age is out of the rage permitted
  */
 export function validateAge(control: AbstractControl): { [key: string]: any } | null {
-  if (control.value < 15 || control.value > 70) {
+  if (control.value < 18 || control.value > 70) {
     return {invalidAge: {valid: false, value: control.value}};
     // return false;
   }
@@ -663,14 +663,17 @@ export function validateEmailConfirmation(targetKey: string, toMatchKey: string)
 }
 
 export const equalEmailsValidator: ValidatorFn = (group: FormGroup): ValidationErrors | null => {
+  // console.log('on EqualEmailsValidator');
   const email = group.controls.email.value;
   const confirmationEmail = group.controls.emailConfirmation.value;
 
   if (email !== confirmationEmail) {
+    // console.log('not equals emails');
     return { invalidEmailConfirmation: true };
+  } else {
+    // console.log('equal emails valid');
+    return null;
   }
-
-  return null;
 };
 
 export function rangeValidator(min: number, max: number) {

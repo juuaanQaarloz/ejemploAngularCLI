@@ -48,6 +48,7 @@ import { NewRowComponent } from './components/table-component/new-row/new-row.co
 import { OptionComponent } from './components/option/option.component';
 import {AutocompleteComponent} from './components/autocomplete/autocomplete.component';
 import {ApplicationService} from './core/services';
+import { ErrorBannerComponent } from './components/error-banner/error-banner.component';
 
 // @ts-ignore
 @NgModule({
@@ -80,7 +81,8 @@ import {ApplicationService} from './core/services';
     QuestionComponent,
     NewRowComponent,
     OptionComponent,
-    AutocompleteComponent
+    AutocompleteComponent,
+    ErrorBannerComponent
     ],
 
   imports: [
