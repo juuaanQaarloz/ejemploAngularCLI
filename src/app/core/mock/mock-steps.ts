@@ -22,6 +22,7 @@ import {
   MockContentStep20Process1ContentSection2,
   MockContentStep21Process1ContentSection2,
 } from './mock-contents';
+import {ERROSDATOSPLAN} from './errors/mock-erros-datos-plan';
 
 export const MockStepsProcessContentSection2: Step[] = [
   {
@@ -231,7 +232,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     /*added extra from model*/
     isCompleted: false,
     show: true,
-    errorId: 'invalidAssuredImport'
+    errors: ERROSDATOSPLAN
   },
   {
     id: '17',

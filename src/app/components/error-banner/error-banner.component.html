@@ -1,10 +1,15 @@
-<div *ngIf="showBanner" class="ml-msg ml-msg-error">
+<div *ngFor="let error of errors">
+
+  <div *ngIf="getErrorStatus(error.errorName)" class="ml-msg ml-msg-error">
     <span class="ml-msg-txt"><span class="fa fa-exclamation-circle high-priority"></span>
-      {{message}} </span>
+      {{error.errorMsg}} </span>
+  </div>
+
+  <!--<div class="ml-msg ml-msg-error" id="err1">
+      <span class="ml-msg-txt"><span class="fa fa-exclamation-circle high-priority"></span><span
+        class="ml-msg-error-text">Alert - Payment is due:</span> <a href="#">Click here</a> to make a payment. Premium for... <a
+        href="#">More info</a></span><span class="ml-msg-close"></span>
+    </div>-->
 </div>
 
-<!--<div class="ml-msg ml-msg-error" id="err1">
-    <span class="ml-msg-txt"><span class="fa fa-exclamation-circle high-priority"></span><span
-      class="ml-msg-error-text">Alert - Payment is due:</span> <a href="#">Click here</a> to make a payment. Premium for... <a
-      href="#">More info</a></span><span class="ml-msg-close"></span>
-  </div>-->
+
