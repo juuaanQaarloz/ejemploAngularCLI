@@ -12,7 +12,7 @@
     </div>
     <!-- <app-operation-form [operationObj]="pdfOperation" (click)="getValidateField()"></app-operation-form> -->
 
-    <app-error-banner></app-error-banner>
+    <!--<app-error-banner [message]="'Please check the information below.'"></app-error-banner>-->
 
     <div class="container" *ngFor="let section of applicationObj.sections">
       <app-section-form [form]="formGroup" [sectionObj]="section"></app-section-form>

@@ -12,7 +12,7 @@
              [id]="fieldObj.idHtml"
              placeholder="{{fieldObj.placeholder}}"
              value=""
-             [maxlength]="fieldObj.maxValue + 1"
+             [maxlength]="fieldObj.maxValue"
              (keyup)="onKeyUp($event)"
              (blur)="onBlur()">
 
@@ -110,26 +110,6 @@
     </label>
   </fieldset>
 
-  <!--<fieldset *ngSwitchCase="'radio'" class="ml-form-field ml-form-field-radio"
-            [ngClass]="{'error': !valid || this.form.controls[fieldObj.name].touched}"
-            >
-    <div [ngClass]="fieldObj.styleClass">
-      <label>{{fieldObj.label}}</label>
-
-      <div class="ml-form-field-radio-group"
-           *ngFor="let radioOption of radioOptions; let first = first">
-        <input type="radio" [formControlName]="fieldObj.name"
-               [id]="radioOption.id + '-radio'"
-               [value]="radioOption.value">
-        <label>{{radioOption.name}}</label>
-
-      </div>
-
-      <div class="ml-form-field-errortext">{{fieldObj.message}}</div>
-    </div>
-
-  </fieldset>-->
-
   <fieldset *ngSwitchCase="'radio'" class="ml-form-field">
 
     <div class="ml-form-field-radio" [ngClass]="{'radio-options': fieldObj.styleClass,
@@ -183,7 +163,7 @@
                [id]="fieldObj.idHtml"
                placeholder="{{fieldObj.placeholder}}"
                value=""
-               [maxlength]="fieldObj.maxValue + 1"
+               [maxlength]="fieldObj.maxValue"
                [appAutocomplete]="autocomplete"
                (keyup)="onKeyUp($event)">
                <!--(blur)="onBlur()">-->
@@ -215,6 +195,5 @@
       </ng-template>
     </app-autocomplete>
   </div>
-
 </div>
 <!--</div>-->

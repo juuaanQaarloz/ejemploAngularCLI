@@ -313,7 +313,7 @@ select::-ms-expand {
 .ml-form-field label {
   position: relative;
   display: block;
-  text-align: justify;
+  /*text-align: justify;*/
 }
 
 .ml-form-field label span {

@@ -13,3 +13,4 @@ export * from './user.interface';
 export * from './beneficiary-model/index';
 export * from './occupation';
 export * from './formats-model/index';
+export * from './error';

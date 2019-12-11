@@ -839,7 +839,7 @@ export class ApplicationService {
     const errors = this.formGroup.errors;
     if (errors) {
       if (errors[errorId]) {
-        console.log('errors[errorId]: ', errors[errorId]);
+        // console.log('errors[errorId]: ', errors[errorId]);
         return errors[errorId];
       } else {
         return null;

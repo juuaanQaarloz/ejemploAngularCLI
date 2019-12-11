@@ -13,8 +13,6 @@ export class OnlyGivenCharactersDirective {
   @HostListener('input', ['$event']) onInputChange(event) {
     const initalValue = this.el.nativeElement.value;
 
-    // console.log('noAllowedCharacterPattern: ', this.noAllowedCharactersPattern);
-
     if (this.noAllowedCharactersPattern) {
       const reExp = stringToRegExp(this.noAllowedCharactersPattern);
 
