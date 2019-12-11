@@ -654,7 +654,7 @@ export function validateEmailConfirmation(targetKey: string, toMatchKey: string)
     const email = group.controls[targetKey].value;
     const emailConfirmation = group.controls[toMatchKey].value;
     if (email !== emailConfirmation) {
-      console.log('not valid email confirmation');
+      // console.log('not valid email confirmation');
       return {invalidEmailConfirmation: {valid: false, value: emailConfirmation.value}};
     }
     console.log('valid email conformation');
@@ -689,11 +689,57 @@ export function rangeValidator(min: number, max: number) {
 export const higherAssuredImport: ValidatorFn = (group: FormGroup): ValidationErrors | null => {
   const currency = group.controls.currency.value;
   const assuredImport = group.controls.assuredImport.value;
- //  console.log('currency', currency);
- //  console.log('assuredImport', assuredImport);
-  if (Number(assuredImport) < 4000.00) {
-    return { invalidAssuredImport: true};
+  // console.log('currency', currency);
+  // console.log('assuredImport', assuredImport);
+  if (currency === 'mxn'){
+    // console.log('condicional', Number(assuredImport) + '-<-' + Number(400000.00));
+    if (Number(assuredImport) < Number(400000.00)) {
+      // console.log('invalidAssuredImportMxn', false);
+      return { invalidAssuredImportMxn: true};
+    } else {
+      return null;
+    }
+  } else if (currency === 'usd') {
+    if (Number(assuredImport) < Number(40000.00)) {
+      // console.log('invalidAssuredImportUsd', false);
+      return { invalidAssuredImportUsd: true};
+    } else {
+      return null;
+    }
+  }
+};
+
+export const validateFunds: ValidatorFn = (group: FormGroup): ValidationErrors | null => {
+  let fixedFunds = group.controls.fixedFunds.value;
+  let variableFunds = group.controls.variableFunds.value;
+  let fixedRetirement = group.controls.fixedRetirement.value;
+  let variableRetirement = group.controls.variableRetirement.value;
+  let  fixedSaving = group.controls.fixedSaving.value;
+  let variableSaving = group.controls.variableSaving.value;
+  let total = 0;
+  const currency = group.controls.currency.value;
+  const packing =  group.controls.packing.value;
+
+  if (currency === 'usd') {
+    variableFunds = 0;
+    variableSaving = 0;
+  }
+  if (packing !== '4') {
+     fixedRetirement = 0;
+     fixedSaving = 0;
+     variableRetirement = 0;
+     variableSaving = 0;
+  }
+  total =   Number(fixedFunds) + Number(variableFunds) + Number(fixedRetirement) +
+    Number(variableRetirement) + Number(fixedSaving) + Number(variableSaving);
+  console.log('total', Number(total));
+  if (total > 100) {
+     return { invalidPlanImport: true};
   } else {
     return null;
   }
+
+  return null;
 };
+
+

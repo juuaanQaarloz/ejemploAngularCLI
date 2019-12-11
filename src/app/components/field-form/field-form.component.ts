@@ -184,8 +184,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       }
     }
     // validar
-    if (this.fieldObj.name === 'fixedFunds' || this.fieldObj.name === 'variableFunds' || this.fieldObj.name === 'fixedRetirement') {
-
+    if (this.fieldObj.name === 'currency') {
+        // this.setFunds();
     }
     if (this.fieldObj.name === 'assuredImport') {
         // console.log('Entro assuredImport: ');
@@ -204,7 +204,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     console.log('onChange event.target.value: ', event.target.value);
     console.log('formControlName: ', this.fieldObj.name);
     this.isValid();
-
   }
 
   onBlur() {
@@ -252,6 +251,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
 
     this.isValid();
+    this.setFunds();
   }
 
   getOptions() {
@@ -462,6 +462,23 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     // // console.log('obj: ', obj);
     return obj;
+  }
+
+  setFunds() {
+    console.log('setFunds: ');
+    const currency = this.form.controls.currency.value;
+    const packing = this.form.controls.packing.value;
+    if (currency === 'usd') {
+      this.setValueField('variableSaving', 'txtVariableSaving', 0);
+      this.setValueField('variableRetirement', 'txtVariableRetirement', 0);
+      this.setValueField('variableFunds', 'txtVariableFunds', 0);
+    }
+    if (packing !== '4'){
+      this.setValueField('fixedSaving', 'txtFixedSaving', 0);
+      this.setValueField('fixedRetirement', 'txtFixedRetirement', 0);
+      this.setValueField('variableSaving', 'txtVariableSaving', 0);
+      this.setValueField('variableRetirement', 'txtVariableRetirement', 0);
+    }
   }
 }
 
