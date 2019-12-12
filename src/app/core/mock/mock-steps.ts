@@ -109,7 +109,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     idHtml: 'app-step-form-7',
     title: 'Datos generales del solicitante',
     contents: MockContentStep7Process1ContentSection2,
-    renderConditions: '(typePerson=morPerson)',
+    renderConditions: '(contractorType=false,|,typePerson=morPerson)',
     previousStep: '6',
     nextStep: '8',
     /*added extra from model*/
@@ -122,7 +122,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     idHtml: 'app-step-form-8',
     title: 'Domicilio y datos de contacto del solicitante',
     contents: MockContentStep8Process1ContentSection2,
-    renderConditions: '(typePerson=morPerson)',
+    renderConditions: '(contractorType=false,|,typePerson=morPerson)',
     previousStep: '6',
     nextStep: '9',
     /*added extra from model*/
@@ -135,7 +135,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     idHtml: 'app-step-form-9',
     title: 'Ocupación del solicitante',
     contents: MockContentStep9Process1ContentSection2,
-    renderConditions: '(typePerson=morPerson)',
+    renderConditions: '(contractorType=false,|,typePerson=morPerson)',
     previousStep: '5',
     nextStep: '7',
     /*added extra from model*/

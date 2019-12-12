@@ -15,10 +15,8 @@ import {weaponsFields, weaponsFields1, weaponsQuestions, weaponsQuestions1} from
 import {medicalFields, medicalQuestions} from './basic-questionnaires/medical';
 import {AgentQuestion, AgentQuestion1} from './mock-agents/mock-agents-questions';
 import {AuthorizationFields1, AuthorizationQuestions1, AuthorizationQuestions2} from './authorization/authorization-questions';
-
 import {Plan1, Plan2, Plan3, Plan4, Plan5, Plan6, Plan7} from './mock-plan/mock-plan';
 import {statements, statements0, statements1, statements2, statements3} from './statements/statements';
-import {ifTrue} from 'codelyzer/util/function';
 import { DatosTelefonoSolicitante } from './mock-general-data/mock-telefono-solicitante';
 import { FormasPago, FormasPagoAutorizo } from './mock-general-data/mock-formas-pago';
 import { PerfilTransaccionalNumero, PerfilTransaccionalMonto } from './mock-general-data/mock-perfil-transaccional';
@@ -764,6 +762,28 @@ export const MockContentStep12Process1ContentSection2: Content[] = [
     contentType: 'looseFields'
     // enableConditions?: 'string';
     // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-14.30',
+    idParent: 'step-14',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.21',
+    title: '',
+    description: '',
+    contentType: 'table-payment',
+    // process?: Process;
+    // fields: Beneficiarios,
+    // operations?: Operation[];
+    renderConditions: '(payMode=T)',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    // showContent: true,
+    // enableConditions?: 'publicFunctionQuestion=true',
+    styleClass: 'modal-type'
     // --------------------------
   },
   {

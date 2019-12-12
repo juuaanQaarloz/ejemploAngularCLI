@@ -17,6 +17,8 @@ import {medicalFields} from '../../../core/mock/basic-questionnaires/medical';
 import {sportsFields2} from '../../../core/mock/basic-questionnaires/sports-aviation-hobbies';
 import {NewRowComponent} from '../../table-component/new-row/new-row.component';
 import {Content} from '../../../models';
+import { NewPaymentComponent } from '../new-payment/new-payment.component';
+import { paymentFieldsItems } from 'src/app/core/mock/formats/payment';
 
 
 @Component({
@@ -100,6 +102,15 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       this.maxItems = 3;
       this.styleClass = 'item-row-formatwo';
       this.enableOperations = true;
+      this.showplus = true;
+    } else if (this.itemType === 'payment') {
+      this.fields = paymentFieldsItems;
+      this.operations = BeneficiaryItemOperations;
+      this.questionModal = '¿Está seguro que desea eliminar el registro de la lista?';
+      this.maxItems = 3;
+      this.styleClass = 'item-row-formatwo';
+      this.enableOperations = true;
+      this.showplus = true;
     }
 
     this.formGroup = this.applicationService.createNewFormGroup(this.fields);
@@ -142,6 +153,8 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
             drawerTitle: 'Deporte / Actividad',
             itemType: 'sport'
           }});
+    } else if (this.itemType === 'payment') {
+      ref = this.dialog.open(NewPaymentComponent, {data: null});
     }
   }
 
@@ -198,6 +211,8 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
             itemType: 'sport',
             item: this.item
           }});
+    } else if (this.itemType === 'payment') {
+      ref = this.dialog.open(NewPaymentComponent, {data: {item: this.item}});
     }
   }
 

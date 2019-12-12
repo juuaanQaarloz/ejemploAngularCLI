@@ -14,6 +14,14 @@
     <div class="item-attribute"
        *ngIf="itemType === 'country'" >{{item.taxCountryId}}</div>
     <div class="item-attribute"
+      *ngIf="itemType === 'payment'" >{{item.txtBank}}</div>
+    <div class="item-attribute"
+      *ngIf="itemType === 'payment'" >{{item.txtClabe}}</div>
+    <div class="item-attribute"
+      *ngIf="itemType === 'payment'" >{{item.selectCard}}</div>
+    <div class="item-attribute"
+      *ngIf="itemType === 'payment'" >{{item.txtCardNumber}}</div>
+    <div class="item-attribute"
        *ngIf="itemType === 'coverage'" >
       <fieldset class="ml-form-field ml-form-field-checkboxes">
       <div [formGroup]="this.applicationService.getFormGroup()">
