@@ -84,7 +84,6 @@ import { ErrorBannerComponent } from './components/error-banner/error-banner.com
     OptionComponent,
     AutocompleteComponent,
     NewPaymentComponent,
-    AutocompleteComponent,
     ErrorBannerComponent
     ],
 

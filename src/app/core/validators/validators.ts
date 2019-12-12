@@ -730,16 +730,17 @@ export const validateFunds: ValidatorFn = (group: FormGroup): ValidationErrors |
      variableRetirement = 0;
      variableSaving = 0;
   }
-  total =   Number(fixedFunds) + Number(variableFunds) + Number(fixedRetirement) +
-    Number(variableRetirement) + Number(fixedSaving) + Number(variableSaving);
-  console.log('total', Number(total));
-  if (total > 100) {
-     return { invalidPlanImport: true};
-  } else {
-    return null;
-  }
 
-  return null;
+  if(currency === 'usd' || currency === 'mxn') {
+    total = Number(fixedFunds) + Number(variableFunds) + Number(fixedRetirement) +
+      Number(variableRetirement) + Number(fixedSaving) + Number(variableSaving);
+    console.log('total', Number(total));
+    if (total !== 100) {
+      return {invalidPlanImport: true};
+    } else {
+      return null;
+    }
+  } else { return null;}
 };
 
 
