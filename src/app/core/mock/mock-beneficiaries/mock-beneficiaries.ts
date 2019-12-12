@@ -42,6 +42,7 @@ export const BENEFICIARIES: Beneficiary[] =  [
     motherLastName: 'SANCHEZ', // if typeBeneficiary is Physic person
     relationship: 'HA',
     birthDateOrConstitution: '1993/01/06',
+    addressSameAsTitular: false,
     address: {
       street: 'Aluminio',
       exteriorNumber: '145',
@@ -51,7 +52,7 @@ export const BENEFICIARIES: Beneficiary[] =  [
       municipality: 'Venustiano Carranza',
       state: 'CDMX',
       city: 'CDMX',
-      country: 'México'
+      country: 'MX'
     },
     participationPercentage: '50'
   },
@@ -61,6 +62,7 @@ export const BENEFICIARIES: Beneficiary[] =  [
     relationship: 'OT',
     businessName: 'Empresa',
     birthDateOrConstitution: '2001/03/08',
+    addressSameAsTitular: false,
     address: {
       street: 'CALLE',
       exteriorNumber: '123',
@@ -69,7 +71,7 @@ export const BENEFICIARIES: Beneficiary[] =  [
       municipality: 'MUNICIPIO',
       state: 'ESTADO',
       city: 'CIUDAD',
-      country: 'PAIS'
+      country: 'MX'
     },
     participationPercentage: '10',
     suspensiveCondition: 'NO', // if typeBeneficiary is Moral person

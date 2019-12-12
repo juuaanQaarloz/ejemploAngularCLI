@@ -6,10 +6,11 @@ export interface Beneficiary {
   name?: string;
   fatherLastName?: string;
   motherLastName?: string;
-  relationship: string;
   birthDateOrConstitution: string;
-  address: Address;
+  relationship: string;
   participationPercentage: string;
+  addressSameAsTitular?: boolean;
+  address: Address;
   businessName?: string;
   suspensiveCondition?: string;
   contractNumber?: string;
