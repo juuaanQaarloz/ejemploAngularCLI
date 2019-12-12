@@ -276,6 +276,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
             }
           });
           this.loading = false;
+
+          // console.log('autoComplete: ', this.autocompleteOptions);
         }
       });
   }

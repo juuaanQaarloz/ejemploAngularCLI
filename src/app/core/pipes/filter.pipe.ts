@@ -10,6 +10,9 @@ export class FilterPipe implements PipeTransform {
       return items;
     }
 
+    // console.log('onPipe...');
+    // console.log('item: ', items);
+
     return items.filter(
       item =>
         item[labelKey || 'name']

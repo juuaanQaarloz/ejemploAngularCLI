@@ -77,6 +77,27 @@ export const BENEFICIARIES: Beneficiary[] =  [
     suspensiveCondition: 'NO', // if typeBeneficiary is Moral person
     contractNumber: '12345678', // if typeBeneficiary is Moral person
     instructionLetterNumber: 'string' // if typeBeneficiary is Moral person
+  },
+  {
+    beneficiaryId: '6',
+    beneficiaryType: 'fidPerson',
+    relationship: 'OT',
+    businessName: 'Empresa',
+    birthDateOrConstitution: '2001/03/08',
+    address: {
+      street: 'CALLE',
+      exteriorNumber: '123',
+      zipCode: '07840',
+      neighborhood: 'BECINDARIO',
+      municipality: 'MUNICIPIO',
+      state: 'ESTADO',
+      city: 'CIUDAD',
+      country: 'MX'
+    },
+    participationPercentage: '10',
+    suspensiveCondition: 'NO', // if typeBeneficiary is Moral person
+    contractNumber: '12345678', // if typeBeneficiary is Moral person
+    instructionLetterNumber: 'string' // if typeBeneficiary is Moral person
   }
 ];
 
