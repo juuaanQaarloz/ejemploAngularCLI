@@ -5,7 +5,7 @@ import {map} from 'rxjs/operators';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';
 import {Beneficiary, Formatwo, Field, Occupation, Step} from '../../models';
-import {equalEmailsValidator, higherAssuredImport, validateEmailConfirmation, validatorsObjects} from '../validators';
+import {equalEmailsValidator, higherAssuredImport, validateFunds, validatorsObjects} from '../validators';
 import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
 import {COVERAGES} from '../mock/coverage/coverage';
@@ -163,7 +163,7 @@ export class ApplicationService {
       });
 
     });
-    return new FormGroup(group, equalEmailsValidator && higherAssuredImport);
+    return new FormGroup(group, [equalEmailsValidator, higherAssuredImport, validateFunds]);
   }
 
   addNewFormControl(formGroup: FormGroup, field: Field) {
@@ -757,7 +757,7 @@ export class ApplicationService {
     * */
 
   evaluateConditions(exp, formGroup: FormGroup) {
-    console.log('onGetExpressionElements...');
+    // console.log('onGetExpressionElements...');
     const arr = [];
     const reversedString = this.reverseString(exp);
 
@@ -775,7 +775,7 @@ export class ApplicationService {
         s.forEach((sItem) => {
           sAsString = sAsString + sItem;
         });
-         console.log('sAsString: ', sAsString);
+        // console.log('sAsString: ', sAsString);
 
         // for one single operation
         const z = sAsString.split(',');
@@ -815,23 +815,23 @@ export class ApplicationService {
               resEvalB = b;
             }
           }
-          console.log('resEvalA: ', resEvalA);
-          console.log('resEvalB: ', resEvalB);
+          // console.log('resEvalA: ', resEvalA);
+          // console.log('resEvalB: ', resEvalB);
 
           if (z[1] === '&') {
             c = resEvalA && resEvalB;
           } else {
             c = resEvalA || resEvalB;
           }
-          console.log('c: ', c);
+          // console.log('c: ', c);
           arr.push((c));
         }
       } else {
         arr.push(ctr);
       }
     }
-    console.log('arr: ', arr);
-    console.log('arr.length - 1: ', arr.length - 1);
+    // console.log('arr: ', arr);
+    // console.log('arr.length - 1: ', arr.length - 1);
     return arr[arr.length - 1];
   }
 
@@ -858,5 +858,19 @@ export class ApplicationService {
     });
 
     return dependedFields;
+  }
+
+  getStatusError(errorId) {
+    const errors = this.formGroup.errors;
+    if (errors) {
+      if (errors[errorId]) {
+        // console.log('errors[errorId]: ', errors[errorId]);
+        return errors[errorId];
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
   }
 }

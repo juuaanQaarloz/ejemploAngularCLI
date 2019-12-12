@@ -1633,7 +1633,7 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
     // process?: Process;
     fields: medicalFields,
     // operations?: Operation[];
-    renderConditions: '((diseasesQuestion=true),|,(medicalTestQuestion=true),|,(extraDiseasesQuestion=false))',
+    renderConditions: '(diseasesQuestion=true,|,medicalTestQuestion=true,|,extraDiseasesQuestion=false)',
     // ((diseasesQuestion=true),|,(medicalTestQuestion=true),|,(extraDiseasesQuestion=false))
     // ---pending---
     // contentChildren?: Array<Content>;
@@ -1685,7 +1685,7 @@ export const MockContentStep20Process1ContentSection2: Content[] = [
 
     // --added extra from model--
     showContent: true,
-    styleClass: 'modal-type'
+    styleClass: 'modal-type',
     // enableConditions?: 'string';
     // --------------------------
   },
@@ -1726,7 +1726,13 @@ export const MockContentStep20Process1ContentSection2: Content[] = [
 
     // --added extra from model--
     showContent: true,
-    styleClass: 'modal-type'
+    styleClass: 'modal-type',
+    legend: 'Los agentes de seguros deberán informar de manera amplia y detallada a quien pretenda contratar un seguro, sobre el\n' +
+      'alcance real de su cobertura y forma de conservarla o darla por terminada. Así mismo proporcionarán a la institución de\n' +
+      'seguros, la información auténtica que sea de su conocimiento relativa al riesgo cuya cobertura se proponga a fin de que\n' +
+      'la misma pueda formar juicio sobre sus características y fijar conforme a las normas respectivas, las condiciones y primas\n' +
+      'adecuadas. Los agentes de seguros no proporcionarán datos falsos de las instituciones de seguros, ni detrimentos o adversos\n' +
+      'en cualquier forma para las mismas.',
     // enableConditions?: 'string';
     // --------------------------
   },

@@ -1,6 +1,6 @@
 import {Step} from '../../models';
 import {
-  MockContentStep1Process1ContentSection2, 
+  MockContentStep1Process1ContentSection2,
   MockContentStep2Process1ContentSection2,
   MockContentStep3Process1ContentSection2,
   MockContentStep4Process1ContentSection2,
@@ -9,7 +9,7 @@ import {
   MockContentStep7Process1ContentSection2,
   MockContentStep8Process1ContentSection2,
   MockContentStep9Process1ContentSection2,
-  MockContentStep10Process1ContentSection2, 
+  MockContentStep10Process1ContentSection2,
   MockContentStep11Process1ContentSection2,
   MockContentStep12Process1ContentSection2,
   MockContentStep13Process1ContentSection2,
@@ -19,9 +19,10 @@ import {
   MockContentStep17Process1ContentSection2,
   MockContentStep18Process1ContentSection2,
   MockContentStep19Process1ContentSection2,
-  MockContentStep20Process1ContentSection2, 
+  MockContentStep20Process1ContentSection2,
   MockContentStep21Process1ContentSection2,
 } from './mock-contents';
+import {ERROSDATOSPLAN} from './errors/mock-erros-datos-plan';
 
 export const MockStepsProcessContentSection2: Step[] = [
   {
@@ -230,7 +231,8 @@ export const MockStepsProcessContentSection2: Step[] = [
     nextStep: '17',
     /*added extra from model*/
     isCompleted: false,
-    show: true
+    show: true,
+    errors: ERROSDATOSPLAN
   },
   {
     id: '17',

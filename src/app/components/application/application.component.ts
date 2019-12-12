@@ -22,6 +22,7 @@ export class ApplicationComponent implements OnInit {
   @ViewChild('content', {static: false}) content: ElementRef;
   pdfOperation = pdfOperation;
   items = [];
+  errors;
 
   constructor(private appService: ApplicationService,
               private authService: AuthService,
@@ -116,12 +117,11 @@ export class ApplicationComponent implements OnInit {
     });
   }
 
-  /*getValidateField() {
-    const errors = this.formGroup.errors;
-    console.log('erros: ', errors);
-    if (errors) {
-      console.log('result: ', errors.invalidEmailConfirmation);
-      console.log('result: ', errors);
+  getValidateField() {
+    this.errors = this.formGroup.errors;
+    console.log('erros: ', this.errors);
+    if (this.errors) {
+      console.log('invalidEmailConfirmation: ', this.errors.invalidEmailConfirmation);
     }
-  }*/
+  }
 }
