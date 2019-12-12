@@ -472,5 +472,9 @@ export const validatorsObjects = [
     nameField: 'periodicity',
     validationFunctions: [validateAlphanumericValue]
   },
+  {
+    nameField: 'years',
+    validationFunctions: [rangeValidator(1, 99)]
+  },
 
 ];

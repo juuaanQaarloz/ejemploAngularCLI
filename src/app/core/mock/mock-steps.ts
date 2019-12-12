@@ -224,7 +224,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     id: '16',
     idProcess: 'process-1',
     idHtml: 'app-step-form-16',
-    title: 'Datos de Plan',
+    title: 'Datos del Plan',
     contents: MockContentStep16Process1ContentSection2,
     renderConditions: '',
     previousStep: '15',
