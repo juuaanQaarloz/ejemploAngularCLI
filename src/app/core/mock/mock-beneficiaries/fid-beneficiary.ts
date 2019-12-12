@@ -146,7 +146,8 @@ export const BeneficiaryFieldsF: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: ''
+    value: '1993/01/06',
+    disable: true
   },
   {
     id: 'field-127',

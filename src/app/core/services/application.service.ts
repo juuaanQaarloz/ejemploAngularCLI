@@ -21,7 +21,7 @@ const URL_SEPOMEX = '../assets/catalogs/response-sepomex.json';
 export class ApplicationService {
   private currentStepSource = new BehaviorSubject(0);
   currentValue = this.currentStepSource.asObservable();
-  beneficiaries = new BehaviorSubject([]);
+  beneficiaries = new BehaviorSubject(BENEFICIARIES);
   agents = new BehaviorSubject([]);
   sports = new BehaviorSubject([]);
   diseases = new BehaviorSubject([]);
