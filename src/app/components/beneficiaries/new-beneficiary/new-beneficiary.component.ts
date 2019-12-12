@@ -83,6 +83,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
     if (this.config.data !== null) {
       this.operationType = 'edit';
       this.setBeneficiaryValues();
+      // console.log('this.config.data.item: ', this.config.data.item);
     } else {
       this.operationType = 'add';
     }

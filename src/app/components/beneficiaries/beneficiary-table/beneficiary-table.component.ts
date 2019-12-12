@@ -21,7 +21,7 @@ const FIELDS: Field[] = [
     length: '750',
     minValue: 0,
     maxValue: 750,
-    pattern: '',
+    pattern: '/^[A-ZÑ0-9\\s]*$/',
     source: '',
     sourceID: '',
     style: '',

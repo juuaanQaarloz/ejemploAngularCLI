@@ -21,7 +21,7 @@ const URL_SEPOMEX = '../assets/catalogs/response-sepomex.json';
 export class ApplicationService {
   private currentStepSource = new BehaviorSubject(0);
   currentValue = this.currentStepSource.asObservable();
-  beneficiaries = new BehaviorSubject(BENEFICIARIES);
+  beneficiaries = new BehaviorSubject([]);
   agents = new BehaviorSubject([]);
   sports = new BehaviorSubject([]);
   diseases = new BehaviorSubject([]);
@@ -59,7 +59,7 @@ export class ApplicationService {
       const currentStep = this.currentStepSource.getValue();
       // console.log('currentStep1: ', currentStep);
 
-      let contractorType = this.formGroup.controls["contractorType"].value;
+      let contractorType = this.formGroup.controls['contractorType'].value;
       if (currentStep === 0) {
         this.changeValue(1);
       } else if (currentStep === 1) {
@@ -209,7 +209,6 @@ export class ApplicationService {
         validationFunctions = validationObject.validationFunctions;
       }
     });
-
 
     if (field.required) {
       validationFunctions.push(Validators.required);
@@ -408,7 +407,7 @@ export class ApplicationService {
       currentItems = this.diseases.getValue();
       propertyItem = 'idDisease';
     } else if (itemType === 'sport') {
-      currentItems =  this.sports .getValue();
+      currentItems = this.sports.getValue();
       propertyItem = 'idSportActivity';
     }
     // const foundItem = currentItems.filter(i => i[propertyItem] === updatedItem[propertyItem])[0];

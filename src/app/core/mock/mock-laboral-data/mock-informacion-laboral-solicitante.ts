@@ -13,7 +13,7 @@ export const InformacionLaboralSolicitante1: Field[] = [
     length: '',
     minValue: 0,
     maxValue: 0,
-    pattern: '',
+    pattern: '/^[A-ZÑ0-9_\'#\\/&\\s\\-\\+\\.\\,]*$/',
     source: '',
     sourceID: '',
     style: '',

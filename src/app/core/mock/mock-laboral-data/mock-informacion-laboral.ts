@@ -72,7 +72,7 @@ export const InformacionLaboral: Field[] = [
     length: '',
     minValue: 0,
     maxValue: 60,
-    pattern: '',
+    pattern: '^[A-Z0-9\\s\\.\\-]*$/',
     source: '',
     sourceID: '',
     style: '',
