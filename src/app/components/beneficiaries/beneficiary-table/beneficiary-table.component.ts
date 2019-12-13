@@ -66,7 +66,10 @@ export class BeneficiaryTableComponent implements OnInit {
 
     if (this.type === 'table-beneficiary') {
       this.title = 'Datos de Beneficiario(s)';
-      this.columnsNames = ['Tipo de Beneficiario', 'Nombre / Razón social', 'Fecha de nacimiento / constitución', 'Parentesco',
+      this.columnsNames = [
+        'Tipo de Beneficiario',
+        'Nombre / Razón social',
+        'Fecha de nacimiento / constitución', 'Parentesco',
         'Porcentaje de participación',
       ];
 

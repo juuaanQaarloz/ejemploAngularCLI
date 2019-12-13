@@ -475,7 +475,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       this.setValueField('variableRetirement', 'txtVariableRetirement', 0);
       this.setValueField('variableFunds', 'txtVariableFunds', 0);
     }
-    if (packing !== '4'){
+    if (packing !== '4') {
       this.setValueField('fixedSaving', 'txtFixedSaving', 0);
       this.setValueField('fixedRetirement', 'txtFixedRetirement', 0);
       this.setValueField('variableSaving', 'txtVariableSaving', 0);

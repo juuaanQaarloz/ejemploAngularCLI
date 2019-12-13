@@ -33,7 +33,6 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   @Input() isLast: boolean;
   @Input() totalItems: number;
   @Input() totalParticipationPercentageItems: number;
-  @Input() showplus: boolean;
   @Input() content?: Content;
   fields;
   formGroup: FormGroup;
@@ -43,6 +42,8 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   maxItems;
   styleClass;
   enableOperations: boolean;
+  showplus: boolean;
+
 
   constructor(public applicationService: ApplicationService,
               public dialog: DialogService,
@@ -57,28 +58,32 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       this.maxItems = 10;
       this.styleClass = 'item-row-beneficiary';
       this.enableOperations = true;
+      this.showplus = false;
 
     } else if (this.itemType === 'agent') {
-      this.fields = AgentFieldsItem;
+      // this.fields = [];
       this.operations = BeneficiaryItemOperations;
       this.questionModal = '¿Está seguro que desea eliminar al agente de la lista?';
       this.maxItems = 2;
       this.styleClass = 'item-row-agent';
+      this.showplus = false;
       this.enableOperations = true;
     } else if (this.itemType === 'disease') {
-      this.fields =  medicalFields;
+      // this.fields =  [];
       this.operations = BeneficiaryItemOperations;
       this.questionModal = '¿Está seguro que desea eliminar la enfermedad, lesión, estudio o tratamiento de la lista?';
+      this.maxItems = 10;
       this.styleClass = 'item-row-agent';
-      this.showplus = true;
+      this.showplus = false;
       this.enableOperations = true;
 
     } else if (this.itemType === 'sport') {
-      this.fields =  sportsFields2;
-      this.operations = BeneficiaryItemOperations;
+      // this.fields =  sportsFields2;
+      this.operations = [];
       this.questionModal = '¿Está seguro que desea eliminar la deporte / actividad de la lista?';
+      this.maxItems = 5;
       this.styleClass = 'item-row-sport';
-      this.showplus = true;
+      this.showplus = false;
       this.enableOperations = true;
 
     } else if (this.itemType === 'formatwo') {
@@ -88,6 +93,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       this.maxItems = 5;
       this.styleClass = 'item-row-formatwo';
       this.enableOperations = true;
+      this.showplus = false;
     } else if (this.itemType === 'coverage') {
       this.fields = CoverageFieldsItem;
       // this.operations = BeneficiaryItemOperations;
@@ -95,6 +101,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       this.maxItems = 50;
       this.styleClass = 'item-row-formatwo';
       this.enableOperations = false;
+      this.showplus = true;
     } else if (this.itemType === 'country') {
       this.fields = countryFieldsItems;
       this.operations = BeneficiaryItemOperations;
@@ -102,7 +109,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       this.maxItems = 3;
       this.styleClass = 'item-row-formatwo';
       this.enableOperations = true;
-      this.showplus = true;
+      this.showplus = false;
     } else if (this.itemType === 'payment') {
       this.fields = paymentFieldsItems;
       this.operations = BeneficiaryItemOperations;
@@ -110,14 +117,16 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       this.maxItems = 3;
       this.styleClass = 'item-row-formatwo';
       this.enableOperations = true;
-      this.showplus = true;
+      this.showplus = false;
     }
 
-    this.formGroup = this.applicationService.createNewFormGroup(this.fields);
-    this.setFieldsValues();
+    if (this.fields) {
+      this.formGroup = this.applicationService.createNewFormGroup(this.fields);
+      this.setFieldsValues();
+    }
     this.modalId = 'modal-' + this.itemType + this.index;
 
-    // console.log('item: ', this.item);
+    console.log('item: ', this.item);
   }
 
   ngAfterViewInit(): void {
@@ -296,6 +305,29 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       this.closeModal(this.modalId);
     } else if (delegateOperation === 'deleteBeneficiary') {
       this.deleteItem();
+    }
+  }
+
+  showPlus() {
+    console.log('this.itemType: ', this.itemType);
+
+    if (this.itemType === 'sport') {
+      console.log('isLast: ', this.isLast);
+      console.log('totalItems: ', this.totalItems);
+      console.log('maxItems: ', this.maxItems);
+      console.log('this.totalPercentageItems: ', this.totalParticipationPercentageItems);
+    }
+
+    if (this.isLast) {
+      if (this.totalItems < this.maxItems) {
+        if (this.totalParticipationPercentageItems < 100) {
+          return true;
+        }
+      } else {
+        return false;
+      }
+    } else {
+      return false;
     }
   }
 
