@@ -28,6 +28,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   show = true;
   disable: boolean;
   regExpPattern;
+  regnNoAllowedCharactersExpPattern;
   loading = true;
 
   constructor(private applicationService: ApplicationService,
@@ -116,6 +117,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.pattern) {
       this.regExpPattern = stringToRegExp(this.fieldObj.pattern);
+      // this.regExpPattern = this.fieldObj.pattern;
+      // console.log('regExpPattern: ', this.regExpPattern);
+    }
+
+    if (this.fieldObj.noAllowedCharactersPattern) {
+      // this.regnNoAllowedCharactersExpPattern = stringToRegExp(this.fieldObj.noAllowedCharactersPattern);
       // this.regExpPattern = this.fieldObj.pattern;
       // console.log('regExpPattern: ', this.regExpPattern);
     }
@@ -475,7 +482,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       this.setValueField('variableRetirement', 'txtVariableRetirement', 0);
       this.setValueField('variableFunds', 'txtVariableFunds', 0);
     }
-    if (packing !== '4'){
+    if (packing !== '4') {
       this.setValueField('fixedSaving', 'txtFixedSaving', 0);
       this.setValueField('fixedRetirement', 'txtFixedRetirement', 0);
       this.setValueField('variableSaving', 'txtVariableSaving', 0);

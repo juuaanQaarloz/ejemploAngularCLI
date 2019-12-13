@@ -28,6 +28,7 @@ export const NewCountryFields: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
+    value: ''
   },
   {
     id: 'field-1102',

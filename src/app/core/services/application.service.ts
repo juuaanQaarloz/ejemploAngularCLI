@@ -13,6 +13,7 @@ import {BENEFICIARIES} from '../mock/mock-beneficiaries/mock-beneficiaries';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
+const URL_PATTENR_CATALOG = '../assets/catalogs/pattern-catalogs.json';
 const URL_SEPOMEX = '../assets/catalogs/response-sepomex.json';
 
 @Injectable({
@@ -275,26 +276,30 @@ export class ApplicationService {
       responseMessage2 = 'Validacion2';
       propertyName = 'participation';
     } else if (itemType === 'country') {
-      currentTotalParticipationPercentage = 1;
+      // currentTotalParticipationPercentage = 1; // i commented this line cuz not apply for countries
       currentItems = this.countries.getValue();
       maxLength = 3;
       responseMessage1 = 'No se pueden agregar más de 3 paises';
-      responseMessage2 = 'Validacion2';
-      propertyName = 'participation';
+      // responseMessage2 = 'Validacion2'; // i commented this line cuz not apply for countries
+      // propertyName = 'participation'; // i commented this line cuz not apply for countries
     } else if (itemType === 'payment') {
-      currentTotalParticipationPercentage = 1;
+      // currentTotalParticipationPercentage = 1; // i commented this line cuz not apply for countries
       currentItems = this.payments.getValue();
       maxLength = 5;
       responseMessage1 = 'No se pueden agregar más de 5 instrumentos bancarios';
-      responseMessage2 = 'Validacion2';
-      propertyName = 'paymentId';
+      // responseMessage2 = 'Validacion2'; // i commented this line cuz not apply for countries
+      // propertyName = 'paymentId'; // i commented this line cuz not apply for countries
 
       console.log("AMPI AddItem");
       console.log(currentItems);
     } else if (itemType === 'disease') {
       currentItems = this.diseases.getValue();
+      maxLength = 10;
+      responseMessage1 = 'No se pueden agregar más de 10 enfermedades / padecimientos';
     } else if (itemType === 'sport') {
       currentItems = this.sports.getValue();
+      maxLength = 5;
+      responseMessage1 = 'No se pueden agregar más de 5 deportes / actividades';
     }
 
     if (currentTotalParticipationPercentage !== undefined) {
@@ -314,7 +319,7 @@ export class ApplicationService {
       }
     } else if (maxLength !== undefined) {
       // when is a maxItems limit
-      if (currentItems.length <= maxLength) {
+      if (currentItems.length < maxLength) {
         // the new item can be added
         currentItems.push(newItem);
         this.setItems(itemType, currentItems);
