@@ -116,6 +116,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
 
     if (this.fieldObj.pattern) {
+      let options = [];
+      this.applicationService.getPatternCatalog()
+        .subscribe((results) => {
+          console.log('results: ', results);
+          options = results;
+        });
       this.regExpPattern = stringToRegExp(this.fieldObj.pattern);
       // this.regExpPattern = this.fieldObj.pattern;
       // console.log('regExpPattern: ', this.regExpPattern);

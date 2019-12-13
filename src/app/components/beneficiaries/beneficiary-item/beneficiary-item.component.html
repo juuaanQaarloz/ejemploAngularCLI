@@ -43,6 +43,8 @@
 
   <div class="item-attribute"
        *ngIf="itemType === 'coverage'">{{item.coverageName}}</div>
+  <div class="item-attribute"
+       *ngIf="itemType === 'coverage'">{{item.detail}}</div>
 
   <div class="item-attribute" *ngFor="let field of fields">
     <app-field-form
@@ -54,8 +56,7 @@
   </div>
 
 
-  <div class="item-attribute"
-       *ngIf="itemType === 'coverage'">{{item.detail}}</div>
+
 
   <div class="operations">
     <div *ngIf="enableOperations">
