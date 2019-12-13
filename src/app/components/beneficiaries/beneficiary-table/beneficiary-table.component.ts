@@ -53,6 +53,7 @@ export class BeneficiaryTableComponent implements OnInit {
   showplus: boolean;
   title;
   columnsNames;
+  columnsSettings;
   items = [];
   itemsType;
   totalPercentageParticipation = 0;
@@ -66,11 +67,21 @@ export class BeneficiaryTableComponent implements OnInit {
 
     if (this.type === 'table-beneficiary') {
       this.title = 'Datos de Beneficiario(s)';
+
       this.columnsNames = [
         'Tipo de Beneficiario',
         'Nombre / Razón social',
-        'Fecha de nacimiento / constitución', 'Parentesco',
+        'Fecha de nacimiento / constitución',
+        'Parentesco',
         'Porcentaje de participación',
+      ];
+
+      this.columnsSettings = [
+        {columnLabel : 'Tipo de Beneficiario', columnAttribute: ''},
+        {columnLabel : 'Nombre / Razón social', columnAttribute: ''},
+        {columnLabel : 'Fecha de nacimiento / constitución', columnAttribute: ''},
+        {columnLabel : 'Parentesco', columnAttribute: ''},
+        {columnLabel : 'Porcentaje de participación', columnAttribute: ''}
       ];
 
       this.itemsType = 'beneficiary';
@@ -100,8 +111,16 @@ export class BeneficiaryTableComponent implements OnInit {
       });
     } else if (this.type === 'table-agent') {
       this.title = 'Datos de Agente(s)';
-      this.columnsNames = ['Nombre', 'Promotoría', 'Clave', 'Participación'
+      this.columnsNames = ['Nombre del Agente', 'Promotoría', 'Clave', 'Participación'
       ];
+
+      this.columnsSettings = [
+        {columnLabel : 'Nombre del Agente', columnAttribute: 'name'},
+        {columnLabel : 'Promotoría', columnAttribute: 'promotor'},
+        {columnLabel : 'Clave', columnAttribute: 'key'},
+        {columnLabel : 'Participación', columnAttribute: 'participation'}
+      ];
+
       this.itemsType = 'agent';
       this.style = 'even-agent';
       this.showplus = true;
@@ -113,6 +132,11 @@ export class BeneficiaryTableComponent implements OnInit {
     } else if (this.type === 'table-sports') {
       this.title = 'Deporte(s) / Actividad(es)';
       this.columnsNames = ['Deporte / Actividad', 'Frecuencia', 'Describir otra actividad'];
+      this.columnsSettings = [
+        {columnLabel : 'Deporte / Actividad', columnAttribute: 'name'},
+        {columnLabel : 'Frecuencia', columnAttribute: 'periodicity'},
+        {columnLabel : 'Describir otra actividad', columnAttribute: 'description'}
+      ];
       this.itemsType = 'sport';
       this.showplus = true;
       this.style = 'even-sport';
@@ -122,9 +146,18 @@ export class BeneficiaryTableComponent implements OnInit {
       });
     } else if (this.type === 'table-diseases') {
       this.title = 'Enfermedad(es)';
+
       this.columnsNames = ['Nombre de las enfermedades, lesiones, estudios o tratamientos',
         'Fecha en que las sufriste o se te practicaron',
         'Duración', 'Condición física actual'];
+
+      this.columnsSettings = [
+        {columnLabel : 'Nombre de las enfermedades, lesiones, estudios o tratamientos', columnAttribute: 'name'},
+        {columnLabel : 'Fecha en que las sufriste o se te practicaron', columnAttribute: 'diagnosticDate'},
+        {columnLabel : 'Duración', columnAttribute: 'duration'},
+        {columnLabel : 'Condición física actual', columnAttribute: 'actualCondition'}
+      ];
+
       this.itemsType = 'disease';
       this.showplus = true;
       this.style = 'even-agent';

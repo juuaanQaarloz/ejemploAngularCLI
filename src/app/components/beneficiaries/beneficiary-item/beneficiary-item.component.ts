@@ -34,6 +34,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   @Input() totalItems: number;
   @Input() totalParticipationPercentageItems: number;
   @Input() content?: Content;
+  @Input() columnSettings?: any[];
   fields;
   formGroup: FormGroup;
   modalId;
@@ -124,6 +125,10 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       this.formGroup = this.applicationService.createNewFormGroup(this.fields);
       this.setFieldsValues();
     }
+
+    if (this.columnSettings) {
+      console.log('columnSettings');
+    }
     this.modalId = 'modal-' + this.itemType + this.index;
 
     console.log('item: ', this.item);
@@ -131,6 +136,8 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
   }
+
+  getitemAttrNames(){ }
 
   addNewItem() {
     let ref;
