@@ -28,6 +28,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   show = true;
   disable: boolean;
   regExpPattern;
+  regnNoAllowedCharactersExpPattern;
   loading = true;
 
   constructor(private applicationService: ApplicationService,
@@ -116,6 +117,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.pattern) {
       this.regExpPattern = stringToRegExp(this.fieldObj.pattern);
+      // this.regExpPattern = this.fieldObj.pattern;
+      // console.log('regExpPattern: ', this.regExpPattern);
+    }
+
+    if (this.fieldObj.noAllowedCharactersPattern) {
+      this.regnNoAllowedCharactersExpPattern = stringToRegExp(this.fieldObj.noAllowedCharactersPattern);
       // this.regExpPattern = this.fieldObj.pattern;
       // console.log('regExpPattern: ', this.regExpPattern);
     }

@@ -1892,12 +1892,12 @@
     "currency": [
     {
       "id": 0,
-      "name": "MXN",
+      "name": "Nacional",
       "code": "mxn"
     },
     {
       "id": 1,
-      "name": "USD",
+      "name": "Dolares",
       "code": "usd"
     }],
     "promotories": [
