@@ -8,6 +8,7 @@ export interface Beneficiary {
   motherLastName?: string;
   relationship: string;
   birthDateOrConstitution: string;
+  addressSameAsTitular?: boolean;
   address: Address;
   participationPercentage: string;
   businessName?: string;

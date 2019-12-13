@@ -75,7 +75,7 @@
                 [selected]="checkValue(opt.value)">{{opt.name}}</option>
 
       </select>
-      <span *ngIf="showSelectLabel">{{fieldObj.label}}</span>
+      <span *ngIf="showSelectLabel" [ngStyle]="{'background': this.disable ? '#EBEBE4':''}">{{fieldObj.label}}</span>
       <div class="ml-form-field-errortext"
            *ngIf="!fieldObj.valid">
         {{fieldObj.message}}</div>

@@ -15,27 +15,37 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   @Input() dateFormat = 'YYYY/MM/DD';
   @Output() validate = new EventEmitter<boolean>();
   isValid: boolean;
+  disable: boolean;
 
   constructor(private appService: ApplicationService) {
   }
 
   ngOnInit() {
+    if (this.fieldObj.disable) {
+      this.form.controls[this.fieldObj.name].disable();
+      // console.log('this.disable: ', this.disable);
+      this.disable = this.checkState();
+      // console.log('this.disable: ', this.disable);
+      this.form.controls[this.fieldObj.name].valueChanges.subscribe(() => {
+        this.disable = this.checkState();
+        // console.log('this.disable: ', this.disable);
+      });
+    }
   }
 
-  ngAfterViewInit(): void {
-    /*// console.log('onAfterViewInit datepicker: ');
+  ngAfterViewInit() {
+    console.log('onAfterViewInit datepicker: ');
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
     let value;
-    // console.log('value before: ', value);
     if (this.fieldObj.value) {
       value = this.fieldObj.value;
-      // console.log('attributesNames: ', elem.getAttributeNames());
       elem.setAttribute('value', value);
+      console.log('elem.getValue: ', elem.getAttribute('value'));
+
     } else if (this.form.controls[this.fieldObj.name].value) {
       value = this.form.controls[this.fieldObj.name].value;
       elem.setAttribute('value', value);
     }
-    // console.log('value after: ', elem.getAttribute('value'));*/
   }
 
   onDateInput(typeEvent: string, event) {
@@ -83,5 +93,15 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   onKeyUp() {
     // console.log('onKeyUp from custom-datepicker');
     this.validate.emit(true);
+  }
+
+  checkState() {
+    const status = this.form.controls[this.fieldObj.name].status;
+    // console.log('state: ', status);
+    let result = false;
+    if (status === 'DISABLED') {
+      result = true;
+    }
+    return result;
   }
 }
