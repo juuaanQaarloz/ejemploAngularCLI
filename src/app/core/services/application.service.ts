@@ -13,7 +13,7 @@ import {BENEFICIARIES} from '../mock/mock-beneficiaries/mock-beneficiaries';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
-const URL_PATTENR_CATALOG = '../assets/catalogs/custom-catalogs.json';
+const URL_PATTENR_CATALOG = '../assets/catalogs/pattern-catalogs.json';
 const URL_SEPOMEX = '../assets/catalogs/response-sepomex.json';
 
 @Injectable({
