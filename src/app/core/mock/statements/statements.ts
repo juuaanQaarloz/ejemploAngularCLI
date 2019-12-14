@@ -5,7 +5,7 @@ export const statements0: Field[] = [
     idHtml: 'radioTaxQuestion',
     name: 'taxQuestion',
     orderAppearance: 1,
-    label: '¿Esta sujeto al pago de impuestos en el extranjero?*',
+    label: '¿Está sujeto al pago de impuestos en el extranjero?*',
     type: 'radio',
     required: true,
     placeholder: '',

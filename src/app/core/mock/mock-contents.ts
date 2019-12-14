@@ -12,7 +12,7 @@ import {InformacionLaboralSolicitante, InformacionLaboralSolicitante1} from './m
 import {sportQuestions2, sportsFields1, sportsFields2, sportsQuestions1} from './basic-questionnaires/sports-aviation-hobbies';
 import {habitsFields, habitsQuestions, habitsQuestions2} from './basic-questionnaires/habits';
 import {weaponsFields, weaponsFields1, weaponsQuestions, weaponsQuestions1} from './basic-questionnaires/weapons-questions';
-import {medicalFields, medicalQuestions} from './basic-questionnaires/medical';
+import {medicalFields, medicalQuestions1, medicalQuestions2, medicalQuestions3} from './basic-questionnaires/medical';
 import {AgentQuestion, AgentQuestion1} from './mock-agents/mock-agents-questions';
 import {AuthorizationFields1, AuthorizationQuestions1, AuthorizationQuestions2} from './authorization/authorization-questions';
 import {Plan1, Plan2, Plan3, Plan4, Plan5, Plan6, Plan7} from './mock-plan/mock-plan';
@@ -1630,7 +1630,7 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
     idHtml: 'app-content-form-2.42',
     contentType: 'looseFields',
     // process?: Process;
-    fields: medicalQuestions,
+    fields: medicalQuestions1,
     // operations?: Operation[];
     renderConditions: '',
     // ---pending---
@@ -1653,7 +1653,91 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
     // process?: Process;
     fields: medicalFields,
     // operations?: Operation[];
-    renderConditions: '(diseasesQuestion=true,|,medicalTestQuestion=true,|,extraDiseasesQuestion=false)',
+    renderConditions: '(diseasesQuestion=true)',
+    // ((diseasesQuestion=true),|,(medicalTestQuestion=true),|,(extraDiseasesQuestion=false))
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: false,
+    styleClass: 'modal-type'
+    // enableConditions?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-2.55',
+    idParent: 'step-19',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.42',
+    contentType: 'looseFields',
+    // process?: Process;
+    fields: medicalQuestions2,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    // enableConditions?: 'string';
+    styleClass: 'questions-type'
+    // --------------------------
+  },
+  {
+    id: 'content-2.56',
+    idParent: 'step-19',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.43',
+    contentType: 'table-diseases',
+    // title: 'Enfermedad(es)',
+    // process?: Process;
+    fields: medicalFields,
+    // operations?: Operation[];
+    renderConditions: '(medicalTestQuestion=true)',
+    // ((diseasesQuestion=true),|,(medicalTestQuestion=true),|,(extraDiseasesQuestion=false))
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: false,
+    styleClass: 'modal-type'
+    // enableConditions?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-2.57',
+    idParent: 'step-19',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.42',
+    contentType: 'looseFields',
+    // process?: Process;
+    fields: medicalQuestions3,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    // enableConditions?: 'string';
+    styleClass: 'questions-type'
+    // --------------------------
+  },
+  {
+    id: 'content-2.58',
+    idParent: 'step-19',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.43',
+    contentType: 'table-diseases',
+    // title: 'Enfermedad(es)',
+    // process?: Process;
+    fields: medicalFields,
+    // operations?: Operation[];
+    renderConditions: '(extraDiseasesQuestion=true)',
     // ((diseasesQuestion=true),|,(medicalTestQuestion=true),|,(extraDiseasesQuestion=false))
     // ---pending---
     // contentChildren?: Array<Content>;

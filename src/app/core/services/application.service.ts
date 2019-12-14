@@ -246,7 +246,7 @@ export class ApplicationService {
       );
   }
 
-  addItem(newItem, itemType: string) {
+  addItem(newItem, itemType: string, fromTable?: boolean) {
     let currentTotalParticipationPercentage;
     let currentItems;
     let maxLength;

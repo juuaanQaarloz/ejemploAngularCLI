@@ -442,7 +442,7 @@ export const validatorsObjects = [
   },
   {
     nameField: 'weight',
-    validationFunctions: [rangeValidator(10, 400)]
+    validationFunctions: [rangeValidator(2, 400)]
   },
   {
     nameField: 'height',

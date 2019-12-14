@@ -1,6 +1,7 @@
 import {Field} from '../../../models';
+import {FieldFormComponent} from '../../../components/field-form/field-form.component';
 
-export const medicalQuestions: Field[] = [
+export const medicalQuestions1: Field[] = [
   {
     id: 'field-154',
     idHtml: 'radioDiseasesQuestion',
@@ -32,7 +33,10 @@ export const medicalQuestions: Field[] = [
     entity: '',
     entityField: '',
     value: ''
-  },
+  }
+];
+
+export const medicalQuestions2: Field[] = [
   {
     id: 'field-155',
     idHtml: 'radioMedicalTestQuestion',
@@ -63,7 +67,10 @@ export const medicalQuestions: Field[] = [
     entity: '',
     entityField: '',
     value: ''
-  },
+  }
+];
+
+export const medicalQuestions3: Field[] = [
   {
     id: 'field-156',
     idHtml: 'radioExtraDiseasesQuestion',

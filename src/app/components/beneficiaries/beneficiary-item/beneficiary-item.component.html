@@ -22,7 +22,9 @@
   <div class="item-attribute"
        *ngIf="itemType === 'payment'">{{item.txtCardNumber}}</div>
 
-
+  <div class="item-attribute" *ngFor="let attrName of itemAttrNames">
+    {{item[attrName]}}
+  </div>
 
 
   <div class="item-attribute"

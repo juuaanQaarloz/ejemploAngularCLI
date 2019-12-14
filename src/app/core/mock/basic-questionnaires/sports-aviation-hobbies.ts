@@ -331,9 +331,9 @@ export const sportsFieldsDialog: Field[] = [
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
-    renderConditions: '(extremeSportsD=ONE)',
+    renderConditions: '(extremeSportsD=OTRO)',
     enableConditions: '',
-    requiredConditions: '(extremeSportsD=ONE)',
+    requiredConditions: '(extremeSportsD=OTRO)',
     entity: '',
     entityField: '',
     value: ''
