@@ -13,7 +13,7 @@ import {BENEFICIARIES} from '../mock/mock-beneficiaries/mock-beneficiaries';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
-const URL_PATTENR_CATALOG = '../assets/catalogs/pattern-catalogs.json';
+const URL_PATTERN_CATALOG = '../assets/catalogs/pattern-catalogs.json';
 const URL_SEPOMEX = '../assets/catalogs/response-sepomex.json';
 
 @Injectable({
@@ -225,7 +225,7 @@ export class ApplicationService {
 
     return validationFunctions;
   }
-
+  // getCatalogById(this.fieldObj.sourceID, this.fieldObj.source)
   getCatalogById(id: string, source: string): Observable<[]> {
     let urlCatalog = '';
     switch (source) {
@@ -234,6 +234,9 @@ export class ApplicationService {
         break;
       case 'CUSTOM':
         urlCatalog = URL_CUSTOM_CATALOG;
+        break;
+      case 'PATTERN':
+        urlCatalog = URL_PATTERN_CATALOG;
         break;
       default:
         urlCatalog = URL_IPRE;
@@ -876,5 +879,18 @@ export class ApplicationService {
     } else {
       return null;
     }
+  }
+
+  getPatternCatalog(): Observable<[]> {
+    let urlCatalog = '';
+    const id = 'pattern';
+    urlCatalog = URL_PATTERN_CATALOG;
+    console.log('urlCatalog: ', urlCatalog);
+    return this.httpClient.get(urlCatalog)
+      .pipe(
+        map((catalog) => {
+          return catalog[id];
+        })
+      );
   }
 }
