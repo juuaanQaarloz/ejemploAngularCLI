@@ -183,6 +183,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
 
   deleteItem() {
     let propertyItem;
+    console.log('this.itemType: ', this.itemType);
     if (this.itemType === 'beneficiary') {
       propertyItem = 'beneficiaryId';
     } else if (this.itemType === 'agent') {
@@ -197,7 +198,12 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       propertyItem = 'idDisease';
     } else if (this.itemType === 'sport') {
       propertyItem = 'idSportActivity';
+    } else if (this.itemType === 'payment') {
+      propertyItem = 'paymentId';
+      console.log('this.item: ', this.item);
     }
+
+
     this.applicationService.removeItem(this.item[propertyItem], this.itemType);
     this.closeModal(this.modalId);
   }

@@ -1,8 +1,15 @@
 <!--Drawer Container-->
 <div class="drawer-container">
   <div>
+
+    <div *ngIf="showFormError" class="ml-msg ml-msg-error">
+        <span class="ml-msg-txt"><span class="fa fa-exclamation-circle high-priority"></span>
+          {{formMsgError}} </span>
+    </div>
+
     <div data-forms="floating-label" class="ml-form"
          [ngClass]="content.styleClass">
+
       <div *ngFor="let field of fields">
         <app-field-form [fieldObj]="field" [form]="formGroup"></app-field-form>
       </div>
@@ -43,7 +50,7 @@
     <p>{{modalMessage}}</p>
 
     <div class="operation-modal">
-      <app-operation-form [operationObj]= okOperation
+      <app-operation-form [operationObj]=okOperation
                           (click)="executeOperation(okOperation.delegateOperation)">
       </app-operation-form>
     </div>
