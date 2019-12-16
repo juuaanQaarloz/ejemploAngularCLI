@@ -65,22 +65,23 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.formGroup = this.applicationService.createNewFormGroup(this.content.fields);
 
     if (this.config.data !== null) {
       this.operationType = 'edit';
-      this.beneficiaryType = this.config.data.item.beneficiaryType;
-      this.fields = this.getFields();
       this.setBeneficiaryValues();
+      this.beneficiaryType = this.config.data.item.beneficiaryType;
     } else {
       this.operationType = 'add';
       this.beneficiaryType = 'phyPerson';
-      this.fields = this.getFields();
     }
+
+    this.formGroup = this.applicationService.createNewFormGroup(this.content.fields);
+    this.fields = this.getFields();
 
     this.formGroup.controls.beneficiaryType.valueChanges.subscribe((value) => {
       this.beneficiaryType = value;
       this.fields = this.getFields();
+      // console.log('new beneficiary fields: ', this.fields);
     });
   }
 
@@ -229,9 +230,6 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
       console.log('field.name: ', field.name);
 
       switch (field.name) {
-        case 'beneficiaryType':
-          value = this.config.data.item.beneficiaryType;
-          break;
         case 'beneficiaryBusinessName':
           value = this.config.data.item.businessName;
           break;
@@ -253,7 +251,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         case 'beneficiaryInteriorNumberM':
           value = this.config.data.item.address.interiorNumber;
           break;
-        case 'beneficiaryZipCodeM':
+        case 'txtBeneficiaryZipCodeM':
           value = this.config.data.item.address.zipCode;
           break;
         case 'beneficiarySuburbM':
@@ -265,10 +263,10 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         case 'beneficiaryStateM':
           value = this.config.data.item.address.state;
           break;
-        case 'beneficiaryCityM':
+        case 'txtBeneficiaryCityM':
           value = this.config.data.item.address.city;
           break;
-        case 'beneficiaryCountryM':
+        case 'slctBeneficiaryCountryM':
           value = this.config.data.item.address.country;
           break;
       }
@@ -278,57 +276,6 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
   setBeneficiaryF() {
     console.log('on setBeneficiaryF...');
-
-    this.fields.forEach((field) => {
-      let value;
-      console.log('field.name: ', field.name);
-
-      switch (field.name) {
-        case 'beneficiaryType':
-          value = this.config.data.item.beneficiaryType;
-          break;
-        case 'suspensiveCondition':
-          value = this.config.data.item.suspensiveCondition;
-          break;
-        case 'contractNumber':
-          value = this.config.data.item.contractNumber;
-          break;
-        /*case 'beneficiaryConstitutionDate':
-          value = this.config.data.item.birthDateOrConstitution;
-          break;*/
-        case 'instructionLetterNumber':
-          value = this.config.data.item.instructionLetterNumber;
-          break;
-        case 'beneficiaryRelationshipF':
-          value = this.config.data.item.relationship;
-          break;
-        case 'beneficiaryExteriorNumberM':
-          value = this.config.data.item.address.exteriorNumber;
-          break;
-        case 'beneficiaryInteriorNumberM':
-          value = this.config.data.item.address.interiorNumber;
-          break;
-        case 'beneficiaryZipCodeM':
-          value = this.config.data.item.address.zipCode;
-          break;
-        case 'beneficiarySuburbM':
-          value = this.config.data.item.address.neighborhood;
-          break;
-        case 'beneficiaryMunicipalityM':
-          value = this.config.data.item.address.municipality;
-          break;
-        case 'beneficiaryStateM':
-          value = this.config.data.item.address.state;
-          break;
-        case 'beneficiaryCityM':
-          value = this.config.data.item.address.city;
-          break;
-        case 'beneficiaryCountryM':
-          value = this.config.data.item.address.country;
-          break;
-      }
-      this.formGroup.controls[field.name].setValue(value);
-    });
   }
 
   mapNewBeneficiaryData() {
@@ -542,9 +489,6 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         fields.push(field);
       });
     }
-
-    console.log('fields: ', fields);
-
     return fields;
   }
 

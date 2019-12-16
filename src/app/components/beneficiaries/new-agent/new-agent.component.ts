@@ -7,6 +7,7 @@ import {DialogConfig} from '../../dialog/dialog-config';
 import {DialogRef} from '../../dialog/dialog-ref';
 import {ModalService} from '../../custom-modal';
 import {Operation} from '../../../models';
+import {FORM_MSG_ERROR} from '../../../core/mock/errors/mock-erros-datos-plan';
 
 @Component({
   selector: 'app-new-agent',
@@ -47,6 +48,8 @@ export class NewAgentComponent implements OnInit {
   operationType: string;
   modalID = 'modal-warning1';
   modalMessage = 'La suma de las participaciones de los agentes excede el 100%';
+  showFormError = false;
+  formMsgError = FORM_MSG_ERROR;
 
   constructor(private applicationService: ApplicationService,
               public config: DialogConfig,
@@ -86,14 +89,19 @@ export class NewAgentComponent implements OnInit {
   }
 
   addNewAgent() {
-    const newAgent = this.mapNewAgentData();
-    const response = this.applicationService.addItem(newAgent, 'agent');
+    const formStatus = this.getFormStatus();
+    if (formStatus === 'VALID') {
+      const newAgent = this.mapNewAgentData();
+      const response = this.applicationService.addItem(newAgent, 'agent');
 
-    if (response.status) {
-      this.closeDialog();
+      if (response.status) {
+        this.closeDialog();
+      } else {
+        this.modalMessage = response.message;
+        this.modalService.open(this.modalID);
+      }
     } else {
-      this.modalMessage = response.message;
-      this.modalService.open(this.modalID);
+      this.showFormError = true;
     }
   }
 
@@ -130,9 +138,14 @@ export class NewAgentComponent implements OnInit {
   }
 
   updateAgent() {
-    const updatedAgent = this.mapAgentData();
-    this.applicationService.updateItem(updatedAgent, 'agent');
-    this.closeDialog();
+    const formStatus = this.getFormStatus();
+    if (formStatus === 'VALID') {
+      const updatedAgent = this.mapAgentData();
+      this.applicationService.updateItem(updatedAgent, 'agent');
+      this.closeDialog();
+    } else {
+      this.showFormError = true;
+    }
   }
 
   mapAgentData() {
@@ -145,6 +158,10 @@ export class NewAgentComponent implements OnInit {
     };
 
     return mappedAgent;
+  }
+
+  getFormStatus() {
+    return this.formGroup.status;
   }
 
 }

@@ -302,8 +302,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
               this.autocompleteOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
             }
           });
-          this.loading = false;
 
+          if (this.fieldObj.type === 'autocomplete') {
+            this.loading = false;
+          }
           // console.log('autoComplete: ', this.autocompleteOptions);
         }
       });

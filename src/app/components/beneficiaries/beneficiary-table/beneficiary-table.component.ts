@@ -22,7 +22,8 @@ const FIELDS: Field[] = [
     length: '750',
     minValue: 0,
     maxValue: 750,
-    pattern: '/^[A-ZÑ0-9\\s]*$/',
+    pattern: '/^(?=.*$)(?=[^A-ZÑ0-9\\s]*[A-ZÑ0-9\\s])(?:([A-ZÑ0-9\\s])\\1?(?!\\1\\1))*$/',
+    noAllowedCharactersPattern: '/[^a-zA-ZñÑ0-9\\s]/',
     source: '',
     sourceID: '',
     style: '',
@@ -74,14 +75,6 @@ export class BeneficiaryTableComponent implements OnInit {
         'Fecha de nacimiento / constitución',
         'Parentesco',
         'Porcentaje de participación',
-      ];
-
-      this.columnsSettings = [
-        {columnLabel : 'Tipo de Beneficiario', columnAttribute: ''},
-        {columnLabel : 'Nombre / Razón social', columnAttribute: ''},
-        {columnLabel : 'Fecha de nacimiento / constitución', columnAttribute: ''},
-        {columnLabel : 'Parentesco', columnAttribute: ''},
-        {columnLabel : 'Porcentaje de participación', columnAttribute: ''}
       ];
 
       this.itemsType = 'beneficiary';

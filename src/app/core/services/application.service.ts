@@ -22,7 +22,7 @@ const URL_SEPOMEX = '../assets/catalogs/response-sepomex.json';
 export class ApplicationService {
   private currentStepSource = new BehaviorSubject(0);
   currentValue = this.currentStepSource.asObservable();
-  beneficiaries = new BehaviorSubject([]);
+  beneficiaries = new BehaviorSubject(BENEFICIARIES);
   agents = new BehaviorSubject([]);
   sports = new BehaviorSubject([]);
   diseases = new BehaviorSubject([]);
@@ -226,7 +226,7 @@ export class ApplicationService {
     return validationFunctions;
   }
   // getCatalogById(this.fieldObj.sourceID, this.fieldObj.source)
-  getCatalogById(id: string, source: string): Observable<[]> {
+  getCatalogById(id: string, source: string): Observable<[]> { 
     let urlCatalog = '';
     switch (source) {
       case 'IPRE':
@@ -250,7 +250,7 @@ export class ApplicationService {
       );
   }
 
-  addItem(newItem, itemType: string) {
+  addItem(newItem, itemType: string, fromTable?: boolean) {
     let currentTotalParticipationPercentage;
     let currentItems;
     let maxLength;
@@ -681,7 +681,8 @@ export class ApplicationService {
     return this.httpClient.get(URL_SEPOMEX)
       .pipe(
         map((response: any) => {
-          return response.data.items[0].item as SepomexObj;
+          //return response.data.items[0].item as SepomexObj;
+          return null;
         })
       );
   }

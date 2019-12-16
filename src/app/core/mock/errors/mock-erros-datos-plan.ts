@@ -1,5 +1,7 @@
 import {Error} from '../../../models';
 
+export const FORM_MSG_ERROR = 'Por favor, verfique la información a continuación';
+
 export const ERROSDATOSPLAN: Error[] = [
   {
     errorName: 'invalidPlanImport',

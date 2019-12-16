@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ApplicationService} from '../../core/services';
 import {Error} from '../../models';
+import {FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-error-banner',
@@ -8,7 +9,8 @@ import {Error} from '../../models';
   styleUrls: ['./error-banner.component.css']
 })
 export class ErrorBannerComponent implements OnInit {
-  @Input() errors: Error[];
+  @Input() errors?: Error[];
+  @Input() formGroup?: FormGroup;
 
   constructor(private appService: ApplicationService) { }
 
@@ -23,6 +25,19 @@ export class ErrorBannerComponent implements OnInit {
       result = true;
     }
     return result;
+  }
+
+  getFormStatus() {
+    const status = this.formGroup.status;
+    if (status) {
+      if (status === 'VALID') {
+        return false;
+      } else {
+        return true;
+      }
+    } else {
+      return true;
+    }
   }
 
 }
