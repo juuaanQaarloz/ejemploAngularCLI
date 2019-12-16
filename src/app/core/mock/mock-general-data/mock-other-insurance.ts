@@ -43,7 +43,7 @@ export const OtrosSeguros: Field[] = [
         minValue: 0,
         maxValue: 15,
         pattern: '/^[0-9]{0,10}\\.[0-9]{1,2}$/',
-        noAllowedCharactersPattern: '/[\\D\\.]/',
+        noAllowedCharactersPattern: '/[^\\d\\.]/',
         source: '',
         sourceID: '',
         style: '',

@@ -162,7 +162,7 @@ export const BeneficiaryFieldsF: Field[] = [
     minValue: 0,
     maxValue: 6,
     pattern: '/(^100(\\.0{1,2})?$)|(^([1-9]([0-9])?|0)(\\.[0-9]{1,3})?$)|(^([0-9])(\\.[0-9]{1,4})?$)/g',
-    noAllowedCharactersPattern: '/[\\D\\.]/',
+    noAllowedCharactersPattern: '/[^\\d\\.]/',
     source: '',
     sourceID: '',
     style: '',
