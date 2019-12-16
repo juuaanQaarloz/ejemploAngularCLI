@@ -1648,7 +1648,7 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
     idParent: 'step-19',
     parentType: 'Step',
     idHtml: 'app-content-form-2.43',
-    contentType: 'table-diseases',
+    contentType: 'table-diseases,1',
     // title: 'Enfermedad(es)',
     // process?: Process;
     fields: medicalFields,
@@ -1690,7 +1690,7 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
     idParent: 'step-19',
     parentType: 'Step',
     idHtml: 'app-content-form-2.43',
-    contentType: 'table-diseases',
+    contentType: 'table-diseases,2',
     // title: 'Enfermedad(es)',
     // process?: Process;
     fields: medicalFields,
@@ -1724,7 +1724,8 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
     // --added extra from model--
     showContent: true,
     // enableConditions?: 'string';
-    styleClass: 'questions-type'
+    styleClass: 'questions-type',
+    legend: 'En caso de respuestas afirmativas, favor de ampliar la información'
     // --------------------------
   },
   {
@@ -1732,7 +1733,7 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
     idParent: 'step-19',
     parentType: 'Step',
     idHtml: 'app-content-form-2.43',
-    contentType: 'table-diseases',
+    contentType: 'table-diseases,3',
     // title: 'Enfermedad(es)',
     // process?: Process;
     fields: medicalFields,

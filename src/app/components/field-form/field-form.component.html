@@ -135,7 +135,8 @@
 
   </fieldset>
 
-  <fieldset *ngSwitchCase="'checkbox'" class="ml-form-field ml-form-field-checkboxes">
+  <!--use this type of field when are more than one option in the checkBox options example from a catalog-->
+  <fieldset *ngSwitchCase="'checkbox-n'" class="ml-form-field ml-form-field-checkboxes">
 
     <label *ngIf="fieldObj.label != null">{{fieldObj.label}}</label>
     <!--<div class="checkbox-options">-->
@@ -150,8 +151,19 @@
     <!--</div>-->
   </fieldset>
 
-  <div *ngSwitchCase="'autocomplete'">
+  <!--use this type of field when there is only one option for the checkbox-->
+  <fieldset *ngSwitchCase="'checkbox-1'" class="ml-form-field ml-form-field-checkboxes">
 
+    <div class="ml-form-field-checkboxes-group">
+      <input type="checkbox" [formControlName]="fieldObj.name"
+             [id]="fieldObj.name + '-checkbox'"
+             [name]="fieldObj.name"
+             [value]="fieldObj.value">
+      <label [for]="fieldObj.name + '-checkbox'">{{fieldObj.label}}</label>
+    </div>
+  </fieldset>
+
+  <div *ngSwitchCase="'autocomplete'">
     <fieldset class="ml-form-field"
               [ngClass]="{'error': !fieldObj.valid}">
       <label>
