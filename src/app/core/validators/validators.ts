@@ -689,10 +689,7 @@ export function rangeValidator(min: number, max: number) {
 export const higherAssuredImport: ValidatorFn = (group: FormGroup): ValidationErrors | null => {
   const currency = group.controls.currency.value;
   const assuredImport = group.controls.assuredImport.value;
-  // console.log('currency', currency);
-  // console.log('assuredImport', assuredImport);
-  if (currency === 'mxn'){
-    // console.log('condicional', Number(assuredImport) + '-<-' + Number(400000.00));
+  if (currency === 'mxn') {
     if (Number(assuredImport) < Number(400000.00)) {
       // console.log('invalidAssuredImportMxn', false);
       return { invalidAssuredImportMxn: true};
@@ -701,7 +698,6 @@ export const higherAssuredImport: ValidatorFn = (group: FormGroup): ValidationEr
     }
   } else if (currency === 'usd') {
     if (Number(assuredImport) < Number(40000.00)) {
-      // console.log('invalidAssuredImportUsd', false);
       return { invalidAssuredImportUsd: true};
     } else {
       return null;
@@ -731,16 +727,16 @@ export const validateFunds: ValidatorFn = (group: FormGroup): ValidationErrors |
      variableSaving = 0;
   }
 
-  if(currency === 'usd' || currency === 'mxn') {
+  if (currency === 'usd' || currency === 'mxn') {
     total = Number(fixedFunds) + Number(variableFunds) + Number(fixedRetirement) +
       Number(variableRetirement) + Number(fixedSaving) + Number(variableSaving);
-    console.log('total', Number(total));
+    // console.log('total', Number(total));
     if (total !== 100) {
       return {invalidPlanImport: true};
     } else {
       return null;
     }
-  } else { return null;}
+  } else { return null; }
 };
 
 

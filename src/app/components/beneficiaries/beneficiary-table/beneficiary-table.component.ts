@@ -218,7 +218,7 @@ export class BeneficiaryTableComponent implements OnInit {
       });
     } else if (this.type ===  'table-coverage') {
       this.title = 'Beneficios adicionales disponibles para el plan';
-      this.columnsNames = ['Contratar:', 'Cobertura', 'Suma asegurada', 'Prima', 'Detalle',
+      this.columnsNames = ['Contratar:', 'Cobertura', 'Detalle',
       ];
 
       this.itemsType = 'coverage';

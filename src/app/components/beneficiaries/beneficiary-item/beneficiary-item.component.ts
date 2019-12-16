@@ -278,6 +278,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       // this.formGroup.controls[this.fields[0].name].setValue(this.item.coverageName);
       this.formGroup.controls[this.fields[0].name].setValue(this.item.assuredImport);
       this.formGroup.controls[this.fields[1].name].setValue(this.item.cost);
+
       // this.formGroup.controls[this.fields[2].name].setValue(this.item.detail);
     } else if (this.itemType === 'country') {
       // console.log('item: ', this.item);

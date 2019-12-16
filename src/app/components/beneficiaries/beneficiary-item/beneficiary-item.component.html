@@ -32,7 +32,7 @@
     <fieldset class="ml-form-field ml-form-field-checkboxes">
       <div [formGroup]="this.applicationService.getFormGroup()">
         <div class="ml-form-field-checkboxes-group">
-          <input type="checkbox" [formControlName]="item.detail + 'checkbox'"
+          <input type="checkbox"
                  [id]="item.detail + 'checkbox'"
                  [name]="item.coverageName"
                  [value]="item.detail"
@@ -43,10 +43,7 @@
     </fieldset>
   </div>
 
-  <div class="item-attribute"
-       *ngIf="itemType === 'coverage'">{{item.coverageName}}</div>
-  <div class="item-attribute"
-       *ngIf="itemType === 'coverage'">{{item.detail}}</div>
+
 
   <div class="item-attribute" *ngFor="let field of fields">
     <app-field-form
@@ -55,8 +52,13 @@
       [item]="item">
 
     </app-field-form>
+
   </div>
 
+  <div class="item-attribute"
+       *ngIf="itemType === 'coverage'">{{item.coverageName}}</div>
+  <div class="item-attribute"
+       *ngIf="itemType === 'coverage'">{{item.detail}}</div>
 
 
 

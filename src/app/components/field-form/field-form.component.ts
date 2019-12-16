@@ -122,9 +122,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         .subscribe((results) => {
           optionsPattern = results;
           let patternFind: Pattern;
-          // tslint:disable-next-line:no-shadowed-variable
           const resultado = optionsPattern.find( patternFind => patternFind.id === this.fieldObj.pattern );
-          // console.log('options2: ', resultado);
           if (resultado !== undefined) {
             this.regExpPattern = stringToRegExp(resultado.value);
           } else {
@@ -295,9 +293,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
             } else if (this.fieldObj.type === 'checkbox') {
               console.log('selectItem-checkbox: ', selectItem);
               this.checkBoxOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
-            } else if (this.fieldObj.type === 'checkboxcoverage') {
-              // console.log('selectItem-checkbox: ', selectItem);
-              this.checkBoxOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
             } else if (this.fieldObj.type === 'autocomplete') {
               this.autocompleteOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
             }
@@ -402,8 +397,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   checkState2(acceso: boolean) {
     const status = this.form.controls[this.fieldObj.name].status;
-    console.log('state2: ', status);
-    console.log('acceso: ', acceso);
+    // console.log('state2: ', status);
+    // console.log('acceso: ', acceso);
     let result = false;
     if (status === 'DISABLED' && acceso === true) {
       result = true;
@@ -496,7 +491,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   setFunds() {
-    console.log('setFunds: ');
     const currency = this.form.controls.currency.value;
     const packing = this.form.controls.packing.value;
     if (currency === 'usd') {
