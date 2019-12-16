@@ -226,7 +226,7 @@ export class ApplicationService {
     return validationFunctions;
   }
   // getCatalogById(this.fieldObj.sourceID, this.fieldObj.source)
-  getCatalogById(id: string, source: string): Observable<[]> {
+  getCatalogById(id: string, source: string): Observable<[]> { 
     let urlCatalog = '';
     switch (source) {
       case 'IPRE':
