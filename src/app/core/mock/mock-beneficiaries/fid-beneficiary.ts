@@ -128,7 +128,7 @@ export const BeneficiaryFieldsF: Field[] = [
     type: 'date',
     required: false,
     placeholder: 'YYYY/MM/DD',
-    length: '',
+    length: '10',
     minValue: 0,
     maxValue: 10,
     pattern: '/^([0-2][0-9]|[3][0-1])\\/([0][1-9]|[1][0-2])\\/([1-2][0-9]{3,3})$/',
