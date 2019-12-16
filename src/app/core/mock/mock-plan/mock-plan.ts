@@ -197,7 +197,7 @@ export const Plan3: Field[] = [
     minValue: 0,
     maxValue: 15,
     pattern: '/^[0-9]{0,10}\\.[0-9]{1,2}$/',
-    noAllowedCharactersPattern: '/[^\\d\\.]/',
+    noAllowedCharactersPattern: '/^\\d\\./',
     source: '',
     sourceID: '',
     style: '',
