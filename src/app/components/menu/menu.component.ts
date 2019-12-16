@@ -13,10 +13,10 @@ export class MenuComponent implements OnInit {
       menuLabel: 'NUEVOS NEGOCIOS',
       redirectTo: 'application2'
     },
-    {
-      menuLabel: 'MESA DE CONTROL',
-      redirectTo: ''
-    },
+    // {
+    //   menuLabel: 'MESA DE CONTROL',
+    //   redirectTo: ''
+    // },
     {
       menuLabel: 'BÚSQUEDA',
       redirectTo: ''
