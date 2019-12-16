@@ -681,7 +681,8 @@ export class ApplicationService {
     return this.httpClient.get(URL_SEPOMEX)
       .pipe(
         map((response: any) => {
-          return response.data.items[0].item as SepomexObj;
+          //return response.data.items[0].item as SepomexObj;
+          return null;
         })
       );
   }

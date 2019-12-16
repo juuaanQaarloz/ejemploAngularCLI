@@ -122,7 +122,7 @@ export const DatosDomicilio: Field[] = [
     label: 'Colonia / Barrio*',
     type: 'text',
     required: true,
-    placeholder: '/^[A-ZÑ\\s]*$/',
+    placeholder: '',
     length: '60',
     minValue: 0,
     maxValue: 60,
