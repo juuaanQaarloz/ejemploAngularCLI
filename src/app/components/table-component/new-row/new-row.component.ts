@@ -43,6 +43,7 @@ export class NewRowComponent implements OnInit {
       this.itemType = this.config.data.itemType;
       this.item = this.config.data.item;
 
+
       this.setContentFields();
       this.formGroup = this.appService.createNewFormGroup(this.content.fields);
       this.foundedOperations = this.getOperations();

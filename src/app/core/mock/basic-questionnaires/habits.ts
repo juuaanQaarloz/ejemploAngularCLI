@@ -110,7 +110,7 @@ export const habitsFields: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'Estatura es un campo requerido y su valor debe estar entre 1.0 y 2.5 mts',
+    message: 'Estatura es un campo requerido y su valor debe estar entre 0.4 y 2.5 mts',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
