@@ -132,7 +132,7 @@ export const InformacionLaboral: Field[] = [
     minValue: 0,
     maxValue: 12,
     pattern: '/^[0-9]{0,10}\\.[0-9]{1,2}$/',
-    noAllowedCharactersPattern: '/^\\d\\./',
+    noAllowedCharactersPattern: '/[^\\d\\/]/',
     source: '',
     sourceID: '',
     style: '',
