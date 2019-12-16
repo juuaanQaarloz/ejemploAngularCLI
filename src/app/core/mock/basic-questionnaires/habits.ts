@@ -81,7 +81,7 @@ export const habitsFields: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'Peso es un campo requerido y su valor debe estar entre 10 y 400 kg',
+    message: 'Peso es un campo requerido y su valor debe estar entre 2 y 400 kg',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',

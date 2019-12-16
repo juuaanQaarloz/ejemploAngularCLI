@@ -44,6 +44,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   styleClass;
   enableOperations: boolean;
   showplus: boolean;
+  itemAttrNames = [];
 
 
   constructor(public applicationService: ApplicationService,
@@ -128,16 +129,22 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
 
     if (this.columnSettings) {
       console.log('columnSettings');
+      this.getItemAttrNames();
     }
     this.modalId = 'modal-' + this.itemType + this.index;
-
-    console.log('item: ', this.item);
   }
 
   ngAfterViewInit(): void {
   }
 
-  getitemAttrNames(){ }
+  getItemAttrNames()  {
+    Object.keys(this.item).forEach((key, index) => {
+      const searchResult = this.columnSettings.find(columnSetting => columnSetting.columnAttribute === key);
+      if (searchResult) {
+        this.itemAttrNames.push(key);
+      }
+    });
+  }
 
   addNewItem() {
     let ref;

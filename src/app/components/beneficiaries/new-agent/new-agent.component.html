@@ -1,6 +1,11 @@
 <!--Drawer Container-->
 <div class="drawer-container">
   <div>
+    <div *ngIf="showFormError" class="ml-msg ml-msg-error">
+    <span class="ml-msg-txt"><span class="fa fa-exclamation-circle high-priority"></span>
+      {{formMsgError}} </span>
+    </div>
+
     <p class="content-title"> Datos del Agente</p>
     <div data-forms="floating-label" class="ml-form"
          [ngClass]="content.styleClass">

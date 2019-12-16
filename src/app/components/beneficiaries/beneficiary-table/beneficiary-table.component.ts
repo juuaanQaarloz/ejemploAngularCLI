@@ -77,14 +77,6 @@ export class BeneficiaryTableComponent implements OnInit {
         'Porcentaje de participación',
       ];
 
-      this.columnsSettings = [
-        {columnLabel : 'Tipo de Beneficiario', columnAttribute: ''},
-        {columnLabel : 'Nombre / Razón social', columnAttribute: ''},
-        {columnLabel : 'Fecha de nacimiento / constitución', columnAttribute: ''},
-        {columnLabel : 'Parentesco', columnAttribute: ''},
-        {columnLabel : 'Porcentaje de participación', columnAttribute: ''}
-      ];
-
       this.itemsType = 'beneficiary';
       this.showplus = true;
 
