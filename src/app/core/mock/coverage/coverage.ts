@@ -2,13 +2,13 @@ import {Beneficiary, Field} from '../../../models';
 import {Coverage} from '../../../models/coverage-model/coverage';
 
 export const CoverageFieldsItem: Field[] = [
-  /* {
+  {
   id: 'field-10002',
   idHtml: 'txtAssuredImport',
   name: 'assuredImport',
   orderAppearance: 3,
   label: '',
-  type: 'text',
+  type: 'checkbox-1',
   required: false,
   placeholder: '',
   length: '',
@@ -30,7 +30,7 @@ export const CoverageFieldsItem: Field[] = [
   entityField: '',
   value: '',
   disable: true
-},
+}, /*
 {
   id: 'field-10004',
   idHtml: 'txtCostdImport',
