@@ -8,6 +8,7 @@ import {OKOPT, RowOperations} from '../../../core/mock/mock-operations';
 import {ModalService} from '../../custom-modal';
 import {medicalFieldsDialog} from '../../../core/mock/basic-questionnaires/medical';
 import {sportsFieldsDialog} from '../../../core/mock/basic-questionnaires/sports-aviation-hobbies';
+import {FORM_MSG_ERROR} from '../../../core/mock/errors/mock-erros-datos-plan';
 
 @Component({
   selector: 'app-new-row',
@@ -25,6 +26,8 @@ export class NewRowComponent implements OnInit {
   modalMessage = '';
   okOperation = OKOPT;
   item;
+  showFormError = false;
+  formMsgError = FORM_MSG_ERROR;
 
   constructor(private appService: ApplicationService,
               public config: DialogConfig,
@@ -79,15 +82,19 @@ export class NewRowComponent implements OnInit {
   }
 
   addNewItem() {
-    console.log('on addNewItem...');
-    const newItem = this.mapNewItemData();
-    const response = this.appService.addItem(newItem, this.itemType);
+    const formStatus = this.getFormStatus();
+    if (formStatus === 'VALID') {
+      const newItem = this.mapNewItemData();
+      const response = this.appService.addItem(newItem, this.itemType);
 
-    if (response.status) {
-      this.closeDialog();
+      if (response.status) {
+        this.closeDialog();
+      } else {
+        this.modalMessage = response.message;
+        this.modalService.open(this.modalID);
+      }
     } else {
-      this.modalMessage = response.message;
-      this.modalService.open(this.modalID);
+      this.showFormError = true;
     }
   }
 
@@ -117,9 +124,14 @@ export class NewRowComponent implements OnInit {
   }
 
   updateItem() {
-    const updatedItem = this.mapItemData();
-    this.appService.updateItem(updatedItem, this.itemType);
-    this.closeDialog();
+    const formStatus = this.getFormStatus();
+    if (formStatus === 'VALID') {
+      const updatedItem = this.mapItemData();
+      this.appService.updateItem(updatedItem, this.itemType);
+      this.closeDialog();
+    } else {
+      this.showFormError = true;
+    }
   }
 
   mapItemData() {
@@ -176,25 +188,8 @@ export class NewRowComponent implements OnInit {
     });
   }
 
-  /*setFieldsItemValues() {
-    this.content.fields.forEach((field) => {
-      let value;
-      switch (field.name) {
-        case 'agentName':
-          value = this.config.data.item.name;
-          break;
-        case 'agentPromotor':
-          value = this.config.data.item.promotor;
-          break;
-        case 'agentKey':
-          value = this.config.data.item.key;
-          break;
-        case 'agentParticipation':
-          value = this.config.data.item.participation;
-          break;
-      }
-      this.formGroup.controls[field.name].setValue(value);
-    });
-  }*/
+  getFormStatus() {
+    return this.formGroup.status;
+  }
 
 }

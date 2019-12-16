@@ -442,8 +442,8 @@ export const BeneficiaryFieldsF: Field[] = [
     entityField: '',
     value: 'MX',
     disable: true
-  },
-  {
+  }
+  /*{
     id: 'field-138',
     idHtml: 'fileLoadInstructionLetter',
     name: 'loadInstructionLetter',
@@ -467,8 +467,9 @@ export const BeneficiaryFieldsF: Field[] = [
     messageErrorClass: '',
     renderConditions: '(beneficiaryType=fidPerson)',
     enableConditions: '',
+    requiredConditions: '(beneficiaryType=fidPerson)',
     entity: '',
     entityField: '',
     value: ''
-  }
+  }*/
 ];

@@ -13,7 +13,7 @@ export const BeneficiaryFieldsM: Field[] = [
     length: '',
     minValue: 0,
     maxValue: 60,
-    pattern: '/^[A-ZÑ0-9_\\/&\\s\\-\\.\\,\\(\\)]*$/',
+    pattern: '',
     source: '',
     sourceID: '',
     style: '',

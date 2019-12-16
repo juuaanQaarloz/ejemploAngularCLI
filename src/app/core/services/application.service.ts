@@ -204,24 +204,26 @@ export class ApplicationService {
   getValidationFunctions(field: Field): any[] {
     let validationFunctions = [];
 
-    validatorsObjects.forEach(validationObject => {
-      if (validationObject.nameField === field.name) {
-        // // console.log('validationObject: ', validationObject);
-        validationFunctions = validationObject.validationFunctions;
-      }
-    });
-
     if (field.required) {
       validationFunctions.push(Validators.required);
-    }
-    if (field.maxValue) {
-      validationFunctions.push(Validators.maxLength(field.maxValue));
-    }
-    /*if (field.pattern) {
-      console.log('setting pattern validator: ', field.pattern);
-      validationFunctions.push((Validators.pattern(field.pattern)));
-    }*/
 
+      validatorsObjects.forEach(validationObject => {
+        if (validationObject.nameField === field.name) {
+          // // console.log('validationObject: ', validationObject);
+          validationFunctions = validationObject.validationFunctions;
+        }
+      });
+
+      if (field.maxValue) {
+        validationFunctions.push(Validators.maxLength(field.maxValue));
+      }
+      /*if (field.pattern) {
+        console.log('setting pattern validator: ', field.pattern);
+        validationFunctions.push((Validators.pattern(field.pattern)));
+      }*/
+    } else {
+      validationFunctions = [];
+    }
     return validationFunctions;
   }
 

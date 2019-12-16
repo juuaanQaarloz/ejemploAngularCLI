@@ -11,6 +11,7 @@ import {Operation} from '../../../models';
 import {BeneficiaryFieldsP} from '../../../core/mock/mock-beneficiaries/phy-beneficiary';
 import {BeneficiaryFieldsM} from '../../../core/mock/mock-beneficiaries/mor-beneficiary';
 import {BeneficiaryFieldsF} from '../../../core/mock/mock-beneficiaries/fid-beneficiary';
+import {FORM_MSG_ERROR} from '../../../core/mock/errors/mock-erros-datos-plan';
 
 @Component({
   selector: 'app-new-beneficiary',
@@ -55,7 +56,8 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   beneficiaryType = 'phyPerson';
   showplus = false;
   fields = [];
-  status = '';
+  showFormError = false;
+  formMsgError = FORM_MSG_ERROR;
 
   constructor(private applicationService: ApplicationService,
               public config: DialogConfig,
@@ -88,16 +90,24 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   }
 
   addNewBeneficiary() {
-    // console.log('formGroup value: ', this.formGroup.value);
-    const newBeneficiary = this.mapNewBeneficiaryData();
-    const response = this.applicationService.addItem(newBeneficiary, 'beneficiary');
+    const formStatus = this.getFormStatus();
+    console.log('formStatus: ', formStatus);
+    console.log('form controls: ', this.formGroup.controls);
 
-    if (response.status) {
-      this.closeDialog();
+    if (formStatus === 'VALID') {
+      const newBeneficiary = this.mapNewBeneficiaryData();
+      const response = this.applicationService.addItem(newBeneficiary, 'beneficiary');
+
+      if (response.status) {
+        this.closeDialog();
+      } else {
+        this.modalMessage = response.message;
+        this.modalService.open(this.modalID);
+      }
     } else {
-      this.modalMessage = response.message;
-      this.modalService.open(this.modalID);
+      this.showFormError = true;
     }
+
   }
 
   updateBeneficiary() {
@@ -549,7 +559,6 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   }
 
   getFormStatus() {
-    console.log('form controls: ', this.formGroup.controls);
-    this.status = this.formGroup.status;
+    return this.formGroup.status;
   }
 }
