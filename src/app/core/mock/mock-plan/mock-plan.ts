@@ -163,7 +163,7 @@ export const Plan2: Field[] = [
     length: '3',
     minValue: 0,
     maxValue: 3,
-    pattern: '/^[0-9]{0,15}$/',
+    pattern: 'edad',
     noAllowedCharactersPattern: '/\\D/',
     source: '',
     sourceID: '',

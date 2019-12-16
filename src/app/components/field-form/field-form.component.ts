@@ -7,6 +7,7 @@ import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
 import {calculateRFC, correctFieldValue, stringToRegExp, transformDate} from '../../core/utilities';
 import {SepomexObj} from '../../models/sepomex-obj';
+import {Pattern} from '../../models/pattern/pattern';
 
 @Component({
   selector: 'app-field-form',
@@ -116,13 +117,21 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
 
     if (this.fieldObj.pattern) {
-      let options = [];
+      let optionsPattern: Pattern[] ;
       this.applicationService.getPatternCatalog()
         .subscribe((results) => {
-          console.log('results: ', results);
-          options = results;
+          optionsPattern = results;
+          let patternFind: Pattern;
+          // tslint:disable-next-line:no-shadowed-variable
+          const resultado = optionsPattern.find( patternFind => patternFind.id === this.fieldObj.pattern );
+          // console.log('options2: ', resultado);
+          if (resultado !== undefined) {
+            this.regExpPattern = stringToRegExp(resultado.value);
+          } else {
+            this.regExpPattern = stringToRegExp(this.fieldObj.pattern);
+          }
         });
-      this.regExpPattern = stringToRegExp(this.fieldObj.pattern);
+      // this.regExpPattern = stringToRegExp(this.fieldObj.pattern);
       // this.regExpPattern = this.fieldObj.pattern;
       // console.log('regExpPattern: ', this.regExpPattern);
     }
@@ -155,6 +164,11 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       console.log('formControlName: ', this.fieldObj.name);
       console.log('value: ',  value);
     });*/
+  }
+
+  esPatter( patron: string) {
+    let pattern: Pattern;
+    return pattern.id === patron;
   }
 
   ngAfterViewInit() {

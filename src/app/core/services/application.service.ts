@@ -885,7 +885,7 @@ export class ApplicationService {
     let urlCatalog = '';
     const id = 'pattern';
     urlCatalog = URL_PATTERN_CATALOG;
-    console.log('urlCatalog: ', urlCatalog);
+    // console.log('urlCatalog: ', urlCatalog);
     return this.httpClient.get(urlCatalog)
       .pipe(
         map((catalog) => {
