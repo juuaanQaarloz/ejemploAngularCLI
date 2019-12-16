@@ -25,6 +25,8 @@ export class ApplicationService {
   agents = new BehaviorSubject([]);
   sports = new BehaviorSubject([]);
   diseases = new BehaviorSubject([]);
+  // diseases2 = new BehaviorSubject([]);
+  // diseases3 = new BehaviorSubject([]);
 
   formatosdos = new BehaviorSubject([]);
   formatosdosb = new BehaviorSubject([]);

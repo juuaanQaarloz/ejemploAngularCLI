@@ -50,6 +50,7 @@ const FIELDS: Field[] = [
 export class BeneficiaryTableComponent implements OnInit {
   @Input() type: string;
   @Input() content: Content;
+  @Input() contentTypeId?: string;
   showplus: boolean;
   title;
   columnsNames;
@@ -157,6 +158,8 @@ export class BeneficiaryTableComponent implements OnInit {
       this.applicationService.diseases.subscribe((value) => {
         this.items = value;
       });
+
+      console.log('contentTypeId: ', this.contentTypeId);
     } else if (this.type ===  'table-formatfour') {
       this.title = 'Datos Formato Cuatro';
       this.columnsNames = ['Razon social', 'RFC', 'Fecha de constitución', 'Nombre comercial',
@@ -346,6 +349,7 @@ export class BeneficiaryTableComponent implements OnInit {
           data: {
             operations: ['cancelOperationR', 'addItemR'],
             content: this.content,
+            contentTypeId: this.contentTypeId,
             drawerTitle: 'Enfermedad, lesión, estudio o tratamiento',
             itemType: 'disease'
           }});
