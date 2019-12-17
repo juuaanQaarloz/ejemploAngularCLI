@@ -472,5 +472,4 @@ export const validatorsObjects = [
     nameField: 'years',
     validationFunctions: [rangeValidator(1, 99)]
   },
-
 ];
