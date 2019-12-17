@@ -169,8 +169,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.name === 'age' || this.fieldObj.name === 'ageS') {
       this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
-        // console.log('onValueChange age: ', value);
-        this.isValid(this.fieldObj.name);
+        console.log('onValueChange age: ', value);
+        if (value) {
+          this.isValid(this.fieldObj.name);
+        }
       });
     }
 
@@ -208,7 +210,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       // console.log('regExpPattern: ', this.regExpPattern);
     }
 
-    if (this.fieldObj.detonateFunction) {
+    /*if (this.fieldObj.detonateFunction) {
       this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
         // console.log('detonateFunction: ', this.fieldObj.detonateFunction);
         // console.log('itemFromFieldComponent: ', this.item);
@@ -222,7 +224,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           }
         }
       });
-    }
+    }*/
 
     /*this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
       console.log('onValueChanges...');

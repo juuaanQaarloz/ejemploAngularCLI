@@ -57,11 +57,15 @@ export class ApplicationComponent implements OnInit {
   }
 
   downloadPDF() {
-    const doc = new jsPDF();
+    let link=document.createElement("a");
+    link.download="VV-1-087.pdf";
+    link.href="/assets/pdf/VV-1-087.pdf"; 
+    link.click();
+    // const doc = new jsPDF();
 
-    doc.addHTML(document.getElementById('content'), () => {
-      doc.save('solicitud.pdf');
-    });
+    // doc.addHTML(document.getElementById('content'), () => {
+    //   doc.save('solicitud.pdf');
+    // });
   }
 
   validateForm() {
