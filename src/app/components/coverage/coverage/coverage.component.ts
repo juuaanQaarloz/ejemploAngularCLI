@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Content} from '../../../models';
 import {ApplicationService} from '../../../core/services';
+import {FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-coverage',
@@ -9,21 +10,19 @@ import {ApplicationService} from '../../../core/services';
 })
 export class CoverageComponent implements OnInit {
   @Input() content: Content;
+  formGroup: FormGroup;
   title = 'Beneficios adicionales';
   columnsNames = [
     'Contratar',
-    'Descripción',
     'Detalle',
+    'Descripción',
   ];
   style = 'even-coverage';
   styleClass = 'item-row-coverage';
 
-  fields = ['f1', 'f2', 'f3'];
-
   constructor(public applicationService: ApplicationService) { }
 
   ngOnInit() {
+    this.formGroup = this.applicationService.getFormGroup();
   }
-
-
 }

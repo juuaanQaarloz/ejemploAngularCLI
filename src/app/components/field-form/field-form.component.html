@@ -152,14 +152,17 @@
   </fieldset>
 
   <!--use this type of field when there is only one option for the checkbox-->
-  <fieldset *ngSwitchCase="'checkbox-1'" class="ml-form-field ml-form-field-checkboxes">
+  <fieldset *ngSwitchCase="'checkbox-1'" class="ml-form-field">
 
     <div class="ml-form-field-checkboxes-group">
       <input type="checkbox" [formControlName]="fieldObj.name"
              [id]="fieldObj.name + '-checkbox'"
              [name]="fieldObj.name"
-             [value]="fieldObj.value">
-      <label [for]="fieldObj.name + '-checkbox'">{{fieldObj.label}}</label>
+             [value]="fieldObj.value"
+             (change)="onChangeCheckbox($event)"
+      >
+
+      <label [for]="fieldObj.name + '-checkbox'"></label>
     </div>
   </fieldset>
 
