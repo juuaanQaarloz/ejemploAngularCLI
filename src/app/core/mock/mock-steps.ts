@@ -22,6 +22,7 @@ import {
   MockContentStep20Process1ContentSection2,
   MockContentStep21Process1ContentSection2,
 } from './mock-contents';
+import {ERROSDATOSPLAN} from './errors/mock-erros-datos-plan';
 
 export const MockStepsProcessContentSection2: Step[] = [
   {
@@ -223,14 +224,15 @@ export const MockStepsProcessContentSection2: Step[] = [
     id: '16',
     idProcess: 'process-1',
     idHtml: 'app-step-form-16',
-    title: 'Datos de Plan',
+    title: 'Datos del Plan',
     contents: MockContentStep16Process1ContentSection2,
     renderConditions: '',
     previousStep: '15',
     nextStep: '17',
     /*added extra from model*/
     isCompleted: false,
-    show: true
+    show: true,
+    errors: ERROSDATOSPLAN
   },
   {
     id: '17',

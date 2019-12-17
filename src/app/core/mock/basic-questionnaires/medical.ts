@@ -1,6 +1,7 @@
 import {Field} from '../../../models';
+import {FieldFormComponent} from '../../../components/field-form/field-form.component';
 
-export const medicalQuestions: Field[] = [
+export const medicalQuestions1: Field[] = [
   {
     id: 'field-154',
     idHtml: 'radioDiseasesQuestion',
@@ -32,7 +33,10 @@ export const medicalQuestions: Field[] = [
     entity: '',
     entityField: '',
     value: ''
-  },
+  }
+];
+
+export const medicalQuestions2: Field[] = [
   {
     id: 'field-155',
     idHtml: 'radioMedicalTestQuestion',
@@ -63,7 +67,10 @@ export const medicalQuestions: Field[] = [
     entity: '',
     entityField: '',
     value: ''
-  },
+  }
+];
+
+export const medicalQuestions3: Field[] = [
   {
     id: 'field-156',
     idHtml: 'radioExtraDiseasesQuestion',
@@ -225,13 +232,14 @@ export const medicalFieldsDialog: Field[] = [
     type: 'autocomplete',
     required: true,
     placeholder: '',
-    length: '',
+    length: '200',
     minValue: 0,
-    maxValue: 60,
-    pattern: '',
+    maxValue: 200,
+    pattern: '/^(?=.*$)(?=[^A-ZÑ0-9\\s]*[A-ZÑ0-9\\s])(?:([A-ZÑ0-9\\s])\\1?(?!\\1\\1))*$/',
+    noAllowedCharactersPattern: '/[^a-zA-ZñÑ0-9\\s]/',
     source: 'IPRE',
-    sourceID: 'countries',
-    sourceStructure: ['id', 'name', 'code'],
+    sourceID: 'diseases',
+    sourceStructure: ['rowID', 'alias', 'diseaseId'],
     style: '',
     styleClass: '',
     styleClassError: '',
@@ -255,10 +263,11 @@ export const medicalFieldsDialog: Field[] = [
     type: 'date',
     required: true,
     placeholder: '',
-    length: '',
+    length: '10',
     minValue: 0,
     maxValue: 10,
-    pattern: '',
+    pattern: '/^([1-2][0-9]{3,3})\\/([0][1-9]|[1][0-2])\\/([0-2][0-9]|[3][0-1])$/',
+    noAllowedCharactersPattern: '/[\\D\\/]/',
     source: '',
     sourceID: '',
     style: '',
@@ -284,10 +293,11 @@ export const medicalFieldsDialog: Field[] = [
     type: 'text',
     required: true,
     placeholder: '',
-    length: '',
+    length: '40',
     minValue: 0,
-    maxValue: 60,
-    pattern: '',
+    maxValue: 40,
+    pattern: '/^(?=.*$)(?=[^A-ZÑ0-9\\s\\-\\.\\(\\)]*[A-ZÑ0-9\\s\\-\\.\\(\\)])(?:([A-ZÑ0-9\\s\\-\\.\\(\\)])\\1?(?!\\1\\1))*$/',
+    noAllowedCharactersPattern: '/[^a-zA-ZñÑ0-9\\s\\.\\-\\(\\)]/',
     source: '',
     sourceID: '',
     style: '',
@@ -313,10 +323,11 @@ export const medicalFieldsDialog: Field[] = [
     type: 'text',
     required: true,
     placeholder: '',
-    length: '',
+    length: '40',
     minValue: 0,
-    maxValue: 60,
-    pattern: '',
+    maxValue: 40,
+    pattern: '/^(?=.*$)(?=[^A-ZÑ0-9\\s\\-\\.\\(\\)]*[A-ZÑ0-9\\s\\-\\.\\(\\)])(?:([A-ZÑ0-9\\s\\-\\.\\(\\)])\\1?(?!\\1\\1))*$/',
+    noAllowedCharactersPattern: '/[^a-zA-ZñÑ0-9\\s\\.\\-\\(\\)]/',
     source: '',
     sourceID: '',
     style: '',

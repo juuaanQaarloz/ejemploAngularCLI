@@ -12,7 +12,7 @@
              [id]="fieldObj.idHtml"
              placeholder="{{fieldObj.placeholder}}"
              value=""
-             [maxlength]="fieldObj.maxValue + 1"
+             [maxlength]="fieldObj.maxValue"
              (keyup)="onKeyUp($event)"
              (blur)="onBlur()">
       <span [ngStyle]="{'background': this.disable ? '#EBEBE4':''}">{{fieldObj.label}}</span>
@@ -72,7 +72,7 @@
                 [selected]="checkValue(opt.value)">{{opt.name}}</option>
 
       </select>
-      <span *ngIf="showSelectLabel">{{fieldObj.label}}</span>
+      <span *ngIf="showSelectLabel" [ngStyle]="{'background': this.disable ? '#EBEBE4':''}">{{fieldObj.label}}</span>
       <div class="ml-form-field-errortext"
            *ngIf="!fieldObj.valid">
         {{fieldObj.message}}</div>
@@ -107,26 +107,6 @@
     </label>
   </fieldset>
 
-  <!--<fieldset *ngSwitchCase="'radio'" class="ml-form-field ml-form-field-radio"
-            [ngClass]="{'error': !valid || this.form.controls[fieldObj.name].touched}"
-            >
-    <div [ngClass]="fieldObj.styleClass">
-      <label>{{fieldObj.label}}</label>
-
-      <div class="ml-form-field-radio-group"
-           *ngFor="let radioOption of radioOptions; let first = first">
-        <input type="radio" [formControlName]="fieldObj.name"
-               [id]="radioOption.id + '-radio'"
-               [value]="radioOption.value">
-        <label>{{radioOption.name}}</label>
-
-      </div>
-
-      <div class="ml-form-field-errortext">{{fieldObj.message}}</div>
-    </div>
-
-  </fieldset>-->
-
   <fieldset *ngSwitchCase="'radio'" class="ml-form-field">
 
     <div class="ml-form-field-radio" [ngClass]="{'radio-options': fieldObj.styleClass,
@@ -152,7 +132,8 @@
 
   </fieldset>
 
-  <fieldset *ngSwitchCase="'checkbox'" class="ml-form-field ml-form-field-checkboxes">
+  <!--use this type of field when are more than one option in the checkBox options example from a catalog-->
+  <fieldset *ngSwitchCase="'checkbox-n'" class="ml-form-field ml-form-field-checkboxes">
 
     <label *ngIf="fieldObj.label != null">{{fieldObj.label}}</label>
     <!--<div class="checkbox-options">-->
@@ -167,8 +148,19 @@
     <!--</div>-->
   </fieldset>
 
-  <div *ngSwitchCase="'autocomplete'">
+  <!--use this type of field when there is only one option for the checkbox-->
+  <fieldset *ngSwitchCase="'checkbox-1'" class="ml-form-field ml-form-field-checkboxes">
 
+    <div class="ml-form-field-checkboxes-group">
+      <input type="checkbox" [formControlName]="fieldObj.name"
+             [id]="fieldObj.name + '-checkbox'"
+             [name]="fieldObj.name"
+             [value]="fieldObj.value">
+      <label [for]="fieldObj.name + '-checkbox'">{{fieldObj.label}}</label>
+    </div>
+  </fieldset>
+
+  <div *ngSwitchCase="'autocomplete'">
     <fieldset class="ml-form-field"
               [ngClass]="{'error': !fieldObj.valid}">
       <label>
@@ -180,7 +172,7 @@
                [id]="fieldObj.idHtml"
                placeholder="{{fieldObj.placeholder}}"
                value=""
-               [maxlength]="fieldObj.maxValue + 1"
+               [maxlength]="fieldObj.maxValue"
                [appAutocomplete]="autocomplete"
                (keyup)="onKeyUp($event)">
                <!--(blur)="onBlur()">-->

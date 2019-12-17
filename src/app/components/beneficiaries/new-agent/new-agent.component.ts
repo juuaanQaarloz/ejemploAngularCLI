@@ -7,6 +7,7 @@ import {DialogConfig} from '../../dialog/dialog-config';
 import {DialogRef} from '../../dialog/dialog-ref';
 import {ModalService} from '../../custom-modal';
 import {Operation} from '../../../models';
+import {FORM_MSG_ERROR} from '../../../core/mock/errors/mock-erros-datos-plan';
 
 @Component({
   selector: 'app-new-agent',
@@ -47,6 +48,8 @@ export class NewAgentComponent implements OnInit {
   operationType: string;
   modalID = 'modal-warning1';
   modalMessage;
+  showFormError = false;
+  formMsgError = FORM_MSG_ERROR;
 
   constructor(private applicationService: ApplicationService,
               public config: DialogConfig,
@@ -86,14 +89,18 @@ export class NewAgentComponent implements OnInit {
 
   addNewAgent() {
     console.log('addNewAgent');
-    const newAgent = this.mapNewAgentData();
-    const response = this.applicationService.addItem(newAgent, 'agent');
-
-    if (response.status) {
-      this.closeDialog();
+    const formStatus = this.getFormStatus();
+    if (formStatus === 'VALID') {
+      const newAgent = this.mapNewAgentData();
+      const response = this.applicationService.addItem(newAgent, 'agent');
+      if (response.status) {
+        this.closeDialog();
+      } else {
+        this.modalMessage = response.message;
+        this.modalService.open(this.modalID);
+      }
     } else {
-      this.modalMessage = response.message;
-      this.modalService.open(this.modalID);
+      this.showFormError = true;
     }
   }
 
@@ -129,13 +136,16 @@ export class NewAgentComponent implements OnInit {
   }
 
   updateAgent() {
-    const updatedAgent = this.mapAgentData();
-    const response = this.applicationService.updateItem(updatedAgent, 'agent');
-    if (response.status) {
-      this.closeDialog();
-    } else {
-      this.modalMessage = response.message;
-      this.modalService.open(this.modalID);
+    const formStatus = this.getFormStatus();
+    if (formStatus === 'VALID') {
+      const updatedAgent = this.mapAgentData();
+      const response = this.applicationService.updateItem(updatedAgent, 'agent');
+      if (response.status) {
+        this.closeDialog();
+      } else {
+        this.modalMessage = response.message;
+        this.modalService.open(this.modalID);
+      }
     }
   }
 
@@ -151,16 +161,8 @@ export class NewAgentComponent implements OnInit {
     return mappedAgent;
   }
 
-  /* Form Validation */
-  validForm(filds, form) {
-    let valid = true;
-    if (!form.value.agentParticipation || Number(form.value.agentParticipation) === 0 ) {
-      valid = false;
-    }
-    if ( !form.value.agentKey && !form.value.agentPromotor && !form.value.agentName ) {
-      valid = false;
-    }
-    return valid;
+  getFormStatus() {
+    return this.formGroup.status;
   }
 
 }

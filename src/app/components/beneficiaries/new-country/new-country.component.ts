@@ -8,6 +8,7 @@ import {ModalService} from '../../custom-modal';
 import {Operation} from '../../../models';
 import {FormatwoOperations} from '../../../core/mock/mock-operations';
 import {NewCountryFields} from '../../../core/mock/formats/country';
+import {FORM_MSG_ERROR} from '../../../core/mock/errors/mock-erros-datos-plan';
 
 
 @Component({
@@ -50,6 +51,8 @@ export class NewCountryComponent implements OnInit {
   modalMessage = 'La suma de las participaciones de los beneficiarios excede el 100%';
   fileNameUpload = 'Ningún archivo seleccionado';
   fields = [];
+  showFormError = false;
+  formMsgError = FORM_MSG_ERROR;
 
   constructor(private applicationService: ApplicationService,
               public config: DialogConfig,
@@ -82,21 +85,34 @@ export class NewCountryComponent implements OnInit {
   addNewCountry() {
     // console.log('addNewCountry-component ');
     // console.log('formGroup value: ', this.formGroup.value);
-    const newCountry = this.mapNewCountryData();
-    const response = this.applicationService.addItem(newCountry, 'country');
+    const formStatus = this.getFormStatus();
+    if (formStatus === 'VALID') {
+      const newCountry = this.mapNewCountryData();
+      const response = this.applicationService.addItem(newCountry, 'country');
 
-    if (response.status) {
-      this.closeDialog();
+      if (response.status) {
+        this.closeDialog();
+      } else {
+        this.modalMessage = response.message;
+        this.modalService.open(this.modalID);
+      }
     } else {
-      this.modalMessage = response.message;
-      this.modalService.open(this.modalID);
+      this.showFormError = true;
     }
   }
 
   updateFormatwo() {
-    const updatedBeneficiary = this.mapCountryData();
-    // this.applicationService.updateItem(updatedBeneficiary, 'beneficiary');
-    this.closeDialog();
+
+    const formStatus = this.getFormStatus();
+    if (formStatus === 'VALID') {
+      const updatedBeneficiary = this.mapCountryData();
+      // this.applicationService.updateItem(updatedBeneficiary, 'beneficiary');
+      this.closeDialog();
+    } else {
+      this.showFormError = true;
+    }
+
+
   }
 
   executeOperation(delegateOperation: string) {
@@ -167,5 +183,9 @@ export class NewCountryComponent implements OnInit {
       participation: '1',
     };
     return countryBase;
+  }
+
+  getFormStatus() {
+    return this.formGroup.status;
   }
 }

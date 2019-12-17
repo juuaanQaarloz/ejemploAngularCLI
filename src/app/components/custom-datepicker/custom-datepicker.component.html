@@ -8,7 +8,8 @@
          (dateChange)="onDateChange($event)"
          (blur)="onBlur()">
 
-  <span>{{fieldObj.label}}</span>
+  <!--<span>{{fieldObj.label}}</span>-->
+  <span [ngStyle]="{'background': this.disable ? '#EBEBE4':''}">{{fieldObj.label}}</span>
 
   <mat-datepicker-toggle matSuffix [for]="picker">
     <mat-icon matDatepickerToggleIcon svgIcon="calendar-icon" style="text-align: right;"></mat-icon>

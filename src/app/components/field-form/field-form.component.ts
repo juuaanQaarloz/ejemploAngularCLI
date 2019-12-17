@@ -7,6 +7,7 @@ import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
 import {calculateRFC, correctFieldValue, stringToRegExp, transformDate} from '../../core/utilities';
 import {SepomexObj} from '../../models/sepomex-obj';
+import {Pattern} from '../../models/pattern/pattern';
 import {DialogRef} from "../dialog/dialog-ref";
 import {ModalService} from "../custom-modal";
 import {Operation} from "../../models";
@@ -31,6 +32,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   show = true;
   disable: boolean;
   regExpPattern;
+  regnNoAllowedCharactersExpPattern;
   loading = true;
   modalID = 'modal-warning1';
   modalMessage = 'La suma de las participaciones de los agentes excede el 100%';
@@ -49,15 +51,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     renderConditions: '',
     enableConditions: ''
   };
-
-  // for test component
-  options = [
-    { id: 1, label: 'ONE' , description: 'Description One'},
-    { id: 2, label: 'TWO' , description: 'Description Two'},
-    { id: 3, label: 'THREE', description: 'Description Three' }
-  ];
-  control = new FormControl();
-  // for test component
 
   constructor(private applicationService: ApplicationService,
               private matIconRegistry: MatIconRegistry,
@@ -93,18 +86,26 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
       dependedFields.forEach((dependedField) => {
         this.form.controls[dependedField].valueChanges.subscribe((value) => {
+
           this.fieldObj.required = this.applicationService.evaluateConditions(this.fieldObj.requiredConditions, this.form);
           this.form.controls[this.fieldObj.name].setValidators(this.applicationService.getValidationFunctions(this.fieldObj));
           this.form.controls[this.fieldObj.name].updateValueAndValidity();
+
+          if (this.fieldObj.name === 'beneficiaryBusinessName') {
+            console.log('this.fieldObj.required: ', this.fieldObj.required);
+          }
         });
       });
     }
 
     if (this.fieldObj.disable) {
       this.form.controls[this.fieldObj.name].disable();
+      // console.log('this.disable: ', this.disable);
       this.disable = this.checkState();
+      // console.log('this.disable: ', this.disable);
       this.form.controls[this.fieldObj.name].valueChanges.subscribe(() => {
         this.disable = this.checkState();
+        // console.log('this.disable: ', this.disable);
       });
     }
 
@@ -120,7 +121,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           } else {
             this.form.controls[this.fieldObj.name].enable();
           }
-        });
+      });
       });
     }
 
@@ -142,7 +143,26 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
 
     if (this.fieldObj.pattern) {
-      this.regExpPattern = stringToRegExp(this.fieldObj.pattern);
+      let optionsPattern: Pattern[] ;
+      this.applicationService.getPatternCatalog()
+        .subscribe((results) => {
+          optionsPattern = results;
+          let patternFind: Pattern;
+          const resultado = optionsPattern.find( patternFind => patternFind.id === this.fieldObj.pattern );
+          if (resultado !== undefined) {
+            this.regExpPattern = stringToRegExp(resultado.value);
+          } else {
+            this.regExpPattern = stringToRegExp(this.fieldObj.pattern);
+          }
+        });
+      // this.regExpPattern = stringToRegExp(this.fieldObj.pattern);
+      // this.regExpPattern = this.fieldObj.pattern;
+      // console.log('regExpPattern: ', this.regExpPattern);
+    }
+
+    if (this.fieldObj.noAllowedCharactersPattern) {
+      // this.regnNoAllowedCharactersExpPattern = stringToRegExp(this.fieldObj.noAllowedCharactersPattern);
+      // this.regExpPattern = this.fieldObj.pattern;
       // console.log('regExpPattern: ', this.regExpPattern);
     }
 
@@ -170,7 +190,13 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     });*/
   }
 
+  esPatter( patron: string) {
+    let pattern: Pattern;
+    return pattern.id === patron;
+  }
+
   ngAfterViewInit() {
+    // console.log('on ngAfterViewInit...');
     if (this.fieldObj.type === 'text') {
       const elem: Element = document.getElementById(this.fieldObj.idHtml);
       // // console.log('elem: ', elem);
@@ -209,8 +235,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       }
     }
     // validar
-    if (this.fieldObj.name === 'fixedFunds' || this.fieldObj.name === 'variableFunds' || this.fieldObj.name === 'fixedRetirement') {
-
+    if (this.fieldObj.name === 'currency') {
+        // this.setFunds();
     }
     if (this.fieldObj.name === 'assuredImport') {
         // console.log('Entro assuredImport: ');
@@ -229,7 +255,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     console.log('onChange event.target.value: ', event.target.value);
     console.log('formControlName: ', this.fieldObj.name);
     this.isValid();
-
   }
 
   onBlur() {
@@ -303,6 +328,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
 
     this.isValid();
+    this.setFunds();
   }
 
   getOptions() {
@@ -319,14 +345,15 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
             } else if (this.fieldObj.type === 'checkbox') {
               console.log('selectItem-checkbox: ', selectItem);
               this.checkBoxOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
-            } else if (this.fieldObj.type === 'checkboxcoverage') {
-              // console.log('selectItem-checkbox: ', selectItem);
-              this.checkBoxOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
             } else if (this.fieldObj.type === 'autocomplete') {
               this.autocompleteOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
             }
           });
-          this.loading = false;
+
+          if (this.fieldObj.type === 'autocomplete') {
+            this.loading = false;
+          }
+          // console.log('autoComplete: ', this.autocompleteOptions);
         }
       });
   }
@@ -352,7 +379,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   isValid(formControlName?) {
-    console.log('onIsValid value: ', this.form.controls[this.fieldObj.name].value);
+    // console.log('onIsValid value: ', this.form.controls[this.fieldObj.name].value);
+    // console.log('formControlName: ', formControlName);
     if (formControlName) {
       console.log('formControlNameEntro: ', formControlName);
       const validateAgeResult = validateAge(this.form.controls[formControlName]);
@@ -421,8 +449,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   checkState2(acceso: boolean) {
     const status = this.form.controls[this.fieldObj.name].status;
-    console.log('state2: ', status);
-    console.log('acceso: ', acceso);
+    // console.log('state2: ', status);
+    // console.log('acceso: ', acceso);
     let result = false;
     if (status === 'DISABLED' && acceso === true) {
       result = true;
@@ -512,6 +540,22 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     // // console.log('obj: ', obj);
     return obj;
+  }
+
+  setFunds() {
+    const currency = this.form.controls.currency.value;
+    const packing = this.form.controls.packing.value;
+    if (currency === 'usd') {
+      this.setValueField('variableSaving', 'txtVariableSaving', 0);
+      this.setValueField('variableRetirement', 'txtVariableRetirement', 0);
+      this.setValueField('variableFunds', 'txtVariableFunds', 0);
+    }
+    if (packing !== '4') {
+      this.setValueField('fixedSaving', 'txtFixedSaving', 0);
+      this.setValueField('fixedRetirement', 'txtFixedRetirement', 0);
+      this.setValueField('variableSaving', 'txtVariableSaving', 0);
+      this.setValueField('variableRetirement', 'txtVariableRetirement', 0);
+    }
   }
 
   closeModal(modalID: string) {

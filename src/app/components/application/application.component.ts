@@ -22,6 +22,7 @@ export class ApplicationComponent implements OnInit {
   @ViewChild('content', {static: false}) content: ElementRef;
   pdfOperation = pdfOperation;
   items = [];
+  errors;
 
   constructor(private appService: ApplicationService,
               private authService: AuthService,
@@ -56,11 +57,15 @@ export class ApplicationComponent implements OnInit {
   }
 
   downloadPDF() {
-    const doc = new jsPDF();
+    let link=document.createElement("a");
+    link.download="VV-1-087.pdf";
+    link.href="/assets/pdf/VV-1-087.pdf"; 
+    link.click();
+    // const doc = new jsPDF();
 
-    doc.addHTML(document.getElementById('content'), () => {
-      doc.save('solicitud.pdf');
-    });
+    // doc.addHTML(document.getElementById('content'), () => {
+    //   doc.save('solicitud.pdf');
+    // });
   }
 
   validateForm() {
@@ -116,12 +121,11 @@ export class ApplicationComponent implements OnInit {
     });
   }
 
-  /*getValidateField() {
-    const errors = this.formGroup.errors;
-    console.log('erros: ', errors);
-    if (errors) {
-      console.log('result: ', errors.invalidEmailConfirmation);
-      console.log('result: ', errors);
+  getValidateField() {
+    this.errors = this.formGroup.errors;
+    console.log('erros: ', this.errors);
+    if (this.errors) {
+      console.log('invalidEmailConfirmation: ', this.errors.invalidEmailConfirmation);
     }
-  }*/
+  }
 }

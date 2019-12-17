@@ -11,6 +11,7 @@ import {Operation} from '../../../models';
 import {BeneficiaryFieldsP} from '../../../core/mock/mock-beneficiaries/phy-beneficiary';
 import {BeneficiaryFieldsM} from '../../../core/mock/mock-beneficiaries/mor-beneficiary';
 import {BeneficiaryFieldsF} from '../../../core/mock/mock-beneficiaries/fid-beneficiary';
+import {FORM_MSG_ERROR} from '../../../core/mock/errors/mock-erros-datos-plan';
 
 @Component({
   selector: 'app-new-beneficiary',
@@ -55,7 +56,8 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   beneficiaryType = 'phyPerson';
   showplus = false;
   fields = [];
-  status = '';
+  showFormError = false;
+  formMsgError = FORM_MSG_ERROR;
 
   constructor(private applicationService: ApplicationService,
               public config: DialogConfig,
@@ -66,43 +68,49 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
 
-    this.fields = this.getFields();
+    this.formGroup = this.applicationService.createNewFormGroup(this.content.fields);
 
-    this.formGroup = this.applicationService.createNewFormGroup(this.fields);
+    if (this.config.data !== null) {
+      this.operationType = 'edit';
+      this.beneficiaryType = this.config.data.item.beneficiaryType;
 
-    console.log('new beneficiary fields: ', this.fields);
-    console.log('forms controls: ', this.formGroup.controls);
-    console.log('form controls: ', this.applicationService.updateFormGroup(this.formGroup, this.fields));
+      this.fields = this.getFields();
+      this.setBeneficiaryValues();
+    } else {
+      this.operationType = 'add';
+      this.beneficiaryType = 'phyPerson';
+
+      this.fields = this.getFields();
+    }
 
     this.formGroup.controls.beneficiaryType.valueChanges.subscribe((value) => {
       this.beneficiaryType = value;
       this.fields = this.getFields();
-      console.log('new beneficiary fields: ', this.fields);
     });
-
-    if (this.config.data !== null) {
-      this.operationType = 'edit';
-      this.setBeneficiaryValues();
-    } else {
-      this.operationType = 'add';
-    }
-
   }
 
   ngAfterViewInit(): void {
   }
 
   addNewBeneficiary() {
-    // console.log('formGroup value: ', this.formGroup.value);
-    const newBeneficiary = this.mapNewBeneficiaryData();
-    const response = this.applicationService.addItem(newBeneficiary, 'beneficiary');
+    const formStatus = this.getFormStatus();
+    console.log('formStatus: ', formStatus);
+    console.log('form controls: ', this.formGroup.controls);
 
-    if (response.status) {
-      this.closeDialog();
+    if (formStatus === 'VALID') {
+      const newBeneficiary = this.mapNewBeneficiaryData();
+      const response = this.applicationService.addItem(newBeneficiary, 'beneficiary');
+
+      if (response.status) {
+        this.closeDialog();
+      } else {
+        this.modalMessage = response.message;
+        this.modalService.open(this.modalID);
+      }
     } else {
-      this.modalMessage = response.message;
-      this.modalService.open(this.modalID);
+      this.showFormError = true;
     }
+
   }
 
   updateBeneficiary() {
@@ -128,8 +136,46 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   }
 
   setBeneficiaryValues() {
-    this.content.fields.forEach((field) => {
+
+    console.log('this.config.data.item.beneficiaryType: ', this.config.data.item.beneficiaryType);
+
+    switch (this.config.data.item.beneficiaryType) {
+      case 'phyPerson':
+        this.setBeneficiaryP();
+        break;
+      case 'morPerson':
+        this.setBeneficiaryM();
+        break;
+      case 'fidPerson':
+        this.setBeneficiaryF();
+        break;
+    }
+
+    /*const itemAttrNames = [];
+    Object.keys(this.config.data.item).forEach((key, index) => {
+      console.log('key: ', key);
+      console.log('index: ', index);
+
+      /*if (index !== 0) { // skip the id attr to coindice with the fields
+        itemAttrNames.push(key);
+      }
+    });*/
+  }
+
+  setBeneficiaryP() {
+    console.log('on setBeneficiaryP...');
+
+    /*this.fields.forEach((field) => {
+      console.log('field.name: ', field.name);
+      const value = this.formGroup.controls[field.name].value;
+      // console.log('value: ', value);
+    });*/
+
+    console.log('item: ', this.config.data.item);
+
+    this.fields.forEach((field) => {
       let value;
+      console.log('field.name: ', field.name);
       switch (field.name) {
         case 'beneficiaryType':
           value = this.config.data.item.beneficiaryType;
@@ -143,26 +189,105 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         case 'beneficiaryMoLastName':
           value = this.config.data.item.motherLastName;
           break;
-        case 'suspensiveCodition':
-          value = this.config.data.item.suspensiveCondition;
-          break;
-        case 'contractNumber':
-          value = this.config.data.item.contractNumber;
-          break;
-        case 'instructionLetterNumber':
-          value = this.config.data.item.instructionLetterNumber;
-          break;
-        case 'beneficiaryRelationship':
-          value = this.config.data.item.instructionLetterNumber;
-          break;
         /*case 'beneficiaryBirthDate':
-          value = this.config.data.beneficiary.birthDateOrConstitution;
+          value = this.config.data.item.birthDateOrConstitution;
           break;*/
+        case 'beneficiaryRelationshipP':
+          value = this.config.data.item.relationship;
+          break;
+        case 'participationPercentageP':
+          value = this.config.data.item.participationPercentage;
+          break;
+        case 'sameAsTitular':
+          value = this.config.data.item.addressSameAsTitular;
+          break;
+        case 'beneficiaryStreet':
+          value = this.config.data.item.address.street;
+          break;
+        case 'beneficiaryExteriorNumber':
+          value = this.config.data.item.address.exteriorNumber;
+          break;
+        case 'beneficiaryInteriorNumber':
+          value = this.config.data.item.address.interiorNumber;
+          break;
+        case 'beneficiaryZipCode':
+          value = this.config.data.item.address.zipCode;
+          break;
+        case 'beneficiarySuburb':
+          value = this.config.data.item.address.neighborhood;
+          break;
+        case 'beneficiaryMunicipality':
+          value = this.config.data.item.address.municipality;
+          break;
+        case 'beneficiaryState':
+          value = this.config.data.item.address.state;
+          break;
+        case 'beneficiaryCity':
+          value = this.config.data.item.address.city;
+          break;
+        case 'beneficiaryCountry':
+          value = this.config.data.item.address.country;
+          break;
+      }
+      console.log('value: ', value);
+      this.formGroup.controls[field.name].setValue(value);
+    });
+  }
+
+  setBeneficiaryM() {
+    console.log('on setBeneficiaryM...');
+
+    this.fields.forEach((field) => {
+      let value;
+      console.log('field.name: ', field.name);
+
+      switch (field.name) {
+        case 'beneficiaryBusinessName':
+          value = this.config.data.item.businessName;
+          break;
+        case 'beneficiaryRelationshipM':
+          value = this.config.data.item.relationship;
+          break;
+        /*case 'beneficiaryConstitutionDate':
+          value = this.config.data.item.birthDateOrConstitution;
+          break;*/
+        case 'participationPercentageM':
+          value = this.config.data.item.participationPercentage;
+          break;
+        case 'beneficiaryStreetM':
+          value = this.config.data.item.address.street;
+          break;
+        case 'beneficiaryExteriorNumberM':
+          value = this.config.data.item.address.exteriorNumber;
+          break;
+        case 'beneficiaryInteriorNumberM':
+          value = this.config.data.item.address.interiorNumber;
+          break;
+        case 'txtBeneficiaryZipCodeM':
+          value = this.config.data.item.address.zipCode;
+          break;
+        case 'beneficiarySuburbM':
+          value = this.config.data.item.address.neighborhood;
+          break;
+        case 'beneficiaryMunicipalityM':
+          value = this.config.data.item.address.municipality;
+          break;
+        case 'beneficiaryStateM':
+          value = this.config.data.item.address.state;
+          break;
+        case 'txtBeneficiaryCityM':
+          value = this.config.data.item.address.city;
+          break;
+        case 'slctBeneficiaryCountryM':
+          value = this.config.data.item.address.country;
+          break;
       }
       this.formGroup.controls[field.name].setValue(value);
     });
-    // console.log('form values: ');
-    // console.log(this.formGroup.value);
+  }
+
+  setBeneficiaryF() {
+    console.log('on setBeneficiaryF...');
   }
 
   mapNewBeneficiaryData() {
@@ -380,7 +505,6 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   }
 
   getFormStatus() {
-    console.log('form controls: ', this.formGroup.controls);
-    this.status = this.formGroup.status;
+    return this.formGroup.status;
   }
 }

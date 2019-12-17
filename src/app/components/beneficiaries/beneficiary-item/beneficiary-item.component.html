@@ -1,42 +1,49 @@
 <div [ngClass]="styleClass"
      [ngStyle]="{'background-color':  this.applicationService.determinateEvenOrOdd(index) ? '#E5F4FB': '#FFFFFF'}">
-    <div *ngIf="itemType === 'beneficiary'" class="item-attribute">{{getBeneficiaryTypeLabel()}}</div>
-    <div class="item-attribute"
-         *ngIf="itemType === 'beneficiary' && item.beneficiaryType === 'phyPerson'" >{{item.name + ' ' + item.fatherLastName + ' ' + item.motherLastName}}</div>
-    <div class="item-attribute"
-         *ngIf="itemType === 'beneficiary' && (item.beneficiaryType === 'morPerson' || item.beneficiaryType === 'fidPerson')">{{item.businessName}}</div>
-    <div class="item-attribute" *ngIf="itemType === 'beneficiary'">{{item.birthDateOrConstitution}}</div>
-    <div *ngIf="itemType === 'formatwo'" class="item-attribute">{{getFormaTwoTypeLabel()}}</div>
-    <div class="item-attribute"
-       *ngIf="itemType === 'formatwo'" >{{item.formatwoName + ' ' + item.formatwoFatherLastName + ' ' + item.formatwoMotherLastName}}</div>
-    <div class="item-attribute"
-       *ngIf="itemType === 'country'" >{{item.statCountry}}</div>
-    <div class="item-attribute"
-       *ngIf="itemType === 'country'" >{{item.taxCountryId}}</div>
-    <div class="item-attribute"
-      *ngIf="itemType === 'payment'" >{{item.txtBank}}</div>
-    <div class="item-attribute"
-      *ngIf="itemType === 'payment'" >{{item.txtClabe}}</div>
-    <div class="item-attribute"
-      *ngIf="itemType === 'payment'" >{{item.selectCard}}</div>
-    <div class="item-attribute"
-      *ngIf="itemType === 'payment'" >{{item.txtCardNumber}}</div>
-    <div class="item-attribute"
-       *ngIf="itemType === 'coverage'" >
+  <div *ngIf="itemType === 'beneficiary'" class="item-attribute">{{getBeneficiaryTypeLabel()}}</div>
+  <div class="item-attribute"
+       *ngIf="itemType === 'beneficiary' && item.beneficiaryType === 'phyPerson'">{{item.name + ' ' + item.fatherLastName + ' ' + item.motherLastName}}</div>
+  <div class="item-attribute"
+       *ngIf="itemType === 'beneficiary' && (item.beneficiaryType === 'morPerson' || item.beneficiaryType === 'fidPerson')">{{item.businessName}}</div>
+  <div class="item-attribute" *ngIf="itemType === 'beneficiary'">{{item.birthDateOrConstitution}}</div>
+  <div *ngIf="itemType === 'formatwo'" class="item-attribute">{{getFormaTwoTypeLabel()}}</div>
+  <div class="item-attribute"
+       *ngIf="itemType === 'formatwo'">{{item.formatwoName + ' ' + item.formatwoFatherLastName + ' ' + item.formatwoMotherLastName}}</div>
+  <div class="item-attribute"
+       *ngIf="itemType === 'country'">{{item.statCountry}}</div>
+  <div class="item-attribute"
+       *ngIf="itemType === 'country'">{{item.taxCountryId}}</div>
+  <div class="item-attribute"
+       *ngIf="itemType === 'payment'">{{item.txtBank}}</div>
+  <div class="item-attribute"
+       *ngIf="itemType === 'payment'">{{item.txtClabe}}</div>
+  <div class="item-attribute"
+       *ngIf="itemType === 'payment'">{{item.selectCard}}</div>
+  <div class="item-attribute"
+       *ngIf="itemType === 'payment'">{{item.txtCardNumber}}</div>
 
-      <div class="ml-form-field-checkboxes-group">
+  <div class="item-attribute" *ngFor="let attrName of itemAttrNames">
+    {{item[attrName]}}
+  </div>
+
+
+  <div class="item-attribute"
+       *ngIf="itemType === 'coverage'">
+    <fieldset class="ml-form-field ml-form-field-checkboxes">
+      <div [formGroup]="this.applicationService.getFormGroup()">
+        <div class="ml-form-field-checkboxes-group">
           <input type="checkbox"
-             [id]="item.detail + '-checkbox'"
-             [name]="item.coverageName"
-             [value]="item.detail"
-             [checked]="item.isSelected">
-        <label [for]="item.detail + '-checkbox'"></label>
+                 [id]="item.detail + 'checkbox'"
+                 [name]="item.coverageName"
+                 [value]="item.detail"
+                 [checked]="item.isSelected">
+          <label [for]="item.detail + 'checkbox'"></label>
+        </div>
       </div>
+    </fieldset>
+  </div>
 
-    </div>
 
-    <div class="item-attribute"
-       *ngIf="itemType === 'coverage'" >{{item.coverageName}}</div>
 
   <div class="item-attribute" *ngFor="let field of fields">
     <app-field-form
@@ -45,10 +52,15 @@
       [item]="item">
 
     </app-field-form>
+
   </div>
 
   <div class="item-attribute"
-       *ngIf="itemType === 'coverage'" >{{item.detail}}</div>
+       *ngIf="itemType === 'coverage'">{{item.coverageName}}</div>
+  <div class="item-attribute"
+       *ngIf="itemType === 'coverage'">{{item.detail}}</div>
+
+
 
   <div class="operations">
     <div *ngIf="enableOperations">
@@ -56,7 +68,8 @@
       <img class="icon-edit" (click)="editItem()">
     </div>
 
-    <div *ngIf="(isLast && totalItems < maxItems && totalParticipationPercentageItems < 100) || (isLast && showplus === true)">
+    <div
+      *ngIf="(isLast && totalItems < maxItems && totalParticipationPercentageItems < 100) || (isLast && showplus === true)">
       <img src="../../../../assets/img/tables/plus_simbol.svg" (click)="addNewItem()">
     </div>
   </div>

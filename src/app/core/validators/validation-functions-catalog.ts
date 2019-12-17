@@ -442,11 +442,11 @@ export const validatorsObjects = [
   },
   {
     nameField: 'weight',
-    validationFunctions: [rangeValidator(10, 400)]
+    validationFunctions: [rangeValidator(2, 400)]
   },
   {
     nameField: 'height',
-    validationFunctions: [rangeValidator(1.0, 2.5)]
+    validationFunctions: [rangeValidator(0.4, 2.5)]
   },
   {
     nameField: 'formatwoBirthDate',
@@ -462,8 +462,7 @@ export const validatorsObjects = [
   },
   {
     nameField: 'assuredImport',
-    validationFunctions: [rangeValidator(0.0, 9999999.00)]
-    // validationFunctions: [validateAlphanumericValue, validateAssuredImport]
+    validationFunctions: [rangeValidator(40000.0, 9999999.00)]
   },
   {
     nameField: 'periodicityD',
@@ -472,6 +471,10 @@ export const validatorsObjects = [
   {
     nameField: 'periodicity',
     validationFunctions: [validateAlphanumericValue]
+  },
+  {
+    nameField: 'years',
+    validationFunctions: [rangeValidator(1, 99)]
   },
 
 ];

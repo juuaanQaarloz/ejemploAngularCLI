@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { NewPaymentFields } from 'src/app/core/mock/formats/payment';
 import { FormatwoOperations } from 'src/app/core/mock/mock-operations';
 import { Operation } from 'src/app/models';
+import {FORM_MSG_ERROR} from '../../../core/mock/errors/mock-erros-datos-plan';
 
 @Component({
   selector: 'app-new-payment',
@@ -48,6 +49,8 @@ export class NewPaymentComponent implements OnInit {
   modalMessage = 'La suma de las participaciones de los beneficiarios excede el 100%';
   fileNameUpload = 'Ningún archivo seleccionado';
   fields = [];
+  showFormError = false;
+  formMsgError = FORM_MSG_ERROR;
 
   constructor(private applicationService: ApplicationService,
     public config: DialogConfig,
@@ -78,23 +81,31 @@ export class NewPaymentComponent implements OnInit {
   }
 
   addNewPayment() {
-    console.log('addNewPayment-component ');
-    console.log('formGroup value: ', this.formGroup.value);
-    const newPayment = this.mapNewPaymentData();
-    const response = this.applicationService.addItem(newPayment, 'payment');
+    const formStatus = this.getFormStatus();
+    if (formStatus === 'VALID') {
+      const newPayment = this.mapNewPaymentData();
+      const response = this.applicationService.addItem(newPayment, 'payment');
 
-    if (response.status) {
-      this.closeDialog();
+      if (response.status) {
+        this.closeDialog();
+      } else {
+        this.modalMessage = response.message;
+        this.modalService.open(this.modalID);
+      }
     } else {
-      this.modalMessage = response.message;
-      this.modalService.open(this.modalID);
+      this.showFormError = true;
     }
   }
 
   updateFormatwo() {
-    const updatedBeneficiary = this.mapPaymentData();
-    // this.applicationService.updateItem(updatedBeneficiary, 'beneficiary');
-    this.closeDialog();
+    const formStatus = this.getFormStatus();
+    if (formStatus === 'VALID') {
+      const updatedBeneficiary = this.mapPaymentData();
+      // this.applicationService.updateItem(updatedBeneficiary, 'beneficiary');
+      this.closeDialog();
+    } else {
+      this.showFormError = true;
+    }
   }
 
   executeOperation(delegateOperation: string) {
@@ -162,5 +173,9 @@ export class NewPaymentComponent implements OnInit {
       txtBank: this.formGroup.controls.txtBank.value,
     };
     return paymentBase;
+  }
+
+  getFormStatus() {
+    return this.formGroup.status;
   }
 }

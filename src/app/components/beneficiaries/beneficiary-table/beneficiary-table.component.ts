@@ -22,7 +22,8 @@ const FIELDS: Field[] = [
     length: '750',
     minValue: 0,
     maxValue: 750,
-    pattern: '',
+    pattern: '/^(?=.*$)(?=[^A-ZÑ0-9\\s]*[A-ZÑ0-9\\s])(?:([A-ZÑ0-9\\s])\\1?(?!\\1\\1))*$/',
+    noAllowedCharactersPattern: '/[^a-zA-ZñÑ0-9\\s]/',
     source: '',
     sourceID: '',
     style: '',
@@ -50,9 +51,11 @@ const FIELDS: Field[] = [
 export class BeneficiaryTableComponent implements OnInit {
   @Input() type: string;
   @Input() content: Content;
+  @Input() contentTypeId?: string;
   showplus: boolean;
   title;
   columnsNames;
+  columnsSettings;
   items = [];
   itemsType;
   totalPercentageParticipation = 0;
@@ -66,7 +69,12 @@ export class BeneficiaryTableComponent implements OnInit {
 
     if (this.type === 'table-beneficiary') {
       this.title = 'Datos de Beneficiario(s)';
-      this.columnsNames = ['Tipo de Beneficiario', 'Nombre / Razón social', 'Fecha de nacimiento / constitución', 'Parentesco',
+
+      this.columnsNames = [
+        'Tipo de Beneficiario',
+        'Nombre / Razón social',
+        'Fecha de nacimiento / constitución',
+        'Parentesco',
         'Porcentaje de participación',
       ];
 
@@ -97,7 +105,16 @@ export class BeneficiaryTableComponent implements OnInit {
       });
     } else if (this.type === 'table-agent') {
       this.title = 'Datos de Agente(s)';
-      this.columnsNames = ['Nombre', 'Promotoría', 'Clave', 'Participación'];
+      this.columnsNames = ['Nombre del Agente', 'Promotoría', 'Clave', 'Participación'
+      ];
+
+      this.columnsSettings = [
+        {columnLabel : 'Nombre del Agente', columnAttribute: 'name'},
+        {columnLabel : 'Promotoría', columnAttribute: 'promotor'},
+        {columnLabel : 'Clave', columnAttribute: 'key'},
+        {columnLabel : 'Participación', columnAttribute: 'participation'}
+      ];
+
       this.itemsType = 'agent';
       this.style = 'even-agent';
       this.showplus = true;
@@ -113,6 +130,11 @@ export class BeneficiaryTableComponent implements OnInit {
     } else if (this.type === 'table-sports') {
       this.title = 'Deporte(s) / Actividad(es)';
       this.columnsNames = ['Deporte / Actividad', 'Frecuencia', 'Describir otra actividad'];
+      this.columnsSettings = [
+        {columnLabel : 'Deporte / Actividad', columnAttribute: 'name'},
+        {columnLabel : 'Frecuencia', columnAttribute: 'periodicity'},
+        {columnLabel : 'Describir otra actividad', columnAttribute: 'description'}
+      ];
       this.itemsType = 'sport';
       this.showplus = true;
       this.style = 'even-sport';
@@ -122,9 +144,18 @@ export class BeneficiaryTableComponent implements OnInit {
       });
     } else if (this.type === 'table-diseases') {
       this.title = 'Enfermedad(es)';
+
       this.columnsNames = ['Nombre de las enfermedades, lesiones, estudios o tratamientos',
         'Fecha en que las sufriste o se te practicaron',
         'Duración', 'Condición física actual'];
+
+      this.columnsSettings = [
+        {columnLabel : 'Nombre de las enfermedades, lesiones, estudios o tratamientos', columnAttribute: 'name'},
+        {columnLabel : 'Fecha en que las sufriste o se te practicaron', columnAttribute: 'diagnosticDate'},
+        {columnLabel : 'Duración', columnAttribute: 'duration'},
+        {columnLabel : 'Condición física actual', columnAttribute: 'actualCondition'}
+      ];
+
       this.itemsType = 'disease';
       this.showplus = true;
       this.style = 'even-agent';
@@ -132,6 +163,8 @@ export class BeneficiaryTableComponent implements OnInit {
       this.applicationService.diseases.subscribe((value) => {
         this.items = value;
       });
+
+      console.log('contentTypeId: ', this.contentTypeId);
     } else if (this.type ===  'table-formatfour') {
       this.title = 'Datos Formato Cuatro';
       this.columnsNames = ['Razon social', 'RFC', 'Fecha de constitución', 'Nombre comercial',
@@ -192,7 +225,7 @@ export class BeneficiaryTableComponent implements OnInit {
       });
     } else if (this.type ===  'table-coverage') {
       this.title = 'Beneficios adicionales disponibles para el plan';
-      this.columnsNames = ['Contratar:', 'Cobertura', 'Suma asegurada', 'Prima', 'Detalle',
+      this.columnsNames = ['Contratar:', 'Cobertura', 'Detalle',
       ];
 
       this.itemsType = 'coverage';
@@ -321,6 +354,7 @@ export class BeneficiaryTableComponent implements OnInit {
           data: {
             operations: ['cancelOperationR', 'addItemR'],
             content: this.content,
+            contentTypeId: this.contentTypeId,
             drawerTitle: 'Enfermedad, lesión, estudio o tratamiento',
             itemType: 'disease'
           }});

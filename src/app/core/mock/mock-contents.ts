@@ -10,9 +10,9 @@ import {DatosGeneralesSolicitante} from './mock-general-data/mock-datos-solicita
 import {DatosDomicilioSolicitante} from './mock-general-data/mock-domicilio-solicitante';
 import {InformacionLaboralSolicitante, InformacionLaboralSolicitante1} from './mock-laboral-data/mock-informacion-laboral-solicitante';
 import {sportQuestions2, sportsFields1, sportsFields2, sportsQuestions1} from './basic-questionnaires/sports-aviation-hobbies';
-import {habitsFields, habitsQuestions} from './basic-questionnaires/habits';
+import {habitsFields, habitsQuestions, habitsQuestions2} from './basic-questionnaires/habits';
 import {weaponsFields, weaponsFields1, weaponsQuestions, weaponsQuestions1} from './basic-questionnaires/weapons-questions';
-import {medicalFields, medicalQuestions} from './basic-questionnaires/medical';
+import {medicalFields, medicalQuestions1, medicalQuestions2, medicalQuestions3} from './basic-questionnaires/medical';
 import {AgentQuestion, AgentQuestion1} from './mock-agents/mock-agents-questions';
 import {AuthorizationFields1, AuthorizationQuestions1, AuthorizationQuestions2} from './authorization/authorization-questions';
 import {Plan1, Plan2, Plan3, Plan4, Plan5, Plan6, Plan7} from './mock-plan/mock-plan';
@@ -1556,7 +1556,7 @@ export const MockContentStep18Process1ContentSection2: Content[] = [
     // --added extra from model--
     showContent: true,
     // enableConditions?: 'string';
-    styleClass: 'questions-type'
+    styleClass: ''
     // --------------------------
   },
   {
@@ -1577,6 +1577,26 @@ export const MockContentStep18Process1ContentSection2: Content[] = [
     showContent: true,
     // enableConditions?: 'string';
     styleClass: ''
+    // --------------------------
+  },
+  {
+    id: 'content-2.54',
+    idParent: 'step-18',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.54',
+    contentType: 'looseFields',
+    // process?: Process;
+    fields: habitsQuestions2,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    // enableConditions?: 'string';
+    styleClass: 'questions-type'
     // --------------------------
   },
   {
@@ -1610,7 +1630,7 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
     idHtml: 'app-content-form-2.42',
     contentType: 'looseFields',
     // process?: Process;
-    fields: medicalQuestions,
+    fields: medicalQuestions1,
     // operations?: Operation[];
     renderConditions: '',
     // ---pending---
@@ -1628,12 +1648,97 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
     idParent: 'step-19',
     parentType: 'Step',
     idHtml: 'app-content-form-2.43',
-    contentType: 'table-diseases',
+    contentType: 'table-diseases,1',
     // title: 'Enfermedad(es)',
     // process?: Process;
     fields: medicalFields,
     // operations?: Operation[];
-    renderConditions: '((diseasesQuestion=true),|,(medicalTestQuestion=true),|,(extraDiseasesQuestion=false))',
+    renderConditions: '(diseasesQuestion=true)',
+    // ((diseasesQuestion=true),|,(medicalTestQuestion=true),|,(extraDiseasesQuestion=false))
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: false,
+    styleClass: 'modal-type'
+    // enableConditions?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-2.55',
+    idParent: 'step-19',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.42',
+    contentType: 'looseFields',
+    // process?: Process;
+    fields: medicalQuestions2,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    // enableConditions?: 'string';
+    styleClass: 'questions-type'
+    // --------------------------
+  },
+  {
+    id: 'content-2.56',
+    idParent: 'step-19',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.43',
+    contentType: 'table-diseases,2',
+    // title: 'Enfermedad(es)',
+    // process?: Process;
+    fields: medicalFields,
+    // operations?: Operation[];
+    renderConditions: '(medicalTestQuestion=true)',
+    // ((diseasesQuestion=true),|,(medicalTestQuestion=true),|,(extraDiseasesQuestion=false))
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: false,
+    styleClass: 'modal-type'
+    // enableConditions?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-2.57',
+    idParent: 'step-19',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.42',
+    contentType: 'looseFields',
+    // process?: Process;
+    fields: medicalQuestions3,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    // enableConditions?: 'string';
+    styleClass: 'questions-type',
+    legend: 'En caso de respuestas afirmativas, favor de ampliar la información'
+    // --------------------------
+  },
+  {
+    id: 'content-2.58',
+    idParent: 'step-19',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.43',
+    contentType: 'table-diseases,3',
+    // title: 'Enfermedad(es)',
+    // process?: Process;
+    fields: medicalFields,
+    // operations?: Operation[];
+    renderConditions: '(extraDiseasesQuestion=true)',
     // ((diseasesQuestion=true),|,(medicalTestQuestion=true),|,(extraDiseasesQuestion=false))
     // ---pending---
     // contentChildren?: Array<Content>;
@@ -1685,7 +1790,7 @@ export const MockContentStep20Process1ContentSection2: Content[] = [
 
     // --added extra from model--
     showContent: true,
-    styleClass: 'modal-type'
+    styleClass: 'modal-type',
     // enableConditions?: 'string';
     // --------------------------
   },
@@ -1726,7 +1831,13 @@ export const MockContentStep20Process1ContentSection2: Content[] = [
 
     // --added extra from model--
     showContent: true,
-    styleClass: 'modal-type'
+    styleClass: 'modal-type',
+    legend: 'Los agentes de seguros deberán informar de manera amplia y detallada a quien pretenda contratar un seguro, sobre el\n' +
+      'alcance real de su cobertura y forma de conservarla o darla por terminada. Así mismo proporcionarán a la institución de\n' +
+      'seguros, la información auténtica que sea de su conocimiento relativa al riesgo cuya cobertura se proponga a fin de que\n' +
+      'la misma pueda formar juicio sobre sus características y fijar conforme a las normas respectivas, las condiciones y primas\n' +
+      'adecuadas. Los agentes de seguros no proporcionarán datos falsos de las instituciones de seguros, ni detrimentos o adversos\n' +
+      'en cualquier forma para las mismas.',
     // enableConditions?: 'string';
     // --------------------------
   },

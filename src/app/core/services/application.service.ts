@@ -14,6 +14,7 @@ import {BENEFICIARIES} from '../mock/mock-beneficiaries/mock-beneficiaries';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
+const URL_PATTERN_CATALOG = '../assets/catalogs/pattern-catalogs.json';
 const URL_SEPOMEX = '../assets/catalogs/response-sepomex.json';
 const URL_AGENT_CATALOG = '../assets/catalogs/agents-catalogs.json';
 
@@ -23,10 +24,12 @@ const URL_AGENT_CATALOG = '../assets/catalogs/agents-catalogs.json';
 export class ApplicationService {
   private currentStepSource = new BehaviorSubject(0);
   currentValue = this.currentStepSource.asObservable();
-  beneficiaries = new BehaviorSubject([]);
+  beneficiaries = new BehaviorSubject(BENEFICIARIES);
   agents = new BehaviorSubject([]);
   sports = new BehaviorSubject([]);
   diseases = new BehaviorSubject([]);
+  // diseases2 = new BehaviorSubject([]);
+  // diseases3 = new BehaviorSubject([]);
 
   formatosdos = new BehaviorSubject([]);
   formatosdosb = new BehaviorSubject([]);
@@ -64,7 +67,7 @@ export class ApplicationService {
       const currentStep = this.currentStepSource.getValue();
       // console.log('currentStep1: ', currentStep);
 
-      let contractorType = this.formGroup.controls["contractorType"].value;
+      let contractorType = this.formGroup.controls['contractorType'].value;
       if (currentStep === 0) {
         this.changeValue(1);
       } else if (currentStep === 1) {
@@ -168,7 +171,7 @@ export class ApplicationService {
       });
 
     });
-    return new FormGroup(group, equalEmailsValidator && higherAssuredImport);
+    return new FormGroup(group, [equalEmailsValidator, higherAssuredImport, validateFunds]);
   }
 
   addNewFormControl(formGroup: FormGroup, field: Field) {
@@ -209,28 +212,29 @@ export class ApplicationService {
   getValidationFunctions(field: Field): any[] {
     let validationFunctions = [];
 
-    validatorsObjects.forEach(validationObject => {
-      if (validationObject.nameField === field.name) {
-        // // console.log('validationObject: ', validationObject);
-        validationFunctions = validationObject.validationFunctions;
-      }
-    });
-
-
     if (field.required) {
       validationFunctions.push(Validators.required);
-    }
-    if (field.maxValue) {
-      validationFunctions.push(Validators.maxLength(field.maxValue));
-    }
-    /*if (field.pattern) {
-      console.log('setting pattern validator: ', field.pattern);
-      validationFunctions.push((Validators.pattern(field.pattern)));
-    }*/
 
+      validatorsObjects.forEach(validationObject => {
+        if (validationObject.nameField === field.name) {
+          // // console.log('validationObject: ', validationObject);
+          validationFunctions = validationObject.validationFunctions;
+        }
+      });
+
+      if (field.maxValue) {
+        validationFunctions.push(Validators.maxLength(field.maxValue));
+      }
+      /*if (field.pattern) {
+        console.log('setting pattern validator: ', field.pattern);
+        validationFunctions.push((Validators.pattern(field.pattern)));
+      }*/
+    } else {
+      validationFunctions = [];
+    }
     return validationFunctions;
   }
-
+  // getCatalogById(this.fieldObj.sourceID, this.fieldObj.source)
   getCatalogById(id: string, source: string): Observable<[]> {
     let urlCatalog = '';
     switch (source) {
@@ -239,6 +243,9 @@ export class ApplicationService {
         break;
       case 'CUSTOM':
         urlCatalog = URL_CUSTOM_CATALOG;
+        break;
+      case 'PATTERN':
+        urlCatalog = URL_PATTERN_CATALOG;
         break;
       default:
         urlCatalog = URL_IPRE;
@@ -252,7 +259,7 @@ export class ApplicationService {
       );
   }
 
-  addItem(newItem, itemType: string) {
+  addItem(newItem, itemType: string, fromTable?: boolean) {
     let currentTotalParticipationPercentage;
     let currentItems;
     let maxLength;
@@ -284,27 +291,31 @@ export class ApplicationService {
       responseMessage2 = 'Validacion2';
       propertyName = 'participation';
     } else if (itemType === 'country') {
-      currentTotalParticipationPercentage = 1;
+      // currentTotalParticipationPercentage = 1; // i commented this line cuz not apply for countries
       currentItems = this.countries.getValue();
       maxLength = 3;
       responseMessage1 = 'No se pueden agregar más de 3 paises';
-      responseMessage2 = 'Validacion2';
-      propertyName = 'participation';
+      // responseMessage2 = 'Validacion2'; // i commented this line cuz not apply for countries
+      // propertyName = 'participation'; // i commented this line cuz not apply for countries
     } else if (itemType === 'payment') {
-      currentTotalParticipationPercentage = 1;
+      // currentTotalParticipationPercentage = 1; // i commented this line cuz not apply for countries
       currentItems = this.payments.getValue();
       maxLength = 5;
       responseMessage1 = 'No se pueden agregar más de 5 instrumentos bancarios';
-      responseMessage2 = 'Validacion2';
-      propertyName = 'paymentId';
+      // responseMessage2 = 'Validacion2'; // i commented this line cuz not apply for countries
+      // propertyName = 'paymentId'; // i commented this line cuz not apply for countries
 
       console.log('AMPI AddItem');
       console.log(currentItems);
 
     } else if (itemType === 'disease') {
       currentItems = this.diseases.getValue();
+      maxLength = 10;
+      responseMessage1 = 'No se pueden agregar más de 10 enfermedades / padecimientos';
     } else if (itemType === 'sport') {
       currentItems = this.sports.getValue();
+      maxLength = 5;
+      responseMessage1 = 'No se pueden agregar más de 5 deportes / actividades';
     }
 
     if (currentTotalParticipationPercentage !== undefined) {
@@ -335,7 +346,7 @@ export class ApplicationService {
       }
     } else if (maxLength !== undefined) {
       // when is a maxItems limit
-      if (currentItems.length <= maxLength) {
+      if (currentItems.length < maxLength) {
         // the new item can be added
         currentItems.push(newItem);
         this.setItems(itemType, currentItems);
@@ -467,7 +478,7 @@ export class ApplicationService {
       currentItems = this.diseases.getValue();
       propertyItem = 'idDisease';
     } else if (itemType === 'sport') {
-      currentItems =  this.sports .getValue();
+      currentItems = this.sports.getValue();
       propertyItem = 'idSportActivity';
     } else if (itemType === 'payment') {
       currentItems = this.payments.getValue();
@@ -721,7 +732,8 @@ export class ApplicationService {
     return this.httpClient.get(URL_SEPOMEX)
       .pipe(
         map((response: any) => {
-          return response.data.items[0].item as SepomexObj;
+          //return response.data.items[0].item as SepomexObj;
+          return null;
         })
       );
   }
@@ -806,7 +818,7 @@ export class ApplicationService {
     * */
 
   evaluateConditions(exp, formGroup: FormGroup) {
-    console.log('onGetExpressionElements...');
+    // console.log('onGetExpressionElements...');
     const arr = [];
     const reversedString = this.reverseString(exp);
 
@@ -824,6 +836,7 @@ export class ApplicationService {
         s.forEach((sItem) => {
           sAsString = sAsString + sItem;
         });
+        // console.log('sAsString: ', sAsString);
 
         // for one single operation
         const z = sAsString.split(',');
@@ -863,23 +876,23 @@ export class ApplicationService {
               resEvalB = b;
             }
           }
-          console.log('resEvalA: ', resEvalA);
-          console.log('resEvalB: ', resEvalB);
+          // console.log('resEvalA: ', resEvalA);
+          // console.log('resEvalB: ', resEvalB);
 
           if (z[1] === '&') {
             c = resEvalA && resEvalB;
           } else {
             c = resEvalA || resEvalB;
           }
-          console.log('c: ', c);
+          // console.log('c: ', c);
           arr.push((c));
         }
       } else {
         arr.push(ctr);
       }
     }
-    console.log('arr: ', arr);
-    console.log('arr.length - 1: ', arr.length - 1);
+    // console.log('arr: ', arr);
+    // console.log('arr.length - 1: ', arr.length - 1);
     return arr[arr.length - 1];
   }
 
@@ -906,6 +919,33 @@ export class ApplicationService {
     });
 
     return dependedFields;
+  }
+
+  getStatusError(errorId) {
+    const errors = this.formGroup.errors;
+    if (errors) {
+      if (errors[errorId]) {
+        // console.log('errors[errorId]: ', errors[errorId]);
+        return errors[errorId];
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  }
+
+  getPatternCatalog(): Observable<[]> {
+    let urlCatalog = '';
+    const id = 'pattern';
+    urlCatalog = URL_PATTERN_CATALOG;
+    // console.log('urlCatalog: ', urlCatalog);
+    return this.httpClient.get(urlCatalog)
+      .pipe(
+        map((catalog) => {
+          return catalog[id];
+        })
+      );
   }
 
   getAgentItemUser() {

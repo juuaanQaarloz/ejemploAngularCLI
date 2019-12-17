@@ -67,6 +67,7 @@
       </app-table>-->
       <app-beneficiary-table [type]="contentObj.contentType"
                              [content]="contentObj"
+                             [contentTypeId]="contentTypeId"
       >
 
       </app-beneficiary-table>
@@ -76,6 +77,8 @@
   </div>
 
   <p *ngIf="contentObj.warningMessage">{{contentObj.warningMessage}}</p>
+
+  <p *ngIf="contentObj.legend">{{contentObj.legend}}</p>
 
   <div *ngIf="contentObj.operations" class="operation">
     <app-operation-form *ngFor="let operation of contentObj.operations" [operationObj]="operation"></app-operation-form>

@@ -42,6 +42,7 @@ export const BENEFICIARIES: Beneficiary[] =  [
     motherLastName: 'SANCHEZ', // if typeBeneficiary is Physic person
     relationship: 'HA',
     birthDateOrConstitution: '1993/01/06',
+    addressSameAsTitular: false,
     address: {
       street: 'Aluminio',
       exteriorNumber: '145',
@@ -51,13 +52,35 @@ export const BENEFICIARIES: Beneficiary[] =  [
       municipality: 'Venustiano Carranza',
       state: 'CDMX',
       city: 'CDMX',
-      country: 'México'
+      country: 'MX'
     },
     participationPercentage: '50'
   },
   {
     beneficiaryId: '5',
     beneficiaryType: 'morPerson',
+    relationship: 'OT',
+    businessName: 'Empresa',
+    birthDateOrConstitution: '2001/03/08',
+    addressSameAsTitular: false,
+    address: {
+      street: 'CALLE',
+      exteriorNumber: '123',
+      zipCode: '07840',
+      neighborhood: 'BECINDARIO',
+      municipality: 'MUNICIPIO',
+      state: 'ESTADO',
+      city: 'CIUDAD',
+      country: 'MX'
+    },
+    participationPercentage: '10',
+    suspensiveCondition: 'NO', // if typeBeneficiary is Moral person
+    contractNumber: '12345678', // if typeBeneficiary is Moral person
+    instructionLetterNumber: 'string' // if typeBeneficiary is Moral person
+  },
+  {
+    beneficiaryId: '6',
+    beneficiaryType: 'fidPerson',
     relationship: 'OT',
     businessName: 'Empresa',
     birthDateOrConstitution: '2001/03/08',
@@ -69,7 +92,7 @@ export const BENEFICIARIES: Beneficiary[] =  [
       municipality: 'MUNICIPIO',
       state: 'ESTADO',
       city: 'CIUDAD',
-      country: 'PAIS'
+      country: 'MX'
     },
     participationPercentage: '10',
     suspensiveCondition: 'NO', // if typeBeneficiary is Moral person
@@ -117,10 +140,11 @@ export const beneficiaryFields: Field[] = [
     type: 'text',
     required: true,
     placeholder: '%',
-    length: '',
+    length: '6',
     minValue: 0,
     maxValue: 6,
-    pattern: '',
+    pattern: '/(^100(\\.0{1,2})?$)|(^([1-9]([0-9])?|0)(\\.[0-9]{1,3})?$)|(^([0-9])(\\.[0-9]{1,4})?$)/g',
+    noAllowedCharactersPattern: '/[^\\d\\/]/',
     source: '',
     sourceID: '',
     style: '',

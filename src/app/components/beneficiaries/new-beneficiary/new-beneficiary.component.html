@@ -1,6 +1,11 @@
 <!--Drawer Container-->
 <div class="drawer-container">
   <div>
+    <div *ngIf="showFormError" class="ml-msg ml-msg-error">
+    <span class="ml-msg-txt"><span class="fa fa-exclamation-circle high-priority"></span>
+      {{formMsgError}} </span>
+    </div>
+
     <div data-forms="floating-label" class="ml-form"
          [ngClass]="content.styleClass">
       <div *ngFor="let field of fields">
@@ -36,8 +41,8 @@
                         (click)="executeOperation(content.operations[2].delegateOperation)">
     </app-operation-form>
 
-    <button (click)="getFormStatus()"> GET STATUS</button>
-    <p *ngIf="status">{{'form status: ' + status}}</p>
+    <!--<button (click)="getFormStatus()"> GET STATUS</button>
+    <p *ngIf="status">{{'form status: ' + status}}</p>-->
 
   </div>
 </div>

@@ -15,6 +15,7 @@ export class ContentFormComponent implements OnInit {
   @Input() form: FormGroup;
   payLoad = '';
   show = true;
+  contentTypeId;
   rows: RowItem<any>[] = [
     {
       rowId: '1',
@@ -99,6 +100,21 @@ export class ContentFormComponent implements OnInit {
         });
       });
     }
+
+    if (this.contentObj.contentType) {
+      this.contentTypeId = this.getContentTypeId();
+    }
+  }
+
+  getContentTypeId() {
+   const contentTypeArray = this.contentObj.contentType.split(',');
+
+   if (contentTypeArray.length > 1) {
+     this.contentObj.contentType = contentTypeArray[0];
+     return contentTypeArray[1];
+   } else {
+     return null;
+   }
   }
 
   getFormValue() {

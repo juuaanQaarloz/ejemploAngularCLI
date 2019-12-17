@@ -1,4 +1,5 @@
 import {Content} from './content';
+import {Error} from './error';
 
 export interface Step {
   id: string;
@@ -12,4 +13,5 @@ export interface Step {
   /*added extra from model*/
   isCompleted: boolean;
   show: boolean;
+  errors?: Array<Error>;
 }
