@@ -1,14 +1,20 @@
 
-<div class="ml-table-container" [formGroup]="this.applicationService.getFormGroup()">
+<div class="ml-table-container">
   <div class="ml-table-title">{{title}}</div>
   <div class="even" [ngClass]="style">
     <div class="field-name-column" *ngFor="let columnName of columnsNames">{{columnName}}</div>
   </div>
 
-  <div *ngFor="let field of fields; let i = index;" [ngClass]="styleClass"
+  <div *ngFor="let field of content.fields; let i = index;" [ngClass]="styleClass"
        [ngStyle]="{'background-color':  this.applicationService.determinateEvenOrOdd(i) ? '#E5F4FB': '#FFFFFF'}">
     <div class="item-attribute" >
-      <p>{{field}}</p>
+      <app-field-form [fieldObj]="field" [form]="formGroup"></app-field-form>
+    </div>
+    <div class="item-attribute" >
+      <p>{{field.label}}</p>
+    </div>
+    <div class="item-attribute" >
+      <p>{{field.placeholder}}</p>
     </div>
   </div>
 </div>

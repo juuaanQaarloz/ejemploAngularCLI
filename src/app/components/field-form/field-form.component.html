@@ -158,8 +158,11 @@
       <input type="checkbox" [formControlName]="fieldObj.name"
              [id]="fieldObj.name + '-checkbox'"
              [name]="fieldObj.name"
-             [value]="fieldObj.value">
-      <label [for]="fieldObj.name + '-checkbox'">{{fieldObj.label}}</label>
+             [value]="fieldObj.value"
+             [disabled]="fieldObj.disable"
+      >
+
+      <label [for]="fieldObj.name + '-checkbox'"></label>
     </div>
   </fieldset>
 
