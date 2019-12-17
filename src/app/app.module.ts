@@ -50,6 +50,7 @@ import {AutocompleteComponent} from './components/autocomplete/autocomplete.comp
 import {ApplicationService} from './core/services';
 import { NewPaymentComponent } from './components/beneficiaries/new-payment/new-payment.component';
 import { ErrorBannerComponent } from './components/error-banner/error-banner.component';
+import { CoverageComponent } from './components/coverage/coverage/coverage.component';
 
 // @ts-ignore
 @NgModule({
@@ -85,7 +86,8 @@ import { ErrorBannerComponent } from './components/error-banner/error-banner.com
     AutocompleteComponent,
     NewPaymentComponent,
     AutocompleteComponent,
-    ErrorBannerComponent
+    ErrorBannerComponent,
+    CoverageComponent
     ],
 
   imports: [

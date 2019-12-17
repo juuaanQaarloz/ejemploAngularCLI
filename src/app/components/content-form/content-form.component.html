@@ -28,7 +28,8 @@
       <app-beneficiary-table  [type]="contentObj.contentType"></app-beneficiary-table >
     </div>
     <div *ngSwitchCase="'table-coverage'" class="ml-step-container">
-      <app-beneficiary-table [type]="contentObj.contentType"></app-beneficiary-table>
+      <!--<app-beneficiary-table [type]="contentObj.contentType"></app-beneficiary-table>-->
+      <app-coverage [content]="contentObj"></app-coverage>
     </div>
     <div *ngSwitchCase="'table-agent'" class="ml-step-container">
       <app-beneficiary-table [type]="contentObj.contentType"></app-beneficiary-table>

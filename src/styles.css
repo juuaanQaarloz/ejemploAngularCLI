@@ -931,6 +931,10 @@ select::-ms-expand {
   background-color: #FFFFFF;
 }
 
+.even-coverage {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .field-name-column {
   text-align: center;
   color: black;
