@@ -37,6 +37,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   }
 
+  onChangeCheckbox(event) {
+    console.log('event: ', event);
+  }
+
   ngOnInit() {
     if (this.fieldObj.type === 'radio' || this.fieldObj.type === 'select'
       || this.fieldObj.type === 'checkbox-n' || this.fieldObj.type === 'select-multiple'
@@ -87,17 +91,43 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
 
     if (this.fieldObj.enableConditions) {
+      console.log('onEnableConditions...');
+      console.log('fieldName: ', this.fieldObj.name);
       const dependedFields = this.applicationService.getDependedFields(this.fieldObj.enableConditions);
+      console.log('dependedFields: ', dependedFields);
+      let status;
+
       dependedFields.forEach((dependedField) => {
         this.form.controls[dependedField].valueChanges.subscribe((value) => {
-          this.disable = this.checkState2(this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form));
+
+          if (value) {
+            console.log('onValueChanges of ', dependedField);
+            console.log('value: ', value);
+            const resEval = this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form);
+            console.log('resEval: ', resEval);
+
+            if (resEval) {
+              console.log('here true');
+              this.form.controls[this.fieldObj.name].disable();
+              this.fieldObj.disable = true;
+              status = this.checkState();
+
+            } else {
+              console.log('here false');
+              this.form.controls[this.fieldObj.name].enable();
+              this.fieldObj.disable = false;
+              status = this.checkState();
+
+            }
+          }
+          /*this.disable = this.checkState2(this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form));
           console.log('disable2: ', this.disable);
           console.log('this.fieldObj.name: ', this.fieldObj.name);
           if (this.disable === true) {
             this.form.controls[this.fieldObj.name].disable();
           } else {
             this.form.controls[this.fieldObj.name].enable();
-          }
+          }*/
       });
       });
     }
@@ -400,7 +430,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   checkState() {
     const status = this.form.controls[this.fieldObj.name].status;
-    // console.log('state: ', status);
+    console.log('state: ', status);
     let result = false;
     if (status === 'DISABLED') {
       result = true;

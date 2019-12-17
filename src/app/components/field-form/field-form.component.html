@@ -16,7 +16,7 @@
              (keyup)="onKeyUp($event)"
              (blur)="onBlur()">
 
-      <span [ngStyle]="{'background': this.disable ? '#EBEBE4':''}">{{fieldObj.label}}</span>
+      <span [ngStyle]="{'background': this.disable ? '#EBEBE4':'#FFFFFF'}">{{fieldObj.label}}</span>
       <a *ngIf="fieldObj.canChangeType" href="javascript:;" (click)="onClickToggle()"
          class="ml-form-field-togglevisible"
          [ngClass]="[toggleVisible ? 'ml-form-field-togglevisible': 'ml-form-field-togglevisible occult']"
@@ -158,7 +158,9 @@
       <input type="checkbox" [formControlName]="fieldObj.name"
              [id]="fieldObj.name + '-checkbox'"
              [name]="fieldObj.name"
-             [value]="fieldObj.value">
+             [value]="fieldObj.value"
+             (change)="onChangeCheckbox($event)"
+      >
 
       <label [for]="fieldObj.name + '-checkbox'"></label>
     </div>

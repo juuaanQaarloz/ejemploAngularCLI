@@ -786,7 +786,8 @@ export class ApplicationService {
 
         // for one single operation
         const z = sAsString.split(',');
-        // console.log('z: ', z);
+        console.log('z: ', z);
+
         if (z.length === 1) {
           const conditionsZ = this.getConditions(z[0]);
           const resEvalZ = this.evaluateCondition(formGroup, conditionsZ[0]);

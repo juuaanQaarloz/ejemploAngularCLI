@@ -227,6 +227,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     enableConditions: '(economicSector=OTRO)',
     entity: '',
     entityField: '',
-    value: ''
+    value: '',
+    disable: true
   }
 ];
