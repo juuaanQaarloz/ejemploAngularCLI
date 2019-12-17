@@ -42,6 +42,7 @@ export class ApplicationService {
 
   constructor(private httpClient: HttpClient,
               private modalService: ModalService) {
+    // localStorage.setItem( 'userId', '1');
   }
 
   getErrorMsg() {
@@ -912,7 +913,7 @@ export class ApplicationService {
     const userHeaders = this.getHeadersUser('userId');
     console.log( 'userHeaders --< ' + userHeaders);
     // get agent catalog
-    this.httpClient.get(URL_AGENT_CATALOG).subscribe((agents: Agent[]) => {
+    this.httpClient.get(URL_AGENT_CATALOG).subscribe((agents: any) => {
       agents.catalogData.extension.variations.forEach(agent => {
         if (agent.agente === userHeaders + '') {
           const mapAgent = {
