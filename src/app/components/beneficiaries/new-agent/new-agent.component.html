@@ -11,16 +11,13 @@
   </div>
 
   <div *ngIf="content.operations" class="operation">
-
     <app-operation-form [operationObj]="content.operations[0]"
                         (click)="executeOperation(content.operations[0].delegateOperation)">
     </app-operation-form>
-
-    <app-operation-form *ngIf="operationType === 'add'" [operationObj]="content.operations[1]"
+    <app-operation-form *ngIf="operationType === 'add' && validForm(content.fields, formGroup)" [operationObj]="content.operations[1]"
                         (click)="executeOperation(content.operations[1].delegateOperation)">
     </app-operation-form>
-
-    <app-operation-form *ngIf="operationType === 'edit'" [operationObj]="content.operations[2]"
+    <app-operation-form *ngIf="operationType === 'edit' && validForm(content.fields, formGroup)" [operationObj]="content.operations[2]"
                         (click)="executeOperation(content.operations[2].delegateOperation)">
     </app-operation-form>
 
@@ -34,7 +31,6 @@
       <img class="button-close" (click)="closeModal(modalID)">
     </div>
     <p>{{modalMessage}}</p>
-
     <div class="operation-modal">
       <app-operation-form [operationObj]= okOperation
                           (click)="executeOperation(okOperation.delegateOperation)">

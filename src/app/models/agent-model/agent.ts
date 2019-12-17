@@ -4,4 +4,5 @@ export interface Agent {
   promotor: string;
   key: string;
   participation: string;
+  catalogData: any;
 }

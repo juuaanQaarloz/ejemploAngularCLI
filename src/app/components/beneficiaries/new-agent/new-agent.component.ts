@@ -46,7 +46,7 @@ export class NewAgentComponent implements OnInit {
   formGroup: FormGroup;
   operationType: string;
   modalID = 'modal-warning1';
-  modalMessage = 'La suma de las participaciones de los agentes excede el 100%';
+  modalMessage;
 
   constructor(private applicationService: ApplicationService,
               public config: DialogConfig,
@@ -54,7 +54,6 @@ export class NewAgentComponent implements OnInit {
               private modalService: ModalService) { }
 
   ngOnInit() {
-
     this.formGroup = this.applicationService.createNewFormGroup(this.content.fields);
     if (this.config.data !== null) {
       this.operationType = 'edit';
@@ -86,6 +85,7 @@ export class NewAgentComponent implements OnInit {
   }
 
   addNewAgent() {
+    console.log('addNewAgent');
     const newAgent = this.mapNewAgentData();
     const response = this.applicationService.addItem(newAgent, 'agent');
 
@@ -105,7 +105,6 @@ export class NewAgentComponent implements OnInit {
       key: this.formGroup.controls.agentKey.value,
       participation: this.formGroup.controls.agentParticipation.value
     };
-
     return newMappedAgent;
   }
 
@@ -131,8 +130,13 @@ export class NewAgentComponent implements OnInit {
 
   updateAgent() {
     const updatedAgent = this.mapAgentData();
-    this.applicationService.updateItem(updatedAgent, 'agent');
-    this.closeDialog();
+    const response = this.applicationService.updateItem(updatedAgent, 'agent');
+    if (response.status) {
+      this.closeDialog();
+    } else {
+      this.modalMessage = response.message;
+      this.modalService.open(this.modalID);
+    }
   }
 
   mapAgentData() {
@@ -145,6 +149,18 @@ export class NewAgentComponent implements OnInit {
     };
 
     return mappedAgent;
+  }
+
+  /* Form Validation */
+  validForm(filds, form) {
+    let valid = true;
+    if (!form.value.agentParticipation || Number(form.value.agentParticipation) === 0 ) {
+      valid = false;
+    }
+    if ( !form.value.agentKey && !form.value.agentPromotor && !form.value.agentName ) {
+      valid = false;
+    }
+    return valid;
   }
 
 }

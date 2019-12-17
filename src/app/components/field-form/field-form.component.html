@@ -15,15 +15,12 @@
              [maxlength]="fieldObj.maxValue + 1"
              (keyup)="onKeyUp($event)"
              (blur)="onBlur()">
-
       <span [ngStyle]="{'background': this.disable ? '#EBEBE4':''}">{{fieldObj.label}}</span>
       <a *ngIf="fieldObj.canChangeType" href="javascript:;" (click)="onClickToggle()"
          class="ml-form-field-togglevisible"
          [ngClass]="[toggleVisible ? 'ml-form-field-togglevisible': 'ml-form-field-togglevisible occult']"
       ></a>
-      <div class="ml-form-field-errortext"
-           *ngIf="!fieldObj.valid">
-        {{fieldObj.message}}</div>
+      <div class="ml-form-field-errortext" *ngIf="!fieldObj.valid"> {{fieldObj.message}} </div>
     </label>
   </fieldset>
 
@@ -216,5 +213,21 @@
     </app-autocomplete>
   </div>
 
+  <jw-modal [id]="modalID" [modalType]="'overlay'">
+    <div class="overlay-container">
+      <div style="text-align: right">
+        <img class="button-close" (click)="closeModal(modalID)">
+      </div>
+      <p>{{modalMessage}}</p>
+
+      <div class="operation-modal">
+        <app-operation-form [operationObj]= okOperation
+                            (click)="executeOperation(okOperation.delegateOperation)">
+        </app-operation-form>
+      </div>
+    </div>
+  </jw-modal>
+
 </div>
 <!--</div>-->
+

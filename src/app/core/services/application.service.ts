@@ -5,6 +5,7 @@ import {map} from 'rxjs/operators';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';
 import {Beneficiary, Formatwo, Field, Occupation, Step} from '../../models';
+import { Agent } from '../../models/agent-model/agent';
 import {equalEmailsValidator, higherAssuredImport, validateEmailConfirmation, validatorsObjects} from '../validators';
 import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
@@ -14,6 +15,7 @@ import {BENEFICIARIES} from '../mock/mock-beneficiaries/mock-beneficiaries';
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
 const URL_SEPOMEX = '../assets/catalogs/response-sepomex.json';
+const URL_AGENT_CATALOG = '../assets/catalogs/agents-catalogs.json';
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +49,8 @@ export class ApplicationService {
   }
 
   submitFunction(type) {
-    // console.log(type);
+    console.log(type);
+    console.log(this.formGroup);
     if (type === 'searchOccupation') {
       this.searchModalFrom = 'contractor';
       this.openOccupationModal('modal-search');
@@ -109,7 +112,8 @@ export class ApplicationService {
 
       // console.log('currentStep2: ', this.currentStepSource.getValue());
     } else if (type === 'validateStep') {
-      const currentStep = this.currentStepSource.getValue();
+      const currentStep = this.currentStepSource.getValue(); // .getValue();
+      // console.log('onValidateStep currentStep: ', currentStep);
       // console.log('onValidateStep currentStep: ', currentStep + 1);
       this.validateFormByStep((currentStep + 1).toString());
     }
@@ -253,6 +257,7 @@ export class ApplicationService {
     let maxLength;
     let responseMessage1;
     let responseMessage2;
+    let responseMessage3;
     let propertyName;
     if (itemType === 'beneficiary') {
       currentTotalParticipationPercentage = this.getTotalParticipationPercentage(itemType);
@@ -260,6 +265,7 @@ export class ApplicationService {
       maxLength = 10;
       responseMessage1 = 'No se pueden agregar más de 10 beneficiarios';
       responseMessage2 = 'La suma de las participaciones de los beneficiarios excede el 100%';
+      responseMessage3 = 'El porcentaje de participacion debe de ser mayor a 0';
       propertyName = 'participationPercentage';
     } else if (itemType === 'agent') {
       currentTotalParticipationPercentage = this.getTotalParticipationPercentage(itemType);
@@ -267,6 +273,7 @@ export class ApplicationService {
       maxLength = 2;
       responseMessage1 = 'No se pueden agregar más de 2 agentes';
       responseMessage2 = 'La suma de las participaciones de los agentes excede el 100%';
+      responseMessage3 = 'El porcentaje de participacion debe de ser mayor a 0';
       propertyName = 'participation';
     } else if (itemType === 'formatwo') {
       currentTotalParticipationPercentage = 1;
@@ -290,8 +297,9 @@ export class ApplicationService {
       responseMessage2 = 'Validacion2';
       propertyName = 'paymentId';
 
-      console.log("AMPI AddItem");
+      console.log('AMPI AddItem');
       console.log(currentItems);
+
     } else if (itemType === 'disease') {
       currentItems = this.diseases.getValue();
     } else if (itemType === 'sport') {
@@ -299,18 +307,29 @@ export class ApplicationService {
     }
 
     if (currentTotalParticipationPercentage !== undefined) {
+      console.log(1);
       // when is a max participation limit
       if (currentTotalParticipationPercentage + Number(newItem[propertyName]) <= 100) {
+        console.log(2);
         // when is a maxItems limit
         if (currentItems.length <= maxLength) {
+          console.log(3);
           // the new item can be added
-          currentItems.push(newItem);
-          this.setItems(itemType, currentItems);
-          return {status: true, message: ''};
+          if (Number(newItem[propertyName]) > 0) {
+            console.log(4);
+            currentItems.push(newItem);
+            this.setItems(itemType, currentItems);
+            return {status: true, message: ''};
+          } else {
+            console.log(5);
+            return {status: false, message: responseMessage3};
+          }
         } else {
+          console.log(6);
           return {status: false, message: responseMessage1};
         }
       } else {
+        console.log(7);
         return {status: false, message: responseMessage2};
       }
     } else if (maxLength !== undefined) {
@@ -358,6 +377,13 @@ export class ApplicationService {
     currentItems = currentItems.filter(item => item[propertyName] !== itemId);
     // console.log('currentItems: ', currentItems);
     this.setItems(itemType, currentItems);
+    if ( itemType === 'agent' && currentItems.length === 1) {
+      const mappedAgent = {
+        agentId: currentItems[0].agentId, name: currentItems[0].name,
+        promotor: currentItems[0].promotor, key: currentItems[0].key, participation: 100
+      };
+      this.updateItem(mappedAgent, 'agent');
+    }
   }
 
   getLastItemId(itemType: string) {
@@ -398,12 +424,16 @@ export class ApplicationService {
   }
 
   updateItem(updatedItem, itemType) {
+    console.log('updateItem');
+    console.log(updatedItem);
     let currentItems;
     let propertyItem;
+    let propertyParticipation;
     let currentTotalParticipationPercentage;
     let maxLength;
     let responseMessage1;
     let responseMessage2;
+    let responseMessage3;
 
     if (itemType === 'beneficiary') {
       currentItems = this.beneficiaries.getValue();
@@ -412,9 +442,20 @@ export class ApplicationService {
       maxLength = 10;
       responseMessage1 = 'No se pueden agregar más de 10 beneficiarios';
       responseMessage2 = 'La suma de las participaciones de los beneficiarios excede el 100%';
+      responseMessage3 = 'El porcentaje de participacion debe de ser mayor a 0';
     } else if (itemType === 'agent') {
       currentItems = this.agents.getValue();
       propertyItem = 'agentId';
+      propertyParticipation = 'participation';
+      currentTotalParticipationPercentage = 0;
+      currentItems.forEach((item) => {
+        if (updatedItem[propertyItem] !== item[propertyItem]) {
+          currentTotalParticipationPercentage = currentTotalParticipationPercentage + Number(item[propertyParticipation]);
+        }
+      });
+      maxLength = 2;
+      responseMessage3 = 'El porcentaje de participacion debe de ser mayor a 0';
+      responseMessage2 = 'La suma de las participaciones de los agentes excede el 100%';
     } else if (itemType === 'formatwo') {
       currentItems = this.formatosdos.getValue();
       propertyItem = 'formatwoId';
@@ -435,14 +476,18 @@ export class ApplicationService {
 
     if (currentTotalParticipationPercentage !== undefined) {
       // when is a max participation limit
-      if (currentTotalParticipationPercentage + Number(updatedItem[propertyItem]) <= 100) {
+      if (currentTotalParticipationPercentage + Number(updatedItem[propertyParticipation]) <= 100) {
         // when is a maxItems limit
         if (currentItems.length <= maxLength) {
           // the new item can be added
-          const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
-          currentItems[index] = updatedItem;
-          this.setItems(itemType, currentItems);
-          return {status: true, message: ''};
+         if (Number(updatedItem[propertyParticipation]) > 0) {
+           const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
+           currentItems[index] = updatedItem;
+           this.setItems(itemType, currentItems);
+           return {status: true, message: ''};
+         } else {
+           return {status: false, message: responseMessage3};
+         }
         } else {
           return {status: false, message: responseMessage1};
         }
@@ -501,6 +546,7 @@ export class ApplicationService {
   }
 
   setItems(itemType: string, newItems) {
+    console.log('setItems');
     if (itemType === 'beneficiary') {
       this.beneficiaries.next(newItems);
     } else if (itemType === 'agent') {
@@ -680,7 +726,9 @@ export class ApplicationService {
   }
 
   validateFormByStep(stepID: string) {
+    console.log(stepID);
     const step = this.getStepById(stepID);
+    console.log(step);
     if (step) {
       step.contents.forEach((contentFromStep) => {
         if (contentFromStep.fields) {
@@ -775,7 +823,6 @@ export class ApplicationService {
         s.forEach((sItem) => {
           sAsString = sAsString + sItem;
         });
-         console.log('sAsString: ', sAsString);
 
         // for one single operation
         const z = sAsString.split(',');
@@ -859,4 +906,37 @@ export class ApplicationService {
 
     return dependedFields;
   }
+
+  getAgentItemUser() {
+    // get headers user
+    const userHeaders = this.getHeadersUser('userId');
+    console.log( 'userHeaders --< ' + userHeaders);
+    // get agent catalog
+    this.httpClient.get(URL_AGENT_CATALOG).subscribe((agents: Agent[]) => {
+      agents.catalogData.extension.variations.forEach(agent => {
+        if (agent.agente === userHeaders + '') {
+          const mapAgent = {
+            agentId: agent.agente, name: agent.nombreAgente, promotor: agent.nombrePromotoria,
+            key: agent.promotoria, participation: 100
+          };
+          // insert user == agent
+          this.addItem(mapAgent, 'agent');
+        }
+      });
+    });
+  }
+
+  getHeadersUser( key ) {
+    // User property map
+    const stores = window.localStorage;
+    console.log('stores');
+    console.log(stores);
+    console.log(stores.getItem(key));
+    // JSON.parse(localStorage.getItem(key))
+    // const headerUser = {
+      // userId: stores.getItem('userId') !== null ? stores.getItem('userId') : '9504'
+    // };
+    return stores.getItem(key) != null ? stores.getItem(key) : '9504';
+  }
+
 }

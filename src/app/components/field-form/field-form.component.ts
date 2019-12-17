@@ -7,6 +7,9 @@ import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
 import {calculateRFC, correctFieldValue, stringToRegExp, transformDate} from '../../core/utilities';
 import {SepomexObj} from '../../models/sepomex-obj';
+import {DialogRef} from "../dialog/dialog-ref";
+import {ModalService} from "../custom-modal";
+import {Operation} from "../../models";
 
 @Component({
   selector: 'app-field-form',
@@ -29,6 +32,23 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   disable: boolean;
   regExpPattern;
   loading = true;
+  modalID = 'modal-warning1';
+  modalMessage = 'La suma de las participaciones de los agentes excede el 100%';
+
+  okOperation: Operation = {
+    id: 'opt-1',
+    idHtml: 'btnOK',
+    name: 'OK',
+    label: 'OK',
+    type: 'button',
+    style: '',
+    styleClass: 'ml-button-primary',
+    message: '',
+    messageClass: '',
+    delegateOperation: 'closeModal',
+    renderConditions: '',
+    enableConditions: ''
+  };
 
   // for test component
   options = [
@@ -41,7 +61,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   constructor(private applicationService: ApplicationService,
               private matIconRegistry: MatIconRegistry,
-              private domSanitizer: DomSanitizer) {
+              private domSanitizer: DomSanitizer,
+              private modalService: ModalService) {
     this.registerCustomIcons();
 
   }
@@ -213,6 +234,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   onBlur() {
     // console.log('onBlur...');
+    console.log(this.fieldObj.name);
+    let valid = true;
     if (this.fieldObj.name === 'zipCode' || this.fieldObj.name === 'zipCodeS' || this.fieldObj.name === 'zipCodeM') {
       const zipCode = this.form.controls[this.fieldObj.name].value;
       // console.log('zipCode: ', zipCode);
@@ -224,9 +247,33 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           }
         });
       }
-    }
+    } else if ( this.fieldObj.name === 'agentParticipationI') {
+      this.item.participation = this.form.controls[this.fieldObj.name].value;
+      if (!this.item.participation || Number(this.item.participation) === 0) {
+        this.fieldObj.valid = false;
+        valid = false;
+        this.fieldObj.message = 'La participacion no puede ser 0';
+      } else if ( this.form.controls[this.fieldObj.name].value != null ) {
+        const response = this.applicationService.updateItem(this.item, 'agent');
+        if (response.status === false) {
 
-    this.isValid();
+          console.log(response.status);
+          console.log(response.message);
+
+          this.modalMessage = response.message;
+          this.modalService.open(this.modalID);
+        }
+      }
+    } else if ( this.fieldObj.name === 'agentParticipation') {
+      if (!this.form.controls[this.fieldObj.name].value || Number(this.form.controls[this.fieldObj.name].value) === 0) {
+        this.fieldObj.valid = false;
+        valid = false;
+        this.fieldObj.message = 'La participacion no puede ser 0';
+      }
+    }
+    if (valid) {
+      this.isValid();
+    }
   }
 
   onValidate(event) {
@@ -306,7 +353,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   isValid(formControlName?) {
     console.log('onIsValid value: ', this.form.controls[this.fieldObj.name].value);
-    // console.log('formControlName: ', formControlName);
     if (formControlName) {
       console.log('formControlNameEntro: ', formControlName);
       const validateAgeResult = validateAge(this.form.controls[formControlName]);
@@ -466,6 +512,16 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     // // console.log('obj: ', obj);
     return obj;
+  }
+
+  closeModal(modalID: string) {
+    this.modalService.close(modalID);
+  }
+
+  executeOperation(delegateOperation: string) {
+    if (delegateOperation === 'closeModal') {
+      this.modalService.close(this.modalID);
+    }
   }
 }
 
