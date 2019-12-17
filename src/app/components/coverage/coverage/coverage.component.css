@@ -1,0 +1,12 @@
+.item-row-coverage {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.item-attribute-center {
+  text-align: center;
+}
+
+.item-attribute-justify {
+  text-align: justify;
+}

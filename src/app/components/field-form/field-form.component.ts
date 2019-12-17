@@ -39,9 +39,14 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   }
 
+  onChangeCheckbox(event) {
+    console.log('event: ', event);
+    console.log('value from form: ', this.form.controls[this.fieldObj.name].value);
+  }
+
   ngOnInit() {
     if (this.fieldObj.type === 'radio' || this.fieldObj.type === 'select'
-      || this.fieldObj.type === 'checkbox' || this.fieldObj.type === 'select-multiple'
+      || this.fieldObj.type === 'checkbox-n' || this.fieldObj.type === 'select-multiple'
       || this.fieldObj.type === 'autocomplete') {
       this.getOptions();
     }
@@ -78,10 +83,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
 
     if (this.fieldObj.disable) {
+      // to disable the field
       this.form.controls[this.fieldObj.name].disable();
-      // console.log('this.disable: ', this.disable);
+      // to change the background color of the field
       this.disable = this.checkState();
-      // console.log('this.disable: ', this.disable);
       this.form.controls[this.fieldObj.name].valueChanges.subscribe(() => {
         this.disable = this.checkState();
         // console.log('this.disable: ', this.disable);
@@ -89,20 +94,78 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
 
     if (this.fieldObj.enableConditions) {
+      console.log('onEnableConditions...');
+      // console.log('fieldName: ', this.fieldObj.name);
       const dependedFields = this.applicationService.getDependedFields(this.fieldObj.enableConditions);
+      // console.log('dependedFields: ', dependedFields);
+      let status;
+
       dependedFields.forEach((dependedField) => {
+        console.log('dependedField: ', dependedField);
+
         this.form.controls[dependedField].valueChanges.subscribe((value) => {
-          this.disable = this.checkState2(this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form));
+
+          if (value) {
+            console.log('onValueChanges of ', dependedField);
+            console.log('value: ', value);
+            const resEval = this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form);
+            console.log('resEval: ', resEval);
+
+            if (resEval) {
+              console.log('here true');
+              this.form.controls[this.fieldObj.name].disable();
+              this.fieldObj.disable = true;
+              status = this.checkState();
+
+            } else {
+              console.log('here false');
+              this.form.controls[this.fieldObj.name].enable();
+              this.fieldObj.disable = false;
+              status = this.checkState();
+
+            }
+          }
+          /*this.disable = this.checkState2(this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form));
           console.log('disable2: ', this.disable);
           console.log('this.fieldObj.name: ', this.fieldObj.name);
           if (this.disable === true) {
             this.form.controls[this.fieldObj.name].disable();
           } else {
             this.form.controls[this.fieldObj.name].enable();
-          }
+          }*/
       });
       });
     }
+
+    /*if (this.fieldObj.enableConditions) {
+      console.log('onEnableConditions...');
+
+      const dependedFields = this.applicationService.getDependedFields(this.fieldObj.enableConditions);
+      console.log('dependedFields: ', dependedFields);
+
+      const result = this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form);
+      console.log('result: ', result);
+      if (result) {
+        this.form.controls[this.fieldObj.name].disable();
+      } else {
+        this.form.controls[this.fieldObj.name].enable();
+      }
+      this.disable = this.checkState();
+      console.log('disable: ', this.disable);
+
+      dependedFields.forEach((dependedField) => {
+        this.form.controls[dependedField].valueChanges.subscribe((value) => {
+          const result2 = this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form);
+          // console.log('result2: ', result2);
+          if (result2) {
+            this.form.controls[this.fieldObj.name].disable();
+          } else {
+            this.form.controls[this.fieldObj.name].enable();
+          }
+          this.disable = this.checkState();
+        });
+      });
+    }*/
 
     if (this.fieldObj.name === 'age' || this.fieldObj.name === 'ageS') {
       this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
@@ -215,10 +278,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
     // validar
     if (this.fieldObj.name === 'currency') {
-        // this.setFunds();
+      // this.setFunds();
     }
     if (this.fieldObj.name === 'assuredImport') {
-        // console.log('Entro assuredImport: ');
+      // console.log('Entro assuredImport: ');
     }
 
     if (value) {
@@ -392,7 +455,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   checkState() {
     const status = this.form.controls[this.fieldObj.name].status;
-    // console.log('state: ', status);
+    console.log('state: ', status);
     let result = false;
     if (status === 'DISABLED') {
       result = true;
@@ -413,7 +476,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     return result;
   }
 
-    calculateRFC() {
+  calculateRFC() {
     let apellidoPaterno;
     let apellidoMaterno;
     let nombre;
