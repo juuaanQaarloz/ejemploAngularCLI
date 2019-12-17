@@ -39,6 +39,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   onChangeCheckbox(event) {
     console.log('event: ', event);
+    console.log('value from form: ', this.form.controls[this.fieldObj.name].value);
   }
 
   ngOnInit() {
@@ -92,12 +93,14 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.enableConditions) {
       console.log('onEnableConditions...');
-      console.log('fieldName: ', this.fieldObj.name);
+      // console.log('fieldName: ', this.fieldObj.name);
       const dependedFields = this.applicationService.getDependedFields(this.fieldObj.enableConditions);
-      console.log('dependedFields: ', dependedFields);
+      // console.log('dependedFields: ', dependedFields);
       let status;
 
       dependedFields.forEach((dependedField) => {
+        console.log('dependedField: ', dependedField);
+
         this.form.controls[dependedField].valueChanges.subscribe((value) => {
 
           if (value) {
