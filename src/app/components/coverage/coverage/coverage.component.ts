@@ -14,8 +14,8 @@ export class CoverageComponent implements OnInit {
   title = 'Beneficios adicionales';
   columnsNames = [
     'Contratar',
-    'Descripción',
     'Detalle',
+    'Descripción',
   ];
   style = 'even-coverage';
   styleClass = 'item-row-coverage';

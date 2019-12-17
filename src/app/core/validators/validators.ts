@@ -732,7 +732,7 @@ export const validateFunds: ValidatorFn = (group: FormGroup): ValidationErrors |
   }
   total =   Number(fixedFunds) + Number(variableFunds) + Number(fixedRetirement) +
     Number(variableRetirement) + Number(fixedSaving) + Number(variableSaving);
-  console.log('total', Number(total));
+  // console.log('total', Number(total));
   if (total > 100) {
      return { invalidPlanImport: true};
   } else {

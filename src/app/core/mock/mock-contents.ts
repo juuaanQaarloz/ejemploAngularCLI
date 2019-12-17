@@ -21,7 +21,7 @@ import { DatosTelefonoSolicitante } from './mock-general-data/mock-telefono-soli
 import { FormasPago, FormasPagoAutorizo } from './mock-general-data/mock-formas-pago';
 import { PerfilTransaccionalNumero, PerfilTransaccionalMonto } from './mock-general-data/mock-perfil-transaccional';
 import { OtrosSeguros } from './mock-general-data/mock-other-insurance';
-import {COVERAGES_2} from './coverage/coverage';
+import {CoverageFieldsItem} from './coverage/coverage';
 
 export const MockFieldsContractorType: Field[] = [
   {
@@ -1272,7 +1272,7 @@ export const MockContentStep16Process1ContentSection2: Content[] = [
     description: '',
     contentType: 'table-coverage',
     // process?: Process;
-    fields: COVERAGES_2,
+    fields: CoverageFieldsItem,
     // operations?: Operation[];
     renderConditions: '',
     // ---pending---

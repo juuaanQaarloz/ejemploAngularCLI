@@ -86,7 +86,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       });
     }
 
-    /*if (this.fieldObj.enableConditions) {
+    if (this.fieldObj.enableConditions) {
       const dependedFields = this.applicationService.getDependedFields(this.fieldObj.enableConditions);
       dependedFields.forEach((dependedField) => {
         this.form.controls[dependedField].valueChanges.subscribe((value) => {
@@ -100,9 +100,9 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           }
       });
       });
-    }*/
+    }
 
-    if (this.fieldObj.enableConditions) {
+    /*if (this.fieldObj.enableConditions) {
       console.log('onEnableConditions...');
 
       const dependedFields = this.applicationService.getDependedFields(this.fieldObj.enableConditions);
@@ -120,20 +120,17 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
       dependedFields.forEach((dependedField) => {
         this.form.controls[dependedField].valueChanges.subscribe((value) => {
-          console.log('onValueChanges of ', dependedField);
-          console.log('value: ', value);
           const result2 = this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form);
-          console.log('result2: ', result2);
+          // console.log('result2: ', result2);
           if (result2) {
             this.form.controls[this.fieldObj.name].disable();
           } else {
             this.form.controls[this.fieldObj.name].enable();
           }
           this.disable = this.checkState();
-          console.log('disable2: ', this.disable);
         });
       });
-    }
+    }*/
 
     if (this.fieldObj.name === 'age' || this.fieldObj.name === 'ageS') {
       this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
@@ -223,10 +220,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
     // validar
     if (this.fieldObj.name === 'currency') {
-        // this.setFunds();
+      // this.setFunds();
     }
     if (this.fieldObj.name === 'assuredImport') {
-        // console.log('Entro assuredImport: ');
+      // console.log('Entro assuredImport: ');
     }
 
     if (value) {
@@ -424,7 +421,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     return result;
   }
 
-    calculateRFC() {
+  calculateRFC() {
     let apellidoPaterno;
     let apellidoMaterno;
     let nombre;

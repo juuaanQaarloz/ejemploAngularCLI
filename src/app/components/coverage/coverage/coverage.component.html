@@ -7,14 +7,14 @@
 
   <div *ngFor="let field of content.fields; let i = index;" [ngClass]="styleClass"
        [ngStyle]="{'background-color':  this.applicationService.determinateEvenOrOdd(i) ? '#E5F4FB': '#FFFFFF'}">
-    <div class="item-attribute" >
+    <div class="item-attribute-center">
       <app-field-form [fieldObj]="field" [form]="formGroup"></app-field-form>
     </div>
-    <div class="item-attribute" >
-      <p>{{field.label}}</p>
-    </div>
-    <div class="item-attribute" >
+    <div class="item-attribute-center">
       <p>{{field.placeholder}}</p>
+    </div>
+    <div class="item-attribute-justify">
+      <p>{{field.label}}</p>
     </div>
   </div>
 </div>
