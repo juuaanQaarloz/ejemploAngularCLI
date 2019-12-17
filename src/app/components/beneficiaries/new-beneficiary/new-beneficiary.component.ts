@@ -68,6 +68,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.formGroup = this.applicationService.createNewFormGroup(this.content.fields);
+
     if (this.config.data !== null) {
       this.operationType = 'edit';
       this.beneficiaryType = this.config.data.item.beneficiaryType;
@@ -83,7 +84,6 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
     this.formGroup.controls.beneficiaryType.valueChanges.subscribe((value) => {
       this.beneficiaryType = value;
       this.fields = this.getFields();
-      // console.log('new beneficiary fields: ', this.fields);
     });
   }
 
