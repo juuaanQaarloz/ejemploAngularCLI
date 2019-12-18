@@ -118,11 +118,15 @@ export class BeneficiaryTableComponent implements OnInit {
       this.itemsType = 'agent';
       this.style = 'even-agent';
       this.showplus = true;
-
+      let tamanio = 0;
       this.applicationService.agents.subscribe((value) => {
         this.items = value;
         this.totalPercentageParticipation = this.applicationService.getTotalParticipationPercentage('agent');
+        tamanio = value.length;
       });
+      if (tamanio === 0 ) {
+        this.applicationService.getAgentItemUser();
+      }
     } else if (this.type === 'table-sports') {
       this.title = 'Deporte(s) / Actividad(es)';
       this.columnsNames = ['Deporte / Actividad', 'Frecuencia', 'Describir otra actividad'];

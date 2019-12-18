@@ -28,8 +28,7 @@ export const CoverageFieldsItem: Field[] = [
     enableConditions: '(ageS>=18,&,ageS<=55)',
     entity: '',
     entityField: '',
-    value: false,
-    disable: true
+    value: false
   }, {
     id: 'field-90002',
     idHtml: 'check1Pasi',
