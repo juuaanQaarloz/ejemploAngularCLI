@@ -47,7 +47,7 @@ export class NewAgentComponent implements OnInit {
   formGroup: FormGroup;
   operationType: string;
   modalID = 'modal-warning1';
-  modalMessage = 'La suma de las participaciones de los agentes excede el 100%';
+  modalMessage;
   showFormError = false;
   formMsgError = FORM_MSG_ERROR;
 
@@ -89,6 +89,7 @@ export class NewAgentComponent implements OnInit {
   }
 
   addNewAgent() {
+    console.log('addNewAgent');
     const formStatus = this.getFormStatus();
     if (formStatus === 'VALID') {
       const newAgent = this.mapNewAgentData();
@@ -113,7 +114,6 @@ export class NewAgentComponent implements OnInit {
       key: this.formGroup.controls.agentKey.value,
       participation: this.formGroup.controls.agentParticipation.value
     };
-
     return newMappedAgent;
   }
 
@@ -141,10 +141,13 @@ export class NewAgentComponent implements OnInit {
     const formStatus = this.getFormStatus();
     if (formStatus === 'VALID') {
       const updatedAgent = this.mapAgentData();
-      this.applicationService.updateItem(updatedAgent, 'agent');
-      this.closeDialog();
-    } else {
-      this.showFormError = true;
+      const response = this.applicationService.updateItem(updatedAgent, 'agent');
+      if (response.status) {
+        this.closeDialog();
+      } else {
+        this.modalMessage = response.message;
+        this.modalService.open(this.modalID);
+      }
     }
   }
 
@@ -156,7 +159,6 @@ export class NewAgentComponent implements OnInit {
       key: this.formGroup.controls.agentKey.value,
       participation: this.formGroup.controls.agentParticipation.value
     };
-
     return mappedAgent;
   }
 

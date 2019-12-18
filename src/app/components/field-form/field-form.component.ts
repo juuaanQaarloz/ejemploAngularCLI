@@ -8,6 +8,9 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {calculateRFC, correctFieldValue, stringToRegExp, transformDate} from '../../core/utilities';
 import {SepomexObj} from '../../models/sepomex-obj';
 import {Pattern} from '../../models/pattern/pattern';
+import {DialogRef} from "../dialog/dialog-ref";
+import {ModalService} from "../custom-modal";
+import {Operation} from "../../models";
 
 @Component({
   selector: 'app-field-form',
@@ -31,10 +34,28 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   regExpPattern;
   regnNoAllowedCharactersExpPattern;
   loading = true;
+  modalID = 'modal-warning1';
+  modalMessage = 'La suma de las participaciones de los agentes excede el 100%';
+
+  okOperation: Operation = {
+    id: 'opt-1',
+    idHtml: 'btnOK',
+    name: 'OK',
+    label: 'OK',
+    type: 'button',
+    style: '',
+    styleClass: 'ml-button-primary',
+    message: '',
+    messageClass: '',
+    delegateOperation: 'closeModal',
+    renderConditions: '',
+    enableConditions: ''
+  };
 
   constructor(private applicationService: ApplicationService,
               private matIconRegistry: MatIconRegistry,
-              private domSanitizer: DomSanitizer) {
+              private domSanitizer: DomSanitizer,
+              private modalService: ModalService) {
     this.registerCustomIcons();
 
   }
@@ -321,6 +342,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   onBlur() {
     // console.log('onBlur...');
+    console.log(this.fieldObj.name);
+    let valid = true;
     if (this.fieldObj.name === 'zipCode' || this.fieldObj.name === 'zipCodeS' || this.fieldObj.name === 'zipCodeM') {
       const zipCode = this.form.controls[this.fieldObj.name].value;
       // console.log('zipCode: ', zipCode);
@@ -332,9 +355,29 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           }
         });
       }
+    } else if ( this.fieldObj.name === 'agentParticipationI') {
+      this.item.participation = this.form.controls[this.fieldObj.name].value;
+      if (!this.item.participation || Number(this.item.participation) === 0) {
+        this.fieldObj.valid = false;
+        valid = false;
+        this.fieldObj.message = 'La participación no puede ser 0';
+      } else if ( this.form.controls[this.fieldObj.name].value != null ) {
+        const response = this.applicationService.updateItem(this.item, 'agent');
+        if (response.status === false) {
+          this.modalMessage = response.message;
+          this.modalService.open(this.modalID);
+        }
+      }
+    } else if ( this.fieldObj.name === 'agentParticipation') {
+      if (!this.form.controls[this.fieldObj.name].value || Number(this.form.controls[this.fieldObj.name].value) === 0) {
+        this.fieldObj.valid = false;
+        valid = false;
+        this.fieldObj.message = 'La participación no puede ser 0';
+      }
     }
-
-    this.isValid();
+    if (valid) {
+      this.isValid();
+    }
   }
 
   onValidate(event) {
@@ -591,6 +634,16 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       this.setValueField('fixedRetirement', 'txtFixedRetirement', 0);
       this.setValueField('variableSaving', 'txtVariableSaving', 0);
       this.setValueField('variableRetirement', 'txtVariableRetirement', 0);
+    }
+  }
+
+  closeModal(modalID: string) {
+    this.modalService.close(modalID);
+  }
+
+  executeOperation(delegateOperation: string) {
+    if (delegateOperation === 'closeModal') {
+      this.modalService.close(this.modalID);
     }
   }
 }
