@@ -57,6 +57,7 @@ export class NewAgentComponent implements OnInit {
               private modalService: ModalService) { }
 
   ngOnInit() {
+
     this.formGroup = this.applicationService.createNewFormGroup(this.content.fields);
     if (this.config.data !== null) {
       this.operationType = 'edit';
@@ -93,6 +94,7 @@ export class NewAgentComponent implements OnInit {
     if (formStatus === 'VALID') {
       const newAgent = this.mapNewAgentData();
       const response = this.applicationService.addItem(newAgent, 'agent');
+
       if (response.status) {
         this.closeDialog();
       } else {
@@ -157,7 +159,6 @@ export class NewAgentComponent implements OnInit {
       key: this.formGroup.controls.agentKey.value,
       participation: this.formGroup.controls.agentParticipation.value
     };
-
     return mappedAgent;
   }
 

@@ -342,14 +342,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       if (!this.item.participation || Number(this.item.participation) === 0) {
         this.fieldObj.valid = false;
         valid = false;
-        this.fieldObj.message = 'La participacion no puede ser 0';
+        this.fieldObj.message = 'La participación no puede ser 0';
       } else if ( this.form.controls[this.fieldObj.name].value != null ) {
         const response = this.applicationService.updateItem(this.item, 'agent');
         if (response.status === false) {
-
-          console.log(response.status);
-          console.log(response.message);
-
           this.modalMessage = response.message;
           this.modalService.open(this.modalID);
         }
@@ -358,7 +354,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       if (!this.form.controls[this.fieldObj.name].value || Number(this.form.controls[this.fieldObj.name].value) === 0) {
         this.fieldObj.valid = false;
         valid = false;
-        this.fieldObj.message = 'La participacion no puede ser 0';
+        this.fieldObj.message = 'La participación no puede ser 0';
       }
     }
     if (valid) {

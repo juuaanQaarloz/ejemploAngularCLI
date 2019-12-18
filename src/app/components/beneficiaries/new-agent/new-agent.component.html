@@ -6,7 +6,7 @@
       {{formMsgError}} </span>
     </div>
 
-    <p class="content-title"> Datos del Agente</p>
+    <p class="content-title"> Datos del Agente </p>
     <div data-forms="floating-label" class="ml-form"
          [ngClass]="content.styleClass">
       <div *ngFor="let field of content.fields">
@@ -19,10 +19,10 @@
     <app-operation-form [operationObj]="content.operations[0]"
                         (click)="executeOperation(content.operations[0].delegateOperation)">
     </app-operation-form>
-    <app-operation-form *ngIf="operationType === 'add' && validForm(content.fields, formGroup)" [operationObj]="content.operations[1]"
+    <app-operation-form *ngIf="operationType === 'add'" [operationObj]="content.operations[1]"
                         (click)="executeOperation(content.operations[1].delegateOperation)">
     </app-operation-form>
-    <app-operation-form *ngIf="operationType === 'edit' && validForm(content.fields, formGroup)" [operationObj]="content.operations[2]"
+    <app-operation-form *ngIf="operationType === 'edit'" [operationObj]="content.operations[2]"
                         (click)="executeOperation(content.operations[2].delegateOperation)">
     </app-operation-form>
 

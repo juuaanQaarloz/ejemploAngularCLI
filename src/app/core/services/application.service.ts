@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders } from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';
 import {Beneficiary, Formatwo, Field, Occupation, Step} from '../../models';
 import { Agent } from '../../models/agent-model/agent';
-import {equalEmailsValidator, higherAssuredImport, validateEmailConfirmation, validatorsObjects} from '../validators';
+import {equalEmailsValidator, higherAssuredImport, validateEmailConfirmation, validatorsObjects, validateFunds} from '../validators';
 import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
 import {COVERAGES} from '../mock/coverage/coverage';
@@ -111,6 +111,7 @@ export class ApplicationService {
       } else if (currentStep === 19) {
         this.changeValue(20);
       } else if (currentStep === 20) {
+        // aqui validacion
         this.changeValue(21);
       }
 
