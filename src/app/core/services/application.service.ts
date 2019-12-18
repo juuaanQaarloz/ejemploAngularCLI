@@ -564,8 +564,8 @@ export class ApplicationService {
   }
 
   transformElementCondition(type, elementConditionValue) {
-    console.log('type: ', type);
-    console.log('elementConditionValue: ', elementConditionValue);
+    // console.log('type: ', type);
+    // console.log('elementConditionValue: ', elementConditionValue);
     let transformedValue;
 
     if (type === 'string') {
@@ -595,8 +595,8 @@ export class ApplicationService {
       conditionExpectedValue = this.transformElementCondition(typeOfValueFormControl, conditionExpectedValue);
     }
 
-    console.log('valueFormControl: ', valueFormControl);
-    console.log('conditionExpectedValue: ', conditionExpectedValue);
+    // console.log('valueFormControl: ', valueFormControl);
+    // console.log('conditionExpectedValue: ', conditionExpectedValue);
 
     let result = false;
 
@@ -652,7 +652,7 @@ export class ApplicationService {
         break;
     }
 
-    console.log('result*: ', result);
+    // console.log('result*: ', result);
 
     return result;
   }
@@ -818,13 +818,13 @@ export class ApplicationService {
 
         // for one single operation
         const z = sAsString.split(',');
-        console.log('z: ', z);
+        // console.log('z: ', z);
 
         if (z.length === 1) {
           const conditionsZ = this.getConditions(z[0]);
-          console.log('conditionsZ: ', conditionsZ);
+          // console.log('conditionsZ: ', conditionsZ);
           const resEvalZ = this.evaluateCondition(formGroup, conditionsZ[0]);
-          console.log('resEvalZ: ', resEvalZ);
+          // console.log('resEvalZ: ', resEvalZ);
           arr.push(resEvalZ);
         } else if (z.length > 1) { // for AND and OR operation (more than one operation)
           const a = z[0];
@@ -916,17 +916,29 @@ export class ApplicationService {
   }
 
   evaluateCoverageBehaviour(params, actualValue?) {
-    console.log('actualValue: ', actualValue);
-    console.log('params');
-    let paramsArray = params.split(',');
-    console.log('paramsArray: ', paramsArray);
-    let rangeAge = paramsArray[0].split('-');
-    console.log('rangeAge: ', rangeAge);
-    let minAge = rangeAge[0];
-    console.log('minAges: ', minAge);
-    let maxAge = rangeAge[1];
-    console.log('maxAge: ', maxAge);
-    let exCoverages = paramsArray[1].split('-');
-    console.log('exCoverage: ', exCoverages);
+    let exCoverages = params.split(',');
+    let status;
+
+    if (actualValue !== undefined) {
+      if (actualValue) {
+        // disable the exCoverages
+        exCoverages.forEach((covName) => {
+          status = this.formGroup.controls[covName].status;
+          console.log('status: ', status);
+          if (status === 'VALID') {
+            this.formGroup.controls[covName].disable();
+          }
+
+        });
+      } else {
+        // enable the exCoverages
+        exCoverages.forEach((covName) => {
+          status = this.formGroup.controls[covName].status;
+          if (status === 'DISABLED') {
+            this.formGroup.controls[covName].enable();
+          }
+        });
+      }
+    }
   }
 }

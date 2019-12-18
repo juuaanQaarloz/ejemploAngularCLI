@@ -158,7 +158,9 @@
       <input type="checkbox" [formControlName]="fieldObj.name"
              [id]="fieldObj.name + '-checkbox'"
              [name]="fieldObj.name"
-             [value]="fieldObj.value">
+             [value]="fieldObj.value"
+             (change)="onCheckboxChange()"
+      >
 
       <label [for]="fieldObj.name + '-checkbox'"></label>
     </div>

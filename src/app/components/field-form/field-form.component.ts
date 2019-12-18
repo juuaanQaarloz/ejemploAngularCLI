@@ -132,9 +132,18 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       });
     }
 
-    if (this.fieldObj.detonateFunctionParams) {
-      this.applicationService.evaluateCoverageBehaviour(this.fieldObj.detonateFunctionParams);
-    }
+    /*if (this.fieldObj.detonateFunctionParams) {
+      console.log('onDetonateFunctionParams');
+      if (this.fieldObj.value) {
+        console.log('this.fieldObj.value: ', this.fieldObj.value);
+        // this.applicationService.evaluateCoverageBehaviour(this.fieldObj.detonateFunctionParams, this.fieldObj.value);
+      }
+      this.form.controls[this.fieldObj.name].valueChanges.subscribe((value => {
+        console.log('onValueChanges of: ', this.fieldObj.name);
+        console.log('value: ', value);
+        this.applicationService.evaluateCoverageBehaviour(this.fieldObj.detonateFunctionParams, value);
+      }));
+    }*/
 
     /*if (this.fieldObj.enableConditions) {
       console.log('onEnableConditions...');
@@ -233,6 +242,14 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
   }
 
+  onCheckboxChange() {
+    console.log('onCheckboxChange...');
+    if (this.fieldObj.detonateFunctionParams) {
+      this.applicationService.evaluateCoverageBehaviour(
+        this.fieldObj.detonateFunctionParams,
+        this.form.controls[this.fieldObj.name].value);
+    }
+  }
   onKeyUp(event) {
     // console.log('onKeyUp event: ', event);
     let value;
