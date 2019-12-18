@@ -148,7 +148,6 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
     disable: true
   },
   {

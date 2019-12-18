@@ -10,6 +10,7 @@ import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
 import {COVERAGES} from '../mock/coverage/coverage';
 import {BENEFICIARIES} from '../mock/mock-beneficiaries/mock-beneficiaries';
+import {placeholdersToParams} from '@angular/compiler/src/render3/view/i18n/util';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
@@ -566,28 +567,59 @@ export class ApplicationService {
     return result;
   }
 
+  transformElementCondition(type, elementConditionValue) {
+    // console.log('type: ', type);
+    // console.log('elementConditionValue: ', elementConditionValue);
+    let transformedValue;
+
+    if (type === 'string') {
+      transformedValue = elementConditionValue.toString();
+    } else if (type === 'number') {
+      transformedValue = Number(elementConditionValue);
+    } else if (type === 'boolean') {
+      transformedValue = Boolean(JSON.parse(elementConditionValue));
+    } else {
+      transformedValue = elementConditionValue;
+    }
+
+    return transformedValue;
+  }
+
   evaluateCondition(formGroup: FormGroup, elementsCondition) {
-    const valueFormControl = this.getFormControlValueByName(formGroup, elementsCondition[1]);
+    const formControlName = elementsCondition[1];
+    const simbolCondition = elementsCondition[2];
+    let conditionExpectedValue = elementsCondition[3];
+
+    const valueFormControl = this.getFormControlValueByName(formGroup, formControlName);
+
+    const typeOfValueFormControl = typeof valueFormControl;
+    const typeOfConditionExpectedValue = typeof conditionExpectedValue;
+
+    if (typeOfValueFormControl !== typeOfConditionExpectedValue) {
+      conditionExpectedValue = this.transformElementCondition(typeOfValueFormControl, conditionExpectedValue);
+    }
+
+    // console.log('valueFormControl: ', valueFormControl);
+    // console.log('conditionExpectedValue: ', conditionExpectedValue);
+
     let result = false;
 
     if (valueFormControl) {
       result = false;
     }
 
-    // console.log('valueFormControl: ', valueFormControl);
-
-    switch (elementsCondition[2]) {
+    switch (simbolCondition) {
       case '=':
-        if (elementsCondition[3] === 'false') {
+        if (conditionExpectedValue === 'false') {
           if (valueFormControl === false) {
             result = true;
           }
-        } else if (elementsCondition[3] === 'true') {
+        } else if (conditionExpectedValue === 'true') {
           if (valueFormControl === true) {
             result = true;
           }
         } else {
-          if (valueFormControl === elementsCondition[3]) {
+          if (valueFormControl === conditionExpectedValue) {
             // console.log('case = ', elementsCondition[3]);
             result = true;
           }
@@ -595,27 +627,27 @@ export class ApplicationService {
         break;
 
       case '<':
-        if (valueFormControl < elementsCondition[3]) {
+        if (valueFormControl < conditionExpectedValue) {
           result = true;
         }
         break;
       case '>':
-        if (valueFormControl > elementsCondition[3]) {
+        if (valueFormControl > conditionExpectedValue) {
           result = true;
         }
         break;
       case '<=':
-        if (valueFormControl <= elementsCondition[3]) {
+        if (valueFormControl <= conditionExpectedValue) {
           result = true;
         }
         break;
       case '>=':
-        if (valueFormControl >= elementsCondition[3]) {
+        if (valueFormControl >= conditionExpectedValue) {
           result = true;
         }
         break;
       case '!=':
-        if (valueFormControl !== elementsCondition[3]) {
+        if (valueFormControl !== conditionExpectedValue) {
           result = true;
         }
         break;
@@ -624,7 +656,7 @@ export class ApplicationService {
         break;
     }
 
-    // console.log('result: ', result);
+    // console.log('result*: ', result);
 
     return result;
   }
@@ -795,6 +827,7 @@ export class ApplicationService {
 
         if (z.length === 1) {
           const conditionsZ = this.getConditions(z[0]);
+          // console.log('conditionsZ: ', conditionsZ);
           const resEvalZ = this.evaluateCondition(formGroup, conditionsZ[0]);
           // console.log('resEvalZ: ', resEvalZ);
           arr.push(resEvalZ);
@@ -884,6 +917,33 @@ export class ApplicationService {
       }
     } else {
       return null;
+    }
+  }
+
+  evaluateCoverageBehaviour(params, actualValue?) {
+    let exCoverages = params.split(',');
+    let status;
+
+    if (actualValue !== undefined) {
+      if (actualValue) {
+        // disable the exCoverages
+        exCoverages.forEach((covName) => {
+          status = this.formGroup.controls[covName].status;
+          console.log('status: ', status);
+          if (status === 'VALID') {
+            this.formGroup.controls[covName].disable();
+          }
+
+        });
+      } else {
+        // enable the exCoverages
+        exCoverages.forEach((covName) => {
+          status = this.formGroup.controls[covName].status;
+          if (status === 'DISABLED') {
+            this.formGroup.controls[covName].enable();
+          }
+        });
+      }
     }
   }
 

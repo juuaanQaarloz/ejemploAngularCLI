@@ -39,12 +39,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   }
 
-  onChangeCheckbox(event) {
-    console.log('event: ', event);
-    console.log('value from form: ', this.form.controls[this.fieldObj.name].value);
-  }
-
   ngOnInit() {
+
     if (this.fieldObj.type === 'radio' || this.fieldObj.type === 'select'
       || this.fieldObj.type === 'checkbox-n' || this.fieldObj.type === 'select-multiple'
       || this.fieldObj.type === 'autocomplete') {
@@ -95,32 +91,33 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.enableConditions) {
       console.log('onEnableConditions...');
-      // console.log('fieldName: ', this.fieldObj.name);
+      console.log('fieldName: ', this.fieldObj.name);
       const dependedFields = this.applicationService.getDependedFields(this.fieldObj.enableConditions);
-      // console.log('dependedFields: ', dependedFields);
+      console.log('dependedFields: ', dependedFields);
       let status;
 
       dependedFields.forEach((dependedField) => {
-        console.log('dependedField: ', dependedField);
-
         this.form.controls[dependedField].valueChanges.subscribe((value) => {
+          /*console.log('value: ', value);
+          console.log('type of value: ', typeof value);
+          console.log('length value: ', value.length);*/
 
-          if (value) {
+          if (value !== '') {
             console.log('onValueChanges of ', dependedField);
-            console.log('value: ', value);
+            console.log('field name control: ', this.fieldObj.name);
             const resEval = this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form);
             console.log('resEval: ', resEval);
 
             if (resEval) {
               console.log('here true');
-              this.form.controls[this.fieldObj.name].disable();
-              this.fieldObj.disable = true;
+              this.form.controls[this.fieldObj.name].enable();
+              this.fieldObj.disable = false;
               status = this.checkState();
 
             } else {
               console.log('here false');
-              this.form.controls[this.fieldObj.name].enable();
-              this.fieldObj.disable = false;
+              this.form.controls[this.fieldObj.name].disable();
+              this.fieldObj.disable = true;
               status = this.checkState();
 
             }
@@ -133,9 +130,22 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           } else {
             this.form.controls[this.fieldObj.name].enable();
           }*/
-      });
+        });
       });
     }
+
+    /*if (this.fieldObj.detonateFunctionParams) {
+      console.log('onDetonateFunctionParams');
+      if (this.fieldObj.value) {
+        console.log('this.fieldObj.value: ', this.fieldObj.value);
+        // this.applicationService.evaluateCoverageBehaviour(this.fieldObj.detonateFunctionParams, this.fieldObj.value);
+      }
+      this.form.controls[this.fieldObj.name].valueChanges.subscribe((value => {
+        console.log('onValueChanges of: ', this.fieldObj.name);
+        console.log('value: ', value);
+        this.applicationService.evaluateCoverageBehaviour(this.fieldObj.detonateFunctionParams, value);
+      }));
+    }*/
 
     /*if (this.fieldObj.enableConditions) {
       console.log('onEnableConditions...');
@@ -259,6 +269,14 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
   }
 
+  onCheckboxChange() {
+    console.log('onCheckboxChange...');
+    if (this.fieldObj.detonateFunctionParams) {
+      this.applicationService.evaluateCoverageBehaviour(
+        this.fieldObj.detonateFunctionParams,
+        this.form.controls[this.fieldObj.name].value);
+    }
+  }
   onKeyUp(event) {
     // console.log('onKeyUp event: ', event);
     let value;
