@@ -24,7 +24,7 @@ const URL_AGENT_CATALOG = '../assets/catalogs/agents-catalogs.json';
 export class ApplicationService {
   private currentStepSource = new BehaviorSubject(0);
   currentValue = this.currentStepSource.asObservable();
-  beneficiaries = new BehaviorSubject(BENEFICIARIES);
+  beneficiaries = new BehaviorSubject([]);
   agents = new BehaviorSubject([]);
   sports = new BehaviorSubject([]);
   diseases = new BehaviorSubject([]);
@@ -841,6 +841,7 @@ export class ApplicationService {
         // for one single operation
         const z = sAsString.split(',');
         // console.log('z: ', z);
+
         if (z.length === 1) {
           const conditionsZ = this.getConditions(z[0]);
           const resEvalZ = this.evaluateCondition(formGroup, conditionsZ[0]);

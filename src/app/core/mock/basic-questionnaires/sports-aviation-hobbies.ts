@@ -131,7 +131,7 @@ export const sportQuestions2: Field[] = [
     name: 'extremeSportsQuestion',
     orderAppearance: 1,
     label: '3. En más de 5 veces al año, ' +
-      '¿Prácticas automovilismo, vuelos no motorizados ( paracaidismo, ala delta, vuelo sin motor), ' +
+      '¿Practicas automovilismo, vuelos no motorizados (paracaidismo, ala delta, vuelo sin motor), ' +
       'o practicas caza, equitación, buceo, montañismo, lancha de motor, esquí de nieve, esquí acuático, ' +
       'corrida de toros o cherrería o algún otro deporte o afición de alto riesgo o deportes externos?',
     type: 'radio',

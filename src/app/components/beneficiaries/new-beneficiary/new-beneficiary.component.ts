@@ -67,7 +67,6 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-
     this.formGroup = this.applicationService.createNewFormGroup(this.content.fields);
 
     if (this.config.data !== null) {
@@ -76,13 +75,12 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
       this.fields = this.getFields();
       this.setBeneficiaryValues();
+
     } else {
       this.operationType = 'add';
       this.beneficiaryType = 'phyPerson';
-
       this.fields = this.getFields();
     }
-
     this.formGroup.controls.beneficiaryType.valueChanges.subscribe((value) => {
       this.beneficiaryType = value;
       this.fields = this.getFields();
