@@ -128,4 +128,5 @@ export class ApplicationComponent implements OnInit {
       console.log('invalidEmailConfirmation: ', this.errors.invalidEmailConfirmation);
     }
   }
+
 }

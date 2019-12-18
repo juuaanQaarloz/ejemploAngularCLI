@@ -232,7 +232,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
-    enableConditions: '(economicSector=OTRO)',
+    enableConditions: '(economicSector=O)',
     entity: '',
     entityField: '',
     value: '',
