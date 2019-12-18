@@ -142,7 +142,6 @@ export const DatosGeneralesSolicitante: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '',
     disable: true
   },
   {

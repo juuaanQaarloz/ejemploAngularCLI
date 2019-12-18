@@ -37,12 +37,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   }
 
-  onChangeCheckbox(event) {
-    console.log('event: ', event);
-    console.log('value from form: ', this.form.controls[this.fieldObj.name].value);
-  }
-
   ngOnInit() {
+
     if (this.fieldObj.type === 'radio' || this.fieldObj.type === 'select'
       || this.fieldObj.type === 'checkbox-n' || this.fieldObj.type === 'select-multiple'
       || this.fieldObj.type === 'autocomplete') {
@@ -93,19 +89,19 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.enableConditions) {
       console.log('onEnableConditions...');
-      // console.log('fieldName: ', this.fieldObj.name);
+      console.log('fieldName: ', this.fieldObj.name);
       const dependedFields = this.applicationService.getDependedFields(this.fieldObj.enableConditions);
-      // console.log('dependedFields: ', dependedFields);
       let status;
 
       dependedFields.forEach((dependedField) => {
-        console.log('dependedField: ', dependedField);
-
         this.form.controls[dependedField].valueChanges.subscribe((value) => {
+          /*console.log('value: ', value);
+          console.log('type of value: ', typeof value);
+          console.log('length value: ', value.length);*/
 
-          if (value) {
+          if (value !== '') {
             console.log('onValueChanges of ', dependedField);
-            console.log('value: ', value);
+            console.log('field name control: ', this.fieldObj.name);
             const resEval = this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form);
             console.log('resEval: ', resEval);
 
@@ -131,7 +127,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           } else {
             this.form.controls[this.fieldObj.name].enable();
           }*/
-      });
+        });
       });
     }
 
@@ -167,7 +163,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.name === 'age' || this.fieldObj.name === 'ageS') {
       this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
-        // console.log('onValueChange age: ', value);
+        console.log('onValueChange age: ', value);
         this.isValid(this.fieldObj.name);
       });
     }

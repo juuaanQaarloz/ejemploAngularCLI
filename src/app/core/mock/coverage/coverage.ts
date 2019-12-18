@@ -27,7 +27,8 @@ export const CoverageFieldsItem: Field[] = [
     renderConditions: '',
     enableConditions: '(ageS<18,|,ageS>55)',
     entity: '',
-    entityField: ''
+    entityField: '',
+    value: false
     // disable: true
   }, {
     id: 'field-90002',
@@ -54,7 +55,8 @@ export const CoverageFieldsItem: Field[] = [
     renderConditions: '',
     enableConditions: '(ageS<18,|,ageS>55)',
     entity: '',
-    entityField: ''
+    entityField: '',
+    value: false
   },
   {
     id: 'field-90003',
@@ -81,7 +83,8 @@ export const CoverageFieldsItem: Field[] = [
     renderConditions: '',
     enableConditions: '((ageS<18,|,ageS>65),|,(imapo=true),|,(dimapo=true))',
     entity: '',
-    entityField: ''
+    entityField: '',
+    value: false
   },
   {
     id: 'field-90004',
@@ -108,7 +111,8 @@ export const CoverageFieldsItem: Field[] = [
     renderConditions: '',
     enableConditions: '((ageS<18,|,ageS>65),|,(ima=true),|,(dimapo=true))',
     entity: '',
-    entityField: ''
+    entityField: '',
+    value: false
   },
   {
     id: 'field-90005',
@@ -135,7 +139,8 @@ export const CoverageFieldsItem: Field[] = [
     renderConditions: '',
     enableConditions: '((ageS<18,|,ageS>65),|,(ima=true),|,(imapo=true))',
     entity: '',
-    entityField: ''
+    entityField: '',
+    value: false
   },
   {
     id: 'field-90007',
@@ -162,7 +167,8 @@ export const CoverageFieldsItem: Field[] = [
     renderConditions: '',
     enableConditions: '(ageS<20,|,ageS>60)',
     entity: '',
-    entityField: ''
+    entityField: '',
+    value: false
   },
   {
     id: 'field-90008',
