@@ -91,6 +91,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       console.log('onEnableConditions...');
       console.log('fieldName: ', this.fieldObj.name);
       const dependedFields = this.applicationService.getDependedFields(this.fieldObj.enableConditions);
+      console.log('dependedFields: ', dependedFields);
       let status;
 
       dependedFields.forEach((dependedField) => {
@@ -107,14 +108,14 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
             if (resEval) {
               console.log('here true');
-              this.form.controls[this.fieldObj.name].disable();
-              this.fieldObj.disable = true;
+              this.form.controls[this.fieldObj.name].enable();
+              this.fieldObj.disable = false;
               status = this.checkState();
 
             } else {
               console.log('here false');
-              this.form.controls[this.fieldObj.name].enable();
-              this.fieldObj.disable = false;
+              this.form.controls[this.fieldObj.name].disable();
+              this.fieldObj.disable = true;
               status = this.checkState();
 
             }
@@ -129,6 +130,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           }*/
         });
       });
+    }
+
+    if (this.fieldObj.detonateFunctionParams) {
+      this.applicationService.evaluateCoverageBehaviour(this.fieldObj.detonateFunctionParams);
     }
 
     /*if (this.fieldObj.enableConditions) {

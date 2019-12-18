@@ -35,5 +35,7 @@ export interface Field {
   valid?: boolean;
   noAllowedCharactersPattern?: string;
   detonateFunction?: string;
+  // this is a temporary solution for the coverages
+  detonateFunctionParams?: string;
   // --------------------------
 }

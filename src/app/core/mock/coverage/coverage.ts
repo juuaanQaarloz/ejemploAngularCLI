@@ -25,11 +25,11 @@ export const CoverageFieldsItem: Field[] = [
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
-    enableConditions: '(ageS<18,|,ageS>55)',
+    enableConditions: '(ageS>=18,&,ageS<=55)',
     entity: '',
     entityField: '',
-    value: false
-    // disable: true
+    value: false,
+    disable: true
   }, {
     id: 'field-90002',
     idHtml: 'check1Pasi',
@@ -53,7 +53,7 @@ export const CoverageFieldsItem: Field[] = [
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
-    enableConditions: '(ageS<18,|,ageS>55)',
+    enableConditions: '(ageS>=18,&,ageS<=55)',
     entity: '',
     entityField: '',
     value: false
@@ -81,10 +81,12 @@ export const CoverageFieldsItem: Field[] = [
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
-    enableConditions: '((ageS<18,|,ageS>65),|,(imapo=true),|,(dimapo=true))',
+    // enableConditions: '((ageS>=18,&,ageS<=65),|,(imapo=false),|,(dimapo=false))',
+    enableConditions: '',
     entity: '',
     entityField: '',
-    value: false
+    value: false,
+    detonateFunctionParams: '18-65,imapo-dimapo'
   },
   {
     id: 'field-90004',
@@ -109,10 +111,12 @@ export const CoverageFieldsItem: Field[] = [
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
-    enableConditions: '((ageS<18,|,ageS>65),|,(ima=true),|,(dimapo=true))',
+    // enableConditions: '((ageS>=18,&,ageS<=65),|,(ima=true),|,(dimapo=true))',
+    enableConditions: '',
     entity: '',
     entityField: '',
-    value: false
+    value: false,
+    detonateFunctionParams: '18-65,ima-dimapo'
   },
   {
     id: 'field-90005',
@@ -137,10 +141,12 @@ export const CoverageFieldsItem: Field[] = [
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
-    enableConditions: '((ageS<18,|,ageS>65),|,(ima=true),|,(imapo=true))',
+    // enableConditions: '((ageS>=18,&,ageS<=65),|,(ima=true),|,(imapo=true))',
+    enableConditions: '',
     entity: '',
     entityField: '',
-    value: false
+    value: false,
+    detonateFunctionParams: '18-65,ima-imapo'
   },
   {
     id: 'field-90007',
@@ -165,7 +171,7 @@ export const CoverageFieldsItem: Field[] = [
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
-    enableConditions: '(ageS<20,|,ageS>60)',
+    enableConditions: '((ageS>=18,&,ageS<=55))',
     entity: '',
     entityField: '',
     value: false
@@ -193,7 +199,7 @@ export const CoverageFieldsItem: Field[] = [
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
-    enableConditions: '(ageS<20,|,ageS>60)',
+    enableConditions: '(ageS>=20,&,ageS<=60)',
     entity: '',
     entityField: '',
     value: true,
