@@ -34,13 +34,13 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log('onAfterViewInit datepicker: ');
+    // console.log('onAfterViewInit datepicker: ');
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
     let value;
     if (this.fieldObj.value) {
       value = this.fieldObj.value;
       elem.setAttribute('value', value);
-      console.log('elem.getValue: ', elem.getAttribute('value'));
+      // console.log('elem.getValue: ', elem.getAttribute('value'));
 
     } else if (this.form.controls[this.fieldObj.name].value) {
       value = this.form.controls[this.fieldObj.name].value;
@@ -56,11 +56,15 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   }
 
   onDateChange(event) {
+    // console.log('onDateChange...');
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
-    const contractorType = this.form.controls.contractorType.value;
+    let contractorType;
 
-    // console.log('event.targetElement.value: ', event.targetElement.value);
-    // // console.log('type of event.targetElement.value: ', typeof event.targetElement.value);
+    // verify that contractorType exist in the form
+    if (this.form.get('contractorType')) {
+      contractorType = this.form.controls.contractorType.value;
+    }
+
     elem.setAttribute('value', event.targetElement.value);
 
     if (this.fieldObj.name === 'birthDate' || this.fieldObj.name === 'birthDateS' || this.fieldObj.name === 'formatwoBirthDate') {
@@ -68,15 +72,15 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
       // // console.log('edad: ', age);
       if (age) {
         if (this.fieldObj.name === 'birthDate') {
-          if (contractorType === true){
+          if (contractorType === true) {
             this.setAge('age', 'txtAge', age);
-           //  this.setAge2('ageS', 'txtAgeS', age);
+            //  this.setAge2('ageS', 'txtAgeS', age);
           } else {
             this.setAge('age', 'txtAge', age);
           }
         } else if (this.fieldObj.name === 'birthDateS') {
           this.setAge('ageS', 'txtAgeS', age);
-        }  else if (this.fieldObj.name === 'formatwoBirthDate') {
+        } else if (this.fieldObj.name === 'formatwoBirthDate') {
           this.setAge('formatwoAge', 'txtFormatwoAge', age);
         }
       }
