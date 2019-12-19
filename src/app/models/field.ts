@@ -37,5 +37,6 @@ export interface Field {
   detonateFunction?: string;
   // this is a temporary solution for the coverages
   detonateFunctionParams?: string;
+  legend?: string;
   // --------------------------
 }
