@@ -19,7 +19,7 @@ export class MenuComponent implements OnInit {
     // },
     {
       menuLabel: 'BÚSQUEDA',
-      redirectTo: ''
+      redirectTo: 'search'
     }
   ];
 
