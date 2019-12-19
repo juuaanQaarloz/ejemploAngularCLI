@@ -39,4 +39,7 @@ export interface Field {
   detonateFunctionParams?: string;
   legend?: string;
   // --------------------------
+  accept?: string;
+  file?: any;
+  button?: boolean;
 }

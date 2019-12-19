@@ -165,6 +165,37 @@
     </div>
   </fieldset>
 
+  <fieldset *ngSwitchCase="'file'" class="ml-button-primary"
+              [ngClass]="{'error': !fieldObj.valid}">
+    <div class="pull-left" style="text-align: right; width: 18%;">
+      <label class="ml-button-file">
+        <input [type]="'file'"
+               [formControlName]="fieldObj.name"
+               [id]="fieldObj.idHtml"
+               (change)="fileChange($event)"
+               placeholder="{{fieldObj.placeholder}}"
+               value=""
+               [required]="fieldObj.required"
+               [accept]="fieldObj.accept"
+               class="ml-button-file"
+               style='display: none;'>
+      </label>
+    </div>
+    <div class="pull-right" style="text-align: left; width: 82%;" *ngIf="!fieldObj.message">
+      <div style="margin-left: 6%; border: 1px solid gray; text-align: center; height: 42px; white-space: pre; text-overflow: ellipsis; overflow: hidden;">
+        {{fileName}}
+      </div>
+    </div>
+    <div class="pull-right" style="text-align: left; width: 82%;" *ngIf="fieldObj.message">
+      <div style="margin-left: 6%; border: 1px solid gray; text-align: center; height: 42px;">
+        <span class="ml-form-field-errortext" style="white-space: pre;">{{fieldObj.message}}</span>
+        <span style="width: 100%; margin-left: 5px;" type="text" disabled>{{fileName}}</span>
+      </div>
+    </div>
+  </fieldset>
+  <!--Input File-->
+
+
   <div *ngSwitchCase="'autocomplete'">
     <fieldset class="ml-form-field"
               [ngClass]="{'error': !fieldObj.valid}">

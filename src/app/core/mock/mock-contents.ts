@@ -22,6 +22,8 @@ import { FormasPago, FormasPagoAutorizo } from './mock-general-data/mock-formas-
 import { PerfilTransaccionalNumero, PerfilTransaccionalMonto } from './mock-general-data/mock-perfil-transaccional';
 import { OtrosSeguros } from './mock-general-data/mock-other-insurance';
 import {CoverageFieldsItem} from './coverage/coverage';
+// Documentos
+import { Documents } from './documents/documents'
 
 export const MockFieldsContractorType: Field[] = [
   {
@@ -1953,4 +1955,28 @@ export const MockContentStep21Process1ContentSection2: Content[] = [
     // styleClass: 'string',
     // --------------------------
   }*/
+];
+
+export const MockContentStep22Process1ContentSection2: Content[] = [
+  {
+    id: 'content-2.53',
+    idParent: 'step-22',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.53',
+    contentType: 'documents',
+    // description: 'Carga de documentos',
+    // process?: Process;
+    // fields: Documents,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    styleClass: 'modal-type'
+    // enableConditions?: 'string';
+    // --------------------------
+  }
 ];

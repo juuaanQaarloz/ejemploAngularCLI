@@ -55,6 +55,8 @@ import { CoverageComponent } from './components/coverage/coverage/coverage.compo
 import { SearchCriteriaComponent } from './components/search/search-criteria/search-criteria.component';
 import { SearchResultsComponent } from './components/search/search-results/search-results.component';
 import { SearchDetailComponent } from './components/search/search-detail/search-detail.component';
+import { DocumentsComponent } from './components/documents/documents.component';
+import { AppConstants } from './app.constants';
 
 // @ts-ignore
 @NgModule({
@@ -91,7 +93,9 @@ import { SearchDetailComponent } from './components/search/search-detail/search-
     NewPaymentComponent,
     AutocompleteComponent,
     ErrorBannerComponent,
-    CoverageComponent
+    CoverageComponent,
+    NewPaymentComponent,
+    DocumentsComponent
     ],
 
   imports: [
@@ -114,6 +118,7 @@ import { SearchDetailComponent } from './components/search/search-detail/search-
   entryComponents: [NewBeneficiaryComponent, NewFormatwoComponent, NewAgentComponent, NewCountryComponent,
     NewPaymentComponent, NewRowComponent],
   providers: [
+    AppConstants,
     { provide: DateAdapter, useClass: MyDateAdapter},
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS}
     ]

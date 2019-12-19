@@ -114,6 +114,8 @@ export class ApplicationService {
       } else if (currentStep === 20) {
         // aqui validacion
         this.changeValue(21);
+      } else if (currentStep === 21) {
+        this.changeValue(22);
       }
 
       // console.log('currentStep2: ', this.currentStepSource.getValue());
@@ -318,6 +320,10 @@ export class ApplicationService {
       currentItems = this.sports.getValue();
       maxLength = 5;
       responseMessage1 = 'No se pueden agregar más de 5 deportes / actividades';
+    } else if (itemType === 'document') {
+      // currentItems = this.documents.getValue();
+      console.log('currentItems');
+      console.log(currentItems);
     }
 
     if (currentTotalParticipationPercentage !== undefined) {
@@ -387,6 +393,12 @@ export class ApplicationService {
     } else if (itemType === 'payment') {
       currentItems = this.payments.getValue();
       propertyName = 'paymentId';
+    } else if (itemType === 'document') {
+      // currentItems = this.documents.getValue();
+      currentItems = [];
+      propertyName = 'documentId';
+      console.log('currentItems');
+      console.log(currentItems);
     }
     currentItems = currentItems.filter(item => item[propertyName] !== itemId);
     // console.log('currentItems: ', currentItems);
@@ -426,6 +438,12 @@ export class ApplicationService {
     } else if (itemType === 'payment') {
       currentItems = this.payments.getValue();
       propertyItem = 'paymentId';
+    } else if (itemType === 'document') {
+      console.log("Entro documents;");
+      // currentItems = this.documents.getValue();
+      currentItems = [];
+      // console.log(currentItems);
+      propertyItem = 'documentId';
     }
     const itemsLength = currentItems.length;
     // console.log('itemsLength: ', itemsLength);
@@ -575,6 +593,9 @@ export class ApplicationService {
       this.sports.next(newItems);
     } else if (itemType === 'payment') {
       this.payments.next(newItems);
+    } else if (itemType === 'document') {
+      // this.documents.next(newItems);
+      // console.log(this.documents);
     }
   }
 

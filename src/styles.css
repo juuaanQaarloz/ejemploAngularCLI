@@ -1102,3 +1102,92 @@ select::-ms-expand {
   width:16px;
 }
 /*ends alert message by step styles*/
+
+
+
+/* Style for Document Component */
+.ml-doc-comp-title {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.ml-button-file {
+  background: url(/assets/icons/folder-icon.svg);
+  background-repeat: no-repeat;
+  padding: 8px;
+  width: 50px;
+  height: 50px;
+}
+
+.ml-button-file:hover {
+  background: url(/assets/icons/folder-icon-hover.svg);
+  background-repeat: no-repeat;
+  padding: 8px;
+  width: 50px;
+  height: 50px;
+}
+
+.ml-button-plus {
+  background: url(/assets/icons/plus-icon.svg);
+  background-repeat: no-repeat;
+  padding: 8px;
+  width: 64px;
+  height: 64px;
+  border: 0;
+  padding-bottom: 54px;
+}
+
+.ml-button-plus:hover {
+  background: url(/assets/icons/plus-icon-hover.svg);
+  background-repeat: no-repeat;
+  padding: 8px;
+  width: 64px;
+  height: 64px;
+  border: 0;
+  padding-bottom: 54px;
+}
+
+.ml-button-delete {
+  background: url(/assets/icons/delete-icon.svg);
+  background-repeat: no-repeat;
+  padding: 8px;
+  width: 64px;
+  height: 64px;
+  border: 0;
+  padding-bottom: 54px;
+}
+
+.ml-button-delete:hover {
+  background: url(/assets/icons/delete-icon-hover.svg);
+  background-repeat: no-repeat;
+  padding: 8px;
+  width: 64px;
+  height: 64px;
+  border: 0;
+  padding-bottom: 54px;
+}
+
+.ml-button-download {
+  background: url(/assets/icons/download-icon.svg);
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
+  border: 0;
+}
+
+.ml-button-download:hover {
+  background: url(/assets/icons/download-icon-hover.svg);
+  background-repeat: no-repeat;
+  width: 50px;
+  height: 50px;
+  border: 0;
+}
+
+.even-document {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.ml-form.document-type {
+  grid-template-columns: repeat(3, 1fr);
+}

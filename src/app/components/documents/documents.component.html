@@ -1,0 +1,28 @@
+<div [formGroup]="this.applicationService.getFormGroup()">
+  <div class="ml-table-title">{{title}}</div>
+  <!--header-->
+  <div class="even" [ngClass]="style">
+    <div class="field-name-column" *ngFor="let columnName of columnsNames;">
+      {{columnName}}
+    </div>
+  </div>
+
+  <div style="margin-top: 5px;">
+    <div data-forms="floating-label" class="ml-form"
+         [ngClass]="content.styleClass">
+      <div *ngFor="let field of fields; last as isLastColumn; index as index;">
+        <app-field-form [fieldObj]="field" [form]="formGroup" style="text-align: center"></app-field-form>
+
+        <div style="text-align: center">
+          <div>
+            <img class="ml-button-delete" (click)="removeItem(index, fields[index], fields[index -1], fields[index -2])" *ngIf="field.button">
+            <img class="ml-button-download" (click)="downloadFile(fields[index -1])" *ngIf="field.button && this.formGroup.controls[fields[index -1]?.name]?.value != '' && this.formGroup.controls[fields[index -1]?.name]?.value">
+            <img class="ml-button-plus" (click)="addNewDocument()" *ngIf="((items.length === 0 || items === null) && showplus==true) && isLastColumn">
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
