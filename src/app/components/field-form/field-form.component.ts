@@ -624,6 +624,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   setFunds() {
     const currency = this.form.controls.currency.value;
     const packing = this.form.controls.packing.value;
+
     if (currency === 'usd') {
       this.setValueField('variableSaving', 'txtVariableSaving', 0);
       this.setValueField('variableRetirement', 'txtVariableRetirement', 0);

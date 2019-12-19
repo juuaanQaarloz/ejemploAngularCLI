@@ -57,6 +57,7 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
 
   onDateChange(event) {
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
+    const contractorType = this.form.controls.contractorType.value;
 
     // console.log('event.targetElement.value: ', event.targetElement.value);
     // // console.log('type of event.targetElement.value: ', typeof event.targetElement.value);
@@ -67,7 +68,12 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
       // // console.log('edad: ', age);
       if (age) {
         if (this.fieldObj.name === 'birthDate') {
-          this.setAge('age', 'txtAge', age);
+          if (contractorType === true){
+            this.setAge('age', 'txtAge', age);
+           //  this.setAge2('ageS', 'txtAgeS', age);
+          } else {
+            this.setAge('age', 'txtAge', age);
+          }
         } else if (this.fieldObj.name === 'birthDateS') {
           this.setAge('ageS', 'txtAgeS', age);
         }  else if (this.fieldObj.name === 'formatwoBirthDate') {
@@ -88,6 +94,12 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
     this.form.controls[formControlName].setValue(value);
     const el2 = document.getElementById(htmlID);
     el2.setAttribute('value', value.toString());
+  }
+
+  setAge2(formControlName, htmlID, value) {
+    // this.form.controls[formControlName].setValue(value);
+    const el3 = document.getElementById(htmlID);
+    el3.setAttribute('value', value.toString());
   }
 
   onKeyUp() {

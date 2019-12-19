@@ -269,7 +269,7 @@ export const Plan4: Field[] = [
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
-    enableConditions: '(currency=usd)',
+    enableConditions: '(currency!=usd)',
     entity: '',
     entityField: '',
     value: '0'
@@ -301,7 +301,7 @@ export const Plan5: Field[] = [
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
-    enableConditions: '(packing!=4)',
+    enableConditions: '(packing=4)',
     entity: '',
     entityField: '',
     value: '0'
@@ -330,7 +330,7 @@ export const Plan5: Field[] = [
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
-    enableConditions: '((currency=usd),|,(packing!=4))',
+    enableConditions: '((currency=mxn),&,(packing=4))',
     entity: '',
     entityField: '',
     value: '0'
@@ -362,7 +362,7 @@ export const Plan6: Field[] = [
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
-    enableConditions: '(packing!=4)',
+    enableConditions: '(packing=4)',
     entity: '',
     entityField: '',
     value: '0'
@@ -391,7 +391,7 @@ export const Plan6: Field[] = [
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
-    enableConditions: '((currency=usd),|,packing!=4)',
+    enableConditions: '((currency=mxn),&,(packing=4))',
     entity: '',
     entityField: '',
     value: '0'
