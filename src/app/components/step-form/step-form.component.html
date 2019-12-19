@@ -33,9 +33,12 @@
 
   <div class="ml-step-content-div">
     <app-content-form *ngFor="let content of stepObj.contents" [form]="form" [contentObj]="content"></app-content-form>
-    <!--<div *ngIf="stepObj.content.operations" class="operation">
-      <app-operation-form *ngFor="let operation of stepObj.content.operations" (click)="completeStep()" [operationObj]="operation"></app-operation-form>
-    </div>-->
+    <div *ngIf="stepsOperations" class="operation">
+      <app-operation-form *ngFor="let operation of stepsOperations"
+                          (click)="executeOperation(operation.delegateOperation)" [operationObj]="operation">
+
+      </app-operation-form>
+    </div>
     <hr class="ml-step-hr" [ngStyle]="{'display':  isLast ? 'none': ''}">
   </div>
 </div>
