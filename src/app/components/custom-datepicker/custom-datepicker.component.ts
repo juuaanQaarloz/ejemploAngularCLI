@@ -70,7 +70,7 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
         if (this.fieldObj.name === 'birthDate') {
           if (contractorType === true){
             this.setAge('age', 'txtAge', age);
-           //  this.setAge2('ageS', 'txtAgeS', age);
+            this.setAge2('ageS', 'txtAgeS', age);
           } else {
             this.setAge('age', 'txtAge', age);
           }
@@ -96,10 +96,8 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
     el2.setAttribute('value', value.toString());
   }
 
-  setAge2(formControlName, htmlID, value) {
-    // this.form.controls[formControlName].setValue(value);
-    const el3 = document.getElementById(htmlID);
-    el3.setAttribute('value', value.toString());
+  setAge2(formControlName, htmlID, value2) {
+    this.form.controls[formControlName].setValue(value2);
   }
 
   onKeyUp() {
