@@ -69,7 +69,7 @@ export const statements1: Field[] = [
     idHtml: 'radioForeignQuestion',
     name: 'foreignQuestion',
     orderAppearance: 5,
-    label: 'En caso de ser extranjero, o tener residencia en el extranjero, especifica las razones para contratar un seguro en territorio nacional*',
+    label: '¿Eres extranjero?*',
     type: 'radio',
     required: true,
     placeholder: '',
@@ -121,6 +121,8 @@ export const statements1: Field[] = [
     entity: '',
     entityField: '',
     value: '',
+    legend: 'En caso de ser extranjero, o tener residencia en el extranjero, especifica las razones para contratar un ' +
+      'seguro en territorio nacional.'
   }
   ,
   {

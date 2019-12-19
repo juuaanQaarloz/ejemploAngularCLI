@@ -1,6 +1,8 @@
 <!--<div [formGroup]="form" data-forms="floating-label" class="ml-form">-->
 <div *ngIf="show" [ngSwitch]="fieldObj.type" [formGroup]="form">
 
+  <p *ngIf="fieldObj.legend">{{fieldObj.legend}}</p>
+
   <fieldset *ngSwitchCase="'text'" class="ml-form-field"
             [ngClass]="{'error': !fieldObj.valid}">
     <label>
