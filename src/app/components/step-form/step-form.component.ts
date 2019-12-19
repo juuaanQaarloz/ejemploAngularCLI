@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Step} from '../../models/step';
 import {FormGroup} from '@angular/forms';
 import {ApplicationService} from '../../core/services';
+import {MockOperations} from '../../core/mock/mock-operations';
 
 @Component({
   selector: 'app-step-form',
@@ -17,6 +18,7 @@ export class StepFormComponent implements OnInit {
   accordionExpanded: boolean;
   renderCondition;
   completed = false;
+  stepsOperations = MockOperations;
 
   constructor(private applicationService: ApplicationService) { }
 
@@ -64,6 +66,21 @@ export class StepFormComponent implements OnInit {
     const status = this.applicationService.getStatusError(errorId);
     console.log('status: ', status);
     return status;
+  }
+
+  executeOperation(delegateOperation) {
+    console.log('delegateOperation: ', delegateOperation);
+    if (delegateOperation === 'closeStep') {
+      this.closeStep();
+    } else if (delegateOperation === '') {
+
+    }
+  }
+
+  closeStep() {
+    console.log('onCloseStep...');
+    this.accordionExpanded = false;
+    // this.applicationService.changeValue(this.index + 1);
   }
 }
 
