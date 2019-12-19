@@ -5,10 +5,11 @@ import {ApplicationComponent} from './components/application/application.compone
 import {MenuPageComponent} from './components/menu-page/menu-page.component';
 
 const routes: Routes = [
-  {path: 'application2', component: ApplicationComponent},
-  {path: 'menuPage', component: MenuPageComponent},
-  { path: '', redirectTo: '/menuPage', pathMatch: 'full' },
-  { path: '**', redirectTo: '/menuPage'}
+    { path: 'application2', component: ApplicationComponent },
+    { path: 'search', loadChildren: () => import('./components/search/search.module').then(m => m.SearchModule) },
+    { path: 'menuPage', component: MenuPageComponent },
+    { path: '', redirectTo: '/menuPage', pathMatch: 'full' },
+    { path: '**', redirectTo: '/menuPage' }
   ];
 
 @NgModule({

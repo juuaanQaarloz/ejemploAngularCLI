@@ -1,3 +1,4 @@
+import { SearchModule } from './components/search/search.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -51,6 +52,9 @@ import {ApplicationService} from './core/services';
 import { NewPaymentComponent } from './components/beneficiaries/new-payment/new-payment.component';
 import { ErrorBannerComponent } from './components/error-banner/error-banner.component';
 import { CoverageComponent } from './components/coverage/coverage/coverage.component';
+import { SearchCriteriaComponent } from './components/search/search-criteria/search-criteria.component';
+import { SearchResultsComponent } from './components/search/search-results/search-results.component';
+import { SearchDetailComponent } from './components/search/search-detail/search-detail.component';
 
 // @ts-ignore
 @NgModule({

@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+            <h1>Resultados</h1>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-sm">
+                <thead>
+                    <th *ngFor="let column of columns">{{ column.label }}</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let record of records | paginate: { itemsPerPage: numItems, currentPage: p }">
+                        <td class="{{ column.align }}" *ngFor="let column of columns">
+                            <span *ngIf="column.field=='name'"><a [routerLink]="['/search','detail', record['id'] ]"><b>{{ record[column.field] }}</b></a></span>
+                            <span *ngIf="column.field!='name'">{{ record[column.field] }}</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-sm-11 col-md-11 col-lg-11">
+            Total de registros: {{ records.length }}
+        </div>
+        <div class="col-sm-1 col-md-1 col-lg-1 text-right">
+            <select class="form-control" [(ngModel)]="numItems">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+            </select>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+            <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+        </div>
+    </div>
+</div>
