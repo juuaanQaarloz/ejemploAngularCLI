@@ -9,9 +9,9 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {calculateRFC, correctFieldValue, stringToRegExp, transformDate} from '../../core/utilities';
 import {SepomexObj} from '../../models/sepomex-obj';
 import {Pattern} from '../../models/pattern/pattern';
-import {DialogRef} from "../dialog/dialog-ref";
-import {ModalService} from "../custom-modal";
-import {Operation} from "../../models";
+import {DialogRef} from '../dialog/dialog-ref';
+import {ModalService} from '../custom-modal';
+import {Operation} from '../../models';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -225,12 +225,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
 
     if (this.fieldObj.pattern) {
-      let optionsPattern: Pattern[] ;
+      let optionsPattern: Pattern[];
       this.applicationService.getPatternCatalog()
         .subscribe((results) => {
           optionsPattern = results;
           let patternFind: Pattern;
-          const resultado = optionsPattern.find( patternFind => patternFind.id === this.fieldObj.pattern );
+          const resultado = optionsPattern.find(patternFind => patternFind.id === this.fieldObj.pattern);
           if (resultado !== undefined) {
             this.regExpPattern = stringToRegExp(resultado.value);
           } else {
@@ -273,7 +273,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     this.contadorDoc = 0;
   }
 
-  esPatter( patron: string) {
+  esPatter(patron: string) {
     let pattern: Pattern;
     return pattern.id === patron;
   }
@@ -306,6 +306,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         this.form.controls[this.fieldObj.name].value);
     }
   }
+
   onKeyUp(event) {
     // console.log('onKeyUp event: ', event);
     let value;
@@ -315,13 +316,37 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     elem.setAttribute('value', event.target.value);
     this.form.controls[this.fieldObj.name].setValue(event.target.value);
 
-    // // console.log('value.length: ', value.length);
+    if (value) {
+      this.isValid();
+    }
+
+     // // console.log('value.length: ', value.length);
     if (this.fieldObj.name === 'rfc' || this.fieldObj.name === 'rfcS' || this.fieldObj.name === 'formatwoRfc') {
       if (value.length === 10 && event.key !== 'Backspace') { // calculate rfc when the user capture the first 10 characters
         const calcRFC = this.calculateRFC();
         if (calcRFC !== null) {
           // // console.log('calculateRFC: ', calcRFC);
           this.setCalculatedRFC(calcRFC);
+        }
+      }
+    } else if (this.fieldObj.name === 'participationPercentageI') {
+      console.log('onParticipationPercentageI');
+      console.log('item: ', this.item);
+      this.item.participationPercentage = this.form.controls[this.fieldObj.name].value;
+
+      if (!this.item.participationPercentage || Number(this.item.participation) === 0) {
+        console.log('item.participationPercentage: ', this.item.participationPercentaje);
+        this.fieldObj.valid = false;
+        this.fieldObj.message = 'El porcentaje de  participación no puede ser 0';
+      } else if (this.form.controls[this.fieldObj.name].value != null) {
+        const response = this.applicationService.updateItem(this.item, 'beneficiary');
+        console.log('response: ', response);
+        if (response.status === false) {
+          console.log('response.status is false');
+          this.fieldObj.message = response.message;
+          console.log('message: ', this.fieldObj.message);
+          this.fieldObj.valid = false;
+          console.log('valid: ', this.fieldObj.valid);
         }
       }
     }
@@ -331,10 +356,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
     if (this.fieldObj.name === 'assuredImport') {
       // console.log('Entro assuredImport: ');
-    }
-
-    if (value) {
-      this.isValid();
     }
   }
 
@@ -457,7 +478,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   onBlur() {
     // console.log('onBlur...');
-    console.log(this.fieldObj.name);
+    // console.log(this.fieldObj.name);
     let valid = true;
     if (this.fieldObj.name === 'zipCode' || this.fieldObj.name === 'zipCodeS' || this.fieldObj.name === 'zipCodeM') {
       const zipCode = this.form.controls[this.fieldObj.name].value;
@@ -470,20 +491,20 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           }
         });
       }
-    } else if ( this.fieldObj.name === 'agentParticipationI') {
+    } else if (this.fieldObj.name === 'agentParticipationI') {
       this.item.participation = this.form.controls[this.fieldObj.name].value;
       if (!this.item.participation || Number(this.item.participation) === 0) {
         this.fieldObj.valid = false;
         valid = false;
         this.fieldObj.message = 'La participación no puede ser 0';
-      } else if ( this.form.controls[this.fieldObj.name].value != null ) {
+      } else if (this.form.controls[this.fieldObj.name].value != null) {
         const response = this.applicationService.updateItem(this.item, 'agent');
         if (response.status === false) {
           this.modalMessage = response.message;
           this.modalService.open(this.modalID);
         }
       }
-    } else if ( this.fieldObj.name === 'agentParticipation') {
+    } else if (this.fieldObj.name === 'agentParticipation') {
       if (!this.form.controls[this.fieldObj.name].value || Number(this.form.controls[this.fieldObj.name].value) === 0) {
         this.fieldObj.valid = false;
         valid = false;
@@ -573,8 +594,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   isValid(formControlName?) {
-    // console.log('onIsValid value: ', this.form.controls[this.fieldObj.name].value);
-    // console.log('formControlName: ', formControlName);
     if (formControlName) {
       console.log('formControlNameEntro: ', formControlName);
       const validateAgeResult = validateAge(this.form.controls[formControlName]);

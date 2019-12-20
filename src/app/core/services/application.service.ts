@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';
 import {Beneficiary, Formatwo, Field, Occupation, Step} from '../../models';
-import { Agent } from '../../models/agent-model/agent';
+import {Agent} from '../../models/agent-model/agent';
 import {equalEmailsValidator, higherAssuredImport, validateEmailConfirmation, validatorsObjects, validateFunds} from '../validators';
 import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
@@ -25,7 +25,7 @@ const URL_AGENT_CATALOG = '../assets/catalogs/agents-catalogs.json';
 export class ApplicationService {
   private currentStepSource = new BehaviorSubject(0);
   currentValue = this.currentStepSource.asObservable();
-  beneficiaries = new BehaviorSubject([]);
+  beneficiaries = new BehaviorSubject(BENEFICIARIES);
   agents = new BehaviorSubject([]);
   sports = new BehaviorSubject([]);
   diseases = new BehaviorSubject([]);
@@ -238,6 +238,7 @@ export class ApplicationService {
     }
     return validationFunctions;
   }
+
   // getCatalogById(this.fieldObj.sourceID, this.fieldObj.source)
   getCatalogById(id: string, source: string): Observable<[]> {
     let urlCatalog = '';
@@ -403,7 +404,7 @@ export class ApplicationService {
     currentItems = currentItems.filter(item => item[propertyName] !== itemId);
     // console.log('currentItems: ', currentItems);
     this.setItems(itemType, currentItems);
-    if ( itemType === 'agent' && currentItems.length === 1) {
+    if (itemType === 'agent' && currentItems.length === 1) {
       const mappedAgent = {
         agentId: currentItems[0].agentId, name: currentItems[0].name,
         promotor: currentItems[0].promotor, key: currentItems[0].key, participation: 100
@@ -470,7 +471,13 @@ export class ApplicationService {
     if (itemType === 'beneficiary') {
       currentItems = this.beneficiaries.getValue();
       propertyItem = 'beneficiaryId';
-      currentTotalParticipationPercentage = this.getTotalParticipationPercentage(itemType);
+      propertyParticipation = 'participationPercentage';
+      currentTotalParticipationPercentage = 0;
+      currentItems.forEach((item) => {
+        if (updatedItem[propertyItem] !== item[propertyItem]) {
+          currentTotalParticipationPercentage = currentTotalParticipationPercentage + Number(item[propertyParticipation]);
+        }
+      });
       maxLength = 10;
       responseMessage1 = 'No se pueden agregar más de 10 beneficiarios';
       responseMessage2 = 'La suma de las participaciones de los beneficiarios excede el 100%';
@@ -506,20 +513,24 @@ export class ApplicationService {
     }
     // const foundItem = currentItems.filter(i => i[propertyItem] === updatedItem[propertyItem])[0];
 
+    console.log('currentTotalParticipationPercentage: ', currentTotalParticipationPercentage);
+    console.log('Number(updatedItem[propertyParticipation]) : ', Number(updatedItem[propertyParticipation]));
+
     if (currentTotalParticipationPercentage !== undefined) {
       // when is a max participation limit
       if (currentTotalParticipationPercentage + Number(updatedItem[propertyParticipation]) <= 100) {
+        console.log('here');
         // when is a maxItems limit
         if (currentItems.length <= maxLength) {
           // the new item can be added
-         if (Number(updatedItem[propertyParticipation]) > 0) {
-           const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
-           currentItems[index] = updatedItem;
-           this.setItems(itemType, currentItems);
-           return {status: true, message: ''};
-         } else {
-           return {status: false, message: responseMessage3};
-         }
+          if (Number(updatedItem[propertyParticipation]) > 0) {
+            const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
+            currentItems[index] = updatedItem;
+            this.setItems(itemType, currentItems);
+            return {status: true, message: ''};
+          } else {
+            return {status: false, message: responseMessage3};
+          }
         } else {
           return {status: false, message: responseMessage1};
         }
@@ -1055,7 +1066,7 @@ export class ApplicationService {
   getAgentItemUser() {
     // get headers user
     const userHeaders = this.getHeadersUser('userId');
-    console.log( 'userHeaders --< ' + userHeaders);
+    console.log('userHeaders --< ' + userHeaders);
     // get agent catalog
     this.httpClient.get(URL_AGENT_CATALOG).subscribe((agents: any) => {
       agents.catalogData.extension.variations.forEach(agent => {
@@ -1071,7 +1082,7 @@ export class ApplicationService {
     });
   }
 
-  getHeadersUser( key ) {
+  getHeadersUser(key) {
     // User property map
     const stores = window.localStorage;
     console.log('stores');
@@ -1079,7 +1090,7 @@ export class ApplicationService {
     console.log(stores.getItem(key));
     // JSON.parse(localStorage.getItem(key))
     // const headerUser = {
-      // userId: stores.getItem('userId') !== null ? stores.getItem('userId') : '9504'
+    // userId: stores.getItem('userId') !== null ? stores.getItem('userId') : '9504'
     // };
     return stores.getItem(key) != null ? stores.getItem(key) : '9504';
   }

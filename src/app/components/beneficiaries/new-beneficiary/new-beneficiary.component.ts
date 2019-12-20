@@ -112,9 +112,22 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   }
 
   updateBeneficiary() {
-    const updatedBeneficiary = this.mapBeneficiaryData();
-    this.applicationService.updateItem(updatedBeneficiary, 'beneficiary');
-    this.closeDialog();
+    const formStatus = this.getFormStatus();
+    console.log('formStatus: ', formStatus);
+
+    if (formStatus === 'VALID') {
+      const updatedBeneficiary = this.mapBeneficiaryData();
+      const response = this.applicationService.updateItem(updatedBeneficiary, 'beneficiary');
+      console.log('response: ', response);
+      if (response.status) {
+        this.closeDialog();
+      } else {
+        this.modalMessage = response.message;
+        this.modalService.open(this.modalID);
+      }
+    } else {
+      this.showFormError = true;
+    }
   }
 
   executeOperation(delegateOperation: string) {

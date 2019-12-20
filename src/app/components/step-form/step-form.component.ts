@@ -77,8 +77,20 @@ export class StepFormComponent implements OnInit {
     } else if (delegateOperation === 'validateStep') {
       this.validateStep();
       if (this.isValidStep) {
-        this.applicationService.submitFunction('nextStep');
-      }
+        console.log('this.stepObj.id: ', this.stepObj.id);
+        if (this.stepObj.id === '11') {
+          const totalPercentageBeneficiaries = this.applicationService.getTotalParticipationPercentage('beneficiary');
+          console.log('totalPercentageBeneficiaries: ', totalPercentageBeneficiaries);
+          if (totalPercentageBeneficiaries === 100) {
+            this.isValidStep = true;
+            this.applicationService.submitFunction('nextStep');
+          } else {
+            this.isValidStep = false;
+          }
+        }
+        } else {
+          this.applicationService.submitFunction('nextStep');
+        }
     }
   }
 
