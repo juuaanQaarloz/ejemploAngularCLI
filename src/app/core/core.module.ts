@@ -19,8 +19,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     StyleCellDirective,
     AutocompleteDirective,
     AutocompleteContentDirective,
-    FilterPipe
-  ],
+    FilterPipe],
   exports: [
     TrackScrollDirective,
     OnlyGivenCharactersDirective,

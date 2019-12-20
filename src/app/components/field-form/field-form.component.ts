@@ -12,8 +12,8 @@ import {Pattern} from '../../models/pattern/pattern';
 import {DialogRef} from '../dialog/dialog-ref';
 import {ModalService} from '../custom-modal';
 import {Operation} from '../../models';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-field-form',
@@ -68,7 +68,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-
     if (this.fieldObj.type === 'radio' || this.fieldObj.type === 'select'
       || this.fieldObj.type === 'checkbox-n' || this.fieldObj.type === 'select-multiple'
       || this.fieldObj.type === 'autocomplete') {
@@ -320,7 +319,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       this.isValid();
     }
 
-     // // console.log('value.length: ', value.length);
+    // // console.log('value.length: ', value.length);
     if (this.fieldObj.name === 'rfc' || this.fieldObj.name === 'rfcS' || this.fieldObj.name === 'formatwoRfc') {
       if (value.length === 10 && event.key !== 'Backspace') { // calculate rfc when the user capture the first 10 characters
         const calcRFC = this.calculateRFC();
@@ -366,34 +365,34 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     let fileList: FileList = event.target.files;
 
-    if(fileList.length > 0) {
+    if (fileList.length > 0) {
       let fileSelected: File = fileList[0];
       console.log('File selected: ', fileSelected);
       this.fileName = fileSelected.name;
       console.log(this.fileName);
       //Validar extensión
       let contador = 0;
-      const extensionArchivo =  this.fileName.slice(this.fileName.lastIndexOf('.'));
-      let extensionArchivoCopy =  this.fileName.slice(this.fileName.lastIndexOf('.'));
+      const extensionArchivo = this.fileName.slice(this.fileName.lastIndexOf('.'));
+      let extensionArchivoCopy = this.fileName.slice(this.fileName.lastIndexOf('.'));
       extensionArchivoCopy = extensionArchivoCopy.substring(1);
       console.log(extensionArchivoCopy);
-      const extensionPermitida =  (this.fieldObj.accept.split(','));
+      const extensionPermitida = (this.fieldObj.accept.split(','));
       console.log(extensionArchivo);
       console.log(extensionPermitida);
       extensionPermitida.forEach((ext) => {
-        if ( ext === extensionArchivo ) {
+        if (ext === extensionArchivo) {
           contador++;
         }
       });
       console.log('Contador: ', contador);
       //Validar tamaño archivo
       let tamanioValido = true;
-      if ( fileSelected.size > 5242880 ) {
+      if (fileSelected.size > 5242880) {
         tamanioValido = false;
       }
       console.log('Tamaño valido: ', tamanioValido);
       // let file = null;
-      if ( contador == 0 || !tamanioValido ) {
+      if (contador == 0 || !tamanioValido) {
         console.log('1');
         this.form.controls[this.fieldObj.name].reset();
         this.fileName = '';
@@ -455,7 +454,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       }
 
       console.log(this.form);
-      console.log("File: ");
+      console.log('File: ');
       console.log(fileSelected);
     }
 
@@ -779,6 +778,22 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   executeOperation(delegateOperation: string) {
     if (delegateOperation === 'closeModal') {
       this.modalService.close(this.modalID);
+    }
+  }
+
+  onKeyDownRadio(event, nextElementId) {
+    if (event.keyCode === 9) { // tab clicked
+      let el = document.getElementById(nextElementId);
+      if (el !== null) {
+        setTimeout(() => {
+          el.focus();
+        }, 0);
+      } /*else {
+        el = document.getElementById('radioMotobickeQuestion0');
+        setTimeout(() => {
+          el.focus();
+        }, 0);
+      }*/
     }
   }
 }

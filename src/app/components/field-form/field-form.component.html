@@ -109,23 +109,23 @@
     </label>
   </fieldset>
 
-  <fieldset *ngSwitchCase="'radio'" class="ml-form-field">
+  <fieldset *ngSwitchCase="'radio'" class="ml-form-field ml-form-field-radio"
+            [ngClass]="{'error-radio': !fieldObj.valid}">
 
-    <div class="ml-form-field-radio" [ngClass]="{'radio-options': fieldObj.styleClass,
-                                                  'error-radio': !fieldObj.valid}">
       <label>{{fieldObj.label}}</label>
 
       <div class="ml-form-field-radio-group"
-           *ngFor="let radioOption of radioOptions; let first = first">
+           *ngFor="let radioOption of radioOptions">
 
-        <input type="radio" [formControlName]="fieldObj.name"
-               [id]="radioOption.id + '-radio'"
-               [value]="radioOption.value">
+        <input type="radio"
+               [formControlName]="fieldObj.name"
+               [id]="fieldObj.idHtml + radioOption.id"
+               [name]="fieldObj.name"
+               [value]="radioOption.value"
+               (keydown)="onKeyDownRadio($event, fieldObj.idHtml + (radioOption.id + 1))">
+
         <label>{{radioOption.name}}</label>
-
       </div>
-
-    </div>
 
     <div class="ml-form-field-errortext"
          *ngIf="!fieldObj.valid">
