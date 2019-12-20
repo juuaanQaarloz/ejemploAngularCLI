@@ -9,7 +9,7 @@ export function removeWhiteSpaces(value: string): string { // disable manually t
   if (!nullUndefinedOrEmptyValidation(value)) {
     value = value.trim();
     // value = value.replace(/\s+/, ' ');
-    value = value.replace(/\s+/g, '');
+    value = value.replace(/\s+/g, ' ');
     value = value.toUpperCase();
   }
   return value;
