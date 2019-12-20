@@ -316,10 +316,10 @@ export const validatorsObjects = [
     nameField: 'beneficiaryName',
     validationFunctions: [validateAlphanumericValue, validateName]
   },
-  {
+  /*{
     nameField: 'participationPercentageI',
     validationFunctions: [validateNumberWith2Decimals]
-  },
+  },*/
   {
     nameField: 'beneficiaryBusinessName',
     validationFunctions: [validateAlphanumericValue]

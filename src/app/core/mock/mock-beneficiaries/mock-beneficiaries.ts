@@ -77,8 +77,8 @@ export const BENEFICIARIES: Beneficiary[] =  [
     suspensiveCondition: 'NO', // if typeBeneficiary is Moral person
     contractNumber: '12345678', // if typeBeneficiary is Moral person
     instructionLetterNumber: 'string' // if typeBeneficiary is Moral person
-  },
-  {
+  }
+  /*{
     beneficiaryId: '6',
     beneficiaryType: 'fidPerson',
     relationship: 'OT',
@@ -98,7 +98,7 @@ export const BENEFICIARIES: Beneficiary[] =  [
     suspensiveCondition: 'NO', // if typeBeneficiary is Moral person
     contractNumber: '12345678', // if typeBeneficiary is Moral person
     instructionLetterNumber: 'string' // if typeBeneficiary is Moral person
-  }
+  }*/
 ];
 
 export const beneficiaryFields: Field[] = [
@@ -143,8 +143,8 @@ export const beneficiaryFields: Field[] = [
     length: '6',
     minValue: 0,
     maxValue: 6,
-    pattern: '/(^100(\\.0{1,2})?$)|(^([1-9]([0-9])?|0)(\\.[0-9]{1,3})?$)|(^([0-9])(\\.[0-9]{1,4})?$)/g',
-    noAllowedCharactersPattern: '/[^\\d\\/]/',
+    pattern: '/(^100(\\.0{1,2})?$)|(^([1-9]([0-9])?|0)(\\.[0-9]{1,3})?$)|(^([0-9])(\\.[0-9]{1,4})?$)/',
+    noAllowedCharactersPattern: '/[^\\d\\.]/',
     source: '',
     sourceID: '',
     style: '',
