@@ -26,7 +26,7 @@ export const MockOperations: Operation[] = [
     styleClass: 'ml-button-primary',
     message: '',
     messageClass: '',
-    delegateOperation: 'nextStep',
+    delegateOperation: 'validateStep',
     renderConditions: '',
     enableConditions: '',
   }
