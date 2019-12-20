@@ -119,12 +119,12 @@ export class ApplicationService {
       }
 
       // console.log('currentStep2: ', this.currentStepSource.getValue());
-    } else if (type === 'validateStep') {
+    } /*else if (type === 'validateStep') {
       const currentStep = this.currentStepSource.getValue(); // .getValue();
       // console.log('onValidateStep currentStep: ', currentStep);
       // console.log('onValidateStep currentStep: ', currentStep + 1);
       this.validateFormByStep((currentStep + 1).toString());
-    }
+    }*/
   }
 
   openOccupationModal(modalID: string) {
@@ -793,31 +793,52 @@ export class ApplicationService {
   }
 
   validateFormByStep(stepID: string) {
-    console.log(stepID);
+    console.log('stepID: ', stepID);
     const step = this.getStepById(stepID);
-    console.log(step);
+    console.log('step: ', step);
+    let isValidStep = true;
+    let validateResults = [];
+
     if (step) {
       step.contents.forEach((contentFromStep) => {
         if (contentFromStep.fields) {
           contentFromStep.fields.forEach(field => {
-            field.valid = this.formGroup.controls[field.name].valid;
-            // console.log('formControlName: ', field.name);
-            // console.log('valid: ', field.valid);
+            if (!field.disable) {
+              field.valid = this.formGroup.controls[field.name].valid;
+              if (this.formGroup.controls[field.name].errors) {
+                console.log('errors: ', this.formGroup.controls[field.name].errors);
+              }
+              console.log('formControlName: ', field.name);
+              console.log('valid: ', field.valid);
+              validateResults.push(field.valid);
+            }
           });
         } else {
           if (contentFromStep.contentChildren) {
             contentFromStep.contentChildren.forEach(contentChild => {
               if (contentChild.fields) {
                 contentChild.fields.forEach(field => {
-                  field.valid = this.formGroup.controls[field.name].valid;
-                  // console.log('formControlName: ', field.name);
-                  // console.log('valid: ', field.valid);
+                  if (!field.disable) {
+                    field.valid = this.formGroup.controls[field.name].valid;
+                    // console.log('formControlName: ', field.name);
+                    console.log('valid: ', field.valid);
+                    validateResults.push(field.valid);
+                  }
                 });
               }
             });
           }
         }
       });
+
+      validateResults.forEach((res) => {
+        console.log('res: ', res);
+        if (!res) {
+          isValidStep = res;
+        }
+      });
+
+      return isValidStep;
     }
   }
 

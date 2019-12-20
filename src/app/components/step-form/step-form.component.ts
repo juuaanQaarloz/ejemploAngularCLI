@@ -3,6 +3,7 @@ import {Step} from '../../models/step';
 import {FormGroup} from '@angular/forms';
 import {ApplicationService} from '../../core/services';
 import {MockOperations} from '../../core/mock/mock-operations';
+import {FORM_MSG_ERROR} from '../../core/mock/errors/mock-erros-datos-plan';
 
 @Component({
   selector: 'app-step-form',
@@ -19,7 +20,8 @@ export class StepFormComponent implements OnInit {
   renderCondition;
   completed = false;
   stepsOperations = MockOperations;
-
+  isValidStep = true;
+  stepMsgError = FORM_MSG_ERROR;
   constructor(private applicationService: ApplicationService) { }
 
   ngOnInit() {
@@ -72,9 +74,16 @@ export class StepFormComponent implements OnInit {
     console.log('delegateOperation: ', delegateOperation);
     if (delegateOperation === 'closeStep') {
       this.closeStep();
-    } else if (delegateOperation === '') {
-
+    } else if (delegateOperation === 'validateStep') {
+      this.validateStep();
+      if (this.isValidStep) {
+        this.applicationService.submitFunction('nextStep');
+      }
     }
+  }
+
+  validateStep() {
+    this.isValidStep = this.applicationService.validateFormByStep((this.index + 1 ).toString());
   }
 
   closeStep() {

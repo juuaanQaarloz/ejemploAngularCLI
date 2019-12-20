@@ -276,10 +276,10 @@ export const validatorsObjects = [
     nameField: 'companyActivity',
     validationFunctions: [validateAlphanumericValue]
   },
-  {
+  /*{
     nameField: 'salary',
     validationFunctions: [validateNumberWith2Decimals]
-  },
+  },*/
   {
     nameField: 'occupationS',
     validationFunctions: [validateAlphanumericValue]
@@ -380,10 +380,10 @@ export const validatorsObjects = [
     nameField: 'beneficiaryCity',
     validationFunctions: [validateAlphanumericValue]
   },
-  {
+  /*{
     nameField: 'frequency',
     validationFunctions: [validateAlphanumericValue]
-  },
+  },*/
   {
     nameField: 'nameLegalAgent1',
     validationFunctions: [validateAlphanumericValue]
