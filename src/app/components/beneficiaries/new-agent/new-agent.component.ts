@@ -155,8 +155,8 @@ export class NewAgentComponent implements OnInit {
     const mappedAgent = {
       agentId: this.config.data.item.agentId,
       name: this.formGroup.controls.agentName.value,
-      promotor: this.formGroup.controls.agentPromotor.value,
       key: this.formGroup.controls.agentKey.value,
+      promotor: this.formGroup.controls.agentPromotor.value,      
       participation: this.formGroup.controls.agentParticipation.value
     };
     return mappedAgent;
