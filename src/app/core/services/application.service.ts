@@ -1040,8 +1040,8 @@ export class ApplicationService {
       agents.catalogData.extension.variations.forEach(agent => {
         if (agent.agente === userHeaders + '') {
           const mapAgent = {
-            agentId: agent.agente, name: agent.nombreAgente, promotor: agent.nombrePromotoria,
-            key: agent.promotoria, participation: 100
+            agentId: agent.agente, name: agent.nombreAgente, key: agent.promotoria,
+            promotor: agent.nombrePromotoria, participation: 100
           };
           // insert user == agent
           this.addItem(mapAgent, 'agent');

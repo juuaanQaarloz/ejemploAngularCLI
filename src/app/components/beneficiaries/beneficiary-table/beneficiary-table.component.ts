@@ -105,13 +105,13 @@ export class BeneficiaryTableComponent implements OnInit {
       });
     } else if (this.type === 'table-agent') {
       this.title = 'Datos de Agente(s)';
-      this.columnsNames = ['Nombre del Agente', 'Promotoría', 'Clave', 'Participación'
+      this.columnsNames = ['Nombre del Agente', 'Clave', 'Promotoría', 'Participación'
       ];
 
       this.columnsSettings = [
-        {columnLabel : 'Nombre del Agente', columnAttribute: 'name'},
-        {columnLabel : 'Promotoría', columnAttribute: 'promotor'},
+        {columnLabel : 'Nombre del Agente', columnAttribute: 'name'},        
         {columnLabel : 'Clave', columnAttribute: 'key'},
+        {columnLabel : 'Promotoría', columnAttribute: 'promotor'},
         {columnLabel : 'Participación', columnAttribute: 'participation'}
       ];
 
