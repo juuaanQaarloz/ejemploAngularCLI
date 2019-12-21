@@ -6,7 +6,7 @@ import {ApplicationService, validateAge} from '../../core/services';
 import {WsService} from '../../core/services/ws.service';
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
-import {calculateRFC, correctFieldValue, stringToRegExp, transformDate} from '../../core/utilities';
+import {calculateRFC, correctFieldValue,correctFieldValueLostFocus, stringToRegExp, transformDate} from '../../core/utilities';
 import {SepomexObj} from '../../models/sepomex-obj';
 import {Pattern} from '../../models/pattern/pattern';
 import {DialogRef} from '../dialog/dialog-ref';
@@ -306,6 +306,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
   }
 
+
   onKeyUp(event) {
     // console.log('onKeyUp event: ', event);
     let value;
@@ -476,9 +477,13 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onBlur() {
+    let value;
+    value = this.form.controls[this.fieldObj.name].value;
+    this.form.controls[this.fieldObj.name].setValue( correctFieldValueLostFocus(value));
     // console.log('onBlur...');
     // console.log(this.fieldObj.name);
     let valid = true;
+
     if (this.fieldObj.name === 'zipCode' || this.fieldObj.name === 'zipCodeS' || this.fieldObj.name === 'zipCodeM') {
       const zipCode = this.form.controls[this.fieldObj.name].value;
       // console.log('zipCode: ', zipCode);

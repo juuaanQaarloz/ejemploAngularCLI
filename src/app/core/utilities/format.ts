@@ -70,10 +70,24 @@ export function correctFieldValue(val) {
     // }
 
     if (/[ \t]{2,}/.test(val)) {
-      val = val.trim();
+      //val = val.trim();
       val = val.replace(/\s{2,}/g, ' ');
     }
 
+  } else {
+    return null;
+  }
+  return val;
+}
+
+
+/**@param (string) val value to be corrected
+ * @return (string) the given value in upper case, trimmed and with only 1 space between words
+ */
+export function correctFieldValueLostFocus(val) {
+  console.debug("AQui paso al perder el foco");
+  if (!nullUndefinedOrEmptyValidation(val)) {
+      val = val.trim();
   } else {
     return null;
   }

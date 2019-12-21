@@ -1,4 +1,4 @@
-import {addSlashesToDate, correctFieldValue, removeAccents, removeFirstBlankSpace, removeWhiteSpaces} from './format';
+import {addSlashesToDate, correctFieldValue, correctFieldValueLostFocus, removeAccents, removeFirstBlankSpace, removeWhiteSpaces} from './format';
 
 describe('FormatFuntions', () => {
 
@@ -38,9 +38,15 @@ describe('FormatFuntions', () => {
     expect(result).toBe('SANCHEZ');
   });
 
-  it('should return the same string with the correct format in upper case, trimmed and with only 1 space between words', () => {
+  it('should return the same string with the correct format in upper case,with only 1 space between words', () => {
     const field = 'Odalys  marrón SÁNCHEZ ';
     const result = correctFieldValue(field);
+    expect(result).toBe('ODALYS MARRON SANCHEZ');
+  });
+
+  it('should return the same string with the correct format in upper case, trimmed and with only 1 space between words', () => {
+    const field = 'Odalys  marrón SÁNCHEZ ';
+    const result = correctFieldValueLostFocus(field);
     expect(result).toBe('ODALYS MARRON SANCHEZ');
   });
 });
