@@ -64,10 +64,10 @@ export const validatorsObjects = [
     nameField: 'street',
     validationFunctions: [validateStreet]
   },
-  {
+  /*{
     nameField: 'exteriorNumber',
     validationFunctions: [validateStreetNum]
-  },
+  },*/
   {
     nameField: 'interiorNumber',
     validationFunctions: [validateStreetNumberNotRequired]
@@ -136,10 +136,10 @@ export const validatorsObjects = [
     nameField: 'streetM',
     validationFunctions: [validateStreet]
   },
-  {
+  /*{
     nameField: 'exteriorNumberM',
     validationFunctions: [validateStreetNum]
-  },
+  },*/
   {
     nameField: 'interiorNumberM',
     validationFunctions: [validateStreetNum]
@@ -220,10 +220,10 @@ export const validatorsObjects = [
     nameField: 'streetS',
     validationFunctions: [validateStreet]
   },
-  {
+  /*{
     nameField: 'exteriorNumberS',
     validationFunctions: [validateStreetNum]
-  },
+  },*/
   {
     nameField: 'interiorNumberS',
     validationFunctions: [validateStreetNum]
