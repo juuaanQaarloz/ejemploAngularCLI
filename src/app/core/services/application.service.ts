@@ -299,7 +299,7 @@ export class ApplicationService {
       // currentTotalParticipationPercentage = 1; // i commented this line cuz not apply for countries
       currentItems = this.countries.getValue();
       maxLength = 3;
-      responseMessage1 = 'No se pueden agregar más de 3 paises';
+      responseMessage1 = 'No se pueden agregar más de 3 ';
       // responseMessage2 = 'Validacion2'; // i commented this line cuz not apply for countries
       // propertyName = 'participation'; // i commented this line cuz not apply for countries
     } else if (itemType === 'payment') {

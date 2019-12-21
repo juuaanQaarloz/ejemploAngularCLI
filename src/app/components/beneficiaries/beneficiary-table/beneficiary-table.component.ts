@@ -196,8 +196,8 @@ export class BeneficiaryTableComponent implements OnInit {
         this.totalPercentageParticipation = this.applicationService.getTotalParticipationPercentage();
       }); */
     } else if (this.type ===  'table-country') {
-      this.title = 'Paises';
-      this.columnsNames = ['Pais', 'Numero de idenficación fiscal',
+      this.title = 'Países';
+      this.columnsNames = ['País', 'Número de idenficación fiscal',
       ];
 
       this.itemsType = 'country';
