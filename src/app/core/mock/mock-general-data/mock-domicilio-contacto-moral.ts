@@ -48,7 +48,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'El número exterior es obligatorio',
+    message: 'El valor capturado contine caracteres no válidos, valores aceptados ([A-Z], Ñ, 0-9 , #, -, .)',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
