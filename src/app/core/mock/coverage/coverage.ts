@@ -7,7 +7,7 @@ export const CoverageFieldsItem: Field[] = [
     idHtml: 'check1Ep',
     name: 'ep',
     orderAppearance: 1,
-    label: 'Extención',
+    label: 'Exención de pago de primas por invalidez total y permanente',
     type: 'checkbox-1',
     required: false,
     placeholder: 'EP',

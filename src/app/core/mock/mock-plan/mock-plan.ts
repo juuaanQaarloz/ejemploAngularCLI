@@ -115,7 +115,7 @@ export const Plan2: Field[] = [
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
-    renderConditions: '',
+    renderConditions: '(currency=mxn,|,currency=usd)',
     // minConditions: '',
     enableConditions: '',
     entity: '',

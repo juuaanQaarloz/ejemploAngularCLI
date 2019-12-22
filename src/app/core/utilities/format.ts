@@ -1,5 +1,6 @@
 import {nullUndefinedOrEmptyValidation} from '../validators';
 import * as moment from 'moment';
+import {formatCurrency, getCurrencySymbol} from '@angular/common';
 
 /**
  * @param (string) value the string who's removing withe spaces
@@ -94,4 +95,17 @@ export function stringToRegExp(str) {
   const result = new RegExp(match[1], match[2]);
   // console.log('result: ', result);
   return result;
+}
+
+export function addCurrencyFormat(formato: string): string {
+
+  // @ts-ignore
+  let cantidad;
+  let val = parseInt(formato, 10);
+  if (Number.isNaN(val)) {
+    val = 0;
+  }
+  cantidad = formatCurrency(val, 'en-US', getCurrencySymbol('USD', 'wide'));
+  return cantidad.toString();
+  // return formato.toString().replace(/(\d)(?:(?=\d+(?=[^\d.]))(?=(?:[0-9]{3})+\b)|(?=\d+(?=\.))(?=(?:[0-9]{3})+(?=\.)))/g, "$1,");
 }

@@ -68,7 +68,7 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
       // // console.log('edad: ', age);
       if (age) {
         if (this.fieldObj.name === 'birthDate') {
-          if (contractorType === true){
+          if (contractorType === true) {
             this.setAge('age', 'txtAge', age);
             this.setAge2('ageS', 'txtAgeS', age);
           } else {
@@ -98,6 +98,7 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
 
   setAge2(formControlName, htmlID, value2) {
     this.form.controls[formControlName].setValue(value2);
+
   }
 
   onKeyUp() {

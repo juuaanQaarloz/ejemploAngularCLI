@@ -5,7 +5,7 @@ import {SelectOption} from '../../models/select-option-interface';
 import {ApplicationService, validateAge} from '../../core/services';
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
-import {calculateRFC, correctFieldValue, stringToRegExp, transformDate} from '../../core/utilities';
+import {addCurrencyFormat, addSlashesToDate, calculateRFC, correctFieldValue, stringToRegExp, transformDate} from '../../core/utilities';
 import {SepomexObj} from '../../models/sepomex-obj';
 import {Pattern} from '../../models/pattern/pattern';
 import {DialogRef} from "../dialog/dialog-ref";
@@ -110,6 +110,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       });
     }
 
+    // this.setPacking();
+
     if (this.fieldObj.enableConditions) {
       console.log('onEnableConditions...');
       console.log('fieldName: ', this.fieldObj.name);
@@ -153,6 +155,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           }*/
         });
       });
+      // this.setPacking();
     }
 
     /*if (this.fieldObj.detonateFunctionParams) {
@@ -265,11 +268,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     });*/
   }
 
-  esPatter( patron: string) {
-    let pattern: Pattern;
-    return pattern.id === patron;
-  }
-
   ngAfterViewInit() {
     // console.log('on ngAfterViewInit...');
     if (this.fieldObj.type === 'text') {
@@ -306,6 +304,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     event.target.value = correctFieldValue(value);
     elem.setAttribute('value', event.target.value);
     this.form.controls[this.fieldObj.name].setValue(event.target.value);
+    if (this.fieldObj.name === 'assuredImport') {
+      // console.log('Entro assuredImport: ');
+      // event.target.value = addCurrencyFormat(event.target.value);
+    }
 
     // // console.log('value.length: ', value.length);
     if (this.fieldObj.name === 'rfc' || this.fieldObj.name === 'rfcS' || this.fieldObj.name === 'formatwoRfc') {
@@ -321,9 +323,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     if (this.fieldObj.name === 'currency') {
       // this.setFunds();
     }
-    if (this.fieldObj.name === 'assuredImport') {
-      // console.log('Entro assuredImport: ');
-    }
+
 
     if (value) {
       this.isValid();
@@ -338,6 +338,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     console.log('onChange event.target.value: ', event.target.value);
     console.log('formControlName: ', this.fieldObj.name);
     this.isValid();
+    // this.setPacking();
   }
 
   onBlur() {
@@ -374,9 +375,36 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         valid = false;
         this.fieldObj.message = 'La participación no puede ser 0';
       }
+    } else if ( this.fieldObj.name === 'agentParticipation') {
+      if (!this.form.controls[this.fieldObj.name].value || Number(this.form.controls[this.fieldObj.name].value) === 0) {
+        this.fieldObj.valid = false;
+        valid = false;
+        this.fieldObj.message = 'La participación no puede ser 0';
+      }
     }
     if (valid) {
       this.isValid();
+    }
+    if (this.fieldObj.name === 'assuredImport') {
+      const assuredImport = this.form.controls.assuredImport.value;
+      if (Number(assuredImport) > Number(0.00)) {
+        this.setValueField('assuredImport', 'txtAssuredImport', addCurrencyFormat(assuredImport));
+      }
+    }
+
+    /* if (this.fieldObj.name === 'savingsGoal') {
+      const savingsGoal = this.form.controls.savingsGoal.value;
+      if (Number(savingsGoal) > Number(0.00)) {
+        this.setValueField('savingsGoal', 'txtSavingsGoal', addCurrencyFormat(savingsGoal));
+      }
+    } */
+
+    if (this.fieldObj.name === 'additionalCost') {
+     //  console.log('Entro en savingsGoal: ');
+      const additionalCost = this.form.controls.additionalCost.value;
+      if (Number(additionalCost) > Number(0.00)) {
+        this.setValueField('additionalCost', 'txtAdditionalCost', addCurrencyFormat(additionalCost));
+      }
     }
   }
 
@@ -408,6 +436,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     this.isValid();
     this.setFunds();
+    // this.setPacking();
   }
 
   getOptions() {
@@ -638,6 +667,24 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
   }
 
+  setPacking() {
+    const typePerson = this.form.controls.typePerson.value;
+    const contractorType = this.form.controls.contractorType.value;
+    // const slctPacking = this.form.controls.slctPacking;
+      if (typePerson === 'morPerson') {
+        // quitar elemento
+        let el = document.getElementById('slctPacking');
+        this.getOptionsDefine('packingdos', 'IPRE', 'select', el);
+        // getOptionsDefine(sourceID , source, sourceStructure , type , el: Element )
+      } else {
+        if (contractorType === false) {
+          // quitar elemento
+          let el = document.getElementById('slctPacking');
+          this.getOptionsDefine('packingdos', 'IPRE', 'select', el);
+        }
+     }
+  }
+
   closeModal(modalID: string) {
     this.modalService.close(modalID);
   }
@@ -647,6 +694,28 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       this.modalService.close(this.modalID);
     }
   }
+
+  getOptionsDefine(sourceID , source , type , el: Element ) {
+    let options = [];
+    let selectOptionsB = [];
+    const sourceStructure = ['id', 'name', 'code'];
+    // console.log('packing: ', this.fieldObj.name);
+    this.applicationService.getCatalogById(sourceID, source)
+      .subscribe((results) => {
+        options = results;
+        if (options !== undefined) {
+          options.forEach((selectItem) => {
+            if (type === 'select' || type === 'select-multiple') {
+              selectOptionsB.push(this.constructSelectOption(selectItem, sourceStructure));
+            }
+          });
+          console.log('EntroselectOptions: ', selectOptionsB);
+          // el.setAttribute('selectOptions', selectOptionsB.toString());
+          this.selectOptions = selectOptionsB;
+          // this.setValueField('packing', 'slctPacking', selectOptionsB);
+        }
+      });
+    }
 }
 
 
