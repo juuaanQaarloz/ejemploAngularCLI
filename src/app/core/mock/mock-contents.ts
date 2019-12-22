@@ -22,6 +22,8 @@ import { FormasPago, FormasPagoAutorizo } from './mock-general-data/mock-formas-
 import { PerfilTransaccionalNumero, PerfilTransaccionalMonto } from './mock-general-data/mock-perfil-transaccional';
 import { OtrosSeguros } from './mock-general-data/mock-other-insurance';
 import {CoverageFieldsItem} from './coverage/coverage';
+// Documentos
+import { Documents } from './documents/documents'
 
 export const MockFieldsContractorType: Field[] = [
   {
@@ -97,8 +99,8 @@ export const MockContentStep1Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass?: 'string';
     // --------------------------
-  },
-  {
+  }
+  /*{
     id: 'content-2.3',
     idParent: 'step-1',
     parentType: 'Step',
@@ -118,7 +120,7 @@ export const MockContentStep1Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass: 'string',
     // --------------------------
-  }
+  }*/
 ];
 
 export const MockContentStep2Process1ContentSection2: Content[] = [
@@ -142,8 +144,8 @@ export const MockContentStep2Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass?: 'string';
     // --------------------------
-  },
-    {
+  }
+    /*{
     id: 'content-2.5',
     idParent: 'step-2',
     parentType: 'Step',
@@ -163,7 +165,7 @@ export const MockContentStep2Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass: 'string',
     // --------------------------
-  }
+  }*/
 ];
 
 export const MockContentStep3Process1ContentSection2: Content[] = [
@@ -208,8 +210,8 @@ export const MockContentStep3Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass?: 'string';
     // --------------------------
-  },
-  {
+  }
+  /*{
     id: 'content-2.8',
     idParent: 'step-3',
     parentType: 'Step',
@@ -229,7 +231,7 @@ export const MockContentStep3Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass: 'string',
     // --------------------------
-  }
+  }*/
 ];
 
 export const MockContentStep4Process1ContentSection2: Content[] = [
@@ -253,8 +255,8 @@ export const MockContentStep4Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass?: 'string';
     // --------------------------
-  },
-  {
+  }
+  /*{
     id: 'content-2.10',
     idParent: 'step-4',
     parentType: 'Step',
@@ -274,7 +276,7 @@ export const MockContentStep4Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass: 'string',
     // --------------------------
-  }
+  }*/
 ];
 
 export const MockContentStep5Process1ContentSection2: Content[] = [
@@ -298,8 +300,8 @@ export const MockContentStep5Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass?: 'string';
     // --------------------------
-  },
-  {
+  }
+  /*{
     id: 'content-2.12',
     idParent: 'step-3',
     parentType: 'Step',
@@ -319,7 +321,7 @@ export const MockContentStep5Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass: 'string',
     // --------------------------
-  }
+  }*/
 ];
 
 export const MockContentStep6Process1ContentSection2: Content[] = [
@@ -386,8 +388,8 @@ export const MockContentStep6Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     styleClass: 'questions-type'
     // --------------------------
-  },
-  {
+  }
+  /*{
     id: 'content-2.16',
     idParent: 'step-6',
     parentType: 'Step',
@@ -407,7 +409,7 @@ export const MockContentStep6Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass: 'string',
     // --------------------------
-  }
+  }*/
 ];
 
 export const MockContentStep7Process1ContentSection2: Content[] = [
@@ -431,8 +433,8 @@ export const MockContentStep7Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass?: 'string';
     // --------------------------
-  },
-  {
+  }
+  /*{
     id: 'content-2.18',
     idParent: 'step-7',
     parentType: 'Step',
@@ -452,7 +454,7 @@ export const MockContentStep7Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass: 'string',
     // --------------------------
-  }
+  }*/
 ];
 
 export const MockContentStep8Process1ContentSection2: Content[] = [
@@ -497,8 +499,8 @@ export const MockContentStep8Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass?: 'string';
     // --------------------------
-  },
-  {
+  }
+  /*{
     id: 'content-2.21',
     idParent: 'step-8',
     parentType: 'Step',
@@ -518,7 +520,7 @@ export const MockContentStep8Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass: 'string',
     // --------------------------
-  }
+  }*/
 ];
 
 export const MockContentStep9Process1ContentSection2: Content[] = [
@@ -563,8 +565,8 @@ export const MockContentStep9Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass?: 'string';
     // --------------------------
-  },
-  {
+  }
+  /*{
     id: 'content-2.24',
     idParent: 'step-9',
     parentType: 'Step',
@@ -584,7 +586,7 @@ export const MockContentStep9Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass: 'string',
     // --------------------------
-  }
+  }*/
 ];
 
 export const MockContentStep10Process1ContentSection2: Content[] = [
@@ -667,7 +669,7 @@ export const MockContentStep10Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // --------------------------
   },
-  {
+  /*{
     id: 'content-2.25',
     idParent: 'step-10',
     parentType: 'Step',
@@ -687,7 +689,7 @@ export const MockContentStep10Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass: 'string',
     // --------------------------
-  }
+  }*/
 ];
 
 export const MockContentStep11Process1ContentSection2: Content[] = [
@@ -719,8 +721,8 @@ export const MockContentStep11Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     styleClass: 'modal-type'
     // --------------------------
-  },
-  {
+  }
+  /*{
     id: 'content-2.34',
     idParent: 'step-11',
     parentType: 'Step',
@@ -740,7 +742,7 @@ export const MockContentStep11Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass: 'string',
     // --------------------------
-  }
+  }*/
 ];
 
 export const MockContentStep12Process1ContentSection2: Content[] = [
@@ -807,8 +809,8 @@ export const MockContentStep12Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass?: 'string';
     // --------------------------
-  },
-  {
+  }
+  /*{
     id: 'content-2.34',
     idParent: 'step-12',
     parentType: 'Step',
@@ -828,7 +830,7 @@ export const MockContentStep12Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass: 'string',
     // --------------------------
-  }
+  }*/
 ];
 
 export const MockContentStep13Process1ContentSection2: Content[] = [
@@ -873,8 +875,8 @@ export const MockContentStep13Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass?: 'string';
     // --------------------------
-  },
-  {
+  }
+  /*{
     id: 'content-2.34',
     idParent: 'step-12',
     parentType: 'Step',
@@ -894,7 +896,7 @@ export const MockContentStep13Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass: 'string',
     // --------------------------
-  }
+  }*/
 ];
 
 export const MockContentStep14Process1ContentSection2: Content[] = [
@@ -1151,8 +1153,8 @@ export const MockContentStep14Process1ContentSection2: Content[] = [
     // enableConditions?: 'publicFunctionQuestion=true',
     styleClass: 'modal-type'
     // --------------------------
-  },
-  {
+  }
+  /*{
     id: 'content-14.2',
     idParent: 'step-14',
     parentType: 'Step',
@@ -1172,7 +1174,7 @@ export const MockContentStep14Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass: 'string',
     // --------------------------
-  }
+  }*/
 ];
 
 export const MockContentStep15Process1ContentSection2: Content[] = [
@@ -1181,7 +1183,8 @@ export const MockContentStep15Process1ContentSection2: Content[] = [
     idParent: 'step-13',
     parentType: 'Step',
     idHtml: 'app-content-form-13.1',
-    title: 'Esta información no faculta a la compañía para rescindir el contrato en los términos del artículo 47 de la Ley Sobre el Contrato de Seguro.',
+    title: 'Esta información no faculta a la compañía para rescindir el contrato en los términos del artículo 47 de la ' +
+      'Ley Sobre el Contrato de Seguro.',
     // process?: Process;
     fields: OtrosSeguros,
     // operations?: Operation[];
@@ -1196,8 +1199,8 @@ export const MockContentStep15Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     styleClass: 'questions-type'
     // --------------------------
-  },
-  {
+  }
+  /*{
     id: 'content-2.34',
     idParent: 'step-15',
     parentType: 'Step',
@@ -1217,7 +1220,7 @@ export const MockContentStep15Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass: 'string',
     // --------------------------
-  }
+  }*/
 ];
 
 export const MockContentStep16Process1ContentSection2: Content[] = [
@@ -1411,8 +1414,8 @@ export const MockContentStep16Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass?: 'string';
     // --------------------------
-  },
-  {
+  }
+  /*{
     id: 'content-16.2',
     idParent: 'step-16',
     parentType: 'Step',
@@ -1432,7 +1435,7 @@ export const MockContentStep16Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass: 'string',
     // --------------------------
-  }
+  }*/
 ];
 
 export const MockContentStep17Process1ContentSection2: Content[] = [
@@ -1515,8 +1518,8 @@ export const MockContentStep17Process1ContentSection2: Content[] = [
     styleClass: 'modal-type'
     // enableConditions?: 'string';
     // --------------------------
-  },
-  {
+  }
+  /*{
     id: 'content-2.39',
     idParent: 'step-10',
     parentType: 'Step',
@@ -1536,7 +1539,7 @@ export const MockContentStep17Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass: 'string',
     // --------------------------
-  }
+  }*/
 ];
 
 export const MockContentStep18Process1ContentSection2: Content[] = [
@@ -1599,8 +1602,8 @@ export const MockContentStep18Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     styleClass: 'questions-type'
     // --------------------------
-  },
-  {
+  }
+  /*{
     id: 'content-2.41',
     idParent: 'step-10',
     parentType: 'Step',
@@ -1620,7 +1623,7 @@ export const MockContentStep18Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass: 'string',
     // --------------------------
-  }
+  }*/
 ];
 
 export const MockContentStep19Process1ContentSection2: Content[] = [
@@ -1750,8 +1753,8 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
     styleClass: 'modal-type'
     // enableConditions?: 'string';
     // --------------------------
-  },
-  {
+  }
+  /*{
     id: 'content-2.44',
     idParent: 'step-10',
     parentType: 'Step',
@@ -1771,7 +1774,7 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass: 'string',
     // --------------------------
-  }
+  }*/
 ];
 
 export const MockContentStep20Process1ContentSection2: Content[] = [
@@ -1841,8 +1844,8 @@ export const MockContentStep20Process1ContentSection2: Content[] = [
       'en cualquier forma para las mismas.',
     // enableConditions?: 'string';
     // --------------------------
-  },
-  {
+  }
+  /*{
     id: 'content-2.48',
     idParent: 'step-20',
     parentType: 'Step',
@@ -1862,7 +1865,7 @@ export const MockContentStep20Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass: 'string',
     // --------------------------
-  }
+  }*/
 ];
 
 export const MockContentStep21Process1ContentSection2: Content[] = [
@@ -1930,8 +1933,8 @@ export const MockContentStep21Process1ContentSection2: Content[] = [
     styleClass: 'questions-type'
     // enableConditions?: 'string';
     // --------------------------
-  },
-  {
+  }
+  /*{
     id: 'content-2.52',
     idParent: 'step-21',
     parentType: 'Step',
@@ -1950,6 +1953,30 @@ export const MockContentStep21Process1ContentSection2: Content[] = [
     contentType: 'looseFields'
     // enableConditions?: 'string';
     // styleClass: 'string',
+    // --------------------------
+  }*/
+];
+
+export const MockContentStep22Process1ContentSection2: Content[] = [
+  {
+    id: 'content-2.53',
+    idParent: 'step-22',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.53',
+    contentType: 'documents',
+    // description: 'Carga de documentos',
+    // process?: Process;
+    // fields: Documents,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    styleClass: 'modal-type'
+    // enableConditions?: 'string';
     // --------------------------
   }
 ];

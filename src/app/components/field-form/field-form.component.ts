@@ -3,14 +3,19 @@ import {Field} from '../../models/field';
 import {FormControl, FormGroup} from '@angular/forms';
 import {SelectOption} from '../../models/select-option-interface';
 import {ApplicationService, validateAge} from '../../core/services';
+import {WsService} from '../../core/services/ws.service';
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
-import {addCurrencyFormat, addSlashesToDate, calculateRFC, correctFieldValue, stringToRegExp, transformDate} from '../../core/utilities';
+import {addCurrencyFormat, addSlashesToDate} from '../../core/utilities';
+import {calculateRFC, correctFieldValue, correctFieldValueLostFocus, stringToRegExp, transformDate} from '../../core/utilities';
 import {SepomexObj} from '../../models/sepomex-obj';
 import {Pattern} from '../../models/pattern/pattern';
-import {DialogRef} from "../dialog/dialog-ref";
-import {ModalService} from "../custom-modal";
-import {Operation} from "../../models";
+import {DialogRef} from '../dialog/dialog-ref';
+import {ModalService} from '../custom-modal';
+import {Operation} from '../../models';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-field-form',
@@ -36,7 +41,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   loading = true;
   modalID = 'modal-warning1';
   modalMessage = 'La suma de las participaciones de los agentes excede el 100%';
-
+  fileName: string;
+  contadorDoc: number;
   okOperation: Operation = {
     id: 'opt-1',
     idHtml: 'btnOK',
@@ -55,13 +61,14 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   constructor(private applicationService: ApplicationService,
               private matIconRegistry: MatIconRegistry,
               private domSanitizer: DomSanitizer,
-              private modalService: ModalService) {
+              private modalService: ModalService,
+              private http: HttpClient,
+              private wsService: WsService) {
     this.registerCustomIcons();
 
   }
 
   ngOnInit() {
-
     if (this.fieldObj.type === 'radio' || this.fieldObj.type === 'select'
       || this.fieldObj.type === 'checkbox-n' || this.fieldObj.type === 'select-multiple'
       || this.fieldObj.type === 'autocomplete') {
@@ -221,12 +228,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
 
     if (this.fieldObj.pattern) {
-      let optionsPattern: Pattern[] ;
+      let optionsPattern: Pattern[];
       this.applicationService.getPatternCatalog()
         .subscribe((results) => {
           optionsPattern = results;
           let patternFind: Pattern;
-          const resultado = optionsPattern.find( patternFind => patternFind.id === this.fieldObj.pattern );
+          const resultado = optionsPattern.find(patternFind => patternFind.id === this.fieldObj.pattern);
           if (resultado !== undefined) {
             this.regExpPattern = stringToRegExp(resultado.value);
           } else {
@@ -266,6 +273,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       console.log('formControlName: ', this.fieldObj.name);
       console.log('value: ',  value);
     });*/
+    this.contadorDoc = 0;
   }
 
   ngAfterViewInit() {
@@ -296,8 +304,9 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         this.form.controls[this.fieldObj.name].value);
     }
   }
+
+
   onKeyUp(event) {
-    // console.log('onKeyUp event: ', event);
     let value;
     value = event.target.value;
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
@@ -309,6 +318,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       // event.target.value = addCurrencyFormat(event.target.value);
     }
 
+    if (value) {
+      this.isValid();
+    }
+
     // // console.log('value.length: ', value.length);
     if (this.fieldObj.name === 'rfc' || this.fieldObj.name === 'rfcS' || this.fieldObj.name === 'formatwoRfc') {
       if (value.length === 10 && event.key !== 'Backspace') { // calculate rfc when the user capture the first 10 characters
@@ -318,12 +331,46 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           this.setCalculatedRFC(calcRFC);
         }
       }
+    } else if (this.fieldObj.name === 'participationPercentageI') {
+      console.log('onParticipationPercentageI');
+      console.log('item: ', this.item);
+      this.item.participationPercentage = this.form.controls[this.fieldObj.name].value;
+
+      if (!this.item.participationPercentage || Number(this.item.participation) === 0) {
+        console.log('item.participationPercentage: ', this.item.participationPercentaje);
+        this.fieldObj.valid = false;
+        this.fieldObj.message = 'El porcentaje de  participación no puede ser 0';
+      } else if (this.form.controls[this.fieldObj.name].value != null) {
+        const response = this.applicationService.updateItem(this.item, 'beneficiary');
+        console.log('response: ', response);
+        if (response.status === false) {
+          console.log('response.status is false');
+          this.fieldObj.message = response.message;
+          console.log('message: ', this.fieldObj.message);
+          this.fieldObj.valid = false;
+          console.log('valid: ', this.fieldObj.valid);
+        }
+      }
     }
     // validar
     if (this.fieldObj.name === 'currency') {
       // this.setFunds();
     }
+    if (this.fieldObj.name === 'assuredImport') {
+      // console.log('Entro assuredImport: ');
+    }
+  }
 
+  onKeyUpAutoComplete(event) {
+    console.log('onKeyUpAutoComplete event: ', event);
+    let value;
+    value = event.source.value;
+    console.log('value: ', value);
+    const elem: Element = document.getElementById(this.fieldObj.idHtml);
+    event.source.value = correctFieldValue(value);
+    elem.setAttribute('value', event.source.value);
+    console.log('value2: ', elem.getAttribute('value'));
+    this.form.controls[this.fieldObj.name].setValue(event.source.value);
 
     if (value) {
       this.isValid();
@@ -331,8 +378,115 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   fileChange(event) {
-    // console.log('event: ', event.target.files);
+    this.contadorDoc++;
+    console.log('event: ', event.target.files);
+    console.log('Target: ', event);
+
+    let fileList: FileList = event.target.files;
+
+    if (fileList.length > 0) {
+      let fileSelected: File = fileList[0];
+      console.log('File selected: ', fileSelected);
+      this.fileName = fileSelected.name;
+      console.log(this.fileName);
+      //Validar extensión
+      let contador = 0;
+      const extensionArchivo = this.fileName.slice(this.fileName.lastIndexOf('.'));
+      let extensionArchivoCopy = this.fileName.slice(this.fileName.lastIndexOf('.'));
+      extensionArchivoCopy = extensionArchivoCopy.substring(1);
+      console.log(extensionArchivoCopy);
+      const extensionPermitida = (this.fieldObj.accept.split(','));
+      console.log(extensionArchivo);
+      console.log(extensionPermitida);
+      extensionPermitida.forEach((ext) => {
+        if (ext === extensionArchivo) {
+          contador++;
+        }
+      });
+      console.log('Contador: ', contador);
+      //Validar tamaño archivo
+      let tamanioValido = true;
+      if (fileSelected.size > 5242880) {
+        tamanioValido = false;
+      }
+      console.log('Tamaño valido: ', tamanioValido);
+      // let file = null;
+      if (contador == 0 || !tamanioValido) {
+        console.log('1');
+        this.form.controls[this.fieldObj.name].reset();
+        this.fileName = '';
+        this.fieldObj.message = 'Formatos aceptados: ' + this.fieldObj.accept + '. \r\n El tamaño maximo son 5Mb.';
+        this.fieldObj.file = null;
+      } else {
+        console.log('2');
+        this.fieldObj.message = '';
+        this.fieldObj.file = fileSelected;
+
+        // COnvertir a base 64
+        // file = this.getBase64(fileSelected).then(
+        //   data => console.log(data)
+        // );
+
+        // let date = new Date();
+        // let milliseconds = new Date().getMilliseconds();
+        // console.log('Date: ');
+        // console.log(date);
+        // console.log(date.toLocaleString());
+        // console.log(milliseconds);
+        //
+        // let filenetSkeletonRequest={
+        //   "name": milliseconds + '_' + fileSelected.name,
+        //   "categoryCode": "APPLICATION",
+        //   "typeCode": "EOB",
+        //   "typeDescription": " ",
+        //   "formatCode": extensionArchivoCopy,
+        //   "description": fileSelected.name,
+        //   "content": "JVBERi0xLjQKJaqrrK0KMSAwIG9iago8PAovQ3JlYXRvciAoQXBhY2hlIEZPUCBWZXJzaW9uIDIuMSkKL1Byb2R1",
+        //   "extension": {
+        //     "size": {
+        //       "unitCode": "B",
+        //       "value": fileSelected.size
+        //     },
+        //     "applicationNumber": "fwhgg2323232",
+        //     "businessTypeCode": "Product Management",
+        //     "businessTypeDescription": " ",
+        //     "subTypeCode": "D-EOB",
+        //     "subTypeDescription": " ",
+        //     "initiatedDateTime": date.toLocaleString(),
+        //     "initiatorNumber": "",
+        //     "initiatorTypeCode": 123456789,
+        //     "product": {
+        //       "number": this.contadorDoc,
+        //       "typeCode": "Met99",
+        //       "nameCode": " ",
+        //       "nameCategoryCode": " "
+        //     }
+        //   }
+        // };
+        // //
+        // let fd = new FormData();
+        // fd.append('file', fileSelected);
+        // fd.append('fileExtension', extensionArchivo);
+        // fd.append('filenetDocument', JSON.stringify(filenetSkeletonRequest));
+        //
+        // this.wsService.uploadFilenet(fd);
+      }
+
+      console.log(this.form);
+      console.log('File: ');
+      console.log(fileSelected);
+    }
+
   }
+
+  // getBase64(file) {
+  //   return new Promise((resolve, reject) => {
+  //     const reader = new FileReader();
+  //     reader.readAsDataURL(file);
+  //     reader.onload = () => resolve(reader.result);
+  //     reader.onerror = error => reject(error);
+  //   });
+  // }
 
   onChange(event) {
     console.log('onChange event.target.value: ', event.target.value);
@@ -342,9 +496,13 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onBlur() {
+    let value;
+    value = this.form.controls[this.fieldObj.name].value;
+    this.form.controls[this.fieldObj.name].setValue( correctFieldValueLostFocus(value));
     // console.log('onBlur...');
-    console.log(this.fieldObj.name);
+    // console.log(this.fieldObj.name);
     let valid = true;
+
     if (this.fieldObj.name === 'zipCode' || this.fieldObj.name === 'zipCodeS' || this.fieldObj.name === 'zipCodeM') {
       const zipCode = this.form.controls[this.fieldObj.name].value;
       // console.log('zipCode: ', zipCode);
@@ -356,20 +514,20 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           }
         });
       }
-    } else if ( this.fieldObj.name === 'agentParticipationI') {
+    } else if (this.fieldObj.name === 'agentParticipationI') {
       this.item.participation = this.form.controls[this.fieldObj.name].value;
       if (!this.item.participation || Number(this.item.participation) === 0) {
         this.fieldObj.valid = false;
         valid = false;
         this.fieldObj.message = 'La participación no puede ser 0';
-      } else if ( this.form.controls[this.fieldObj.name].value != null ) {
+      } else if (this.form.controls[this.fieldObj.name].value != null) {
         const response = this.applicationService.updateItem(this.item, 'agent');
         if (response.status === false) {
           this.modalMessage = response.message;
           this.modalService.open(this.modalID);
         }
       }
-    } else if ( this.fieldObj.name === 'agentParticipation') {
+    } else if (this.fieldObj.name === 'agentParticipation') {
       if (!this.form.controls[this.fieldObj.name].value || Number(this.form.controls[this.fieldObj.name].value) === 0) {
         this.fieldObj.valid = false;
         valid = false;
@@ -487,8 +645,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   isValid(formControlName?) {
-    // console.log('onIsValid value: ', this.form.controls[this.fieldObj.name].value);
-    // console.log('formControlName: ', formControlName);
     if (formControlName) {
       console.log('formControlNameEntro: ', formControlName);
       const validateAgeResult = validateAge(this.form.controls[formControlName]);
@@ -716,6 +872,22 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         }
       });
     }
+
+  onKeyDownRadio(event, nextElementId) {
+    if (event.keyCode === 9) { // tab clicked
+      let el = document.getElementById(nextElementId);
+      if (el !== null) {
+        setTimeout(() => {
+          el.focus();
+        }, 0);
+      } /*else {
+        el = document.getElementById('radioMotobickeQuestion0');
+        setTimeout(() => {
+          el.focus();
+        }, 0);
+      }*/
+    }
+  }
 }
 
 

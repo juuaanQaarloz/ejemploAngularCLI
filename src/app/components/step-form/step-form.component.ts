@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Step} from '../../models/step';
 import {FormGroup} from '@angular/forms';
 import {ApplicationService} from '../../core/services';
+import {MockOperations} from '../../core/mock/mock-operations';
+import {FORM_MSG_ERROR} from '../../core/mock/errors/mock-erros-datos-plan';
 
 @Component({
   selector: 'app-step-form',
@@ -17,8 +19,12 @@ export class StepFormComponent implements OnInit {
   accordionExpanded: boolean;
   renderCondition;
   completed = false;
+  stepsOperations = MockOperations;
+  isValidStep = true;
+  stepMsgError = FORM_MSG_ERROR;
 
-  constructor(private applicationService: ApplicationService) { }
+  constructor(private applicationService: ApplicationService) {
+  }
 
   ngOnInit() {
     // console.log('step: ', this.stepObj);
@@ -64,6 +70,41 @@ export class StepFormComponent implements OnInit {
     const status = this.applicationService.getStatusError(errorId);
     console.log('status: ', status);
     return status;
+  }
+
+  executeOperation(delegateOperation) {
+    console.log('delegateOperation: ', delegateOperation);
+    if (delegateOperation === 'closeStep') {
+      this.closeStep();
+    } else if (delegateOperation === 'validateStep') {
+      if (this.stepObj.id === '11') {
+        const totalPercentageBeneficiaries = this.applicationService.getTotalParticipationPercentage('beneficiary');
+        console.log('totalPercentageBeneficiaries: ', totalPercentageBeneficiaries);
+        if (totalPercentageBeneficiaries === 100) {
+          this.validateStep();
+          if (this.isValidStep) {
+            this.applicationService.submitFunction('nextStep');
+          }
+        } else {
+          this.isValidStep = false;
+        }
+      } else {
+        this.validateStep();
+        if (this.isValidStep) {
+          this.applicationService.submitFunction('nextStep');
+        }
+      }
+    }
+  }
+
+  validateStep() {
+    this.isValidStep = this.applicationService.validateFormByStep((this.index + 1).toString());
+  }
+
+  closeStep() {
+    console.log('onCloseStep...');
+    this.accordionExpanded = false;
+    // this.applicationService.changeValue(this.index + 1);
   }
 }
 

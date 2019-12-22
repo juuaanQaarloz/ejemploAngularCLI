@@ -6,7 +6,7 @@ import {fromEvent} from 'rxjs';
 import {filter, takeUntil} from 'rxjs/operators';
 import {TemplatePortal} from '@angular/cdk/portal';
 import {untilDestroyed} from 'ngx-take-until-destroy';
-import {correctFieldValue} from '../utilities';
+import {correctFieldValue, correctFieldValueLostFocus} from '../utilities';
 
 @Directive({
   selector: '[appAutocomplete]'

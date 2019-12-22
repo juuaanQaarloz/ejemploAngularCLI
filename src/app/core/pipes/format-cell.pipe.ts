@@ -6,13 +6,6 @@ import {CurrencyPipe} from '@angular/common';
 })
 export class FormatCellPipe implements PipeTransform {
 
-  /*transform(value: any, ...args: any[]): any {
-    if (value === undefined) {
-      return 'not available';
-    }
-    return value;
-  }*/
-
   constructor(private currencyPipe: CurrencyPipe) { }
 
   transform(value: any, format: string) {

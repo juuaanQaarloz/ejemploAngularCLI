@@ -10,7 +10,7 @@ export function removeWhiteSpaces(value: string): string { // disable manually t
   if (!nullUndefinedOrEmptyValidation(value)) {
     value = value.trim();
     // value = value.replace(/\s+/, ' ');
-    value = value.replace(/\s+/g, '');
+    value = value.replace(/\s+/g, ' ');
     value = value.toUpperCase();
   }
   return value;
@@ -71,10 +71,24 @@ export function correctFieldValue(val) {
     // }
 
     if (/[ \t]{2,}/.test(val)) {
-      val = val.trim();
+      //val = val.trim();
       val = val.replace(/\s{2,}/g, ' ');
     }
 
+  } else {
+    return null;
+  }
+  return val;
+}
+
+
+/**@param (string) val value to be corrected
+ * @return (string) the given value in upper case, trimmed and with only 1 space between words
+ */
+export function correctFieldValueLostFocus(val) {
+  // console.debug("AQui paso al perder el foco");
+  if (!nullUndefinedOrEmptyValidation(val)) {
+      val = val.trim();
   } else {
     return null;
   }

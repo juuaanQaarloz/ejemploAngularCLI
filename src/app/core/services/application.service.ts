@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';
 import {Beneficiary, Formatwo, Field, Occupation, Step} from '../../models';
-import { Agent } from '../../models/agent-model/agent';
+import {Agent} from '../../models/agent-model/agent';
 import {equalEmailsValidator, higherAssuredImport, validateEmailConfirmation, validatorsObjects, validateFunds} from '../validators';
 import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
@@ -114,15 +114,17 @@ export class ApplicationService {
       } else if (currentStep === 20) {
         // aqui validacion
         this.changeValue(21);
+      } else if (currentStep === 21) {
+        this.changeValue(22);
       }
 
       // console.log('currentStep2: ', this.currentStepSource.getValue());
-    } else if (type === 'validateStep') {
+    } /*else if (type === 'validateStep') {
       const currentStep = this.currentStepSource.getValue(); // .getValue();
       // console.log('onValidateStep currentStep: ', currentStep);
       // console.log('onValidateStep currentStep: ', currentStep + 1);
       this.validateFormByStep((currentStep + 1).toString());
-    }
+    }*/
   }
 
   openOccupationModal(modalID: string) {
@@ -236,6 +238,7 @@ export class ApplicationService {
     }
     return validationFunctions;
   }
+
   // getCatalogById(this.fieldObj.sourceID, this.fieldObj.source)
   getCatalogById(id: string, source: string): Observable<[]> {
     let urlCatalog = '';
@@ -296,7 +299,7 @@ export class ApplicationService {
       // currentTotalParticipationPercentage = 1; // i commented this line cuz not apply for countries
       currentItems = this.countries.getValue();
       maxLength = 3;
-      responseMessage1 = 'No se pueden agregar más de 3 paises';
+      responseMessage1 = 'No se pueden agregar más de 3 ';
       // responseMessage2 = 'Validacion2'; // i commented this line cuz not apply for countries
       // propertyName = 'participation'; // i commented this line cuz not apply for countries
     } else if (itemType === 'payment') {
@@ -318,6 +321,10 @@ export class ApplicationService {
       currentItems = this.sports.getValue();
       maxLength = 5;
       responseMessage1 = 'No se pueden agregar más de 5 deportes / actividades';
+    } else if (itemType === 'document') {
+      // currentItems = this.documents.getValue();
+      console.log('currentItems');
+      console.log(currentItems);
     }
 
     if (currentTotalParticipationPercentage !== undefined) {
@@ -387,11 +394,17 @@ export class ApplicationService {
     } else if (itemType === 'payment') {
       currentItems = this.payments.getValue();
       propertyName = 'paymentId';
+    } else if (itemType === 'document') {
+      // currentItems = this.documents.getValue();
+      currentItems = [];
+      propertyName = 'documentId';
+      console.log('currentItems');
+      console.log(currentItems);
     }
     currentItems = currentItems.filter(item => item[propertyName] !== itemId);
     // console.log('currentItems: ', currentItems);
     this.setItems(itemType, currentItems);
-    if ( itemType === 'agent' && currentItems.length === 1) {
+    if (itemType === 'agent' && currentItems.length === 1) {
       const mappedAgent = {
         agentId: currentItems[0].agentId, name: currentItems[0].name,
         promotor: currentItems[0].promotor, key: currentItems[0].key, participation: 100
@@ -426,6 +439,12 @@ export class ApplicationService {
     } else if (itemType === 'payment') {
       currentItems = this.payments.getValue();
       propertyItem = 'paymentId';
+    } else if (itemType === 'document') {
+      console.log("Entro documents;");
+      // currentItems = this.documents.getValue();
+      currentItems = [];
+      // console.log(currentItems);
+      propertyItem = 'documentId';
     }
     const itemsLength = currentItems.length;
     // console.log('itemsLength: ', itemsLength);
@@ -452,7 +471,13 @@ export class ApplicationService {
     if (itemType === 'beneficiary') {
       currentItems = this.beneficiaries.getValue();
       propertyItem = 'beneficiaryId';
-      currentTotalParticipationPercentage = this.getTotalParticipationPercentage(itemType);
+      propertyParticipation = 'participationPercentage';
+      currentTotalParticipationPercentage = 0;
+      currentItems.forEach((item) => {
+        if (updatedItem[propertyItem] !== item[propertyItem]) {
+          currentTotalParticipationPercentage = currentTotalParticipationPercentage + Number(item[propertyParticipation]);
+        }
+      });
       maxLength = 10;
       responseMessage1 = 'No se pueden agregar más de 10 beneficiarios';
       responseMessage2 = 'La suma de las participaciones de los beneficiarios excede el 100%';
@@ -488,20 +513,24 @@ export class ApplicationService {
     }
     // const foundItem = currentItems.filter(i => i[propertyItem] === updatedItem[propertyItem])[0];
 
+    console.log('currentTotalParticipationPercentage: ', currentTotalParticipationPercentage);
+    console.log('Number(updatedItem[propertyParticipation]) : ', Number(updatedItem[propertyParticipation]));
+
     if (currentTotalParticipationPercentage !== undefined) {
       // when is a max participation limit
       if (currentTotalParticipationPercentage + Number(updatedItem[propertyParticipation]) <= 100) {
+        console.log('here');
         // when is a maxItems limit
         if (currentItems.length <= maxLength) {
           // the new item can be added
-         if (Number(updatedItem[propertyParticipation]) > 0) {
-           const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
-           currentItems[index] = updatedItem;
-           this.setItems(itemType, currentItems);
-           return {status: true, message: ''};
-         } else {
-           return {status: false, message: responseMessage3};
-         }
+          if (Number(updatedItem[propertyParticipation]) > 0) {
+            const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
+            currentItems[index] = updatedItem;
+            this.setItems(itemType, currentItems);
+            return {status: true, message: ''};
+          } else {
+            return {status: false, message: responseMessage3};
+          }
         } else {
           return {status: false, message: responseMessage1};
         }
@@ -575,6 +604,9 @@ export class ApplicationService {
       this.sports.next(newItems);
     } else if (itemType === 'payment') {
       this.payments.next(newItems);
+    } else if (itemType === 'document') {
+      // this.documents.next(newItems);
+      // console.log(this.documents);
     }
   }
 
@@ -772,31 +804,52 @@ export class ApplicationService {
   }
 
   validateFormByStep(stepID: string) {
-    console.log(stepID);
+    console.log('stepID: ', stepID);
     const step = this.getStepById(stepID);
-    console.log(step);
+    console.log('step: ', step);
+    let isValidStep = true;
+    let validateResults = [];
+
     if (step) {
       step.contents.forEach((contentFromStep) => {
         if (contentFromStep.fields) {
           contentFromStep.fields.forEach(field => {
-            field.valid = this.formGroup.controls[field.name].valid;
-            // console.log('formControlName: ', field.name);
-            // console.log('valid: ', field.valid);
+            if (!field.disable) {
+              field.valid = this.formGroup.controls[field.name].valid;
+              if (this.formGroup.controls[field.name].errors) {
+                console.log('errors: ', this.formGroup.controls[field.name].errors);
+              }
+              console.log('formControlName: ', field.name);
+              console.log('valid: ', field.valid);
+              validateResults.push(field.valid);
+            }
           });
         } else {
           if (contentFromStep.contentChildren) {
             contentFromStep.contentChildren.forEach(contentChild => {
               if (contentChild.fields) {
                 contentChild.fields.forEach(field => {
-                  field.valid = this.formGroup.controls[field.name].valid;
-                  // console.log('formControlName: ', field.name);
-                  // console.log('valid: ', field.valid);
+                  if (!field.disable) {
+                    field.valid = this.formGroup.controls[field.name].valid;
+                    // console.log('formControlName: ', field.name);
+                    console.log('valid: ', field.valid);
+                    validateResults.push(field.valid);
+                  }
                 });
               }
             });
           }
         }
       });
+
+      validateResults.forEach((res) => {
+        console.log('res: ', res);
+        if (!res) {
+          isValidStep = res;
+        }
+      });
+
+      return isValidStep;
     }
   }
 
@@ -1013,14 +1066,14 @@ export class ApplicationService {
   getAgentItemUser() {
     // get headers user
     const userHeaders = this.getHeadersUser('userId');
-    console.log( 'userHeaders --< ' + userHeaders);
+    console.log('userHeaders --< ' + userHeaders);
     // get agent catalog
     this.httpClient.get(URL_AGENT_CATALOG).subscribe((agents: any) => {
       agents.catalogData.extension.variations.forEach(agent => {
         if (agent.agente === userHeaders + '') {
           const mapAgent = {
-            agentId: agent.agente, name: agent.nombreAgente, promotor: agent.nombrePromotoria,
-            key: agent.promotoria, participation: 100
+            agentId: agent.agente, name: agent.nombreAgente, key: agent.promotoria,
+            promotor: agent.nombrePromotoria, participation: 100
           };
           // insert user == agent
           this.addItem(mapAgent, 'agent');
@@ -1029,7 +1082,7 @@ export class ApplicationService {
     });
   }
 
-  getHeadersUser( key ) {
+  getHeadersUser(key) {
     // User property map
     const stores = window.localStorage;
     console.log('stores');
@@ -1037,7 +1090,7 @@ export class ApplicationService {
     console.log(stores.getItem(key));
     // JSON.parse(localStorage.getItem(key))
     // const headerUser = {
-      // userId: stores.getItem('userId') !== null ? stores.getItem('userId') : '9504'
+    // userId: stores.getItem('userId') !== null ? stores.getItem('userId') : '9504'
     // };
     return stores.getItem(key) != null ? stores.getItem(key) : '9504';
   }

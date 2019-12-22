@@ -9,6 +9,7 @@ import {ModalService} from '../../custom-modal';
 import {medicalFieldsDialog} from '../../../core/mock/basic-questionnaires/medical';
 import {sportsFieldsDialog} from '../../../core/mock/basic-questionnaires/sports-aviation-hobbies';
 import {FORM_MSG_ERROR} from '../../../core/mock/errors/mock-erros-datos-plan';
+import {transformDate} from '../../../core/utilities';
 
 @Component({
   selector: 'app-new-row',
@@ -106,7 +107,7 @@ export class NewRowComponent implements OnInit {
       newMappedItem = {
         idDisease: (this.appService.getLastItemId(this.itemType) + 1).toString(),
         name: this.formGroup.controls.describeDiseasesD.value,
-        diagnosticDate: this.formGroup.controls.diagnosticDateD.value,
+        diagnosticDate: transformDate(this.formGroup.controls.diagnosticDateD.value, 'YYYY/MM/DD'),
         duration: this.formGroup.controls.durationDiseasesD.value,
         actualCondition: this.formGroup.controls.actualMedicalConditionD.value,
         hasQuestionnaire: false

@@ -21,6 +21,7 @@ import {
   MockContentStep19Process1ContentSection2,
   MockContentStep20Process1ContentSection2,
   MockContentStep21Process1ContentSection2,
+  MockContentStep22Process1ContentSection2,
 } from './mock-contents';
 import {ERROSDATOSPLAN} from './errors/mock-erros-datos-plan';
 
@@ -288,6 +289,18 @@ export const MockStepsProcessContentSection2: Step[] = [
     idHtml: 'app-step-form-21',
     title: 'Autorizaciones',
     contents: MockContentStep21Process1ContentSection2,
+    renderConditions: '',
+    previousStep: '20',
+    nextStep: '1',
+    isCompleted: false,
+    show: true
+  },
+  {
+    id: '22',
+    idProcess: 'process-1',
+    idHtml: 'app-step-form-22',
+    title: 'Carga de Documentos',
+    contents: MockContentStep22Process1ContentSection2,
     renderConditions: '',
     previousStep: '20',
     nextStep: '1',

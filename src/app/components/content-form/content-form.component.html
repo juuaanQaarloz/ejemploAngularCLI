@@ -46,6 +46,10 @@
     <div *ngSwitchCase="'table-payment'" class="ml-step-container">
       <app-beneficiary-table [type]="contentObj.contentType"></app-beneficiary-table>
     </div>
+    <!-- Tabla de documentos -->
+    <div *ngSwitchCase="'documents'" class="ml-step-container">
+      <app-documents></app-documents>
+    </div>
 
     <div *ngSwitchCase="'table-sports'">
       <!--<app-table [header]="'Deporte(s)'"

@@ -77302,5 +77302,22 @@
       "company": null,
       "locale": "es-MX"
     }
+  ],
+  "typeDocumentOptions": [
+    {
+      "id": 0,
+      "name": "Ife",
+      "code": "IFE"
+    },
+    {
+      "id": 1,
+      "name": "Acta de Nacimiento",
+      "code": "ACTNAC"
+    },
+    {
+      "id": 2,
+      "name": "Comprobante de domicilio",
+      "code": ""
+    }
   ]
 }

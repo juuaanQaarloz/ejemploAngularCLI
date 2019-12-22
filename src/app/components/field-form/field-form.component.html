@@ -109,23 +109,23 @@
     </label>
   </fieldset>
 
-  <fieldset *ngSwitchCase="'radio'" class="ml-form-field">
+  <fieldset *ngSwitchCase="'radio'" class="ml-form-field ml-form-field-radio"
+            [ngClass]="{'error-radio': !fieldObj.valid}">
 
-    <div class="ml-form-field-radio" [ngClass]="{'radio-options': fieldObj.styleClass,
-                                                  'error-radio': !fieldObj.valid}">
       <label>{{fieldObj.label}}</label>
 
       <div class="ml-form-field-radio-group"
-           *ngFor="let radioOption of radioOptions; let first = first">
+           *ngFor="let radioOption of radioOptions">
 
-        <input type="radio" [formControlName]="fieldObj.name"
-               [id]="radioOption.id + '-radio'"
-               [value]="radioOption.value">
+        <input type="radio"
+               [formControlName]="fieldObj.name"
+               [id]="fieldObj.idHtml + radioOption.id"
+               [name]="fieldObj.name"
+               [value]="radioOption.value"
+               (keydown)="onKeyDownRadio($event, fieldObj.idHtml + (radioOption.id + 1))">
+
         <label>{{radioOption.name}}</label>
-
       </div>
-
-    </div>
 
     <div class="ml-form-field-errortext"
          *ngIf="!fieldObj.valid">
@@ -165,11 +165,42 @@
     </div>
   </fieldset>
 
+  <fieldset *ngSwitchCase="'file'" class="ml-button-primary"
+              [ngClass]="{'error': !fieldObj.valid}">
+    <div class="pull-left" style="text-align: right; width: 18%;">
+      <label class="ml-button-file">
+        <input [type]="'file'"
+               [formControlName]="fieldObj.name"
+               [id]="fieldObj.idHtml"
+               (change)="fileChange($event)"
+               placeholder="{{fieldObj.placeholder}}"
+               value=""
+               [required]="fieldObj.required"
+               [accept]="fieldObj.accept"
+               class="ml-button-file"
+               style='display: none;'>
+      </label>
+    </div>
+    <div class="pull-right" style="text-align: left; width: 82%;" *ngIf="!fieldObj.message">
+      <div style="margin-left: 6%; border: 1px solid gray; text-align: center; height: 42px; white-space: pre; text-overflow: ellipsis; overflow: hidden;">
+        {{fileName}}
+      </div>
+    </div>
+    <div class="pull-right" style="text-align: left; width: 82%;" *ngIf="fieldObj.message">
+      <div style="margin-left: 6%; border: 1px solid gray; text-align: center; height: 42px;">
+        <span class="ml-form-field-errortext" style="white-space: pre;">{{fieldObj.message}}</span>
+        <span style="width: 100%; margin-left: 5px;" type="text" disabled>{{fileName}}</span>
+      </div>
+    </div>
+  </fieldset>
+  <!--Input File-->
+
+
   <div *ngSwitchCase="'autocomplete'">
     <fieldset class="ml-form-field"
               [ngClass]="{'error': !fieldObj.valid}">
       <label>
-        <input appOnlyGivenCharacters
+        <input matInput appOnlyGivenCharacters
                [noAllowedCharactersPattern]="fieldObj.noAllowedCharactersPattern"
                [pattern]="regExpPattern"
                [type]="toggleVisible ? 'text' : 'password'"
@@ -178,9 +209,9 @@
                placeholder="{{fieldObj.placeholder}}"
                value=""
                [maxlength]="fieldObj.maxValue"
-               [appAutocomplete]="autocomplete"
-               (keyup)="onKeyUp($event)">
-               <!--(blur)="onBlur()">-->
+               [matAutocomplete]="auto"
+               (keyup)="onKeyUp($event)"
+               (blur)="onBlur()">
 
         <span [ngStyle]="{'background': this.disable ? '#EBEBE4':''}">{{fieldObj.label}}</span>
         <a *ngIf="fieldObj.canChangeType" href="javascript:;" (click)="onClickToggle()"
@@ -192,22 +223,20 @@
           {{fieldObj.message}}
         </div>
       </label>
+
     </fieldset>
 
-    <app-autocomplete #autocomplete="appAutocomplete">
-      <ng-template appAutocompleteContent>
-        <ng-container *ngIf="loading">
-          <p >Buscando... </p>
-        </ng-container>
+    <mat-autocomplete #auto="matAutocomplete">
+      <ng-container *ngIf="(autocompleteOptions | filter: form.controls[fieldObj.name].value) as result">
+        <mat-option *ngFor="let option of result" [value]="option.name"
+                    (onSelectionChange)="onKeyUpAutoComplete($event)">
+          {{option.name}}
+        </mat-option>
+        <!--<mat-option *ngIf="(!result.length) && (!loading)">No se encontraron resultados...</mat-option>-->
+      </ng-container>
 
-        <ng-container *ngIf="(autocompleteOptions | filter: form.controls[fieldObj.name].value) as result">
-          <app-option *ngFor="let option of result" [value]="option.name">
-            {{ option.name}}
-          </app-option>
-          <app-option *ngIf="(!result.length) && (!loading)">No se encontraron resultados...</app-option>
-        </ng-container>
-      </ng-template>
-    </app-autocomplete>
+    </mat-autocomplete>
+
   </div>
 
   <jw-modal [id]="modalID" [modalType]="'overlay'">

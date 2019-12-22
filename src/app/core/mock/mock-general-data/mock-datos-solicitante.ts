@@ -455,7 +455,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'Nacionalidad(s) es obligatorio. Nacionalidad(s) debe contener un valor alfanumérico.',
+    message: 'Nacionalidad(es) es obligatorio. Nacionalidad(es) debe contener un valor alfanumérico.',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',

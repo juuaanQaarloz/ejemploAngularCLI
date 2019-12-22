@@ -49,7 +49,7 @@ export const DatosDomicilio: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'El valor capturado contine caracteres no válidos, valores aceptados ([A-Z], Ñ, 0-9\'. , _ / + # & -)',
+    message: 'El valor capturado contine caracteres no válidos, valores aceptados ([A-Z], Ñ, 0-9 , #, -, .)',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
