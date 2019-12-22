@@ -200,7 +200,7 @@
     <fieldset class="ml-form-field"
               [ngClass]="{'error': !fieldObj.valid}">
       <label>
-        <input appOnlyGivenCharacters
+        <input matInput appOnlyGivenCharacters
                [noAllowedCharactersPattern]="fieldObj.noAllowedCharactersPattern"
                [pattern]="regExpPattern"
                [type]="toggleVisible ? 'text' : 'password'"
@@ -209,9 +209,9 @@
                placeholder="{{fieldObj.placeholder}}"
                value=""
                [maxlength]="fieldObj.maxValue"
-               [appAutocomplete]="autocomplete"
-               (keyup)="onKeyUp($event)">
-               <!--(blur)="onBlur()">-->
+               [matAutocomplete]="auto"
+               (keyup)="onKeyUp($event)"
+               (blur)="onBlur()">
 
         <span [ngStyle]="{'background': this.disable ? '#EBEBE4':''}">{{fieldObj.label}}</span>
         <a *ngIf="fieldObj.canChangeType" href="javascript:;" (click)="onClickToggle()"
@@ -223,22 +223,20 @@
           {{fieldObj.message}}
         </div>
       </label>
+
     </fieldset>
 
-    <app-autocomplete #autocomplete="appAutocomplete">
-      <ng-template appAutocompleteContent>
-        <ng-container *ngIf="loading">
-          <p >Buscando... </p>
-        </ng-container>
+    <mat-autocomplete #auto="matAutocomplete">
+      <ng-container *ngIf="(autocompleteOptions | filter: form.controls[fieldObj.name].value) as result">
+        <mat-option *ngFor="let option of result" [value]="option.name"
+                    (onSelectionChange)="onKeyUpAutoComplete($event)">
+          {{option.name}}
+        </mat-option>
+        <!--<mat-option *ngIf="(!result.length) && (!loading)">No se encontraron resultados...</mat-option>-->
+      </ng-container>
 
-        <ng-container *ngIf="(autocompleteOptions | filter: form.controls[fieldObj.name].value) as result">
-          <app-option *ngFor="let option of result" [value]="option.name">
-            {{ option.name}}
-          </app-option>
-          <app-option *ngIf="(!result.length) && (!loading)">No se encontraron resultados...</app-option>
-        </ng-container>
-      </ng-template>
-    </app-autocomplete>
+    </mat-autocomplete>
+
   </div>
 
   <jw-modal [id]="modalID" [modalType]="'overlay'">

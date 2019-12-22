@@ -19,7 +19,7 @@ import {CoreModule} from './core/core.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
   DateAdapter,
-  MAT_DATE_FORMATS,
+  MAT_DATE_FORMATS, MatAutocompleteModule,
   MatDatepickerModule,
   MatIconModule,
   MatInputModule,
@@ -112,6 +112,7 @@ import { AppConstants } from './app.constants';
     MatIconModule,
     DialogModule,
     MatSelectModule,
+    MatAutocompleteModule,
     AppRoutingModule
   ],
   bootstrap: [AppComponent],

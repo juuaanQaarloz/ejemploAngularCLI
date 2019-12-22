@@ -6,7 +6,7 @@ import {ApplicationService, validateAge} from '../../core/services';
 import {WsService} from '../../core/services/ws.service';
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
-import {calculateRFC, correctFieldValue,correctFieldValueLostFocus, stringToRegExp, transformDate} from '../../core/utilities';
+import {calculateRFC, correctFieldValue, correctFieldValueLostFocus, stringToRegExp, transformDate} from '../../core/utilities';
 import {SepomexObj} from '../../models/sepomex-obj';
 import {Pattern} from '../../models/pattern/pattern';
 import {DialogRef} from '../dialog/dialog-ref';
@@ -14,6 +14,7 @@ import {ModalService} from '../custom-modal';
 import {Operation} from '../../models';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-field-form',
@@ -41,7 +42,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   modalMessage = 'La suma de las participaciones de los agentes excede el 100%';
   fileName: string;
   contadorDoc: number;
-
   okOperation: Operation = {
     id: 'opt-1',
     idHtml: 'btnOK',
@@ -308,7 +308,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
 
   onKeyUp(event) {
-    // console.log('onKeyUp event: ', event);
     let value;
     value = event.target.value;
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
@@ -356,6 +355,22 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
     if (this.fieldObj.name === 'assuredImport') {
       // console.log('Entro assuredImport: ');
+    }
+  }
+
+  onKeyUpAutoComplete(event) {
+    console.log('onKeyUpAutoComplete event: ', event);
+    let value;
+    value = event.source.value;
+    console.log('value: ', value);
+    const elem: Element = document.getElementById(this.fieldObj.idHtml);
+    event.source.value = correctFieldValue(value);
+    elem.setAttribute('value', event.source.value);
+    console.log('value2: ', elem.getAttribute('value'));
+    this.form.controls[this.fieldObj.name].setValue(event.source.value);
+
+    if (value) {
+      this.isValid();
     }
   }
 
