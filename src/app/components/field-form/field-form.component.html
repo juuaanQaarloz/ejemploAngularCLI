@@ -109,33 +109,26 @@
     </label>
   </fieldset>
 
-  <fieldset *ngSwitchCase="'select-change'" class="ml-form-field"
-            [ngClass]="{'error': !fieldObj.valid}">
+  <fieldset *ngSwitchCase="'select-1'" class="ml-form-field"
+            [ngClass]="{'error': !fieldObj.valid }">
     <label>
-
-      <!--<select multiple name="{{fieldObj.label}}"
+      <select name="{{fieldObj.label}}"
               [formControlName]="fieldObj.name"
               [id]="fieldObj.idHtml"
               (change)="onChangeSelect($event)"
               (blur)="onBlur()">
         <option value="" [selected]="isSelected"> {{fieldObj.label}} </option>
-        <option *ngFor="let opt of selectOptions" [value]="opt.value"
-                [selected]="checkValue(opt.value)">
-          {{opt.name}}</option>
-      </select>-->
+        <option *ngFor="let opt of selectOptions1" [value]="opt.value"
+                [selected]="checkValue(opt.value)">{{opt.name}}</option>
 
-      <mat-select multiple class="select-1"
-                  [formControlName]="fieldObj.name"
-                  [id]="fieldObj.idHtml"
-                  (change)="onChangeSelect($event)"
-                  (blur)="onBlur()">
-        <mat-option *ngFor="let opt of selectOptions1" [value]="opt.value">{{opt.name}}</mat-option>
-      </mat-select>
-
-      <span *ngIf="showSelectLabel">{{fieldObj.label}}</span>
-      <div class="ml-form-field-errortext">{{fieldObj.message}}</div>
+      </select>
+      <span *ngIf="showSelectLabel" [ngStyle]="{'background': this.disable ? '#EBEBE4':''}">{{fieldObj.label}}</span>
+      <div class="ml-form-field-errortext"
+           *ngIf="!fieldObj.valid">
+        {{fieldObj.message}}</div>
     </label>
   </fieldset>
+
 
   <fieldset *ngSwitchCase="'radio'" class="ml-form-field ml-form-field-radio"
             [ngClass]="{'error-radio': !fieldObj.valid}">

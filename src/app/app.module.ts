@@ -57,6 +57,7 @@ import { SearchResultsComponent } from './components/search/search-results/searc
 import { SearchDetailComponent } from './components/search/search-detail/search-detail.component';
 import { DocumentsComponent } from './components/documents/documents.component';
 import { AppConstants } from './app.constants';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 // @ts-ignore
 @NgModule({
@@ -95,9 +96,11 @@ import { AppConstants } from './app.constants';
     ErrorBannerComponent,
     CoverageComponent,
     NewPaymentComponent,
-    DocumentsComponent
-    ],
-
+    DocumentsComponent,
+    SearchCriteriaComponent,
+    SearchResultsComponent,
+    SearchDetailComponent
+  ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
@@ -113,7 +116,8 @@ import { AppConstants } from './app.constants';
     DialogModule,
     MatSelectModule,
     MatAutocompleteModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgxPaginationModule
   ],
   bootstrap: [AppComponent],
   entryComponents: [NewBeneficiaryComponent, NewFormatwoComponent, NewAgentComponent, NewCountryComponent,
