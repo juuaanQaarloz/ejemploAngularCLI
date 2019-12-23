@@ -26,22 +26,32 @@
             </div>
             <br />
             <div class="row">
-                <div class="col-sm-11 col-md-11 col-lg-11">
+                <div class="col-sm-10 col-md-10 col-lg-10">
                     Total de registros: {{ records.length }}
                 </div>
-                <div class="col-sm-1 col-md-1 col-lg-1 text-right">
-                    <select class="form-control" [(ngModel)]="numItems">
+                <div class="col-sm-2 col-md-2 col-lg-2 text-right">
+                    <!-- <select class="form-control" [(ngModel)]="numItems">
                         <option value="5">5</option>
                         <option value="10">10</option>
                         <option value="15">15</option>
                         <option value="20">20</option>
-                    </select>
+                    </select> -->
+
+                    <fieldset class="ml-form-field ml-form-field-select">
+                        <legend>Resultados por página</legend>
+                        <select class="form-control" name="Resultados por página" [(ngModel)]="numItems">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                        </select>
+                    </fieldset>
                 </div>
             </div>
             <br />
             <div class="row">
                 <div class="col-sm-12 col-md-12 col-lg-12 text-center">
-                    <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente">
+                    <pagination-controls class="paginator" (pageChange)="p = $event" previousLabel="" nextLabel="">
                     </pagination-controls>
                 </div>
             </div>
