@@ -30,7 +30,8 @@ export const MockFieldsContentSection1: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: 'phyPerson'
+    value: 'phyPerson',
+    disable: false
   }
 ];
 
