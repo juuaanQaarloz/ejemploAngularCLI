@@ -16,3 +16,10 @@ export const ERROSDATOSPLAN: Error[] = [
     errorMsg: 'Cantidad mínima para la suma asegurada debe ser de $40,000 dolares'
   }
 ];
+
+export const ERROSDATOSPERSONAFISICA: Error[] = [
+  {
+    errorName: 'invalidDobleName',
+    errorMsg: 'El nombre no puede ser igual al apellido paterno y materno.'
+  },
+];

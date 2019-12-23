@@ -719,26 +719,28 @@ export function rangeValidator(min: number, max: number) {
 export const higherAssuredImport: ValidatorFn = (group: FormGroup): ValidationErrors | null => {
   const currency = group.controls.currency.value;
   const assuredImport = group.controls.assuredImport.value;
-  if (currency === 'mxn') {
-    if (Number(assuredImport) >= Number(0.00)) {
-      if (Number(assuredImport) < Number(400000.00)) {
-      // console.log('invalidAssuredImportMxn', false);
-        return { invalidAssuredImportMxn: true};
+  if (assuredImport !== '') {
+    if (currency === 'mxn') {
+      if (Number(assuredImport) >= Number(0.00)) {
+        if (Number(assuredImport) < Number(400000.00)) {
+          // console.log('invalidAssuredImportMxn', false);
+          return {invalidAssuredImportMxn: true};
+        } else {
+          return null;
+        }
       } else {
         return null;
       }
-    } else {
-      return null;
-    }
-  } else if (currency === 'usd') {
-    if (Number(assuredImport) >= Number(0.00)) {
-      if (Number(assuredImport) < Number(40000.00)) {
-        return {invalidAssuredImportUsd: true};
+    } else if (currency === 'usd') {
+      if (Number(assuredImport) >= Number(0.00)) {
+        if (Number(assuredImport) < Number(40000.00)) {
+          return {invalidAssuredImportUsd: true};
+        } else {
+          return null;
+        }
       } else {
         return null;
       }
-    } else {
-      return null;
     }
   }
 };
@@ -780,12 +782,16 @@ export const validateSameName: ValidatorFn = (group: FormGroup): ValidationError
   let name = group.controls.name.value;
   let fatherLastName = group.controls.fatherLastName.value;
   let motherLastName = group.controls.motherLastName.value;
-  if (name === fatherLastName) {
-    if (name === motherLastName) {
-      return {invalidDobleName: true};
-    } else { return null; }
-  } else {
+  if (name !== '') {
+    if (name === fatherLastName) {
+      if (name === motherLastName) {
+        return {invalidDobleName: true};
+      } else {
+        return null;
+      }
+    } else {
       return null;
+    }
   }
 };
 
