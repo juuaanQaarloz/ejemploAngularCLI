@@ -620,6 +620,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         this.setValueField('assuredImport', 'txtAssuredImport', null);
       }
     }
+
+    if (event.target.id === 'slctPacking1') {
+      this.form.controls.packing.setValue(event.target.value);
+    }
   }
 
   getOptions() {
@@ -672,11 +676,11 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   isValid(formControlName?) {
 
     if (this.fieldObj.name === 'typePerson') {
-      this.setPacking();
+      // this.setPacking();
       // this.setValueField('packing', 'slctPacking', this.selectOptions1);
      }
     if (this.fieldObj.name === 'contractorType') {
-      this.setPacking();
+      // this.setPacking();
      }
 
     if (formControlName) {

@@ -15,7 +15,7 @@ import {weaponsFields, weaponsFields1, weaponsQuestions, weaponsQuestions1} from
 import {medicalFields, medicalQuestions1, medicalQuestions2, medicalQuestions3} from './basic-questionnaires/medical';
 import {AgentQuestion, AgentQuestion1} from './mock-agents/mock-agents-questions';
 import {AuthorizationFields1, AuthorizationQuestions1, AuthorizationQuestions2} from './authorization/authorization-questions';
-import {Plan1, Plan2, Plan3, Plan4, Plan5, Plan6, Plan7} from './mock-plan/mock-plan';
+import {Plan0, Plan1, Plan1a, Plan2, Plan3, Plan4, Plan5, Plan6, Plan7} from './mock-plan/mock-plan';
 import {statements, statements0, statements1, statements2, statements3} from './statements/statements';
 import { DatosTelefonoSolicitante } from './mock-general-data/mock-telefono-solicitante';
 import { FormasPago, FormasPagoAutorizo } from './mock-general-data/mock-formas-pago';
@@ -1231,7 +1231,7 @@ export const MockContentStep16Process1ContentSection2: Content[] = [
     idHtml: 'app-content-form-16.1',
     title: '',
     // process?: Process;
-    fields: Plan1,
+    fields: Plan0,
     //  operations: SearchOccupationOperationsS,
     renderConditions: '',
     // ---pending---
@@ -1240,6 +1240,46 @@ export const MockContentStep16Process1ContentSection2: Content[] = [
 
     // --added extra from model--
     showContent: true,
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-16.1',
+    idParent: 'step-16',
+    parentType: 'Step',
+    idHtml: 'app-content-form-16.1',
+    title: '',
+    // process?: Process;
+    fields: Plan1,
+    //  operations: SearchOccupationOperationsS,
+    renderConditions: '(typePerson!=morPerson,&,contractorType=true)',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    contentType: 'looseFields'
+    // enableConditions?: 'string';
+    // styleClass?: 'string';
+    // --------------------------
+  },
+  {
+    id: 'content-16.1',
+    idParent: 'step-16',
+    parentType: 'Step',
+    idHtml: 'app-content-form-16.1',
+    title: '',
+    // process?: Process;
+    fields: Plan1a,
+    //  operations: SearchOccupationOperationsS,
+    renderConditions: '(typePerson=morPerson,|,contractorType=false)',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
     contentType: 'looseFields'
     // enableConditions?: 'string';
     // styleClass?: 'string';

@@ -1,7 +1,7 @@
 import {Field} from '../../../models';
 
 
-export const Plan1: Field[] = [
+export const Plan0: Field[] = [
   {
     id: 'field-1403',
     idHtml: 'slctCurrency',
@@ -60,13 +60,16 @@ export const Plan1: Field[] = [
     entityField: '',
     value: ''
   },
+];
+
+export const Plan1: Field[] = [
   {
     id: 'field-1401',
     idHtml: 'slctPacking',
     name: 'packing',
     orderAppearance: 3,
     label: 'Empaquetamiento *',
-    type: 'select-1',
+    type: 'select',
     required: true,
     placeholder: '',
     length: '',
@@ -87,7 +90,38 @@ export const Plan1: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: ''
-  }
+  },
+
+];
+export const Plan1a: Field[] = [
+  {
+    id: 'field-1401',
+    idHtml: 'slctPacking1',
+    name: 'packing1',
+    orderAppearance: 3,
+    label: 'Empaquetamiento *',
+    type: 'select',
+    required: true,
+    placeholder: '',
+    length: '',
+    minValue: 0,
+    maxValue: 0,
+    pattern: '',
+    source: 'IPRE',
+    sourceID: 'packingdos',
+    sourceStructure: ['id', 'name', 'code'],
+    style: '',
+    styleClass: '',
+    styleClassError: '',
+    message: 'Seleccionar un tipo de empaquetamiento.',
+    messageClass: '',
+    messageError: '',
+    messageErrorClass: '',
+    renderConditions: '',
+    enableConditions: '',
+    entity: '',
+    entityField: ''
+  },
 
 ];
 
