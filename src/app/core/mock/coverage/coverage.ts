@@ -170,7 +170,7 @@ export const CoverageFieldsItem: Field[] = [
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
-    enableConditions: '(ageS>=18,&,ageS<=55)',
+    enableConditions: '(ageS>=20,&,ageS<=60)',
     entity: '',
     entityField: '',
     value: false
@@ -198,7 +198,7 @@ export const CoverageFieldsItem: Field[] = [
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
-    enableConditions: '(ageS>=20,&,ageS<=60)',
+    enableConditions: '(ageS>=18,&,ageS<=70)',
     entity: '',
     entityField: '',
     value: true,

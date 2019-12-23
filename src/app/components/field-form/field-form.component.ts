@@ -30,6 +30,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   isSelected = true;
   radioOptions = [];
   selectOptions = [];
+  selectOptions1 = [];
   checkBoxOptions = [];
   autocompleteOptions = [];
   toggleVisible = true;
@@ -544,9 +545,30 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       this.isValid();
     }
     if (this.fieldObj.name === 'assuredImport') {
-      const assuredImport = this.form.controls.assuredImport.value;
+      /* const assuredImport = this.form.controls.assuredImport.value;
       if (Number(assuredImport) > Number(0.00)) {
         this.setValueField('assuredImport', 'txtAssuredImport', addCurrencyFormat(assuredImport));
+      } */
+
+      const currency = this.form.controls.currency.value;
+      const assuredImport = this.form.controls.assuredImport.value;
+      if (currency === 'mxn') {
+        if (Number(assuredImport) > Number(0.00)){
+          if (Number(assuredImport) < Number(400000.00)) {
+            // console.log('invalidAssuredImportMxn', false);
+            return { invalidAssuredImportMxn: true};
+          } else {
+            this.setValueField('assuredImport', 'txtAssuredImport', addCurrencyFormat(assuredImport));
+          }
+        }
+      } else if (currency === 'usd') {
+        if (Number(assuredImport) > Number(0.00)) {
+          if (Number(assuredImport) < Number(40000.00)) {
+            return {invalidAssuredImportUsd: true};
+          } else {
+            this.setValueField('assuredImport', 'txtAssuredImport', addCurrencyFormat(assuredImport));
+          }
+        }
       }
     }
 
