@@ -496,6 +496,36 @@ export function validateMailConfirmation(email: string, confirmationEmail: strin
 }
 
 /**
+ * @param (string) names Name captured
+ * @param (string) lastName LastName captured
+ * @param (string) firstName FirstName captured
+ * @returns (boolean) returns false if the e-mail confirmation is not the same than the original e-mail
+ */
+export function validateNameLasNameFisrtName(names: string, lastName: string, firstName: string): boolean {
+  if (nullUndefinedOrEmptyValidation(names)) {
+    // return null;
+    return true;
+  }
+  if (nullUndefinedOrEmptyValidation(lastName)) {
+    // return null;
+    return true;
+  }
+  if (nullUndefinedOrEmptyValidation(firstName)) {
+    // return null;
+    return true;
+  }
+  if ((names === lastName  &&  names=== firstName) || 
+        (lastName === names &&  lastName=== firstName) ||
+        (firstName === names &&  firstName=== lastName)) {
+    // return {invalidEmail: { valid: false, value: controlConfirmationEmail.value}};
+    return false;
+  }
+  // return null;
+  return true;
+}
+
+
+/**
  * @param (string) token to validate
  * @returns (boolean) returns false if the token doesn't match a correct format
  */
