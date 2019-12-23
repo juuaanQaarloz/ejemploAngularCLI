@@ -706,10 +706,29 @@ export const equalEmailsValidator: ValidatorFn = (group: FormGroup): ValidationE
   }
 };
 
+/*export const hasRequiredField = (abstractControl: AbstractControl): boolean => {
+  if (abstractControl.validator) {
+    const validator = abstractControl.validator({}as AbstractControl);
+    console.log('validator: ', validator);
+    if (validator && validator.required) {
+      return true;
+    }
+  }
+  if (abstractControl['controls']) {
+    for (const controlName in abstractControl['controls']) {
+      if (abstractControl['controls'][controlName]) {
+        if (hasRequiredField(abstractControl['controls'][controlName])) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+};*/
+
 export function rangeValidator(min: number, max: number) {
   return (control: AbstractControl): { [key: string]: boolean} | null => {
-
-    if ( control.value !== null && (isNaN(control.value) || control.value < min  || control.value > max)) {
+    if (control.value !== null && (isNaN(control.value) || control.value < min  || control.value > max)) {
       return { rangeValidator: true};
     }
     return null;

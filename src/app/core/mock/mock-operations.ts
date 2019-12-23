@@ -173,6 +173,37 @@ export const SearchOccupationOperationsM: Operation[] = [
   }
 ];
 
+export const APPL_OPERATIONS: Operation[] = [
+  {
+    id: 'opt-1',
+    idHtml: 'btnGeneratePDF',
+    name: 'generatePDF',
+    label: 'PDF',
+    type: 'button',
+    style: '',
+    styleClass: 'ml-button-primary',
+    message: '',
+    messageClass: '',
+    delegateOperation: 'generatePDF',
+    renderConditions: '',
+    enableConditions: ''
+  },
+  {
+    id: 'opt-2',
+    idHtml: 'btnValidateApplication',
+    name: 'validateApplication',
+    label: 'VALIDAR',
+    type: 'button',
+    style: '',
+    styleClass: 'ml-button-primary',
+    message: '',
+    messageClass: '',
+    delegateOperation: 'validateApplication',
+    renderConditions: '',
+    enableConditions: ''
+  }
+];
+
 export const pdfOperation = {
   id: 'opt-1',
   idHtml: 'btnGeneratePDF',

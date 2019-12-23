@@ -17,9 +17,17 @@ export const ERROSDATOSPLAN: Error[] = [
   }
 ];
 
+
 export const ERROSDATOSPERSONAFISICA: Error[] = [
   {
     errorName: 'invalidDobleName',
     errorMsg: 'El nombre no puede ser igual al apellido paterno y materno.'
   },
+];
+
+export const ERRORS_DOM_CONT: Error[] = [
+  {
+    errorName: 'invalidEmailConfirmation',
+    errorMsg: 'Los emails no coinciden'
+  }
 ];

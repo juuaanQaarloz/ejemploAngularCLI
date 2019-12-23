@@ -29,11 +29,12 @@
                   (completed && !isLast) ? 'completed': ''
                   ]">
 
-  <app-error-banner *ngIf="stepObj.errors" [errors]="stepObj.errors"></app-error-banner>
+
   <div *ngIf="!isValidStep" class="ml-msg ml-msg-error">
     <span class="ml-msg-txt"><span class="fa fa-exclamation-circle high-priority"></span>
       {{stepMsgError}} </span>
   </div>
+  <app-error-banner *ngIf="stepObj.errors" [errors]="stepObj.errors"></app-error-banner>
 
   <div class="ml-step-content-div">
     <app-content-form *ngFor="let content of stepObj.contents" [form]="form" [contentObj]="content"></app-content-form>

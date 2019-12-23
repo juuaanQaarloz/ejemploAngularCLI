@@ -25,7 +25,7 @@ export const validatorsObjects = [
   },
   {
     nameField: 'weight',
-    validationFunctions: [rangeValidator(2, 400)]
+    validationFunctions: [rangeValidator(2.00, 400.00)]
   },
   {
     nameField: 'height',

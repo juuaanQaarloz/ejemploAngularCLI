@@ -27,6 +27,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     entity: '',
     entityField: ''
   },
@@ -55,6 +56,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     entity: '',
     entityField: ''
   },
@@ -111,6 +113,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     entity: '',
     entityField: ''
   },
@@ -140,6 +143,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     entity: '',
     entityField: ''
   },
@@ -169,6 +173,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     entity: '',
     entityField: ''
   },
@@ -197,6 +202,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     entity: '',
     entityField: ''
   },
@@ -225,6 +231,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     entity: '',
     entityField: ''
   }
