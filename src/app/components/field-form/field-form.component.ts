@@ -72,11 +72,16 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     if (this.fieldObj.type === 'radio' || this.fieldObj.type === 'select'
       || this.fieldObj.type === 'checkbox-n' || this.fieldObj.type === 'select-multiple'
-      || this.fieldObj.type === 'autocomplete') {
+      || this.fieldObj.type === 'autocomplete' || this.fieldObj.type === 'select-1' ) {
       this.getOptions();
     }
     if (this.fieldObj.type === 'select' && this.fieldObj.value) {
       this.showSelectLabel = true;
+    }
+
+    if (this.fieldObj.type === 'select-1' || this.fieldObj.type === 'select-change' ) {
+      let el = document.getElementById('slctPacking');
+      this.getOptionsDefine('packing', 'IPRE', 'select-1', el);
     }
 
     if (this.fieldObj.renderConditions) {
@@ -117,8 +122,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         // console.log('this.disable: ', this.disable);
       });
     }
-
-    // this.setPacking();
 
     if (this.fieldObj.enableConditions) {
       console.log('onEnableConditions...');
@@ -163,7 +166,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           }*/
         });
       });
-      // this.setPacking();
     }
 
     /*if (this.fieldObj.detonateFunctionParams) {
@@ -493,7 +495,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     console.log('onChange event.target.value: ', event.target.value);
     console.log('formControlName: ', this.fieldObj.name);
     this.isValid();
-    // this.setPacking();
   }
 
   onBlur() {
@@ -545,11 +546,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       this.isValid();
     }
     if (this.fieldObj.name === 'assuredImport') {
-      /* const assuredImport = this.form.controls.assuredImport.value;
-      if (Number(assuredImport) > Number(0.00)) {
-        this.setValueField('assuredImport', 'txtAssuredImport', addCurrencyFormat(assuredImport));
-      } */
-
       const currency = this.form.controls.currency.value;
       const assuredImport = this.form.controls.assuredImport.value;
       if (currency === 'mxn') {
@@ -586,6 +582,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         this.setValueField('additionalCost', 'txtAdditionalCost', addCurrencyFormat(additionalCost));
       }
     }
+    // contractorType
   }
 
   onValidate(event) {
@@ -616,7 +613,13 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     this.isValid();
     this.setFunds();
-    // this.setPacking();
+    // console.log('Valor antes de ::', event.target);
+    if (event.target.id === 'slctCurrency') {
+      const assuredImport = this.form.controls.assuredImport.value;
+      if (Number(assuredImport) !== Number(0.00)){
+        this.setValueField('assuredImport', 'txtAssuredImport', null);
+      }
+    }
   }
 
   getOptions() {
@@ -667,6 +670,15 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   isValid(formControlName?) {
+
+    if (this.fieldObj.name === 'typePerson') {
+      this.setPacking();
+      // this.setValueField('packing', 'slctPacking', this.selectOptions1);
+     }
+    if (this.fieldObj.name === 'contractorType') {
+      this.setPacking();
+     }
+
     if (formControlName) {
       console.log('formControlNameEntro: ', formControlName);
       const validateAgeResult = validateAge(this.form.controls[formControlName]);
@@ -848,18 +860,27 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   setPacking() {
     const typePerson = this.form.controls.typePerson.value;
     const contractorType = this.form.controls.contractorType.value;
-    // const slctPacking = this.form.controls.slctPacking;
-      if (typePerson === 'morPerson') {
+
+    if (typePerson !== 'morPerson') {
         // quitar elemento
-        let el = document.getElementById('slctPacking');
-        this.getOptionsDefine('packingdos', 'IPRE', 'select', el);
-        // getOptionsDefine(sourceID , source, sourceStructure , type , el: Element )
-      } else {
         if (contractorType === false) {
+          let el = document.getElementById('slctPacking');
+          // this.form.controls.packing.reset();
+          // this.setValueField('packing', 'slctPacking', 'selectOptions1');
+          this.getOptionsDefine('packingdos', 'IPRE', 'select-1', el);
+          // getOptionsDefine(sourceID , source, sourceStructure , type , el: Element )
+        } else {
+           let el = document.getElementById('slctPacking');
+           // this.form.controls.packing.reset();
+           this.getOptionsDefine('packing', 'IPRE', 'select-1', el);
+
+        }
+      } else {
           // quitar elemento
           let el = document.getElementById('slctPacking');
-          this.getOptionsDefine('packingdos', 'IPRE', 'select', el);
-        }
+          // this.form.controls.packing.reset('selectOptions1', []);
+          this.getOptionsDefine('packingdos', 'IPRE', 'select-1', el);
+
      }
   }
 
@@ -875,22 +896,22 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   getOptionsDefine(sourceID , source , type , el: Element ) {
     let options = [];
-    let selectOptionsB = [];
+    this.selectOptions1 = [];
+    // this.form.controls.slctPacking.reset(el);
+    // this.selectOptions1 = null;
     const sourceStructure = ['id', 'name', 'code'];
-    // console.log('packing: ', this.fieldObj.name);
     this.applicationService.getCatalogById(sourceID, source)
       .subscribe((results) => {
         options = results;
+       //  console.log('packing: results ', results);
         if (options !== undefined) {
           options.forEach((selectItem) => {
-            if (type === 'select' || type === 'select-multiple') {
-              selectOptionsB.push(this.constructSelectOption(selectItem, sourceStructure));
+            if (type === 'select-1') {
+              this.selectOptions1.push(this.constructSelectOption(selectItem, sourceStructure));
             }
           });
-          console.log('EntroselectOptions: ', selectOptionsB);
-          // el.setAttribute('selectOptions', selectOptionsB.toString());
-          this.selectOptions = selectOptionsB;
-          // this.setValueField('packing', 'slctPacking', selectOptionsB);
+          console.log('EntroselectOptions: ', this.selectOptions1);
+
         }
       });
     }
