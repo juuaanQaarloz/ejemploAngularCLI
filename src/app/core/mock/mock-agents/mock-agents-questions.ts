@@ -76,7 +76,7 @@ export const AgentFields: Field[] = [
     label: 'Nombre*',
     type: 'text',
     required: true,
-    placeholder: 'Nombre',
+    placeholder: 'Nombre*',
     length: '',
     minValue: 0,
     maxValue: 60,
@@ -87,7 +87,8 @@ export const AgentFields: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'Nombre del agente es obligatorio',
+    message: 'El nombre es obligatorio y no puede contener más de 3 letras y/o 3 números iguales consecutivos. ' +
+      ' No se permiten caracteres especiales.',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',

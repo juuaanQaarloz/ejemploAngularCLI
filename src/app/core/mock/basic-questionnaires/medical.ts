@@ -305,7 +305,8 @@ export const medicalFieldsDialog: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'Duración es un campo obligatorio',
+    message: 'Duración es obligatorio y no puede contener más de 3 letras y/o 3 números iguales consecutivos. ' +
+    ' No se permiten caracteres especiales.',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
@@ -335,7 +336,8 @@ export const medicalFieldsDialog: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'Condición física actual es un campo obligatorio',
+    message: 'Condición física actual es obligatorio y no puede contener más de 3 letras y/o 3 números iguales consecutivos. ' +
+    ' No se permiten caracteres especiales.',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
