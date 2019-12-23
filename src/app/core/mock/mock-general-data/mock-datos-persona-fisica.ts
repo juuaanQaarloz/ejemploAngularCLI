@@ -58,6 +58,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(typePerson=phyPerson)',
     entity: '',
     entityField: '',
     value: ''
@@ -88,6 +89,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(typePerson=phyPerson)',
     entity: '',
     entityField: '',
     value: ''
@@ -117,6 +119,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(typePerson=phyPerson)',
     entity: '',
     entityField: '',
     value: ''
@@ -146,6 +149,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(typePerson=phyPerson)',
     entity: '',
     entityField: '',
     disable: true
@@ -175,6 +179,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(typePerson=phyPerson)',
     entity: '',
     entityField: '',
     value: ''
@@ -204,6 +209,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(typePerson=phyPerson)',
     entity: '',
     entityField: '',
     value: ''
@@ -234,6 +240,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(typePerson=phyPerson)',
     entity: '',
     entityField: '',
     value: ''
@@ -264,6 +271,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(typePerson=phyPerson)',
     entity: '',
     entityField: '',
     value: ''
@@ -294,6 +302,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(typePerson=phyPerson)',
     entity: '',
     entityField: '',
     value: ''
@@ -324,6 +333,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(typePerson=phyPerson)',
     entity: '',
     entityField: '',
     value: ''
@@ -353,6 +363,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(typePerson=phyPerson)',
     entity: '',
     entityField: ''
   },
@@ -382,6 +393,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(typePerson=phyPerson)',
     entity: '',
     entityField: '',
     value: 'MX'
@@ -411,6 +423,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(typePerson=phyPerson)',
     entity: '',
     entityField: ''
   },
@@ -440,6 +453,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(typePerson=phyPerson)',
     entity: '',
     entityField: ''
   },
@@ -469,6 +483,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(typePerson=phyPerson)',
     entity: '',
     entityField: ''
   },

@@ -12,6 +12,7 @@ import {SepomexObj} from '../../models/sepomex-obj';
 import {COVERAGES} from '../mock/coverage/coverage';
 import {BENEFICIARIES} from '../mock/mock-beneficiaries/mock-beneficiaries';
 import {placeholdersToParams} from '@angular/compiler/src/render3/view/i18n/util';
+import {error} from 'util';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
@@ -23,7 +24,7 @@ const URL_AGENT_CATALOG = '../assets/catalogs/agents-catalogs.json';
   providedIn: 'root'
 })
 export class ApplicationService {
-  private currentStepSource = new BehaviorSubject(0);
+  private currentStepSource = new BehaviorSubject(1);
   currentValue = this.currentStepSource.asObservable();
   beneficiaries = new BehaviorSubject([]);
   agents = new BehaviorSubject([]);
@@ -66,7 +67,7 @@ export class ApplicationService {
       // console.log('searchModalFrom B: ', this.searchModalFrom);
     } else if (type === 'nextStep') {
       const currentStep = this.currentStepSource.getValue();
-      // console.log('currentStep1: ', currentStep);
+      console.log('currentStep: ', currentStep);
 
       let contractorType = this.formGroup.controls['contractorType'].value;
       if (currentStep === 0) {
@@ -266,8 +267,11 @@ export class ApplicationService {
 
       validatorsObjects.forEach(validationObject => {
         if (validationObject.nameField === field.name) {
-          // // console.log('validationObject: ', validationObject);
-          validationFunctions = validationObject.validationFunctions;
+          if (validationObject.validationFunctions) {
+            validationObject.validationFunctions.forEach((valFunc) => {
+              validationFunctions.push(valFunc);
+            });
+          }
         }
       });
 
@@ -842,20 +846,22 @@ export class ApplicationService {
     return this.httpClient.get(URL_SEPOMEX)
       .pipe(
         map((response: any) => {
-          //return response.data.items[0].item as SepomexObj;
+          // return response.data.items[0].item as SepomexObj;
           return null;
         })
       );
   }
 
-  validateFormByStep(stepID: string) {
-    console.log('stepID: ', stepID);
-    const step = this.getStepById(stepID);
+  validateFormByStep(stepObj: Step) {
+    console.log('stepID: ', stepObj.id);
+    const step = this.getStepById(stepObj.id);
     console.log('step: ', step);
     let isValidStep = true;
-    let validateResults = [];
+    let validateFieldResults = [];
+    let validateErrorResults = [];
 
     if (step) {
+      // validate each field individually in the step
       step.contents.forEach((contentFromStep) => {
         if (contentFromStep.fields) {
           contentFromStep.fields.forEach(field => {
@@ -866,7 +872,7 @@ export class ApplicationService {
               }
               console.log('formControlName: ', field.name);
               console.log('valid: ', field.valid);
-              validateResults.push(field.valid);
+              validateFieldResults.push(field.valid);
             }
           });
         } else {
@@ -878,7 +884,7 @@ export class ApplicationService {
                     field.valid = this.formGroup.controls[field.name].valid;
                     // console.log('formControlName: ', field.name);
                     console.log('valid: ', field.valid);
-                    validateResults.push(field.valid);
+                    validateFieldResults.push(field.valid);
                   }
                 });
               }
@@ -887,12 +893,37 @@ export class ApplicationService {
         }
       });
 
-      validateResults.forEach((res) => {
-        console.log('res: ', res);
+      if (step.errors) { // check for validation between fields
+        console.log('errors: ', step.errors);
+
+        step.errors.forEach((e) => {
+          console.log('e: ', e);
+          const result = this.getStatusError(e.errorName);
+          if (result) { // if the error exists the step is not valid
+            validateErrorResults.push(false);
+          } else { // if the error does not exist the is step is valid
+            validateErrorResults.push(true);
+          }
+        });
+      }
+
+      validateFieldResults.forEach((res) => {
+        console.log('res from validateFieldResults: ', res);
         if (!res) {
           isValidStep = res;
         }
       });
+
+      if (isValidStep) {
+        validateErrorResults.forEach((res) => {
+          console.log('res from validateErrorResults: ', res);
+          if (!res) {
+            isValidStep = res;
+          }
+        });
+      }
+
+      console.log('isValidStep: ', isValidStep);
 
       return isValidStep;
     }
@@ -1058,12 +1089,15 @@ export class ApplicationService {
     const errors = this.formGroup.errors;
     if (errors) {
       if (errors[errorId]) {
+        // console.log('errorId: ', errorId);
         // console.log('errors[errorId]: ', errors[errorId]);
         return errors[errorId];
       } else {
+        // console.log('else 1');
         return null;
       }
     } else {
+      // console.log('else 2');
       return null;
     }
   }
@@ -1140,4 +1174,52 @@ export class ApplicationService {
     return stores.getItem(key) != null ? stores.getItem(key) : '9504';
   }
 
+  validateApplicationForm() {
+    this.applicationObj.sections.forEach(section => {
+      section.contents.forEach((contentFromSection) => {
+        if (contentFromSection.fields) {
+          contentFromSection.fields.forEach(field => {
+            field.valid = this.formGroup.controls[field.name].valid;
+            if (this.formGroup.controls[field.name].errors) {
+              console.log('errors in field: ', field.name);
+              console.log(this.formGroup.controls[field.name].errors);
+              console.log('status: ', this.formGroup.controls[field.name].status);
+            }
+          });
+        } else {
+          if (contentFromSection.process) {
+            contentFromSection.process.steps.forEach(step => {
+              step.contents.forEach((contentFromStep) => {
+                if (contentFromStep.fields) {
+                  contentFromStep.fields.forEach(field => {
+                    field.valid = this.formGroup.controls[field.name].valid;
+                    if (this.formGroup.controls[field.name].errors) {
+                      console.log('errors in field: ', field.name);
+                      console.log(this.formGroup.controls[field.name].errors);
+                      console.log('status: ', this.formGroup.controls[field.name].status);
+                    }
+                  });
+                } else {
+                  if (contentFromStep.contentChildren) {
+                    contentFromStep.contentChildren.forEach(contentChild => {
+                      if (contentChild.fields) {
+                        contentChild.fields.forEach(field => {
+                          field.valid = this.formGroup.controls[field.name].valid;
+                          if (this.formGroup.controls[field.name].errors) {
+                            console.log('errors in field: ', field.name);
+                            console.log(this.formGroup.controls[field.name].errors);
+                            console.log('status: ', this.formGroup.controls[field.name].status);
+                          }
+                        });
+                      }
+                    });
+                  }
+                }
+              });
+            });
+          }
+        }
+      });
+    });
+  }
 }

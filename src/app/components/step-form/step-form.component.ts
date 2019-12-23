@@ -98,7 +98,7 @@ export class StepFormComponent implements OnInit {
   }
 
   validateStep() {
-    this.isValidStep = this.applicationService.validateFormByStep((this.index + 1).toString());
+    this.isValidStep = this.applicationService.validateFormByStep(this.stepObj);
   }
 
   closeStep() {

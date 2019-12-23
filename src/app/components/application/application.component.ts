@@ -5,7 +5,7 @@ import {MockTemplate} from '../../core/mock/mock-template';
 import {DialogService} from '../dialog/dialog.service';
 import {ModalService} from '../custom-modal';
 import * as jsPDF from 'jspdf';
-import {pdfOperation} from '../../core/mock/mock-operations';
+import {APPL_OPERATIONS} from '../../core/mock/mock-operations';
 import {Template} from '../../models/template';
 
 
@@ -20,7 +20,7 @@ export class ApplicationComponent implements OnInit {
   payLoad = '';
   formGroup: FormGroup;
   @ViewChild('content', {static: false}) content: ElementRef;
-  pdfOperation = pdfOperation;
+  applOperations = APPL_OPERATIONS;
   items = [];
   errors;
 
@@ -47,6 +47,15 @@ export class ApplicationComponent implements OnInit {
 
   }
 
+  executeOperation(delegateOperation) {
+    if (delegateOperation === 'generatePDF') {
+      this.downloadPDF();
+    } else if (delegateOperation === 'validateApplication') {
+      console.log('validateApplication ');
+      this.validateApplication();
+    }
+  }
+
   getFormValue() {
     this.payLoad = JSON.stringify(this.formGroup.value);
     // // console.log(this.formGroup.value);
@@ -59,7 +68,7 @@ export class ApplicationComponent implements OnInit {
   downloadPDF() {
     let link=document.createElement("a");
     link.download="VV-1-087.pdf";
-    link.href="/assets/pdf/VV-1-087.pdf"; 
+    link.href="/assets/pdf/VV-1-087.pdf";
     link.click();
     // const doc = new jsPDF();
 
@@ -68,57 +77,8 @@ export class ApplicationComponent implements OnInit {
     // });
   }
 
-  validateForm() {
-    /*Object.keys(this.formGroup.controls).forEach(key => {
-      // // console.log('formControlName: ', key);
-      // // // console.log('formControl: ', this.formGroup.controls[key]);
-      const isValid =  this.formGroup.controls[key].valid;
-      if (!isValid) {
-        this.formGroup.controls[key].markAsTouched();
-      } else {
-        this.formGroup.controls[key].markAsUntouched();
-      }
-      // // console.log('isValid: ', isValid);
-    });*/
-
-    this.applicationObj.sections.forEach(section => {
-      section.contents.forEach((contentFromSection) => {
-        if (contentFromSection.fields) {
-          contentFromSection.fields.forEach(field => {
-            field.valid = this.formGroup.controls[field.name].valid;
-            // // console.log('formControlName: ', field.name);
-            // // console.log('valid: ', field.valid);
-          });
-        } else {
-          if (contentFromSection.process) {
-            contentFromSection.process.steps.forEach(step => {
-              step.contents.forEach((contentFromStep) => {
-                if (contentFromStep.fields) {
-                  contentFromStep.fields.forEach(field => {
-                    field.valid = this.formGroup.controls[field.name].valid;
-                    // // console.log('formControlName: ', field.name);
-                    // // console.log('valid: ', field.valid);
-                  });
-                } else {
-                  if (contentFromStep.contentChildren) {
-                    contentFromStep.contentChildren.forEach(contentChild => {
-                      if (contentChild.fields) {
-                        contentChild.fields.forEach(field => {
-                          field.valid = this.formGroup.controls[field.name].valid;
-                          // // console.log('formControlName: ', field.name);
-                          // // console.log('valid: ', field.valid);
-                        });
-                      }
-                    });
-                  }
-                }
-              });
-            });
-          }
-        }
-      });
-
-    });
+  validateApplication() {
+    this.appService.validateApplicationForm();
   }
 
   getValidateField() {
@@ -128,5 +88,7 @@ export class ApplicationComponent implements OnInit {
       console.log('invalidEmailConfirmation: ', this.errors.invalidEmailConfirmation);
     }
   }
+
+
 
 }
