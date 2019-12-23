@@ -41,3 +41,16 @@
     background: #D9D9D6;
 	color: #333333;
 }
+
+.paginator /deep/ .ngx-pagination a:hover, .ngx-pagination button:hover {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    padding: 10px;
+    font-size: 15px;
+    text-align: center;
+	display:inline-block;
+    cursor:pointer;
+    background: #0061A0;
+	color: #fff;
+}
