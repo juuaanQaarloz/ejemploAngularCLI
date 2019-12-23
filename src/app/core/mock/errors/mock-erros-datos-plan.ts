@@ -16,3 +16,10 @@ export const ERROSDATOSPLAN: Error[] = [
     errorMsg: 'Cantidad mínima para la suma asegurada debe ser de $40,000 dolares'
   }
 ];
+
+export const ERRORS_DOM_CONT: Error[] = [
+  {
+    errorName: 'invalidEmailConfirmation',
+    errorMsg: 'Los emails no coinciden'
+  }
+];

@@ -26,6 +26,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(typePerson=morPerson)',
     entity: '',
     entityField: '',
     value: ''
@@ -55,6 +56,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(typePerson=morPerson)',
     entity: '',
     entityField: '',
     value: ''
@@ -84,6 +86,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(typePerson=morPerson)',
     entity: '',
     entityField: '',
     value: ''
@@ -113,6 +116,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(typePerson=morPerson)',
     entity: '',
     entityField: '',
     value: ''
@@ -143,6 +147,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(typePerson=morPerson)',
     entity: '',
     entityField: '',
     value: ''
@@ -173,6 +178,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(typePerson=morPerson)',
     entity: '',
     entityField: '',
     value: ''
@@ -203,6 +209,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
+    requiredConditions: '(typePerson=morPerson)',
     entity: '',
     entityField: '',
     value: ''
@@ -233,6 +240,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '(economicSector=O)',
+    requiredConditions: '(economicSector=O)',
     entity: '',
     entityField: '',
     value: '',
