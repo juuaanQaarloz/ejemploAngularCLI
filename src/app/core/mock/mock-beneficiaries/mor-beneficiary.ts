@@ -109,7 +109,7 @@ export const BeneficiaryFieldsM: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'El % de participación es un campo obligatorio.',
+    message: 'El % de participación es un campo obligatorio y debe ser mayor a 0% y menor o igual a 100%.',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
