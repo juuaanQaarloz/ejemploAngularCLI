@@ -178,6 +178,51 @@ export class ApplicationService {
     return new FormGroup(group, [equalEmailsValidator, higherAssuredImport, validateFunds]);
   }
 
+  toFormGroupReadOnly(applicationObj: Template) {
+    const group: any = {};
+    applicationObj.sections.forEach(section => {
+      section.contents.forEach((contentFromSection) => {
+        if (contentFromSection.fields) {
+          contentFromSection.fields.forEach(field => {
+            field.disable = true;
+            group[field.name] = new FormControl(
+              field.value || '',
+              this.getValidationFunctions(field));
+          });
+        } else {
+          if (contentFromSection.process) {
+            contentFromSection.process.steps.forEach(step => {
+              step.contents.forEach((contentFromStep) => {
+                if (contentFromStep.fields) {
+                  contentFromStep.fields.forEach(field => {
+                    field.disable = true;
+                    group[field.name] = new FormControl(
+                      field.value || '',
+                      this.getValidationFunctions(field));
+                  });
+                } else {
+                  if (contentFromStep.contentChildren) {
+                    contentFromStep.contentChildren.forEach(contentChild => {
+                      if (contentChild.fields) {
+                        contentChild.fields.forEach(field => {
+                          group[field.name] = new FormControl(
+                            field.value || '',
+                            this.getValidationFunctions(field));
+                        });
+                      }
+                    });
+                  }
+                }
+              });
+            });
+          }
+        }
+      });
+
+    });
+    return new FormGroup(group, [equalEmailsValidator, higherAssuredImport, validateFunds]);
+  }
+
   addNewFormControl(formGroup: FormGroup, field: Field) {
     formGroup.addControl(field.name, new FormControl(
       field.value || '',

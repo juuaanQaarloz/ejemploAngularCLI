@@ -1,7 +1,33 @@
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12 text-center">
-            <h1>Solicitud de captura</h1>
-        </div>
+<div id="content" #content>
+    <app-header>
+  
+    </app-header>
+  
+    <app-menu></app-menu>
+  
+    <div style="background-color: white">
+  
+      <div style="text-align: center">
+        <h1 class="title">Solicitud MetaLife</h1>
+      </div>
+      <!-- <app-operation-form [operationObj]="pdfOperation" (click)="getValidateField()"></app-operation-form> -->
+  
+      <!--<app-error-banner [message]="'Please check the information below.'"></app-error-banner>-->
+  
+      <div class="container" *ngFor="let section of applicationObj.sections">
+        <app-section-form [form]="formGroup" [sectionObj]="section"></app-section-form>
+      </div>
+  
+      <app-operation-form [operationObj]="pdfOperation" (click)="downloadPDF()"></app-operation-form>
+  
     </div>
-</div>
+  
+    <jw-modal [id]="'modal-search'"
+              [modalType]="'overlay'">
+      <app-search-occupation [modalID]="'modal-search'"></app-search-occupation>
+    </jw-modal>
+  
+    <app-footer></app-footer>
+  
+  </div>
+  
