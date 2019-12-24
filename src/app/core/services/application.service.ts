@@ -6,7 +6,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';
 import {Beneficiary, Formatwo, Field, Occupation, Step} from '../../models';
 import {Agent} from '../../models/agent-model/agent';
-import {equalEmailsValidator, higherAssuredImport, validateEmailConfirmation, validatorsObjects, validateFunds} from '../validators';
+import {equalEmailsValidator, higherAssuredImport, validateSameName, validatorsObjects, validateFunds} from '../validators';
 import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
 import {COVERAGES} from '../mock/coverage/coverage';
@@ -176,7 +176,7 @@ export class ApplicationService {
       });
 
     });
-    return new FormGroup(group, [equalEmailsValidator, higherAssuredImport, validateFunds]);
+    return new FormGroup(group, [equalEmailsValidator, higherAssuredImport, validateFunds, validateSameName ]);
   }
 
   toFormGroupReadOnly(applicationObj: Template) {
@@ -544,6 +544,7 @@ export class ApplicationService {
       maxLength = 2;
       responseMessage3 = 'El porcentaje de participacion debe de ser mayor a 0';
       responseMessage2 = 'La suma de las participaciones de los agentes excede el 100%';
+      responseMessage1 = 'No se pueden agregar más de 2 beneficiarios';
     } else if (itemType === 'formatwo') {
       currentItems = this.formatosdos.getValue();
       propertyItem = 'formatwoId';

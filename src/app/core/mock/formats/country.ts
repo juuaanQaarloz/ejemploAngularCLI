@@ -49,7 +49,8 @@ export const NewCountryFields: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'El número de identificación fiscal es obligatorio.',
+    message: 'El número de identificación fiscal es obligatorio y no puede contener más de 3 letras y/o 3 números iguales consecutivos. ' +
+      ' No se permiten caracteres especiales.',    
     messageClass: '',
     messageError: '',
     messageErrorClass: '',

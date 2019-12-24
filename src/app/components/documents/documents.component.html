@@ -2,7 +2,7 @@
   <div class="ml-table-title">{{title}}</div>
   <!--header-->
   <div class="even" [ngClass]="style">
-    <div class="field-name-column" *ngFor="let columnName of columnsNames;">
+    <div class="field-name-column" style="text-align: center;" *ngFor="let columnName of columnsNames;">
       {{columnName}}
     </div>
   </div>
@@ -22,7 +22,16 @@
         </div>
 
       </div>
+      <div></div>
+      <div></div>
+      <div style="text-align: center;">
+        <button type="button" class="btn btn-primary" (click)="downloadZip()">Descargar Zip</button>
+      </div>
     </div>
   </div>
+
+  <!--<div style="text-align: center;">-->
+    <!--<button type="button" class="btn btn-primary" (click)="probarToken()">Prueba Token</button>-->
+  <!--</div>-->
 
 </div>
