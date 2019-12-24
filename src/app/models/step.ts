@@ -14,4 +14,5 @@ export interface Step {
   isCompleted: boolean;
   show: boolean;
   errors?: Array<Error>;
+  requiredConditions?: string;
 }
