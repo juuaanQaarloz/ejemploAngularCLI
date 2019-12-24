@@ -1175,28 +1175,37 @@ export class ApplicationService {
   }
 
   validateApplicationForm() {
+
     this.applicationObj.sections.forEach(section => {
+      // console.log('section: ', section);
       section.contents.forEach((contentFromSection) => {
         if (contentFromSection.fields) {
           contentFromSection.fields.forEach(field => {
             field.valid = this.formGroup.controls[field.name].valid;
             if (this.formGroup.controls[field.name].errors) {
-              console.log('errors in field: ', field.name);
-              console.log(this.formGroup.controls[field.name].errors);
-              console.log('status: ', this.formGroup.controls[field.name].status);
+              // console.log('errors in field: ', field.name);
+              // console.log(this.formGroup.controls[field.name].errors);
+              // console.log('status: ', this.formGroup.controls[field.name].status);
             }
           });
         } else {
           if (contentFromSection.process) {
             contentFromSection.process.steps.forEach(step => {
+              console.log('step required conditions: ', step.requiredConditions);
+              if (step.requiredConditions) {
+                console.log('requiredCondition: ', step.requiredConditions);
+                const requiredConditionsResult = this.evaluateConditions(step.requiredConditions, this.formGroup);
+                console.log('requiredConditionsResult: ', requiredConditionsResult);
+              }
+
               step.contents.forEach((contentFromStep) => {
                 if (contentFromStep.fields) {
                   contentFromStep.fields.forEach(field => {
                     field.valid = this.formGroup.controls[field.name].valid;
                     if (this.formGroup.controls[field.name].errors) {
-                      console.log('errors in field: ', field.name);
-                      console.log(this.formGroup.controls[field.name].errors);
-                      console.log('status: ', this.formGroup.controls[field.name].status);
+                      // console.log('errors in field: ', field.name);
+                      // console.log(this.formGroup.controls[field.name].errors);
+                      // console.log('status: ', this.formGroup.controls[field.name].status);
                     }
                   });
                 } else {
@@ -1206,9 +1215,9 @@ export class ApplicationService {
                         contentChild.fields.forEach(field => {
                           field.valid = this.formGroup.controls[field.name].valid;
                           if (this.formGroup.controls[field.name].errors) {
-                            console.log('errors in field: ', field.name);
-                            console.log(this.formGroup.controls[field.name].errors);
-                            console.log('status: ', this.formGroup.controls[field.name].status);
+                            // console.log('errors in field: ', field.name);
+                            // console.log(this.formGroup.controls[field.name].errors);
+                            // console.log('status: ', this.formGroup.controls[field.name].status);
                           }
                         });
                       }
