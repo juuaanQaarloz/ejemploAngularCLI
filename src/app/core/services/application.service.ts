@@ -854,12 +854,10 @@ export class ApplicationService {
   }
 
   validateFormByStep(stepObj: Step) {
-    console.log('stepID: ', stepObj.id);
     const step = this.getStepById(stepObj.id);
-    console.log('step: ', step);
     let isValidStep = true;
-    let validateFieldResults = [];
-    let validateErrorResults = [];
+    let notValidFields = [];
+    let existingErrors = [];
 
     if (step) {
       // validate each field individually in the step
@@ -868,12 +866,10 @@ export class ApplicationService {
           contentFromStep.fields.forEach(field => {
             if (!field.disable) {
               field.valid = this.formGroup.controls[field.name].valid;
-              if (this.formGroup.controls[field.name].errors) {
-                console.log('errors: ', this.formGroup.controls[field.name].errors);
+              if (field.valid === false) {
+                console.log('field name: ', field.name);
+                notValidFields.push(field.label);
               }
-              console.log('formControlName: ', field.name);
-              console.log('valid: ', field.valid);
-              validateFieldResults.push(field.valid);
             }
           });
         } else {
@@ -883,9 +879,10 @@ export class ApplicationService {
                 contentChild.fields.forEach(field => {
                   if (!field.disable) {
                     field.valid = this.formGroup.controls[field.name].valid;
-                    // console.log('formControlName: ', field.name);
-                    console.log('valid: ', field.valid);
-                    validateFieldResults.push(field.valid);
+                    if (field.valid === false) {
+                      console.log('field name: ', field.name);
+                      notValidFields.push(field.label);
+                    }
                   }
                 });
               }
@@ -895,38 +892,37 @@ export class ApplicationService {
       });
 
       if (step.errors) { // check for validation between fields
-        console.log('errors: ', step.errors);
-
+        // console.log('errors: ', step.errors);
         step.errors.forEach((e) => {
-          console.log('e: ', e);
+          // console.log('e: ', e);
           const result = this.getStatusError(e.errorName);
           if (result) { // if the error exists the step is not valid
-            validateErrorResults.push(false);
-          } else { // if the error does not exist the is step is valid
-            validateErrorResults.push(true);
+            console.log('result: ', result);
+            existingErrors.push(e.errorMsg);
           }
         });
       }
 
-      validateFieldResults.forEach((res) => {
-        console.log('res from validateFieldResults: ', res);
-        if (!res) {
-          isValidStep = res;
-        }
-      });
+      console.log('notValidFields: ', notValidFields);
+      console.log('existingErrors: ', existingErrors);
+
+      if (notValidFields.length > 0) {
+        isValidStep = false;
+      } else if (existingErrors.length > 0) {
+        isValidStep = false;
+      } else {
+        isValidStep = true;
+      }
 
       if (isValidStep) {
-        validateErrorResults.forEach((res) => {
-          console.log('res from validateErrorResults: ', res);
-          if (!res) {
-            isValidStep = res;
-          }
-        });
+        return {status: isValidStep,
+          fields: null,
+          errors: null};
+      } else {
+        return {status: isValidStep,
+          fields: notValidFields,
+          errors: existingErrors};
       }
-
-      console.log('isValidStep: ', isValidStep);
-
-      return isValidStep;
     }
   }
 
@@ -1176,6 +1172,10 @@ export class ApplicationService {
   }
 
   validateApplicationForm() {
+    let isValidApplication = true;
+    let notValidFields = [];
+    let notValidSteps = [];
+    let existingErrors = [];
 
     this.applicationObj.sections.forEach(section => {
       // console.log('section: ', section);
@@ -1183,53 +1183,55 @@ export class ApplicationService {
         if (contentFromSection.fields) {
           contentFromSection.fields.forEach(field => {
             field.valid = this.formGroup.controls[field.name].valid;
-            if (this.formGroup.controls[field.name].errors) {
-              // console.log('errors in field: ', field.name);
-              // console.log(this.formGroup.controls[field.name].errors);
-              // console.log('status: ', this.formGroup.controls[field.name].status);
+            if (field.valid === false) {
+              notValidFields.push(field.label);
             }
           });
         } else {
           if (contentFromSection.process) {
             contentFromSection.process.steps.forEach(step => {
-              console.log('step required conditions: ', step.requiredConditions);
               if (step.requiredConditions) {
-                console.log('requiredCondition: ', step.requiredConditions);
                 const requiredConditionsResult = this.evaluateConditions(step.requiredConditions, this.formGroup);
-                console.log('requiredConditionsResult: ', requiredConditionsResult);
-              }
-
-              step.contents.forEach((contentFromStep) => {
-                if (contentFromStep.fields) {
-                  contentFromStep.fields.forEach(field => {
-                    field.valid = this.formGroup.controls[field.name].valid;
-                    if (this.formGroup.controls[field.name].errors) {
-                      // console.log('errors in field: ', field.name);
-                      // console.log(this.formGroup.controls[field.name].errors);
-                      // console.log('status: ', this.formGroup.controls[field.name].status);
-                    }
-                  });
-                } else {
-                  if (contentFromStep.contentChildren) {
-                    contentFromStep.contentChildren.forEach(contentChild => {
-                      if (contentChild.fields) {
-                        contentChild.fields.forEach(field => {
-                          field.valid = this.formGroup.controls[field.name].valid;
-                          if (this.formGroup.controls[field.name].errors) {
-                            // console.log('errors in field: ', field.name);
-                            // console.log(this.formGroup.controls[field.name].errors);
-                            // console.log('status: ', this.formGroup.controls[field.name].status);
-                          }
-                        });
-                      }
-                    });
+                if (requiredConditionsResult) {
+                  const evaluateStepResult = this.validateFormByStep(step);
+                  if (evaluateStepResult.status === false) {
+                    notValidSteps.push(step.title);
+                    existingErrors.push(evaluateStepResult.errors);
                   }
                 }
-              });
+              } else {
+                const evaluateStepResult = this.validateFormByStep(step);
+                if (evaluateStepResult.status === false) {
+                  notValidSteps.push(step.title);
+                  existingErrors.push(evaluateStepResult.errors);
+                }
+              }
             });
           }
         }
       });
     });
+
+    if (notValidFields.length > 0) {
+      isValidApplication = false;
+    } else if (notValidSteps.length > 0) {
+      isValidApplication = false;
+    } else if (existingErrors.length > 0) {
+      isValidApplication = false;
+    } else {
+      isValidApplication = true;
+    }
+
+    if (isValidApplication) {
+      return {status: isValidApplication,
+        fields: null,
+        steps: null,
+        errors: null};
+    } else {
+      return {status: isValidApplication,
+        fields: notValidFields,
+        steps: notValidSteps,
+        errors: existingErrors};
+    }
   }
 }

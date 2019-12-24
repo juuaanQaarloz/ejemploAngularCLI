@@ -7,6 +7,7 @@ import {ModalService} from '../custom-modal';
 import * as jsPDF from 'jspdf';
 import {APPL_OPERATIONS} from '../../core/mock/mock-operations';
 import {Template} from '../../models/template';
+import {Operation} from '../../models';
 
 
 @Component({
@@ -22,7 +23,24 @@ export class ApplicationComponent implements OnInit {
   @ViewChild('content', {static: false}) content: ElementRef;
   applOperations = APPL_OPERATIONS;
   items = [];
+  errorsFields;
+  errorsSteps;
   errors;
+
+  closeWindowOpt: Operation = {
+    id: 'opt-1',
+    idHtml: 'btnClose',
+    name: 'cerrar',
+    label: 'CERRAR',
+    type: 'button',
+    style: '',
+    styleClass: 'ml-button-primary',
+    message: '',
+    messageClass: '',
+    delegateOperation: 'closeModal',
+    renderConditions: '',
+    enableConditions: ''
+  };
 
   constructor(private appService: ApplicationService,
               private authService: AuthService,
@@ -53,6 +71,8 @@ export class ApplicationComponent implements OnInit {
     } else if (delegateOperation === 'validateApplication') {
       console.log('validateApplication ');
       this.validateApplication();
+    } else if ('closeModal') {
+      this.closeModal('modal-error');
     }
   }
 
@@ -63,6 +83,10 @@ export class ApplicationComponent implements OnInit {
 
   openDialog(modalID: string) {
     this.modalService.open(modalID);
+  }
+
+  closeModal(modalID: string) {
+    this.modalService.close(modalID);
   }
 
   downloadPDF() {
@@ -78,17 +102,12 @@ export class ApplicationComponent implements OnInit {
   }
 
   validateApplication() {
-    this.appService.validateApplicationForm();
-  }
-
-  getValidateField() {
-    this.errors = this.formGroup.errors;
-    console.log('erros: ', this.errors);
-    if (this.errors) {
-      console.log('invalidEmailConfirmation: ', this.errors.invalidEmailConfirmation);
+    const response = this.appService.validateApplicationForm();
+    if (response.status === false) {
+      this.openDialog('modal-error');
+      this.errorsFields = response.fields;
+      this.errorsSteps = response.steps;
+      this.errors = response.errors;
     }
   }
-
-
-
 }
