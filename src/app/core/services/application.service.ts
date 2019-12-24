@@ -544,6 +544,7 @@ export class ApplicationService {
       maxLength = 2;
       responseMessage3 = 'El porcentaje de participacion debe de ser mayor a 0';
       responseMessage2 = 'La suma de las participaciones de los agentes excede el 100%';
+      responseMessage1 = 'No se pueden agregar más de 2 beneficiarios';
     } else if (itemType === 'formatwo') {
       currentItems = this.formatosdos.getValue();
       propertyItem = 'formatwoId';
