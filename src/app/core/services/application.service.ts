@@ -20,6 +20,38 @@ const URL_PATTERN_CATALOG = '../assets/catalogs/pattern-catalogs.json';
 const URL_SEPOMEX = '../assets/catalogs/response-sepomex.json';
 const URL_AGENT_CATALOG = '../assets/catalogs/agents-catalogs.json';
 
+// Generic Catalog
+const URL_CAT_ADDRESS_TYPE = '../assets/catalogs/address-type.json';
+const URL_CAT_BANK_BIENES = '../assets/catalogs/bank-bienes.json';
+const URL_CAT_BLOQ_RET_COBERT = '../assets/catalogs/bloqueo-retenedores-cobertura.json';
+const URL_CAT_COLLECTION_CHANEL = '../assets/catalogs/collection-channel.json';
+const URL_CAT_CONCEPT_RET = '../assets/catalogs/concepto-ret.json';
+const URL_CAT_COUNTRY = '../assets/catalogs/country.json';
+const URL_CAT_ENGINE_VARIABLE = '../assets/catalogs/engine-variables.json';
+const URL_CAT_FEDERAL_ENTITY = '../assets/catalogs/federal-entity.json';
+const URL_CAT_GENDER = '../assets/catalogs/gender.json';
+const URL_CAT_LABORAL_REGIMEN = '../assets/catalogs/laboral-regimen.json';
+const URL_CAT_LIQUIDATION_TYPE = '../assets/catalogs/liquidation-type.json';
+const URL_CAT_MARITAL_STATUS = '../assets/catalogs/marital-status.json';
+const URL_CAT_MAX_COVERAGE = '../assets/catalogs/max-coverage.json';
+const URL_CAT_MAX_OCCUPATION = '../assets/catalogs/max-occupation.json';
+const URL_CAT_MAXIMUM_SA = '../assets/catalogs/maximum-sa.json';
+const URL_CAT_OCCUPATION = '../assets/catalogs/occupation.json';
+const URL_CAT_PAYMENT_MODE = '../assets/catalogs/payment-mode.json';
+const URL_CAT_PLAN = '../assets/catalogs/plan.json';
+const URL_CAT_PLAN_COVERAGE_PROVIDA = '../assets/catalogs/plan-coverage-provida.json';
+const URL_CAT_PREFERRED_CONTACT_DAY = '../assets/catalogs/preferred-contact-day.json';
+const URL_CAT_PREFERRED_CONTACT_TIME = '../assets/catalogs/preferred-contact-time.json';
+const URL_CAT_PREFERRED_CONTACT_TYPE = '../assets/catalogs/preferred-contact-type.json';
+const URL_CAT_PROMOTORIA = '../assets/catalogs/promotoria.json';
+const URL_CAT_RELATIONSHIP = '../assets/catalogs/ralationship.json';
+const URL_CAT_RELATIONSHIP_COVERAGE = '../assets/catalogs/relationship-coverage.json';
+const URL_CAT_RETENEDOR = '../assets/catalogs/retenedor.json';
+const URL_CAT_SUB_IDENTIFICATION_TYPE = '../assets/catalogs/sub-identification-type.json';
+const URL_CAT_GUARD_BOX_OPTIONS = '../assets/catalogs/guard-box-options.json';
+
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -1275,4 +1307,102 @@ export class ApplicationService {
       });
     });
   }
+  // @ts-ignore
+  getCatalog(id: string, source: string): Observable<[]> {
+    console.log('getCatalog --> id: ' + id + ' , source: ' + source);
+    let urlCatalog = '';
+    switch (id) {
+      case 'addresType':
+        urlCatalog = URL_CAT_ADDRESS_TYPE;
+        break;
+      case 'bankBienes':
+        urlCatalog = URL_CAT_BANK_BIENES;
+        break;
+      case 'bloqueoRetenedorCovert':
+        urlCatalog = URL_CAT_BLOQ_RET_COBERT;
+        break;
+      case 'collectionChanel':
+        urlCatalog = URL_CAT_COLLECTION_CHANEL;
+        break;
+      case 'conceptRet':
+        urlCatalog = URL_CAT_CONCEPT_RET;
+        break;
+      case 'country':
+        urlCatalog = URL_CAT_COUNTRY;
+        break;
+      case 'engineVariable':
+        urlCatalog = URL_CAT_ENGINE_VARIABLE;
+        break;
+      case 'federalEntity':
+        urlCatalog = URL_CAT_FEDERAL_ENTITY;
+        break;
+      case 'gender':
+        urlCatalog = URL_CAT_GENDER;
+        break;
+      case 'laboralRegimen':
+        urlCatalog = URL_CAT_LABORAL_REGIMEN;
+        break;
+      case 'liquidationType':
+        urlCatalog = URL_CAT_LIQUIDATION_TYPE;
+        break;
+      case 'maritalStatus':
+        urlCatalog = URL_CAT_MARITAL_STATUS;
+        break;
+      case 'maxCoverage':
+        urlCatalog = URL_CAT_MAX_COVERAGE;
+        break;
+      case 'maxOccupation':
+        urlCatalog = URL_CAT_MAX_OCCUPATION;
+        break;
+      case 'maximumSA':
+        urlCatalog = URL_CAT_MAXIMUM_SA;
+        break;
+      case 'occupation':
+        urlCatalog = URL_CAT_OCCUPATION;
+        break;
+      case 'paymentMode':
+        urlCatalog = URL_CAT_PAYMENT_MODE;
+        break;
+      case 'plan':
+        urlCatalog = URL_CAT_PLAN;
+        break;
+      case 'planCoverageProvida':
+        urlCatalog = URL_CAT_PLAN_COVERAGE_PROVIDA;
+        break;
+      case 'preferredContactDay':
+        urlCatalog = URL_CAT_PREFERRED_CONTACT_DAY;
+        break;
+      case 'preferredContactTime':
+        urlCatalog = URL_CAT_PREFERRED_CONTACT_TIME;
+        break;
+      case 'preferredContactType':
+        urlCatalog = URL_CAT_PREFERRED_CONTACT_TYPE;
+        break;
+      case 'promotoria':
+        urlCatalog = URL_CAT_PROMOTORIA;
+        break;
+      case 'relationship':
+        urlCatalog = URL_CAT_RELATIONSHIP;
+        break;
+      case 'relationshipCoverage':
+        urlCatalog = URL_CAT_RELATIONSHIP_COVERAGE;
+        break;
+      case 'retenedor':
+        urlCatalog = URL_CAT_RETENEDOR;
+        break;
+      case 'subIdentificationType':
+        urlCatalog = URL_CAT_SUB_IDENTIFICATION_TYPE;
+        break;
+      case 'guardBoxOptions':
+        urlCatalog = URL_CAT_GUARD_BOX_OPTIONS;
+        break;
+    }
+    return this.httpClient.get(urlCatalog)
+      .pipe(
+        map((catalog) => {
+          return catalog[id];
+        })
+      );
+  }
+
 }

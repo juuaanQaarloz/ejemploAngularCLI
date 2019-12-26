@@ -71,7 +71,7 @@ export const NewPaymentFields: Field[] = [
         minValue: 0,
         maxValue: 0,
         pattern: '',
-        source: 'IPRE',
+        source: 'IPRES',
         sourceID: 'cards',
         sourceStructure: ['id', 'name', 'value'],
         style: '',

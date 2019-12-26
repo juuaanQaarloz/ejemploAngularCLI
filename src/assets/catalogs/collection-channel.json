@@ -1,0 +1,65 @@
+{
+  "collectionChanel": [
+    {
+      "number": "EFECTIVO",
+      "description": "1",
+      "productCode": "1",
+      "typeCode": "2005-10-05 10:00:00.0",
+      "padminId": "Z",
+      "lastUpdatedDate": "P",
+      "locale": "es-MX",
+      "value": "EFECTIVO"
+    },
+    {
+      "number": "DESCTO. POR NOMINA",
+      "description": "2",
+      "productCode": "2",
+      "typeCode": "2005-10-05 10:00:00.0",
+      "padminId": "X",
+      "lastUpdatedDate": "P",
+      "locale": "es-MX",
+      "value": "DESCTO. POR NOMINA"
+    },
+    {
+      "number": "TARJETA DE CREDITO",
+      "description": "3",
+      "productCode": "3",
+      "typeCode": "2005-10-05 10:00:00.0",
+      "padminId": "C",
+      "lastUpdatedDate": "P",
+      "locale": "es-MX",
+      "value": "TARJETA DE CREDITO"
+    },
+    {
+      "number": "TARJETA DE DEBITO",
+      "description": "3",
+      "productCode": "4",
+      "typeCode": "2005-10-05 10:00:00.0",
+      "padminId": "D",
+      "lastUpdatedDate": "P",
+      "locale": "es-MX",
+      "value": "TARJETA DE DEBITO"
+    },
+    {
+      "number": "CLABE",
+      "description": "3",
+      "productCode": "5",
+      "typeCode": "2005-10-05 10:00:00.0",
+      "padminId": "E",
+      "lastUpdatedDate": "P",
+      "locale": "es-MX",
+      "value": "CLABE"
+    },
+    {
+      "number": "AMEX",
+      "description": "3",
+      "productCode": "6",
+      "typeCode": "2005-10-05 10:00:00.0",
+      "padminId": "A",
+      "lastUpdatedDate": "P",
+      "locale": "es-MX",
+      "value": "AMEX"
+    }
+  ]
+
+}

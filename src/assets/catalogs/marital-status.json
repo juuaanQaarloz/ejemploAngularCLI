@@ -1,0 +1,40 @@
+{
+  "maritalStatus": [
+    {
+      "code": "S",
+      "description": "SOLTERO",
+      "lastUpdatedDate": "08/22/2019 03:05:38",
+      "locale": "es-MX",
+      "value": "S"
+    },
+    {
+      "code": "C",
+      "description": "CASADO",
+      "lastUpdatedDate": "08/22/2019 03:05:38",
+      "locale": "es-MX",
+      "value": "C"
+    },
+    {
+      "code": "V",
+      "description": "VIUDO",
+      "lastUpdatedDate": "08/22/2019 03:05:38",
+      "locale": "es-MX",
+      "value": "C"
+    },
+    {
+      "code": "D",
+      "description": "DIVORCIADO",
+      "lastUpdatedDate": "08/22/2019 03:05:38",
+      "locale": "es-MX",
+      "value": "C"
+    },
+    {
+      "code": "U",
+      "description": "UNION LIBRE",
+      "lastUpdatedDate": "08/22/2019 03:05:38",
+      "locale": "es-MX",
+      "value": "C"
+    }
+  ]
+
+}

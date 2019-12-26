@@ -239,7 +239,7 @@ export const medicalFieldsDialog: Field[] = [
     maxValue: 200,
     pattern: '/^(?=.*$)(?=[^A-ZÑ0-9\\s]*[A-ZÑ0-9\\s])(?:([A-ZÑ0-9\\s])\\1?(?!\\1\\1))*$/',
     noAllowedCharactersPattern: '/[^a-zA-ZñÑ0-9\\s]/',
-    source: 'IPRE',
+    source: 'IPRES',
     sourceID: 'diseases',
     sourceStructure: ['rowID', 'alias', 'diseaseId'],
     style: '',

@@ -1,0 +1,19 @@
+{
+  "gender": [
+    {
+      "code": "M",
+      "value": "M",
+      "description": "MASCULINO",
+      "lastUpdatedDate": "11/28/2019 01:00:00",
+      "locale": "es-MX"
+    },
+    {
+      "code": "F",
+      "value": "F",
+      "description": "FEMENINO",
+      "lastUpdatedDate": "11/28/2019 01:00:00",
+      "locale": "es-MX"
+    }
+  ]
+
+}

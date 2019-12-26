@@ -1,0 +1,15 @@
+{
+  "guardBoxOptions" : [
+    {
+      "id": 0,
+      "label": "Si",
+      "value": true
+    },
+    {
+      "id": 1,
+      "label": "No",
+      "value": false
+    }
+  ]
+
+}

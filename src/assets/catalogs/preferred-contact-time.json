@@ -1,0 +1,23 @@
+{
+  "preferredContactTime": [
+    {
+      "number": "1",
+      "value": "1",
+      "description": "Por la mañana (9-12)",
+      "locale": "es-MX"
+    },
+    {
+      "number": "2",
+      "value": "2",
+      "description": "Al medio día (12-4)",
+      "locale": "es-MX"
+    },
+    {
+      "number": "3",
+      "value": "3",
+      "description": "Por la tarde (4-9)",
+      "locale": "es-MX"
+    }
+  ]
+
+}

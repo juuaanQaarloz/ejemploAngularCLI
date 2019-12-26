@@ -599,8 +599,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onChangeSelect(event) {
-    // console.log('onChangeSelect...');
+
+    console.log('onChangeSelect...');
     // console.log('event.target.value: ', event.target.value);
+
     if (event.target.value === '') {
       this.showSelectLabel = false;
     } else {
@@ -721,7 +723,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     const currentValue = this.form.controls[this.fieldObj.name].value;
     const defaultValue = this.fieldObj.value;
     let result: boolean;
-
     if (currentValue) {
       if (currentValue === value) {
         result = true;
@@ -735,13 +736,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         result = false;
       }
     }
-    // // console.log('result: ', result);
+    // console.log('result ---> ', result);
     return result;
   }
 
   checkState() {
     const status = this.form.controls[this.fieldObj.name].status;
-    console.log('state: ', status);
     let result = false;
     if (status === 'DISABLED') {
       result = true;
@@ -751,8 +751,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   checkState2(acceso: boolean) {
     const status = this.form.controls[this.fieldObj.name].status;
-    // console.log('state2: ', status);
-    // console.log('acceso: ', acceso);
     let result = false;
     if (status === 'DISABLED' && acceso === true) {
       result = true;
