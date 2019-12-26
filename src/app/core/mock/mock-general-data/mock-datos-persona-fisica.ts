@@ -396,7 +396,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
     entityField: '',
-    value: 'MX'
+    value: '151'
   },
   {
     id: 'field-16',
