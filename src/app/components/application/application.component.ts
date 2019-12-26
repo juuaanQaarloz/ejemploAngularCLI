@@ -23,9 +23,8 @@ export class ApplicationComponent implements OnInit {
   @ViewChild('content', {static: false}) content: ElementRef;
   applOperations = APPL_OPERATIONS;
   items = [];
-  errorsFields;
-  errorsSteps;
-  errors;
+  errorMessage;
+  isValidApplication = true;
 
   closeWindowOpt: Operation = {
     id: 'opt-1',
@@ -103,11 +102,10 @@ export class ApplicationComponent implements OnInit {
 
   validateApplication() {
     const response = this.appService.validateApplicationForm();
+    console.log('response: ', response);
     if (response.status === false) {
       this.openDialog('modal-error');
-      this.errorsFields = response.fields;
-      this.errorsSteps = response.steps;
-      this.errors = response.errors;
+      this.errorMessage = response.msg;
     }
   }
 }

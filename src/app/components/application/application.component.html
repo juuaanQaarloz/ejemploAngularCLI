@@ -35,7 +35,7 @@
         <img class="button-close" (click)="closeModal('modal-error')">
       </div>
       <p class="header-small"> Error </p>
-      <p *ngIf="errorsSteps">Se encontraron error en las siguientes secciones: {{errorsSteps}}</p>
+      <p>{{errorMessage}}</p>
       <div class="operation-modal">
         <app-operation-form [operationObj]=closeWindowOpt
                             (click)="executeOperation(closeWindowOpt.delegateOperation)">
