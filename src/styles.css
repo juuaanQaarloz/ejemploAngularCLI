@@ -962,7 +962,7 @@ select::-ms-expand {
 .overlay-container{
   display: grid;
   grid-template-columns: repeat(1, 1fr);
-  height: 200px;
+  height: auto;
 }
 
 .operation-modal{
@@ -1190,4 +1190,14 @@ select::-ms-expand {
 
 .ml-form.document-type {
   grid-template-columns: repeat(3, 1fr);
+}
+
+.header-small {
+  font-family: "Georgia", serif;
+  line-height: 1.25em;
+  color: #333333;
+  margin: 35px 0 24px 0;
+  font-weight: 700;
+  font-size: 2rem;
+  text-align: center;
 }

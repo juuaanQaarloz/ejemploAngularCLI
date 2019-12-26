@@ -81,7 +81,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
 
     } else if (this.itemType === 'sport') {
       // this.fields =  sportsFields2;
-      this.operations = [];
+      this.operations = this.operations = BeneficiaryItemOperations;
       this.questionModal = '¿Está seguro que desea eliminar la deporte / actividad de la lista?';
       this.maxItems = 5;
       this.styleClass = 'item-row-sport';

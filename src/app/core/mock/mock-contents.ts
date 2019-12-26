@@ -1546,7 +1546,7 @@ export const MockContentStep17Process1ContentSection2: Content[] = [
     idHtml: 'app-content-form-2.38',
     contentType: 'table-sports',
     // process?: Process;
-    fields: sportsFields2,
+    // fields: sportsFields2,
     // operations: [],
     renderConditions: '(extremeSportsQuestion=true)',
     // ---pending---
@@ -1695,7 +1695,7 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
     contentType: 'table-diseases,1',
     // title: 'Enfermedad(es)',
     // process?: Process;
-    fields: medicalFields,
+    // fields: medicalFields,
     // operations?: Operation[];
     renderConditions: '(diseasesQuestion=true)',
     // ((diseasesQuestion=true),|,(medicalTestQuestion=true),|,(extraDiseasesQuestion=false))
@@ -1737,7 +1737,7 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
     contentType: 'table-diseases,2',
     // title: 'Enfermedad(es)',
     // process?: Process;
-    fields: medicalFields,
+    // fields: medicalFields,
     // operations?: Operation[];
     renderConditions: '(medicalTestQuestion=true)',
     // ((diseasesQuestion=true),|,(medicalTestQuestion=true),|,(extraDiseasesQuestion=false))
@@ -1780,7 +1780,7 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
     contentType: 'table-diseases,3',
     // title: 'Enfermedad(es)',
     // process?: Process;
-    fields: medicalFields,
+    // fields: medicalFields,
     // operations?: Operation[];
     renderConditions: '(extraDiseasesQuestion=true)',
     // ((diseasesQuestion=true),|,(medicalTestQuestion=true),|,(extraDiseasesQuestion=false))

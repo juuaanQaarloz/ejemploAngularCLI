@@ -12,11 +12,13 @@
     </div>
 
     <div class="container">
-      <app-section-form *ngFor="let section of applicationObj.sections" [form]="formGroup" [sectionObj]="section"></app-section-form>
+      <app-section-form *ngFor="let section of applicationObj.sections" [form]="formGroup"
+                        [sectionObj]="section"></app-section-form>
 
       <div class="operation">
         <app-operation-form *ngFor="let appOperation of applOperations"
-                            [operationObj]="appOperation" (click)="executeOperation(appOperation.delegateOperation)"></app-operation-form>
+                            [operationObj]="appOperation"
+                            (click)="executeOperation(appOperation.delegateOperation)"></app-operation-form>
       </div>
     </div>
   </div>
@@ -24,6 +26,22 @@
   <jw-modal [id]="'modal-search'"
             [modalType]="'overlay'">
     <app-search-occupation [modalID]="'modal-search'"></app-search-occupation>
+  </jw-modal>
+
+  <jw-modal [id]="'modal-error'"
+            [modalType]="'overlay'">
+    <div class="overlay-container">
+      <div style="text-align: right">
+        <img class="button-close" (click)="closeModal('modal-error')">
+      </div>
+      <p class="header-small"> Error </p>
+      <p>{{errorMessage}}</p>
+      <div class="operation-modal">
+        <app-operation-form [operationObj]=closeWindowOpt
+                            (click)="executeOperation(closeWindowOpt.delegateOperation)">
+        </app-operation-form>
+      </div>
+    </div>
   </jw-modal>
 
   <app-footer></app-footer>

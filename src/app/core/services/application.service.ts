@@ -13,6 +13,7 @@ import {COVERAGES} from '../mock/coverage/coverage';
 import {BENEFICIARIES} from '../mock/mock-beneficiaries/mock-beneficiaries';
 import {placeholdersToParams} from '@angular/compiler/src/render3/view/i18n/util';
 import {error} from 'util';
+import {isPackageNameSafeForAnalytics} from '@angular/cli/models/analytics';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
@@ -208,7 +209,7 @@ export class ApplicationService {
       });
 
     });
-    return new FormGroup(group, [equalEmailsValidator, higherAssuredImport, validateFunds, validateSameName ]);
+    return new FormGroup(group, [equalEmailsValidator, higherAssuredImport, validateFunds, validateSameName]);
   }
 
   toFormGroupReadOnly(applicationObj: Template) {
@@ -544,7 +545,7 @@ export class ApplicationService {
       currentItems = this.payments.getValue();
       propertyItem = 'paymentId';
     } else if (itemType === 'document') {
-      console.log("Entro documents;");
+      console.log('Entro documents;');
       // currentItems = this.documents.getValue();
       currentItems = [];
       // console.log(currentItems);
@@ -935,80 +936,172 @@ export class ApplicationService {
   }
 
   validateFormByStep(stepObj: Step) {
-    console.log('stepID: ', stepObj.id);
     const step = this.getStepById(stepObj.id);
-    console.log('step: ', step);
-    let isValidStep = true;
-    let validateFieldResults = [];
-    let validateErrorResults = [];
+    let isValid = true;
+    let message = '';
 
     if (step) {
       // validate each field individually in the step
       step.contents.forEach((contentFromStep) => {
-        if (contentFromStep.fields) {
-          contentFromStep.fields.forEach(field => {
-            if (!field.disable) {
-              field.valid = this.formGroup.controls[field.name].valid;
-              if (this.formGroup.controls[field.name].errors) {
-                console.log('errors: ', this.formGroup.controls[field.name].errors);
+        console.log('contentType: ', contentFromStep.contentType);
+        console.log('onContentFromStep.fields');
+
+        if (contentFromStep.contentType === 'looseFields') {
+          console.log('here1');
+          const validateFieldArrayResult = this.validateFieldArray(contentFromStep.fields);
+          console.log('validateFieldArrayResult: ', validateFieldArrayResult);
+          if (validateFieldArrayResult === false) {
+            isValid = false;
+            message = 'Por favor, verfique la información a continuación';
+          }
+        } else if (contentFromStep.contentType.includes('table')) {
+          console.log('here2');
+          const validateTableResult = this.validateTable(contentFromStep.contentType);
+          console.log('res: ', validateTableResult);
+          if (validateTableResult.status === false) {
+            isValid = false;
+            message = validateTableResult.msg;
+          }
+        }
+
+        if (contentFromStep.contentChildren) {
+          console.log('onContentFromStep.contentChildren...');
+          contentFromStep.contentChildren.forEach(contentChild => {
+            if (contentChild.contentType === 'looseFields') {
+              console.log('here3');
+              const validateFieldArrayResult = this.validateFieldArray(contentChild.fields);
+              console.log('validateFieldArrayResult: ', validateFieldArrayResult);
+              if (validateFieldArrayResult === false) {
+                isValid = false;
+                message = 'Por favor, verfique la información a continuación';
               }
-              console.log('formControlName: ', field.name);
-              console.log('valid: ', field.valid);
-              validateFieldResults.push(field.valid);
+            } else if (contentChild.contentType.includes('table')) {
+              console.log('here4');
+              const validateTableResult = this.validateTable(contentChild.contentType);
+              console.log('res: ', validateTableResult);
+              if (validateTableResult.status === false) {
+                isValid = false;
+                message = validateTableResult.msg;
+              }
             }
           });
-        } else {
-          if (contentFromStep.contentChildren) {
-            contentFromStep.contentChildren.forEach(contentChild => {
-              if (contentChild.fields) {
-                contentChild.fields.forEach(field => {
-                  if (!field.disable) {
-                    field.valid = this.formGroup.controls[field.name].valid;
-                    // console.log('formControlName: ', field.name);
-                    console.log('valid: ', field.valid);
-                    validateFieldResults.push(field.valid);
-                  }
-                });
-              }
-            });
-          }
         }
       });
 
       if (step.errors) { // check for validation between fields
-        console.log('errors: ', step.errors);
-
+        // console.log('errors: ', step.errors);
         step.errors.forEach((e) => {
-          console.log('e: ', e);
+          // console.log('e: ', e);
           const result = this.getStatusError(e.errorName);
           if (result) { // if the error exists the step is not valid
-            validateErrorResults.push(false);
-          } else { // if the error does not exist the is step is valid
-            validateErrorResults.push(true);
+            // console.log('result: ', result);
+            isValid = false;
+            message = e.errorMsg;
           }
         });
       }
 
-      validateFieldResults.forEach((res) => {
-        console.log('res from validateFieldResults: ', res);
-        if (!res) {
-          isValidStep = res;
-        }
-      });
+      console.log('isValid from validateFormByStep: ', isValid);
 
-      if (isValidStep) {
-        validateErrorResults.forEach((res) => {
-          console.log('res from validateErrorResults: ', res);
-          if (!res) {
-            isValidStep = res;
-          }
-        });
-      }
-
-      console.log('isValidStep: ', isValidStep);
-
-      return isValidStep;
+      return {
+        status: isValid,
+        msg: message
+      };
     }
+  }
+
+  validateFieldArray(fields: Field[]) {
+    let isValid = true;
+
+    fields.forEach(field => {
+      if (!field.disable) {
+        field.valid = this.formGroup.controls[field.name].valid;
+        if (field.valid === false) {
+          // console.log('field name: ', field.name);
+          isValid = false;
+        }
+      }
+    });
+
+    return isValid;
+  }
+
+  validateTable(tableType) {
+    let isValid = true;
+    let message = '';
+
+    if (tableType === 'table-beneficiary') {
+      const totalParticipationPercentage = this.getTotalParticipationPercentage('beneficiary');
+      console.log('totalParticipationPercentage: ', totalParticipationPercentage);
+      console.log('validate table table-beneficiary...');
+      if (this.beneficiaries.getValue().length === 0) { // validates that is at least one beneficiary added in the table
+        isValid = false;
+        message = 'Debe agregarse al menos un beneficiario';
+      } else if (totalParticipationPercentage < 100) {
+        // validates that the totalPercentage of beneficiaries is 100%
+        isValid = false;
+        message = 'La suma de las participaciones entre beneficiarios debe sumar el 100%';
+      } else if (totalParticipationPercentage > 100) {
+        isValid = false;
+        message = 'La suma de las participaciones entre beneficiarios no debe exceder el 100%';
+      }
+    } else if (tableType === 'table-payment') {
+      console.log('validate table table-payment...');
+    } else if (tableType === 'table-country') {
+      console.log('validate table table-country...');
+    } else if (tableType === 'table-formatwo') {
+      console.log('validate table table-formatwo');
+    } else if (tableType === 'table-formatfour') {
+      console.log('validate table table-formatfour');
+    } else if (tableType === 'table-formatwob') {
+      console.log('validate table table-formatwob');
+    } else if (tableType === 'table-formathree') {
+      console.log('validate table table-formathree');
+    } else if (tableType === 'table-formatw8') {
+      console.log('validate table table-formatw8');
+    } else if (tableType === 'table-coverage') {
+      console.log('validate table table-coverage');
+    } else if (tableType === 'table-sports') {
+      // check question value
+      const valueQuestion = this.formGroup.controls.extremeSportsQuestion.value;
+      if ( valueQuestion && valueQuestion === true) {
+        console.log('valueQuestion: ', valueQuestion);
+        // validate table content
+        if (this.sports.getValue().length === 0) {
+          isValid = false;
+          message = 'Debe agregarse al menos un deporte / actvidad';
+        } else if (this.sports.getValue().length > 5) {
+          isValid = false;
+          message = 'No pueden agregarse más de 5 deportes / actividades';
+        }
+      } else {
+        isValid = true;
+      }
+      console.log('validate table table-sports');
+    } else if (tableType === 'table-diseases') {
+      console.log('validate table table-diseases');
+    } else if (tableType === 'table-agent') {
+      console.log('validate table table-agent');
+      if (this.agents.getValue().length === 0) { // validates that is at least one beneficiary added in the table
+        isValid = false;
+        message = 'Debe agregarse al menos un agente';
+      } else if (this.getTotalParticipationPercentage('agent') < 100) {
+        // validates that the totalPercentage of beneficiaries is 100%
+        isValid = false;
+        message = 'La suma de las participaciones entre agentes debe sumar el 100%';
+      } else if (this.getTotalParticipationPercentage('agent') > 100) {
+        // validates that the totalPercentage of beneficiaries is 100%
+        isValid = false;
+        message = 'La suma de las participaciones entre agentes no debe exceder el 100%';
+      }
+    } else if (tableType === 'documents') {
+      console.log('validate table documents');
+    }
+
+    return {
+      status: isValid,
+      msg: message
+    };
   }
 
   setApplicationObject(applicationObj: Template) {
@@ -1257,61 +1350,48 @@ export class ApplicationService {
   }
 
   validateApplicationForm() {
+    let isValid = true;
+    let message = '';
 
     this.applicationObj.sections.forEach(section => {
       // console.log('section: ', section);
       section.contents.forEach((contentFromSection) => {
         if (contentFromSection.fields) {
-          contentFromSection.fields.forEach(field => {
-            field.valid = this.formGroup.controls[field.name].valid;
-            if (this.formGroup.controls[field.name].errors) {
-              // console.log('errors in field: ', field.name);
-              // console.log(this.formGroup.controls[field.name].errors);
-              // console.log('status: ', this.formGroup.controls[field.name].status);
-            }
-          });
+          const validateFieldArrayResult = this.validateFieldArray(contentFromSection.fields);
+          console.log('validateFieldArrayResult: ', validateFieldArrayResult);
+          if (validateFieldArrayResult === false) {
+            isValid = false;
+            message = 'Por favor, verfique la información a continuación';
+          }
         } else {
           if (contentFromSection.process) {
             contentFromSection.process.steps.forEach(step => {
-              console.log('step required conditions: ', step.requiredConditions);
               if (step.requiredConditions) {
-                console.log('requiredCondition: ', step.requiredConditions);
                 const requiredConditionsResult = this.evaluateConditions(step.requiredConditions, this.formGroup);
-                console.log('requiredConditionsResult: ', requiredConditionsResult);
-              }
-
-              step.contents.forEach((contentFromStep) => {
-                if (contentFromStep.fields) {
-                  contentFromStep.fields.forEach(field => {
-                    field.valid = this.formGroup.controls[field.name].valid;
-                    if (this.formGroup.controls[field.name].errors) {
-                      // console.log('errors in field: ', field.name);
-                      // console.log(this.formGroup.controls[field.name].errors);
-                      // console.log('status: ', this.formGroup.controls[field.name].status);
-                    }
-                  });
-                } else {
-                  if (contentFromStep.contentChildren) {
-                    contentFromStep.contentChildren.forEach(contentChild => {
-                      if (contentChild.fields) {
-                        contentChild.fields.forEach(field => {
-                          field.valid = this.formGroup.controls[field.name].valid;
-                          if (this.formGroup.controls[field.name].errors) {
-                            // console.log('errors in field: ', field.name);
-                            // console.log(this.formGroup.controls[field.name].errors);
-                            // console.log('status: ', this.formGroup.controls[field.name].status);
-                          }
-                        });
-                      }
-                    });
+                if (requiredConditionsResult) {
+                  const evaluateStepResult = this.validateFormByStep(step);
+                  if (evaluateStepResult.status === false) {
+                    isValid = false;
+                    message = message + 'Por favor verificar la siguiente sección: ' + step.title + '\n';
                   }
                 }
-              });
+              } else {
+                const evaluateStepResult = this.validateFormByStep(step);
+                if (evaluateStepResult.status === false) {
+                  isValid = false;
+                  message = message + 'Por favor verificar la siguiente sección: ' + step.title + '\n';
+                }
+              }
             });
           }
         }
       });
     });
+
+    return {
+      status: isValid,
+      msg: message
+    };
   }
   // @ts-ignore
   getCatalog(id: string, source: string): Observable<[]> {
