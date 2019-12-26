@@ -322,27 +322,33 @@ export class ApplicationService {
 
   // getCatalogById(this.fieldObj.sourceID, this.fieldObj.source)
   getCatalogById(id: string, source: string): Observable<[]> {
-    let urlCatalog = '';
-    switch (source) {
-      case 'IPRE':
-        urlCatalog = URL_IPRE;
-        break;
-      case 'CUSTOM':
-        urlCatalog = URL_CUSTOM_CATALOG;
-        break;
-      case 'PATTERN':
-        urlCatalog = URL_PATTERN_CATALOG;
-        break;
-      default:
-        urlCatalog = URL_IPRE;
-        break;
+    if (source !== 'IPRE') {
+      console.log('Catalogos que no son IPRE');
+      let urlCatalog = '';
+      switch (source) {
+        /*case 'IPRE':
+          urlCatalog = URL_IPRE;
+         break;*/
+        case 'CUSTOM':
+          urlCatalog = URL_CUSTOM_CATALOG;
+          break;
+        case 'PATTERN':
+          urlCatalog = URL_PATTERN_CATALOG;
+          break;
+        default:
+          urlCatalog = URL_IPRE;
+          break;
+      }
+      return this.httpClient.get(urlCatalog)
+        .pipe(
+          map((catalog) => {
+            return catalog[id];
+          })
+        );
+    } else {
+      console.log('Catalogos IPRE');
+      return this.getCatalog(id, source);
     }
-    return this.httpClient.get(urlCatalog)
-      .pipe(
-        map((catalog) => {
-          return catalog[id];
-        })
-      );
   }
 
   addItem(newItem, itemType: string, fromTable?: boolean) {
