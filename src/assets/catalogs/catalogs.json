@@ -77319,5 +77319,27 @@
       "name": "Comprobante de domicilio",
       "code": "COMDOC"
     }
+  ],
+  "estados": [
+    {
+      "id": 0,
+      "name": "Aguascalientes",
+      "code": "AG"
+    },
+    {
+      "id": 1,
+      "name": "Baja California",
+      "code": "BC"
+    },
+    {
+      "id": 2,
+      "name": "Baja California Sur",
+      "code": "BCs"
+    },
+    {
+      "id": 3,
+      "name": "Campeche",
+      "code": "CAM"
+    }
   ]
 }

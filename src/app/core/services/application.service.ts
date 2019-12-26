@@ -320,6 +320,7 @@ export class ApplicationService {
     let responseMessage1;
     let responseMessage2;
     let responseMessage3;
+    let responseMessage4;
     let propertyName;
     if (itemType === 'beneficiary') {
       currentTotalParticipationPercentage = this.getTotalParticipationPercentage(itemType);
@@ -331,11 +332,16 @@ export class ApplicationService {
       propertyName = 'participationPercentage';
     } else if (itemType === 'agent') {
       currentTotalParticipationPercentage = this.getTotalParticipationPercentage(itemType);
+
+      console.log('currentTotalParticipationPercentage: ');
+      console.log(currentTotalParticipationPercentage);
+
       currentItems = this.agents.getValue();
       maxLength = 2;
       responseMessage1 = 'No se pueden agregar más de 2 agentes';
       responseMessage2 = 'La suma de las participaciones de los agentes excede el 100%';
       responseMessage3 = 'El porcentaje de participacion debe de ser mayor a 0';
+      responseMessage4 = 'La suma de los porcentajes de participación debe ser igual a 100%';
       propertyName = 'participation';
     } else if (itemType === 'formatwo') {
       currentTotalParticipationPercentage = 1;
@@ -382,14 +388,25 @@ export class ApplicationService {
       if (currentTotalParticipationPercentage + Number(newItem[propertyName]) <= 100) {
         console.log(2);
         // when is a maxItems limit
-        if (currentItems.length <= maxLength) {
+        if (currentItems.length <= maxLength -1) {
           console.log(3);
           // the new item can be added
           if (Number(newItem[propertyName]) > 0) {
             console.log(4);
-            currentItems.push(newItem);
-            this.setItems(itemType, currentItems);
-            return {status: true, message: ''};
+            if ( currentItems.length === maxLength -1 ) {
+              if ( currentTotalParticipationPercentage + Number(newItem[propertyName]) === 100) {
+                currentItems.push(newItem);
+                this.setItems(itemType, currentItems);
+                return {status: true, message: ''};
+              } else {
+                console.log(8);
+                return {status: false, message: responseMessage4};
+              }
+            } else {
+              currentItems.push(newItem);
+              this.setItems(itemType, currentItems);
+              return {status: true, message: ''};
+            }
           } else {
             console.log(5);
             return {status: false, message: responseMessage3};
@@ -516,6 +533,7 @@ export class ApplicationService {
     let responseMessage1;
     let responseMessage2;
     let responseMessage3;
+    let responseMessage4;
 
     if (itemType === 'beneficiary') {
       currentItems = this.beneficiaries.getValue();
@@ -543,6 +561,7 @@ export class ApplicationService {
       });
       maxLength = 2;
       responseMessage3 = 'El porcentaje de participacion debe de ser mayor a 0';
+      responseMessage4 = 'La suma de los porcentajes de participación debe ser igual a 100%';
       responseMessage2 = 'La suma de las participaciones de los agentes excede el 100%';
       responseMessage1 = 'No se pueden agregar más de 2 beneficiarios';
     } else if (itemType === 'formatwo') {
@@ -571,13 +590,37 @@ export class ApplicationService {
       if (currentTotalParticipationPercentage + Number(updatedItem[propertyParticipation]) <= 100) {
         console.log('here');
         // when is a maxItems limit
+
+        console.log(currentItems.length);
+        console.log(maxLength);
+        console.log(currentItems.length <= maxLength);
+
+
         if (currentItems.length <= maxLength) {
           // the new item can be added
           if (Number(updatedItem[propertyParticipation]) > 0) {
-            const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
-            currentItems[index] = updatedItem;
-            this.setItems(itemType, currentItems);
-            return {status: true, message: ''};
+
+            if ( currentItems.length === maxLength ) {
+              if ( currentTotalParticipationPercentage + Number(updatedItem[propertyParticipation]) === 100) {
+                const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
+                currentItems[index] = updatedItem;
+                this.setItems(itemType, currentItems);
+                return {status: true, message: ''};
+              } else {
+                console.log(8);
+                return {status: false, message: responseMessage4};
+              }
+            } else {
+              const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
+              currentItems[index] = updatedItem;
+              this.setItems(itemType, currentItems);
+              return {status: true, message: ''};
+            }
+
+            // const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
+            // currentItems[index] = updatedItem;
+            // this.setItems(itemType, currentItems);
+            // return {status: true, message: ''};
           } else {
             return {status: false, message: responseMessage3};
           }
