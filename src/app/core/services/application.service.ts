@@ -378,6 +378,7 @@ export class ApplicationService {
       responseMessage1 = 'No se pueden agregar más de 10 beneficiarios';
       responseMessage2 = 'La suma de las participaciones de los beneficiarios excede el 100%';
       responseMessage3 = 'El porcentaje de participacion debe de ser mayor a 0';
+      responseMessage4 = 'La suma de los porcentajes de participación debe ser igual a 100%';
       propertyName = 'participationPercentage';
     } else if (itemType === 'agent') {
       currentTotalParticipationPercentage = this.getTotalParticipationPercentage(itemType);
@@ -1006,7 +1007,8 @@ export class ApplicationService {
           if (result) { // if the error exists the step is not valid
             // console.log('result: ', result);
             isValid = false;
-            message = e.errorMsg;
+            // message = e.errorMsg;
+            message = 'Por favor, verfique la información a continuación';
           }
         });
       }
@@ -1027,7 +1029,7 @@ export class ApplicationService {
       if (!field.disable) {
         field.valid = this.formGroup.controls[field.name].valid;
         if (field.valid === false) {
-          // console.log('field name: ', field.name);
+          console.log('field name: ', field.name);
           isValid = false;
         }
       }
@@ -1057,6 +1059,7 @@ export class ApplicationService {
       }
     } else if (tableType === 'table-payment') {
       // TODO: validation for table-payment
+      const valueQuestion = this.formGroup.controls.extremeSportsQuestion.value;
     } else if (tableType === 'table-country') {
       // TODO: validation for table-country
     } else if (tableType === 'table-formatwo') {
