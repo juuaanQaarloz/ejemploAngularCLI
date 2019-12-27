@@ -1058,8 +1058,20 @@ export class ApplicationService {
         message = 'La suma de las participaciones entre beneficiarios no debe exceder el 100%';
       }
     } else if (tableType === 'table-payment') {
-      // TODO: validation for table-payment
       const valueQuestion = this.formGroup.controls.extremeSportsQuestion.value;
+      if ( valueQuestion && valueQuestion === 'T') {
+        console.log('valueQuestion: ', valueQuestion);
+        // validate table content
+        if (this.payments.getValue().length === 0) {
+          isValid = false;
+          message = 'Debe agregarse al menos una tarjeta para el cargo automático';
+        } else if (this.payments.getValue().length > 5) {
+          isValid = false;
+          message = 'No pueden agregarse más de 5 instrumentos bancarios';
+        }
+      } else {
+        isValid = true;
+      }
     } else if (tableType === 'table-country') {
       // TODO: validation for table-country
     } else if (tableType === 'table-formatwo') {
