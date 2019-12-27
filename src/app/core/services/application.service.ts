@@ -1046,21 +1046,21 @@ export class ApplicationService {
         message = 'La suma de las participaciones entre beneficiarios no debe exceder el 100%';
       }
     } else if (tableType === 'table-payment') {
-      console.log('validate table table-payment...');
+      // TODO: validation for table-payment
     } else if (tableType === 'table-country') {
-      console.log('validate table table-country...');
+      // TODO: validation for table-country
     } else if (tableType === 'table-formatwo') {
-      console.log('validate table table-formatwo');
+      // TODO: validation for table-formatwo
     } else if (tableType === 'table-formatfour') {
-      console.log('validate table table-formatfour');
+      // TODO: validation for table-formatfour
     } else if (tableType === 'table-formatwob') {
-      console.log('validate table table-formatwob');
+      // TODO: validation for table-formatwob
     } else if (tableType === 'table-formathree') {
-      console.log('validate table table-formathree');
+      // TODO: validation for table-formathree
     } else if (tableType === 'table-formatw8') {
-      console.log('validate table table-formatw8');
+      // TODO: validation for table-formatw
     } else if (tableType === 'table-coverage') {
-      console.log('validate table table-coverage');
+      // TODO: validation for table-coverage
     } else if (tableType === 'table-sports') {
       // check question value
       const valueQuestion = this.formGroup.controls.extremeSportsQuestion.value;
@@ -1079,7 +1079,7 @@ export class ApplicationService {
       }
       console.log('validate table table-sports');
     } else if (tableType === 'table-diseases') {
-      console.log('validate table table-diseases');
+      // TODO: validation for table-diseases
     } else if (tableType === 'table-agent') {
       console.log('validate table table-agent');
       if (this.agents.getValue().length === 0) { // validates that is at least one beneficiary added in the table
@@ -1095,7 +1095,7 @@ export class ApplicationService {
         message = 'La suma de las participaciones entre agentes no debe exceder el 100%';
       }
     } else if (tableType === 'documents') {
-      console.log('validate table documents');
+      // TODO: validation for documents
     }
 
     return {
@@ -1372,14 +1372,14 @@ export class ApplicationService {
                   const evaluateStepResult = this.validateFormByStep(step);
                   if (evaluateStepResult.status === false) {
                     isValid = false;
-                    message = message + 'Por favor verificar la siguiente sección: ' + step.title + '\n';
+                    message = message + step.id + ') ' + step.title + '-';
                   }
                 }
               } else {
                 const evaluateStepResult = this.validateFormByStep(step);
                 if (evaluateStepResult.status === false) {
                   isValid = false;
-                  message = message + 'Por favor verificar la siguiente sección: ' + step.title + '\n';
+                  message = message + step.id + ') ' + step.title + '-';
                 }
               }
             });

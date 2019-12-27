@@ -106,6 +106,14 @@ export class ApplicationComponent implements OnInit {
     if (response.status === false) {
       this.openDialog('modal-error');
       this.errorMessage = response.msg;
+      console.log('errorMessage: ', this.errorMessage);
     }
+  }
+
+  getMessages() {
+    let errors = [];
+    errors = this.errorMessage.split('-');
+    // console.log('errors: ', errors);
+    return errors;
   }
 }
