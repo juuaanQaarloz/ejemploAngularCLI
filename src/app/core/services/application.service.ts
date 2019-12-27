@@ -6,7 +6,16 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';
 import {Beneficiary, Formatwo, Field, Occupation, Step} from '../../models';
 import {Agent} from '../../models/agent-model/agent';
-import {equalEmailsValidator, higherAssuredImport, validateSameName, validatorsObjects, validateFunds} from '../validators';
+import {
+  equalEmailsValidator,
+  higherAssuredImport,
+  validateSameName,
+  validateSameName2,
+  validatorsObjects,
+  validateFunds,
+  validateSameName4,
+  validateSameName3
+} from '../validators';
 import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
 import {COVERAGES} from '../mock/coverage/coverage';
@@ -176,7 +185,7 @@ export class ApplicationService {
       });
 
     });
-    return new FormGroup(group, [equalEmailsValidator, higherAssuredImport, validateFunds, validateSameName ]);
+    return new FormGroup(group, [equalEmailsValidator, higherAssuredImport, validateFunds, validateSameName, validateSameName2,  validateSameName3 ]);
   }
 
   toFormGroupReadOnly(applicationObj: Template) {

@@ -814,3 +814,80 @@ export const validateSameName: ValidatorFn = (group: FormGroup): ValidationError
   }
 };
 
+export const validateSameName2: ValidatorFn = (group: FormGroup): ValidationErrors | null => {
+
+  let name2 = group.controls.nameS.value;
+  let fatherLastName2 = group.controls.fatherLastNameS.value;
+  let motherLastName2 = group.controls.motherLastNameS.value;
+  if (name2 !== '') {
+    if (name2 === fatherLastName2) {
+      if (name2 === motherLastName2) {
+        return {invalidDobleName2: true};
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  }
+
+};
+
+export const validateSameName3: ValidatorFn = (group: FormGroup): ValidationErrors | null => {
+
+  let name3 = group.controls.nameLegalAgent1.value;
+  let fatherLastName3 = group.controls.fatherLastNameLegalAgent1.value;
+  let motherLastName3 = group.controls.motherLastNameLegalAgent1.value;
+  let name4 = group.controls.nameLegalAgent2.value;
+  let fatherLastName4 = group.controls.fatherLastNameLegalAgent2.value;
+  let motherLastName4 = group.controls.motherLastNameLegalAgent2.value;
+  let valido: boolean  = false;
+
+
+  if (name3 !== '') {
+    if (name3 === fatherLastName3) {
+      if (name3 === motherLastName3) {
+        return {invalidDobleName3: true };
+      } else {
+        valido = true;
+      }
+    } else {
+      valido = true;
+    }
+    } else { valido = true; }
+  if (name4 !== '') {
+      if (name4 === fatherLastName4) {
+        if (name4 === motherLastName4) {
+          return {invalidDobleName3: true};
+        } else {
+          valido = true;
+        }
+      } else {
+        valido = true;
+      }
+    } else { valido = true; }
+  if (valido) {
+    return null;
+  }
+
+};
+
+export const validateSameName4: ValidatorFn = (group: FormGroup): ValidationErrors | null => {
+
+  let name5 = group.controls.beneficiaryName.value;
+  let fatherLastName5 = group.controls.beneficiaryFaLastName.value;
+  let motherLastName5 = group.controls.beneficiaryMoLastName.value;
+  if (name5 !== '') {
+    if (name5 === fatherLastName5) {
+      if (name5 === motherLastName5) {
+        return {invalidDobleName4: true};
+      } else {
+        return null;
+      }
+    } else {
+      return null;
+    }
+  }
+
+};
+

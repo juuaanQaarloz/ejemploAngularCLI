@@ -24,7 +24,13 @@ import {
   MockContentStep22Process1ContentSection2,
 } from './mock-contents';
 
-import {ERRORS_DOM_CONT, ERROSDATOSPERSONAFISICA, ERROSDATOSPLAN} from './errors/mock-erros-datos-plan';
+import {
+  ERRORS_DOM_CONT,
+  ERROSDATOSPERSONAFISICA,
+  ERROSDATOSPLAN,
+  ERROSDATOSREPRESENTANTE,
+  ERROSDATOSSOLICITANTE
+} from './errors/mock-erros-datos-plan';
 
 
 export const MockStepsProcessContentSection2: Step[] = [
@@ -106,7 +112,8 @@ export const MockStepsProcessContentSection2: Step[] = [
     nextStep: '7',
     /*added extra from model*/
     isCompleted: false,
-    show: false
+    show: false,
+    errors: ERROSDATOSREPRESENTANTE
   },
   {
     id: '7',
@@ -119,7 +126,8 @@ export const MockStepsProcessContentSection2: Step[] = [
     nextStep: '8',
     /*added extra from model*/
     isCompleted: false,
-    show: false
+    show: false,
+    errors: ERROSDATOSSOLICITANTE
   },
   {
     id: '8',

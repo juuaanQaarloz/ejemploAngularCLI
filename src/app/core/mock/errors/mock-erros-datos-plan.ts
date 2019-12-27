@@ -31,3 +31,24 @@ export const ERRORS_DOM_CONT: Error[] = [
     errorMsg: 'Los emails no coinciden'
   }
 ];
+
+export const ERROSDATOSSOLICITANTE: Error[] = [
+  {
+    errorName: 'invalidDobleName2',
+    errorMsg: 'El nombre no puede ser igual al apellido paterno y materno.'
+  },
+];
+
+export const ERROSDATOSREPRESENTANTE: Error[] = [
+  {
+    errorName: 'invalidDobleName3',
+    errorMsg: 'El nombre no puede ser igual al apellido paterno y materno.'
+  },
+];
+
+export const ERROSDATOSBENEFICIARIOS: Error[] = [
+  {
+    errorName: 'invalidDobleName4',
+    errorMsg: 'El nombre no puede ser igual al apellido paterno y materno.'
+  },
+];
