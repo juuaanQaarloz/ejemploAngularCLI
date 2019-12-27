@@ -50,6 +50,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   formGroup: FormGroup;
   operationType: string;
   modalID = 'modal-warning';
+  nameMessage = 'El nombre no puede ser igual al apeLLido paterno y materno';
   modalMessage = 'La suma de las participaciones de los beneficiarios excede el 100%';
   fileNameUpload = 'Ningún archivo seleccionado';
   fidMessage = 'Se requiere adjuntar documentos:  Carta instrucción a la fiduciaria';
@@ -108,7 +109,6 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
     } else {
       this.showFormError = true;
     }
-
   }
 
   updateBeneficiary() {

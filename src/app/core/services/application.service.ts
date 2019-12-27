@@ -378,7 +378,20 @@ export class ApplicationService {
       responseMessage1 = 'No se pueden agregar más de 10 beneficiarios';
       responseMessage2 = 'La suma de las participaciones de los beneficiarios excede el 100%';
       responseMessage3 = 'El porcentaje de participacion debe de ser mayor a 0';
+      responseMessage4 = 'El nombre, el apellido paterno y materno no puede ser el mismo';
       propertyName = 'participationPercentage';
+
+      let name5 = newItem.name.value; // this.formGroup.controls.beneficiaryName.value;
+      let fatherLastName5 =  newItem.fatherLastName.value; //this.formGroup.controls.beneficiaryFaLastName.value;
+      let motherLastName5 = newItem.motherLastName.value; // this.formGroup.controls.beneficiaryMoLastName.value;
+      if (name5 !== '') {
+        if (name5 === fatherLastName5) {
+          if (name5 === motherLastName5) {
+            return {status: false, message: responseMessage4};
+          }
+        }
+      }
+
     } else if (itemType === 'agent') {
       currentTotalParticipationPercentage = this.getTotalParticipationPercentage(itemType);
 
@@ -598,6 +611,7 @@ export class ApplicationService {
       responseMessage1 = 'No se pueden agregar más de 10 beneficiarios';
       responseMessage2 = 'La suma de las participaciones de los beneficiarios excede el 100%';
       responseMessage3 = 'El porcentaje de participacion debe de ser mayor a 0';
+      responseMessage4 = 'El nombre no puede ser igual al apellido paterno y materno';
     } else if (itemType === 'agent') {
       currentItems = this.agents.getValue();
       propertyItem = 'agentId';
