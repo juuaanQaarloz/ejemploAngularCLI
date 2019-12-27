@@ -907,19 +907,32 @@ export class ApplicationService {
 
   setSelectedOccupation(selectedOccupation: Occupation) {
     // console.log('searchModalFrom: ', this.searchModalFrom);
+    console.log('Selected: ');
+    console.log(selectedOccupation);
     let formControlName;
+    let formControlNameTwo;
     let htmlID;
+    let htmlIDTwo;
     if (this.searchModalFrom === 'contractor') {
       formControlName = 'occupation';
+      formControlNameTwo = 'detailOccupation';
       htmlID = 'txtOccupation';
+      htmlIDTwo = 'txtDetailOccupation';
 
     } else if (this.searchModalFrom === 'applicant') {
       formControlName = 'occupationS';
+      formControlNameTwo = 'detailOccupationS';
       htmlID = 'txtOccupationS';
+      htmlIDTwo = 'txtDetailOccupationS';
     }
-    this.formGroup.controls[formControlName].setValue(selectedOccupation.specificOccupationName);
+    // this.formGroup.controls[formControlName].setValue(selectedOccupation.specificOccupationName);
+    this.formGroup.controls[formControlName].setValue(selectedOccupation.name);
+    this.formGroup.controls[formControlNameTwo].setValue(selectedOccupation.description);
     const ele = document.getElementById(htmlID);
-    ele.setAttribute('value', selectedOccupation.specificOccupationName);
+    const element = document.getElementById(htmlIDTwo);
+    // ele.setAttribute('value', selectedOccupation.specificOccupationName);
+    ele.setAttribute('value', selectedOccupation.name);
+    element.setAttribute('value', selectedOccupation.description);
   }
 
   getInfoFromSepomex(zipCode: string): Observable<SepomexObj> {

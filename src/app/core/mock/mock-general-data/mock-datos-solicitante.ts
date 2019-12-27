@@ -392,7 +392,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     name: 'stateOfBirthS',
     orderAppearance: 14,
     label: 'Estado / Provincia*',
-    type: 'select',
+    type: 'autocomplete',
     required: true,
     placeholder: 'Estado / Provincia',
     length: '40',

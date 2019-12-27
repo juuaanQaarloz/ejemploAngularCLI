@@ -183,7 +183,7 @@ export const DatosDomicilio: Field[] = [
     name: 'state',
     orderAppearance: 7,
     label: 'Estado / Provincia*',
-    type: 'select',
+    type: 'autocomplete',
     required: true,
     placeholder: '',
     length: '40',

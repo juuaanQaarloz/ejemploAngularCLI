@@ -404,7 +404,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     name: 'stateOfBirth',
     orderAppearance: 14,
     label: 'Estado / Provincia*',
-    type: 'select',
+    type: 'autocomplete',
     required: true,
     placeholder: 'Estado / Provincia',
     length: '40',
@@ -425,7 +425,8 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: ''
+    entityField: '',
+    value: ''
   },
   {
     id: 'field-17',

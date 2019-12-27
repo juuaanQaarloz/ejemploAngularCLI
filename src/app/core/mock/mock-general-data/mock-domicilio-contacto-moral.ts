@@ -180,7 +180,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     name: 'stateM',
     orderAppearance: 7,
     label: 'Estado / Provincia*',
-    type: 'text',
+    type: 'autocomplete',
     required: true,
     placeholder: '',
     length: '40',
