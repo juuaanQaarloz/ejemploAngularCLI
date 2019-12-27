@@ -159,10 +159,21 @@ export class BeneficiaryTableComponent implements OnInit {
       this.showplus = true;
       this.style = 'even-agent';
 
-      this.applicationService.diseases.subscribe((value) => {
-        this.items = value;
-      });
+      console.log('contentTypeId: ', this.contentTypeId);
 
+      if (this.contentTypeId === '1') {
+        this.applicationService.diseases.subscribe((value) => {
+          this.items = value;
+        });
+      } else if (this.contentTypeId === '2') {
+        this.applicationService.diseases2.subscribe((value) => {
+          this.items = value;
+        });
+      } else if (this.contentTypeId === '3') {
+        this.applicationService.diseases3.subscribe((value) => {
+          this.items = value;
+        });
+      }
       console.log('contentTypeId: ', this.contentTypeId);
     } else if (this.type ===  'table-formatfour') {
       this.title = 'Datos Formato Cuatro';

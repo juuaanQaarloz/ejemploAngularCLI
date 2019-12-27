@@ -7,7 +7,7 @@ import {FormGroup} from '@angular/forms';
 import {ModalService} from '../../custom-modal';
 import {BeneficiaryItemOperations} from '../../../core/mock/mock-operations';
 import {NewAgentComponent} from '../new-agent/new-agent.component';
-import { AgentFieldsItem} from '../../../core/mock/mock-agents/mock-agents-questions';
+import {AgentFieldsItem} from '../../../core/mock/mock-agents/mock-agents-questions';
 import {FormaTwoFieldsItem} from '../../../core/mock/formats/formatwo';
 import {NewFormatwoComponent} from '../new-formatwo/new-formatwo.component';
 import {CoverageFieldsItem} from '../../../core/mock/coverage/coverage';
@@ -17,8 +17,8 @@ import {medicalFields} from '../../../core/mock/basic-questionnaires/medical';
 import {sportsFields2} from '../../../core/mock/basic-questionnaires/sports-aviation-hobbies';
 import {NewRowComponent} from '../../table-component/new-row/new-row.component';
 import {Content} from '../../../models';
-import { NewPaymentComponent } from '../new-payment/new-payment.component';
-import { paymentFieldsItems } from 'src/app/core/mock/formats/payment';
+import {NewPaymentComponent} from '../new-payment/new-payment.component';
+import {paymentFieldsItems} from 'src/app/core/mock/formats/payment';
 
 
 @Component({
@@ -35,6 +35,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   @Input() totalParticipationPercentageItems: number;
   @Input() content?: Content;
   @Input() columnSettings?: any[];
+  @Input() contentTypeId?: string;
   fields;
   formGroup: FormGroup;
   modalId;
@@ -137,7 +138,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
   }
 
-  getItemAttrNames()  {
+  getItemAttrNames() {
     Object.keys(this.item).forEach((key, index) => {
       const searchResult = this.columnSettings.find(columnSetting => columnSetting.columnAttribute === key);
       if (searchResult) {
@@ -165,8 +166,10 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
             operations: ['cancelOperationR', 'addItemR'],
             content: this.content,
             drawerTitle: 'Enfermedad, lesión, estudio o tratamiento',
-            itemType: 'disease'
-          }});
+            itemType: 'disease',
+            contentTypeId: this.contentTypeId
+          }
+        });
     } else if (this.itemType === 'sport') {
       ref = this.dialog.open(NewRowComponent,
         {
@@ -175,7 +178,8 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
             content: this.content,
             drawerTitle: 'Deporte / Actividad',
             itemType: 'sport'
-          }});
+          }
+        });
     } else if (this.itemType === 'payment') {
       ref = this.dialog.open(NewPaymentComponent, {data: null});
     }
@@ -202,9 +206,12 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       propertyItem = 'paymentId';
       console.log('this.item: ', this.item);
     }
-
-
-    this.applicationService.removeItem(this.item[propertyItem], this.itemType);
+    console.log('contentTypeId: ', this.contentTypeId);
+    if (this.contentTypeId) {
+      this.applicationService.removeItem(this.item[propertyItem], this.itemType, this.contentTypeId);
+    } else {
+      this.applicationService.removeItem(this.item[propertyItem], this.itemType);
+    }
     this.closeModal(this.modalId);
   }
 
@@ -228,8 +235,10 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
             content: this.content,
             drawerTitle: 'Enfermedad, lesión, estudio o tratamiento',
             itemType: 'disease',
+            contentTypeId: this.contentTypeId,
             item: this.item
-          }});
+          }
+        });
     } else if (this.itemType === 'sport') {
       this.dialog.open(NewRowComponent,
         {
@@ -239,7 +248,8 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
             drawerTitle: 'Deporte / Actividad',
             itemType: 'sport',
             item: this.item
-          }});
+          }
+        });
     } else if (this.itemType === 'payment') {
       ref = this.dialog.open(NewPaymentComponent, {data: {item: this.item}});
     }
