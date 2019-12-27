@@ -1,0 +1,278 @@
+{
+  "maxOccupation": [
+    {
+      "validationNumber": "1",
+      "occupationCode": "264747782",
+      "value": "264747782",
+      "occupationAlias": "PFP Comisionario, Jefe o General",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "1",
+      "occupationCode": "264747783",
+      "value": "264747783",
+      "occupationAlias": "Marina Capitán de Corbeta Oficial o Fragata",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "1",
+      "occupationCode": "264747784",
+      "value": "264747784",
+      "occupationAlias": "Marina Capitán de Navío Comandante",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "1",
+      "occupationCode": "264747785",
+      "value": "264747785",
+      "occupationAlias": "Marina Contralmirante, Vicealmirante, Almirante, Comandantes",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "1",
+      "occupationCode": "264747786",
+      "value": "264747786",
+      "occupationAlias": "Marina Vicealmirante Jefe de Estado",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "1",
+      "occupationCode": "264747787",
+      "value": "264747787",
+      "occupationAlias": "Marina Almirante Secretario de Marina",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "1",
+      "occupationCode": "264747788",
+      "value": "264747788",
+      "occupationAlias": "Marina Almirante Oficial Mayor",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "1",
+      "occupationCode": "264747789",
+      "value": "264747789",
+      "occupationAlias": "Marina Almirante Inspector General  o Comandante de Fuerza Naval",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "1",
+      "occupationCode": "264747790",
+      "value": "264747790",
+      "occupationAlias": "PGR Primer Comandante",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "1",
+      "occupationCode": "264747791",
+      "value": "264747791",
+      "occupationAlias": "PGR  Director o Subdirector de Investigaciones",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "1",
+      "occupationCode": "264747792",
+      "value": "264747792",
+      "occupationAlias": "PGR Director AFI",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "1",
+      "occupationCode": "264747793",
+      "value": "264747793",
+      "occupationAlias": "Protección Federal Superintendente, 1ro, 2o o 3ro",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "1",
+      "occupationCode": "264747794",
+      "value": "264747794",
+      "occupationAlias": "Protección Federal. Comisionado",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "2",
+      "occupationCode": "264747795",
+      "value": "264747795",
+      "occupationAlias": "PFP Oficial o Suboficial Administrativo",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "2",
+      "occupationCode": "264747796",
+      "value": "264747796",
+      "occupationAlias": "PFP Inspector o Subinspector Administrativo",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "2",
+      "occupationCode": "264747797",
+      "value": "264747797",
+      "occupationAlias": "PFP Inspector Gerente o Jefe Administrativo",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "2",
+      "occupationCode": "264747798",
+      "value": "264747798",
+      "occupationAlias": "Marina Teniente Oficial de Corbeta o Fragata Administrativo",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "2",
+      "occupationCode": "264747799",
+      "value": "264747799",
+      "occupationAlias": "Marina Teniente de Navío Comandante Administrativo",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "2",
+      "occupationCode": "264747800",
+      "value": "264747800",
+      "occupationAlias": "PGR Comandante o Subcomandante, 1ro o 2doAdministrativo",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "2",
+      "occupationCode": "264747801",
+      "value": "264747801",
+      "occupationAlias": "Protección Federal  Supervisor, 1ro, 2o o 3ro Administrativo",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "2",
+      "occupationCode": "264747802",
+      "value": "264747802",
+      "occupationAlias": "Protección Federal  Independiente, Zona a Región, 1ro, 2o o 3ro Administrativo",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "3",
+      "occupationCode": "264747803",
+      "value": "264747803",
+      "occupationAlias": "PFP Oficial o Suboficial en Operativo",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "3",
+      "occupationCode": "264747804",
+      "value": "264747804",
+      "occupationAlias": "PFP Inspector o Subinspector en Operativo",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "3",
+      "occupationCode": "264747805",
+      "value": "264747805",
+      "occupationAlias": "PFP Inspector Gerente o Jefe en Operativo",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "3",
+      "occupationCode": "264747806",
+      "value": "264747806",
+      "occupationAlias": "Marina Teniente Oficial de Corbeta o Fragata en Operativo",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "3",
+      "occupationCode": "264747807",
+      "value": "264747807",
+      "occupationAlias": "Marina Teniente de Navío Comandante en Operativo",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "3",
+      "occupationCode": "264747808",
+      "value": "264747808",
+      "occupationAlias": "PGR Comandante o Subcomandante, 1ro o 2do en Operativo",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "3",
+      "occupationCode": "264747809",
+      "value": "264747809",
+      "occupationAlias": "Protección Federal  Supervisor, 1ro, 2o o 3ro en Operativo",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "3",
+      "occupationCode": "264747810",
+      "value": "264747810",
+      "occupationAlias": "Protección Federal  Independiente, Zona a Región, 1ro, 2o o 3ro en Operativo",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "4",
+      "occupationCode": "264747811",
+      "value": "264747811",
+      "occupationAlias": "PFP Policía en Operativo, 1er, 2do o 3ro",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "4",
+      "occupationCode": "264747812",
+      "value": "264747812",
+      "occupationAlias": "Marina Marinero en Operativo, 1er, 2do o 3ro",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "4",
+      "occupationCode": "264747813",
+      "value": "264747813",
+      "occupationAlias": "Marina Cabo en Operativo",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "4",
+      "occupationCode": "264747814",
+      "value": "264747814",
+      "occupationAlias": "PGR Agente en Operativo, A, B o C",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "4",
+      "occupationCode": "264747815",
+      "value": "264747815",
+      "occupationAlias": "Protección Federal Guarda en Operativo, 1er, 2do o 3ro",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "5",
+      "occupationCode": "264747816",
+      "value": "264747816",
+      "occupationAlias": "PFP Policía Administrativo, 1er, 2do o 3ro",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "5",
+      "occupationCode": "264747817",
+      "value": "264747817",
+      "occupationAlias": "Marina Marinero Administrativo, 1er, 2do o 3ro",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "5",
+      "occupationCode": "264747818",
+      "value": "264747818",
+      "occupationAlias": "Marina Cabo Administrativo",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "5",
+      "occupationCode": "264747819",
+      "value": "264747819",
+      "occupationAlias": "PGR Agente Administrativo, A, B o C",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "5",
+      "occupationCode": "264747820",
+      "value": "264747820",
+      "occupationAlias": "Protección Federal Guarda Administrativo, 1er, 2do o 3ro",
+      "locale": "es-MX"
+    }
+  ]
+
+}

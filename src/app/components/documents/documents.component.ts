@@ -4,6 +4,8 @@ import {NewDocumentField} from "../../core/mock/documents/documents";
 import {FormatwoOperations} from "../../core/mock/mock-operations";
 import {FormGroup, FormControl, Validators} from "@angular/forms";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { WsService } from "../../core/services/ws.service";
+import {AppConstants} from "../../app.constants";
 
 @Component({
   selector: 'app-documents',
@@ -38,7 +40,8 @@ export class DocumentsComponent implements OnInit {
   currentItems: any[];
 
   constructor(public applicationService: ApplicationService,
-              private http: HttpClient) { }
+              private http: HttpClient,
+              private wsService: WsService) { }
 
   ngOnInit() {
     this.contador = 0;
@@ -116,12 +119,12 @@ export class DocumentsComponent implements OnInit {
 
   removeItem(index, actionField, documentField, typeDocField) {
     console.log('Entro a removeItem de documents.component');
-    console.log(index);
+    console.log(this.fields.length);
     console.log(actionField);
     console.log(documentField);
     console.log(typeDocField);
     // this.currentItems = this.applicationService.documents.getValue();
-    if ( this.fields.length > 2 ) {
+    if ( this.fields.length > 3) {
       this.fields.splice(index, 1);
       this.formGroup.removeControl(actionField.name);
       this.fields.splice(index -1, 1);
@@ -145,28 +148,88 @@ export class DocumentsComponent implements OnInit {
 
   downloadFile(field) {
     console.log('Entro a downloadFile de documents.component');
-    console.log(field);
-    console.log(field.file);
-
-    // const reader = new FileReader();
-
-    // let fileToDownload = reader.readAsArrayBuffer(field.file);
-    const fileToBlob = new Blob([field.file], {
-      // type: 'image/jpeg'
-      type: 'blob'
+    console.log(field.file.type);
+    const blob = new Blob([field.file], {
+      type: field.file.type
     });
+    console.log('Blob: ');
+    console.log(blob);
+    const url = window.URL.createObjectURL(blob);
+    window.open(url);
+  }
 
-    // (field).subscribe(data => {
-      const blob = new Blob([field.file], {
-        type: 'application/zip'
-        // type: 'image/jpeg'
+  downloadZip() {
+    console.log('Entro a downloadZip de documents.component');
+    console.log(this.fields);
+
+    let ficheros = [];
+    this.fields.forEach( field => {
+      if ( field.type === 'file' && field.file ) {
+        ficheros.push(field.file);
+      }
+    });
+    console.log('Ficheros: ');
+    console.log(ficheros);
+    console.log(ficheros.length);
+
+    if ( ficheros.length > 0 ) {
+
+      let fd = new FormData();
+      for (let i = 0; i < ficheros.length; i++) {
+        fd.append('files', ficheros[i]);
+      }
+
+      this.wsService.createZip(fd).subscribe(
+        res => {
+          console.log('Res: ');
+          console.log(res);
+
+          let url = res.fileUrl + res.fileName;
+
+          this.wsService.downloadZip(url).subscribe(result => {
+              const blob = new Blob([result], {
+                type: 'application/zip'
+              });
+              const urlDownload = window.URL.createObjectURL(blob,);
+              console.log(urlDownload);
+              window.open(urlDownload);
+
+              this.wsService.deleteZip(url).subscribe(result => {
+                  console.log(result);
+                },
+                err => {
+                  console.log("Error Delete: ");
+                  console.log(err);
+                });
+            },
+            err => {
+              console.log("Error Download: ");
+              console.log(err);
+            });
+        },
+        err => {
+          console.log("Error Create Zip: ");
+          console.log(err);
+        }
+      );
+
+    }
+
+  }
+
+//  Prueba de token
+  probarToken() {
+    console.log('Entro a probarToken de documents.component');
+    // let token = 'aV0Xhgd8a_Yg_7e4n1DVU7LIq8QY5eMwJLXkXOBRTlDbgdEJGHoZ5j_IGGXndQa0scUXOOzUglJYeDkT9H5ECTlH6ewymv5IwS456bQoipIPnThfwwVjt5Kjwh-BAWhR3NQruiXcBYohvRaPsR4CDrFE5CGRJZ-m72vhHUGvjOaCnCBrTHwZ8sTx5udeJTYTDKduCExq3_1iduiAWTV7vZrc9BWRVMbriYF1SIqkcyCpp9SFS_X5cJIloellf_kTSPl5C2GU6EQ5ULfMoP9xCFR4e58ZupOanPP_jLRyMaalvYPWAwcdkGRBiDn9KJgw-XX3usLDJPBK7fXhvb-716fIM598QWroe2FgjvB91z6R7A02AUr7STGew5OfOM-dOI9a0UCUD-vCQMlcqdg4P5juQnsjkPRnZnT4bLFVHR7dMbeqiMiaq8Fi2vwvdsWRphfgfm0aDFJcJ5JjqhjVvgRwnTHMXtAZta0WH2ylvDUYQ1JFck7LPLM5Ks2cSoCTBIhppBAmFb26z00XB7cCiIRlTi_bId6Unr75UxrEL-or0HFO-yNCtUe8FEKbqYY-v-LiY2iRnu7OmgSn0xDc5TR3BOY.PQtnZndCt47gqfR79V8OeQ';
+    let token = '4766841049392466';
+    this.wsService.validateMitToken(token).subscribe(result => {
+        console.log('Result: ');
+        console.log(result);
+      },
+      err => {
+        console.log("Error: ");
+        console.log(err);
       });
-      console.log('Blob: ');
-      console.log(blob);
-      const url = window.URL.createObjectURL(blob);
-      window.open(url);
-    // });
-
   }
 
 }

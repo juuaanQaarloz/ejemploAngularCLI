@@ -1,0 +1,52 @@
+{
+  "engineVariable":[
+    {
+      "number": "1",
+      "typeCode": "InsuredIllness",
+      "questionText": "¿Has tenido alguna enfermedad, padecimiento, afeccion o cirugía?",
+      "statusCode": "A",
+      "locale": "es-MX",
+      "value": "1"
+    },
+    {
+      "number": "2",
+      "typeCode": "Insured3yrHosp",
+      "questionText": "En los últimos 10 años ¿Has estado hospitalización o en urgencias por operación, tratamiento o te han practicado estudios de laboratorio y/o gabinete como electrocardiogramas, ultrasonido, radiografías, tomografías, resonancias, etc. (excepto chequeo de rutina)?",
+      "statusCode": "A",
+      "locale": "es-MX",
+      "value": "2"
+    },
+    {
+      "number": "3",
+      "typeCode": "Insured3yrDoctor",
+      "questionText": "¿Estás actualmente en seguimiento médico, tratamiento o consume algún medicamento?",
+      "statusCode": "A",
+      "locale": "es-MX",
+      "value": "3"
+    },
+    {
+      "number": "4",
+      "typeCode": "InsuredWeightChange",
+      "questionText": "¿Has aumentado o disminuido más de 7 kilogramos de tu peso habitual en los últimos 12 meses?",
+      "statusCode": "A",
+      "locale": "es-MX",
+      "value": "4"
+    },
+    {
+      "number": "5",
+      "typeCode": "InsuredAlzhParkzn",
+      "questionText": "En tu familia (padre, madre, hermanos o abuelos), ¿Hay casos de diabetes, infarto, cáncer, Alzheimer o Parkinson?",
+      "statusCode": "A",
+      "locale": "es-MX",
+      "value": "5"
+    },
+    {
+      "number": "6",
+      "typeCode": "InsuredSports",
+      "questionText": "En mas de 5 veces al año, ¿Haces uso de motocicleta, practicas automovilismo, vuelos no motorizados (paracaidismo, ala delta, vuelo sin motor), caza, equitación, buceo, montañismo, lancha de motor, esquí de nieve, esquí acuático, corrida de toros o charrería? o ¿tienes licencia de aviador o haces uso de aviacion particular o helicoptero?",
+      "statusCode": "A",
+      "locale": "es-MX",
+      "value": "6"
+    }
+  ]
+}

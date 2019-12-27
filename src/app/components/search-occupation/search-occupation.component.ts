@@ -21,9 +21,10 @@ const FIELDS: Field[] = [
     pattern: '/^(?=.*$)(?=[^A-ZÑ\\s]*[A-ZÑ\\s])(?:([A-ZÑ\\s])\\1?(?!\\1\\1))*$/',
     noAllowedCharactersPattern: '/[^a-zA-ZñÑ\\s]/',
     source: 'IPRE',
-    sourceID: 'occupations',
-    sourceStructure: ['id', 'specificOccupationName', 'specificOccupationAlias', 'specificOccupationCode', 'companyName',
-                      'ocupationZipCode', 'occupationDetails', 'occupationIncome'],
+    sourceID: 'occupation',
+    sourceStructure: ['number', 'name', 'value'],
+    /*sourceStructure: ['id', 'specificOccupationName', 'specificOccupationAlias', 'specificOccupationCode', 'companyName',
+                      'ocupationZipCode', 'occupationDetails', 'occupationIncome'],*/
     style: '',
     styleClass: '',
     styleClassError: '',

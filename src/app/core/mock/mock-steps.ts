@@ -41,6 +41,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     title: 'Información general del contratante persona física',
     contents: MockContentStep1Process1ContentSection2,
     renderConditions: '(typePerson=phyPerson)',
+    requiredConditions: '(typePerson=phyPerson)',
     previousStep: '0',
     nextStep: '2',
     /*added extra from model*/
@@ -55,6 +56,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     title: 'Domicilio y datos del Contratante persona física',
     contents: MockContentStep2Process1ContentSection2,
     renderConditions: '(typePerson=phyPerson)',
+    requiredConditions: '(typePerson=phyPerson)',
     previousStep: '1',
     nextStep: '3',
     /*added extra from model*/
@@ -69,6 +71,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     title: 'Ocupación del Contratante persona física',
     contents: MockContentStep3Process1ContentSection2,
     renderConditions: '(typePerson=phyPerson)',
+    requiredConditions: '(typePerson=phyPerson)',
     previousStep: '2',
     nextStep: '10',
     /*added extra from model*/
@@ -82,6 +85,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     title: ' Datos generales del Contratante persona moral',
     contents: MockContentStep4Process1ContentSection2,
     renderConditions: '(typePerson=morPerson)',
+    requiredConditions: '(typePerson=morPerson)',
     previousStep: '0',
     nextStep: '5',
     /*added extra from model*/
@@ -95,6 +99,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     title: 'Domicilio y datos de contacto del Contratante persona moral',
     contents: MockContentStep5Process1ContentSection2,
     renderConditions: '(typePerson=morPerson)',
+    requiredConditions: '(typePerson=morPerson)',
     previousStep: '4',
     nextStep: '6',
     /*added extra from model*/
@@ -108,6 +113,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     title: ' Apoderado o representante legal (llenar para empresas nacionales)',
     contents: MockContentStep6Process1ContentSection2,
     renderConditions: '(typePerson=morPerson)',
+    requiredConditions: '(typePerson=morPerson)',
     previousStep: '5',
     nextStep: '7',
     /*added extra from model*/
@@ -122,6 +128,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     title: 'Datos generales del solicitante',
     contents: MockContentStep7Process1ContentSection2,
     renderConditions: '(contractorType=false,|,typePerson=morPerson)',
+    requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     previousStep: '6',
     nextStep: '8',
     /*added extra from model*/
@@ -136,6 +143,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     title: 'Domicilio y datos de contacto del solicitante',
     contents: MockContentStep8Process1ContentSection2,
     renderConditions: '(contractorType=false,|,typePerson=morPerson)',
+    requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     previousStep: '6',
     nextStep: '9',
     /*added extra from model*/
@@ -149,6 +157,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     title: 'Ocupación del solicitante',
     contents: MockContentStep9Process1ContentSection2,
     renderConditions: '(contractorType=false,|,typePerson=morPerson)',
+    requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     previousStep: '5',
     nextStep: '7',
     /*added extra from model*/

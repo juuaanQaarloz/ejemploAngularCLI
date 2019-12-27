@@ -1,0 +1,2236 @@
+{
+  "promotoria": [
+    {
+      "number": "ZD",
+      "description": "ZD-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "ZD"
+    },
+    {
+      "number": "ZA",
+      "description": "ZA-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "ZA"
+    },
+    {
+      "number": "TP",
+      "description": "VEHICULOS TEPEYAC PROMOTOR SIN COMISION",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "TP"
+    },
+    {
+      "number": "SP",
+      "description": "SP-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "SP"
+    },
+    {
+      "number": "PC",
+      "description": "ROJAS GARCIA SANDRA",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "PC"
+    },
+    {
+      "number": "PB",
+      "description": "SERVICIOS INTEGRALES DE PROMOTORIA EMPRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "PB"
+    },
+    {
+      "number": "MV",
+      "description": "MV SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "16A",
+          "description": "MV PROMESSA AGENTE DE SEGUROS, SA. DE C.V"
+        }
+      ],
+      "locale": "es-MX",
+      "value": "MV"
+    },
+    {
+      "number": "MR",
+      "description": "",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "MR"
+    },
+    {
+      "number": "CL",
+      "description": "CL-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "CL"
+    },
+    {
+      "number": "CK",
+      "description": "CK-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "CK"
+    },
+    {
+      "number": "MK",
+      "description": "SUCURSAL METLIFE MONTERREY SINIESTROS",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "MK"
+    },
+    {
+      "number": "GA",
+      "description": "AVICO SOLUCIONES PATRIMONIALES AGENTE DE SEGUROS",
+      "associatedZones": [
+        {
+          "number": "07A",
+          "description": "TUXTLA GUTIERREZ, Chiapas"
+        }
+      ],
+      "locale": "es-MX",
+      "value": "GA"
+    },
+    {
+      "number": "KT",
+      "description": "KT-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "KT"
+    },
+    {
+      "number": "CC",
+      "description": "CC-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "CC"
+    },
+    {
+      "number": "KO",
+      "description": "KO-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "KO"
+    },
+    {
+      "number": "K3",
+      "description": "K3-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "K3"
+    },
+    {
+      "number": "ZB",
+      "description": "ZB-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "ZB"
+    },
+    {
+      "number": "C3",
+      "description": "C3-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "C3"
+    },
+    {
+      "number": "CM",
+      "description": "CM-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "CM"
+    },
+    {
+      "number": "JA",
+      "description": "JA-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "JA"
+    },
+    {
+      "number": "C1",
+      "description": "C1-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "C1"
+    },
+    {
+      "number": "K9",
+      "description": "JIRO Y ASOCIADOS AGENTE DE SEGUROS Y FIA",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "K9"
+    },
+    {
+      "number": "EB",
+      "description": "EB-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "14D",
+          "description": "OFICINA PUERTO VALLARTA EB"
+        },
+        {
+          "number": "14B",
+          "description": "OFICINA LAGOS DE MORENO EB"
+        },
+        {
+          "number": "18A",
+          "description": "FICINA TEPIC EB"
+        },
+        {
+          "number": "14A",
+          "description": "14A"
+        },
+        {
+          "number": "14C",
+          "description": "OFICINA CIUDAD GUZMAN EB"
+        },
+        {
+          "number": "06A",
+          "description": "OFICINA COLIMA EB"
+        }
+      ],
+      "locale": "es-MX",
+      "value": "EB"
+    },
+    {
+      "number": "KA",
+      "description": "KA-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "KA"
+    },
+    {
+      "number": "AP",
+      "description": "AP-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "AP"
+    },
+    {
+      "number": "K5",
+      "description": "K5-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "K5"
+    },
+    {
+      "number": "DI",
+      "description": "DI-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "DI"
+    },
+    {
+      "number": "K1",
+      "description": "K1-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "32B",
+          "description": "ZACATECAS 32B ISAIAS MACIAS CASANOVA"
+        },
+        {
+          "number": "15A",
+          "description": "NEZA"
+        },
+        {
+          "number": "11K",
+          "description": "GUANAJUATO, CELAYA"
+        },
+        {
+          "number": "11L",
+          "description": "ZACATECAS 11L"
+        },
+        {
+          "number": "11M",
+          "description": "VALLE DE SANTIAGO, Gto."
+        },
+        {
+          "number": "11F",
+          "description": "GUANAJUATO 11F"
+        },
+        {
+          "number": "11H",
+          "description": "HUANIMARO K1"
+        },
+        {
+          "number": "01C",
+          "description": "AGUASCALIENTES 01C EDUARDO MORALES"
+        },
+        {
+          "number": "01A",
+          "description": "AGUASCALIENTES"
+        },
+        {
+          "number": "11A",
+          "description": "GUANAJUATO"
+        },
+        {
+          "number": "32C",
+          "description": "ZACATECAS/BEATRIZ CANCHOLA"
+        },
+        {
+          "number": "11B",
+          "description": "GUANAJUATO 11B"
+        },
+        {
+          "number": "01B",
+          "description": "AGUASCALIENTES 01B SALVADOR MORALES"
+        },
+        {
+          "number": "32A",
+          "description": "ZACATECAS 32A JOSE FRANCISCO CORNEJO ARCOS"
+        },
+        {
+          "number": "11N",
+          "description": "ABASOLO, Gto."
+        },
+        {
+          "number": "11J",
+          "description": "CELAYA/JOSE B. ARELLANO K1"
+        },
+        {
+          "number": "11O",
+          "description": "PENJAMO, Gto."
+        },
+        {
+          "number": "11C",
+          "description": "GUANAJUATO 11C"
+        },
+        {
+          "number": "11D",
+          "description": "GUANAJUATO 11D"
+        },
+        {
+          "number": "11G",
+          "description": "GUANAJUATO 11G SAN LUIS DE LA PAZ"
+        },
+        {
+          "number": "11E",
+          "description": "GUANAJUATO 11E"
+        }
+      ],
+      "locale": "es-MX",
+      "value": "K1"
+    },
+    {
+      "number": "K8",
+      "description": "K8-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "15C",
+          "description": "PROMESSA"
+        },
+        {
+          "number": "15E",
+          "description": "LOGISTICA EN RIESGOS, AGENTE DE SEGUROS, S.A."
+        },
+        {
+          "number": "09A",
+          "description": "DISTRITO FEDERAL"
+        },
+        {
+          "number": "15D",
+          "description": "LOGISTICA EN RIESGOS, AGENTE DE SEGUROS, S.A."
+        },
+        {
+          "number": "15A",
+          "description": "ESTADO DE MEXICO, COACALCO"
+        },
+        {
+          "number": "15B",
+          "description": "ESTADO DE MEXICO, CUAUTITLAN"
+        }
+      ],
+      "locale": "es-MX",
+      "value": "K8"
+    },
+    {
+      "number": "02",
+      "description": "VIVEROS GALLARDO ALVARO",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "02"
+    },
+    {
+      "number": "CG",
+      "description": "CG-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "CG"
+    },
+    {
+      "number": "AD",
+      "description": "GALINDO GARCIA ARTURO",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "AD"
+    },
+    {
+      "number": "27",
+      "description": "27-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "27"
+    },
+    {
+      "number": "K7",
+      "description": "K7-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "21A",
+          "description": "PUEBLA K7"
+        },
+        {
+          "number": "07A",
+          "description": "TUXTLA GTZ, CHIAPAS"
+        },
+        {
+          "number": "20B",
+          "description": "CORPASA K7"
+        },
+        {
+          "number": "20C",
+          "description": "CORPASA K7"
+        },
+        {
+          "number": "20A",
+          "description": "OAXACA"
+        },
+        {
+          "number": "20D",
+          "description": "CORPASA K7"
+        }
+      ],
+      "locale": "es-MX",
+      "value": "K7"
+    },
+    {
+      "number": "AX",
+      "description": "AX-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "AX"
+    },
+    {
+      "number": "26",
+      "description": "VALDIVIA GARCIA JOSE ANTONIO",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "26"
+    },
+    {
+      "number": "DD",
+      "description": "DD-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "DD"
+    },
+    {
+      "number": "C4",
+      "description": "C4-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "09A",
+          "description": "ATENCION TELEFONICA C4"
+        }
+      ],
+      "locale": "es-MX",
+      "value": "C4"
+    },
+    {
+      "number": "64",
+      "description": "64-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "64"
+    },
+    {
+      "number": "79",
+      "description": "79-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "79"
+    },
+    {
+      "number": "KF",
+      "description": "KF-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "15N",
+          "description": "ZUMPANGO"
+        },
+        {
+          "number": "15C",
+          "description": "TOLUCA, EDO.MEX."
+        },
+        {
+          "number": "15D",
+          "description": "ECATEPEC EDO. MEX."
+        },
+        {
+          "number": "15B",
+          "description": "NEZAHUALCOYOTL"
+        },
+        {
+          "number": "16A",
+          "description": "MICHOACAN"
+        },
+        {
+          "number": "15A",
+          "description": "NAUCALPAN"
+        }
+      ],
+      "locale": "es-MX",
+      "value": "KF"
+    },
+    {
+      "number": "KY",
+      "description": "KY-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "21A",
+          "description": "GRUPO AB, DIVISION CENTRO GOLFO"
+        },
+        {
+          "number": "21B",
+          "description": "GRUPO AB"
+        },
+        {
+          "number": "21C",
+          "description": "GRUPO AB"
+        },
+        {
+          "number": "21D",
+          "description": "GRUPO AB"
+        },
+        {
+          "number": "21E",
+          "description": "GRUPO AB"
+        }
+      ],
+      "locale": "es-MX",
+      "value": "KY"
+    },
+    {
+      "number": "DA",
+      "description": "DA-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "DA"
+    },
+    {
+      "number": "W1",
+      "description": "W1-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "W1"
+    },
+    {
+      "number": "DE",
+      "description": "DE-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "DE"
+    },
+    {
+      "number": "KE",
+      "description": "KE-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "KE"
+    },
+    {
+      "number": "MA",
+      "description": "MA-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "10I",
+          "description": "ZACATECAS"
+        },
+        {
+          "number": "10A",
+          "description": "EFA, ASO"
+        },
+        {
+          "number": "10C",
+          "description": "DURANGO"
+        },
+        {
+          "number": "10D",
+          "description": "DURANGO AGENTE DE GUARDIA"
+        },
+        {
+          "number": "05A",
+          "description": "COAHUILA"
+        },
+        {
+          "number": "32A",
+          "description": "EFA, ASO"
+        },
+        {
+          "number": "10F",
+          "description": "FRONTERA"
+        },
+        {
+          "number": "10G",
+          "description": "TORREON"
+        },
+        {
+          "number": "10H",
+          "description": "GOMEZ PALACIO"
+        },
+        {
+          "number": "10B",
+          "description": "MATRIZ"
+        },
+        {
+          "number": "10E",
+          "description": "PIEDRAS NEGRAS"
+        }
+      ],
+      "locale": "es-MX",
+      "value": "MA"
+    },
+    {
+      "number": "24",
+      "description": "24-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "24"
+    },
+    {
+      "number": "23",
+      "description": "PROMOTORIA DIRECTA",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "23"
+    },
+    {
+      "number": "35",
+      "description": "SANTAOLALLA CRESPO EDUARDO OCTAVIO",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "35"
+    },
+    {
+      "number": "KG",
+      "description": "KG-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "KG"
+    },
+    {
+      "number": "29",
+      "description": "ORDONEZ AGUILAR FRANCISCO JAVIER",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "29"
+    },
+    {
+      "number": "A2",
+      "description": "A2-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "A2"
+    },
+    {
+      "number": "AB",
+      "description": "AB-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "30B",
+          "description": "VERACRUZ"
+        },
+        {
+          "number": "23A",
+          "description": "CHETUMAL"
+        },
+        {
+          "number": "23B",
+          "description": "CANCUN"
+        },
+        {
+          "number": "04A",
+          "description": "CAMPECHE"
+        },
+        {
+          "number": "31D",
+          "description": "CONKAL"
+        },
+        {
+          "number": "20A",
+          "description": "DIVISION CENTRO GOLFO"
+        },
+        {
+          "number": "31B",
+          "description": "ALFA"
+        },
+        {
+          "number": "21A",
+          "description": "PUEBLA AB"
+        },
+        {
+          "number": "30A",
+          "description": "XALAPA"
+        },
+        {
+          "number": "31C",
+          "description": "FAGOCI"
+        },
+        {
+          "number": "31A",
+          "description": "MATRIZ"
+        },
+        {
+          "number": "31E",
+          "description": "MERIDA"
+        }
+      ],
+      "locale": "es-MX",
+      "value": "AB"
+    },
+    {
+      "number": "KR",
+      "description": "KR-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "KR"
+    },
+    {
+      "number": "95",
+      "description": "PROMOTOR DIRECTO",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "95"
+    },
+    {
+      "number": "PA",
+      "description": "AZAR ESPECIALISTAS EN SEGUROS S A DE C",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "PA"
+    },
+    {
+      "number": "20",
+      "description": "",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "20"
+    },
+    {
+      "number": "CD",
+      "description": "CD-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "CD"
+    },
+    {
+      "number": "C2",
+      "description": "C2-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "C2"
+    },
+    {
+      "number": "19",
+      "description": "19-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "19"
+    },
+    {
+      "number": "49",
+      "description": "PROMOTORIA SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "49"
+    },
+    {
+      "number": "CA",
+      "description": "CA-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "CA"
+    },
+    {
+      "number": "KP",
+      "description": "KP-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "KP"
+    },
+    {
+      "number": "KB",
+      "description": "KB-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "09B",
+          "description": "09B"
+        },
+        {
+          "number": "09A",
+          "description": "09A"
+        }
+      ],
+      "locale": "es-MX",
+      "value": "KB"
+    },
+    {
+      "number": "53",
+      "description": "PROMOTORIA DIRECTA",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "53"
+    },
+    {
+      "number": "DH",
+      "description": "DH-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "DH"
+    },
+    {
+      "number": "DC",
+      "description": "DC-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "DC"
+    },
+    {
+      "number": "CH",
+      "description": "CH-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "CH"
+    },
+    {
+      "number": "DG",
+      "description": "DG-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "DG"
+    },
+    {
+      "number": "AZ",
+      "description": "AZ-PERSONAL DE AHISA",
+      "associatedZones": [
+        {
+          "number": "A10",
+          "description": "A10"
+        },
+        {
+          "number": "A09",
+          "description": "A09"
+        },
+        {
+          "number": "A08",
+          "description": "A08"
+        },
+        {
+          "number": "A05",
+          "description": "A05"
+        },
+        {
+          "number": "A06",
+          "description": "A06"
+        },
+        {
+          "number": "A01",
+          "description": "A01"
+        },
+        {
+          "number": "A07",
+          "description": "A07"
+        },
+        {
+          "number": "A02",
+          "description": "A02"
+        },
+        {
+          "number": "A04",
+          "description": "A04"
+        },
+        {
+          "number": "A03",
+          "description": "A03"
+        }
+      ],
+      "locale": "es-MX",
+      "value": "AZ"
+    },
+    {
+      "number": "52",
+      "description": "52-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "52"
+    },
+    {
+      "number": "ZN",
+      "description": "ZN-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "ZN"
+    },
+    {
+      "number": "74",
+      "description": "74-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "74"
+    },
+    {
+      "number": "91",
+      "description": "91-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "91"
+    },
+    {
+      "number": "DV",
+      "description": "VEHICULOS PROMOTOR SIN COMISION",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "DV"
+    },
+    {
+      "number": "MM",
+      "description": "JESUS CABRAL VALDEZ",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "MM"
+    },
+    {
+      "number": "KU",
+      "description": "KU-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "KU"
+    },
+    {
+      "number": "GP",
+      "description": "GP-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "GP"
+    },
+    {
+      "number": "MF",
+      "description": "MF-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "MF"
+    },
+    {
+      "number": "MH",
+      "description": "MH-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "08J",
+          "description": "08J"
+        },
+        {
+          "number": "08H",
+          "description": "08H"
+        },
+        {
+          "number": "08G",
+          "description": "08G"
+        },
+        {
+          "number": "08E",
+          "description": "08E"
+        },
+        {
+          "number": "08I",
+          "description": "08I"
+        },
+        {
+          "number": "08A",
+          "description": "08A"
+        },
+        {
+          "number": "08B",
+          "description": "08B"
+        },
+        {
+          "number": "08F",
+          "description": "08F"
+        },
+        {
+          "number": "08C",
+          "description": "08C"
+        },
+        {
+          "number": "08D",
+          "description": "08D"
+        }
+      ],
+      "locale": "es-MX",
+      "value": "MH"
+    },
+    {
+      "number": "GV",
+      "description": "GV-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "24B",
+          "description": "PROMOTORIA GV SAN LUIS POTOSI CD VALLES"
+        },
+        {
+          "number": "24A",
+          "description": "PROMOTORIA GV SAN LUIS POTOSI"
+        },
+        {
+          "number": "22A",
+          "description": "PROMOTORIA GV QUERETARO"
+        },
+        {
+          "number": "01A",
+          "description": "PROMOTORIA GV AGUASCALIENTES"
+        }
+      ],
+      "locale": "es-MX",
+      "value": "GV"
+    },
+    {
+      "number": "00",
+      "description": "ASEGURADORA HIDALGO SA MIGRACION",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "00"
+    },
+    {
+      "number": "K4",
+      "description": "K4-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "K4"
+    },
+    {
+      "number": "22",
+      "description": "22 SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "02B",
+          "description": "TIJUANA, B.C."
+        },
+        {
+          "number": "03A",
+          "description": "SERVICIO"
+        },
+        {
+          "number": "25B",
+          "description": "SERVICIO"
+        },
+        {
+          "number": "26B",
+          "description": "CD. OBREGON, SON."
+        },
+        {
+          "number": "02C",
+          "description": "SERVICIO"
+        },
+        {
+          "number": "25C",
+          "description": "SERVICIO"
+        },
+        {
+          "number": "25A",
+          "description": "CULIACAN, SIN."
+        },
+        {
+          "number": "02A",
+          "description": "MEXICALI, B.C."
+        },
+        {
+          "number": "26A",
+          "description": "HERMOSILLO, SON."
+        }
+      ],
+      "locale": "es-MX",
+      "value": "22"
+    },
+    {
+      "number": "KZ",
+      "description": "COSS Y COMPANIA AGENTE DE SEGUROS S A DE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "KZ"
+    },
+    {
+      "number": "IE",
+      "description": "IE-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "IE"
+    },
+    {
+      "number": "JQ",
+      "description": "JQ-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "JQ"
+    },
+    {
+      "number": "K6",
+      "description": "K6-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "K6"
+    },
+    {
+      "number": "KC",
+      "description": "KC SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "20B",
+          "description": "OAXACA"
+        },
+        {
+          "number": "12F",
+          "description": "IGUALA-SPC KC"
+        },
+        {
+          "number": "09I",
+          "description": "GRUPO KC AGENTE DE SEGUROS"
+        },
+        {
+          "number": "01A",
+          "description": "AGUASCALIENTES"
+        },
+        {
+          "number": "09H",
+          "description": "GRUPO KC AGENTE DE SEGUROS"
+        },
+        {
+          "number": "15A",
+          "description": "GRUPO KC, AGENTE DE SEGUROS, S.A. (EDO. MEX.)"
+        },
+        {
+          "number": "12C",
+          "description": "IGUALA,GRO"
+        },
+        {
+          "number": "09G",
+          "description": "GRUPO KC AGENTE DE SEGUROS"
+        },
+        {
+          "number": "09C",
+          "description": "GRUPO KC AGENTE DE SEGUROS SA DE CV"
+        },
+        {
+          "number": "09F",
+          "description": "GRUPO KC AGENTE DE SEGUROS"
+        },
+        {
+          "number": "15B",
+          "description": "TOLUCA-SPC KC"
+        },
+        {
+          "number": "12D",
+          "description": "ACAPULCO-SPC KC"
+        },
+        {
+          "number": "09B",
+          "description": "GRUPO KC"
+        },
+        {
+          "number": "12B",
+          "description": "CHILPANCINGO,GRO."
+        },
+        {
+          "number": "12E",
+          "description": "CHILPANCINGO-SPC KC"
+        },
+        {
+          "number": "09N",
+          "description": "GRUPO KC AGENTE DE SEGUROS"
+        },
+        {
+          "number": "09K",
+          "description": "GRUPO KC AGENTE DE SEGUROS"
+        },
+        {
+          "number": "09L",
+          "description": "GRUPO KC AGENTE DE SEGUROS"
+        },
+        {
+          "number": "12A",
+          "description": "GUERRERO"
+        },
+        {
+          "number": "09M",
+          "description": "GRUPO KC AGENTE DE SEGUROS"
+        },
+        {
+          "number": "09D",
+          "description": "GRUPO KC AGENTE DE SEGUROS SA DE CV"
+        },
+        {
+          "number": "09E",
+          "description": "GRUPO KC AGENTE DE SEGUROS SA DE CV"
+        },
+        {
+          "number": "09J",
+          "description": "GRUPO KC AGENTE DE SEGUROS"
+        },
+        {
+          "number": "20A",
+          "description": "GRUPO KC AGENTE DE SEGUROS SA DE CV OAXACA"
+        },
+        {
+          "number": "09A",
+          "description": "GRUPO KC, AGENTE DE SEGUROS, S.A. (D.F.)"
+        }
+      ],
+      "locale": "es-MX",
+      "value": "KC"
+    },
+    {
+      "number": "KH",
+      "description": "KH-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "KH"
+    },
+    {
+      "number": "MC",
+      "description": "MC-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "29A",
+          "description": "TLAXCALA MC"
+        },
+        {
+          "number": "21A",
+          "description": "PUEBLA MC"
+        },
+        {
+          "number": "13A",
+          "description": "HIDALGO MC"
+        },
+        {
+          "number": "09B",
+          "description": "GRYC Agente de Seguros"
+        }
+      ],
+      "locale": "es-MX",
+      "value": "MC"
+    },
+    {
+      "number": "MB",
+      "description": "ASESAC AGENTE DE SEGUROS Y DE FIANZAS S",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "MB"
+    },
+    {
+      "number": "33",
+      "description": "AC AGENTE DE SEGUROS Y DE FIANZAS SA DE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "33"
+    },
+    {
+      "number": "ML",
+      "description": "MARCO ANTONIO COOLEY LUGO",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "ML"
+    },
+    {
+      "number": "KM",
+      "description": "KM-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "KM"
+    },
+    {
+      "number": "KS",
+      "description": "KS-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "09G",
+          "description": "ORIHUELA AGENTE DE SEGUROS"
+        },
+        {
+          "number": "09B",
+          "description": "ORIHUELA, AGENTE DE SEGUROS, S.A. DE C.V DF"
+        },
+        {
+          "number": "09A",
+          "description": "ORIHUELA, AGENTE DE SEGUROS, S.A. DE C.V DF"
+        },
+        {
+          "number": "09C",
+          "description": "OFICINA TLALPAN"
+        },
+        {
+          "number": "09E",
+          "description": "ORIHUELA AGENTE DE SEGUROS"
+        },
+        {
+          "number": "09D",
+          "description": "ORIHUELA AGENTE DE SEGUROS"
+        },
+        {
+          "number": "09F",
+          "description": "ORIHUELA AGENTE DE SEGUROS"
+        }
+      ],
+      "locale": "es-MX",
+      "value": "KS"
+    },
+    {
+      "number": "AC",
+      "description": "AGENCIA CAUTIVA",
+      "associatedZones": [
+        {
+          "number": "B05",
+          "description": "Ricardo Caicedo Garces 1"
+        },
+        {
+          "number": "A42",
+          "description": "Rafael Monroy Sandoval"
+        },
+        {
+          "number": "A30",
+          "description": "NOE MISRAYIN MARTINEZ LOPEZ"
+        },
+        {
+          "number": "A75",
+          "description": "Mary Carmen Vazquez Gutierrez"
+        },
+        {
+          "number": "A96",
+          "description": "Maria Grissel Cedillo Ojeda"
+        },
+        {
+          "number": "A03",
+          "description": "PAOLA IVETTE COLIN VARGAS"
+        },
+        {
+          "number": "B45",
+          "description": "Margarita Robles Priego"
+        },
+        {
+          "number": "A40",
+          "description": "Marco Antonio Ledo Soto"
+        },
+        {
+          "number": "A31",
+          "description": "MARIA GUADALUPE SOCORRO CEREZO"
+        },
+        {
+          "number": "A33",
+          "description": "MARIA DE LOURDES AVILA LEON"
+        },
+        {
+          "number": "A36",
+          "description": "MARGARITA GRACIELA MENDOZA LARA"
+        },
+        {
+          "number": "B04",
+          "description": "Lucia Gomez Ortiz 1"
+        },
+        {
+          "number": "A98",
+          "description": "Laura Patricia Medina Mosqueda"
+        },
+        {
+          "number": "A78",
+          "description": "Raymundo Mixtega Villagomez"
+        },
+        {
+          "number": "B10",
+          "description": "Laura Patricia Medina Mosqueda"
+        },
+        {
+          "number": "A15",
+          "description": "MARIANA FUENTES GOMEZ"
+        },
+        {
+          "number": "A13",
+          "description": "MARIA JOSE FLORES ROBLEDO"
+        },
+        {
+          "number": "A34",
+          "description": "LAURA ROCIO SANCHEZ ARCE"
+        },
+        {
+          "number": "A38",
+          "description": "KARLA GIOVANNA ROJANO GARCIA"
+        },
+        {
+          "number": "B17",
+          "description": "Jose Luis Rosario Jimenez"
+        },
+        {
+          "number": "A43",
+          "description": "Ernesto Ivan Marin"
+        },
+        {
+          "number": "A77",
+          "description": "Lucia Rodriguez Candelaria"
+        },
+        {
+          "number": "B06",
+          "description": "Emilia Cabrera Gregorio 1"
+        },
+        {
+          "number": "A16",
+          "description": "SARAI RANGEL LOPEZ"
+        },
+        {
+          "number": "A60",
+          "description": "Carmen Xochitl Pastor Betancourt"
+        },
+        {
+          "number": "A44",
+          "description": "KARLA GIOVANNA ROJANO GARCIA"
+        },
+        {
+          "number": "A51",
+          "description": "EDEN UADALUPE HUERTA SANCHEZ"
+        },
+        {
+          "number": "A81",
+          "description": "Roberto Daniel Pi?a Maga?a"
+        },
+        {
+          "number": "A54",
+          "description": "Maricruz Osorno Castro"
+        },
+        {
+          "number": "B01",
+          "description": "Gabriela Sosa Perez"
+        },
+        {
+          "number": "A32",
+          "description": "DINA BEATRIZ GALEANA BLANCAS"
+        },
+        {
+          "number": "A12",
+          "description": "LUCIA GOMEZ ORTIZ"
+        },
+        {
+          "number": "A26",
+          "description": "DAVID GUTIERREZ VEGA"
+        },
+        {
+          "number": "A59",
+          "description": "Rodrigo Filio Garcia"
+        },
+        {
+          "number": "A95",
+          "description": "Israel Morales Lopez"
+        },
+        {
+          "number": "A62",
+          "description": "Carmen Xochitl Pastor Betancourt"
+        },
+        {
+          "number": "A57",
+          "description": "Norberto Jonathan Hernandez Chavez"
+        },
+        {
+          "number": "A46",
+          "description": "GONZALO RODRIGUEZ CRUZ"
+        },
+        {
+          "number": "A28",
+          "description": "JESUS RODOLFO RODRIGUEZ LUNA"
+        },
+        {
+          "number": "09A",
+          "description": "Segudirecto AgentesdeSegyFianzas SAdeCV"
+        },
+        {
+          "number": "A23",
+          "description": "JOSE SOLORIO AGUILAR"
+        },
+        {
+          "number": "A19",
+          "description": "KRISTEL ROSA SANCHEZ MONTES DE OCA"
+        },
+        {
+          "number": "A80",
+          "description": "Ariadna Selene Garcia Escorza"
+        },
+        {
+          "number": "B09",
+          "description": "Isaura Oseguera Cisneros"
+        },
+        {
+          "number": "A14",
+          "description": "ARTURO OSCAR DOMINGUEZ DOMINGUEZ"
+        },
+        {
+          "number": "A53",
+          "description": "Francisco Xavier Casta?eda Gonzalez"
+        },
+        {
+          "number": "A61",
+          "description": "Rodrigo Filio Garcia"
+        },
+        {
+          "number": "A41",
+          "description": "Gonzalo Rodriguez Cruz"
+        },
+        {
+          "number": "A01",
+          "description": "AARON NEFTALI VENEGAS ROJAS"
+        },
+        {
+          "number": "A29",
+          "description": "ADRIAN COTIJA AYALA"
+        },
+        {
+          "number": "B11",
+          "description": "Nantzinth Diaz Luna"
+        },
+        {
+          "number": "A55",
+          "description": "Adriana Elizabeth Flores Lopez"
+        },
+        {
+          "number": "A82",
+          "description": "Maria Carolina Tobon Bello"
+        },
+        {
+          "number": "A17",
+          "description": "ARTURO INSRAEL OJEDALOPEZ"
+        },
+        {
+          "number": "B03",
+          "description": "Vivian Justine Perez Batista"
+        },
+        {
+          "number": "B08",
+          "description": "Maria Grissel Cedillo Ojeda"
+        },
+        {
+          "number": "A05",
+          "description": "LUIS ALBERTO MUNIOZ GOMEZ"
+        },
+        {
+          "number": "A76",
+          "description": "Kevin Rogelio Ramirez Morales"
+        },
+        {
+          "number": "A25",
+          "description": "ERICH HUGO LOPEZ AYUSO"
+        },
+        {
+          "number": "A07",
+          "description": "RODRIGO RODRIGUEZ LEYVA"
+        },
+        {
+          "number": "A04",
+          "description": "ERICK DANIEL RAMIREZ OLAGUEZ"
+        },
+        {
+          "number": "A56",
+          "description": "Adalberto Gonzalez Ramirez"
+        },
+        {
+          "number": "A22",
+          "description": "EDGARDO ALVAREZ REYES"
+        },
+        {
+          "number": "A37",
+          "description": "EMILIA CABRERA GREGORIO"
+        },
+        {
+          "number": "A06",
+          "description": "GERARDO IVAN BARROSO MORA"
+        },
+        {
+          "number": "A35",
+          "description": "ALEJANDRA ARZATE PERALTA"
+        },
+        {
+          "number": "A50",
+          "description": "NATALY FRUTIS MINCHUA"
+        },
+        {
+          "number": "A39",
+          "description": "HUGO FRANCISCO CASTELLANOS CABRERA"
+        },
+        {
+          "number": "A27",
+          "description": "RICARDO CALCEDO GARCES"
+        },
+        {
+          "number": "B02",
+          "description": "Alejandro Lopez Medina"
+        },
+        {
+          "number": "A02",
+          "description": "FAUSTO MANUEL VEGA ROMERO"
+        },
+        {
+          "number": "A10",
+          "description": "ANA MARIA ALMAZAN JIMENEZ"
+        },
+        {
+          "number": "A45",
+          "description": "GONZALO RODRIGUEZ CRUZ"
+        },
+        {
+          "number": "A79",
+          "description": "Jesus Milan Oaxaca"
+        },
+        {
+          "number": "A21",
+          "description": "HECTOR JOSUE TINOCO RIVERA"
+        },
+        {
+          "number": "A20",
+          "description": "HECTOR MARTINEZ VARGAS"
+        },
+        {
+          "number": "A58",
+          "description": "Hugo Benavides Alcantara"
+        },
+        {
+          "number": "A97",
+          "description": "Isaura Oseguera Cisneros"
+        },
+        {
+          "number": "B07",
+          "description": "Israel Morales Lopez"
+        },
+        {
+          "number": "A18",
+          "description": "JOSE EDUARDO SALAS LARA"
+        },
+        {
+          "number": "A09",
+          "description": "ALEJANDRO RESENDIZ MARTINEZ"
+        },
+        {
+          "number": "A49",
+          "description": "JUAN CARLOS CASTRO CASTILLO"
+        },
+        {
+          "number": "A99",
+          "description": "Nantzinth Diaz Luna"
+        },
+        {
+          "number": "A48",
+          "description": "JESUS ANDREZ PINA MONROY"
+        },
+        {
+          "number": "A08",
+          "description": "JOEL IVAN BRISENIO SIERRA"
+        },
+        {
+          "number": "A52",
+          "description": "Miguel Angel San Miguel Morales"
+        },
+        {
+          "number": "A47",
+          "description": "JAVIER VELA RODRIGUEZ"
+        },
+        {
+          "number": "A24",
+          "description": "JUAN AVILA PEDRAZA"
+        }
+      ],
+      "locale": "es-MX",
+      "value": "AC"
+    },
+    {
+      "number": "KV",
+      "description": "KV-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "09B",
+          "description": "EXTERNOS KV"
+        },
+        {
+          "number": "09A",
+          "description": "09A"
+        }
+      ],
+      "locale": "es-MX",
+      "value": "KV"
+    },
+    {
+      "number": "KX",
+      "description": "GRUPO AX AGENTE DE SEGUROS Y DE FIANZAS",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "KX"
+    },
+    {
+      "number": "MD",
+      "description": "MD-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "28F",
+          "description": "PROMESSA"
+        },
+        {
+          "number": "28D",
+          "description": "PROMESSA"
+        },
+        {
+          "number": "28B",
+          "description": "PROMESSA"
+        },
+        {
+          "number": "28A",
+          "description": "PROMESSA"
+        },
+        {
+          "number": "28C",
+          "description": "PROMESSA"
+        },
+        {
+          "number": "28J",
+          "description": "ANTONIO ACOSTA"
+        },
+        {
+          "number": "28G",
+          "description": "MICHELL SOLIS"
+        },
+        {
+          "number": "28E",
+          "description": "PROMESSA"
+        },
+        {
+          "number": "28I",
+          "description": "JOSE DELGADO"
+        },
+        {
+          "number": "28H",
+          "description": "MARIO RODOLFO VILLARREAL RODRIGUEZ"
+        }
+      ],
+      "locale": "es-MX",
+      "value": "MD"
+    },
+    {
+      "number": "ME",
+      "description": "ME-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "ME"
+    },
+    {
+      "number": "MG",
+      "description": "MG-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "27A",
+          "description": "VILLAHERMOSA"
+        },
+        {
+          "number": "21A",
+          "description": "PUEBLA"
+        },
+        {
+          "number": "30A",
+          "description": "JALAPA"
+        }
+      ],
+      "locale": "es-MX",
+      "value": "MG"
+    },
+    {
+      "number": "MI",
+      "description": "MI-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "MI"
+    },
+    {
+      "number": "HD",
+      "description": "HD-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "HD"
+    },
+    {
+      "number": "MJ",
+      "description": "SUCURSAL METLIFE GUADALAJARA SINIESTROS",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "MJ"
+    },
+    {
+      "number": "MN",
+      "description": "PROMESSA AGENTE DE SEGUROS",
+      "associatedZones": [
+        {
+          "number": "09C",
+          "description": "DF_Roma Sur 09C"
+        },
+        {
+          "number": "09B",
+          "description": "DF_Roma 09B"
+        },
+        {
+          "number": "09E",
+          "description": "DF_Obrera 09E"
+        },
+        {
+          "number": "09G",
+          "description": "DF_Juan Gonzalez Romero 09G"
+        },
+        {
+          "number": "09A",
+          "description": "DF_Cuauhtemoc 09A"
+        },
+        {
+          "number": "09H",
+          "description": "DF_Militar Marte 09H"
+        },
+        {
+          "number": "09D",
+          "description": "DF_Roma 09D"
+        },
+        {
+          "number": "09F",
+          "description": "DF_La Malinche, Magdalena Contreras 09F"
+        }
+      ],
+      "locale": "es-MX",
+      "value": "MN"
+    },
+    {
+      "number": "MP",
+      "description": "MP-SIN NOMBRE",
+      "associatedZones": [
+        {
+          "number": "",
+          "description": ""
+        }
+      ],
+      "locale": "es-MX",
+      "value": "MP"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "liquidationType": [
+    {
+      "number": "1",
+      "value": "1",
+      "description": "PAGO UNICO",
+      "locale": "es-MX"
+    },
+    {
+      "number": "2",
+      "value": "2",
+      "description": "FIDEICOMISO",
+      "locale": "es-MX"
+    }
+  ]
+
+}

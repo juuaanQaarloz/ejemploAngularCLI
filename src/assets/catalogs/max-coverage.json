@@ -1,0 +1,110 @@
+{
+  "maxCoverage": [
+    {
+      "validationNumber": "1",
+      "planCode": "ML99",
+      "coverageCode": "VBAS",
+      "value": "VBAS",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "1",
+      "planCode": "ML99",
+      "coverageCode": "VGE",
+      "value": "VGE",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "1",
+      "planCode": "ML99",
+      "coverageCode": "VGFT",
+      "value": "VGFT",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "2",
+      "planCode": "ML99",
+      "coverageCode": "VBAS",
+      "value": "VBAS",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "2",
+      "planCode": "ML99",
+      "coverageCode": "VGE",
+      "value": "VGE",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "2",
+      "planCode": "ML99",
+      "coverageCode": "VGFT",
+      "value": "VGFT",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "3",
+      "planCode": "ML99",
+      "coverageCode": "VBAS",
+      "value": "VBAS",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "3",
+      "planCode": "ML99",
+      "coverageCode": "VGE",
+      "value": "VGE",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "3",
+      "planCode": "ML99",
+      "coverageCode": "VGFT",
+      "value": "VGFT",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "4",
+      "planCode": "ML99",
+      "coverageCode": "VBAS",
+      "value": "VBAS",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "4",
+      "planCode": "ML99",
+      "coverageCode": "VGE",
+      "value": "VGE",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "4",
+      "planCode": "ML99",
+      "coverageCode": "VGFT",
+      "value": "VGFT",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "5",
+      "planCode": "ML99",
+      "coverageCode": "VBAS",
+      "value": "VBAS",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "5",
+      "planCode": "ML99",
+      "coverageCode": "VGE",
+      "value": "VGE",
+      "locale": "es-MX"
+    },
+    {
+      "validationNumber": "5",
+      "planCode": "ML99",
+      "coverageCode": "VGFT",
+      "value": "VGFT",
+      "locale": "es-MX"
+    }
+  ]
+
+}

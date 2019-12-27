@@ -1,0 +1,47 @@
+{
+  "preferredContactDay": [
+    {
+      "number": "1",
+      "value": "1",
+      "description": "LUNES",
+      "locale": "es-MX"
+    },
+    {
+      "number": "2",
+      "value": "2",
+      "description": "MARTES",
+      "locale": "es-MX"
+    },
+    {
+      "number": "3",
+      "value": "3",
+      "description": "MIERCOLES",
+      "locale": "es-MX"
+    },
+    {
+      "number": "4",
+      "value": "4",
+      "description": "JUEVES",
+      "locale": "es-MX"
+    },
+    {
+      "number": "5",
+      "value": "5",
+      "description": "VIERNES",
+      "locale": "es-MX"
+    },
+    {
+      "number": "6",
+      "value": "6",
+      "description": "SABADO",
+      "locale": "es-MX"
+    },
+    {
+      "number": "7",
+      "value": "7",
+      "description": "DOMINGO",
+      "locale": "es-MX"
+    }
+  ]
+
+}

@@ -132,7 +132,7 @@ export const AuthorizationQuestions2: Field[] = [
     idHtml: 'rdioRightsConfirmationQuestion',
     name: 'rightsConfirmationQuestion',
     orderAppearance: 3,
-    label: '4. ¿El Cliente / Contratante ha recibido toda la información de los derechos básicos de los contratantes' +
+    label: '4. ¿El Cliente / Contratante ha recibido toda la información de los derechos básicos de los contratantes,' +
       ' asegurados y beneficiarios?',
     type: 'radio',
     required: true,

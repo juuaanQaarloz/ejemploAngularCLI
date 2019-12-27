@@ -1,0 +1,242 @@
+{
+  "federalEntity" :[
+    {
+      "number": "01",
+      "name": "AGUASCALIENTES",
+      "renapoCode": "AS",
+      "locale": "es-MX",
+      "value": "01"
+    },
+    {
+      "number": "02",
+      "name": "BAJA CALIFORNIA",
+      "renapoCode": "BC",
+      "locale": "es-MX",
+      "value": "02"
+    },
+    {
+      "number": "03",
+      "name": "BAJA CALIFORNIA SUR",
+      "renapoCode": "BS",
+      "locale": "es-MX",
+      "value": "03"
+    },
+    {
+      "number": "04",
+      "name": "CAMPECHE",
+      "renapoCode": "CC",
+      "locale": "es-MX",
+      "value": "04"
+    },
+    {
+      "number": "05",
+      "name": "COAHUILA",
+      "renapoCode": "CL",
+      "locale": "es-MX",
+      "value": "05"
+    },
+    {
+      "number": "06",
+      "name": "COLIMA",
+      "renapoCode": "CM",
+      "locale": "es-MX",
+      "value": "06"
+    },
+    {
+      "number": "07",
+      "name": "CHIAPAS",
+      "renapoCode": "CS",
+      "locale": "es-MX",
+      "value": "07"
+    },
+    {
+      "number": "08",
+      "name": "CHIHUAHUA",
+      "renapoCode": "CH",
+      "locale": "es-MX",
+      "value": "08"
+    },
+    {
+      "number": "09",
+      "name": "CIUDAD DE MEXICO",
+      "renapoCode": "DF",
+      "locale": "es-MX",
+      "value": "09"
+    },
+    {
+      "number": "10",
+      "name": "DURANGO",
+      "renapoCode": "DG",
+      "locale": "es-MX",
+      "value": "10"
+    },
+    {
+      "number": "11",
+      "name": "GUANAJUATO",
+      "renapoCode": "GT",
+      "locale": "es-MX",
+      "value": "11"
+    },
+    {
+      "number": "12",
+      "name": "GUERRERO",
+      "renapoCode": "GR",
+      "locale": "es-MX",
+      "value": "12"
+    },
+    {
+      "number": "13",
+      "name": "HIDALGO",
+      "renapoCode": "HG",
+      "locale": "es-MX",
+      "value": "13"
+    },
+    {
+      "number": "14",
+      "name": "JALISCO",
+      "renapoCode": "JC",
+      "locale": "es-MX",
+      "value": "14"
+    },
+    {
+      "number": "15",
+      "name": "ESTADO DE MEXICO",
+      "renapoCode": "MC",
+      "locale": "es-MX",
+      "value": "15"
+    },
+    {
+      "number": "16",
+      "name": "MICHOACAN",
+      "renapoCode": "MN",
+      "locale": "es-MX",
+      "value": "16"
+    },
+    {
+      "number": "17",
+      "name": "MORELOS",
+      "renapoCode": "MS",
+      "locale": "es-MX",
+      "value": "17"
+    },
+    {
+      "number": "18",
+      "name": "NAYARIT",
+      "renapoCode": "NT",
+      "locale": "es-MX",
+      "value": "18"
+    },
+    {
+      "number": "19",
+      "name": "NUEVO LEON",
+      "renapoCode": "NL",
+      "locale": "es-MX",
+      "value": "19"
+    },
+    {
+      "number": "20",
+      "name": "OAXACA",
+      "renapoCode": "OC",
+      "locale": "es-MX",
+      "value": "20"
+    },
+    {
+      "number": "21",
+      "name": "PUEBLA",
+      "renapoCode": "PL",
+      "locale": "es-MX",
+      "value": "21"
+    },
+    {
+      "number": "22",
+      "name": "QUERETARO",
+      "renapoCode": "QT",
+      "locale": "es-MX",
+      "value": "22"
+    },
+    {
+      "number": "23",
+      "name": "QUINTANA ROO",
+      "renapoCode": "QR",
+      "locale": "es-MX",
+      "value": "23"
+    },
+    {
+      "number": "24",
+      "name": "SAN LUIS POTOSI",
+      "renapoCode": "SP",
+      "locale": "es-MX",
+      "value": "24"
+    },
+    {
+      "number": "25",
+      "name": "SINALOA",
+      "renapoCode": "SL",
+      "locale": "es-MX",
+      "value": "25"
+    },
+    {
+      "number": "26",
+      "name": "SONORA",
+      "renapoCode": "SR",
+      "locale": "es-MX",
+      "value": "26"
+    },
+    {
+      "number": "27",
+      "name": "TABASCO",
+      "renapoCode": "TC",
+      "locale": "es-MX",
+      "value": "27"
+    },
+    {
+      "number": "28",
+      "name": "TAMAULIPAS",
+      "renapoCode": "TS",
+      "locale": "es-MX",
+      "value": "28"
+    },
+    {
+      "number": "29",
+      "name": "TLAXCALA",
+      "renapoCode": "TL",
+      "locale": "es-MX",
+      "value": "29"
+    },
+    {
+      "number": "30",
+      "name": "VERACRUZ",
+      "renapoCode": "VZ",
+      "locale": "es-MX",
+      "value": "30"
+    },
+    {
+      "number": "31",
+      "name": "YUCATAN",
+      "renapoCode": "YN",
+      "locale": "es-MX",
+      "value": "31"
+    },
+    {
+      "number": "32",
+      "name": "ZACATECAS",
+      "renapoCode": "ZS",
+      "locale": "es-MX",
+      "value": "32"
+    },
+    {
+      "number": "99",
+      "name": "OTRO",
+      "renapoCode": "NE",
+      "locale": "es-MX",
+      "value": "99"
+    },
+    {
+      "number": "98",
+      "name": "DEFAULT SLIM",
+      "renapoCode": "NE",
+      "locale": "es-MX",
+      "value": "98"
+    }
+  ]
+}

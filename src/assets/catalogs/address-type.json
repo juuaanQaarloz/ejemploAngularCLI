@@ -1,0 +1,28 @@
+{
+  "addresType": [
+    {
+      "number": "H",
+      "value": "H",
+      "description": "HOME",
+      "locale": "es-MX"
+    },
+    {
+      "number": "P",
+      "value": "P",
+      "description": "PAYMENT",
+      "locale": "es-MX"
+    },
+    {
+      "number": "O",
+      "value": "O",
+      "description": "OFFICE",
+      "locale": "es-MX"
+    },
+    {
+      "number": "0",
+      "value": "0",
+      "description": "OFFICE",
+      "locale": "es-MX"
+    }
+  ]
+}

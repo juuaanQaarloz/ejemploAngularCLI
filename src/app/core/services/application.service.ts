@@ -22,12 +22,45 @@ import {COVERAGES} from '../mock/coverage/coverage';
 import {BENEFICIARIES} from '../mock/mock-beneficiaries/mock-beneficiaries';
 import {placeholdersToParams} from '@angular/compiler/src/render3/view/i18n/util';
 import {error} from 'util';
+import {isPackageNameSafeForAnalytics} from '@angular/cli/models/analytics';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
 const URL_PATTERN_CATALOG = '../assets/catalogs/pattern-catalogs.json';
 const URL_SEPOMEX = '../assets/catalogs/response-sepomex.json';
 const URL_AGENT_CATALOG = '../assets/catalogs/agents-catalogs.json';
+
+// Generic Catalog
+const URL_CAT_ADDRESS_TYPE = '../assets/catalogs/address-type.json';
+const URL_CAT_BANK_BIENES = '../assets/catalogs/bank-bienes.json';
+const URL_CAT_BLOQ_RET_COBERT = '../assets/catalogs/bloqueo-retenedores-cobertura.json';
+const URL_CAT_COLLECTION_CHANEL = '../assets/catalogs/collection-channel.json';
+const URL_CAT_CONCEPT_RET = '../assets/catalogs/concepto-ret.json';
+const URL_CAT_COUNTRY = '../assets/catalogs/country.json';
+const URL_CAT_ENGINE_VARIABLE = '../assets/catalogs/engine-variables.json';
+const URL_CAT_FEDERAL_ENTITY = '../assets/catalogs/federal-entity.json';
+const URL_CAT_GENDER = '../assets/catalogs/gender.json';
+const URL_CAT_LABORAL_REGIMEN = '../assets/catalogs/laboral-regimen.json';
+const URL_CAT_LIQUIDATION_TYPE = '../assets/catalogs/liquidation-type.json';
+const URL_CAT_MARITAL_STATUS = '../assets/catalogs/marital-status.json';
+const URL_CAT_MAX_COVERAGE = '../assets/catalogs/max-coverage.json';
+const URL_CAT_MAX_OCCUPATION = '../assets/catalogs/max-occupation.json';
+const URL_CAT_MAXIMUM_SA = '../assets/catalogs/maximum-sa.json';
+const URL_CAT_OCCUPATION = '../assets/catalogs/occupation.json';
+const URL_CAT_PAYMENT_MODE = '../assets/catalogs/payment-mode.json';
+const URL_CAT_PLAN = '../assets/catalogs/plan.json';
+const URL_CAT_PLAN_COVERAGE_PROVIDA = '../assets/catalogs/plan-coverage-provida.json';
+const URL_CAT_PREFERRED_CONTACT_DAY = '../assets/catalogs/preferred-contact-day.json';
+const URL_CAT_PREFERRED_CONTACT_TIME = '../assets/catalogs/preferred-contact-time.json';
+const URL_CAT_PREFERRED_CONTACT_TYPE = '../assets/catalogs/preferred-contact-type.json';
+const URL_CAT_PROMOTORIA = '../assets/catalogs/promotoria.json';
+const URL_CAT_RELATIONSHIP = '../assets/catalogs/ralationship.json';
+const URL_CAT_RELATIONSHIP_COVERAGE = '../assets/catalogs/relationship-coverage.json';
+const URL_CAT_RETENEDOR = '../assets/catalogs/retenedor.json';
+const URL_CAT_SUB_IDENTIFICATION_TYPE = '../assets/catalogs/sub-identification-type.json';
+const URL_CAT_GUARD_BOX_OPTIONS = '../assets/catalogs/guard-box-options.json';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -185,7 +218,8 @@ export class ApplicationService {
       });
 
     });
-    return new FormGroup(group, [equalEmailsValidator, higherAssuredImport, validateFunds, validateSameName, validateSameName2,  validateSameName3 ]);
+    // tslint:disable-next-line:max-line-length
+    return new FormGroup(group, [equalEmailsValidator, higherAssuredImport, validateFunds, validateSameName, validateSameName2, validateSameName3 ]);
   }
 
   toFormGroupReadOnly(applicationObj: Template) {
@@ -299,27 +333,33 @@ export class ApplicationService {
 
   // getCatalogById(this.fieldObj.sourceID, this.fieldObj.source)
   getCatalogById(id: string, source: string): Observable<[]> {
-    let urlCatalog = '';
-    switch (source) {
-      case 'IPRE':
-        urlCatalog = URL_IPRE;
-        break;
-      case 'CUSTOM':
-        urlCatalog = URL_CUSTOM_CATALOG;
-        break;
-      case 'PATTERN':
-        urlCatalog = URL_PATTERN_CATALOG;
-        break;
-      default:
-        urlCatalog = URL_IPRE;
-        break;
+    if (source !== 'IPRE') {
+      console.log('Catalogos que no son IPRE');
+      let urlCatalog = '';
+      switch (source) {
+        /*case 'IPRE':
+          urlCatalog = URL_IPRE;
+         break;*/
+        case 'CUSTOM':
+          urlCatalog = URL_CUSTOM_CATALOG;
+          break;
+        case 'PATTERN':
+          urlCatalog = URL_PATTERN_CATALOG;
+          break;
+        default:
+          urlCatalog = URL_IPRE;
+          break;
+      }
+      return this.httpClient.get(urlCatalog)
+        .pipe(
+          map((catalog) => {
+            return catalog[id];
+          })
+        );
+    } else {
+      console.log('Catalogos IPRE');
+      return this.getCatalog(id, source);
     }
-    return this.httpClient.get(urlCatalog)
-      .pipe(
-        map((catalog) => {
-          return catalog[id];
-        })
-      );
   }
 
   addItem(newItem, itemType: string, fromTable?: boolean) {
@@ -329,6 +369,7 @@ export class ApplicationService {
     let responseMessage1;
     let responseMessage2;
     let responseMessage3;
+    let responseMessage4;
     let propertyName;
     if (itemType === 'beneficiary') {
       currentTotalParticipationPercentage = this.getTotalParticipationPercentage(itemType);
@@ -340,11 +381,16 @@ export class ApplicationService {
       propertyName = 'participationPercentage';
     } else if (itemType === 'agent') {
       currentTotalParticipationPercentage = this.getTotalParticipationPercentage(itemType);
+
+      console.log('currentTotalParticipationPercentage: ');
+      console.log(currentTotalParticipationPercentage);
+
       currentItems = this.agents.getValue();
       maxLength = 2;
       responseMessage1 = 'No se pueden agregar más de 2 agentes';
       responseMessage2 = 'La suma de las participaciones de los agentes excede el 100%';
       responseMessage3 = 'El porcentaje de participacion debe de ser mayor a 0';
+      responseMessage4 = 'La suma de los porcentajes de participación debe ser igual a 100%';
       propertyName = 'participation';
     } else if (itemType === 'formatwo') {
       currentTotalParticipationPercentage = 1;
@@ -391,14 +437,25 @@ export class ApplicationService {
       if (currentTotalParticipationPercentage + Number(newItem[propertyName]) <= 100) {
         console.log(2);
         // when is a maxItems limit
-        if (currentItems.length <= maxLength) {
+        if (currentItems.length <= maxLength -1) {
           console.log(3);
           // the new item can be added
           if (Number(newItem[propertyName]) > 0) {
             console.log(4);
-            currentItems.push(newItem);
-            this.setItems(itemType, currentItems);
-            return {status: true, message: ''};
+            if ( currentItems.length === maxLength -1 ) {
+              if ( currentTotalParticipationPercentage + Number(newItem[propertyName]) === 100) {
+                currentItems.push(newItem);
+                this.setItems(itemType, currentItems);
+                return {status: true, message: ''};
+              } else {
+                console.log(8);
+                return {status: false, message: responseMessage4};
+              }
+            } else {
+              currentItems.push(newItem);
+              this.setItems(itemType, currentItems);
+              return {status: true, message: ''};
+            }
           } else {
             console.log(5);
             return {status: false, message: responseMessage3};
@@ -498,7 +555,7 @@ export class ApplicationService {
       currentItems = this.payments.getValue();
       propertyItem = 'paymentId';
     } else if (itemType === 'document') {
-      console.log("Entro documents;");
+      console.log('Entro documents;');
       // currentItems = this.documents.getValue();
       currentItems = [];
       // console.log(currentItems);
@@ -525,6 +582,7 @@ export class ApplicationService {
     let responseMessage1;
     let responseMessage2;
     let responseMessage3;
+    let responseMessage4;
 
     if (itemType === 'beneficiary') {
       currentItems = this.beneficiaries.getValue();
@@ -552,7 +610,9 @@ export class ApplicationService {
       });
       maxLength = 2;
       responseMessage3 = 'El porcentaje de participacion debe de ser mayor a 0';
+      responseMessage4 = 'La suma de los porcentajes de participación debe ser igual a 100%';
       responseMessage2 = 'La suma de las participaciones de los agentes excede el 100%';
+      responseMessage1 = 'No se pueden agregar más de 2 beneficiarios';
     } else if (itemType === 'formatwo') {
       currentItems = this.formatosdos.getValue();
       propertyItem = 'formatwoId';
@@ -579,13 +639,37 @@ export class ApplicationService {
       if (currentTotalParticipationPercentage + Number(updatedItem[propertyParticipation]) <= 100) {
         console.log('here');
         // when is a maxItems limit
+
+        console.log(currentItems.length);
+        console.log(maxLength);
+        console.log(currentItems.length <= maxLength);
+
+
         if (currentItems.length <= maxLength) {
           // the new item can be added
           if (Number(updatedItem[propertyParticipation]) > 0) {
-            const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
-            currentItems[index] = updatedItem;
-            this.setItems(itemType, currentItems);
-            return {status: true, message: ''};
+
+            if ( currentItems.length === maxLength ) {
+              if ( currentTotalParticipationPercentage + Number(updatedItem[propertyParticipation]) === 100) {
+                const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
+                currentItems[index] = updatedItem;
+                this.setItems(itemType, currentItems);
+                return {status: true, message: ''};
+              } else {
+                console.log(8);
+                return {status: false, message: responseMessage4};
+              }
+            } else {
+              const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
+              currentItems[index] = updatedItem;
+              this.setItems(itemType, currentItems);
+              return {status: true, message: ''};
+            }
+
+            // const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
+            // currentItems[index] = updatedItem;
+            // this.setItems(itemType, currentItems);
+            // return {status: true, message: ''};
           } else {
             return {status: false, message: responseMessage3};
           }
@@ -862,80 +946,172 @@ export class ApplicationService {
   }
 
   validateFormByStep(stepObj: Step) {
-    console.log('stepID: ', stepObj.id);
     const step = this.getStepById(stepObj.id);
-    console.log('step: ', step);
-    let isValidStep = true;
-    let validateFieldResults = [];
-    let validateErrorResults = [];
+    let isValid = true;
+    let message = '';
 
     if (step) {
       // validate each field individually in the step
       step.contents.forEach((contentFromStep) => {
-        if (contentFromStep.fields) {
-          contentFromStep.fields.forEach(field => {
-            if (!field.disable) {
-              field.valid = this.formGroup.controls[field.name].valid;
-              if (this.formGroup.controls[field.name].errors) {
-                console.log('errors: ', this.formGroup.controls[field.name].errors);
+        console.log('contentType: ', contentFromStep.contentType);
+        console.log('onContentFromStep.fields');
+
+        if (contentFromStep.contentType === 'looseFields') {
+          console.log('here1');
+          const validateFieldArrayResult = this.validateFieldArray(contentFromStep.fields);
+          console.log('validateFieldArrayResult: ', validateFieldArrayResult);
+          if (validateFieldArrayResult === false) {
+            isValid = false;
+            message = 'Por favor, verfique la información a continuación';
+          }
+        } else if (contentFromStep.contentType.includes('table')) {
+          console.log('here2');
+          const validateTableResult = this.validateTable(contentFromStep.contentType);
+          console.log('res: ', validateTableResult);
+          if (validateTableResult.status === false) {
+            isValid = false;
+            message = validateTableResult.msg;
+          }
+        }
+
+        if (contentFromStep.contentChildren) {
+          console.log('onContentFromStep.contentChildren...');
+          contentFromStep.contentChildren.forEach(contentChild => {
+            if (contentChild.contentType === 'looseFields') {
+              console.log('here3');
+              const validateFieldArrayResult = this.validateFieldArray(contentChild.fields);
+              console.log('validateFieldArrayResult: ', validateFieldArrayResult);
+              if (validateFieldArrayResult === false) {
+                isValid = false;
+                message = 'Por favor, verfique la información a continuación';
               }
-              console.log('formControlName: ', field.name);
-              console.log('valid: ', field.valid);
-              validateFieldResults.push(field.valid);
+            } else if (contentChild.contentType.includes('table')) {
+              console.log('here4');
+              const validateTableResult = this.validateTable(contentChild.contentType);
+              console.log('res: ', validateTableResult);
+              if (validateTableResult.status === false) {
+                isValid = false;
+                message = validateTableResult.msg;
+              }
             }
           });
-        } else {
-          if (contentFromStep.contentChildren) {
-            contentFromStep.contentChildren.forEach(contentChild => {
-              if (contentChild.fields) {
-                contentChild.fields.forEach(field => {
-                  if (!field.disable) {
-                    field.valid = this.formGroup.controls[field.name].valid;
-                    // console.log('formControlName: ', field.name);
-                    console.log('valid: ', field.valid);
-                    validateFieldResults.push(field.valid);
-                  }
-                });
-              }
-            });
-          }
         }
       });
 
       if (step.errors) { // check for validation between fields
-        console.log('errors: ', step.errors);
-
+        // console.log('errors: ', step.errors);
         step.errors.forEach((e) => {
-          console.log('e: ', e);
+          // console.log('e: ', e);
           const result = this.getStatusError(e.errorName);
           if (result) { // if the error exists the step is not valid
-            validateErrorResults.push(false);
-          } else { // if the error does not exist the is step is valid
-            validateErrorResults.push(true);
+            // console.log('result: ', result);
+            isValid = false;
+            message = e.errorMsg;
           }
         });
       }
 
-      validateFieldResults.forEach((res) => {
-        console.log('res from validateFieldResults: ', res);
-        if (!res) {
-          isValidStep = res;
-        }
-      });
+      console.log('isValid from validateFormByStep: ', isValid);
 
-      if (isValidStep) {
-        validateErrorResults.forEach((res) => {
-          console.log('res from validateErrorResults: ', res);
-          if (!res) {
-            isValidStep = res;
-          }
-        });
-      }
-
-      console.log('isValidStep: ', isValidStep);
-
-      return isValidStep;
+      return {
+        status: isValid,
+        msg: message
+      };
     }
+  }
+
+  validateFieldArray(fields: Field[]) {
+    let isValid = true;
+
+    fields.forEach(field => {
+      if (!field.disable) {
+        field.valid = this.formGroup.controls[field.name].valid;
+        if (field.valid === false) {
+          // console.log('field name: ', field.name);
+          isValid = false;
+        }
+      }
+    });
+
+    return isValid;
+  }
+
+  validateTable(tableType) {
+    let isValid = true;
+    let message = '';
+
+    if (tableType === 'table-beneficiary') {
+      const totalParticipationPercentage = this.getTotalParticipationPercentage('beneficiary');
+      console.log('totalParticipationPercentage: ', totalParticipationPercentage);
+      console.log('validate table table-beneficiary...');
+      if (this.beneficiaries.getValue().length === 0) { // validates that is at least one beneficiary added in the table
+        isValid = false;
+        message = 'Debe agregarse al menos un beneficiario';
+      } else if (totalParticipationPercentage < 100) {
+        // validates that the totalPercentage of beneficiaries is 100%
+        isValid = false;
+        message = 'La suma de las participaciones entre beneficiarios debe sumar el 100%';
+      } else if (totalParticipationPercentage > 100) {
+        isValid = false;
+        message = 'La suma de las participaciones entre beneficiarios no debe exceder el 100%';
+      }
+    } else if (tableType === 'table-payment') {
+      // TODO: validation for table-payment
+    } else if (tableType === 'table-country') {
+      // TODO: validation for table-country
+    } else if (tableType === 'table-formatwo') {
+      // TODO: validation for table-formatwo
+    } else if (tableType === 'table-formatfour') {
+      // TODO: validation for table-formatfour
+    } else if (tableType === 'table-formatwob') {
+      // TODO: validation for table-formatwob
+    } else if (tableType === 'table-formathree') {
+      // TODO: validation for table-formathree
+    } else if (tableType === 'table-formatw8') {
+      // TODO: validation for table-formatw
+    } else if (tableType === 'table-coverage') {
+      // TODO: validation for table-coverage
+    } else if (tableType === 'table-sports') {
+      // check question value
+      const valueQuestion = this.formGroup.controls.extremeSportsQuestion.value;
+      if ( valueQuestion && valueQuestion === true) {
+        console.log('valueQuestion: ', valueQuestion);
+        // validate table content
+        if (this.sports.getValue().length === 0) {
+          isValid = false;
+          message = 'Debe agregarse al menos un deporte / actvidad';
+        } else if (this.sports.getValue().length > 5) {
+          isValid = false;
+          message = 'No pueden agregarse más de 5 deportes / actividades';
+        }
+      } else {
+        isValid = true;
+      }
+      console.log('validate table table-sports');
+    } else if (tableType === 'table-diseases') {
+      // TODO: validation for table-diseases
+    } else if (tableType === 'table-agent') {
+      console.log('validate table table-agent');
+      if (this.agents.getValue().length === 0) { // validates that is at least one beneficiary added in the table
+        isValid = false;
+        message = 'Debe agregarse al menos un agente';
+      } else if (this.getTotalParticipationPercentage('agent') < 100) {
+        // validates that the totalPercentage of beneficiaries is 100%
+        isValid = false;
+        message = 'La suma de las participaciones entre agentes debe sumar el 100%';
+      } else if (this.getTotalParticipationPercentage('agent') > 100) {
+        // validates that the totalPercentage of beneficiaries is 100%
+        isValid = false;
+        message = 'La suma de las participaciones entre agentes no debe exceder el 100%';
+      }
+    } else if (tableType === 'documents') {
+      // TODO: validation for documents
+    }
+
+    return {
+      status: isValid,
+      msg: message
+    };
   }
 
   setApplicationObject(applicationObj: Template) {
@@ -1184,51 +1360,145 @@ export class ApplicationService {
   }
 
   validateApplicationForm() {
+    let isValid = true;
+    let message = '';
+
     this.applicationObj.sections.forEach(section => {
+      // console.log('section: ', section);
       section.contents.forEach((contentFromSection) => {
         if (contentFromSection.fields) {
-          contentFromSection.fields.forEach(field => {
-            field.valid = this.formGroup.controls[field.name].valid;
-            if (this.formGroup.controls[field.name].errors) {
-              console.log('errors in field: ', field.name);
-              console.log(this.formGroup.controls[field.name].errors);
-              console.log('status: ', this.formGroup.controls[field.name].status);
-            }
-          });
+          const validateFieldArrayResult = this.validateFieldArray(contentFromSection.fields);
+          console.log('validateFieldArrayResult: ', validateFieldArrayResult);
+          if (validateFieldArrayResult === false) {
+            isValid = false;
+            message = 'Por favor, verfique la información a continuación';
+          }
         } else {
           if (contentFromSection.process) {
             contentFromSection.process.steps.forEach(step => {
-              step.contents.forEach((contentFromStep) => {
-                if (contentFromStep.fields) {
-                  contentFromStep.fields.forEach(field => {
-                    field.valid = this.formGroup.controls[field.name].valid;
-                    if (this.formGroup.controls[field.name].errors) {
-                      console.log('errors in field: ', field.name);
-                      console.log(this.formGroup.controls[field.name].errors);
-                      console.log('status: ', this.formGroup.controls[field.name].status);
-                    }
-                  });
-                } else {
-                  if (contentFromStep.contentChildren) {
-                    contentFromStep.contentChildren.forEach(contentChild => {
-                      if (contentChild.fields) {
-                        contentChild.fields.forEach(field => {
-                          field.valid = this.formGroup.controls[field.name].valid;
-                          if (this.formGroup.controls[field.name].errors) {
-                            console.log('errors in field: ', field.name);
-                            console.log(this.formGroup.controls[field.name].errors);
-                            console.log('status: ', this.formGroup.controls[field.name].status);
-                          }
-                        });
-                      }
-                    });
+              if (step.requiredConditions) {
+                const requiredConditionsResult = this.evaluateConditions(step.requiredConditions, this.formGroup);
+                if (requiredConditionsResult) {
+                  const evaluateStepResult = this.validateFormByStep(step);
+                  if (evaluateStepResult.status === false) {
+                    isValid = false;
+                    message = message + step.id + ') ' + step.title + '-';
                   }
                 }
-              });
+              } else {
+                const evaluateStepResult = this.validateFormByStep(step);
+                if (evaluateStepResult.status === false) {
+                  isValid = false;
+                  message = message + step.id + ') ' + step.title + '-';
+                }
+              }
             });
           }
         }
       });
     });
+
+    return {
+      status: isValid,
+      msg: message
+    };
   }
+  // @ts-ignore
+  getCatalog(id: string, source: string): Observable<[]> {
+    console.log('getCatalog --> id: ' + id + ' , source: ' + source);
+    let urlCatalog = '';
+    switch (id) {
+      case 'addresType':
+        urlCatalog = URL_CAT_ADDRESS_TYPE;
+        break;
+      case 'bankBienes':
+        urlCatalog = URL_CAT_BANK_BIENES;
+        break;
+      case 'bloqueoRetenedorCovert':
+        urlCatalog = URL_CAT_BLOQ_RET_COBERT;
+        break;
+      case 'collectionChanel':
+        urlCatalog = URL_CAT_COLLECTION_CHANEL;
+        break;
+      case 'conceptRet':
+        urlCatalog = URL_CAT_CONCEPT_RET;
+        break;
+      case 'country':
+        urlCatalog = URL_CAT_COUNTRY;
+        break;
+      case 'engineVariable':
+        urlCatalog = URL_CAT_ENGINE_VARIABLE;
+        break;
+      case 'federalEntity':
+        urlCatalog = URL_CAT_FEDERAL_ENTITY;
+        break;
+      case 'gender':
+        urlCatalog = URL_CAT_GENDER;
+        break;
+      case 'laboralRegimen':
+        urlCatalog = URL_CAT_LABORAL_REGIMEN;
+        break;
+      case 'liquidationType':
+        urlCatalog = URL_CAT_LIQUIDATION_TYPE;
+        break;
+      case 'maritalStatus':
+        urlCatalog = URL_CAT_MARITAL_STATUS;
+        break;
+      case 'maxCoverage':
+        urlCatalog = URL_CAT_MAX_COVERAGE;
+        break;
+      case 'maxOccupation':
+        urlCatalog = URL_CAT_MAX_OCCUPATION;
+        break;
+      case 'maximumSA':
+        urlCatalog = URL_CAT_MAXIMUM_SA;
+        break;
+      case 'occupation':
+        urlCatalog = URL_CAT_OCCUPATION;
+        break;
+      case 'paymentMode':
+        urlCatalog = URL_CAT_PAYMENT_MODE;
+        break;
+      case 'plan':
+        urlCatalog = URL_CAT_PLAN;
+        break;
+      case 'planCoverageProvida':
+        urlCatalog = URL_CAT_PLAN_COVERAGE_PROVIDA;
+        break;
+      case 'preferredContactDay':
+        urlCatalog = URL_CAT_PREFERRED_CONTACT_DAY;
+        break;
+      case 'preferredContactTime':
+        urlCatalog = URL_CAT_PREFERRED_CONTACT_TIME;
+        break;
+      case 'preferredContactType':
+        urlCatalog = URL_CAT_PREFERRED_CONTACT_TYPE;
+        break;
+      case 'promotoria':
+        urlCatalog = URL_CAT_PROMOTORIA;
+        break;
+      case 'relationship':
+        urlCatalog = URL_CAT_RELATIONSHIP;
+        break;
+      case 'relationshipCoverage':
+        urlCatalog = URL_CAT_RELATIONSHIP_COVERAGE;
+        break;
+      case 'retenedor':
+        urlCatalog = URL_CAT_RETENEDOR;
+        break;
+      case 'subIdentificationType':
+        urlCatalog = URL_CAT_SUB_IDENTIFICATION_TYPE;
+        break;
+      case 'guardBoxOptions':
+        urlCatalog = URL_CAT_GUARD_BOX_OPTIONS;
+        break;
+    }
+    return this.httpClient.get(urlCatalog)
+      .pipe(
+        map((catalog) => {
+          return catalog[id];
+        })
+      );
+  }
+
 }

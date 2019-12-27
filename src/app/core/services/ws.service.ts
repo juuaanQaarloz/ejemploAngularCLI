@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { AppConstants } from "../../app.constants";
+import { map, catchError } from 'rxjs/operators';
+import { of } from 'rxjs';
+import {parseHttpResponse} from "selenium-webdriver/http";
 
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  undefined,
+    'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
     'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
@@ -50,4 +53,41 @@ export class WsService {
         console.log(data)
         ));
   }
+
+  public createZip(ficheros): Observable<any> {
+    console.log('Entro a createZip');
+    console.log('ficheros');
+    console.log(ficheros);
+    const BODY: any = {
+        archivos: ficheros
+    };
+
+    return this.http.post(AppConstants.URL_SERVICE  + '/createZip', ficheros, httpOptionsUndefined);
+  }
+
+  public downloadZip(url): Observable<any> {
+    console.log('Entro a downloadZip');
+
+    let fd = new FormData();
+    fd.append('pcURI', url);
+
+    return this.http.post(AppConstants.URL_SERVICE + '/downloadZip', fd, {responseType: 'arraybuffer'});
+  };
+
+  public deleteZip(url): Observable<any> {
+    console.log('Entro a deleteZip');
+
+    let fd = new FormData();
+    fd.append('pcURI', url);
+
+    return this.http.post(AppConstants.URL_SERVICE + '/deleteZip', fd, httpOptionsUndefined);
+  };
+
+  public validateMitToken(token): Observable<any> {
+    console.log('Entro a validateMitToken');
+
+    const BODY: any = token;
+
+    return this.http.post(AppConstants.URL_SERVICE + '/validateMitToken', BODY, httpOptionsUndefined);
+  };
 }

@@ -1,0 +1,17 @@
+{
+  "laboralRegimen": [
+    {
+      "number": "1",
+      "value": "1",
+      "description": "BASE",
+      "locale": "es-MX"
+    },
+    {
+      "number": "2",
+      "value": "2",
+      "description": "EVENTUAL",
+      "locale": "es-MX"
+    }
+  ]
+
+}

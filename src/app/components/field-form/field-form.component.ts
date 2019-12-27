@@ -430,48 +430,48 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         //   data => console.log(data)
         // );
 
-        // let date = new Date();
-        // let milliseconds = new Date().getMilliseconds();
-        // console.log('Date: ');
-        // console.log(date);
-        // console.log(date.toLocaleString());
-        // console.log(milliseconds);
+        let date = new Date();
+        let milliseconds = new Date().getMilliseconds();
+        console.log('Date: ');
+        console.log(date);
+        console.log(date.toLocaleString());
+        console.log(milliseconds);
+
+        let filenetSkeletonRequest={
+          "name": milliseconds + '_' + fileSelected.name,
+          "categoryCode": "APPLICATION",
+          "typeCode": "EOB",
+          "typeDescription": " ",
+          "formatCode": extensionArchivoCopy,
+          "description": fileSelected.name,
+          "content": "JVBERi0xLjQKJaqrrK0KMSAwIG9iago8PAovQ3JlYXRvciAoQXBhY2hlIEZPUCBWZXJzaW9uIDIuMSkKL1Byb2R1",
+          "extension": {
+            "size": {
+              "unitCode": "B",
+              "value": fileSelected.size
+            },
+            "applicationNumber": "fwhgg2323232",
+            "businessTypeCode": "Product Management",
+            "businessTypeDescription": " ",
+            "subTypeCode": "D-EOB",
+            "subTypeDescription": " ",
+            "initiatedDateTime": date.toLocaleString(),
+            "initiatorNumber": "",
+            "initiatorTypeCode": 123456789,
+            "product": {
+              "number": this.contadorDoc,
+              "typeCode": "Met99",
+              "nameCode": " ",
+              "nameCategoryCode": " "
+            }
+          }
+        };
         //
-        // let filenetSkeletonRequest={
-        //   "name": milliseconds + '_' + fileSelected.name,
-        //   "categoryCode": "APPLICATION",
-        //   "typeCode": "EOB",
-        //   "typeDescription": " ",
-        //   "formatCode": extensionArchivoCopy,
-        //   "description": fileSelected.name,
-        //   "content": "JVBERi0xLjQKJaqrrK0KMSAwIG9iago8PAovQ3JlYXRvciAoQXBhY2hlIEZPUCBWZXJzaW9uIDIuMSkKL1Byb2R1",
-        //   "extension": {
-        //     "size": {
-        //       "unitCode": "B",
-        //       "value": fileSelected.size
-        //     },
-        //     "applicationNumber": "fwhgg2323232",
-        //     "businessTypeCode": "Product Management",
-        //     "businessTypeDescription": " ",
-        //     "subTypeCode": "D-EOB",
-        //     "subTypeDescription": " ",
-        //     "initiatedDateTime": date.toLocaleString(),
-        //     "initiatorNumber": "",
-        //     "initiatorTypeCode": 123456789,
-        //     "product": {
-        //       "number": this.contadorDoc,
-        //       "typeCode": "Met99",
-        //       "nameCode": " ",
-        //       "nameCategoryCode": " "
-        //     }
-        //   }
-        // };
-        // //
-        // let fd = new FormData();
-        // fd.append('file', fileSelected);
-        // fd.append('fileExtension', extensionArchivo);
-        // fd.append('filenetDocument', JSON.stringify(filenetSkeletonRequest));
-        //
+        let fd = new FormData();
+        fd.append('file', fileSelected);
+        fd.append('fileExtension', extensionArchivo);
+        fd.append('filenetDocument', JSON.stringify(filenetSkeletonRequest));
+
         // this.wsService.uploadFilenet(fd);
       }
 
@@ -599,8 +599,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onChangeSelect(event) {
-    // console.log('onChangeSelect...');
+
+    console.log('onChangeSelect...');
     // console.log('event.target.value: ', event.target.value);
+
     if (event.target.value === '') {
       this.showSelectLabel = false;
     } else {
@@ -721,7 +723,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     const currentValue = this.form.controls[this.fieldObj.name].value;
     const defaultValue = this.fieldObj.value;
     let result: boolean;
-
     if (currentValue) {
       if (currentValue === value) {
         result = true;
@@ -735,13 +736,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         result = false;
       }
     }
-    // // console.log('result: ', result);
+    // console.log('result ---> ', result);
     return result;
   }
 
   checkState() {
     const status = this.form.controls[this.fieldObj.name].status;
-    console.log('state: ', status);
     let result = false;
     if (status === 'DISABLED') {
       result = true;
@@ -751,8 +751,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   checkState2(acceso: boolean) {
     const status = this.form.controls[this.fieldObj.name].status;
-    // console.log('state2: ', status);
-    // console.log('acceso: ', acceso);
     let result = false;
     if (status === 'DISABLED' && acceso === true) {
       result = true;
@@ -845,19 +843,22 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   setFunds() {
-    const currency = this.form.controls.currency.value;
-    const packing = this.form.controls.packing.value;
-
-    if (currency === 'usd') {
-      this.setValueField('variableSaving', 'txtVariableSaving', 0);
-      this.setValueField('variableRetirement', 'txtVariableRetirement', 0);
-      this.setValueField('variableFunds', 'txtVariableFunds', 0);
+    if (this.form.controls.currency ) {
+      const currency = this.form.controls.currency.value;
+      if (currency === 'usd') {
+        this.setValueField('variableSaving', 'txtVariableSaving', 0);
+        this.setValueField('variableRetirement', 'txtVariableRetirement', 0);
+        this.setValueField('variableFunds', 'txtVariableFunds', 0);
+      }
     }
-    if (packing !== '4') {
-      this.setValueField('fixedSaving', 'txtFixedSaving', 0);
-      this.setValueField('fixedRetirement', 'txtFixedRetirement', 0);
-      this.setValueField('variableSaving', 'txtVariableSaving', 0);
-      this.setValueField('variableRetirement', 'txtVariableRetirement', 0);
+    if ( this.form.controls.packing ) {
+      const packing = this.form.controls.packing.value;
+      if (packing !== '4') {
+        this.setValueField('fixedSaving', 'txtFixedSaving', 0);
+        this.setValueField('fixedRetirement', 'txtFixedRetirement', 0);
+        this.setValueField('variableSaving', 'txtVariableSaving', 0);
+        this.setValueField('variableRetirement', 'txtVariableRetirement', 0);
+      }
     }
   }
 
