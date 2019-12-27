@@ -17,7 +17,8 @@
                         [totalItems]="items.length"
                         [totalParticipationPercentageItems]="totalPercentageParticipation"
                         [content]="this.content"
-                        [columnSettings]="this.columnsSettings">
+                        [columnSettings]="this.columnsSettings"
+                        [contentTypeId]="contentTypeId">
   </app-beneficiary-item>
 
   <div *ngIf="itemsType === 'beneficiary'">

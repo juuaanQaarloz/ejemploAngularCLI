@@ -29,6 +29,7 @@ export class NewRowComponent implements OnInit {
   item;
   showFormError = false;
   formMsgError = FORM_MSG_ERROR;
+  contentTypeId: string;
 
   constructor(private appService: ApplicationService,
               public config: DialogConfig,
@@ -43,6 +44,7 @@ export class NewRowComponent implements OnInit {
       this.operations = this.config.data.operations;
       this.itemType = this.config.data.itemType;
       this.item = this.config.data.item;
+      this.contentTypeId = this.config.data.contentTypeId;
 
 
       this.setContentFields();
@@ -54,8 +56,6 @@ export class NewRowComponent implements OnInit {
         // setFieldsValues
         this.setFieldsItemValues();
       }
-
-
     }
   }
 
@@ -87,7 +87,7 @@ export class NewRowComponent implements OnInit {
     const formStatus = this.getFormStatus();
     if (formStatus === 'VALID') {
       const newItem = this.mapNewItemData();
-      const response = this.appService.addItem(newItem, this.itemType);
+      const response = this.appService.addItem(newItem, this.itemType, this.contentTypeId);
 
       if (response.status) {
         this.closeDialog();
@@ -105,7 +105,7 @@ export class NewRowComponent implements OnInit {
 
     if (this.itemType === 'disease') {
       newMappedItem = {
-        idDisease: (this.appService.getLastItemId(this.itemType) + 1).toString(),
+        idDisease: (this.appService.getLastItemId(this.itemType, this.contentTypeId) + 1).toString(),
         name: this.formGroup.controls.describeDiseasesD.value,
         diagnosticDate: transformDate(this.formGroup.controls.diagnosticDateD.value, 'YYYY/MM/DD'),
         duration: this.formGroup.controls.durationDiseasesD.value,
@@ -129,7 +129,12 @@ export class NewRowComponent implements OnInit {
     const formStatus = this.getFormStatus();
     if (formStatus === 'VALID') {
       const updatedItem = this.mapItemData();
-      this.appService.updateItem(updatedItem, this.itemType);
+      console.log('this.contentId: ', this.contentTypeId);
+      if (this.contentTypeId) {
+        this.appService.updateItem(updatedItem, this.itemType, this.contentTypeId);
+      } else {
+        this.appService.updateItem(updatedItem, this.itemType);
+      }
       this.closeDialog();
     } else {
       this.showFormError = true;
@@ -143,7 +148,7 @@ export class NewRowComponent implements OnInit {
       newMappedItem = {
         idDisease: this.item.idDisease,
         name: this.formGroup.controls.describeDiseasesD.value,
-        diagnosticDate: this.formGroup.controls.diagnosticDateD.value,
+        diagnosticDate: transformDate(this.formGroup.controls.diagnosticDateD.value, 'YYYY/MM/DD'),
         duration: this.formGroup.controls.durationDiseasesD.value,
         actualCondition: this.formGroup.controls.actualMedicalConditionD.value,
         hasQuestionnaire: false
