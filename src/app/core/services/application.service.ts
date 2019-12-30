@@ -458,17 +458,13 @@ export class ApplicationService {
     }
 
     if (currentTotalParticipationPercentage !== undefined) {
-      console.log(1);
       // when is a max participation limit
       if (currentTotalParticipationPercentage + Number(newItem[propertyName]) <= 100) {
-        console.log(2);
         // when is a maxItems limit
-        if (currentItems.length <= maxLength -1) {
-          console.log(3);
+        if (currentItems.length <= (maxLength - 1)) {
           // the new item can be added
           if (Number(newItem[propertyName]) > 0) {
-            console.log(4);
-            if ( currentItems.length === maxLength -1 ) {
+            if ( currentItems.length === (maxLength - 1) ) {
               if ( currentTotalParticipationPercentage + Number(newItem[propertyName]) === 100) {
                 currentItems.push(newItem);
                 if (idTable) {
@@ -491,15 +487,12 @@ export class ApplicationService {
               return {status: true, message: ''};
             }
           } else {
-            console.log(5);
             return {status: false, message: responseMessage3};
           }
         } else {
-          console.log(6);
           return {status: false, message: responseMessage1};
         }
       } else {
-        console.log(7);
         return {status: false, message: responseMessage2};
       }
     } else if (maxLength !== undefined) {
@@ -1508,10 +1501,12 @@ export class ApplicationService {
       msg: message
     };
   }
+
   // @ts-ignore
   getCatalog(id: string, source: string): Observable<[]> {
     console.log('getCatalog --> id: ' + id + ' , source: ' + source);
     let urlCatalog = '';
+    const catalogos = 'catalogData';
     switch (id) {
       case 'addresType':
         urlCatalog = URL_CAT_ADDRESS_TYPE;
@@ -1566,7 +1561,7 @@ export class ApplicationService {
         break;
       case 'paymentMethod':
         urlCatalog = URL_CAT_PAYMENT_METHOD;
-        break;  
+        break;
       case 'plan':
         urlCatalog = URL_CAT_PLAN;
         break;
@@ -1604,7 +1599,7 @@ export class ApplicationService {
     return this.httpClient.get(urlCatalog)
       .pipe(
         map((catalog) => {
-          return catalog[id];
+          return catalog[catalogos].extension.variations;
         })
       );
   }

@@ -1,0 +1,305 @@
+{
+  "bank": [
+    {
+      "rowID": 1,
+      "key": "3",
+      "name": "BANCA SERFIN S.A",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 2,
+      "key": "6",
+      "name": "Banco Nacional de Comercio Exterior, S.N.C.",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 3,
+      "key": "12",
+      "name": "Bancomer, S.A.",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 4,
+      "key": "14",
+      "name": "Santander Mexicano, S.A.",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 5,
+      "key": "19",
+      "name": "Banco Nacional del Ejercito y Fuerza Aerea y Armada, S.N.C.",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 6,
+      "key": "21",
+      "name": "HSBC",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 7,
+      "key": "22",
+      "name": "GE Capital Bank, S.A.",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 8,
+      "key": "30",
+      "name": "Banco del Bajio, S.A.",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 9,
+      "key": "32",
+      "name": "Ixe Banco, S.A.",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 10,
+      "key": "36",
+      "name": "Banco Inbursa, S.A.",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 11,
+      "key": "37",
+      "name": "Banco Interacciones, S.A.",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 12,
+      "key": "42",
+      "name": "Banca Mifel, S.A.",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 13,
+      "key": "44",
+      "name": "Scotiabank, S.A.",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 14,
+      "key": "58",
+      "name": "Banco Regional de Monterrey, S.A.",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 15,
+      "key": "59",
+      "name": "Banco Invex, S.A.",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 16,
+      "key": "60",
+      "name": "Bansi, S.A.",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 17,
+      "key": "62",
+      "name": "Banco Afirme, S.A.",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 18,
+      "key": "72",
+      "name": "Banco Mercantil del Norte, S.A.",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 19,
+      "key": "102",
+      "name": "ABN Amro Bank (Mexico), S.A.",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 20,
+      "key": "103",
+      "name": "American Express Bank (Mexico), S.A.",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 21,
+      "key": "106",
+      "name": "Bank of America Mexico, S.A.",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 22,
+      "key": "107",
+      "name": "Bank Boston, S.A.",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 23,
+      "key": "108",
+      "name": "Bank of Tokyo",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 24,
+      "key": "110",
+      "name": "JP Morgan",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 25,
+      "key": "113",
+      "name": "Dresdner Bank Mexico, S.A.",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 26,
+      "key": "114",
+      "name": "Bank One Mexico, S.A.",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 27,
+      "key": "116",
+      "name": "ING",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 28,
+      "key": "119",
+      "name": "Bital",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 29,
+      "key": "124",
+      "name": "Deutsche Bank",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 30,
+      "key": "126",
+      "name": "Credit Suisse",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 31,
+      "key": "127",
+      "name": "Azteca",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 32,
+      "key": "135",
+      "name": "Nacional Financiera, S.N.C.",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 33,
+      "key": "161",
+      "name": "Bancrecer, S.A.",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 34,
+      "key": "166",
+      "name": "Bansefi",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 35,
+      "key": "168",
+      "name": "Hipotecaria Federal",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 36,
+      "key": "9999",
+      "name": "PROSA",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 37,
+      "key": "2",
+      "name": "Banco Nacional de Mexico",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 38,
+      "key": "137",
+      "name": "Bancoppel",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 39,
+      "key": "140",
+      "name": "Banco Facil",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 40,
+      "key": "138",
+      "name": "BANCO AMIGO",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 41,
+      "key": "128",
+      "name": "Banco Autofin Mexico, S.A., Institucion de Banca Multiple",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 42,
+      "key": "134",
+      "name": "Banco Wal-Mart de Mexico Adelante, S.A., Institucion de Banca Multiple",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    },
+    {
+      "rowID": 43,
+      "key": "132",
+      "name": "Banco Multiva, S.A., Institucion de Banca Multiple, Multivalores Grupo Financiero",
+      "lastUpdate": "08/22/2019 02:56:37",
+      "locale": "es-MX"
+    }
+  ]
+}
