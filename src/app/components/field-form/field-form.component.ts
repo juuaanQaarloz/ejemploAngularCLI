@@ -542,9 +542,14 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         this.fieldObj.message = 'La participación no puede ser 0';
       }
     }
-    if (valid) {
-      this.isValid();
+    if (this.fieldObj.name === 'additionalCost') {
+      //  console.log('Entro en savingsGoal: ');
+      const additionalCost = this.form.controls.additionalCost.value;
+      if (Number(additionalCost) > Number(0.00)) {
+        this.setValueField('additionalCost', 'txtAdditionalCost', addCurrencyFormat(additionalCost));
+      }
     }
+
     if (this.fieldObj.name === 'assuredImport') {
       const currency = this.form.controls.currency.value;
       const assuredImport = this.form.controls.assuredImport.value;
@@ -567,22 +572,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         }
       }
     }
-
-    /* if (this.fieldObj.name === 'savingsGoal') {
-      const savingsGoal = this.form.controls.savingsGoal.value;
-      if (Number(savingsGoal) > Number(0.00)) {
-        this.setValueField('savingsGoal', 'txtSavingsGoal', addCurrencyFormat(savingsGoal));
-      }
-    } */
-
-    if (this.fieldObj.name === 'additionalCost') {
-     //  console.log('Entro en savingsGoal: ');
-      const additionalCost = this.form.controls.additionalCost.value;
-      if (Number(additionalCost) > Number(0.00)) {
-        this.setValueField('additionalCost', 'txtAdditionalCost', addCurrencyFormat(additionalCost));
-      }
+    // las validaciones deben estar antes
+    if (valid) {
+      this.isValid();
     }
-    // contractorType
   }
 
   onValidate(event) {

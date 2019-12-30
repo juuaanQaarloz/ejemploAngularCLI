@@ -238,7 +238,7 @@ export const Plan3: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'La prima adicional no puede ser 0.',
+    message: 'La prima adicional no puede ser 0 y debera tener el formato de moneda',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',

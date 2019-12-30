@@ -664,7 +664,7 @@ export class ApplicationService {
 
       let name5 = updatedItem.name;
       let fatherLastName5 =  updatedItem.fatherLastName;
-      let motherLastName5 = updatedItem.motherLastName; 
+      let motherLastName5 = updatedItem.motherLastName;
 
       if (name5 !== '') {
         if (name5 === fatherLastName5) {
