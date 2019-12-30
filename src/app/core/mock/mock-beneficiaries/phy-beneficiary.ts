@@ -100,7 +100,7 @@ export const BeneficiaryFieldsP: Field[] = [
     orderAppearance: 5,
     label: 'Fecha de nacimiento*',
     type: 'date',
-    required: false,
+    required: true,
     placeholder: 'YYYY/MM/DD',
     length: '10',
     minValue: 0,
