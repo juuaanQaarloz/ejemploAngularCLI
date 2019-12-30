@@ -306,6 +306,10 @@ export class ApplicationService {
   getValidationFunctions(field: Field): any[] {
     let validationFunctions = [];
 
+    if (field.name === 'beneficiaryBirthDate') {
+      console.log('isRequired: ', field.required);
+    }
+
     if (field.required) {
       validationFunctions.push(Validators.required);
 
