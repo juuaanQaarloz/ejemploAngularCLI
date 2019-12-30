@@ -1684,7 +1684,8 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
     // --added extra from model--
     showContent: true,
     // enableConditions?: 'string';
-    styleClass: 'questions-type'
+    styleClass: 'questions-type',
+    legend: 'En caso de respuestas afirmativas, favor de ampliar la información'
     // --------------------------
   },
   {
@@ -1726,7 +1727,8 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
     // --added extra from model--
     showContent: true,
     // enableConditions?: 'string';
-    styleClass: 'questions-type'
+    styleClass: 'questions-type',
+    legend: 'En caso de respuestas afirmativas, favor de ampliar la información'
     // --------------------------
   },
   {

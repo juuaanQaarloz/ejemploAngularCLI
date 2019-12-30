@@ -248,12 +248,19 @@
     </fieldset>
 
     <mat-autocomplete #auto="matAutocomplete">
-      <ng-container *ngIf="(autocompleteOptions | filter: form.controls[fieldObj.name].value) as result">
+      <!--<mat-option *ngIf="loading" class="is-loading"><mat-spinner diameter="10"></mat-spinner></mat-option>
+      <ng-container *ngIf="!loading && (autocompleteOptions | filter: form.controls[fieldObj.name].value) | async as result">
         <mat-option *ngFor="let option of result" [value]="option.name"
                     (onSelectionChange)="onKeyUpAutoComplete($event)">
           {{option.name}}
         </mat-option>
-        <!--<mat-option *ngIf="(!result.length) && (!loading)">No se encontraron resultados...</mat-option>-->
+      </ng-container>-->
+      <!--<mat-option *ngIf="!loading" class="is-loading"><mat-spinner diameter="10"></mat-spinner></mat-option>-->
+      <ng-container *ngIf="loading && (autocompleteOptions | filter: form.controls[fieldObj.name].value) as result">
+        <mat-option *ngFor="let option of result" [value]="option.name"
+                    (onSelectionChange)="onKeyUpAutoComplete($event)">
+          {{option.name}}
+        </mat-option>
       </ng-container>
 
     </mat-autocomplete>

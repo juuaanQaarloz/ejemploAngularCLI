@@ -39,7 +39,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   disable: boolean;
   regExpPattern;
   regnNoAllowedCharactersExpPattern;
-  loading = true;
+  loading = false;
   modalID = 'modal-warning1';
   modalMessage = 'La suma de las participaciones de los agentes excede el 100%';
   fileName: string;
@@ -647,7 +647,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           });
 
           if (this.fieldObj.type === 'autocomplete') {
-            this.loading = false;
+            this.loading = true;
           }
           // console.log('autoComplete: ', this.autocompleteOptions);
         }
@@ -697,14 +697,20 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       }
 
     } else {
-      // this.valid =  this.form.controls[this.fieldObj.name].valid;
       this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+      if (this.autocompleteOptions.length > 0 && this.fieldObj.type === 'autocomplete') {
+        const searchResult =  this.autocompleteOptions.filter(
+          autoCompleteOpt => autoCompleteOpt.name === this.form.controls[this.fieldObj.name].value)[0];
+        console.log('searchResult: ', searchResult);
+        if (searchResult) {
+          this.fieldObj.valid = true;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      }
+      console.log('this.fieldObj.valid from isValid: ', this.fieldObj.valid);
+      console.log('this.form.controls[this.fieldObj.name].valid: ', this.form.controls[this.fieldObj.name].valid);
     }
-
-    /*if (!this.fieldObj.valid) {
-      console.log('errors: ', this.form.controls[this.fieldObj.name].errors);
-    }*/
-
   }
 
   registerCustomIcons() {
