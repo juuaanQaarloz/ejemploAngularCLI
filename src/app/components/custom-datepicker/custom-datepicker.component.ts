@@ -34,13 +34,15 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // console.log('onAfterViewInit datepicker: ');
+    console.log('onAfterViewInit datepicker: ');
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
     let value;
     if (this.fieldObj.value) {
       value = this.fieldObj.value;
+      console.log('value: ', value);
       elem.setAttribute('value', value);
-      // console.log('elem.getValue: ', elem.getAttribute('value'));
+      console.log('elem.getValue: ', elem.getAttribute('value'));
+      this.form.controls[this.fieldObj.name].setValue(value);
 
     } else if (this.form.controls[this.fieldObj.name].value) {
       value = this.form.controls[this.fieldObj.name].value;
@@ -49,14 +51,14 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   }
 
   onDateInput(typeEvent: string, event) {
-    // console.log('onDateInput...');
+    console.log('onDateInput...');
     if (typeEvent === 'input') {
       event.targetElement.value = addSlashesToDate(event.targetElement.value);
     }
   }
 
   onDateChange(event) {
-    // console.log('onDateChange...');
+    console.log('onDateChange...');
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
     let contractorType;
 
