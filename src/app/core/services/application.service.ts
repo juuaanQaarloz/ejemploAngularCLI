@@ -383,9 +383,9 @@ export class ApplicationService {
       responseMessage4 = 'La suma de los porcentajes de participación debe ser igual a 100%';
       propertyName = 'participationPercentage';
 
-      let name5 = newItem.name.value; // this.formGroup.controls.beneficiaryName.value;
-      let fatherLastName5 =  newItem.fatherLastName.value; //this.formGroup.controls.beneficiaryFaLastName.value;
-      let motherLastName5 = newItem.motherLastName.value; // this.formGroup.controls.beneficiaryMoLastName.value;
+      let name5 = newItem.name; // this.formGroup.controls.beneficiaryName.value;
+      let fatherLastName5 =  newItem.fatherLastName; //this.formGroup.controls.beneficiaryFaLastName.value;
+      let motherLastName5 = newItem.motherLastName; // this.formGroup.controls.beneficiaryMoLastName.value;
       if (name5 !== '') {
         if (name5 === fatherLastName5) {
           if (name5 === motherLastName5) {
