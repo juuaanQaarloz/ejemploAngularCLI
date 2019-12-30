@@ -45,7 +45,7 @@ export const AuthorizationFields1: Field[] = [
     placeholder: 'Descripción',
     length: '',
     minValue: 0,
-    maxValue: 500,
+    maxValue: 200,
     pattern: '',
     source: '',
     sourceID: '',

@@ -197,7 +197,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     maxValue: 0,
     pattern: '',
     noAllowedCharactersPattern: '',
-    source: 'IPRES',
+    source: 'IPRE',
     sourceID: 'sector',
     sourceStructure: ['id', 'name', 'code'],
     style: '',

@@ -48,6 +48,7 @@ const URL_CAT_MAX_OCCUPATION = '../assets/catalogs/max-occupation.json';
 const URL_CAT_MAXIMUM_SA = '../assets/catalogs/maximum-sa.json';
 const URL_CAT_OCCUPATION = '../assets/catalogs/occupation.json';
 const URL_CAT_PAYMENT_MODE = '../assets/catalogs/payment-mode.json';
+const URL_CAT_PAYMENT_METHOD = '../assets/catalogs/payment-method.json';
 const URL_CAT_PLAN = '../assets/catalogs/plan.json';
 const URL_CAT_PLAN_COVERAGE_PROVIDA = '../assets/catalogs/plan-coverage-provida.json';
 const URL_CAT_PREFERRED_CONTACT_DAY = '../assets/catalogs/preferred-contact-day.json';
@@ -72,8 +73,8 @@ export class ApplicationService {
   agents = new BehaviorSubject([]);
   sports = new BehaviorSubject([]);
   diseases = new BehaviorSubject([]);
-  // diseases2 = new BehaviorSubject([]);
-  // diseases3 = new BehaviorSubject([]);
+  diseases2 = new BehaviorSubject([]);
+  diseases3 = new BehaviorSubject([]);
 
   formatosdos = new BehaviorSubject([]);
   formatosdosb = new BehaviorSubject([]);
@@ -362,7 +363,7 @@ export class ApplicationService {
     }
   }
 
-  addItem(newItem, itemType: string, fromTable?: boolean) {
+  addItem(newItem, itemType: string, idTable?: string) {
     let currentTotalParticipationPercentage;
     let currentItems;
     let maxLength;
@@ -370,6 +371,7 @@ export class ApplicationService {
     let responseMessage2;
     let responseMessage3;
     let responseMessage4;
+    let responseMessage5;
     let propertyName;
     if (itemType === 'beneficiary') {
       currentTotalParticipationPercentage = this.getTotalParticipationPercentage(itemType);
@@ -378,7 +380,21 @@ export class ApplicationService {
       responseMessage1 = 'No se pueden agregar más de 10 beneficiarios';
       responseMessage2 = 'La suma de las participaciones de los beneficiarios excede el 100%';
       responseMessage3 = 'El porcentaje de participacion debe de ser mayor a 0';
+      responseMessage5 = 'El nombre, el apellido paterno y materno no puede ser el mismo';
+      responseMessage4 = 'La suma de los porcentajes de participación debe ser igual a 100%';
       propertyName = 'participationPercentage';
+
+      let name5 = newItem.name.value; // this.formGroup.controls.beneficiaryName.value;
+      let fatherLastName5 =  newItem.fatherLastName.value; //this.formGroup.controls.beneficiaryFaLastName.value;
+      let motherLastName5 = newItem.motherLastName.value; // this.formGroup.controls.beneficiaryMoLastName.value;
+      if (name5 !== '') {
+        if (name5 === fatherLastName5) {
+          if (name5 === motherLastName5) {
+            return {status: false, message: responseMessage5};
+          }
+        }
+      }
+
     } else if (itemType === 'agent') {
       currentTotalParticipationPercentage = this.getTotalParticipationPercentage(itemType);
 
@@ -418,9 +434,19 @@ export class ApplicationService {
       console.log(currentItems);
 
     } else if (itemType === 'disease') {
-      currentItems = this.diseases.getValue();
-      maxLength = 10;
-      responseMessage1 = 'No se pueden agregar más de 10 enfermedades / padecimientos';
+      if (idTable === '1') {
+        currentItems = this.diseases.getValue();
+        maxLength = 10;
+        responseMessage1 = 'No se pueden agregar más de 10 enfermedades / padecimientos';
+      } else if (idTable === '2') {
+        currentItems = this.diseases2.getValue();
+        maxLength = 10;
+        responseMessage1 = 'No se pueden agregar más de 10 enfermedades / padecimientos';
+      } else if (idTable === '3') {
+        currentItems = this.diseases3.getValue();
+        maxLength = 10;
+        responseMessage1 = 'No se pueden agregar más de 10 enfermedades / padecimientos';
+      }
     } else if (itemType === 'sport') {
       currentItems = this.sports.getValue();
       maxLength = 5;
@@ -432,20 +458,20 @@ export class ApplicationService {
     }
 
     if (currentTotalParticipationPercentage !== undefined) {
-      console.log(1);
       // when is a max participation limit
       if (currentTotalParticipationPercentage + Number(newItem[propertyName]) <= 100) {
-        console.log(2);
         // when is a maxItems limit
-        if (currentItems.length <= maxLength -1) {
-          console.log(3);
+        if (currentItems.length <= (maxLength - 1)) {
           // the new item can be added
           if (Number(newItem[propertyName]) > 0) {
-            console.log(4);
-            if ( currentItems.length === maxLength -1 ) {
+            if ( currentItems.length === (maxLength - 1) ) {
               if ( currentTotalParticipationPercentage + Number(newItem[propertyName]) === 100) {
                 currentItems.push(newItem);
-                this.setItems(itemType, currentItems);
+                if (idTable) {
+                  this.setItems(itemType, currentItems, idTable);
+                } else {
+                  this.setItems(itemType, currentItems);
+                }
                 return {status: true, message: ''};
               } else {
                 console.log(8);
@@ -453,19 +479,20 @@ export class ApplicationService {
               }
             } else {
               currentItems.push(newItem);
-              this.setItems(itemType, currentItems);
+              if (idTable) {
+                this.setItems(itemType, currentItems, idTable);
+              } else {
+                this.setItems(itemType, currentItems);
+              }
               return {status: true, message: ''};
             }
           } else {
-            console.log(5);
             return {status: false, message: responseMessage3};
           }
         } else {
-          console.log(6);
           return {status: false, message: responseMessage1};
         }
       } else {
-        console.log(7);
         return {status: false, message: responseMessage2};
       }
     } else if (maxLength !== undefined) {
@@ -473,19 +500,27 @@ export class ApplicationService {
       if (currentItems.length < maxLength) {
         // the new item can be added
         currentItems.push(newItem);
-        this.setItems(itemType, currentItems);
+        if (idTable) {
+          this.setItems(itemType, currentItems, idTable);
+        } else {
+          this.setItems(itemType, currentItems);
+        }
         return {status: true, message: ''};
       } else {
         return {status: false, message: responseMessage1};
       }
     } else {
       currentItems.push(newItem);
-      this.setItems(itemType, currentItems);
+      if (idTable) {
+        this.setItems(itemType, currentItems, idTable);
+      } else {
+        this.setItems(itemType, currentItems);
+      }
       return {status: true, message: ''};
     }
   }
 
-  removeItem(itemId: string, itemType: string) {
+  removeItem(itemId: string, itemType: string, idTable?: string) {
     let currentItems;
     let propertyName;
     if (itemType === 'beneficiary') {
@@ -501,8 +536,15 @@ export class ApplicationService {
       currentItems = this.countries.getValue();
       propertyName = 'countryId';
     } else if (itemType === 'disease') {
-      currentItems = this.diseases.getValue();
       propertyName = 'idDisease';
+      console.log('idTable: ', idTable);
+      if (idTable === '1') {
+        currentItems = this.diseases.getValue();
+      } else if (idTable === '2') {
+        currentItems = this.diseases2.getValue();
+      } else if (idTable === '3') {
+        currentItems = this.diseases3.getValue();
+      }
     } else if (itemType === 'sport') {
       currentItems = this.sports.getValue();
       propertyName = 'idSportActivity';
@@ -518,7 +560,11 @@ export class ApplicationService {
     }
     currentItems = currentItems.filter(item => item[propertyName] !== itemId);
     // console.log('currentItems: ', currentItems);
-    this.setItems(itemType, currentItems);
+    if (idTable) {
+      this.setItems(itemType, currentItems, idTable);
+    } else {
+      this.setItems(itemType, currentItems);
+    }
     if (itemType === 'agent' && currentItems.length === 1) {
       const mappedAgent = {
         agentId: currentItems[0].agentId, name: currentItems[0].name,
@@ -528,7 +574,7 @@ export class ApplicationService {
     }
   }
 
-  getLastItemId(itemType: string) {
+  getLastItemId(itemType: string, idTable?: string) {
     let lastId = 0;
     let currentItems;
     let propertyItem;
@@ -546,8 +592,14 @@ export class ApplicationService {
       currentItems = this.countries.getValue();
       propertyItem = 'countryId';
     } else if (itemType === 'disease') {
-      currentItems = this.diseases.getValue();
       propertyItem = 'idDisease';
+      if (idTable === '1') {
+        currentItems = this.diseases.getValue();
+      } else if (idTable === '2') {
+        currentItems = this.diseases2.getValue();
+      } else if (idTable === '3') {
+        currentItems = this.diseases3.getValue();
+      }
     } else if (itemType === 'sport') {
       currentItems = this.sports.getValue();
       propertyItem = 'idSportActivity';
@@ -571,7 +623,7 @@ export class ApplicationService {
     return lastId;
   }
 
-  updateItem(updatedItem, itemType) {
+  updateItem(updatedItem, itemType, idTable?: string) {
     console.log('updateItem');
     console.log(updatedItem);
     let currentItems;
@@ -598,6 +650,7 @@ export class ApplicationService {
       responseMessage1 = 'No se pueden agregar más de 10 beneficiarios';
       responseMessage2 = 'La suma de las participaciones de los beneficiarios excede el 100%';
       responseMessage3 = 'El porcentaje de participacion debe de ser mayor a 0';
+      responseMessage4 = 'El nombre no puede ser igual al apellido paterno y materno';
     } else if (itemType === 'agent') {
       currentItems = this.agents.getValue();
       propertyItem = 'agentId';
@@ -620,26 +673,35 @@ export class ApplicationService {
       currentItems = this.countries.getValue();
       propertyItem = 'countryId';
     } else if (itemType === 'disease') {
-      currentItems = this.diseases.getValue();
       propertyItem = 'idDisease';
+      maxLength = 10;
+      console.log('idTable: ', idTable);
+      if (idTable === '1') {
+        currentItems = this.diseases.getValue();
+      } else if (idTable === '2') {
+        currentItems = this.diseases2.getValue();
+      } else if (idTable === '3') {
+        currentItems = this.diseases3.getValue();
+      }
     } else if (itemType === 'sport') {
+      maxLength = 5;
       currentItems = this.sports.getValue();
       propertyItem = 'idSportActivity';
     } else if (itemType === 'payment') {
+      maxLength = 5;
       currentItems = this.payments.getValue();
       propertyItem = 'paymentId';
     }
     // const foundItem = currentItems.filter(i => i[propertyItem] === updatedItem[propertyItem])[0];
 
-    console.log('currentTotalParticipationPercentage: ', currentTotalParticipationPercentage);
-    console.log('Number(updatedItem[propertyParticipation]) : ', Number(updatedItem[propertyParticipation]));
+    // console.log('currentTotalParticipationPercentage: ', currentTotalParticipationPercentage);
+    // console.log('Number(updatedItem[propertyParticipation]) : ', Number(updatedItem[propertyParticipation]));
 
     if (currentTotalParticipationPercentage !== undefined) {
       // when is a max participation limit
       if (currentTotalParticipationPercentage + Number(updatedItem[propertyParticipation]) <= 100) {
         console.log('here');
         // when is a maxItems limit
-
         console.log(currentItems.length);
         console.log(maxLength);
         console.log(currentItems.length <= maxLength);
@@ -653,7 +715,11 @@ export class ApplicationService {
               if ( currentTotalParticipationPercentage + Number(updatedItem[propertyParticipation]) === 100) {
                 const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
                 currentItems[index] = updatedItem;
-                this.setItems(itemType, currentItems);
+                if (idTable) {
+                  this.setItems(itemType, currentItems, idTable);
+                } else {
+                  this.setItems(itemType, currentItems);
+                }
                 return {status: true, message: ''};
               } else {
                 console.log(8);
@@ -662,7 +728,11 @@ export class ApplicationService {
             } else {
               const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
               currentItems[index] = updatedItem;
-              this.setItems(itemType, currentItems);
+              if (idTable) {
+                this.setItems(itemType, currentItems, idTable);
+              } else {
+                this.setItems(itemType, currentItems);
+              }
               return {status: true, message: ''};
             }
 
@@ -685,7 +755,11 @@ export class ApplicationService {
         // the new item can be added
         const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
         currentItems[index] = updatedItem;
-        this.setItems(itemType, currentItems);
+        if (idTable) {
+          this.setItems(itemType, currentItems, idTable);
+        } else {
+          this.setItems(itemType, currentItems);
+        }
         return {status: true, message: ''};
       } else {
         return {status: false, message: responseMessage1};
@@ -693,7 +767,11 @@ export class ApplicationService {
     } else {
       const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
       currentItems[index] = updatedItem;
-      this.setItems(itemType, currentItems);
+      if (idTable) {
+        this.setItems(itemType, currentItems, idTable);
+      } else {
+        this.setItems(itemType, currentItems);
+      }
       return {status: true, message: ''};
     }
 
@@ -730,7 +808,7 @@ export class ApplicationService {
     return totalParticipationPercentage;
   }
 
-  setItems(itemType: string, newItems) {
+  setItems(itemType: string, newItems, idTable?: string) {
     console.log('setItems');
     if (itemType === 'beneficiary') {
       this.beneficiaries.next(newItems);
@@ -741,7 +819,13 @@ export class ApplicationService {
     } else if (itemType === 'country') {
       this.countries.next(newItems);
     } else if (itemType === 'disease') {
-      this.diseases.next(newItems);
+      if (idTable === '1') {
+        this.diseases.next(newItems);
+      } else if (idTable === '2') {
+        this.diseases2.next(newItems);
+      } else if (idTable === '3') {
+        this.diseases3.next(newItems);
+      }
     } else if (itemType === 'sport') {
       this.sports.next(newItems);
     } else if (itemType === 'payment') {
@@ -1019,7 +1103,8 @@ export class ApplicationService {
           if (result) { // if the error exists the step is not valid
             // console.log('result: ', result);
             isValid = false;
-            message = e.errorMsg;
+            // message = e.errorMsg;
+            message = 'Por favor, verfique la información a continuación';
           }
         });
       }
@@ -1040,7 +1125,7 @@ export class ApplicationService {
       if (!field.disable) {
         field.valid = this.formGroup.controls[field.name].valid;
         if (field.valid === false) {
-          // console.log('field name: ', field.name);
+          console.log('field name: ', field.name);
           isValid = false;
         }
       }
@@ -1069,7 +1154,20 @@ export class ApplicationService {
         message = 'La suma de las participaciones entre beneficiarios no debe exceder el 100%';
       }
     } else if (tableType === 'table-payment') {
-      // TODO: validation for table-payment
+      const valueQuestion = this.formGroup.controls.extremeSportsQuestion.value;
+      if ( valueQuestion && valueQuestion === 'T') {
+        console.log('valueQuestion: ', valueQuestion);
+        // validate table content
+        if (this.payments.getValue().length === 0) {
+          isValid = false;
+          message = 'Debe agregarse al menos una tarjeta para el cargo automático';
+        } else if (this.payments.getValue().length > 5) {
+          isValid = false;
+          message = 'No pueden agregarse más de 5 instrumentos bancarios';
+        }
+      } else {
+        isValid = true;
+      }
     } else if (tableType === 'table-country') {
       // TODO: validation for table-country
     } else if (tableType === 'table-formatwo') {
@@ -1416,10 +1514,12 @@ export class ApplicationService {
       msg: message
     };
   }
+
   // @ts-ignore
   getCatalog(id: string, source: string): Observable<[]> {
     console.log('getCatalog --> id: ' + id + ' , source: ' + source);
     let urlCatalog = '';
+    const catalogos = 'catalogData';
     switch (id) {
       case 'addresType':
         urlCatalog = URL_CAT_ADDRESS_TYPE;
@@ -1472,6 +1572,9 @@ export class ApplicationService {
       case 'paymentMode':
         urlCatalog = URL_CAT_PAYMENT_MODE;
         break;
+      case 'paymentMethod':
+        urlCatalog = URL_CAT_PAYMENT_METHOD;
+        break;
       case 'plan':
         urlCatalog = URL_CAT_PLAN;
         break;
@@ -1509,7 +1612,7 @@ export class ApplicationService {
     return this.httpClient.get(urlCatalog)
       .pipe(
         map((catalog) => {
-          return catalog[id];
+          return catalog[catalogos].extension.variations;
         })
       );
   }

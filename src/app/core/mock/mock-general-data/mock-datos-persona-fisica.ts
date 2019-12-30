@@ -292,7 +292,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     noAllowedCharactersPattern: '',
     source: 'IPRE',
     sourceID: 'subIdentificationType',
-    sourceStructure: ['code', 'description', 'value'],
+    sourceStructure: ['subIdentificationId', 'subIdentificationDescript', 'subIdentificationId'],
     style: '',
     styleClass: '',
     styleClassError: '',
