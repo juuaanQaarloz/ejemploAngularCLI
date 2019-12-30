@@ -113,7 +113,9 @@ export function stringToRegExp(str) {
 
 export function addCurrencyFormat(formato: string): string {
   let cantidad;
-  let val = parseFloat(formato);
+  let val = parseFloat(formato.replace(/[^0-9.-]+/g,""));
   cantidad = formatCurrency(val, 'en-US', getCurrencySymbol('USD', 'wide'));
   return cantidad.toString();
 }
+
+

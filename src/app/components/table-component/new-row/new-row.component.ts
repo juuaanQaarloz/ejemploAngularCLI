@@ -196,6 +196,7 @@ export class NewRowComponent implements OnInit {
   }
 
   getFormStatus() {
+    console.log('this.appService.validateFieldArray(this.content.fields): ', this.appService.validateFieldArray(this.content.fields, this.formGroup));
     return this.formGroup.status;
   }
 

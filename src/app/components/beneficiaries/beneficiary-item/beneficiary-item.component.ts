@@ -47,7 +47,6 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   showplus: boolean;
   itemAttrNames = [];
 
-
   constructor(public applicationService: ApplicationService,
               public dialog: DialogService,
               private modalService: ModalService) {
@@ -132,7 +131,15 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       console.log('columnSettings');
       this.getItemAttrNames();
     }
-    this.modalId = 'modal-' + this.itemType + this.index;
+    this.modalId = this.constructModalId();
+  }
+
+  constructModalId() {
+    if (this.contentTypeId) {
+      return 'modal-' + this.itemType + this.index + '-' + this.contentTypeId;
+    } else {
+      return 'modal-' + this.itemType + this.index;
+    }
   }
 
   ngAfterViewInit(): void {
@@ -187,7 +194,6 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
 
   deleteItem() {
     let propertyItem;
-    console.log('this.itemType: ', this.itemType);
     if (this.itemType === 'beneficiary') {
       propertyItem = 'beneficiaryId';
     } else if (this.itemType === 'agent') {
@@ -204,13 +210,11 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       propertyItem = 'idSportActivity';
     } else if (this.itemType === 'payment') {
       propertyItem = 'paymentId';
-      console.log('this.item: ', this.item);
     }
-    console.log('contentTypeId: ', this.contentTypeId);
     if (this.contentTypeId) {
       this.applicationService.removeItem(this.item[propertyItem], this.itemType, this.contentTypeId);
     } else {
-      this.applicationService.removeItem(this.item[propertyItem], this.itemType);
+      console.log('with out contentTypeId');
     }
     this.closeModal(this.modalId);
   }
@@ -328,10 +332,12 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   }
 
   closeModal(modalId: string) {
+    console.log('contentTypeId: from closeModal: ', this.contentTypeId);
     this.modalService.close(modalId);
   }
 
   executeOperation(delegateOperation: string) {
+    console.log('contentTypeId from executeOperation: ', this.contentTypeId);
     if (delegateOperation === 'closeModal') {
       this.closeModal(this.modalId);
     } else if (delegateOperation === 'deleteBeneficiary') {
