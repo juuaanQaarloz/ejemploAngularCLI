@@ -1156,10 +1156,10 @@ export class ApplicationService {
     return isValid;
   }
 
-  validateTable(tableType, tableId?: string) {
+  validateTable(tableType) {
     let isValid = true;
     let message = '';
-    console.log('tableType: ', tableType);
+    let valueQuestion;
 
     if (tableType === 'table-beneficiary') {
       const totalParticipationPercentage = this.getTotalParticipationPercentage('beneficiary');
@@ -1177,7 +1177,7 @@ export class ApplicationService {
         message = 'La suma de las participaciones entre beneficiarios no debe exceder el 100%';
       }
     } else if (tableType === 'table-payment') {
-      const valueQuestion = this.formGroup.controls.extremeSportsQuestion.value;
+      valueQuestion = this.formGroup.controls.extremeSportsQuestion.value;
       if ( valueQuestion && valueQuestion === 'T') {
         console.log('valueQuestion: ', valueQuestion);
         // validate table content
@@ -1207,7 +1207,7 @@ export class ApplicationService {
       // TODO: validation for table-coverage
     } else if (tableType === 'table-sports') {
       // check question value
-      const valueQuestion = this.formGroup.controls.extremeSportsQuestion.value;
+      valueQuestion = this.formGroup.controls.extremeSportsQuestion.value;
       if ( valueQuestion && valueQuestion === true) {
         console.log('valueQuestion: ', valueQuestion);
         // validate table content
@@ -1275,6 +1275,19 @@ export class ApplicationService {
         // validates that the totalPercentage of beneficiaries is 100%
         isValid = false;
         message = 'La suma de las participaciones entre agentes no debe exceder el 100%';
+      }
+    } else if (tableType === 'table-payment') {
+      valueQuestion = this.formGroup.controls.payMode.value;
+      if ( valueQuestion) {
+        console.log('valueQuestion: ', valueQuestion);
+        // validate table content
+        /*if (this.sports.getValue().length === 0) {
+          isValid = false;
+          message = 'Debe agregarse al menos un deporte / actvidad';
+        } else if (this.sports.getValue().length > 5) {
+          isValid = false;
+          message = 'No pueden agregarse más de 5 deportes / actividades';
+        }*/
       }
     } else if (tableType === 'documents') {
       // TODO: validation for documents
