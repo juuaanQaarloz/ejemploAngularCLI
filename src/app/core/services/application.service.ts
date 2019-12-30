@@ -668,7 +668,7 @@ export class ApplicationService {
 
       let name5 = updatedItem.name;
       let fatherLastName5 =  updatedItem.fatherLastName;
-      let motherLastName5 = updatedItem.motherLastName; 
+      let motherLastName5 = updatedItem.motherLastName;
 
       if (name5 !== '') {
         if (name5 === fatherLastName5) {
@@ -1077,6 +1077,7 @@ export class ApplicationService {
           }
         } else if (contentFromStep.contentType.includes('table')) {
           console.log('here2');
+          console.log('contentType: ', contentFromStep.contentType);
           const validateTableResult = this.validateTable(contentFromStep.contentType);
           console.log('res: ', validateTableResult);
           if (validateTableResult.status === false) {
@@ -1132,12 +1133,19 @@ export class ApplicationService {
     }
   }
 
-  validateFieldArray(fields: Field[]) {
+  validateFieldArray(fields: Field[], formGroup?: FormGroup) {
     let isValid = true;
+    let group;
+
+    if (formGroup) {
+      group = formGroup;
+    } else {
+      group = this.formGroup;
+    }
 
     fields.forEach(field => {
       if (!field.disable) {
-        field.valid = this.formGroup.controls[field.name].valid;
+        field.valid = group.controls[field.name].valid;
         if (field.valid === false) {
           console.log('field name: ', field.name);
           isValid = false;
@@ -1148,9 +1156,10 @@ export class ApplicationService {
     return isValid;
   }
 
-  validateTable(tableType) {
+  validateTable(tableType, tableId?: string) {
     let isValid = true;
     let message = '';
+    console.log('tableType: ', tableType);
 
     if (tableType === 'table-beneficiary') {
       const totalParticipationPercentage = this.getTotalParticipationPercentage('beneficiary');
@@ -1214,7 +1223,45 @@ export class ApplicationService {
       }
       console.log('validate table table-sports');
     } else if (tableType === 'table-diseases') {
-      // TODO: validation for table-diseases
+      const valueQuestion1 = this.formGroup.controls.diseasesQuestion.value;
+      const valueQuestion2 = this.formGroup.controls.medicalTestQuestion.value;
+      const valueQuestion3 = this.formGroup.controls.extraDiseasesQuestion.value;
+
+      if (valueQuestion1 && valueQuestion1 === true) {
+        console.log('valueQuestion1: ', valueQuestion1);
+        // validate table content
+        if (this.diseases.getValue().length === 0) {
+          isValid = false;
+          message = 'Debe agregarse al menos un enfermedad, lesión, estudio o tratamiento';
+        } else if (this.diseases.getValue().length > 10) {
+          isValid = false;
+          message = 'No pueden agregarse más de 10 enfermedad(es), lesión(es), estudio(s) o tratamiento(s)';
+        }
+      } else if (valueQuestion2 && valueQuestion2 === true) {
+        console.log('valueQuestion2: ', valueQuestion2);
+        // validate table content
+        if (this.diseases2.getValue().length === 0) {
+          isValid = false;
+          message = 'Debe agregarse al menos un enfermedad, lesión, estudio o tratamiento';
+        } else if (this.diseases2.getValue().length > 10) {
+          isValid = false;
+          message = 'No pueden agregarse más de 10 enfermedad(es), lesión(es), estudio(s) o tratamiento(s)';
+        }
+      } else if (valueQuestion3 && valueQuestion3 === true) {
+        console.log('valueQuestion3: ', valueQuestion3);
+        // validate table content
+        if (this.diseases3.getValue().length === 0) {
+          isValid = false;
+          message = 'Debe agregarse al menos un enfermedad, lesión, estudio o tratamiento';
+        } else if (this.diseases3.getValue().length > 10) {
+          isValid = false;
+          message = 'No pueden agregarse más de 10 enfermedad(es), lesión(es), estudio(s) o tratamiento(s)';
+        }
+      } else {
+        isValid = true;
+      }
+      console.log('validate table table-diseases');
+
     } else if (tableType === 'table-agent') {
       console.log('validate table table-agent');
       if (this.agents.getValue().length === 0) { // validates that is at least one beneficiary added in the table
