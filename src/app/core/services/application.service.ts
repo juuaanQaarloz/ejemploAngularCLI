@@ -48,6 +48,7 @@ const URL_CAT_MAX_OCCUPATION = '../assets/catalogs/max-occupation.json';
 const URL_CAT_MAXIMUM_SA = '../assets/catalogs/maximum-sa.json';
 const URL_CAT_OCCUPATION = '../assets/catalogs/occupation.json';
 const URL_CAT_PAYMENT_MODE = '../assets/catalogs/payment-mode.json';
+const URL_CAT_PAYMENT_METHOD = '../assets/catalogs/payment-method.json';
 const URL_CAT_PLAN = '../assets/catalogs/plan.json';
 const URL_CAT_PLAN_COVERAGE_PROVIDA = '../assets/catalogs/plan-coverage-provida.json';
 const URL_CAT_PREFERRED_CONTACT_DAY = '../assets/catalogs/preferred-contact-day.json';
@@ -1563,6 +1564,9 @@ export class ApplicationService {
       case 'paymentMode':
         urlCatalog = URL_CAT_PAYMENT_MODE;
         break;
+      case 'paymentMethod':
+        urlCatalog = URL_CAT_PAYMENT_METHOD;
+        break;  
       case 'plan':
         urlCatalog = URL_CAT_PLAN;
         break;
