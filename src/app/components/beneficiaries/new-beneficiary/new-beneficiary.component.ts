@@ -241,6 +241,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           break;
       }
       console.log('value: ', value);
+      console.log('field.name: ', field.name);
       this.formGroup.controls[field.name].setValue(value);
     });
   }
@@ -315,6 +316,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         motherLastName: this.formGroup.controls.beneficiaryMoLastName.value,
         relationship: this.formGroup.controls.beneficiaryRelationshipP.value,
         birthDateOrConstitution: transformDate(this.formGroup.controls.beneficiaryBirthDate.value, 'YYYY/MM/DD'),
+        addressSameAsTitular: this.formGroup.controls.sameAsTitular.value,
         address: {
           street: this.formGroup.controls.beneficiaryStreet.value,
           exteriorNumber: this.formGroup.controls.beneficiaryExteriorNumber.value,
@@ -385,6 +387,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         motherLastName: this.formGroup.controls.beneficiaryMoLastName.value,
         relationship: this.formGroup.controls.beneficiaryRelationshipP.value,
         birthDateOrConstitution: transformDate(this.formGroup.controls.beneficiaryBirthDate.value, 'YYYY/MM/DD'),
+        addressSameAsTitular: this.formGroup.controls.sameAsTitular.value,
         address: {
           street: this.formGroup.controls.beneficiaryStreet.value,
           exteriorNumber: this.formGroup.controls.beneficiaryExteriorNumber.value,
