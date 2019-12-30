@@ -46,6 +46,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   enableOperations: boolean;
   showplus: boolean;
   itemAttrNames = [];
+  tableIdFromModal: string;
 
 
   constructor(public applicationService: ApplicationService,
@@ -187,7 +188,6 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
 
   deleteItem() {
     let propertyItem;
-    console.log('this.itemType: ', this.itemType);
     if (this.itemType === 'beneficiary') {
       propertyItem = 'beneficiaryId';
     } else if (this.itemType === 'agent') {
@@ -206,10 +206,11 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
       propertyItem = 'paymentId';
       console.log('this.item: ', this.item);
     }
-    console.log('contentTypeId: ', this.contentTypeId);
     if (this.contentTypeId) {
+      console.log('contentTypeId: ', this.contentTypeId);
       this.applicationService.removeItem(this.item[propertyItem], this.itemType, this.contentTypeId);
     } else {
+      console.log('with out contentTypeId');
       this.applicationService.removeItem(this.item[propertyItem], this.itemType);
     }
     this.closeModal(this.modalId);
@@ -324,6 +325,8 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   }
 
   openModal(modalId: string) {
+    console.log('contentTypeId from openModal: ', this.contentTypeId);
+    this.tableIdFromModal = this.contentTypeId;
     this.modalService.open(modalId);
   }
 
@@ -332,10 +335,11 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   }
 
   executeOperation(delegateOperation: string) {
+    console.log('contentTypeId from executeOperation: ', this.contentTypeId);
     if (delegateOperation === 'closeModal') {
       this.closeModal(this.modalId);
     } else if (delegateOperation === 'deleteBeneficiary') {
-      this.deleteItem();
+      // this.deleteItem();
     }
   }
 

@@ -385,8 +385,12 @@ export class ApplicationService {
       propertyName = 'participationPercentage';
 
       let name5 = newItem.name.value; // this.formGroup.controls.beneficiaryName.value;
-      let fatherLastName5 =  newItem.fatherLastName.value; //this.formGroup.controls.beneficiaryFaLastName.value;
+      let fatherLastName5 =  newItem.fatherLastName.value; // this.formGroup.controls.beneficiaryFaLastName.value;
       let motherLastName5 = newItem.motherLastName.value; // this.formGroup.controls.beneficiaryMoLastName.value;
+
+      console.log('name5: ', name5);
+      console.log('fatherLastName5: ', fatherLastName5);
+      console.log('motherLastName5: ', motherLastName5);
       if (name5 !== '') {
         if (name5 === fatherLastName5) {
           if (name5 === motherLastName5) {
@@ -1566,7 +1570,7 @@ export class ApplicationService {
         break;
       case 'paymentMethod':
         urlCatalog = URL_CAT_PAYMENT_METHOD;
-        break;  
+        break;
       case 'plan':
         urlCatalog = URL_CAT_PLAN;
         break;
