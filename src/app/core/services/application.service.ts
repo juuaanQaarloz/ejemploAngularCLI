@@ -306,6 +306,10 @@ export class ApplicationService {
   getValidationFunctions(field: Field): any[] {
     let validationFunctions = [];
 
+    if (field.name === 'beneficiaryBirthDate') {
+      console.log('isRequired: ', field.required);
+    }
+
     if (field.required) {
       validationFunctions.push(Validators.required);
 
@@ -384,9 +388,10 @@ export class ApplicationService {
       responseMessage4 = 'La suma de los porcentajes de participación debe ser igual a 100%';
       propertyName = 'participationPercentage';
 
-      let name5 = newItem.name.value; // this.formGroup.controls.beneficiaryName.value;
-      let fatherLastName5 =  newItem.fatherLastName.value; //this.formGroup.controls.beneficiaryFaLastName.value;
-      let motherLastName5 = newItem.motherLastName.value; // this.formGroup.controls.beneficiaryMoLastName.value;
+      let name5 = newItem.name; // this.formGroup.controls.beneficiaryName.value;
+      let fatherLastName5 =  newItem.fatherLastName; //this.formGroup.controls.beneficiaryFaLastName.value;
+      let motherLastName5 = newItem.motherLastName; // this.formGroup.controls.beneficiaryMoLastName.value;
+
       if (name5 !== '') {
         if (name5 === fatherLastName5) {
           if (name5 === motherLastName5) {
@@ -635,6 +640,7 @@ export class ApplicationService {
     let responseMessage2;
     let responseMessage3;
     let responseMessage4;
+    let responseMessage5;
 
     if (itemType === 'beneficiary') {
       currentItems = this.beneficiaries.getValue();
@@ -651,6 +657,20 @@ export class ApplicationService {
       responseMessage2 = 'La suma de las participaciones de los beneficiarios excede el 100%';
       responseMessage3 = 'El porcentaje de participacion debe de ser mayor a 0';
       responseMessage4 = 'El nombre no puede ser igual al apellido paterno y materno';
+      responseMessage5 = 'El nombre, el apellido paterno y materno no puede ser el mismo';
+
+      let name5 = updatedItem.name;
+      let fatherLastName5 =  updatedItem.fatherLastName;
+      let motherLastName5 = updatedItem.motherLastName;
+
+      if (name5 !== '') {
+        if (name5 === fatherLastName5) {
+          if (name5 === motherLastName5) {
+            return {status: false, message: responseMessage5};
+          }
+        }
+      }
+
     } else if (itemType === 'agent') {
       currentItems = this.agents.getValue();
       propertyItem = 'agentId';
@@ -1050,6 +1070,7 @@ export class ApplicationService {
           }
         } else if (contentFromStep.contentType.includes('table')) {
           console.log('here2');
+          console.log('contentType: ', contentFromStep.contentType);
           const validateTableResult = this.validateTable(contentFromStep.contentType);
           console.log('res: ', validateTableResult);
           if (validateTableResult.status === false) {
@@ -1105,14 +1126,22 @@ export class ApplicationService {
     }
   }
 
-  validateFieldArray(fields: Field[]) {
+  validateFieldArray(fields: Field[], formGroup?: FormGroup) {
     let isValid = true;
+    let group;
+
+    if (formGroup) {
+      group = formGroup;
+    } else {
+      group = this.formGroup;
+    }
 
     fields.forEach(field => {
       if (!field.disable) {
-        field.valid = this.formGroup.controls[field.name].valid;
+        field.valid = group.controls[field.name].valid;
         if (field.valid === false) {
           console.log('field name: ', field.name);
+          console.log('errors: ', group.controls[field.name].errors);
           isValid = false;
         }
       }
@@ -1124,6 +1153,7 @@ export class ApplicationService {
   validateTable(tableType) {
     let isValid = true;
     let message = '';
+    let valueQuestion;
 
     if (tableType === 'table-beneficiary') {
       const totalParticipationPercentage = this.getTotalParticipationPercentage('beneficiary');
@@ -1141,7 +1171,7 @@ export class ApplicationService {
         message = 'La suma de las participaciones entre beneficiarios no debe exceder el 100%';
       }
     } else if (tableType === 'table-payment') {
-      const valueQuestion = this.formGroup.controls.extremeSportsQuestion.value;
+      valueQuestion = this.formGroup.controls.extremeSportsQuestion.value;
       if ( valueQuestion && valueQuestion === 'T') {
         console.log('valueQuestion: ', valueQuestion);
         // validate table content
@@ -1171,7 +1201,7 @@ export class ApplicationService {
       // TODO: validation for table-coverage
     } else if (tableType === 'table-sports') {
       // check question value
-      const valueQuestion = this.formGroup.controls.extremeSportsQuestion.value;
+      valueQuestion = this.formGroup.controls.extremeSportsQuestion.value;
       if ( valueQuestion && valueQuestion === true) {
         console.log('valueQuestion: ', valueQuestion);
         // validate table content
@@ -1187,7 +1217,45 @@ export class ApplicationService {
       }
       console.log('validate table table-sports');
     } else if (tableType === 'table-diseases') {
-      // TODO: validation for table-diseases
+      const valueQuestion1 = this.formGroup.controls.diseasesQuestion.value;
+      const valueQuestion2 = this.formGroup.controls.medicalTestQuestion.value;
+      const valueQuestion3 = this.formGroup.controls.extraDiseasesQuestion.value;
+
+      if (valueQuestion1 && valueQuestion1 === true) {
+        console.log('valueQuestion1: ', valueQuestion1);
+        // validate table content
+        if (this.diseases.getValue().length === 0) {
+          isValid = false;
+          message = 'Debe agregarse al menos un enfermedad, lesión, estudio o tratamiento';
+        } else if (this.diseases.getValue().length > 10) {
+          isValid = false;
+          message = 'No pueden agregarse más de 10 enfermedad(es), lesión(es), estudio(s) o tratamiento(s)';
+        }
+      } else if (valueQuestion2 && valueQuestion2 === true) {
+        console.log('valueQuestion2: ', valueQuestion2);
+        // validate table content
+        if (this.diseases2.getValue().length === 0) {
+          isValid = false;
+          message = 'Debe agregarse al menos un enfermedad, lesión, estudio o tratamiento';
+        } else if (this.diseases2.getValue().length > 10) {
+          isValid = false;
+          message = 'No pueden agregarse más de 10 enfermedad(es), lesión(es), estudio(s) o tratamiento(s)';
+        }
+      } else if (valueQuestion3 && valueQuestion3 === true) {
+        console.log('valueQuestion3: ', valueQuestion3);
+        // validate table content
+        if (this.diseases3.getValue().length === 0) {
+          isValid = false;
+          message = 'Debe agregarse al menos un enfermedad, lesión, estudio o tratamiento';
+        } else if (this.diseases3.getValue().length > 10) {
+          isValid = false;
+          message = 'No pueden agregarse más de 10 enfermedad(es), lesión(es), estudio(s) o tratamiento(s)';
+        }
+      } else {
+        isValid = true;
+      }
+      console.log('validate table table-diseases');
+
     } else if (tableType === 'table-agent') {
       console.log('validate table table-agent');
       if (this.agents.getValue().length === 0) { // validates that is at least one beneficiary added in the table
@@ -1201,6 +1269,19 @@ export class ApplicationService {
         // validates that the totalPercentage of beneficiaries is 100%
         isValid = false;
         message = 'La suma de las participaciones entre agentes no debe exceder el 100%';
+      }
+    } else if (tableType === 'table-payment') {
+      valueQuestion = this.formGroup.controls.payMode.value;
+      if ( valueQuestion) {
+        console.log('valueQuestion: ', valueQuestion);
+        // validate table content
+        /*if (this.sports.getValue().length === 0) {
+          isValid = false;
+          message = 'Debe agregarse al menos un deporte / actvidad';
+        } else if (this.sports.getValue().length > 5) {
+          isValid = false;
+          message = 'No pueden agregarse más de 5 deportes / actividades';
+        }*/
       }
     } else if (tableType === 'documents') {
       // TODO: validation for documents

@@ -8,6 +8,10 @@ export const validatorsObjects = [
     validationFunctions: [DateValidator]
   },
   {
+    nameField: 'birthDateS',
+    validationFunctions: [DateValidator]
+  },
+  {
     nameField: 'age',
     validationFunctions: [rangeValidator(18, 70)]
   },
@@ -21,6 +25,10 @@ export const validatorsObjects = [
   },
   {
     nameField: 'beneficiaryBirthDate',
+    validationFunctions: [DateValidator]
+  },
+  {
+    nameField: 'beneficiaryConstitutionDate',
     validationFunctions: [DateValidator]
   },
   {

@@ -22,7 +22,7 @@ import {
   MatDatepickerModule,
   MatIconModule,
   MatInputModule,
-  MatNativeDateModule,
+  MatNativeDateModule, MatProgressSpinnerModule,
   MatSelectModule
 } from '@angular/material';
 import { CustomDatepickerComponent } from './components/custom-datepicker/custom-datepicker.component';
@@ -116,7 +116,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     MatSelectModule,
     MatAutocompleteModule,
     AppRoutingModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatProgressSpinnerModule
   ],
   bootstrap: [AppComponent],
   entryComponents: [NewBeneficiaryComponent, NewFormatwoComponent, NewAgentComponent, NewCountryComponent,

@@ -39,7 +39,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   disable: boolean;
   regExpPattern;
   regnNoAllowedCharactersExpPattern;
-  loading = true;
+  loading = false;
   modalID = 'modal-warning1';
   modalMessage = 'La suma de las participaciones de los agentes excede el 100%';
   fileName: string;
@@ -97,6 +97,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     if (this.fieldObj.requiredConditions) {
       const dependedFields = this.applicationService.getDependedFields(this.fieldObj.requiredConditions);
       this.fieldObj.required = this.applicationService.evaluateConditions(this.fieldObj.requiredConditions, this.form);
+      /*if (this.fieldObj.name === 'beneficiaryBirthDate') {
+        console.log('this.applicationService.getValidationFunctions(this.fieldObj): ',
+          this.applicationService.getValidationFunctions(this.fieldObj));
+      }*/
+      // this.form.controls[this.fieldObj.name].setValidators(this.applicationService.getValidationFunctions(this.fieldObj));
+      // this.form.controls[this.fieldObj.name].updateValueAndValidity();
 
       dependedFields.forEach((dependedField) => {
         this.form.controls[dependedField].valueChanges.subscribe((value) => {
@@ -542,9 +548,14 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         this.fieldObj.message = 'La participación no puede ser 0';
       }
     }
-    if (valid) {
-      this.isValid();
+    if (this.fieldObj.name === 'additionalCost') {
+      //  console.log('Entro en savingsGoal: ');
+      const additionalCost = this.form.controls.additionalCost.value;
+      if (Number(additionalCost) > Number(0.00)) {
+        this.setValueField('additionalCost', 'txtAdditionalCost', addCurrencyFormat(additionalCost));
+      }
     }
+
     if (this.fieldObj.name === 'assuredImport') {
       const currency = this.form.controls.currency.value;
       const assuredImport = this.form.controls.assuredImport.value;
@@ -567,22 +578,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         }
       }
     }
-
-    /* if (this.fieldObj.name === 'savingsGoal') {
-      const savingsGoal = this.form.controls.savingsGoal.value;
-      if (Number(savingsGoal) > Number(0.00)) {
-        this.setValueField('savingsGoal', 'txtSavingsGoal', addCurrencyFormat(savingsGoal));
-      }
-    } */
-
-    if (this.fieldObj.name === 'additionalCost') {
-     //  console.log('Entro en savingsGoal: ');
-      const additionalCost = this.form.controls.additionalCost.value;
-      if (Number(additionalCost) > Number(0.00)) {
-        this.setValueField('additionalCost', 'txtAdditionalCost', addCurrencyFormat(additionalCost));
-      }
+    // las validaciones deben estar antes
+    if (valid) {
+      this.isValid();
     }
-    // contractorType
   }
 
   onValidate(event) {
@@ -648,7 +647,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           });
 
           if (this.fieldObj.type === 'autocomplete') {
-            this.loading = false;
+            this.loading = true;
           }
           // console.log('autoComplete: ', this.autocompleteOptions);
         }
@@ -698,14 +697,20 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       }
 
     } else {
-      // this.valid =  this.form.controls[this.fieldObj.name].valid;
       this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+      if (this.autocompleteOptions.length > 0 && this.fieldObj.type === 'autocomplete') {
+        const searchResult =  this.autocompleteOptions.filter(
+          autoCompleteOpt => autoCompleteOpt.name === this.form.controls[this.fieldObj.name].value)[0];
+        console.log('searchResult: ', searchResult);
+        if (searchResult) {
+          this.fieldObj.valid = true;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      }
+      console.log('this.fieldObj.valid from isValid: ', this.fieldObj.valid);
+      console.log('this.form.controls[this.fieldObj.name].valid: ', this.form.controls[this.fieldObj.name].valid);
     }
-
-    /*if (!this.fieldObj.valid) {
-      console.log('errors: ', this.form.controls[this.fieldObj.name].errors);
-    }*/
-
   }
 
   registerCustomIcons() {
