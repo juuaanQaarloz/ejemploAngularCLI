@@ -48,6 +48,7 @@ const URL_CAT_MAX_OCCUPATION = '../assets/catalogs/max-occupation.json';
 const URL_CAT_MAXIMUM_SA = '../assets/catalogs/maximum-sa.json';
 const URL_CAT_OCCUPATION = '../assets/catalogs/occupation.json';
 const URL_CAT_PAYMENT_MODE = '../assets/catalogs/payment-mode.json';
+const URL_CAT_PAYMENT_METHOD = '../assets/catalogs/payment-method.json';
 const URL_CAT_PLAN = '../assets/catalogs/plan.json';
 const URL_CAT_PLAN_COVERAGE_PROVIDA = '../assets/catalogs/plan-coverage-provida.json';
 const URL_CAT_PREFERRED_CONTACT_DAY = '../assets/catalogs/preferred-contact-day.json';
@@ -386,6 +387,7 @@ export class ApplicationService {
       let name5 = newItem.name; // this.formGroup.controls.beneficiaryName.value;
       let fatherLastName5 =  newItem.fatherLastName; //this.formGroup.controls.beneficiaryFaLastName.value;
       let motherLastName5 = newItem.motherLastName; // this.formGroup.controls.beneficiaryMoLastName.value;
+
       if (name5 !== '') {
         if (name5 === fatherLastName5) {
           if (name5 === motherLastName5) {
@@ -641,6 +643,7 @@ export class ApplicationService {
     let responseMessage2;
     let responseMessage3;
     let responseMessage4;
+    let responseMessage5;
 
     if (itemType === 'beneficiary') {
       currentItems = this.beneficiaries.getValue();
@@ -657,6 +660,20 @@ export class ApplicationService {
       responseMessage2 = 'La suma de las participaciones de los beneficiarios excede el 100%';
       responseMessage3 = 'El porcentaje de participacion debe de ser mayor a 0';
       responseMessage4 = 'El nombre no puede ser igual al apellido paterno y materno';
+      responseMessage5 = 'El nombre, el apellido paterno y materno no puede ser el mismo';
+
+      let name5 = updatedItem.name;
+      let fatherLastName5 =  updatedItem.fatherLastName;
+      let motherLastName5 = updatedItem.motherLastName; 
+
+      if (name5 !== '') {
+        if (name5 === fatherLastName5) {
+          if (name5 === motherLastName5) {
+            return {status: false, message: responseMessage5};
+          }
+        }
+      }
+
     } else if (itemType === 'agent') {
       currentItems = this.agents.getValue();
       propertyItem = 'agentId';
@@ -1562,6 +1579,9 @@ export class ApplicationService {
         break;
       case 'paymentMode':
         urlCatalog = URL_CAT_PAYMENT_MODE;
+        break;
+      case 'paymentMethod':
+        urlCatalog = URL_CAT_PAYMENT_METHOD;
         break;
       case 'plan':
         urlCatalog = URL_CAT_PLAN;
