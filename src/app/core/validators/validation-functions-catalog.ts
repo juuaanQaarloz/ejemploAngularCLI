@@ -28,6 +28,10 @@ export const validatorsObjects = [
     validationFunctions: [DateValidator]
   },
   {
+    nameField: 'beneficiaryConstitutionDate',
+    validationFunctions: [DateValidator]
+  },
+  {
     nameField: 'weight',
     validationFunctions: [rangeValidator(2.00, 400.00)]
   },

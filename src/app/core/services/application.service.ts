@@ -306,6 +306,10 @@ export class ApplicationService {
   getValidationFunctions(field: Field): any[] {
     let validationFunctions = [];
 
+    if (field.name === 'beneficiaryBirthDate') {
+      console.log('isRequired: ', field.required);
+    }
+
     if (field.required) {
       validationFunctions.push(Validators.required);
 
@@ -388,9 +392,6 @@ export class ApplicationService {
       let fatherLastName5 =  newItem.fatherLastName.value; // this.formGroup.controls.beneficiaryFaLastName.value;
       let motherLastName5 = newItem.motherLastName.value; // this.formGroup.controls.beneficiaryMoLastName.value;
 
-      console.log('name5: ', name5);
-      console.log('fatherLastName5: ', fatherLastName5);
-      console.log('motherLastName5: ', motherLastName5);
       if (name5 !== '') {
         if (name5 === fatherLastName5) {
           if (name5 === motherLastName5) {

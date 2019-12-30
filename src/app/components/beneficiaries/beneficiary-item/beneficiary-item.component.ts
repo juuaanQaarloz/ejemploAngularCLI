@@ -339,7 +339,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
     if (delegateOperation === 'closeModal') {
       this.closeModal(this.modalId);
     } else if (delegateOperation === 'deleteBeneficiary') {
-      // this.deleteItem();
+      this.deleteItem();
     }
   }
 

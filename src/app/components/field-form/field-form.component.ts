@@ -97,6 +97,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     if (this.fieldObj.requiredConditions) {
       const dependedFields = this.applicationService.getDependedFields(this.fieldObj.requiredConditions);
       this.fieldObj.required = this.applicationService.evaluateConditions(this.fieldObj.requiredConditions, this.form);
+      /*if (this.fieldObj.name === 'beneficiaryBirthDate') {
+        console.log('this.applicationService.getValidationFunctions(this.fieldObj): ',
+          this.applicationService.getValidationFunctions(this.fieldObj));
+      }*/
+      // this.form.controls[this.fieldObj.name].setValidators(this.applicationService.getValidationFunctions(this.fieldObj));
+      // this.form.controls[this.fieldObj.name].updateValueAndValidity();
 
       dependedFields.forEach((dependedField) => {
         this.form.controls[dependedField].valueChanges.subscribe((value) => {
