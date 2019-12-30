@@ -1148,6 +1148,7 @@ export class ApplicationService {
         field.valid = group.controls[field.name].valid;
         if (field.valid === false) {
           console.log('field name: ', field.name);
+          console.log('errors: ', group.controls[field.name].errors);
           isValid = false;
         }
       }
