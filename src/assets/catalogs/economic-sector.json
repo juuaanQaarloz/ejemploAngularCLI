@@ -2,13 +2,13 @@
   "catalogData": {
     "catalogInfo": {
       "version": "1",
-      "name": "PRODUCT_PRIVATE",
-      "numColumns": 5,
+      "name": "ECONOMIC_SECTOR_PRIVATE",
+      "numColumns": 7,
       "owner": "IPRE",
       "status": "ACTIVO",
       "columns": [
         {
-          "name": "key",
+          "name": "sectorId",
           "type": "VARCHAR",
           "length": 2,
           "format": "",
@@ -16,11 +16,11 @@
           "pkIndicator": true,
           "prnIndicator": true,
           "status": "ACTIVO",
-          "id": 3524,
-          "idcatalog": 119
+          "id": 3401,
+          "idcatalog": 113
         },
         {
-          "name": "keyValue",
+          "name": "sectorName",
           "type": "VARCHAR",
           "length": 50,
           "format": "",
@@ -28,8 +28,32 @@
           "pkIndicator": true,
           "prnIndicator": true,
           "status": "ACTIVO",
-          "id": 3525,
-          "idcatalog": 119
+          "id": 3402,
+          "idcatalog": 113
+        },
+        {
+          "name": "status",
+          "type": "VARCHAR",
+          "length": 8,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3403,
+          "idcatalog": 113
+        },
+        {
+          "name": "description",
+          "type": "VARCHAR",
+          "length": 100,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3404,
+          "idcatalog": 113
         },
         {
           "name": "product",
@@ -40,8 +64,8 @@
           "pkIndicator": true,
           "prnIndicator": true,
           "status": "ACTIVO",
-          "id": 3526,
-          "idcatalog": 119
+          "id": 3405,
+          "idcatalog": 113
         },
         {
           "name": "lineBussines",
@@ -52,8 +76,8 @@
           "pkIndicator": true,
           "prnIndicator": true,
           "status": "ACTIVO",
-          "id": 3527,
-          "idcatalog": 119
+          "id": 3406,
+          "idcatalog": 113
         },
         {
           "name": "company",
@@ -64,18 +88,20 @@
           "pkIndicator": true,
           "prnIndicator": true,
           "status": "ACTIVO",
-          "id": 3528,
-          "idcatalog": 119
+          "id": 3407,
+          "idcatalog": 113
         }
       ],
-      "id": 119
+      "id": 113
     },
     "extension": {
       "variations": [
         {
           "rowID": 1,
-          "key": "MU",
-          "keyValue": "MUJER",
+          "sectorId": "01",
+          "sectorName": "INDUSTRIA",
+          "status": "ACTIVO",
+          "description": "\"Artesano, constructor, etc.\"",
           "product": "META",
           "lineBussines": "PRIVADO",
           "company": null,
@@ -83,8 +109,10 @@
         },
         {
           "rowID": 2,
-          "key": "ED",
-          "keyValue": "EDUCACIÓN",
+          "sectorId": "02",
+          "sectorName": "SERVICIOS",
+          "status": "ACTIVO",
+          "description": "\"Comercio, Transporte, etc.\"",
           "product": "META",
           "lineBussines": "PRIVADO",
           "company": null,
@@ -92,8 +120,10 @@
         },
         {
           "rowID": 3,
-          "key": "TF",
-          "keyValue": "TU FUTURO",
+          "sectorId": "03",
+          "sectorName": "ACTIVIDADES AGROPECUARIAS",
+          "status": "ACTIVO",
+          "description": "\"Agricultor, Pizcador, Floricultor, etc.\"",
           "product": "META",
           "lineBussines": "PRIVADO",
           "company": null,
@@ -101,8 +131,21 @@
         },
         {
           "rowID": 4,
-          "key": "RE",
-          "keyValue": "RETIRO",
+          "sectorId": "04",
+          "sectorName": "GOBIERNO",
+          "status": "ACTIVO",
+          "description": "\"Diputado, Policia, Tesorero, etc.\"",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 5,
+          "sectorId": "05",
+          "sectorName": "OTRO",
+          "status": "ACTIVO",
+          "description": null,
           "product": "META",
           "lineBussines": "PRIVADO",
           "company": null,
@@ -111,8 +154,8 @@
       ]
     },
     "metadata": {
-      "recordCount": 4,
-      "offset": 4159990
+      "recordCount": 5,
+      "offset": 4139136
     }
   },
   "link": {

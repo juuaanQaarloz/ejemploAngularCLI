@@ -778,7 +778,7 @@ export const MockContentStep12Process1ContentSection2: Content[] = [
     // process?: Process;
     // fields: Beneficiarios,
     // operations?: Operation[];
-    renderConditions: '(payMode!=Z)',
+    renderConditions: '(payMode>1)',
     // ---pending---
     // contentChildren?: Array<Content>;
     // -------------

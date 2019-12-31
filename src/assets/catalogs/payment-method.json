@@ -1,60 +1,121 @@
 {
-  "paymentMethod": [
-    { 
-      "rowID":1,
-      "paymentTypeId":"1",
-      "description":"EFECTIVO",
-      "prodId":"P",
-      "paymentId":"Z",
-      "product":"META",
-      "lineBussines":"PRIVADO",
-      "company":null,
-      "locale":"es-MX"
-   },
-   { 
-      "rowID":2,
-      "paymentTypeId":"2",
-      "description":"TARJETA DE DEBITO",
-      "prodId":"P",
-      "paymentId":"C",
-      "product":"META",
-      "lineBussines":"PRIVADO",
-      "company":null,
-      "locale":"es-MX"
-   },
-   { 
-      "rowID":3,
-      "paymentTypeId":"3",
-      "description":"TARJETA DE CREDITO",
-      "prodId":"P",
-      "paymentId":"X",
-      "product":"META",
-      "lineBussines":"PRIVADO",
-      "company":null,
-      "locale":"es-MX"
-   },
-   { 
-      "rowID":4,
-      "paymentTypeId":"4",
-      "description":"CLABE",
-      "prodId":"P",
-      "paymentId":"E",
-      "product":"META",
-      "lineBussines":"PRIVADO",
-      "company":null,
-      "locale":"es-MX"
-   },
-   { 
-      "rowID":5,
-      "paymentTypeId":"5",
-      "description":"AMEX",
-      "prodId":"P",
-      "paymentId":"A",
-      "product":"META",
-      "lineBussines":"PRIVADO",
-      "company":null,
-      "locale":"es-MX"
-   }
-]
-
+  "catalogData": {
+    "catalogInfo": {
+      "version": "1",
+      "name": "PAYMENT_METHOD_PRIVATE",
+      "numColumns": 5,
+      "owner": "IPRE",
+      "status": "ACTIVO",
+      "columns": [
+        {
+          "name": "key",
+          "type": "VARCHAR",
+          "length": 2,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3677,
+          "idcatalog": 134
+        },
+        {
+          "name": "keyValue",
+          "type": "VARCHAR",
+          "length": 50,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3678,
+          "idcatalog": 134
+        },
+        {
+          "name": "product",
+          "type": "VARCHAR",
+          "length": 10,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3679,
+          "idcatalog": 134
+        },
+        {
+          "name": "lineBussines",
+          "type": "VARCHAR",
+          "length": 50,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3680,
+          "idcatalog": 134
+        },
+        {
+          "name": "company",
+          "type": "VARCHAR",
+          "length": 50,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3681,
+          "idcatalog": 134
+        }
+      ],
+      "id": 134
+    },
+    "extension": {
+      "variations": [
+        {
+          "rowID": 1,
+          "key": "1",
+          "keyValue": "ANUAL",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 2,
+          "key": "2",
+          "keyValue": "SEMESTRAL",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 3,
+          "key": "3",
+          "keyValue": "TRIMESTRAL",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 4,
+          "key": "4",
+          "keyValue": "MENSUAL",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        }
+      ]
+    },
+    "metadata": {
+      "recordCount": 4,
+      "offset": 4187523
+    }
+  },
+  "link": {
+    "link": null
+  }
 }

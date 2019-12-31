@@ -1,40 +1,164 @@
 {
-  "paymentMode": [
-    {
-      "number": "1",
-      "value": "1",
-      "name": "Mensual",
-      "lastUpdatedDate": "11/28/2019 01:00:00",
-      "locale": "es-MX"
+  "catalogData": {
+    "catalogInfo": {
+      "version": "1",
+      "name": "PAYMENT_TYPE_PRIVATE",
+      "numColumns": 7,
+      "owner": "IPRE",
+      "status": "ACTIVO",
+      "columns": [
+        {
+          "name": "paymentTypeId",
+          "type": "VARCHAR",
+          "length": 2,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3622,
+          "idcatalog": 126
+        },
+        {
+          "name": "description",
+          "type": "VARCHAR",
+          "length": 20,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3623,
+          "idcatalog": 126
+        },
+        {
+          "name": "prodId",
+          "type": "VARCHAR",
+          "length": 2,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3624,
+          "idcatalog": 126
+        },
+        {
+          "name": "paymentId",
+          "type": "VARCHAR",
+          "length": 5,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3625,
+          "idcatalog": 126
+        },
+        {
+          "name": "product",
+          "type": "VARCHAR",
+          "length": 10,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3626,
+          "idcatalog": 126
+        },
+        {
+          "name": "lineBussines",
+          "type": "VARCHAR",
+          "length": 50,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3627,
+          "idcatalog": 126
+        },
+        {
+          "name": "company",
+          "type": "VARCHAR",
+          "length": 50,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3628,
+          "idcatalog": 126
+        }
+      ],
+      "id": 126
     },
-    {
-      "number": "2",
-      "value": "2",
-      "name": "Bimestral",
-      "lastUpdatedDate": "11/28/2019 01:00:00",
-      "locale": "es-MX"
+    "extension": {
+      "variations": [
+        {
+          "rowID": 1,
+          "paymentTypeId": "1",
+          "description": "EFECTIVO",
+          "prodId": "P",
+          "paymentId": "Z",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 2,
+          "paymentTypeId": "2",
+          "description": "TARJETA DE DEBITO",
+          "prodId": "P",
+          "paymentId": "C",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 3,
+          "paymentTypeId": "3",
+          "description": "TARJETA DE CREDITO",
+          "prodId": "P",
+          "paymentId": "X",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 4,
+          "paymentTypeId": "4",
+          "description": "CLABE",
+          "prodId": "P",
+          "paymentId": "E",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 5,
+          "paymentTypeId": "5",
+          "description": "AMEX",
+          "prodId": "P",
+          "paymentId": "A",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        }
+      ]
     },
-    {
-      "number": "3",
-      "value": "3",
-      "name": "Trimestral",
-      "lastUpdatedDate": "11/28/2019 01:00:00",
-      "locale": "es-MX"
-    },
-    {
-      "number": "6",
-      "value": "6",
-      "name": "Semestral",
-      "lastUpdatedDate": "11/28/2019 01:00:00",
-      "locale": "es-MX"
-    },
-    {
-      "number": "12",
-      "value": "12",
-      "name": "Anual",
-      "lastUpdatedDate": "11/28/2019 01:00:00",
-      "locale": "es-MX"
+    "metadata": {
+      "recordCount": 5,
+      "offset": 4170460
     }
-  ]
-
+  },
+  "link": {
+    "link": null
+  }
 }

@@ -22,7 +22,7 @@ const FIELDS: Field[] = [
     noAllowedCharactersPattern: '/[^a-zA-ZñÑ\\s]/',
     source: 'IPRE',
     sourceID: 'occupation',
-    sourceStructure: ['number', 'name', 'value'],
+    sourceStructure: ['occupationId', 'name', 'occupationId'],
     /*sourceStructure: ['id', 'specificOccupationName', 'specificOccupationAlias', 'specificOccupationCode', 'companyName',
                       'ocupationZipCode', 'occupationDetails', 'occupationIncome'],*/
     style: '',
@@ -91,14 +91,16 @@ export class SearchOccupationComponent implements OnInit {
   }
 
   searchOccupation(keyWord: string) {
-    // // console.log('buscando ocupacion...', keyWord);
+    console.log('buscando ocupacion...', keyWord);
     this.foundOccupations = [];
     this.appService.getCatalogById(FIELDS[0].sourceID, FIELDS[0].source).subscribe((occupations: Occupation[]) => {
+      console.log(occupations);
       occupations.forEach((occupation) => {
-        if (occupation.specificOccupationName.includes(keyWord.toUpperCase())) {
+        if (occupation.name.includes(keyWord.toUpperCase())) {
           this.foundOccupations.push(occupation);
         }
       });
+      console.log(this.foundOccupations.length);
       if (this.foundOccupations.length === 0) {
         this.notResultsFound = true;
       } else {

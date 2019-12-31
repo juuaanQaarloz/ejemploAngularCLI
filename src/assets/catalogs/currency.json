@@ -2,34 +2,46 @@
   "catalogData": {
     "catalogInfo": {
       "version": "1",
-      "name": "PRODUCT_PRIVATE",
-      "numColumns": 5,
+      "name": "CURRENCY_PRIVATE",
+      "numColumns": 6,
       "owner": "IPRE",
       "status": "ACTIVO",
       "columns": [
         {
-          "name": "key",
+          "name": "currencyPrivId",
           "type": "VARCHAR",
-          "length": 2,
+          "length": 6,
           "format": "",
           "nullIndicator": true,
           "pkIndicator": true,
           "prnIndicator": true,
           "status": "ACTIVO",
-          "id": 3524,
-          "idcatalog": 119
+          "id": 3601,
+          "idcatalog": 122
         },
         {
-          "name": "keyValue",
+          "name": "description",
           "type": "VARCHAR",
-          "length": 50,
+          "length": 40,
           "format": "",
           "nullIndicator": true,
           "pkIndicator": true,
           "prnIndicator": true,
           "status": "ACTIVO",
-          "id": 3525,
-          "idcatalog": 119
+          "id": 3602,
+          "idcatalog": 122
+        },
+        {
+          "name": "fare",
+          "type": "VARCHAR",
+          "length": 9,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3603,
+          "idcatalog": 122
         },
         {
           "name": "product",
@@ -40,8 +52,8 @@
           "pkIndicator": true,
           "prnIndicator": true,
           "status": "ACTIVO",
-          "id": 3526,
-          "idcatalog": 119
+          "id": 3604,
+          "idcatalog": 122
         },
         {
           "name": "lineBussines",
@@ -52,8 +64,8 @@
           "pkIndicator": true,
           "prnIndicator": true,
           "status": "ACTIVO",
-          "id": 3527,
-          "idcatalog": 119
+          "id": 3605,
+          "idcatalog": 122
         },
         {
           "name": "company",
@@ -64,45 +76,29 @@
           "pkIndicator": true,
           "prnIndicator": true,
           "status": "ACTIVO",
-          "id": 3528,
-          "idcatalog": 119
+          "id": 3606,
+          "idcatalog": 122
         }
       ],
-      "id": 119
+      "id": 122
     },
     "extension": {
       "variations": [
         {
+          "rowID": 0,
+          "currencyPrivId": "0",
+          "description": "PESO MEXICANO",
+          "fare": "1",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
           "rowID": 1,
-          "key": "MU",
-          "keyValue": "MUJER",
-          "product": "META",
-          "lineBussines": "PRIVADO",
-          "company": null,
-          "locale": "es-MX"
-        },
-        {
-          "rowID": 2,
-          "key": "ED",
-          "keyValue": "EDUCACIÓN",
-          "product": "META",
-          "lineBussines": "PRIVADO",
-          "company": null,
-          "locale": "es-MX"
-        },
-        {
-          "rowID": 3,
-          "key": "TF",
-          "keyValue": "TU FUTURO",
-          "product": "META",
-          "lineBussines": "PRIVADO",
-          "company": null,
-          "locale": "es-MX"
-        },
-        {
-          "rowID": 4,
-          "key": "RE",
-          "keyValue": "RETIRO",
+          "currencyPrivId": "1",
+          "description": "DOLLAR AMERICANO",
+          "fare": "\"20,007\"",
           "product": "META",
           "lineBussines": "PRIVADO",
           "company": null,
@@ -111,8 +107,8 @@
       ]
     },
     "metadata": {
-      "recordCount": 4,
-      "offset": 4159990
+      "recordCount": 2,
+      "offset": 4170448
     }
   },
   "link": {
