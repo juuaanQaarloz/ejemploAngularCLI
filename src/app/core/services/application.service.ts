@@ -60,6 +60,13 @@ const URL_CAT_RELATIONSHIP_COVERAGE = '../assets/catalogs/relationship-coverage.
 const URL_CAT_RETENEDOR = '../assets/catalogs/retenedor.json';
 const URL_CAT_SUB_IDENTIFICATION_TYPE = '../assets/catalogs/sub-identification-type.json';
 const URL_CAT_GUARD_BOX_OPTIONS = '../assets/catalogs/guard-box-options.json';
+const URL_CAT_ECONOMIC_SECTOR_OPTIONS = '../assets/catalogs/economic-sector.json';
+const URL_CAT_BANK_OPTIONS = '../assets/catalogs/bank.json';
+const URL_CURRENCY_OPTIONS = '../assets/catalogs/currency.json';
+const URL_CILINDRADA_OPTIONS = '../assets/catalogs/cilindrada.json';
+const URL_SPORTS_OPTIONS = '../assets/catalogs/sports.json';
+const URL_DISEASES_OPTIONS = '../assets/catalogs/diseases.json';
+const URL_COVERAGE_OPTIONS = '../assets/catalogs/coverage-options.json';
 
 
 
@@ -87,6 +94,8 @@ export class ApplicationService {
   formGroup: FormGroup;
   searchModalFrom: string;
   applicationObj;
+
+  contador = 0;
 
   constructor(private httpClient: HttpClient,
               private modalService: ModalService) {
@@ -463,17 +472,13 @@ export class ApplicationService {
     }
 
     if (currentTotalParticipationPercentage !== undefined) {
-      console.log(1);
       // when is a max participation limit
       if (currentTotalParticipationPercentage + Number(newItem[propertyName]) <= 100) {
-        console.log(2);
         // when is a maxItems limit
-        if (currentItems.length <= maxLength -1) {
-          console.log(3);
+        if (currentItems.length <= (maxLength - 1)) {
           // the new item can be added
           if (Number(newItem[propertyName]) > 0) {
-            console.log(4);
-            if ( currentItems.length === maxLength -1 ) {
+            if ( currentItems.length === (maxLength - 1) ) {
               if ( currentTotalParticipationPercentage + Number(newItem[propertyName]) === 100) {
                 currentItems.push(newItem);
                 if (idTable) {
@@ -496,15 +501,12 @@ export class ApplicationService {
               return {status: true, message: ''};
             }
           } else {
-            console.log(5);
             return {status: false, message: responseMessage3};
           }
         } else {
-          console.log(6);
           return {status: false, message: responseMessage1};
         }
       } else {
-        console.log(7);
         return {status: false, message: responseMessage2};
       }
     } else if (maxLength !== undefined) {
@@ -1018,19 +1020,32 @@ export class ApplicationService {
 
   setSelectedOccupation(selectedOccupation: Occupation) {
     // console.log('searchModalFrom: ', this.searchModalFrom);
+    console.log('Selected: ');
+    console.log(selectedOccupation);
     let formControlName;
+    let formControlNameTwo;
     let htmlID;
+    let htmlIDTwo;
     if (this.searchModalFrom === 'contractor') {
       formControlName = 'occupation';
+      formControlNameTwo = 'detailOccupation';
       htmlID = 'txtOccupation';
+      htmlIDTwo = 'txtDetailOccupation';
 
     } else if (this.searchModalFrom === 'applicant') {
       formControlName = 'occupationS';
+      formControlNameTwo = 'detailOccupationS';
       htmlID = 'txtOccupationS';
+      htmlIDTwo = 'txtDetailOccupationS';
     }
-    this.formGroup.controls[formControlName].setValue(selectedOccupation.specificOccupationName);
+    // this.formGroup.controls[formControlName].setValue(selectedOccupation.specificOccupationName);
+    this.formGroup.controls[formControlName].setValue(selectedOccupation.name);
+    this.formGroup.controls[formControlNameTwo].setValue(selectedOccupation.alias);
     const ele = document.getElementById(htmlID);
-    ele.setAttribute('value', selectedOccupation.specificOccupationName);
+    const element = document.getElementById(htmlIDTwo);
+    // ele.setAttribute('value', selectedOccupation.specificOccupationName);
+    ele.setAttribute('value', selectedOccupation.name);
+    element.setAttribute('value', selectedOccupation.alias);
   }
 
   getInfoFromSepomex(zipCode: string): Observable<SepomexObj> {
@@ -1589,10 +1604,12 @@ export class ApplicationService {
       msg: message
     };
   }
+
   // @ts-ignore
   getCatalog(id: string, source: string): Observable<[]> {
     console.log('getCatalog --> id: ' + id + ' , source: ' + source);
     let urlCatalog = '';
+    const catalogos = 'catalogData';
     switch (id) {
       case 'addresType':
         urlCatalog = URL_CAT_ADDRESS_TYPE;
@@ -1681,11 +1698,38 @@ export class ApplicationService {
       case 'guardBoxOptions':
         urlCatalog = URL_CAT_GUARD_BOX_OPTIONS;
         break;
+      case 'economic-sector':
+        urlCatalog = URL_CAT_ECONOMIC_SECTOR_OPTIONS;
+        break;
+      case 'bank':
+        urlCatalog = URL_CAT_BANK_OPTIONS;
+        break;
+      case 'currency':
+        urlCatalog = URL_CURRENCY_OPTIONS;
+        break;
+      case 'cilindrada':
+        urlCatalog = URL_CILINDRADA_OPTIONS;
+        break;
+      case 'sports':
+        urlCatalog = URL_SPORTS_OPTIONS;
+        break;
+      case 'diseases':
+        urlCatalog = URL_DISEASES_OPTIONS;
+        break;
+      case 'coverageOptions':
+        urlCatalog = URL_COVERAGE_OPTIONS;
+        break;
     }
     return this.httpClient.get(urlCatalog)
       .pipe(
         map((catalog) => {
-          return catalog[id];
+          this.contador++;
+          if ( catalog[catalogos] ) {
+            return catalog[catalogos].extension.variations;
+          } else {
+            console.log(urlCatalog);
+            return null;
+          }
         })
       );
   }

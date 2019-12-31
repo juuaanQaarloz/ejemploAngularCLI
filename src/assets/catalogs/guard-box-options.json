@@ -1,15 +1,71 @@
 {
-  "guardBoxOptions" : [
-    {
-      "id": 0,
-      "label": "Si",
-      "value": true
+  "catalogData": {
+    "catalogInfo": {
+      "version": "1",
+      "name": "guardBoxOptions",
+      "numColumns": 3,
+      "owner": "IPRE",
+      "status": "ACTIVO",
+      "columns": [
+        {
+          "name": "id",
+          "type": "VARCHAR",
+          "length": 2,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3607,
+          "idcatalog": 333
+        },
+        {
+          "name": "label",
+          "type": "VARCHAR",
+          "length": 50,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3608,
+          "idcatalog": 333
+        },
+        {
+          "name": "value",
+          "type": "VARCHAR",
+          "length": 10,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3609,
+          "idcatalog": 333
+        }
+      ],
+      "id": 333
     },
-    {
-      "id": 1,
-      "label": "No",
-      "value": false
+    "extension": {
+      "variations": [
+        {
+          "id": 0,
+          "label": "Si",
+          "value": true
+        },
+        {
+          "id": 1,
+          "label": "No",
+          "value": false
+        }
+      ]
+    },
+    "metadata": {
+      "recordCount": 3,
+      "offset": 4170450
     }
-  ]
-
+  },
+  "link": {
+    "link": null
+  }
 }
