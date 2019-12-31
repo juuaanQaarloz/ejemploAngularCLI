@@ -117,7 +117,7 @@ export const beneficiaryFields: Field[] = [
     pattern: '',
     source: 'IPRE',
     sourceID: 'relationship',
-    sourceStructure: ['number', 'description', 'value'],
+    sourceStructure: ['key', 'keyValue', 'key'],
     style: '',
     styleClass: '',
     styleClassError: '',

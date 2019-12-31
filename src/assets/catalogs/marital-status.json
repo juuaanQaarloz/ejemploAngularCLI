@@ -1,40 +1,103 @@
 {
-  "maritalStatus": [
-    {
-      "code": "S",
-      "description": "SOLTERO",
-      "lastUpdatedDate": "08/22/2019 03:05:38",
-      "locale": "es-MX",
-      "value": "S"
+  "catalogData": {
+    "catalogInfo": {
+      "version": "1",
+      "name": "MARITAL_STATUS_PRIVATE",
+      "numColumns": 5,
+      "owner": "IPRE",
+      "status": "ACTIVO",
+      "columns": [
+        {
+          "name": "key",
+          "type": "VARCHAR",
+          "length": 2,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3672,
+          "idcatalog": 133
+        },
+        {
+          "name": "keyValue",
+          "type": "VARCHAR",
+          "length": 50,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3673,
+          "idcatalog": 133
+        },
+        {
+          "name": "product",
+          "type": "VARCHAR",
+          "length": 10,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3674,
+          "idcatalog": 133
+        },
+        {
+          "name": "lineBussines",
+          "type": "VARCHAR",
+          "length": 50,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3675,
+          "idcatalog": 133
+        },
+        {
+          "name": "company",
+          "type": "VARCHAR",
+          "length": 50,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3676,
+          "idcatalog": 133
+        }
+      ],
+      "id": 133
     },
-    {
-      "code": "C",
-      "description": "CASADO",
-      "lastUpdatedDate": "08/22/2019 03:05:38",
-      "locale": "es-MX",
-      "value": "C"
+    "extension": {
+      "variations": [
+        {
+          "rowID": 1,
+          "key": "S",
+          "keyValue": "SOLTERO",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 2,
+          "key": "C",
+          "keyValue": "CASADO",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        }
+      ]
     },
-    {
-      "code": "V",
-      "description": "VIUDO",
-      "lastUpdatedDate": "08/22/2019 03:05:38",
-      "locale": "es-MX",
-      "value": "C"
-    },
-    {
-      "code": "D",
-      "description": "DIVORCIADO",
-      "lastUpdatedDate": "08/22/2019 03:05:38",
-      "locale": "es-MX",
-      "value": "C"
-    },
-    {
-      "code": "U",
-      "description": "UNION LIBRE",
-      "lastUpdatedDate": "08/22/2019 03:05:38",
-      "locale": "es-MX",
-      "value": "C"
+    "metadata": {
+      "recordCount": 2,
+      "offset": 4187521
     }
-  ]
-
+  },
+  "link": {
+    "link": null
+  }
 }

@@ -60,6 +60,13 @@ const URL_CAT_RELATIONSHIP_COVERAGE = '../assets/catalogs/relationship-coverage.
 const URL_CAT_RETENEDOR = '../assets/catalogs/retenedor.json';
 const URL_CAT_SUB_IDENTIFICATION_TYPE = '../assets/catalogs/sub-identification-type.json';
 const URL_CAT_GUARD_BOX_OPTIONS = '../assets/catalogs/guard-box-options.json';
+const URL_CAT_ECONOMIC_SECTOR_OPTIONS = '../assets/catalogs/economic-sector.json';
+const URL_CAT_BANK_OPTIONS = '../assets/catalogs/bank.json';
+const URL_CURRENCY_OPTIONS = '../assets/catalogs/currency.json';
+const URL_CILINDRADA_OPTIONS = '../assets/catalogs/cilindrada.json';
+const URL_SPORTS_OPTIONS = '../assets/catalogs/sports.json';
+const URL_DISEASES_OPTIONS = '../assets/catalogs/diseases.json';
+const URL_COVERAGE_OPTIONS = '../assets/catalogs/coverage-options.json';
 
 
 
@@ -87,6 +94,8 @@ export class ApplicationService {
   formGroup: FormGroup;
   searchModalFrom: string;
   applicationObj;
+
+  contador = 0;
 
   constructor(private httpClient: HttpClient,
               private modalService: ModalService) {
@@ -1031,12 +1040,12 @@ export class ApplicationService {
     }
     // this.formGroup.controls[formControlName].setValue(selectedOccupation.specificOccupationName);
     this.formGroup.controls[formControlName].setValue(selectedOccupation.name);
-    this.formGroup.controls[formControlNameTwo].setValue(selectedOccupation.description);
+    this.formGroup.controls[formControlNameTwo].setValue(selectedOccupation.alias);
     const ele = document.getElementById(htmlID);
     const element = document.getElementById(htmlIDTwo);
     // ele.setAttribute('value', selectedOccupation.specificOccupationName);
     ele.setAttribute('value', selectedOccupation.name);
-    element.setAttribute('value', selectedOccupation.description);
+    element.setAttribute('value', selectedOccupation.alias);
   }
 
   getInfoFromSepomex(zipCode: string): Observable<SepomexObj> {
@@ -1689,11 +1698,38 @@ export class ApplicationService {
       case 'guardBoxOptions':
         urlCatalog = URL_CAT_GUARD_BOX_OPTIONS;
         break;
+      case 'economic-sector':
+        urlCatalog = URL_CAT_ECONOMIC_SECTOR_OPTIONS;
+        break;
+      case 'bank':
+        urlCatalog = URL_CAT_BANK_OPTIONS;
+        break;
+      case 'currency':
+        urlCatalog = URL_CURRENCY_OPTIONS;
+        break;
+      case 'cilindrada':
+        urlCatalog = URL_CILINDRADA_OPTIONS;
+        break;
+      case 'sports':
+        urlCatalog = URL_SPORTS_OPTIONS;
+        break;
+      case 'diseases':
+        urlCatalog = URL_DISEASES_OPTIONS;
+        break;
+      case 'coverageOptions':
+        urlCatalog = URL_COVERAGE_OPTIONS;
+        break;
     }
     return this.httpClient.get(urlCatalog)
       .pipe(
         map((catalog) => {
-          return catalog[catalogos].extension.variations;
+          this.contador++;
+          if ( catalog[catalogos] ) {
+            return catalog[catalogos].extension.variations;
+          } else {
+            console.log(urlCatalog);
+            return null;
+          }
         })
       );
   }

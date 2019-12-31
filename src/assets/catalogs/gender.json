@@ -1,19 +1,103 @@
 {
-  "gender": [
-    {
-      "code": "M",
-      "value": "M",
-      "description": "MASCULINO",
-      "lastUpdatedDate": "11/28/2019 01:00:00",
-      "locale": "es-MX"
+  "catalogData": {
+    "catalogInfo": {
+      "version": "1",
+      "name": "GENDER_PRIVATE",
+      "numColumns": 5,
+      "owner": "IPRE",
+      "status": "ACTIVO",
+      "columns": [
+        {
+          "name": "key",
+          "type": "VARCHAR",
+          "length": 2,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3667,
+          "idcatalog": 132
+        },
+        {
+          "name": "keyValue",
+          "type": "VARCHAR",
+          "length": 50,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3668,
+          "idcatalog": 132
+        },
+        {
+          "name": "product",
+          "type": "VARCHAR",
+          "length": 10,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3669,
+          "idcatalog": 132
+        },
+        {
+          "name": "lineBussines",
+          "type": "VARCHAR",
+          "length": 50,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3670,
+          "idcatalog": 132
+        },
+        {
+          "name": "company",
+          "type": "VARCHAR",
+          "length": 50,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3671,
+          "idcatalog": 132
+        }
+      ],
+      "id": 132
     },
-    {
-      "code": "F",
-      "value": "F",
-      "description": "FEMENINO",
-      "lastUpdatedDate": "11/28/2019 01:00:00",
-      "locale": "es-MX"
+    "extension": {
+      "variations": [
+        {
+          "rowID": 1,
+          "key": "F",
+          "keyValue": "FEMENINO",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 2,
+          "key": "M",
+          "keyValue": "MASCULINO",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        }
+      ]
+    },
+    "metadata": {
+      "recordCount": 2,
+      "offset": 4187519
     }
-  ]
-
+  },
+  "link": {
+    "link": null
+  }
 }

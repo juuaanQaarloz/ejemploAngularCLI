@@ -9,4 +9,5 @@ export interface Occupation {
   occupationDetails: string | null;
   description: string | null;
   occupationIncome: string | null;
+  alias: string | null;
 }

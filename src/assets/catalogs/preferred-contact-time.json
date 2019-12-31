@@ -1,23 +1,67 @@
 {
-  "preferredContactTime": [
-    {
-      "number": "1",
-      "value": "1",
-      "description": "Por la mañana (9-12)",
-      "locale": "es-MX"
+  "catalogData": {
+    "catalogInfo": {
+      "version": "2",
+      "name": "PREFERRED_CONTACT_TIME",
+      "numColumns": 2,
+      "owner": "IPRE",
+      "status": "ACTIVO",
+      "columns": [
+        {
+          "name": "key",
+          "type": "VARCHAR",
+          "length": 1,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 2153,
+          "idcatalog": 62
+        },
+        {
+          "name": "value",
+          "type": "VARCHAR",
+          "length": 30,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 2154,
+          "idcatalog": 62
+        }
+      ],
+      "id": 62
     },
-    {
-      "number": "2",
-      "value": "2",
-      "description": "Al medio día (12-4)",
-      "locale": "es-MX"
+    "extension": {
+      "variations": [
+        {
+          "rowID": 1,
+          "key": "1",
+          "value": "Por la mañana (9-12)",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 2,
+          "key": "2",
+          "value": "Al medio día (12-4)",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 3,
+          "key": "3",
+          "value": "Por la tarde (4-9)",
+          "locale": "es-MX"
+        }
+      ]
     },
-    {
-      "number": "3",
-      "value": "3",
-      "description": "Por la tarde (4-9)",
-      "locale": "es-MX"
+    "metadata": {
+      "recordCount": 3,
+      "offset": 3131803
     }
-  ]
-
+  },
+  "link": {
+    "link": null
+  }
 }

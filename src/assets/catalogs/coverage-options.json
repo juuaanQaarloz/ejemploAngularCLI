@@ -2,7 +2,7 @@
   "catalogData": {
     "catalogInfo": {
       "version": "1",
-      "name": "PRODUCT_PRIVATE",
+      "name": "COVERAGE_PRIVATE",
       "numColumns": 5,
       "owner": "IPRE",
       "status": "ACTIVO",
@@ -16,8 +16,8 @@
           "pkIndicator": true,
           "prnIndicator": true,
           "status": "ACTIVO",
-          "id": 3524,
-          "idcatalog": 119
+          "id": 3519,
+          "idcatalog": 118
         },
         {
           "name": "keyValue",
@@ -28,8 +28,8 @@
           "pkIndicator": true,
           "prnIndicator": true,
           "status": "ACTIVO",
-          "id": 3525,
-          "idcatalog": 119
+          "id": 3520,
+          "idcatalog": 118
         },
         {
           "name": "product",
@@ -40,8 +40,8 @@
           "pkIndicator": true,
           "prnIndicator": true,
           "status": "ACTIVO",
-          "id": 3526,
-          "idcatalog": 119
+          "id": 3521,
+          "idcatalog": 118
         },
         {
           "name": "lineBussines",
@@ -52,8 +52,8 @@
           "pkIndicator": true,
           "prnIndicator": true,
           "status": "ACTIVO",
-          "id": 3527,
-          "idcatalog": 119
+          "id": 3522,
+          "idcatalog": 118
         },
         {
           "name": "company",
@@ -64,18 +64,18 @@
           "pkIndicator": true,
           "prnIndicator": true,
           "status": "ACTIVO",
-          "id": 3528,
-          "idcatalog": 119
+          "id": 3523,
+          "idcatalog": 118
         }
       ],
-      "id": 119
+      "id": 118
     },
     "extension": {
       "variations": [
         {
           "rowID": 1,
-          "key": "MU",
-          "keyValue": "MUJER",
+          "key": "A",
+          "keyValue": "0",
           "product": "META",
           "lineBussines": "PRIVADO",
           "company": null,
@@ -83,26 +83,8 @@
         },
         {
           "rowID": 2,
-          "key": "ED",
-          "keyValue": "EDUCACIÓN",
-          "product": "META",
-          "lineBussines": "PRIVADO",
-          "company": null,
-          "locale": "es-MX"
-        },
-        {
-          "rowID": 3,
-          "key": "TF",
-          "keyValue": "TU FUTURO",
-          "product": "META",
-          "lineBussines": "PRIVADO",
-          "company": null,
-          "locale": "es-MX"
-        },
-        {
-          "rowID": 4,
-          "key": "RE",
-          "keyValue": "RETIRO",
+          "key": "B",
+          "keyValue": "1",
           "product": "META",
           "lineBussines": "PRIVADO",
           "company": null,
@@ -111,8 +93,8 @@
       ]
     },
     "metadata": {
-      "recordCount": 4,
-      "offset": 4159990
+      "recordCount": 2,
+      "offset": 4159988
     }
   },
   "link": {

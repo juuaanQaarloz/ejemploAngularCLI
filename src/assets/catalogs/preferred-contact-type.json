@@ -1,23 +1,112 @@
 {
-  "preferredContactType": [
-    {
-      "number": "1",
-      "value": "1",
-      "description": "Mensaje de texto (SMS)",
-      "locale": "es-MX"
+  "catalogData": {
+    "catalogInfo": {
+      "version": "1",
+      "name": "PREFERRED_CONTACT_TYPE_PRIVATE",
+      "numColumns": 5,
+      "owner": "IPRE",
+      "status": "ACTIVO",
+      "columns": [
+        {
+          "name": "key",
+          "type": "VARCHAR",
+          "length": 2,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3617,
+          "idcatalog": 125
+        },
+        {
+          "name": "keyValue",
+          "type": "VARCHAR",
+          "length": 50,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3618,
+          "idcatalog": 125
+        },
+        {
+          "name": "product",
+          "type": "VARCHAR",
+          "length": 10,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3619,
+          "idcatalog": 125
+        },
+        {
+          "name": "lineBussines",
+          "type": "VARCHAR",
+          "length": 50,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3620,
+          "idcatalog": 125
+        },
+        {
+          "name": "company",
+          "type": "VARCHAR",
+          "length": 50,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3621,
+          "idcatalog": 125
+        }
+      ],
+      "id": 125
     },
-    {
-      "number": "2",
-      "value": "2",
-      "description": "Correo electrónico",
-      "locale": "es-MX"
+    "extension": {
+      "variations": [
+        {
+          "rowID": 1,
+          "key": "1",
+          "keyValue": "Mensaje de texto (SMS)",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 2,
+          "key": "2",
+          "keyValue": "Correo electrónico",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 3,
+          "key": "3",
+          "keyValue": "Llamada",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        }
+      ]
     },
-    {
-      "number": "3",
-      "value": "3",
-      "description": "Llamada",
-      "locale": "es-MX"
+    "metadata": {
+      "recordCount": 3,
+      "offset": 4170457
     }
-  ]
-
+  },
+  "link": {
+    "link": null
+  }
 }

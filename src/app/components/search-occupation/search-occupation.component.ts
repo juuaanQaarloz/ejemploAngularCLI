@@ -22,7 +22,7 @@ const FIELDS: Field[] = [
     noAllowedCharactersPattern: '/[^a-zA-ZñÑ\\s]/',
     source: 'IPRE',
     sourceID: 'occupation',
-    sourceStructure: ['number', 'name', 'value'],
+    sourceStructure: ['occupationId', 'name', 'occupationId'],
     /*sourceStructure: ['id', 'specificOccupationName', 'specificOccupationAlias', 'specificOccupationCode', 'companyName',
                       'ocupationZipCode', 'occupationDetails', 'occupationIncome'],*/
     style: '',

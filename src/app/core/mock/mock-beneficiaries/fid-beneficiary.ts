@@ -104,7 +104,7 @@ export const BeneficiaryFieldsF: Field[] = [
     pattern: '',
     source: 'IPRE',
     sourceID: 'relationship',
-    sourceStructure: ['number', 'description', 'value'],
+    sourceStructure: ['key', 'keyValue', 'key'],
     style: '',
     styleClass: '',
     styleClassError: '',
@@ -377,7 +377,7 @@ export const BeneficiaryFieldsF: Field[] = [
     pattern: '',
     source: 'IPRE',
     sourceID: 'federalEntity',
-    sourceStructure: ['number', 'name', 'value'],
+    sourceStructure: ['entityId', 'entityName', 'entityId'],
     style: '',
     styleClass: '',
     styleClassError: '',
@@ -389,7 +389,7 @@ export const BeneficiaryFieldsF: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: 'CDMX',
+    value: '09',
     disable: true
   },
   {
@@ -437,7 +437,7 @@ export const BeneficiaryFieldsF: Field[] = [
     pattern: '',
     source: 'IPRE',
     sourceID: 'country',
-    sourceStructure: ['number', 'description', 'value'],
+    sourceStructure: ['countryID', 'description', 'countryID'],
     style: '',
     styleClass: '',
     styleClassError: '',
@@ -449,7 +449,7 @@ export const BeneficiaryFieldsF: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: 'MX',
+    value: '151',
     disable: true
   }
   /*{
