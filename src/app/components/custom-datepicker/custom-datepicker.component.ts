@@ -34,7 +34,7 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log('onAfterViewInit datepicker: ');
+    /*console.log('onAfterViewInit datepicker: ');
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
     let value;
     if (this.fieldObj.value) {
@@ -47,7 +47,7 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
     } else if (this.form.controls[this.fieldObj.name].value) {
       value = this.form.controls[this.fieldObj.name].value;
       elem.setAttribute('value', value);
-    }
+    }*/
   }
 
   onDateInput(typeEvent: string, event) {

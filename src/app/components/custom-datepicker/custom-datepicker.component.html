@@ -2,6 +2,7 @@
   <input matInput [formControlName]="fieldObj.name"
          [matDatepicker]="picker"
          [id]="fieldObj.idHtml"
+         [value]="fieldObj.value"
          placeholder="{{fieldObj.placeholder}}"
          (dateInput)="onDateInput('input', $event)"
          (dateChange)="onDateChange($event)"
