@@ -98,7 +98,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       const dependedFields = this.applicationService.getDependedFields(this.fieldObj.requiredConditions);
       this.fieldObj.required = this.applicationService.evaluateConditions(this.fieldObj.requiredConditions, this.form);
       /*if (this.fieldObj.name === 'beneficiaryBirthDate') {
-        console.log('this.applicationService.getValidationFunctions(this.fieldObj): ',
+        // console.log('this.applicationService.getValidationFunctions(this.fieldObj): ',
           this.applicationService.getValidationFunctions(this.fieldObj));
       }*/
       // this.form.controls[this.fieldObj.name].setValidators(this.applicationService.getValidationFunctions(this.fieldObj));
@@ -112,7 +112,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           this.form.controls[this.fieldObj.name].updateValueAndValidity();
 
           if (this.fieldObj.name === 'beneficiaryBusinessName') {
-            console.log('this.fieldObj.required: ', this.fieldObj.required);
+            // console.log('this.fieldObj.required: ', this.fieldObj.required);
           }
         });
       });
@@ -125,37 +125,37 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       this.disable = this.checkState();
       this.form.controls[this.fieldObj.name].valueChanges.subscribe(() => {
         this.disable = this.checkState();
-        // console.log('this.disable: ', this.disable);
+        // // console.log('this.disable: ', this.disable);
       });
     }
 
     if (this.fieldObj.enableConditions) {
-      console.log('onEnableConditions...');
-      console.log('fieldName: ', this.fieldObj.name);
+      // console.log('onEnableConditions...');
+      // console.log('fieldName: ', this.fieldObj.name);
       const dependedFields = this.applicationService.getDependedFields(this.fieldObj.enableConditions);
-      console.log('dependedFields: ', dependedFields);
+      // console.log('dependedFields: ', dependedFields);
       let status;
 
       dependedFields.forEach((dependedField) => {
         this.form.controls[dependedField].valueChanges.subscribe((value) => {
-          /*console.log('value: ', value);
-          console.log('type of value: ', typeof value);
-          console.log('length value: ', value.length);*/
+          /*// console.log('value: ', value);
+          // console.log('type of value: ', typeof value);
+          // console.log('length value: ', value.length);*/
 
           if (value !== '') {
-            console.log('onValueChanges of ', dependedField);
-            console.log('field name control: ', this.fieldObj.name);
+            // console.log('onValueChanges of ', dependedField);
+            // console.log('field name control: ', this.fieldObj.name);
             const resEval = this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form);
-            console.log('resEval: ', resEval);
+            // console.log('resEval: ', resEval);
 
             if (resEval) {
-              console.log('here true');
+              // console.log('here true');
               this.form.controls[this.fieldObj.name].enable();
               this.fieldObj.disable = false;
               status = this.checkState();
 
             } else {
-              console.log('here false');
+              // console.log('here false');
               this.form.controls[this.fieldObj.name].disable();
               this.fieldObj.disable = true;
               status = this.checkState();
@@ -163,8 +163,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
             }
           }
           /*this.disable = this.checkState2(this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form));
-          console.log('disable2: ', this.disable);
-          console.log('this.fieldObj.name: ', this.fieldObj.name);
+          // console.log('disable2: ', this.disable);
+          // console.log('this.fieldObj.name: ', this.fieldObj.name);
           if (this.disable === true) {
             this.form.controls[this.fieldObj.name].disable();
           } else {
@@ -175,38 +175,38 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
 
     /*if (this.fieldObj.detonateFunctionParams) {
-      console.log('onDetonateFunctionParams');
+      // console.log('onDetonateFunctionParams');
       if (this.fieldObj.value) {
-        console.log('this.fieldObj.value: ', this.fieldObj.value);
+        // console.log('this.fieldObj.value: ', this.fieldObj.value);
         // this.applicationService.evaluateCoverageBehaviour(this.fieldObj.detonateFunctionParams, this.fieldObj.value);
       }
       this.form.controls[this.fieldObj.name].valueChanges.subscribe((value => {
-        console.log('onValueChanges of: ', this.fieldObj.name);
-        console.log('value: ', value);
+        // console.log('onValueChanges of: ', this.fieldObj.name);
+        // console.log('value: ', value);
         this.applicationService.evaluateCoverageBehaviour(this.fieldObj.detonateFunctionParams, value);
       }));
     }*/
 
     /*if (this.fieldObj.enableConditions) {
-      console.log('onEnableConditions...');
+      // console.log('onEnableConditions...');
 
       const dependedFields = this.applicationService.getDependedFields(this.fieldObj.enableConditions);
-      console.log('dependedFields: ', dependedFields);
+      // console.log('dependedFields: ', dependedFields);
 
       const result = this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form);
-      console.log('result: ', result);
+      // console.log('result: ', result);
       if (result) {
         this.form.controls[this.fieldObj.name].disable();
       } else {
         this.form.controls[this.fieldObj.name].enable();
       }
       this.disable = this.checkState();
-      console.log('disable: ', this.disable);
+      // console.log('disable: ', this.disable);
 
       dependedFields.forEach((dependedField) => {
         this.form.controls[dependedField].valueChanges.subscribe((value) => {
           const result2 = this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form);
-          // console.log('result2: ', result2);
+          // // console.log('result2: ', result2);
           if (result2) {
             this.form.controls[this.fieldObj.name].disable();
           } else {
@@ -219,7 +219,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.name === 'age' || this.fieldObj.name === 'ageS') {
       this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
-        console.log('onValueChange age: ', value);
+        // console.log('onValueChange age: ', value);
         if (value) {
           this.isValid(this.fieldObj.name);
         }
@@ -230,8 +230,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.type === 'radio') {
       this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
-        // console.log('onValueChanges value: ', value);
-        // console.log('formControlName: ', this.fieldObj.name);
+        // // console.log('onValueChanges value: ', value);
+        // // console.log('formControlName: ', this.fieldObj.name);
         this.isValid();
       });
     }
@@ -251,23 +251,23 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         });
       // this.regExpPattern = stringToRegExp(this.fieldObj.pattern);
       // this.regExpPattern = this.fieldObj.pattern;
-      // console.log('regExpPattern: ', this.regExpPattern);
+      // // console.log('regExpPattern: ', this.regExpPattern);
     }
 
     if (this.fieldObj.noAllowedCharactersPattern) {
       // this.regnNoAllowedCharactersExpPattern = stringToRegExp(this.fieldObj.noAllowedCharactersPattern);
       // this.regExpPattern = this.fieldObj.pattern;
-      // console.log('regExpPattern: ', this.regExpPattern);
+      // // console.log('regExpPattern: ', this.regExpPattern);
     }
 
     /*if (this.fieldObj.detonateFunction) {
       this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
-        // console.log('detonateFunction: ', this.fieldObj.detonateFunction);
-        // console.log('itemFromFieldComponent: ', this.item);
+        // // console.log('detonateFunction: ', this.fieldObj.detonateFunction);
+        // // console.log('itemFromFieldComponent: ', this.item);
         if (this.fieldObj.detonateFunction === 'updateItem') {
           this.item.participationPercentage = value;
           const result = this.applicationService.updateItem(this.item, 'beneficiary');
-          // console.log('result: ', result);
+          // // console.log('result: ', result);
           if (!result.status) {
             this.fieldObj.valid = false;
             this.fieldObj.message = '';
@@ -277,19 +277,19 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }*/
 
     /*this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
-      console.log('onValueChanges...');
-      console.log('formGroup: ', this.form);
-      console.log('formControlName: ', this.fieldObj.name);
-      console.log('value: ',  value);
+      // console.log('onValueChanges...');
+      // console.log('formGroup: ', this.form);
+      // console.log('formControlName: ', this.fieldObj.name);
+      // console.log('value: ',  value);
     });*/
     this.contadorDoc = 0;
   }
 
   ngAfterViewInit() {
-    // console.log('on ngAfterViewInit...');
-    if (this.fieldObj.type === 'text') {
+    // // console.log('on ngAfterViewInit...');
+    if (this.fieldObj.type === 'text' || (this.fieldObj.type === 'autocomplete')) {
       const elem: Element = document.getElementById(this.fieldObj.idHtml);
-      // // console.log('elem: ', elem);
+      // // // console.log('elem: ', elem);
       let valueToSet;
       if (elem) {
         if (this.fieldObj.value) { // set default value from configuration
@@ -306,7 +306,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onCheckboxChange() {
-    console.log('onCheckboxChange...');
+    // console.log('onCheckboxChange...');
     if (this.fieldObj.detonateFunctionParams) {
       this.applicationService.evaluateCoverageBehaviour(
         this.fieldObj.detonateFunctionParams,
@@ -323,7 +323,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     elem.setAttribute('value', event.target.value);
     this.form.controls[this.fieldObj.name].setValue(event.target.value);
     if (this.fieldObj.name === 'assuredImport') {
-      // console.log('Entro assuredImport: ');
+      // // console.log('Entro assuredImport: ');
       // event.target.value = addCurrencyFormat(event.target.value);
     }
 
@@ -331,33 +331,33 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       this.isValid();
     }
 
-    // // console.log('value.length: ', value.length);
+    // // // console.log('value.length: ', value.length);
     if (this.fieldObj.name === 'rfc' || this.fieldObj.name === 'rfcS' || this.fieldObj.name === 'formatwoRfc') {
       if (value.length === 10 && event.key !== 'Backspace') { // calculate rfc when the user capture the first 10 characters
         const calcRFC = this.calculateRFC();
         if (calcRFC !== null) {
-          // // console.log('calculateRFC: ', calcRFC);
+          // // // console.log('calculateRFC: ', calcRFC);
           this.setCalculatedRFC(calcRFC);
         }
       }
     } else if (this.fieldObj.name === 'participationPercentageI') {
-      console.log('onParticipationPercentageI');
-      console.log('item: ', this.item);
+      // console.log('onParticipationPercentageI');
+      // console.log('item: ', this.item);
       this.item.participationPercentage = this.form.controls[this.fieldObj.name].value;
 
       if (!this.item.participationPercentage || Number(this.item.participation) === 0) {
-        console.log('item.participationPercentage: ', this.item.participationPercentaje);
+        // console.log('item.participationPercentage: ', this.item.participationPercentaje);
         this.fieldObj.valid = false;
         this.fieldObj.message = 'El porcentaje de  participación no puede ser 0';
       } else if (this.form.controls[this.fieldObj.name].value != null) {
         const response = this.applicationService.updateItem(this.item, 'beneficiary');
-        console.log('response: ', response);
+        // console.log('response: ', response);
         if (response.status === false) {
-          console.log('response.status is false');
+          // console.log('response.status is false');
           this.fieldObj.message = response.message;
-          console.log('message: ', this.fieldObj.message);
+          // console.log('message: ', this.fieldObj.message);
           this.fieldObj.valid = false;
-          console.log('valid: ', this.fieldObj.valid);
+          // console.log('valid: ', this.fieldObj.valid);
         }
       }
     }
@@ -366,19 +366,19 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       // this.setFunds();
     }
     if (this.fieldObj.name === 'assuredImport') {
-      // console.log('Entro assuredImport: ');
+      // // console.log('Entro assuredImport: ');
     }
   }
 
   onKeyUpAutoComplete(event) {
-    console.log('onKeyUpAutoComplete event: ', event);
+    // console.log('onKeyUpAutoComplete event: ', event);
     let value;
     value = event.source.value;
-    console.log('value: ', value);
+    // console.log('value: ', value);
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
     event.source.value = correctFieldValue(value);
     elem.setAttribute('value', event.source.value);
-    console.log('value2: ', elem.getAttribute('value'));
+    // console.log('value2: ', elem.getAttribute('value'));
     this.form.controls[this.fieldObj.name].setValue(event.source.value);
 
     if (value) {
@@ -388,60 +388,60 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   fileChange(event) {
     this.contadorDoc++;
-    console.log('event: ', event.target.files);
-    console.log('Target: ', event);
+    // console.log('event: ', event.target.files);
+    // console.log('Target: ', event);
 
     let fileList: FileList = event.target.files;
 
     if (fileList.length > 0) {
       let fileSelected: File = fileList[0];
-      console.log('File selected: ', fileSelected);
+      // console.log('File selected: ', fileSelected);
       this.fileName = fileSelected.name;
-      console.log(this.fileName);
+      // console.log(this.fileName);
       //Validar extensión
       let contador = 0;
       const extensionArchivo = this.fileName.slice(this.fileName.lastIndexOf('.'));
       let extensionArchivoCopy = this.fileName.slice(this.fileName.lastIndexOf('.'));
       extensionArchivoCopy = extensionArchivoCopy.substring(1);
-      console.log(extensionArchivoCopy);
+      // console.log(extensionArchivoCopy);
       const extensionPermitida = (this.fieldObj.accept.split(','));
-      console.log(extensionArchivo);
-      console.log(extensionPermitida);
+      // console.log(extensionArchivo);
+      // console.log(extensionPermitida);
       extensionPermitida.forEach((ext) => {
         if (ext === extensionArchivo) {
           contador++;
         }
       });
-      console.log('Contador: ', contador);
+      // console.log('Contador: ', contador);
       //Validar tamaño archivo
       let tamanioValido = true;
       if (fileSelected.size > 5242880) {
         tamanioValido = false;
       }
-      console.log('Tamaño valido: ', tamanioValido);
+      // console.log('Tamaño valido: ', tamanioValido);
       // let file = null;
       if (contador == 0 || !tamanioValido) {
-        console.log('1');
+        // console.log('1');
         this.form.controls[this.fieldObj.name].reset();
         this.fileName = '';
         this.fieldObj.message = 'Formatos aceptados: ' + this.fieldObj.accept + '. \r\n El tamaño maximo son 5Mb.';
         this.fieldObj.file = null;
       } else {
-        console.log('2');
+        // console.log('2');
         this.fieldObj.message = '';
         this.fieldObj.file = fileSelected;
 
         // COnvertir a base 64
         // file = this.getBase64(fileSelected).then(
-        //   data => console.log(data)
+        //   data => // console.log(data)
         // );
 
         let date = new Date();
         let milliseconds = new Date().getMilliseconds();
-        console.log('Date: ');
-        console.log(date);
-        console.log(date.toLocaleString());
-        console.log(milliseconds);
+        // console.log('Date: ');
+        // console.log(date);
+        // console.log(date.toLocaleString());
+        // console.log(milliseconds);
 
         let filenetSkeletonRequest={
           "name": milliseconds + '_' + fileSelected.name,
@@ -481,9 +481,9 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         // this.wsService.uploadFilenet(fd);
       }
 
-      console.log(this.form);
-      console.log('File: ');
-      console.log(fileSelected);
+      // console.log(this.form);
+      // console.log('File: ');
+      // console.log(fileSelected);
     }
 
   }
@@ -498,8 +498,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   // }
 
   onChange(event) {
-    console.log('onChange event.target.value: ', event.target.value);
-    console.log('formControlName: ', this.fieldObj.name);
+    // console.log('onChange event.target.value: ', event.target.value);
+    // console.log('formControlName: ', this.fieldObj.name);
     this.isValid();
   }
 
@@ -507,16 +507,16 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     let value;
     value = this.form.controls[this.fieldObj.name].value;
     this.form.controls[this.fieldObj.name].setValue( correctFieldValueLostFocus(value));
-    // console.log('onBlur...');
-    // console.log(this.fieldObj.name);
+    // // console.log('onBlur...');
+    // // console.log(this.fieldObj.name);
     let valid = true;
 
     if (this.fieldObj.name === 'zipCode' || this.fieldObj.name === 'zipCodeS' || this.fieldObj.name === 'zipCodeM') {
       const zipCode = this.form.controls[this.fieldObj.name].value;
-      // console.log('zipCode: ', zipCode);
+      // // console.log('zipCode: ', zipCode);
       if (zipCode) {
         this.applicationService.getInfoFromSepomex(zipCode).subscribe((sepoMexResponse: SepomexObj) => {
-          // console.log('sepoMexResponse: ', sepoMexResponse);
+          // // console.log('sepoMexResponse: ', sepoMexResponse);
           if (sepoMexResponse) {
             this.setAddress(sepoMexResponse);
           }
@@ -549,7 +549,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       }
     }
     if (this.fieldObj.name === 'additionalCost') {
-      //  console.log('Entro en savingsGoal: ');
+      //  // console.log('Entro en savingsGoal: ');
       const additionalCost = this.form.controls.additionalCost.value;
       if (Number(additionalCost) > Number(0.00)) {
         this.setValueField('additionalCost', 'txtAdditionalCost', addCurrencyFormat(additionalCost));
@@ -562,7 +562,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       if (currency === 'mxn') {
         if (Number(assuredImport) > Number(0.00)){
           if (Number(assuredImport) < Number(400000.00)) {
-            // console.log('invalidAssuredImportMxn', false);
+            // // console.log('invalidAssuredImportMxn', false);
             return { invalidAssuredImportMxn: true};
           } else {
             this.setValueField('assuredImport', 'txtAssuredImport', addCurrencyFormat(assuredImport));
@@ -585,7 +585,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onValidate(event) {
-    // console.log('onValidate: ');
+    // // console.log('onValidate: ');
     this.isValid();
   }
 
@@ -599,8 +599,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   onChangeSelect(event) {
 
-    console.log('onChangeSelect...');
-    // console.log('event.target.value: ', event.target.value);
+    // console.log('onChangeSelect...');
+    // // console.log('event.target.value: ', event.target.value);
 
     if (event.target.value === '') {
       this.showSelectLabel = false;
@@ -614,7 +614,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     this.isValid();
     this.setFunds();
-    // console.log('Valor antes de ::', event.target);
+    // // console.log('Valor antes de ::', event.target);
     if (event.target.id === 'slctCurrency') {
       const assuredImport = this.form.controls.assuredImport.value;
       if (Number(assuredImport) !== Number(0.00)){
@@ -639,7 +639,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
             } else if (this.fieldObj.type === 'radio') {
               this.radioOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
             } else if (this.fieldObj.type === 'checkbox') {
-              console.log('selectItem-checkbox: ', selectItem);
+              // console.log('selectItem-checkbox: ', selectItem);
               this.checkBoxOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
             } else if (this.fieldObj.type === 'autocomplete') {
               this.autocompleteOptions.push(this.constructSelectOption(selectItem, this.fieldObj.sourceStructure));
@@ -649,7 +649,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           if (this.fieldObj.type === 'autocomplete') {
             this.loading = true;
           }
-          // console.log('autoComplete: ', this.autocompleteOptions);
+          // // console.log('autoComplete: ', this.autocompleteOptions);
         }
       });
   }
@@ -685,7 +685,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
      }
 
     if (formControlName) {
-      console.log('formControlNameEntro: ', formControlName);
+      // console.log('formControlNameEntro: ', formControlName);
       const validateAgeResult = validateAge(this.form.controls[formControlName]);
 
       if (validateAgeResult) {
@@ -701,15 +701,15 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       if (this.autocompleteOptions.length > 0 && this.fieldObj.type === 'autocomplete') {
         const searchResult =  this.autocompleteOptions.filter(
           autoCompleteOpt => autoCompleteOpt.name === this.form.controls[this.fieldObj.name].value)[0];
-        console.log('searchResult: ', searchResult);
+        // console.log('searchResult: ', searchResult);
         if (searchResult) {
           this.fieldObj.valid = true;
         } else {
           this.fieldObj.valid = false;
         }
       }
-      console.log('this.fieldObj.valid from isValid: ', this.fieldObj.valid);
-      console.log('this.form.controls[this.fieldObj.name].valid: ', this.form.controls[this.fieldObj.name].valid);
+      // console.log('this.fieldObj.valid from isValid: ', this.fieldObj.valid);
+      // console.log('this.form.controls[this.fieldObj.name].valid: ', this.form.controls[this.fieldObj.name].valid);
     }
   }
 
@@ -741,7 +741,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         result = false;
       }
     }
-    // console.log('result ---> ', result);
+    // // console.log('result ---> ', result);
     return result;
   }
 
@@ -794,7 +794,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
 
     const calculatedRFC = calculateRFC(apellidoPaterno, apellidoMaterno, nombre, fechaNacimiento);
-    // // console.log('calculatedRFC: ', calculatedRFC);
+    // // // console.log('calculatedRFC: ', calculatedRFC);
     return calculatedRFC;
   }
 
@@ -840,10 +840,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     const obj: { [k: string]: any } = {};
     const resultSplit = style.split(':');
 
-    // // console.log('resultSplit: ', resultSplit);
+    // // // console.log('resultSplit: ', resultSplit);
     obj[resultSplit[0]] = resultSplit[1];
 
-    // // console.log('obj: ', obj);
+    // // // console.log('obj: ', obj);
     return obj;
   }
 
@@ -913,14 +913,14 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     this.applicationService.getCatalogById(sourceID, source)
       .subscribe((results) => {
         options = results;
-       //  console.log('packing: results ', results);
+       //  // console.log('packing: results ', results);
         if (options !== undefined) {
           options.forEach((selectItem) => {
             if (type === 'select-1') {
               this.selectOptions1.push(this.constructSelectOption(selectItem, sourceStructure));
             }
           });
-          console.log('EntroselectOptions: ', this.selectOptions1);
+          // console.log('EntroselectOptions: ', this.selectOptions1);
 
         }
       });

@@ -150,6 +150,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
     console.log('this.config.data.item.beneficiaryType: ', this.config.data.item.beneficiaryType);
 
+
     switch (this.config.data.item.beneficiaryType) {
       case 'phyPerson':
         this.setBeneficiaryP();
@@ -254,6 +255,9 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
       console.log('field.name: ', field.name);
 
       switch (field.name) {
+        case 'beneficiaryType':
+          value = this.config.data.item.beneficiaryType;
+          break;
         case 'beneficiaryBusinessName':
           value = this.config.data.item.businessName;
           break;
@@ -275,7 +279,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         case 'beneficiaryInteriorNumberM':
           value = this.config.data.item.address.interiorNumber;
           break;
-        case 'txtBeneficiaryZipCodeM':
+        case 'beneficiaryZipCodeM':
           value = this.config.data.item.address.zipCode;
           break;
         case 'beneficiarySuburbM':
@@ -287,19 +291,53 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         case 'beneficiaryStateM':
           value = this.config.data.item.address.state;
           break;
-        case 'txtBeneficiaryCityM':
+        case 'beneficiaryCityM':
           value = this.config.data.item.address.city;
           break;
-        case 'slctBeneficiaryCountryM':
+        case 'beneficiaryCountryM':
           value = this.config.data.item.address.country;
           break;
       }
+      console.log('value: ', value);
+      console.log('field.name: ', field.name);
       this.formGroup.controls[field.name].setValue(value);
     });
   }
 
   setBeneficiaryF() {
     console.log('on setBeneficiaryF...');
+
+    this.fields.forEach((field) => {
+      let value;
+      console.log('field.name: ', field.name);
+
+      switch (field.name) {
+        case 'beneficiaryType':
+          value = this.config.data.item.beneficiaryType;
+          this.formGroup.controls[field.name].setValue(value);
+          break;
+        case 'suspensiveCondition':
+          value = this.config.data.item.suspensiveCondition;
+          this.formGroup.controls[field.name].setValue(value);
+          break;
+        case 'contractNumber':
+          value = this.config.data.item.contractNumber;
+          this.formGroup.controls[field.name].setValue(value);
+          break;
+        case 'instructionLetterNumber':
+          value = this.config.data.item.instructionLetterNumber;
+          this.formGroup.controls[field.name].setValue(value);
+          break;
+        case 'beneficiaryRelationshipF':
+          value = this.config.data.item.relationship;
+          this.formGroup.controls[field.name].setValue(value);
+          break;
+        case 'participationPercentageF':
+          value = this.config.data.item.participationPercentage;
+          this.formGroup.controls[field.name].setValue(value);
+          break;
+      }
+    });
   }
 
   mapNewBeneficiaryData() {
