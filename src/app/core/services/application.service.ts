@@ -23,6 +23,7 @@ import {BENEFICIARIES} from '../mock/mock-beneficiaries/mock-beneficiaries';
 import {placeholdersToParams} from '@angular/compiler/src/render3/view/i18n/util';
 import {error} from 'util';
 import {isPackageNameSafeForAnalytics} from '@angular/cli/models/analytics';
+import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
@@ -68,6 +69,7 @@ const URL_SPORTS_OPTIONS = '../assets/catalogs/sports.json';
 const URL_DISEASES_OPTIONS = '../assets/catalogs/diseases.json';
 const URL_COVERAGE_OPTIONS = '../assets/catalogs/coverage-options.json';
 const URL_AGENTS_PROMOTORIA = '../assets/catalogs/agents-promotoria.json';
+const URL_JSON_APP = '../assets/swagger/example.json';
 
 
 
@@ -95,6 +97,7 @@ export class ApplicationService {
   formGroup: FormGroup;
   searchModalFrom: string;
   applicationObj;
+  applicationJSON: ApplicationJson;
 
   contador = 0;
 
@@ -375,6 +378,17 @@ export class ApplicationService {
       // console.log('Catalogos IPRE');
       return this.getCatalog(id, source);
     }
+  }
+
+  getApplicationFromJson(): Observable<ApplicationJson> {
+    return this.httpClient.get(URL_JSON_APP)
+      .pipe(
+        map((response: ApplicationJson) => {
+          console.log('typeof response:', typeof response);
+          console.log('response:', response);
+          return response;
+        })
+      );
   }
 
   addItem(newItem, itemType: string, idTable?: string) {
@@ -1083,8 +1097,6 @@ export class ApplicationService {
     if (step) {
       // validate each field individually in the step
       step.contents.forEach((contentFromStep) => {
-        // console.log('contentType: ', contentFromStep.contentType);
-        // console.log('onContentFromStep.fields');
 
         if (contentFromStep.contentType === 'looseFields') {
           // console.log('here1');
@@ -1180,7 +1192,6 @@ export class ApplicationService {
     let isValid = true;
     let message = '';
     let valueQuestion;
-
     if (tableType === 'table-beneficiary') {
       const totalParticipationPercentage = this.getTotalParticipationPercentage('beneficiary');
       // console.log('totalParticipationPercentage: ', totalParticipationPercentage);
@@ -1197,9 +1208,8 @@ export class ApplicationService {
         message = 'La suma de las participaciones entre beneficiarios no debe exceder el 100%';
       }
     } else if (tableType === 'table-payment') {
-      valueQuestion = this.formGroup.controls.extremeSportsQuestion.value;
-      if ( valueQuestion && valueQuestion === 'T') {
-        // console.log('valueQuestion: ', valueQuestion);
+      valueQuestion = this.formGroup.controls.payMode.value;
+      if ( valueQuestion && valueQuestion > 1) {
         // validate table content
         if (this.payments.getValue().length === 0) {
           isValid = false;
@@ -1295,19 +1305,6 @@ export class ApplicationService {
         // validates that the totalPercentage of beneficiaries is 100%
         isValid = false;
         message = 'La suma de las participaciones entre agentes no debe exceder el 100%';
-      }
-    } else if (tableType === 'table-payment') {
-      valueQuestion = this.formGroup.controls.payMode.value;
-      if ( valueQuestion) {
-        // console.log('valueQuestion: ', valueQuestion);
-        // validate table content
-        /*if (this.sports.getValue().length === 0) {
-          isValid = false;
-          message = 'Debe agregarse al menos un deporte / actvidad';
-        } else if (this.sports.getValue().length > 5) {
-          isValid = false;
-          message = 'No pueden agregarse más de 5 deportes / actividades';
-        }*/
       }
     } else if (tableType === 'documents') {
       // TODO: validation for documents

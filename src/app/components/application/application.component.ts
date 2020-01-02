@@ -8,6 +8,7 @@ import * as jsPDF from 'jspdf';
 import {APPL_OPERATIONS} from '../../core/mock/mock-operations';
 import {Template} from '../../models/template';
 import {Operation} from '../../models';
+import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 
 
 @Component({
@@ -16,7 +17,6 @@ import {Operation} from '../../models';
   styleUrls: ['./application.component.css'],
 })
 export class ApplicationComponent implements OnInit {
-
   applicationObj: Template;
   payLoad = '';
   formGroup: FormGroup;
@@ -25,6 +25,7 @@ export class ApplicationComponent implements OnInit {
   items = [];
   errorMessage;
   isValidApplication = true;
+  applicationJson: ApplicationJson;
 
   closeWindowOpt: Operation = {
     id: 'opt-1',
@@ -64,14 +65,28 @@ export class ApplicationComponent implements OnInit {
 
   }
 
+  getJson() {
+    this.appService.getApplicationFromJson().subscribe((result) => {
+      // this.applicationJson = JSON.parse(result.toString());
+      this.applicationJson = result;
+      console.log('applicationJson after parse', this.applicationJson);
+    });
+  }
+
   executeOperation(delegateOperation) {
+    console.log('delegateOperation: ', delegateOperation);
+
     if (delegateOperation === 'generatePDF') {
       this.downloadPDF();
     } else if (delegateOperation === 'validateApplication') {
       console.log('validateApplication ');
       this.validateApplication();
-    } else if ('closeModal') {
+    } else if (delegateOperation === 'closeModal') {
       this.closeModal('modal-error');
+    } else if (delegateOperation === 'toJsonApplication') {
+      console.log('on toJsonApplication...');
+      this.applicationJson.app_id = 1;
+      console.log('this.applicationJson: ', this.applicationJson);
     }
   }
 
