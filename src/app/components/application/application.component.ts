@@ -65,13 +65,22 @@ export class ApplicationComponent implements OnInit {
   }
 
   executeOperation(delegateOperation) {
+    console.log('delegateOperation: ', delegateOperation);
+
     if (delegateOperation === 'generatePDF') {
       this.downloadPDF();
     } else if (delegateOperation === 'validateApplication') {
       console.log('validateApplication ');
       this.validateApplication();
-    } else if ('closeModal') {
+    } else if (delegateOperation === 'closeModal') {
       this.closeModal('modal-error');
+    } else if (delegateOperation === 'toJsonApplication') {
+      console.log('on toJsonApplication...');
+      let formObj = this.formGroup.getRawValue();
+      let serializedForm = JSON.stringify(formObj);
+
+      console.log('formObj: ', formObj);
+      console.log('serializedForm: ', serializedForm);
     }
   }
 

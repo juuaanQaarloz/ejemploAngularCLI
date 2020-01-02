@@ -1082,8 +1082,6 @@ export class ApplicationService {
     if (step) {
       // validate each field individually in the step
       step.contents.forEach((contentFromStep) => {
-        // console.log('contentType: ', contentFromStep.contentType);
-        // console.log('onContentFromStep.fields');
 
         if (contentFromStep.contentType === 'looseFields') {
           // console.log('here1');
@@ -1179,7 +1177,6 @@ export class ApplicationService {
     let isValid = true;
     let message = '';
     let valueQuestion;
-
     if (tableType === 'table-beneficiary') {
       const totalParticipationPercentage = this.getTotalParticipationPercentage('beneficiary');
       // console.log('totalParticipationPercentage: ', totalParticipationPercentage);
@@ -1196,9 +1193,8 @@ export class ApplicationService {
         message = 'La suma de las participaciones entre beneficiarios no debe exceder el 100%';
       }
     } else if (tableType === 'table-payment') {
-      valueQuestion = this.formGroup.controls.extremeSportsQuestion.value;
-      if ( valueQuestion && valueQuestion === 'T') {
-        // console.log('valueQuestion: ', valueQuestion);
+      valueQuestion = this.formGroup.controls.payMode.value;
+      if ( valueQuestion && valueQuestion > 1) {
         // validate table content
         if (this.payments.getValue().length === 0) {
           isValid = false;
@@ -1294,19 +1290,6 @@ export class ApplicationService {
         // validates that the totalPercentage of beneficiaries is 100%
         isValid = false;
         message = 'La suma de las participaciones entre agentes no debe exceder el 100%';
-      }
-    } else if (tableType === 'table-payment') {
-      valueQuestion = this.formGroup.controls.payMode.value;
-      if ( valueQuestion) {
-        // console.log('valueQuestion: ', valueQuestion);
-        // validate table content
-        /*if (this.sports.getValue().length === 0) {
-          isValid = false;
-          message = 'Debe agregarse al menos un deporte / actvidad';
-        } else if (this.sports.getValue().length > 5) {
-          isValid = false;
-          message = 'No pueden agregarse más de 5 deportes / actividades';
-        }*/
       }
     } else if (tableType === 'documents') {
       // TODO: validation for documents
