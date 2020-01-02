@@ -397,6 +397,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     event.source.value = correctFieldValue(value);
     elem.setAttribute('value', event.source.value);
     // console.log('value2: ', elem.getAttribute('value'));
+
     this.form.controls[this.fieldObj.name].setValue(event.source.value);
 
     if (value) {
