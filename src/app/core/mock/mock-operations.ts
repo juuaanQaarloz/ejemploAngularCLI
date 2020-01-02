@@ -201,8 +201,8 @@ export const APPL_OPERATIONS: Operation[] = [
     delegateOperation: 'validateApplication',
     renderConditions: '',
     enableConditions: ''
-  },
-  {
+  }
+  /*{
     id: 'opt-3',
     idHtml: 'btnToJsonApplication',
     name: 'toJsonApplication',
@@ -215,7 +215,7 @@ export const APPL_OPERATIONS: Operation[] = [
     delegateOperation: 'toJsonApplication',
     renderConditions: '',
     enableConditions: ''
-  }
+  }*/
 ];
 
 export const pdfOperation = {
