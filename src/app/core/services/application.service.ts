@@ -67,6 +67,7 @@ const URL_CILINDRADA_OPTIONS = '../assets/catalogs/cilindrada.json';
 const URL_SPORTS_OPTIONS = '../assets/catalogs/sports.json';
 const URL_DISEASES_OPTIONS = '../assets/catalogs/diseases.json';
 const URL_COVERAGE_OPTIONS = '../assets/catalogs/coverage-options.json';
+const URL_AGENTS_PROMOTORIA = '../assets/catalogs/agents-promotoria.json';
 
 
 
@@ -1536,7 +1537,7 @@ export class ApplicationService {
     const userHeaders = this.getHeadersUser('userId');
     // console.log('userHeaders --< ' + userHeaders);
     // get agent catalog
-    this.httpClient.get(URL_AGENT_CATALOG).subscribe((agents: any) => {
+    this.httpClient.get(URL_AGENTS_PROMOTORIA).subscribe((agents: any) => {
       agents.catalogData.extension.variations.forEach(agent => {
         if (agent.agente === userHeaders + '') {
           const mapAgent = {
@@ -1560,7 +1561,7 @@ export class ApplicationService {
     // const headerUser = {
     // userId: stores.getItem('userId') !== null ? stores.getItem('userId') : '9504'
     // };
-    return stores.getItem(key) != null ? stores.getItem(key) : '9504';
+    return stores.getItem(key) != null ? stores.getItem(key) : '9503';
   }
 
   validateApplicationForm() {
@@ -1721,6 +1722,9 @@ export class ApplicationService {
         break;
       case 'coverageOptions':
         urlCatalog = URL_COVERAGE_OPTIONS;
+        break;
+      case 'agentsProfile':
+        urlCatalog = URL_AGENTS_PROMOTORIA;
         break;
     }
     return this.httpClient.get(urlCatalog)

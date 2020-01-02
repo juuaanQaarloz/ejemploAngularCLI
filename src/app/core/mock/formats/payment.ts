@@ -16,7 +16,6 @@ export const NewPaymentFields: Field[] = [
         pattern: '',
         source: 'IPRE',
         sourceID: 'bank',
-
         sourceStructure: ['key', 'name', 'key'],
         style: '',
         styleClass: '',
