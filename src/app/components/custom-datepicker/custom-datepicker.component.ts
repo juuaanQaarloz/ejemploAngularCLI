@@ -48,15 +48,15 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   }
 
   onDateInput(typeEvent: string, event) {
-    console.log('onDateInput...');
+    // console.log('onDateInput...');
     if (typeEvent === 'input') {
       event.targetElement.value = addSlashesToDate(event.targetElement.value);
-      console.log('type of input: ', typeof event.targetElement.value);
+      // console.log('type of input: ', typeof event.targetElement.value);
     }
   }
 
   onDateChange(event) {
-    console.log('onDateChange...');
+    // console.log('onDateChange...');
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
     let contractorType;
 
