@@ -52,7 +52,7 @@ export const AuthorizationFields1: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'Descripción es obligatorio y no debe exeder los 500 caracteres',
+    message: 'Descripción es obligatorio y no debe exeder los 200 caracteres',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',

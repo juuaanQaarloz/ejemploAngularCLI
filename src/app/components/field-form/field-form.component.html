@@ -50,7 +50,8 @@
     <label>
 
       <app-custom-datepicker
-        [form]="form" [fieldObj]="fieldObj"
+        [form]="form"
+        [fieldObj]="fieldObj"
         [dateFormat]="fieldObj.placeholder"
         (validate)="onValidate($event)">
       </app-custom-datepicker>
