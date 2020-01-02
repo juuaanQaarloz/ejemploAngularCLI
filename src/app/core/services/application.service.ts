@@ -1542,7 +1542,7 @@ export class ApplicationService {
         if (agent.agente === userHeaders + '') {
           const mapAgent = {
             agentId: agent.agente, name: agent.nombreAgente, key: agent.promotoria,
-            promotor: agent.nombrePromotoria, participation: 100
+            promotor: agent.nombrePromotoria, participation: 80
           };
           // insert user == agent
           this.addItem(mapAgent, 'agent');
@@ -1550,6 +1550,7 @@ export class ApplicationService {
       });
     });
   }
+
 
   getHeadersUser(key) {
     // User property map

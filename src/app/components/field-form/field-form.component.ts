@@ -375,6 +375,24 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     let value;
     value = event.source.value;
     // console.log('value: ', value);
+
+    if ( this.fieldObj.name === 'agentName') {
+      const nombreVar = 'agentPromotor';
+      const agente = 'nombreAgente';
+      this.applicationService.getCatalogById('agentsProfile', 'IPRE')
+        .subscribe((results) => {
+          const index = results.findIndex((i) => i[agente] === this.form.controls[this.fieldObj.name].value);
+          if ( index !== -1 ) {
+            const resp: any = results[index];
+            if (resp.nombrePromotoria !== null) {
+              this.form.controls[nombreVar].setValue(resp.nombrePromotoria);
+              const element = document.getElementById('txtAgentPromotor');
+              element.setAttribute('value', resp.nombrePromotoria);
+            }
+          }
+      });
+    }
+
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
     event.source.value = correctFieldValue(value);
     elem.setAttribute('value', event.source.value);
@@ -498,7 +516,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   // }
 
   onChange(event) {
-    // console.log('onChange event.target.value: ', event.target.value);
+    //console.log('onChange event.target.value: ', event.target.value);
     // console.log('formControlName: ', this.fieldObj.name);
     this.isValid();
   }
@@ -617,7 +635,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     // // console.log('Valor antes de ::', event.target);
     if (event.target.id === 'slctCurrency') {
       const assuredImport = this.form.controls.assuredImport.value;
-      if (Number(assuredImport) !== Number(0.00)){
+      if (Number(assuredImport) !== Number(0.00)) {
         this.setValueField('assuredImport', 'txtAssuredImport', null);
       }
     }

@@ -89,10 +89,10 @@ export class NewAgentComponent implements OnInit {
   }
 
   addNewAgent() {
-    console.log('addNewAgent');
     const formStatus = this.getFormStatus();
     if (formStatus === 'VALID') {
       const newAgent = this.mapNewAgentData();
+
       const response = this.applicationService.addItem(newAgent, 'agent');
 
       if (response.status) {
@@ -110,8 +110,8 @@ export class NewAgentComponent implements OnInit {
     const newMappedAgent = {
       agentId: (this.applicationService.getLastItemId('agent') + 1).toString(),
       name: this.formGroup.controls.agentName.value,
-      promotor: this.formGroup.controls.agentPromotor.value,
       key: this.formGroup.controls.agentKey.value,
+      promotor: this.formGroup.controls.agentPromotor.value,
       participation: this.formGroup.controls.agentParticipation.value
     };
     return newMappedAgent;
@@ -156,7 +156,7 @@ export class NewAgentComponent implements OnInit {
       agentId: this.config.data.item.agentId,
       name: this.formGroup.controls.agentName.value,
       key: this.formGroup.controls.agentKey.value,
-      promotor: this.formGroup.controls.agentPromotor.value,      
+      promotor: this.formGroup.controls.agentPromotor.value,
       participation: this.formGroup.controls.agentParticipation.value
     };
     return mappedAgent;
