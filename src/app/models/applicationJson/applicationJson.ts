@@ -9,7 +9,7 @@ import {DocumentJson} from './documentJson';
 import {PersonJson} from './personJson';
 import {InsuredConditionJson} from './insuredConditionJson';
 
-export interface Application {
+export interface ApplicationJson {
   app_id: number;
   agents: AgentJson[];
   Format: FormatJson[];

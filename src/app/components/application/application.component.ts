@@ -8,6 +8,7 @@ import * as jsPDF from 'jspdf';
 import {APPL_OPERATIONS} from '../../core/mock/mock-operations';
 import {Template} from '../../models/template';
 import {Operation} from '../../models';
+import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 
 
 @Component({
@@ -16,7 +17,6 @@ import {Operation} from '../../models';
   styleUrls: ['./application.component.css'],
 })
 export class ApplicationComponent implements OnInit {
-
   applicationObj: Template;
   payLoad = '';
   formGroup: FormGroup;
@@ -25,6 +25,7 @@ export class ApplicationComponent implements OnInit {
   items = [];
   errorMessage;
   isValidApplication = true;
+  applicationJson: ApplicationJson;
 
   closeWindowOpt: Operation = {
     id: 'opt-1',
@@ -64,6 +65,14 @@ export class ApplicationComponent implements OnInit {
 
   }
 
+  getJson() {
+    this.appService.getApplicationFromJson().subscribe((result) => {
+      // this.applicationJson = JSON.parse(result.toString());
+      this.applicationJson = result;
+      console.log('applicationJson after parse', this.applicationJson);
+    });
+  }
+
   executeOperation(delegateOperation) {
     console.log('delegateOperation: ', delegateOperation);
 
@@ -76,11 +85,8 @@ export class ApplicationComponent implements OnInit {
       this.closeModal('modal-error');
     } else if (delegateOperation === 'toJsonApplication') {
       console.log('on toJsonApplication...');
-      let formObj = this.formGroup.getRawValue();
-      let serializedForm = JSON.stringify(formObj);
-
-      console.log('formObj: ', formObj);
-      console.log('serializedForm: ', serializedForm);
+      this.applicationJson.app_id = 1;
+      console.log('this.applicationJson: ', this.applicationJson);
     }
   }
 

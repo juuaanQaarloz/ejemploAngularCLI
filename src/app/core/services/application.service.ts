@@ -23,6 +23,7 @@ import {BENEFICIARIES} from '../mock/mock-beneficiaries/mock-beneficiaries';
 import {placeholdersToParams} from '@angular/compiler/src/render3/view/i18n/util';
 import {error} from 'util';
 import {isPackageNameSafeForAnalytics} from '@angular/cli/models/analytics';
+import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
@@ -67,6 +68,7 @@ const URL_CILINDRADA_OPTIONS = '../assets/catalogs/cilindrada.json';
 const URL_SPORTS_OPTIONS = '../assets/catalogs/sports.json';
 const URL_DISEASES_OPTIONS = '../assets/catalogs/diseases.json';
 const URL_COVERAGE_OPTIONS = '../assets/catalogs/coverage-options.json';
+const URL_JSON_APP = '../assets/swagger/example.json';
 
 
 
@@ -94,6 +96,7 @@ export class ApplicationService {
   formGroup: FormGroup;
   searchModalFrom: string;
   applicationObj;
+  applicationJSON: ApplicationJson;
 
   contador = 0;
 
@@ -374,6 +377,17 @@ export class ApplicationService {
       // console.log('Catalogos IPRE');
       return this.getCatalog(id, source);
     }
+  }
+
+  getApplicationFromJson(): Observable<ApplicationJson> {
+    return this.httpClient.get(URL_JSON_APP)
+      .pipe(
+        map((response: ApplicationJson) => {
+          console.log('typeof response:', typeof response);
+          console.log('response:', response);
+          return response;
+        })
+      );
   }
 
   addItem(newItem, itemType: string, idTable?: string) {

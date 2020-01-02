@@ -11,6 +11,8 @@
       <h1 class="title">Solicitudes MetaLife</h1>
     </div>
 
+    <button (click)="getJson()">GET JSON</button>
+
     <div class="container">
       <app-section-form *ngFor="let section of applicationObj.sections" [form]="formGroup"
                         [sectionObj]="section"></app-section-form>
