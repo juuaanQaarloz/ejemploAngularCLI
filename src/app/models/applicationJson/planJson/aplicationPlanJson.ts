@@ -1,10 +1,13 @@
-import {CoverageJson} from '../coverageJson';
+import {CoverageJson} from '../coverageJson/coverageJson';
+import {Cvr} from '../coverageJson/cvr';
+import {BeneciciaryJson} from '../beneciciaryJson';
 
 export interface AplicationPlanJson {
   pln_cd: string;
   ins_id: number;
   app_id: number;
-  coverage: CoverageJson[];
+  coverage: Cvr[];
+  beneciciary: BeneciciaryJson[];
   pln_crrncy_cd: string;
   pln_cvr_tp_cd: string;
   pln_bsc_cvr_ini_amnt: number;

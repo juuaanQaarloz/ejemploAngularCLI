@@ -29,7 +29,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.per_frst_nm',
     value: ''
   },
   {
@@ -60,7 +60,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.per_ptrnl_lst_nm',
     value: ''
   },
   {
@@ -91,7 +91,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.per_mtrnl_lst_nm',
     value: ''
   },
   {
@@ -121,7 +121,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.per_brth_dt',
     value: ''
   },
   {
@@ -151,7 +151,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: 'insured.per_age',
+    entityField: 'insurer.per_age',
     disable: true
   },
   {
@@ -181,7 +181,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.party_natl_id',
     value: ''
   },
   {
@@ -211,7 +211,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.per_per_id',
     value: ''
   },
   {
@@ -242,7 +242,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.per_sex_cd',
     value: ''
   },
   {
@@ -273,7 +273,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.per_mry_stts_cd',
     value: ''
   },
   {
@@ -304,7 +304,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'app_own_card_typ_cd_id',
     value: ''
   },
   {
@@ -335,7 +335,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.per_card_num',
     value: ''
   },
   {
@@ -364,7 +364,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     renderConditions: '',
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
-    entity: '',
+    entity: 'insurer.per_card_emsr',
     entityField: ''
   },
   {
@@ -395,7 +395,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.per_brth_cntry_nm',
     value: '151'
   },
   {
@@ -425,7 +425,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.per_brth_stte_nm',
     value: ''
   },
   {
@@ -456,7 +456,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: ''
+    entityField: 'insurer.per_brth_plc_nm'
   },
   {
     id: 'field-18',
@@ -486,7 +486,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: ''
+    entityField: 'insurer.nationalities[0].natlty_nm'
   },
   {
     id: 'field-19',

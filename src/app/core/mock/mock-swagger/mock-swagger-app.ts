@@ -1,6 +1,6 @@
 import {ApplicationJson} from '../../../models/applicationJson/applicationJson';
 
-export const APP_SWAGERR: ApplicationJson = {
+export const APP_SWAGGER: ApplicationJson = {
   app_id: 0,
   agents: [
     {

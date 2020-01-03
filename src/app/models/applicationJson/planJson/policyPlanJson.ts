@@ -1,4 +1,4 @@
-import {CoverageJson} from '../coverageJson';
+import {CoverageJson} from '../coverageJson/coverageJson';
 
 export interface PolicyPlanJson {
   ins_inf_pol_pln_id: number;

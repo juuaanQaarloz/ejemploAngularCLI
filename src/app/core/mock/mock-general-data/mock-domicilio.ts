@@ -29,7 +29,7 @@ export const DatosDomicilio: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.Address[0].strt_nm',
   },
   {
     id: 'field-23',
@@ -58,7 +58,7 @@ export const DatosDomicilio: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.Address[0].ext_num',
   },
   {
     id: 'field-24',
@@ -86,7 +86,7 @@ export const DatosDomicilio: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.Address[0].int_num',
   },
   {
     id: 'field-25',
@@ -115,7 +115,7 @@ export const DatosDomicilio: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.Address[0].zip_cod',
   },
   {
     id: 'field-26',
@@ -145,7 +145,7 @@ export const DatosDomicilio: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.Address[0].subt_nm',
   },
   {
     id: 'field-27',
@@ -175,7 +175,7 @@ export const DatosDomicilio: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.Address[0].mncplty_nm',
   },
   {
     id: 'field-28',
@@ -204,7 +204,7 @@ export const DatosDomicilio: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.Address[0].sta_cod',
   },
   {
     id: 'field-29',
@@ -234,7 +234,7 @@ export const DatosDomicilio: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.Address[0].cntry_cod',
   },
   {
     id: 'field-30',
@@ -262,7 +262,7 @@ export const DatosDomicilio: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.Address[0].hom_phon',
   },
   {
     id: 'field-31',
@@ -291,7 +291,7 @@ export const DatosDomicilio: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.Address[0].cel_phon',
   },
   {
     id: 'field-33',
@@ -320,7 +320,7 @@ export const DatosDomicilio: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: ''
+    entityField: 'insurer.Address[0].per_mail_nm'
   },
   {
     id: 'field-34',

@@ -4,6 +4,7 @@ import {FormGroup} from '@angular/forms';
 import {ApplicationService} from '../../core/services';
 import {MockOperations} from '../../core/mock/mock-operations';
 import {FORM_MSG_ERROR} from '../../core/mock/errors/mock-erros-datos-plan';
+import {JsonApplicationService} from '../../core/services/json-application.service';
 
 @Component({
   selector: 'app-step-form',
@@ -23,7 +24,9 @@ export class StepFormComponent implements OnInit {
   isValidStep = true;
   stepMsgError = FORM_MSG_ERROR;
 
-  constructor(private applicationService: ApplicationService) {
+  constructor(private applicationService: ApplicationService,
+              private jsonApplicationService: JsonApplicationService
+  ) {
   }
 
   ngOnInit() {
@@ -80,6 +83,9 @@ export class StepFormComponent implements OnInit {
       this.validateStep();
       if (this.isValidStep) {
         this.applicationService.submitFunction('nextStep');
+        // save in JSON
+        this.jsonApplicationService.saveInJsonSwagger(this.stepObj);
+
       }
     }
   }

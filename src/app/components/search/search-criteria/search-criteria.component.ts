@@ -39,7 +39,7 @@ export class SearchCriteriaComponent implements OnInit {
   ngOnInit() {
   }
 
-  search(){
+  search() {
     const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json',

@@ -1,4 +1,4 @@
-import {BeneciciaryJson} from './beneciciaryJson';
+import {BeneciciaryJson} from '../beneciciaryJson';
 
 export interface CoverageJson {
   inf_pol_cvr_id: number;

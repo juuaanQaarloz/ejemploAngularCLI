@@ -89,7 +89,7 @@ export class ApplicationComponent implements OnInit {
       this.closeModal('modal-error');
     } else if (delegateOperation === 'toJsonApplication') {
       console.log('on toJsonApplication...');
-      this.getJson();
+      // this.getJson();
     }
   }
 
