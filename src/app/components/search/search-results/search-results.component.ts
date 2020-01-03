@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchResultsComponent implements OnInit {
   columns: any;
-  records: any;
+  records: any = [];
   p: any;
   numItems: number = 10;
 
