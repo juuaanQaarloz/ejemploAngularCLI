@@ -10,7 +10,7 @@ import {Template} from '../../models/template';
 import {Operation} from '../../models';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import {split} from 'ts-node';
-
+import set from 'lodash/set';
 
 @Component({
   selector: 'app-application',
@@ -65,14 +65,14 @@ export class ApplicationComponent implements OnInit {
       '40');*/
 
   }
-
   getJson() {
     this.appService.getApplicationFromJson().subscribe((result) => {
       // this.applicationJson = JSON.parse(result.toString());
       this.applicationJson = result;
-      let entityFieldElement = 'insured.per_age';
-      this.applicationJson[entityFieldElement] = 26;
-      this.applicationJson.app_id = 69;
+      let entityFieldElement = 'shareHolders[0].person.per_age';
+
+      set(this.applicationJson, entityFieldElement, 26);
+
       console.log('applicationJson after parse', this.applicationJson);
     });
   }

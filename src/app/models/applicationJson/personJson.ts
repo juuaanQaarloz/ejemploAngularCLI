@@ -13,7 +13,6 @@ export interface PersonJson {
   per_brth_dt: string;
   per_age: number;
   Address: AddressJson[];
-  bankTransaction: BankTransaction;
   diseases: DiseaseJson[];
   nationalities: NationalityJson[];
   contactPerson: ContactPersonJson[];
@@ -22,19 +21,19 @@ export interface PersonJson {
   per_brth_cntry_cd: string;
   per_brth_stte_nm: string;
   per_brth_plc_nm: string;
-  party_typ_cd: boolean;
+  party_typ_cd: true;
   party_addl_typ_nm: string;
   per_card_num: string;
   per_card_typ_cd: string;
   per_card_typ_nm: string;
   per_card_emsr: string;
   per_per_id: string;
-  per_sex_cd: boolean;
-  per_mry_stts_cd: boolean;
+  per_sex_cd: true;
+  per_mry_stts_cd: true;
   per_frst_nm: string;
   per_ptrnl_lst_nm: string;
   per_mtrnl_lst_nm: string;
-  per_smok_ind: boolean;
+  per_smok_ind: true;
   co_act_cd: string;
   co_act_nm: string;
   co_bus_nm: string;
@@ -62,6 +61,11 @@ export interface PersonJson {
   per_wt_dscr: string;
   per_ht_dscr: string;
   per_lgl_frmt_nm: string;
+  per_job_add_ind: true;
+  per_job_add_cd: string;
+  per_job_add_nm: string;
+  per_job_add_aka_nm: string;
+  per_job_add_mo_incm_amt: number;
   rec_crt_ts: string;
   rec_crt_usr_id: string;
   rec_updt_ts: string;
@@ -71,5 +75,7 @@ export interface PersonJson {
   co_cmrc_rlshnshp_cd: number;
   co_cmrc_pblc_fig_ind: string;
   per_mdm_req: string;
+  co_ctct_nm: string;
+  co_ctct_occp: string;
 }
 

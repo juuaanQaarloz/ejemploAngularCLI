@@ -18,7 +18,7 @@ export interface AddressJson {
   cel_phon: string;
   per_mail_nm: string;
   lab_mail_nm: string;
-  mncplty_Nm: string;
+  mncplty_nm: string;
   rec_crt_ts: string;
   rec_crt_usr_id: string;
   rec_updt_ts: string;
