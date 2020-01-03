@@ -8,6 +8,8 @@ import {ExtraDataJson} from './extraDataJson';
 import {DocumentJson} from './documentJson';
 import {PersonJson} from './personJson';
 import {InsuredConditionJson} from './insuredConditionJson';
+import {ApplicationExtensionJson} from './applicationExtensionJson';
+import {ShareHolderApp} from './shareHolderApp';
 
 export interface ApplicationJson {
   app_id: number;
@@ -17,9 +19,11 @@ export interface ApplicationJson {
   QuesAns: QuesAns[];
   insured: PersonJson;
   insurer: PersonJson;
+  shareHolders: ShareHolderApp[];
   accounts: AccountJson[];
   foreignCountryTaxes: ForeignCountryTaxJson[];
   extraData: ExtraDataJson[];
+  applicationExtension: ApplicationExtensionJson;
   documents: DocumentJson[];
   insuredCondition: InsuredConditionJson;
   app_bsns_ln_id: string;

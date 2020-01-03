@@ -9,6 +9,7 @@ import {APPL_OPERATIONS} from '../../core/mock/mock-operations';
 import {Template} from '../../models/template';
 import {Operation} from '../../models';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
+import {split} from 'ts-node';
 
 
 @Component({
@@ -69,6 +70,9 @@ export class ApplicationComponent implements OnInit {
     this.appService.getApplicationFromJson().subscribe((result) => {
       // this.applicationJson = JSON.parse(result.toString());
       this.applicationJson = result;
+      let entityFieldElement = 'insured.per_age';
+      this.applicationJson[entityFieldElement] = 26;
+      this.applicationJson.app_id = 69;
       console.log('applicationJson after parse', this.applicationJson);
     });
   }
@@ -85,8 +89,7 @@ export class ApplicationComponent implements OnInit {
       this.closeModal('modal-error');
     } else if (delegateOperation === 'toJsonApplication') {
       console.log('on toJsonApplication...');
-      this.applicationJson.app_id = 1;
-      console.log('this.applicationJson: ', this.applicationJson);
+      this.getJson();
     }
   }
 

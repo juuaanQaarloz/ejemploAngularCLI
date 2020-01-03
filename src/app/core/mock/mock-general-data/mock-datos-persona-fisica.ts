@@ -151,7 +151,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insured.per_age',
     disable: true
   },
   {
