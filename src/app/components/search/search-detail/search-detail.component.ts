@@ -6,6 +6,9 @@ import { ApplicationService, AuthService, StorageService } from 'src/app/core/se
 import { DialogService } from '../../dialog/dialog.service';
 import { ModalService } from '../../custom-modal';
 import { MockTemplate } from 'src/app/core/mock/mock-template';
+import { ActivatedRoute } from '@angular/router';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { AppConstants } from 'src/app/app.constants';
 
 @Component({
   selector: 'app-search-detail',
@@ -13,24 +16,44 @@ import { MockTemplate } from 'src/app/core/mock/mock-template';
   styleUrls: ['./search-detail.component.css']
 })
 export class SearchDetailComponent implements OnInit {
-
+  id: string;
   applicationObj: Template;
   payLoad = '';
   formGroup: FormGroup;
   @ViewChild('content', { static: true }) content: ElementRef;
   pdfOperation = pdfOperation;
   items = [];
-  errors;
+  errors:any;
 
   constructor(private appService: ApplicationService,
-    private authService: AuthService,
-    private storageService: StorageService,
+    private httpClient: HttpClient,
     public dialog: DialogService,
-    private modalService: ModalService
+    private modalService: ModalService,
+    private route: ActivatedRoute
   ) {
   }
 
   ngOnInit() {
+    this.id = this.route.snapshot.paramMap.get('id');
+
+    const headers = new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
+    });
+
+    let params = new HttpParams();
+    params = params.append('app_id', this.id);
+
+    this.httpClient.get( AppConstants.URL_SERVICE  + '/aplication', {headers, params}).subscribe((resp:any) => {
+      console.log("Respuesta detail");
+      console.log(resp.data);
+      //this.applicationObj = resp.data;
+    });
+
+
     this.appService.setApplicationObject(MockTemplate);
     this.applicationObj = this.appService.getApplicationObject();
     this.formGroup = this.appService.toFormGroupReadOnly(this.applicationObj);

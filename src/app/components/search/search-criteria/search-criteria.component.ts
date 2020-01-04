@@ -68,8 +68,6 @@ export class SearchCriteriaComponent implements OnInit {
     }
 
     this.httpClient.get( AppConstants.URL_SERVICE  + '/aplication', {headers, params}).subscribe((resp:any) => {
-      console.log("Respuesta busqueda");
-      console.log(resp);
       localStorage.setItem('search', JSON.stringify(resp.data));
       this.router.navigate(['search','results']);
     });
