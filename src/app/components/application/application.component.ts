@@ -11,6 +11,7 @@ import {Operation} from '../../models';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import {split} from 'ts-node';
 import set from 'lodash/set';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-application',
@@ -44,8 +45,7 @@ export class ApplicationComponent implements OnInit {
   };
 
   constructor(private appService: ApplicationService,
-              private authService: AuthService,
-              private storageService: StorageService,
+              private httpClient: HttpClient,
               public dialog: DialogService,
               private modalService: ModalService
   ) {
@@ -110,10 +110,16 @@ export class ApplicationComponent implements OnInit {
   }
 
   downloadPDF() {
-    let link=document.createElement("a");
-    link.download="VV-1-087.pdf";
-    link.href="/assets/pdf/VV-1-087.pdf";
-    link.click();
+    this.httpClient.get("http://10.10.202.68:15440/esb/appSerPriv/api/v1/app/getPdf/appId=2001030089").subscribe( (resp:any) => {
+      if(resp.result!=null){
+        window.open(resp.result.pdfDoc, "_blank");
+      }
+    });
+
+    //let link=document.createElement("a");
+    //link.download="VV-1-087.pdf";
+    //link.href="/assets/pdf/VV-1-087.pdf";
+    //link.click();
     // const doc = new jsPDF();
 
     // doc.addHTML(document.getElementById('content'), () => {
