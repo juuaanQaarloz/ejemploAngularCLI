@@ -53,4 +53,9 @@ export class StorageService {
     this.removeCurrentSession();
     this.router.navigate(['/login']);
   }
+
+  getSessionUser(): any {
+    const stores = window.localStorage;
+    return JSON.parse(stores.getItem('sessionUser'));
+  }
 }

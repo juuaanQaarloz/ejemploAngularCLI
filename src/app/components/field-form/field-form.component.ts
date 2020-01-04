@@ -388,6 +388,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
               this.form.controls[nombreVar].setValue(resp.nombrePromotoria);
               const element = document.getElementById('txtAgentPromotor');
               element.setAttribute('value', resp.nombrePromotoria);
+            } else {
+              this.form.controls[nombreVar].reset();
+              const element = document.getElementById('txtAgentPromotor');
+              element.setAttribute('value', null);
             }
           }
       });
