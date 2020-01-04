@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';
@@ -24,6 +24,8 @@ import {placeholdersToParams} from '@angular/compiler/src/render3/view/i18n/util
 import {error} from 'util';
 import {isPackageNameSafeForAnalytics} from '@angular/cli/models/analytics';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
+import {AppConstants} from '../../app.constants';
+import {APP_SWAGGER} from '../mock/mock-swagger/mock-swagger-app';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
@@ -1737,5 +1739,34 @@ export class ApplicationService {
           }
         })
       );
+  }
+
+  saveFunction() {
+    const URL = 'http://10.215.104.61:35741/cp-desws-priv/aplication';
+    const URL_GET = 'http://10.215.104.61:35741/cp-desws-priv/App/folio';
+
+    const headers = new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
+    });
+
+    /*return this.http
+      .put(url, JSON.stringify(hero), {headers: headers})
+      .map(res => res.json());*/
+
+    /*let json = JSON.stringify(APP_SWAGGER);
+
+    this.httpClient.put(URL, json, {headers}).subscribe((response) => {
+      console.log('Respuesta guardado');
+      console.log('response: ', response);
+    });*/
+
+    this.httpClient.put(URL, {headers}).subscribe((response) => {
+      console.log('Respuesta GUARDADO');
+      console.log('response: ', response);
+    });
   }
 }

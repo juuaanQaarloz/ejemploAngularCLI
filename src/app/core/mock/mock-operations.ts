@@ -215,6 +215,20 @@ export const APPL_OPERATIONS: Operation[] = [
     delegateOperation: 'toJsonApplication',
     renderConditions: '',
     enableConditions: ''
+  },
+  {
+    id: 'opt-4',
+    idHtml: 'btnTestGuardadoApplication',
+    name: 'testGuardadoApplication',
+    label: 'TEST GUARDADO',
+    type: 'button',
+    style: '',
+    styleClass: 'ml-button-primary',
+    message: '',
+    messageClass: '',
+    delegateOperation: 'testGuardadoApplication',
+    renderConditions: '',
+    enableConditions: ''
   }
 ];
 

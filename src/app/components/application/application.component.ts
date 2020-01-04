@@ -90,6 +90,9 @@ export class ApplicationComponent implements OnInit {
     } else if (delegateOperation === 'toJsonApplication') {
       console.log('on toJsonApplication...');
       // this.getJson();
+    } else if (delegateOperation === 'testGuardadoApplication') {
+      console.log('testGuardadoApplication')
+      this.testSaveFunction();
     }
   }
 
@@ -133,5 +136,9 @@ export class ApplicationComponent implements OnInit {
     errors = this.errorMessage.split('-');
     // console.log('errors: ', errors);
     return errors;
+  }
+
+  testSaveFunction() {
+    this.appService.saveFunction();
   }
 }
