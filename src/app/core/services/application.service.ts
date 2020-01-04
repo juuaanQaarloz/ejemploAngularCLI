@@ -1757,14 +1757,9 @@ export class ApplicationService {
       .put(url, JSON.stringify(hero), {headers: headers})
       .map(res => res.json());*/
 
-    /*let json = JSON.stringify(APP_SWAGGER);
+    let json = JSON.stringify(APP_SWAGGER);
 
     this.httpClient.put(URL, json, {headers}).subscribe((response) => {
-      console.log('Respuesta guardado');
-      console.log('response: ', response);
-    });*/
-
-    this.httpClient.put(URL, {headers}).subscribe((response) => {
       console.log('Respuesta GUARDADO');
       console.log('response: ', response);
     });
