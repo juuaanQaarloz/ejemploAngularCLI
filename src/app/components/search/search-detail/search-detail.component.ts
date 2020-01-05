@@ -9,6 +9,7 @@ import { MockTemplate } from 'src/app/core/mock/mock-template';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { AppConstants } from 'src/app/app.constants';
+import get from 'lodash/get';
 
 @Component({
   selector: 'app-search-detail',
@@ -16,7 +17,7 @@ import { AppConstants } from 'src/app/app.constants';
   styleUrls: ['./search-detail.component.css']
 })
 export class SearchDetailComponent implements OnInit {
-  id: string;
+  detail:any;
   applicationObj: Template;
   payLoad = '';
   formGroup: FormGroup;
@@ -34,29 +35,10 @@ export class SearchDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.id = this.route.snapshot.paramMap.get('id');
-
-    const headers = new HttpHeaders({
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
-    });
-
-    let params = new HttpParams();
-    params = params.append('app_id', this.id);
-
-    this.httpClient.get( AppConstants.URL_SERVICE  + '/aplication', {headers, params}).subscribe((resp:any) => {
-      console.log("Respuesta detail");
-      console.log(resp.data);
-      //this.applicationObj = resp.data;
-    });
-
-
+    this.detail = JSON.parse(localStorage.getItem('detail'));
     this.appService.setApplicationObject(MockTemplate);
     this.applicationObj = this.appService.getApplicationObject();
-    this.formGroup = this.appService.toFormGroupReadOnly(this.applicationObj);
+    this.formGroup = this.appService.toFormGroupReadOnly(this.applicationObj, this.detail);
     this.appService.setFormGroup(this.formGroup);
     // an example array of 150 items to be paged
     this.items = Array(150).fill(0).map((x, i) => ({ id: (i + 1), name: `Item ${i + 1}` }));
@@ -64,8 +46,7 @@ export class SearchDetailComponent implements OnInit {
       'beneficiary',
       '1',
       'participationPercentage',
-      '40');*/
-
+      '40');*/  
   }
 
   getFormValue() {

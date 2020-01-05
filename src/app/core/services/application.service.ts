@@ -4,8 +4,7 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';
-import {Beneficiary, Formatwo, Field, Occupation, Step} from '../../models';
-import {Agent} from '../../models/agent-model/agent';
+import {Field, Occupation, Step} from '../../models';
 import {
   equalEmailsValidator,
   higherAssuredImport,
@@ -13,25 +12,19 @@ import {
   validateSameName2,
   validatorsObjects,
   validateFunds,
-  validateSameName4,
   validateSameName3
 } from '../validators';
 import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
 import {COVERAGES} from '../mock/coverage/coverage';
-import {BENEFICIARIES} from '../mock/mock-beneficiaries/mock-beneficiaries';
-import {placeholdersToParams} from '@angular/compiler/src/render3/view/i18n/util';
-import {error} from 'util';
-import {isPackageNameSafeForAnalytics} from '@angular/cli/models/analytics';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
-import {AppConstants} from '../../app.constants';
 import {APP_SWAGGER} from '../mock/mock-swagger/mock-swagger-app';
+import get from 'lodash/get';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
 const URL_PATTERN_CATALOG = '../assets/catalogs/pattern-catalogs.json';
 const URL_SEPOMEX = '../assets/catalogs/response-sepomex.json';
-const URL_AGENT_CATALOG = '../assets/catalogs/agents-catalogs.json';
 
 // Generic Catalog
 const URL_CAT_ADDRESS_TYPE = '../assets/catalogs/address-type.json';
@@ -238,13 +231,14 @@ export class ApplicationService {
     return new FormGroup(group, [equalEmailsValidator, higherAssuredImport, validateFunds, validateSameName, validateSameName2, validateSameName3 ]);
   }
 
-  toFormGroupReadOnly(applicationObj: Template) {
+  toFormGroupReadOnly(applicationObj: Template, detail: any) {
     const group: any = {};
     applicationObj.sections.forEach(section => {
       section.contents.forEach((contentFromSection) => {
         if (contentFromSection.fields) {
           contentFromSection.fields.forEach(field => {
             field.disable = true;
+            field.value = get(detail, field.entityField);
             group[field.name] = new FormControl(
               field.value || '',
               this.getValidationFunctions(field));
@@ -256,6 +250,7 @@ export class ApplicationService {
                 if (contentFromStep.fields) {
                   contentFromStep.fields.forEach(field => {
                     field.disable = true;
+                    field.value = get(detail, field.entityField);
                     group[field.name] = new FormControl(
                       field.value || '',
                       this.getValidationFunctions(field));
@@ -278,7 +273,6 @@ export class ApplicationService {
           }
         }
       });
-
     });
     return new FormGroup(group, [equalEmailsValidator, higherAssuredImport, validateFunds]);
   }

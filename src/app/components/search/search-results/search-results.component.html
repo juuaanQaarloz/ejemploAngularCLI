@@ -10,14 +10,18 @@
                 <div class="table-responsive">
                     <table class="table table-sm">
                         <thead>
-                            <th *ngFor="let column of columns">{{ column.label }}</th>
+                            <th *ngFor="let column of columns" class="text-center">{{ column.label }}</th>
                         </thead>
                         <tbody>
                             <tr *ngFor="let record of records | paginate: { itemsPerPage: numItems, currentPage: p }">
                                 <td class="{{ column.align }}" *ngFor="let column of columns">
-                                    <span *ngIf="column.field=='app_id'"><a
-                                            [routerLink]="['/search','detail', record['app_id'] ]"><b>{{ record[column.field] }}</b></a></span>
-                                    <span *ngIf="column.field!='app_id'">{{ record[column.field] }}</span>
+                                    <span *ngIf="column.type=='id'">
+                                        <a (click)="detail(record['app_id'])">
+                                            <b>{{ record[column.field] }}</b>
+                                        </a>
+                                    </span>
+                                    <span *ngIf="column.type=='date'">{{ record[column.field] | date: 'dd/MM/yyyy' }}</span>
+                                    <span *ngIf="column.type=='string'">{{ record[column.field] }}</span>
                                 </td>
                             </tr>
                         </tbody>
