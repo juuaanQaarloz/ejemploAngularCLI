@@ -18,7 +18,7 @@ export const APP_SWAGGER: ApplicationJson = {
       nationalities:[
         {
           natlty_cd: '0',
-          party_app_id: null,
+          party_app_id: 0,
           app_id: null,
           natlty_nm: null,
           rec_crt_ts: null,
@@ -102,7 +102,7 @@ export const APP_SWAGGER: ApplicationJson = {
       nationalities:[
         {
           natlty_cd: '0',
-          party_app_id: null,
+          party_app_id: 0,
           app_id: null,
           natlty_nm: null,
           rec_crt_ts: null,
