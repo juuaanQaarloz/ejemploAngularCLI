@@ -486,7 +486,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: 'insurer.nationalities[0].natlty_cd'
+    entityField: ''
   },
   {
     id: 'field-19',

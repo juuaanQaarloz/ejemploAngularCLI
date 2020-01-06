@@ -1777,9 +1777,8 @@ export class ApplicationService {
     //console.log("guarda solicitud");
     //console.log(appJson);
     appJson = set(appJson, 'insurer.app_id', appJson.app_id);
-    appJson = set(appJson, 'insurer.nationalities[0].app_id', appJson.app_id);
-    appJson = set(appJson, 'insured.app_id', appJson.app_id);
-    appJson = set(appJson, 'insured.nationalities[0].app_id', appJson.app_id);
+    appJson = set(appJson, 'insurer.nationalities', []);
+    appJson = set(appJson, 'insured', null);
     this.httpClient.put(URL, appJson, {headers}).subscribe((response) => {
       //console.log(response);
     });    
