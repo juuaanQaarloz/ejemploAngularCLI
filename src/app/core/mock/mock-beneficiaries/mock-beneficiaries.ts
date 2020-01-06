@@ -28,7 +28,7 @@ export const NewBeneficiaryFields: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insuredCondition.aplicationPlan.coverage.beneciciary.person.party_typ_cd',
     value: 'phyPerson'
   }
 ];
