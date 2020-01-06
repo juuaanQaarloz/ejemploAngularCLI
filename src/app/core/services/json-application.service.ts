@@ -30,6 +30,8 @@ export class JsonApplicationService {
     console.log('on saveInJsonSwagger');
     const step = this.appService.getStepById(stepObj.id);
 
+    console.log('appJson: ', this.getAppJson());
+
     if (step) {
       // validate each field individually in the step
       step.contents.forEach((contentFromStep) => {
@@ -37,21 +39,21 @@ export class JsonApplicationService {
         if (contentFromStep.contentType === 'looseFields') {
           contentFromStep.fields.forEach((field) => {
             if (field.entityField) {
-              console.log('field.entityField: ', field.entityField);
               // get current value from FORM FIELD
               let value = this.appService.getFormGroup().controls[field.name].value;
               if (value) {
                 if (field.type === 'date') {
                   value = transformDate(value, 'YYYY-MM-DD').toString();
                 }
-                console.log('value: ', value);
+                // console.log('value: ', value);
+                // console.log('field.entityField: ', field.entityField);
                 // get property
-                let property = get(this.appJson, field.entityField);
-                console.log('before property: ', property);
-                console.log('before typeof property: ', typeof property);
+                const property = get(this.appJson, field.entityField);
+                // console.log('before property: ', property);
+                // console.log('before typeof property: ', typeof property);
                 if (property) {
-                  console.log('after property: ', property);
-                  console.log('typeof property: ', typeof property);
+                  // console.log('after property: ', property);
+                  // console.log('typeof property: ', typeof property);
                 }
                 // setting value from FORM to JSON
                 set(this.appJson, field.entityField, value);
@@ -79,11 +81,11 @@ export class JsonApplicationService {
                     console.log('value: ', value);
                     // get property
                     let property = get(this.appJson, field.entityField);
-                    console.log('before property: ', property);
-                    console.log('before typeof property: ', typeof property);
+                    // console.log('before property: ', property);
+                    // console.log('before typeof property: ', typeof property);
                     if (property) {
-                      console.log('after property: ', property);
-                      console.log('typeof property: ', typeof property);
+                      // console.log('after property: ', property);
+                      // console.log('typeof property: ', typeof property);
                     }
                     set(this.appJson, field.entityField, value);
                   }

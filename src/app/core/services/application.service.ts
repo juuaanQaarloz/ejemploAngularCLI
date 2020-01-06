@@ -1743,6 +1743,7 @@ export class ApplicationService {
   }
 
   saveFunction(appJson: ApplicationJson) {
+    console.log('on saveFunctions');
     const URL_FOLIO = AppConstants.URL_SERVICE + '/App/folio';
     const headers = new HttpHeaders({
       'Accept': 'application/json',
@@ -1752,20 +1753,21 @@ export class ApplicationService {
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
     });
 
-    //console.log("appJson: "+appJson);
-    if(appJson.app_id===0){
-      //console.log("obtiene folio");
-      this.httpClient.get(URL_FOLIO, {headers}).subscribe((response:any) => {
+    // console.log("appJson: "+appJson);
+    if (appJson.app_id === 0) {
+      // console.log("obtiene folio");
+      this.httpClient.get(URL_FOLIO, {headers}).subscribe((response: any) => {
         appJson.app_id = response.app_id;
-        //console.log("folio nuevo: "+response.app_id);
+        console.log('folio nuevo: ',  response.app_id);
         this.saveSolicitud(appJson);
       });
-    }else{
+    } else {
       this.saveSolicitud(appJson);
     }
   }
 
-  saveSolicitud(appJson: ApplicationJson){
+  saveSolicitud(appJson: ApplicationJson) {
+    console.log('on saveSolicitud');
     const URL = AppConstants.URL_SERVICE + '/aplication';
     const headers = new HttpHeaders({
       'Accept': 'application/json',
@@ -1774,13 +1776,14 @@ export class ApplicationService {
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
     });
-    //console.log("guarda solicitud");
-    //console.log(appJson);
+    // console.log("guarda solicitud");
+    console.log(appJson);
     appJson = set(appJson, 'insurer.app_id', appJson.app_id);
     appJson = set(appJson, 'insurer.nationalities', []);
     appJson = set(appJson, 'insured', null);
-    this.httpClient.put(URL, appJson, {headers}).subscribe((response) => {
-      //console.log(response);
-    });    
+    this.httpClient.put(URL, appJson, {headers})
+      .subscribe((response) => {
+      console.log('response: ', response);
+    });
   }
 }
