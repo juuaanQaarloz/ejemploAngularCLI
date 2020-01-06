@@ -234,11 +234,14 @@ export class ApplicationService {
 
   toFormGroupReadOnly(applicationObj: Template, detail: any) {
     const group: any = {};
+    const estatus = get(detail, "app_stts_cd");
     applicationObj.sections.forEach(section => {
       section.contents.forEach((contentFromSection) => {
         if (contentFromSection.fields) {
           contentFromSection.fields.forEach(field => {
-            field.disable = true;
+            if(estatus!==null && estatus>=30){
+              field.disable = true;
+            }
             field.value = get(detail, field.entityField);
             group[field.name] = new FormControl(
               field.value || '',
@@ -250,7 +253,9 @@ export class ApplicationService {
               step.contents.forEach((contentFromStep) => {
                 if (contentFromStep.fields) {
                   contentFromStep.fields.forEach(field => {
-                    field.disable = true;
+                    if(estatus!==null && estatus>=30){
+                      field.disable = true;
+                    }
                     field.value = get(detail, field.entityField);
                     group[field.name] = new FormControl(
                       field.value || '',
@@ -1746,12 +1751,9 @@ export class ApplicationService {
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
     });
 
-    console.log('APP_ID: '+appJson.app_id);
     if(appJson.app_id===0){
-      console.log("OBTENER FOLIO");
       this.httpClient.get(URL_FOLIO, {headers}).subscribe((response:any) => {
         appJson.app_id = response.app_id;
-        console.log("FOLIO OBTENIDO: "+response.app_id);
         this.saveSolicitud(appJson);
       });
     }else{
@@ -1768,10 +1770,7 @@ export class ApplicationService {
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
     });
-    console.log("GUARDAR SOLICITUD: "+appJson.app_id);
     this.httpClient.put(URL, appJson, {headers}).subscribe((response) => {
-      console.log('Respuesta GUARDADO');
-      console.log('response: ', response);
     });    
   }
 }

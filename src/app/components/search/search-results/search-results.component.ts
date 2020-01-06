@@ -47,6 +47,8 @@ export class SearchResultsComponent implements OnInit {
     params = params.append('app_id', app_id);
 
     this.httpClient.get( AppConstants.URL_SERVICE  + '/aplication', {headers, params}).subscribe((resp:any) => {
+      console.log("detalle");
+      console.log(resp.data);
       localStorage.setItem('detail', JSON.stringify(resp.data));
       this.router.navigate(['search','detail', app_id]);
     });
