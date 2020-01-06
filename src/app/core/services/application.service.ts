@@ -20,6 +20,7 @@ import {SepomexObj} from '../../models/sepomex-obj';
 import {COVERAGES} from '../mock/coverage/coverage';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import {APP_SWAGGER} from '../mock/mock-swagger/mock-swagger-app';
+import set from 'lodash/set';
 import get from 'lodash/get';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
@@ -1775,6 +1776,10 @@ export class ApplicationService {
     });
     //console.log("guarda solicitud");
     //console.log(appJson);
+    appJson = set(appJson, 'insurer.app_id', appJson.app_id);
+    appJson = set(appJson, 'insurer.nationalities[0].app_id', appJson.app_id);
+    appJson = set(appJson, 'insured.app_id', appJson.app_id);
+    appJson = set(appJson, 'insured.nationalities[0].app_id', appJson.app_id);
     this.httpClient.put(URL, appJson, {headers}).subscribe((response) => {
       //console.log(response);
     });    
