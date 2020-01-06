@@ -100,6 +100,7 @@ export class JsonApplicationService {
       // console.log('appJson json: ', JSON.stringify(this.getAppJson()));
 
       // return JSON.stringify(this.getAppJson());
+      this.appService.saveFunction(this.getAppJson());
     }
   }
 }

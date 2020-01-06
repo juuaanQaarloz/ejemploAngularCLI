@@ -12,6 +12,7 @@ import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import {split} from 'ts-node';
 import set from 'lodash/set';
 import { HttpClient } from '@angular/common/http';
+import { APP_SWAGGER } from 'src/app/core/mock/mock-swagger/mock-swagger-app';
 
 @Component({
   selector: 'app-application',
@@ -145,6 +146,6 @@ export class ApplicationComponent implements OnInit {
   }
 
   testSaveFunction() {
-    this.appService.saveFunction();
+    this.appService.saveFunction(APP_SWAGGER);
   }
 }

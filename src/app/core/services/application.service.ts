@@ -1,3 +1,4 @@
+import { AppConstants } from 'src/app/app.constants';
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
@@ -1735,10 +1736,8 @@ export class ApplicationService {
       );
   }
 
-  saveFunction() {
-    const URL = 'http://10.215.104.61:35741/cp-desws-priv/aplication';
-    const URL_GET = 'http://10.215.104.61:35741/cp-desws-priv/App/folio';
-
+  saveFunction(appJson: ApplicationJson) {
+    const URL_FOLIO = AppConstants.URL_SERVICE + '/App/folio';
     const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -1747,15 +1746,32 @@ export class ApplicationService {
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
     });
 
-    /*return this.http
-      .put(url, JSON.stringify(hero), {headers: headers})
-      .map(res => res.json());*/
+    console.log('APP_ID: '+appJson.app_id);
+    if(appJson.app_id===0){
+      console.log("OBTENER FOLIO");
+      this.httpClient.get(URL_FOLIO, {headers}).subscribe((response:any) => {
+        appJson.app_id = response.app_id;
+        console.log("FOLIO OBTENIDO: "+response.app_id);
+        this.saveSolicitud(appJson);
+      });
+    }else{
+      this.saveSolicitud(appJson);
+    }
+  }
 
-    let json = JSON.stringify(APP_SWAGGER);
-
-    this.httpClient.put(URL, json, {headers}).subscribe((response) => {
+  saveSolicitud(appJson: ApplicationJson){
+    const URL = AppConstants.URL_SERVICE + '/aplication';
+    const headers = new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
+    });
+    console.log("GUARDAR SOLICITUD: "+appJson.app_id);
+    this.httpClient.put(URL, appJson, {headers}).subscribe((response) => {
       console.log('Respuesta GUARDADO');
       console.log('response: ', response);
-    });
+    });    
   }
 }
