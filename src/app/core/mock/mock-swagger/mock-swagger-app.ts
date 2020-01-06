@@ -15,7 +15,18 @@ export const APP_SWAGGER: ApplicationJson = {
       per_age: null,
       Address: [],
       diseases: [],
-      nationalities: [],
+      nationalities:[
+        {
+          natlty_cd: '0',
+          party_app_id: null,
+          app_id: null,
+          natlty_nm: null,
+          rec_crt_ts: null,
+          rec_crt_usr_id: null,
+          rec_updt_ts: null,
+          rec_updt_usr_id: null
+          }
+      ],
       contactPerson: [],
       dataContact: [],
       per_brth_cntry_nm: null,
