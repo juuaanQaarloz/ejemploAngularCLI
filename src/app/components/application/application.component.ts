@@ -11,6 +11,9 @@ import {Operation} from '../../models';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import {split} from 'ts-node';
 import set from 'lodash/set';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { APP_SWAGGER } from 'src/app/core/mock/mock-swagger/mock-swagger-app';
+import { AppConstants } from 'src/app/app.constants';
 
 @Component({
   selector: 'app-application',
@@ -44,8 +47,7 @@ export class ApplicationComponent implements OnInit {
   };
 
   constructor(private appService: ApplicationService,
-              private authService: AuthService,
-              private storageService: StorageService,
+              private httpClient: HttpClient,
               public dialog: DialogService,
               private modalService: ModalService
   ) {
@@ -114,15 +116,22 @@ export class ApplicationComponent implements OnInit {
   }
 
   downloadPDF() {
-    let link=document.createElement("a");
-    link.download="VV-1-087.pdf";
-    link.href="/assets/pdf/VV-1-087.pdf";
-    link.click();
-    // const doc = new jsPDF();
+    const headers = new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
+    });
 
-    // doc.addHTML(document.getElementById('content'), () => {
-    //   doc.save('solicitud.pdf');
-    // });
+    let params = new HttpParams();
+    params = params.append('appId', '2001030089');
+
+    this.httpClient.get(AppConstants.URL_SERVICE +"/App/getPdf", {headers, params}).subscribe( (resp:any) => {
+      if(resp.result!=null){
+        window.open(resp.result.pdfDoc, "_blank");
+      }
+    });
   }
 
   validateApplication() {
@@ -143,6 +152,6 @@ export class ApplicationComponent implements OnInit {
   }
 
   testSaveFunction() {
-    this.appService.saveFunction();
+    this.appService.saveFunction(APP_SWAGGER);
   }
 }
