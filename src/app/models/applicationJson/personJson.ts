@@ -28,8 +28,8 @@ export interface PersonJson {
   per_card_typ_nm: string;
   per_card_emsr: string;
   per_per_id: string;
-  per_sex_cd: true;
-  per_mry_stts_cd: true;
+  per_sex_cd: string;
+  per_mry_stts_cd: string;
   per_frst_nm: string;
   per_ptrnl_lst_nm: string;
   per_mtrnl_lst_nm: string;

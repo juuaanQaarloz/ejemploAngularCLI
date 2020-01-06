@@ -1,15 +1,14 @@
+import { AppConstants } from 'src/app/app.constants';
 import { pdfOperation } from './../../../core/mock/mock-operations';
 import { FormGroup } from '@angular/forms';
 import { Template } from './../../../models/template';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ApplicationService, AuthService, StorageService } from 'src/app/core/services';
+import { ApplicationService } from 'src/app/core/services';
 import { DialogService } from '../../dialog/dialog.service';
 import { ModalService } from '../../custom-modal';
 import { MockTemplate } from 'src/app/core/mock/mock-template';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { AppConstants } from 'src/app/app.constants';
-import get from 'lodash/get';
 
 @Component({
   selector: 'app-search-detail',
@@ -17,6 +16,7 @@ import get from 'lodash/get';
   styleUrls: ['./search-detail.component.css']
 })
 export class SearchDetailComponent implements OnInit {
+  appId: string;
   detail:any;
   applicationObj: Template;
   payLoad = '';
@@ -36,6 +36,8 @@ export class SearchDetailComponent implements OnInit {
 
   ngOnInit() {
     this.detail = JSON.parse(localStorage.getItem('detail'));
+    this.appId = this.detail.app_id;
+    console.log(this.detail);
     this.appService.setApplicationObject(MockTemplate);
     this.applicationObj = this.appService.getApplicationObject();
     this.formGroup = this.appService.toFormGroupReadOnly(this.applicationObj, this.detail);
@@ -59,15 +61,22 @@ export class SearchDetailComponent implements OnInit {
   }
 
   downloadPDF() {
-    let link = document.createElement("a");
-    link.download = "VV-1-087.pdf";
-    link.href = "/assets/pdf/VV-1-087.pdf";
-    link.click();
-    // const doc = new jsPDF();
+    const headers = new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
+    });
 
-    // doc.addHTML(document.getElementById('content'), () => {
-    //   doc.save('solicitud.pdf');
-    // });
+    let params = new HttpParams();
+    params = params.append('appId', this.appId);
+
+    this.httpClient.get(AppConstants.URL_SERVICE +"/App/getPdf", {headers, params}).subscribe( (resp:any) => {
+      if(resp.result!=null){
+        window.open(resp.result.pdfDoc, "_blank");
+      }
+    });
   }
 
   validateForm() {

@@ -11,7 +11,7 @@ import {Operation} from '../../models';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import {split} from 'ts-node';
 import set from 'lodash/set';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { APP_SWAGGER } from 'src/app/core/mock/mock-swagger/mock-swagger-app';
 import { AppConstants } from 'src/app/app.constants';
 
@@ -112,21 +112,22 @@ export class ApplicationComponent implements OnInit {
   }
 
   downloadPDF() {
-    this.httpClient.get(AppConstants.URL_SERVICE +"/App/getPdf?appId=2001030089").subscribe( (resp:any) => {
+    const headers = new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
+    });
+
+    let params = new HttpParams();
+    params = params.append('appId', '2001030089');
+
+    this.httpClient.get(AppConstants.URL_SERVICE +"/App/getPdf", {headers, params}).subscribe( (resp:any) => {
       if(resp.result!=null){
         window.open(resp.result.pdfDoc, "_blank");
       }
     });
-
-    //let link=document.createElement("a");
-    //link.download="VV-1-087.pdf";
-    //link.href="/assets/pdf/VV-1-087.pdf";
-    //link.click();
-    // const doc = new jsPDF();
-
-    // doc.addHTML(document.getElementById('content'), () => {
-    //   doc.save('solicitud.pdf');
-    // });
   }
 
   validateApplication() {
