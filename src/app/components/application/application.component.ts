@@ -67,9 +67,9 @@ export class ApplicationComponent implements OnInit {
       '40');*/
     console.log('Entro a la aplicación');
     console.log('Session user: ');
-    let user = this.storageService.getSessionUser();
-    console.log(user);
-    console.log(user['userName']);
+    // let user = this.storageService.getSessionUser();
+    // console.log(user);
+    // console.log(user['userName']);
   }
   getJson() {
     this.appService.getApplicationFromJson().subscribe((result) => {
