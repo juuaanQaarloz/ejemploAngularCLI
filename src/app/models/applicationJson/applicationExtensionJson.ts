@@ -5,8 +5,8 @@ export interface ApplicationExtensionJson {
   wpn_spcf: string;
   rsk_job_ind: string;
   rsk_job_spc: string;
-  sprt_flg_ind: true;
-  sprt_mtrc_ind: true;
+  sprt_flg_ind: boolean;
+  sprt_mtrc_ind: boolean;
   sprt_mtrc_fqncy: string;
   sprt_mtrc_cilnd: string;
   sprt_xtrm_ind: string;
@@ -20,11 +20,11 @@ export interface ApplicationExtensionJson {
   illns_tn_yrs_ind: string;
   ills_indem_ind: string;
   knwn_tm_nm: string;
-  clnt_fill_ind: true;
-  imp_fct_ind: true;
+  clnt_fill_ind: boolean;
+  imp_fct_ind: boolean;
   imp_fct_spec: string;
-  eml_rec_ind: true;
-  rec_comp_inf_ind: true;
+  eml_rec_ind: boolean;
+  rec_comp_inf_ind: boolean;
   rec_rgth_inf_ind: number;
   rec_lgl_not_ind: number;
   prv_adv_dta_usg_ind: number;

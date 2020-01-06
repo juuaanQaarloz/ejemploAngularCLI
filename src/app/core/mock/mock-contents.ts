@@ -23,7 +23,7 @@ import { PerfilTransaccionalNumero, PerfilTransaccionalMonto } from './mock-gene
 import { OtrosSeguros } from './mock-general-data/mock-other-insurance';
 import {CoverageFieldsItem} from './coverage/coverage';
 // Documentos
-import { Documents } from './documents/documents'
+import { Documents } from './documents/documents';
 
 export const MockFieldsContractorType: Field[] = [
   {

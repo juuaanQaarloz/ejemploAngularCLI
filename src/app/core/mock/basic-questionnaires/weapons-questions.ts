@@ -28,7 +28,7 @@ export const weaponsQuestions: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'applicationExtension.wpn_flg_in',
     value: ''
   }
 ];
@@ -61,7 +61,7 @@ export const weaponsFields: Field[] = [
     enableConditions: '',
     requiredConditions: '(weaponsQuestion=true)',
     entity: '',
-    entityField: '',
+    entityField: 'applicationExtension.wpn_spcf',
     value: ''
   }
 ];
@@ -94,7 +94,7 @@ export const weaponsQuestions1: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'applicationExtension.rsk_job_ind',
     value: ''
   }
 ];
@@ -127,7 +127,7 @@ export const weaponsFields1: Field[] = [
     enableConditions: '',
     requiredConditions: '(radioDangerWorkQuestion=true)',
     entity: '',
-    entityField: '',
+    entityField: 'applicationExtension.rsk_job_spc',
     value: ''
   }
 ];

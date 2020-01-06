@@ -1,11 +1,11 @@
+import { AppConstants } from 'src/app/app.constants';
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';
-import {Beneficiary, Formatwo, Field, Occupation, Step} from '../../models';
-import {Agent} from '../../models/agent-model/agent';
+import {Field, Occupation, Step} from '../../models';
 import {
   equalEmailsValidator,
   higherAssuredImport,
@@ -13,25 +13,20 @@ import {
   validateSameName2,
   validatorsObjects,
   validateFunds,
-  validateSameName4,
   validateSameName3
 } from '../validators';
 import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
 import {COVERAGES} from '../mock/coverage/coverage';
-import {BENEFICIARIES} from '../mock/mock-beneficiaries/mock-beneficiaries';
-import {placeholdersToParams} from '@angular/compiler/src/render3/view/i18n/util';
-import {error} from 'util';
-import {isPackageNameSafeForAnalytics} from '@angular/cli/models/analytics';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
-import {AppConstants} from '../../app.constants';
 import {APP_SWAGGER} from '../mock/mock-swagger/mock-swagger-app';
+import set from 'lodash/set';
+import get from 'lodash/get';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
 const URL_PATTERN_CATALOG = '../assets/catalogs/pattern-catalogs.json';
 const URL_SEPOMEX = '../assets/catalogs/response-sepomex.json';
-const URL_AGENT_CATALOG = '../assets/catalogs/agents-catalogs.json';
 
 // Generic Catalog
 const URL_CAT_ADDRESS_TYPE = '../assets/catalogs/address-type.json';
@@ -238,13 +233,17 @@ export class ApplicationService {
     return new FormGroup(group, [equalEmailsValidator, higherAssuredImport, validateFunds, validateSameName, validateSameName2, validateSameName3 ]);
   }
 
-  toFormGroupReadOnly(applicationObj: Template) {
+  toFormGroupReadOnly(applicationObj: Template, detail: any) {
     const group: any = {};
+    const estatus = get(detail, "app_stts_cd");
     applicationObj.sections.forEach(section => {
       section.contents.forEach((contentFromSection) => {
         if (contentFromSection.fields) {
           contentFromSection.fields.forEach(field => {
-            field.disable = true;
+            if(estatus!==null && estatus>=30){
+              field.disable = true;
+            }
+            field.value = get(detail, field.entityField);
             group[field.name] = new FormControl(
               field.value || '',
               this.getValidationFunctions(field));
@@ -255,7 +254,10 @@ export class ApplicationService {
               step.contents.forEach((contentFromStep) => {
                 if (contentFromStep.fields) {
                   contentFromStep.fields.forEach(field => {
-                    field.disable = true;
+                    if(estatus!==null && estatus>=30){
+                      field.disable = true;
+                    }
+                    field.value = get(detail, field.entityField);
                     group[field.name] = new FormControl(
                       field.value || '',
                       this.getValidationFunctions(field));
@@ -278,7 +280,6 @@ export class ApplicationService {
           }
         }
       });
-
     });
     return new FormGroup(group, [equalEmailsValidator, higherAssuredImport, validateFunds]);
   }
@@ -1741,10 +1742,9 @@ export class ApplicationService {
       );
   }
 
-  saveFunction() {
-    const URL = 'http://10.215.104.61:35741/cp-desws-priv/aplication';
-    const URL_GET = 'http://10.215.104.61:35741/cp-desws-priv/App/folio';
-
+  saveFunction(appJson: ApplicationJson) {
+    console.log('on saveFunctions');
+    const URL_FOLIO = AppConstants.URL_SERVICE + '/App/folio';
     const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -1753,14 +1753,36 @@ export class ApplicationService {
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
     });
 
-    /*return this.http
-      .put(url, JSON.stringify(hero), {headers: headers})
-      .map(res => res.json());*/
+    // console.log("appJson: "+appJson);
+    if (appJson.app_id === 0) {
+      // console.log("obtiene folio");
+      this.httpClient.get(URL_FOLIO, {headers}).subscribe((response: any) => {
+        appJson.app_id = response.app_id;
+        console.log('folio nuevo: ',  response.app_id);
+        this.saveSolicitud(appJson);
+      });
+    } else {
+      this.saveSolicitud(appJson);
+    }
+  }
 
-    let json = JSON.stringify(APP_SWAGGER);
-
-    this.httpClient.put(URL, json, {headers}).subscribe((response) => {
-      console.log('Respuesta GUARDADO');
+  saveSolicitud(appJson: ApplicationJson) {
+    console.log('on saveSolicitud');
+    const URL = AppConstants.URL_SERVICE + '/aplication';
+    const headers = new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
+    });
+    // console.log("guarda solicitud");
+    console.log(appJson);
+    appJson = set(appJson, 'insurer.app_id', appJson.app_id);
+    appJson = set(appJson, 'insurer.nationalities', []);
+    appJson = set(appJson, 'insured', null);
+    this.httpClient.put(URL, appJson, {headers})
+      .subscribe((response) => {
       console.log('response: ', response);
     });
   }

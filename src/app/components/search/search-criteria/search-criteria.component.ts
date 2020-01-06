@@ -51,11 +51,11 @@ export class SearchCriteriaComponent implements OnInit {
     let params = new HttpParams();
 
     if(this.criteria.param1!='' ){
-      params = params.append('fiel', 'APP_ID');
+      params = params.append('fiel', 'APP_DCN_NUM');
       params = params.append('value', this.criteria.param1);
     }
     if(this.criteria.param2!='' ){
-      params = params.append('fiel', 'APP_DCN_NUM');
+      params = params.append('fiel', 'APP_ID');
       params = params.append('value', this.criteria.param2);
     }
     if(this.criteria.param3!='' ){
@@ -67,10 +67,8 @@ export class SearchCriteriaComponent implements OnInit {
       params = params.append('value', this.criteria.param4);
     }
 
-    this.httpClient.get( AppConstants.URL_SERVICE  + '/aplication', {headers, params}).subscribe((resp) => {
-      console.log("Respuesta busqueda");
-      console.log(resp);
-      localStorage.setItem('search', JSON.stringify(resp));
+    this.httpClient.get( AppConstants.URL_SERVICE  + '/aplication', {headers, params}).subscribe((resp:any) => {
+      localStorage.setItem('search', JSON.stringify(resp.data));
       this.router.navigate(['search','results']);
     });
   }

@@ -53,7 +53,7 @@ export const NewFormatwoFields: Field[] = [
     styleClass: '',
     styleClassError: '',
     message: 'El nombre es obligatorio y no puede contener más de 3 letras y/o 3 números iguales consecutivos. ' +
-      ' No se permiten caracteres especiales.',
+      ' No se permiten caracteres especiales este es.',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
