@@ -13,6 +13,7 @@ import {split} from 'ts-node';
 import set from 'lodash/set';
 import { HttpClient } from '@angular/common/http';
 import { APP_SWAGGER } from 'src/app/core/mock/mock-swagger/mock-swagger-app';
+import { AppConstants } from 'src/app/app.constants';
 
 @Component({
   selector: 'app-application',
@@ -111,7 +112,7 @@ export class ApplicationComponent implements OnInit {
   }
 
   downloadPDF() {
-    this.httpClient.get("http://10.10.202.68:15440/esb/appSerPriv/api/v1/app/getPdf/appId=2001030089").subscribe( (resp:any) => {
+    this.httpClient.get(AppConstants.URL_SERVICE +"/App/getPdf?appId=2001030089").subscribe( (resp:any) => {
       if(resp.result!=null){
         window.open(resp.result.pdfDoc, "_blank");
       }
