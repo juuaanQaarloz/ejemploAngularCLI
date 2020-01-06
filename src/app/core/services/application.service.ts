@@ -1751,9 +1751,12 @@ export class ApplicationService {
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
     });
 
+    //console.log("appJson: "+appJson);
     if(appJson.app_id===0){
+      //console.log("obtiene folio");
       this.httpClient.get(URL_FOLIO, {headers}).subscribe((response:any) => {
         appJson.app_id = response.app_id;
+        //console.log("folio nuevo: "+response.app_id);
         this.saveSolicitud(appJson);
       });
     }else{
@@ -1770,7 +1773,10 @@ export class ApplicationService {
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
     });
+    //console.log("guarda solicitud");
+    //console.log(appJson);
     this.httpClient.put(URL, appJson, {headers}).subscribe((response) => {
+      //console.log(response);
     });    
   }
 }
