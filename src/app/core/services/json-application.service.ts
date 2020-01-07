@@ -15,6 +15,15 @@ import {DiseaseJson} from '../../models/applicationJson/diseaseJson';
 import {NationalityJson} from '../../models/applicationJson/nationalityJson';
 import {ContactPersonJson} from '../../models/applicationJson/contact/contactPersonJson';
 import {DataContactJson} from '../../models/applicationJson/contact/dataContactJson';
+import {AccountJson} from '../../models/applicationJson/accountJson';
+import {BankAccount} from '../../models/applicationJson/bankJson/bankAccount';
+
+const SWAGGER_MODELS = ['ShareHolderApp', 'PersonJson', 'NationalityJson', 'InsuredConditionJson', 'ForeignCountryTaxJson',
+  'ExtraDataJson', 'DocumentJson', 'DiseaseJson', 'BeneciciaryJson', 'ApplicationJson', 'ApplicationExtensionJson',
+  'AddressJson', 'AccountJson', 'QuesList', 'QuesAns', 'InsuredQuestionnaireJson', 'PolicyPlanJson', 'AplicationPlanJson',
+  'FormatJson', 'Cvr', 'CoverageJson', 'DataContactJson', 'ContactPersonJson', 'BankTransaction', 'BankAccount', 'AgentJson',
+  'AgentCd'
+];
 
 @Injectable({
   providedIn: 'root'
@@ -118,6 +127,7 @@ export class JsonApplicationService {
       // console.log('appJson json: ', JSON.stringify(this.getAppJson()));
 
       // return JSON.stringify(this.getAppJson());
+      this.appJson.app_stts_cd = step.id;
       this.appService.saveFunction(this.getAppJson());
     }
   }
@@ -140,6 +150,14 @@ export class JsonApplicationService {
         items.forEach((agent, i) => {
           console.log('agent: ', agent);
           set(this.appJson, `agents[${i}]`, this.mapItem('agent', agent, i));
+        });
+      }
+    } else if (tableType === 'table-payment') {
+      items = this.appService.payments.getValue();
+      if (items.length > 0) {
+        items.forEach((payment, i) => {
+          console.log('payment: ', payment);
+          this.mapItem('payment', payment, i);
         });
       }
     }
@@ -292,6 +310,40 @@ export class JsonApplicationService {
       newBeneficiary.bene_addrss_sm_inss_ind = item.addressSameAsTitular;
 
       return newBeneficiary;
+    } else if (itemType === 'payment') {
+      this.generateBaseObjectTemplate('AccountJson');
+      /*let newAccount: AccountJson = {};
+      newAccount.clct_id = index;
+      newAccount.app_id = this.appJson.app_id;
+      clct_mthd_id?: string;
+      clct_mthd_nm?: string;
+      clct_card_typ_id?: string;
+      clct_cncpt_id?: number;
+      clct_cur_cd?: string;
+      clct_empe_id?: string;
+      clct_fed_enty_cd?: string;
+      clct_mode_cd?: number;
+      clct_unit_cd?: string;
+      clct_unit_wrk_cntr_cd?: string;
+      prfr_cntct_tm_txt?: string;
+      prfr_cntct_typ_nm?: string;
+      rtnr_id?: string;
+      prfr_py_wk_day_cd?: string;
+      prfr_py_prdcty_cd?: number;
+      prfr_cntct_tm_cd?: string;
+      prfr_cntct_typ_cd?: string;
+      prfr_cntct_day?: string;
+      rec_crt_ts?: string;
+      rec_crt_usr_id?: string;
+      rec_updt_ts?: string;
+      rec_updt_usr_id?: string;
+      rtnr_wrk_cntr_cd?: string;
+      rtnr_lbr_rgm_cd?: string;
+      bankAccount?: BankAccount;*/
     }
+  }
+
+  generateBaseObjectTemplate(typeObj: string) {
+    let foundObj = SWAGGER_MODELS.filter(item => item === typeObj)[0];
   }
 }
