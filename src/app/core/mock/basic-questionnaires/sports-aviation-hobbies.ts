@@ -27,7 +27,7 @@ export const sportsQuestions1: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'applicationExtension.sprt_flg_ind',
     value: ''
   },
   {
@@ -56,7 +56,7 @@ export const sportsQuestions1: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'applicationExtension.sprt_mtrc_ind',
     value: ''
   }
 ];
@@ -89,7 +89,7 @@ export const sportsFields1: Field[] = [
     enableConditions: '',
     requiredConditions: '(motobickeQuestion=true)',
     entity: '',
-    entityField: '',
+    entityField: 'applicationExtension.sprt_mtrc_fqncy',
     value: ''
   },
   {
@@ -119,7 +119,7 @@ export const sportsFields1: Field[] = [
     enableConditions: '',
     requiredConditions: '(motobickeQuestion=true)',
     entity: '',
-    entityField: '',
+    entityField: 'applicationExtension.sprt_mtrc_cilnd',
     value: ''
   }
 ];
@@ -154,7 +154,7 @@ export const sportQuestions2: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'applicationExtension.sprt_xtrm_ind',
     value: ''
   }
 ];

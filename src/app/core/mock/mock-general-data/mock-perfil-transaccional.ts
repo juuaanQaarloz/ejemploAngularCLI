@@ -27,7 +27,7 @@ export const PerfilTransaccionalNumero: Field[] = [
         renderConditions: '',
         enableConditions: '',
         entity: '',
-        entityField: '',
+        entityField: 'applicationExtension.cntrbtn_tx',
     },
     {
         id: 'field-25',
@@ -55,7 +55,7 @@ export const PerfilTransaccionalNumero: Field[] = [
         renderConditions: '',
         enableConditions: '',
         entity: '',
-        entityField: '',
+        entityField: 'applicationExtension.wthdrwls_tx',
     },
 ];
 
@@ -86,7 +86,7 @@ export const PerfilTransaccionalMonto: Field[] = [
         renderConditions: '',
         enableConditions: '',
         entity: '',
-        entityField: '',
+        entityField: 'applicationExtension.cntrbtn_amnt',
     },
     {
         id: 'field-25',
@@ -114,6 +114,6 @@ export const PerfilTransaccionalMonto: Field[] = [
         renderConditions: '',
         enableConditions: '',
         entity: '',
-        entityField: '',
+        entityField: 'applicationExtension.wthdrwls_amnt',
     },
 ];

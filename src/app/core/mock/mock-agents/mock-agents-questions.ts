@@ -28,7 +28,7 @@ export const AgentQuestion: Field[] = [
     enableConditions: '',
     requiredConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'applicationExtension.knwn_tm_nm',
     value: ''
   }
 ];
@@ -62,7 +62,7 @@ export const AgentQuestion1: Field[] = [
     enableConditions: '',
     requiredConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'applicationExtension.clnt_fill_ind',
     value: ''
   }
 ];

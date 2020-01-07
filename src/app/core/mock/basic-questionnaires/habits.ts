@@ -27,7 +27,7 @@ export const habitsQuestions: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'applicationExtension.smk_ind',
     value: ''
   },
   {
@@ -56,7 +56,7 @@ export const habitsQuestions: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'applicationExtension.drg_ind',
     value: ''
   }
 ];
@@ -149,7 +149,7 @@ export const habitsQuestions2: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'applicationExtension.svn_yrs_wgth_ind',
     value: ''
   }
 ];

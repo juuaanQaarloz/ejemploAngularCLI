@@ -28,7 +28,7 @@ export const Plan0: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insuredCondition.aplicationPlan.pln_crrncy_cd',
     value: ''
   },
   {
@@ -57,7 +57,7 @@ export const Plan0: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'InsuredCondition.aplicationPlan.pln_cvr_tp_cd',
     value: ''
   },
 ];
@@ -248,7 +248,7 @@ export const Plan3: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insuredCondition.aplicationPlan.an_prem_amt',
     value: ''
   }
 ];
@@ -280,7 +280,7 @@ export const Plan4: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insuredCondition.aplicationPlan.pln_fx_fnd_dist',
     value: '100'
   },
   {
@@ -309,7 +309,7 @@ export const Plan4: Field[] = [
     renderConditions: '',
     enableConditions: '(currency!=usd)',
     entity: '',
-    entityField: '',
+    entityField: 'insuredCondition.aplicationPlan.pln_vr_fnd_dist',
     value: '0'
   }
 ];
@@ -334,14 +334,14 @@ export const Plan5: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'El importe no puede ser 0.',
+    message: 'El importe no puede ser.',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '(packing=4)',
     entity: '',
-    entityField: '',
+    entityField: 'insuredCondition.aplicationPlan.pln_fx_psnl_wthdrwl',
     value: '0'
   },
   {
@@ -370,7 +370,7 @@ export const Plan5: Field[] = [
     renderConditions: '',
     enableConditions: '((currency=mxn),&,(packing=4))',
     entity: '',
-    entityField: '',
+    entityField: 'insuredCondition.aplicationPlan.pln_vr_psnl_wthdrwl',
     value: '0'
   }
 ];
@@ -402,7 +402,7 @@ export const Plan6: Field[] = [
     renderConditions: '',
     enableConditions: '(packing=4)',
     entity: '',
-    entityField: '',
+    entityField: 'insuredCondition.aplicationPlan.pln_fx_spcl_amnt_svgn',
     value: '0'
   },
   {
@@ -431,7 +431,7 @@ export const Plan6: Field[] = [
     renderConditions: '',
     enableConditions: '((currency=mxn),&,(packing=4))',
     entity: '',
-    entityField: '',
+    entityField: 'insuredCondition.aplicationPlan.pln_vr_spcl_amnt_svgn',
     value: '0'
   }
 ];
@@ -463,7 +463,7 @@ export const Plan7: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insuredCondition.aplicacionPlan.xs_prem_amt',
     value: '',
     disable: true
   }
