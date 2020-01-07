@@ -384,10 +384,11 @@ export class ApplicationService {
   }
 
   getApplicationFromJson(): Observable<ApplicationJson> {
-    return this.httpClient.get(URL_JSON_APP)
+    const URL_FOLIO = AppConstants.URL_SERVICE_DEV + '/App/folio';
+
+    return this.httpClient.get(URL_FOLIO)
       .pipe(
         map((response: ApplicationJson) => {
-          console.log('typeof response:', typeof response);
           console.log('response:', response);
           return response;
         })
@@ -1744,7 +1745,7 @@ export class ApplicationService {
 
   saveFunction(appJson: ApplicationJson) {
     console.log('on saveFunctions');
-    const URL_FOLIO = AppConstants.URL_SERVICE + '/App/folio';
+    const URL_FOLIO = AppConstants.URL_SERVICE_DEV + '/App/folio';
     const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -1755,20 +1756,21 @@ export class ApplicationService {
 
     // console.log("appJson: "+appJson);
     if (appJson.app_id === 0) {
-      // console.log("obtiene folio");
+      console.log('obtiene folio');
       this.httpClient.get(URL_FOLIO, {headers}).subscribe((response: any) => {
         appJson.app_id = response.app_id;
         console.log('folio nuevo: ',  response.app_id);
         this.saveSolicitud(appJson);
       });
     } else {
+      console.log('llama directo al servicio de guardado');
       this.saveSolicitud(appJson);
     }
   }
 
   saveSolicitud(appJson: ApplicationJson) {
     console.log('on saveSolicitud');
-    const URL = AppConstants.URL_SERVICE + '/aplication';
+    const URL = AppConstants.URL_SERVICE_DEV + '/aplication';
     const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -1777,11 +1779,14 @@ export class ApplicationService {
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
     });
     // console.log("guarda solicitud");
-    console.log(appJson);
     appJson = set(appJson, 'insurer.app_id', appJson.app_id);
     appJson = set(appJson, 'insurer.nationalities', []);
     appJson = set(appJson, 'insured', null);
-    this.httpClient.put(URL, appJson, {headers})
+    //appJson = set(appJson, 'insurer', null);
+
+    console.log('appJson on saveSolicitud: ', appJson);
+
+    this.httpClient.put(URL, JSON.stringify(appJson), {headers})
       .subscribe((response) => {
       console.log('response: ', response);
     });

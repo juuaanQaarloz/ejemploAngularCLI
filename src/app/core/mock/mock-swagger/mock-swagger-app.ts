@@ -3,7 +3,7 @@ import {ApplicationJson} from '../../../models/applicationJson/applicationJson';
 export const APP_SWAGGER: ApplicationJson = {
   Format: [
     {
-      app_id: 0,
+      app_id: 2001060056,
       frmt_id: 0,
       frmt_typ: 'string',
       mrc_ind_dtil: 'string',
@@ -19,7 +19,7 @@ export const APP_SWAGGER: ApplicationJson = {
   ],
   QuesAns: [
     {
-      app_id: 0,
+      app_id: 2001060056,
       quest_id: 'string',
       questn_ans: 'string',
       questn_id: 'string',
@@ -35,7 +35,7 @@ export const APP_SWAGGER: ApplicationJson = {
   QuesList: [
     {
       actvty_id: 'string',
-      app_id: 0,
+      app_id: 2001060056,
       clmn_1: 'string',
       clmn_2: 'string',
       clmn_3: 'string',
@@ -50,9 +50,9 @@ export const APP_SWAGGER: ApplicationJson = {
   ],
   accounts: [
     {
-      app_id: 0,
+      app_id: 2001060056,
       bankAccount: {
-        app_id: 0,
+        app_id: 2001060056,
         bnk_acct_id: 0,
         bnk_acct_num: 'string',
         bnk_acct_tkn_num: 'string',
@@ -114,7 +114,7 @@ export const APP_SWAGGER: ApplicationJson = {
       },
       agnt_fmt_2_id: 0,
       agnt_part_per: 0,
-      app_id: 0,
+      app_id: 2001060056,
       part_ord: 0,
       rec_crt_ts: '2020-01-06T17:11:05.712Z',
       rec_crt_usr_id: 'string',
@@ -131,7 +131,7 @@ export const APP_SWAGGER: ApplicationJson = {
   app_dcn_num: 'string',
   app_eff_dt: '2020-01-03',
   app_guard_box_ind: false,
-  app_id: 0,
+  app_id: 2001060056,
   app_input_dt: '2020-01-03',
   app_own_age_in_yr: 0,
   app_own_card_emsr: 'string',
@@ -167,7 +167,7 @@ export const APP_SWAGGER: ApplicationJson = {
   app_stts_cd: 'string',
   app_typ_cd: false,
   applicationExtension: {
-    app_id: 0,
+    app_id: 2001060056,
     clnt_fill_ind: false,
     cntrbtn_amnt: 0,
     cntrbtn_tx: 0,
@@ -212,7 +212,7 @@ export const APP_SWAGGER: ApplicationJson = {
   chnl_cd: false,
   documents: [
     {
-      app_id: 0,
+      app_id: 2001060056,
       doc_class_cd: 'string',
       doc_cmnt_txt: 'string',
       doc_dcl_rsn_txt: 'string',
@@ -234,7 +234,7 @@ export const APP_SWAGGER: ApplicationJson = {
   ],
   extraData: [
     {
-      app_id: 0,
+      app_id: 2001060056,
       app_xtra_cd: 'string',
       data_val: 'string',
       rec_crt_ts: '2020-01-06T17:11:05.712Z',
@@ -245,7 +245,7 @@ export const APP_SWAGGER: ApplicationJson = {
   ],
   foreignCountryTaxes: [
     {
-      app_id: 0,
+      app_id: 2001060056,
       cntry_cd: 'string',
       cntry_nm: 'string',
       frgn_cntry_tin: 'string',
@@ -260,7 +260,7 @@ export const APP_SWAGGER: ApplicationJson = {
     Address: [
       {
         addrss_id: 0,
-        app_id: 0,
+        app_id: 2001060056,
         cel_phon: 'string',
         cntry_cod: 'string',
         cntry_spe: 'string',
@@ -285,7 +285,7 @@ export const APP_SWAGGER: ApplicationJson = {
         zip_cod: 'string'
       }
     ],
-    app_id: 0,
+    app_id: 2001060056,
     co_act_cd: 'string',
     co_act_nm: 'string',
     co_bus_nm: 'string',
@@ -307,10 +307,10 @@ export const APP_SWAGGER: ApplicationJson = {
     co_sspsv_cond: 'string',
     contactPerson: [
       {
-        app_id: 0,
+        app_id: 2001060056,
         cntct_key_id: 'string',
         cntct_val: 'string',
-        party_app_id: 0,
+        party_app_id: 2001060056,
         rec_crt_ts: '2020-01-06T17:11:05.712Z',
         rec_crt_usr_id: 'string',
         rec_updt_ts: '2020-01-06T17:11:05.712Z',
@@ -319,10 +319,10 @@ export const APP_SWAGGER: ApplicationJson = {
     ],
     dataContact: [
       {
-        app_id: 0,
+        app_id: 2001060056,
         cntct_key_id: 'string',
         cntct_val: 'string',
-        party_app_id: 0,
+        party_app_id: 2001060056,
         rec_crt_ts: '2020-01-06T17:11:05.712Z',
         rec_crt_usr_id: 'string',
         rec_updt_ts: '2020-01-06T17:11:05.712Z',
@@ -331,13 +331,13 @@ export const APP_SWAGGER: ApplicationJson = {
     ],
     diseases: [
       {
-        app_id: 0,
+        app_id: 2001060056,
         illnss_cd: 'string',
         illnss_drtn: 'string',
         illnss_dt: '2020-01-06T17:11:05.712Z',
         illnss_hlth_stt: 'string',
         illnss_nm: 'string',
-        party_app_id: 0,
+        party_app_id: 2001060056,
         qstr_id: 'string',
         rec_crt_ts: '2020-01-06T17:11:05.712Z',
         rec_crt_usr_id: 'string',
@@ -347,10 +347,10 @@ export const APP_SWAGGER: ApplicationJson = {
     ],
     nationalities: [
       {
-        app_id: 0,
+        app_id: 2001060056,
         natlty_cd: 'string',
         natlty_nm: 'string',
-        party_app_id: 0,
+        party_app_id: 2001060056,
         rec_crt_ts: '2020-01-06T17:11:05.712Z',
         rec_crt_usr_id: 'string',
         rec_updt_ts: '2020-01-06T17:11:05.712Z',
@@ -359,7 +359,7 @@ export const APP_SWAGGER: ApplicationJson = {
     ],
     natl_id_sgst_acpt_ind: false,
     party_addl_typ_nm: 'string',
-    party_app_id: 0,
+    party_app_id: 2001060056,
     party_natl_id: 'string',
     party_ssn: 'string',
     party_typ_cd: false,
@@ -407,15 +407,15 @@ export const APP_SWAGGER: ApplicationJson = {
   insuredCondition: {
     aplicationPlan: {
       an_prem_amt: 0,
-      app_id: 0,
+      app_id: 2001060056,
       beneciciary: [
         {
-          app_id: 0,
+          app_id: 2001060056,
           bene_addrss_sm_inss_ind: 'string',
           bene_fid_cnd_flg: 'string',
           bene_fid_cntrc_nm: 'string',
           bene_fid_lttr_nm: 'string',
-          bene_party_app_id: 0,
+          bene_party_app_id: 2001060056,
           bene_prtcp_pct: 0,
           bene_ref_inst_lttr: 'string',
           bene_rel_cd: 'string',
@@ -429,7 +429,7 @@ export const APP_SWAGGER: ApplicationJson = {
             Address: [
               {
                 addrss_id: 0,
-                app_id: 0,
+                app_id: 2001060056,
                 cel_phon: 'string',
                 cntry_cod: 'string',
                 cntry_spe: 'string',
@@ -454,7 +454,7 @@ export const APP_SWAGGER: ApplicationJson = {
                 zip_cod: 'string'
               }
             ],
-            app_id: 0,
+            app_id: 2001060056,
             co_act_cd: 'string',
             co_act_nm: 'string',
             co_bus_nm: 'string',
@@ -476,10 +476,10 @@ export const APP_SWAGGER: ApplicationJson = {
             co_sspsv_cond: 'string',
             contactPerson: [
               {
-                app_id: 0,
+                app_id: 2001060056,
                 cntct_key_id: 'string',
                 cntct_val: 'string',
-                party_app_id: 0,
+                party_app_id: 2001060056,
                 rec_crt_ts: '2020-01-06T17:11:05.712Z',
                 rec_crt_usr_id: 'string',
                 rec_updt_ts: '2020-01-06T17:11:05.712Z',
@@ -488,10 +488,10 @@ export const APP_SWAGGER: ApplicationJson = {
             ],
             dataContact: [
               {
-                app_id: 0,
+                app_id: 2001060056,
                 cntct_key_id: 'string',
                 cntct_val: 'string',
-                party_app_id: 0,
+                party_app_id: 2001060056,
                 rec_crt_ts: '2020-01-06T17:11:05.712Z',
                 rec_crt_usr_id: 'string',
                 rec_updt_ts: '2020-01-06T17:11:05.712Z',
@@ -500,13 +500,13 @@ export const APP_SWAGGER: ApplicationJson = {
             ],
             diseases: [
               {
-                app_id: 0,
+                app_id: 2001060056,
                 illnss_cd: 'string',
                 illnss_drtn: 'string',
                 illnss_dt: '2020-01-06T17:11:05.712Z',
                 illnss_hlth_stt: 'string',
                 illnss_nm: 'string',
-                party_app_id: 0,
+                party_app_id: 2001060056,
                 qstr_id: 'string',
                 rec_crt_ts: '2020-01-06T17:11:05.712Z',
                 rec_crt_usr_id: 'string',
@@ -516,10 +516,10 @@ export const APP_SWAGGER: ApplicationJson = {
             ],
             nationalities: [
               {
-                app_id: 0,
+                app_id: 2001060056,
                 natlty_cd: 'string',
                 natlty_nm: 'string',
-                party_app_id: 0,
+                party_app_id: 2001060056,
                 rec_crt_ts: '2020-01-06T17:11:05.712Z',
                 rec_crt_usr_id: 'string',
                 rec_updt_ts: '2020-01-06T17:11:05.712Z',
@@ -528,7 +528,7 @@ export const APP_SWAGGER: ApplicationJson = {
             ],
             natl_id_sgst_acpt_ind: false,
             party_addl_typ_nm: 'string',
-            party_app_id: 0,
+            party_app_id: 2001060056,
             party_natl_id: 'string',
             party_ssn: 'string',
             party_typ_cd: false,
@@ -583,15 +583,15 @@ export const APP_SWAGGER: ApplicationJson = {
       clm_mthd_cd: false,
       coverage: [
         {
-          app_id: 0,
+          app_id: 2001060056,
           beneciciary: [
             {
-              app_id: 0,
+              app_id: 2001060056,
               bene_addrss_sm_inss_ind: 'string',
               bene_fid_cnd_flg: 'string',
               bene_fid_cntrc_nm: 'string',
               bene_fid_lttr_nm: 'string',
-              bene_party_app_id: 0,
+              bene_party_app_id: 2001060056,
               bene_prtcp_pct: 0,
               bene_ref_inst_lttr: 'string',
               bene_rel_cd: 'string',
@@ -605,7 +605,7 @@ export const APP_SWAGGER: ApplicationJson = {
                 Address: [
                   {
                     addrss_id: 0,
-                    app_id: 0,
+                    app_id: 2001060056,
                     cel_phon: 'string',
                     cntry_cod: 'string',
                     cntry_spe: 'string',
@@ -630,7 +630,7 @@ export const APP_SWAGGER: ApplicationJson = {
                     zip_cod: 'string'
                   }
                 ],
-                app_id: 0,
+                app_id: 2001060056,
                 co_act_cd: 'string',
                 co_act_nm: 'string',
                 co_bus_nm: 'string',
@@ -652,10 +652,10 @@ export const APP_SWAGGER: ApplicationJson = {
                 co_sspsv_cond: 'string',
                 contactPerson: [
                   {
-                    app_id: 0,
+                    app_id: 2001060056,
                     cntct_key_id: 'string',
                     cntct_val: 'string',
-                    party_app_id: 0,
+                    party_app_id: 2001060056,
                     rec_crt_ts: '2020-01-06T17:11:05.712Z',
                     rec_crt_usr_id: 'string',
                     rec_updt_ts: '2020-01-06T17:11:05.712Z',
@@ -664,10 +664,10 @@ export const APP_SWAGGER: ApplicationJson = {
                 ],
                 dataContact: [
                   {
-                    app_id: 0,
+                    app_id: 2001060056,
                     cntct_key_id: 'string',
                     cntct_val: 'string',
-                    party_app_id: 0,
+                    party_app_id: 2001060056,
                     rec_crt_ts: '2020-01-06T17:11:05.712Z',
                     rec_crt_usr_id: 'string',
                     rec_updt_ts: '2020-01-06T17:11:05.712Z',
@@ -676,13 +676,13 @@ export const APP_SWAGGER: ApplicationJson = {
                 ],
                 diseases: [
                   {
-                    app_id: 0,
+                    app_id: 2001060056,
                     illnss_cd: 'string',
                     illnss_drtn: 'string',
                     illnss_dt: '2020-01-06T17:11:05.712Z',
                     illnss_hlth_stt: 'string',
                     illnss_nm: 'string',
-                    party_app_id: 0,
+                    party_app_id: 2001060056,
                     qstr_id: 'string',
                     rec_crt_ts: '2020-01-06T17:11:05.712Z',
                     rec_crt_usr_id: 'string',
@@ -692,10 +692,10 @@ export const APP_SWAGGER: ApplicationJson = {
                 ],
                 nationalities: [
                   {
-                    app_id: 0,
+                    app_id: 2001060056,
                     natlty_cd: 'string',
                     natlty_nm: 'string',
-                    party_app_id: 0,
+                    party_app_id: 2001060056,
                     rec_crt_ts: '2020-01-06T17:11:05.712Z',
                     rec_crt_usr_id: 'string',
                     rec_updt_ts: '2020-01-06T17:11:05.712Z',
@@ -704,7 +704,7 @@ export const APP_SWAGGER: ApplicationJson = {
                 ],
                 natl_id_sgst_acpt_ind: false,
                 party_addl_typ_nm: 'string',
-                party_app_id: 0,
+                party_app_id: 2001060056,
                 party_natl_id: 'string',
                 party_ssn: 'string',
                 party_typ_cd: false,
@@ -811,15 +811,15 @@ export const APP_SWAGGER: ApplicationJson = {
       rec_updt_usr_id: 'string',
       xs_prem_amt: 0
     },
-    app_id: 0,
+    app_id: 2001060056,
     beneciciary: [
       {
-        app_id: 0,
+        app_id: 2001060056,
         bene_addrss_sm_inss_ind: 'string',
         bene_fid_cnd_flg: 'string',
         bene_fid_cntrc_nm: 'string',
         bene_fid_lttr_nm: 'string',
-        bene_party_app_id: 0,
+        bene_party_app_id: 2001060056,
         bene_prtcp_pct: 0,
         bene_ref_inst_lttr: 'string',
         bene_rel_cd: 'string',
@@ -833,7 +833,7 @@ export const APP_SWAGGER: ApplicationJson = {
           Address: [
             {
               addrss_id: 0,
-              app_id: 0,
+              app_id: 2001060056,
               cel_phon: 'string',
               cntry_cod: 'string',
               cntry_spe: 'string',
@@ -858,7 +858,7 @@ export const APP_SWAGGER: ApplicationJson = {
               zip_cod: 'string'
             }
           ],
-          app_id: 0,
+          app_id: 2001060056,
           co_act_cd: 'string',
           co_act_nm: 'string',
           co_bus_nm: 'string',
@@ -880,10 +880,10 @@ export const APP_SWAGGER: ApplicationJson = {
           co_sspsv_cond: 'string',
           contactPerson: [
             {
-              app_id: 0,
+              app_id: 2001060056,
               cntct_key_id: 'string',
               cntct_val: 'string',
-              party_app_id: 0,
+              party_app_id: 2001060056,
               rec_crt_ts: '2020-01-06T17:11:05.712Z',
               rec_crt_usr_id: 'string',
               rec_updt_ts: '2020-01-06T17:11:05.712Z',
@@ -892,10 +892,10 @@ export const APP_SWAGGER: ApplicationJson = {
           ],
           dataContact: [
             {
-              app_id: 0,
+              app_id: 2001060056,
               cntct_key_id: 'string',
               cntct_val: 'string',
-              party_app_id: 0,
+              party_app_id: 2001060056,
               rec_crt_ts: '2020-01-06T17:11:05.712Z',
               rec_crt_usr_id: 'string',
               rec_updt_ts: '2020-01-06T17:11:05.712Z',
@@ -904,13 +904,13 @@ export const APP_SWAGGER: ApplicationJson = {
           ],
           diseases: [
             {
-              app_id: 0,
+              app_id: 2001060056,
               illnss_cd: 'string',
               illnss_drtn: 'string',
               illnss_dt: '2020-01-06T17:11:05.712Z',
               illnss_hlth_stt: 'string',
               illnss_nm: 'string',
-              party_app_id: 0,
+              party_app_id: 2001060056,
               qstr_id: 'string',
               rec_crt_ts: '2020-01-06T17:11:05.712Z',
               rec_crt_usr_id: 'string',
@@ -920,10 +920,10 @@ export const APP_SWAGGER: ApplicationJson = {
           ],
           nationalities: [
             {
-              app_id: 0,
+              app_id: 2001060056,
               natlty_cd: 'string',
               natlty_nm: 'string',
-              party_app_id: 0,
+              party_app_id: 2001060056,
               rec_crt_ts: '2020-01-06T17:11:05.712Z',
               rec_crt_usr_id: 'string',
               rec_updt_ts: '2020-01-06T17:11:05.712Z',
@@ -932,7 +932,7 @@ export const APP_SWAGGER: ApplicationJson = {
           ],
           natl_id_sgst_acpt_ind: false,
           party_addl_typ_nm: 'string',
-          party_app_id: 0,
+          party_app_id: 2001060056,
           party_natl_id: 'string',
           party_ssn: 'string',
           party_typ_cd: false,
@@ -990,7 +990,7 @@ export const APP_SWAGGER: ApplicationJson = {
     insuredQuestionnaire: [
       {
         ans_txt: 'string',
-        app_id: 0,
+        app_id: 2001060056,
         aura_eng_vrble: 'string',
         aura_ques_txt: 'string',
         aura_seq_num: 'string',
@@ -1005,12 +1005,12 @@ export const APP_SWAGGER: ApplicationJson = {
         scrn_ord_num: 0
       }
     ],
-    per_app_id: 0,
+    per_app_id: 2001060056,
     policyPlan: {
-      app_id: 0,
+      app_id: 2001060056,
       coverage: [
         {
-          app_id: 0,
+          app_id: 2001060056,
           inf_pol_cvr_id: 0,
           ins_inf_pol_pln_id: 0,
           rdr_cvr_cd: 'string',
@@ -1046,7 +1046,7 @@ export const APP_SWAGGER: ApplicationJson = {
     Address: [
       {
         addrss_id: 0,
-        app_id: 0,
+        app_id: 2001060056,
         cel_phon: 'string',
         cntry_cod: 'string',
         cntry_spe: 'string',
@@ -1071,7 +1071,7 @@ export const APP_SWAGGER: ApplicationJson = {
         zip_cod: 'string'
       }
     ],
-    app_id: 0,
+    app_id: 2001060056,
     co_act_cd: 'string',
     co_act_nm: 'string',
     co_bus_nm: 'string',
@@ -1093,10 +1093,10 @@ export const APP_SWAGGER: ApplicationJson = {
     co_sspsv_cond: 'string',
     contactPerson: [
       {
-        app_id: 0,
+        app_id: 2001060056,
         cntct_key_id: 'string',
         cntct_val: 'string',
-        party_app_id: 0,
+        party_app_id: 2001060056,
         rec_crt_ts: '2020-01-06T17:11:05.712Z',
         rec_crt_usr_id: 'string',
         rec_updt_ts: '2020-01-06T17:11:05.712Z',
@@ -1105,10 +1105,10 @@ export const APP_SWAGGER: ApplicationJson = {
     ],
     dataContact: [
       {
-        app_id: 0,
+        app_id: 2001060056,
         cntct_key_id: 'string',
         cntct_val: 'string',
-        party_app_id: 0,
+        party_app_id: 2001060056,
         rec_crt_ts: '2020-01-06T17:11:05.712Z',
         rec_crt_usr_id: 'string',
         rec_updt_ts: '2020-01-06T17:11:05.712Z',
@@ -1117,13 +1117,13 @@ export const APP_SWAGGER: ApplicationJson = {
     ],
     diseases: [
       {
-        app_id: 0,
+        app_id: 2001060056,
         illnss_cd: 'string',
         illnss_drtn: 'string',
         illnss_dt: '2020-01-06T17:11:05.712Z',
         illnss_hlth_stt: 'string',
         illnss_nm: 'string',
-        party_app_id: 0,
+        party_app_id: 2001060056,
         qstr_id: 'string',
         rec_crt_ts: '2020-01-06T17:11:05.712Z',
         rec_crt_usr_id: 'string',
@@ -1133,10 +1133,10 @@ export const APP_SWAGGER: ApplicationJson = {
     ],
     nationalities: [
       {
-        app_id: 0,
+        app_id: 2001060056,
         natlty_cd: 'string',
         natlty_nm: 'string',
-        party_app_id: 0,
+        party_app_id: 2001060056,
         rec_crt_ts: '2020-01-06T17:11:05.712Z',
         rec_crt_usr_id: 'string',
         rec_updt_ts: '2020-01-06T17:11:05.712Z',
@@ -1145,7 +1145,7 @@ export const APP_SWAGGER: ApplicationJson = {
     ],
     natl_id_sgst_acpt_ind: false,
     party_addl_typ_nm: 'string',
-    party_app_id: 0,
+    party_app_id: 2001060056,
     party_natl_id: 'string',
     party_ssn: 'string',
     party_typ_cd: false,
@@ -1198,13 +1198,13 @@ export const APP_SWAGGER: ApplicationJson = {
   rec_updt_usr_id: 'string',
   shareHolders: [
     {
-      app_id: 0,
-      party_app_id: 0,
+      app_id: 2001060056,
+      party_app_id: 2001060056,
       person: {
         Address: [
           {
             addrss_id: 0,
-            app_id: 0,
+            app_id: 2001060056,
             cel_phon: 'string',
             cntry_cod: 'string',
             cntry_spe: 'string',
@@ -1229,7 +1229,7 @@ export const APP_SWAGGER: ApplicationJson = {
             zip_cod: 'string'
           }
         ],
-        app_id: 0,
+        app_id: 2001060056,
         co_act_cd: 'string',
         co_act_nm: 'string',
         co_bus_nm: 'string',
@@ -1251,10 +1251,10 @@ export const APP_SWAGGER: ApplicationJson = {
         co_sspsv_cond: 'string',
         contactPerson: [
           {
-            app_id: 0,
+            app_id: 2001060056,
             cntct_key_id: 'string',
             cntct_val: 'string',
-            party_app_id: 0,
+            party_app_id: 2001060056,
             rec_crt_ts: '2020-01-06T17:11:05.712Z',
             rec_crt_usr_id: 'string',
             rec_updt_ts: '2020-01-06T17:11:05.712Z',
@@ -1263,10 +1263,10 @@ export const APP_SWAGGER: ApplicationJson = {
         ],
         dataContact: [
           {
-            app_id: 0,
+            app_id: 2001060056,
             cntct_key_id: 'string',
             cntct_val: 'string',
-            party_app_id: 0,
+            party_app_id: 2001060056,
             rec_crt_ts: '2020-01-06T17:11:05.712Z',
             rec_crt_usr_id: 'string',
             rec_updt_ts: '2020-01-06T17:11:05.712Z',
@@ -1275,13 +1275,13 @@ export const APP_SWAGGER: ApplicationJson = {
         ],
         diseases: [
           {
-            app_id: 0,
+            app_id: 2001060056,
             illnss_cd: 'string',
             illnss_drtn: 'string',
             illnss_dt: '2020-01-06T17:11:05.712Z',
             illnss_hlth_stt: 'string',
             illnss_nm: 'string',
-            party_app_id: 0,
+            party_app_id: 2001060056,
             qstr_id: 'string',
             rec_crt_ts: '2020-01-06T17:11:05.712Z',
             rec_crt_usr_id: 'string',
@@ -1291,10 +1291,10 @@ export const APP_SWAGGER: ApplicationJson = {
         ],
         nationalities: [
           {
-            app_id: 0,
+            app_id: 2001060056,
             natlty_cd: 'string',
             natlty_nm: 'string',
-            party_app_id: 0,
+            party_app_id: 2001060056,
             rec_crt_ts: '2020-01-06T17:11:05.712Z',
             rec_crt_usr_id: 'string',
             rec_updt_ts: '2020-01-06T17:11:05.712Z',
@@ -1303,7 +1303,7 @@ export const APP_SWAGGER: ApplicationJson = {
         ],
         natl_id_sgst_acpt_ind: false,
         party_addl_typ_nm: 'string',
-        party_app_id: 0,
+        party_app_id: 2001060056,
         party_natl_id: 'string',
         party_ssn: 'string',
         party_typ_cd: false,
