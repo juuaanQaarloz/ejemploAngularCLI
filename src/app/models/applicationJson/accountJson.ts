@@ -29,3 +29,6 @@ export interface AccountJson {
   rtnr_lbr_rgm_cd?: string;
   bankAccount?: BankAccount;
 }
+
+export class AccountJsonClass implements AccountJson {
+}

@@ -17,6 +17,7 @@ import {ContactPersonJson} from '../../models/applicationJson/contact/contactPer
 import {DataContactJson} from '../../models/applicationJson/contact/dataContactJson';
 import {AccountJson} from '../../models/applicationJson/accountJson';
 import {BankAccount} from '../../models/applicationJson/bankJson/bankAccount';
+import {validateAlphanumericValue} from '../validators';
 
 const SWAGGER_MODELS = ['ShareHolderApp', 'PersonJson', 'NationalityJson', 'InsuredConditionJson', 'ForeignCountryTaxJson',
   'ExtraDataJson', 'DocumentJson', 'DiseaseJson', 'BeneciciaryJson', 'ApplicationJson', 'ApplicationExtensionJson',
@@ -128,6 +129,9 @@ export class JsonApplicationService {
 
       // return JSON.stringify(this.getAppJson());
       this.appJson.app_stts_cd = step.id;
+      if (step.id === '1' || step.id === '4') {
+        let resp = this.appService.getFormGroup().controls.typePerson.value;
+      }
       this.appService.saveFunction(this.getAppJson());
     }
   }
@@ -345,7 +349,5 @@ export class JsonApplicationService {
   }
 
   generateBaseObjectTemplate(typeObj) {
-    let properties = Object.getOwnPropertyNames(typeObj);
-    console.log('properties: ', properties);
   }
 }
