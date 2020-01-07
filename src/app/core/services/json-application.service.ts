@@ -126,22 +126,19 @@ export class JsonApplicationService {
     let items;
     console.log('tableType: ', tableType);
     if (tableType === 'table-beneficiary') {
-      const beneficiaries = this.appService.beneficiaries.getValue();
-      if (beneficiaries.length > 0) {
-        console.log(' beneficiaries: ', beneficiaries);
-        beneficiaries.forEach((beneficiary) => {
+      items = this.appService.beneficiaries.getValue();
+      if (items.length > 0) {
+        console.log(' beneficiaries: ', items);
+        items.forEach((beneficiary, i) => {
           console.log('beneficiary: ', beneficiary);
+          set(this.appJson, `insuredCondition.beneciciary[${i}]`, this.mapItem('beneficiary', beneficiary, i));
         });
       }
     } else if (tableType === 'table-agent') {
-      console.log('onTableAgent');
       items = this.appService.agents.getValue();
-      console.log('items: ', items);
       if (items.length > 0) {
-        console.log('agents: ', items);
         items.forEach((agent, i) => {
           console.log('agent: ', agent);
-          console.log('i: ', i);
           set(this.appJson, `agents[${i}]`, this.mapItem('agent', agent, i));
         });
       }
@@ -154,146 +151,147 @@ export class JsonApplicationService {
       newAgent.app_id = this.appJson.app_id;
       newAgent.agnt_cd = {
         agnt_cd: item.key,
-        agnt_py_cd: 'codigoPago',
+        agnt_py_cd: null,
         agnt_pmtr_cd: item.promotor,
         agnt_party_nm: item.name,
         rec_crt_ts: new Date().toDateString(),
-        rec_crt_usr_id: '',
-        rec_updt_ts: '',
-        rec_updt_usr_id: '',
-        agnt_mail: 'a@a.com'
+        rec_crt_usr_id: null,
+        rec_updt_ts: null,
+        rec_updt_usr_id: null,
+        agnt_mail: null
       };
       newAgent.agnt_part_per = Number(item.participation);
       newAgent.part_ord = index;
       newAgent.rec_crt_ts = new Date().toDateString();
-      newAgent.rec_crt_usr_id = '';
-      newAgent.rec_updt_ts = '';
-      newAgent.agnt_fmt_2_id = 0;
+      newAgent.rec_crt_usr_id = null;
+      newAgent.rec_updt_ts = null;
+      newAgent.agnt_fmt_2_id = null;
 
       return newAgent;
-    }
-    /*else if (itemType === 'beneficiary') {
+    } else if (itemType === 'beneficiary') {
       let newBeneficiary: BeneciciaryJson = {};
       newBeneficiary.cvr_bene_id = Number(item.beneficiaryId);
-      newBeneficiary.cvr_cd = '';
-      newBeneficiary.pln_cd = '';
-      newBeneficiary.ins_id = 0;
+      newBeneficiary.cvr_cd = null;
+      newBeneficiary.pln_cd = null;
+      newBeneficiary.ins_id = null;
       newBeneficiary.app_id = this.appJson.app_id;
       newBeneficiary.bene_tp_cd = item.beneficiaryType;
       newBeneficiary.bene_prtcp_pct = item.participationPercentage;
-      newBeneficiary.cvr_bene_cmnt_txt = '';
+      newBeneficiary.cvr_bene_cmnt_txt = null;
       newBeneficiary.bene_rel_cd = item.relationship;
-      newBeneficiary.bene_rel_desc = '';
-      newBeneficiary.bene_party_app_id = 0;
+      newBeneficiary.bene_rel_desc = null;
+      newBeneficiary.bene_party_app_id = null;
       newBeneficiary.person = {
         party_app_id: this.appJson.insurer.party_app_id,
         app_id: this.appJson.app_id,
-        party_natl_id: 'string',
-        party_ssn: 'string',
-        per_brth_dt: 'string',
-        per_age: item.beneficiaryType === 'phyPerson' ? calculateAge(item.birthDateOrConstitution) : 0,
+        party_natl_id: null,
+        party_ssn: null,
+        per_brth_dt: item.beneficiaryType === 'phyPerson' ? item.birthDateOrConstitution : null,
+        per_age: item.beneficiaryType === 'phyPerson' ? calculateAge(item.birthDateOrConstitution) : null,
         Address: [
           {
             addrss_id: 0,
             app_id: this.appJson.app_id,
             per_id: this.appJson.insurer.party_app_id,
-      strt_nm: string,
-      ext_num: string,
-      int_num: string,
-      zip_cod: string,
-      subt_nm: string,
-      towt_nm: string,
-      sta_cod: string,
-      sta_spec: string,
-      cntry_cod: string,
-      cntry_spe: string,
-      hom_phon: string,
-      lab_phon: string,
-      extt_num: string,
-      cel_phon: string,
-      per_mail_nm: string,
-      lab_mail_nm: string,
-      mncplty_nm: string,
-      rec_crt_ts: string,
-      rec_crt_usr_id: string,
-      rec_updt_ts: string,
-      rec_updt_usr_id: string,
+            strt_nm: item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].strt_nm : item.address.street,
+            ext_num: item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].ext_num : item.address.exteriorNumber,
+            int_num: item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].int_num : item.address.interiorNumber,
+            zip_cod: item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].zip_cod : item.address.zipCode,
+            subt_nm: item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].zip_cod : item.address.neighborhood,
+            towt_nm: item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].towt_nm : item.address.city,
+            sta_cod: item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].sta_cod : item.address.state,
+            sta_spec: null,
+            cntry_cod: item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].cntry_cod : item.address.country,
+            cntry_spe: null,
+            hom_phon: null,
+            lab_phon: null,
+            extt_num: null,
+            cel_phon: null,
+            per_mail_nm: null,
+            lab_mail_nm: null,
+            mncplty_nm: item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].mncplty_nm : item.address.municipality,
+            rec_crt_ts: new Date().toDateString(),
+            rec_crt_usr_id: null,
+            rec_updt_ts: null,
+            rec_updt_usr_id: null,
           }
         ],
         diseases: [],
         nationalities: [],
         contactPerson: [],
         dataContact: [],
-        per_brth_cntry_nm: 'string',
-        per_brth_cntry_cd: 'string',
-        per_brth_stte_nm: 'string',
-        per_brth_plc_nm: 'string',
+        per_brth_cntry_nm: null,
+        per_brth_cntry_cd: null,
+        per_brth_stte_nm: null,
+        per_brth_plc_nm: null,
         party_typ_cd: item.beneficiaryType === 'phyPerson' ? true : false,
-        party_addl_typ_nm: 'string',
-        per_card_num: 'string',
-        per_card_typ_cd: 'string',
-        per_card_typ_nm: 'string',
-        per_card_emsr: 'string',
-        per_per_id: 'string',
-        per_sex_cd: true,
-        per_mry_stts_cd: true,
-        per_frst_nm: 'string',
-        per_ptrnl_lst_nm: 'string',
-        per_mtrnl_lst_nm: 'string',
-        per_smok_ind: true,
-        co_act_cd: 'string',
-        co_act_nm: 'string',
-        co_bus_nm: 'string',
-        co_cmrc_nm: 'string',
-        co_estab_dt: 'string',
-        co_cmrc_bus_nm: 'string',
-        co_cmrc_fol_nm: 'string',
-        co_cmrc_add_inf: 'string',
-        co_cmrc_rlshnshp: 'string',
-        co_cmrc_ecnmcl_sctr_cd: 'string',
-        co_cmrc_ecnmcl_sctr_nm: 'string',
-        co_sspsv_cond: 'string',
-        co_ctrct_nmbr: 'string',
-        co_ins_lttr_nmbr: 'string',
-        co_fid_rl: 'string',
-        per_job_cd: 'string',
-        per_job_nm: 'string',
-        per_job_aka_nm: 'string',
-        per_job_co_nm: 'string',
-        per_job_mo_incm_amt: 0,
-        per_job_zip_cd: 'string',
-        per_job_dtl_txt: 'string',
-        per_job_co_actvty: 'string',
-        per_job_co_ind_nm: 'string',
-        per_wt_dscr: 'string',
-        per_ht_dscr: 'string',
-        per_lgl_frmt_nm: 'string',
-        per_job_add_ind: true,
-        per_job_add_cd: 'string',
-        per_job_add_nm: 'string',
-        per_job_add_aka_nm: 'string',
-        per_job_add_mo_incm_amt: 0,
-        rec_crt_ts: 'string',
-        rec_crt_usr_id: 'string',
-        rec_updt_ts: 'string',
-        rec_updt_usr_id: 'string',
-        natl_id_sgst_acpt_ind: true,
-        per_card_emsr_cd: 0,
-        co_cmrc_rlshnshp_cd: 0,
-        co_cmrc_pblc_fig_ind: 'string',
-        per_mdm_req: 'string',
-        co_ctct_nm: 'string',
-        co_ctct_occp: 'string',
+        party_addl_typ_nm: null,
+        per_card_num: null,
+        per_card_typ_cd: null,
+        per_card_typ_nm: null,
+        per_card_emsr: null,
+        per_per_id: null,
+        per_sex_cd: null,
+        per_mry_stts_cd: null,
+        per_frst_nm: null,
+        per_ptrnl_lst_nm: null,
+        per_mtrnl_lst_nm: null,
+        per_smok_ind: null,
+        co_act_cd: null,
+        co_act_nm: null,
+        co_bus_nm: null,
+        co_cmrc_nm: null,
+        co_estab_dt: null,
+        co_cmrc_bus_nm: null,
+        co_cmrc_fol_nm: null,
+        co_cmrc_add_inf: null,
+        co_cmrc_rlshnshp: null,
+        co_cmrc_ecnmcl_sctr_cd: null,
+        co_cmrc_ecnmcl_sctr_nm: null,
+        co_sspsv_cond: null,
+        co_ctrct_nmbr: null,
+        co_ins_lttr_nmbr: null,
+        co_fid_rl: null,
+        per_job_cd: null,
+        per_job_nm: null,
+        per_job_aka_nm: null,
+        per_job_co_nm: null,
+        per_job_mo_incm_amt: null,
+        per_job_zip_cd: null,
+        per_job_dtl_txt: null,
+        per_job_co_actvty: null,
+        per_job_co_ind_nm: null,
+        per_wt_dscr: null,
+        per_ht_dscr: null,
+        per_lgl_frmt_nm: null,
+        per_job_add_ind: null,
+        per_job_add_cd: null,
+        per_job_add_nm: null,
+        per_job_add_aka_nm: null,
+        per_job_add_mo_incm_amt: null,
+        rec_crt_ts: null,
+        rec_crt_usr_id: null,
+        rec_updt_ts: null,
+        rec_updt_usr_id: null,
+        natl_id_sgst_acpt_ind: null,
+        per_card_emsr_cd: null,
+        co_cmrc_rlshnshp_cd: null,
+        co_cmrc_pblc_fig_ind: null,
+        per_mdm_req: null,
+        co_ctct_nm: null,
+        co_ctct_occp: null,
       };
       newBeneficiary.rec_crt_ts = new Date().toDateString();
-      newBeneficiary.rec_crt_usr_id = '';
-      newBeneficiary.rec_updt_ts = '';
-      newBeneficiary.rec_updt_usr_id = '';
+      newBeneficiary.rec_crt_usr_id = null;
+      newBeneficiary.rec_updt_ts = null;
+      newBeneficiary.rec_updt_usr_id = null;
       newBeneficiary.bene_fid_cnd_flg = item.beneficiaryType === 'fidPerson' ? '1' : '0';
-      newBeneficiary.bene_fid_cntrc_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : '';
-      newBeneficiary.bene_fid_lttr_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : '';
-      newBeneficiary.bene_ref_inst_lttr = item.beneficiaryType === 'fidPerson' ? item.instructionLetterNumber : '';
+      newBeneficiary.bene_fid_cntrc_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : null;
+      newBeneficiary.bene_fid_lttr_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : null;
+      newBeneficiary.bene_ref_inst_lttr = item.beneficiaryType === 'fidPerson' ? item.instructionLetterNumber : null;
       newBeneficiary.bene_addrss_sm_inss_ind = item.addressSameAsTitular;
-    }*/
+
+      return newBeneficiary;
+    }
   }
 }

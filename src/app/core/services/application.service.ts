@@ -27,6 +27,7 @@ import {DiseaseJson} from '../../models/applicationJson/diseaseJson';
 import {NationalityJson} from '../../models/applicationJson/nationalityJson';
 import {ContactPersonJson} from '../../models/applicationJson/contact/contactPersonJson';
 import {DataContactJson} from '../../models/applicationJson/contact/dataContactJson';
+import {BENEFICIARIES} from '../mock/mock-beneficiaries/mock-beneficiaries';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
@@ -153,7 +154,7 @@ const insurerTest = {
 export class ApplicationService {
   private currentStepSource = new BehaviorSubject(1);
   currentValue = this.currentStepSource.asObservable();
-  beneficiaries = new BehaviorSubject([]);
+  beneficiaries = new BehaviorSubject(BENEFICIARIES);
   agents = new BehaviorSubject([]);
   sports = new BehaviorSubject([]);
   diseases = new BehaviorSubject([]);
@@ -463,8 +464,8 @@ export class ApplicationService {
   getApplicationFromJson(): Observable<ApplicationJson> {
     const URL_FOLIO = AppConstants.URL_SERVICE_DEV + '/App/folio';
 
-    return this.httpClient.get(URL_FOLIO)
-    // return this.httpClient.get(URL_JSON_APP)
+    // return this.httpClient.get(URL_FOLIO)
+    return this.httpClient.get(URL_JSON_APP)
       .pipe(
         map((response: ApplicationJson) => {
           console.log('response:', response);
