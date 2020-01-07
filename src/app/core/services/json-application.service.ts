@@ -311,7 +311,8 @@ export class JsonApplicationService {
 
       return newBeneficiary;
     } else if (itemType === 'payment') {
-      this.generateBaseObjectTemplate('AccountJson');
+      let newAccount: AccountJson = {};
+      this.generateBaseObjectTemplate(newAccount);
       /*let newAccount: AccountJson = {};
       newAccount.clct_id = index;
       newAccount.app_id = this.appJson.app_id;
@@ -343,7 +344,8 @@ export class JsonApplicationService {
     }
   }
 
-  generateBaseObjectTemplate(typeObj: string) {
-    let foundObj = SWAGGER_MODELS.filter(item => item === typeObj)[0];
+  generateBaseObjectTemplate(typeObj) {
+    let properties = Object.getOwnPropertyNames(typeObj);
+    console.log('properties: ', properties);
   }
 }

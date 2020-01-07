@@ -1861,8 +1861,8 @@ export class ApplicationService {
     appJson = set(appJson, 'insurer.app_id', appJson.app_id);
     appJson = set(appJson, 'insurer.nationalities', null);
     appJson = set(appJson, 'insured', null);
-    insurerTest.app_id = appJson.app_id;
-    appJson = set(appJson, 'insurer', insurerTest);
+    // insurerTest.app_id = appJson.app_id;
+    // appJson = set(appJson, 'insurer', insurerTest);
 
     console.log('appJson on saveSolicitud: ', appJson);
 
