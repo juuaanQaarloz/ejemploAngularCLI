@@ -66,6 +66,9 @@ const URL_SPORTS_OPTIONS = '../assets/catalogs/sports.json';
 const URL_DISEASES_OPTIONS = '../assets/catalogs/diseases.json';
 const URL_COVERAGE_OPTIONS = '../assets/catalogs/coverage-options.json';
 const URL_AGENTS_PROMOTORIA = '../assets/catalogs/agents-promotoria.json';
+const URL_PAYMENT_TYPE = '../assets/catalogs/payment-type.json';
+const URL_CARD_TYPE = '../assets/catalogs/card-type.json';
+
 const URL_JSON_APP = '../assets/swagger/example.json';
 
 
@@ -1727,6 +1730,12 @@ export class ApplicationService {
         break;
       case 'agentsProfile':
         urlCatalog = URL_AGENTS_PROMOTORIA;
+        break;
+      case 'paymentType':
+        urlCatalog = URL_PAYMENT_TYPE;
+        break;
+      case 'cardType':
+        urlCatalog = URL_CARD_TYPE;
         break;
     }
     return this.httpClient.get(urlCatalog)

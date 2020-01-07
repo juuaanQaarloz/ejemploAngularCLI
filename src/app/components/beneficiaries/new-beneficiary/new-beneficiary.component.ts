@@ -68,7 +68,9 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    console.log(1);
     this.formGroup = this.applicationService.createNewFormGroup(this.content.fields);
+    console.log(this.formGroup);
 
     if (this.config.data !== null) {
       this.operationType = 'edit';
@@ -76,11 +78,14 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
       this.fields = this.getFields();
       this.setBeneficiaryValues();
-
+      console.log(this.fields);
+      console.log(2);
     } else {
       this.operationType = 'add';
       this.beneficiaryType = 'phyPerson';
       this.fields = this.getFields();
+      console.log(this.fields);
+      console.log(3);
     }
     this.formGroup.controls.beneficiaryType.valueChanges.subscribe((value) => {
       this.beneficiaryType = value;
@@ -93,13 +98,9 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
   addNewBeneficiary() {
     const formStatus = this.getFormStatus();
-    console.log('formStatus: ', formStatus);
-    console.log('form controls: ', this.formGroup.controls);
-
     if (formStatus === 'VALID') {
       const newBeneficiary = this.mapNewBeneficiaryData();
       const response = this.applicationService.addItem(newBeneficiary, 'beneficiary');
-
       if (response.status) {
         this.closeDialog();
       } else {
@@ -534,6 +535,17 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   }
 
   getFields() {
+
+    console.log(this.fields);
+    console.log(this.fields);
+    console.log(this.fields);
+    console.log(this.fields);
+
+    console.log('dsfsdfdsfdsfdsf');
+    console.log('dsfsdfdsfdsfdsf');
+    console.log('dsfsdfdsfdsfdsf');
+    console.log('dsfsdfdsfdsfdsf');
+
     let fields = [];
 
     NewBeneficiaryFields.forEach((field) => {

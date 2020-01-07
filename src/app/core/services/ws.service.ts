@@ -28,6 +28,9 @@ export class WsService {
   constructor(private http: HttpClient
   ) { }
 
+  /**
+   * Metodo para SUBIR los archivos al FILENET
+   */
   public uploadFilenet(formData) {
     console.log('Entro a uploadFilenet');
     // const BODY: any = {
@@ -47,13 +50,15 @@ export class WsService {
     const BODY: any = {
       submitRequest
     };
-
     return this.http.post(AppConstants.URL_SERVICE  + '/submitApplication', BODY, httpOptions)
       .subscribe(data => (
         console.log(data)
         ));
   }
 
+  /**
+   * Metodo para CREAR el ZIP
+   */
   public createZip(ficheros): Observable<any> {
     console.log('Entro a createZip');
     console.log('ficheros');
@@ -61,33 +66,38 @@ export class WsService {
     const BODY: any = {
         archivos: ficheros
     };
-
     return this.http.post(AppConstants.URL_SERVICE  + '/createZip', ficheros, httpOptionsUndefined);
   }
 
+  /**
+   * Metodo para DESCARGAR de las ruta fisica el ZIP
+   */
   public downloadZip(url): Observable<any> {
     console.log('Entro a downloadZip');
-
-    let fd = new FormData();
+    const fd = new FormData();
     fd.append('pcURI', url);
-
     return this.http.post(AppConstants.URL_SERVICE + '/downloadZip', fd, {responseType: 'arraybuffer'});
-  };
+  }
 
+  /**
+   * Metodo para ELIMINAR de las ruta fisica el ZIP
+   */
   public deleteZip(url): Observable<any> {
     console.log('Entro a deleteZip');
-
-    let fd = new FormData();
+    const fd = new FormData();
     fd.append('pcURI', url);
-
     return this.http.post(AppConstants.URL_SERVICE + '/deleteZip', fd, httpOptionsUndefined);
-  };
+  }
 
-  public validateMitToken(token): Observable<any> {
+  /**
+   * Metodo para validar el token de la forma de pago
+   */
+  public validateMitToken(mitToken): Observable<any> {
     console.log('Entro a validateMitToken');
-
-    const BODY: any = token;
-
+    const BODY: any = {
+      token: mitToken
+    };
     return this.http.post(AppConstants.URL_SERVICE + '/validateMitToken', BODY, httpOptionsUndefined);
-  };
+  }
+
 }

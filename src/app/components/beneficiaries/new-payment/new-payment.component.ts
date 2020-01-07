@@ -53,14 +53,13 @@ export class NewPaymentComponent implements OnInit {
   formMsgError = FORM_MSG_ERROR;
 
   constructor(private applicationService: ApplicationService,
-    public config: DialogConfig,
-    public dialog: DialogRef,
-    private modalService: ModalService
-  ) {
+              public config: DialogConfig,
+              public dialog: DialogRef,
+              private modalService: ModalService ) {
   }
 
   ngOnInit() {
-    console.log("ngOnInit");
+    console.log('ngOnInit');
     this.formGroup = this.applicationService.createNewFormGroup(this.content.fields);
     console.log('formGroup', this.formGroup);
     this.fields = this.getFields();
@@ -81,6 +80,7 @@ export class NewPaymentComponent implements OnInit {
   }
 
   addNewPayment() {
+    console.log(' addNewPayment ---> ');
     const formStatus = this.getFormStatus();
     if (formStatus === 'VALID') {
       const newPayment = this.mapNewPaymentData();
@@ -159,7 +159,7 @@ export class NewPaymentComponent implements OnInit {
   }
 
   getFields() {
-    let fields = [];
+    const fields = [];
     NewPaymentFields.forEach((field) => {
       fields.push(field);
     });

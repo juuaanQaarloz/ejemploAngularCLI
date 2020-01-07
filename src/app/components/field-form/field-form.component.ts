@@ -42,6 +42,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   loading = false;
   modalID = 'modal-warning1';
   modalMessage = 'La suma de las participaciones de los agentes excede el 100%';
+  messageClabe = 'CLABE/Token y Confirmar CLABE/Token no coinciden';
   fileName: string;
   contadorDoc: number;
   okOperation: Operation = {
@@ -368,6 +369,24 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     if (this.fieldObj.name === 'assuredImport') {
       // // console.log('Entro assuredImport: ');
     }
+    if (this.fieldObj.name === 'assuredImport') {
+      // // console.log('Entro assuredImport: ');
+    }
+    if (this.fieldObj.name === 'txtClabeConfir') {
+      const idClabe = 'txtClabe';
+      console.log('TOKEN MIT 1 --->: ' + this.form.controls[this.fieldObj.name].value);
+      console.log('Confirma TOKEN MIT 1 --->: ' + this.form.controls[idClabe].value);
+      if (this.form.controls[idClabe].value === this.form.controls[this.fieldObj.name].value) {
+        console.log('TOKEN MIT 2 --->: ' + this.form.controls[this.fieldObj.name].value);
+        this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
+          .subscribe((results) => {
+            console.log(results);
+          });
+      } else {
+        this.fieldObj.message = this.messageClabe;
+        this.fieldObj.valid = false;
+      }
+    }
   }
 
   onKeyUpAutoComplete(event) {
@@ -421,7 +440,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       // console.log('File selected: ', fileSelected);
       this.fileName = fileSelected.name;
       // console.log(this.fileName);
-      //Validar extensión
+      // Validar extensión
       let contador = 0;
       const extensionArchivo = this.fileName.slice(this.fileName.lastIndexOf('.'));
       let extensionArchivoCopy = this.fileName.slice(this.fileName.lastIndexOf('.'));
@@ -436,7 +455,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         }
       });
       // console.log('Contador: ', contador);
-      //Validar tamaño archivo
+      // Validar tamaño archivo
       let tamanioValido = true;
       if (fileSelected.size > 5242880) {
         tamanioValido = false;
@@ -521,7 +540,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   // }
 
   onChange(event) {
-    //console.log('onChange event.target.value: ', event.target.value);
+    // console.log('onChange event.target.value: ', event.target.value);
     // console.log('formControlName: ', this.fieldObj.name);
     this.isValid();
   }
@@ -601,6 +620,20 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         }
       }
     }
+    /*if (this.fieldObj.name === 'txtClabeConfir') {
+      const idClabe = 'txtClabe';
+      console.log('TOKEN MIT 11 --->: ' + this.form.controls[this.fieldObj.name]);
+      if (this.form.controls[idClabe] === this.form.controls[this.fieldObj.name]) {
+        console.log('TOKEN MIT 22 --->: ' + this.form.controls[this.fieldObj.name]);
+        this.wsService.validateMitToken(this.form.controls[this.fieldObj.name])
+          .subscribe((results) => {
+            console.log(results);
+          });
+      } else {
+        this.fieldObj.message = this.messageClabe;
+        this.fieldObj.valid = false;
+      }
+    }*/
     // las validaciones deben estar antes
     if (valid) {
       this.isValid();
