@@ -1,4 +1,4 @@
-import { AppConstants } from 'src/app/app.constants';
+import {AppConstants} from 'src/app/app.constants';
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
@@ -22,6 +22,12 @@ import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import {APP_SWAGGER} from '../mock/mock-swagger/mock-swagger-app';
 import set from 'lodash/set';
 import get from 'lodash/get';
+import {AddressJson} from '../../models/applicationJson/addressJson';
+import {DiseaseJson} from '../../models/applicationJson/diseaseJson';
+import {NationalityJson} from '../../models/applicationJson/nationalityJson';
+import {ContactPersonJson} from '../../models/applicationJson/contact/contactPersonJson';
+import {DataContactJson} from '../../models/applicationJson/contact/dataContactJson';
+import {BENEFICIARIES} from '../mock/mock-beneficiaries/mock-beneficiaries';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
@@ -71,7 +77,79 @@ const URL_CARD_TYPE = '../assets/catalogs/card-type.json';
 
 const URL_JSON_APP = '../assets/swagger/example.json';
 
-
+const insurerTest = {
+  party_app_id: 1,
+  app_id: null,
+  party_natl_id: null,
+  party_ssn: null,
+  per_brth_dt: null,
+  per_age: null,
+  Address: [],
+  diseases: [],
+  nationalities: [],
+  contactPerson: [],
+  dataContact: [],
+  per_brth_cntry_nm: null,
+  per_brth_cntry_cd: null,
+  per_brth_stte_nm: null,
+  per_brth_plc_nm: null,
+  party_typ_cd: null,
+  party_addl_typ_nm: null,
+  per_card_num: null,
+  per_card_typ_cd: null,
+  per_card_typ_nm: null,
+  per_card_emsr: null,
+  per_per_id: null,
+  per_sex_cd: null,
+  per_mry_stts_cd: null,
+  per_frst_nm: 'ODALYS',
+  per_ptrnl_lst_nm: 'MARRON',
+  per_mtrnl_lst_nm: 'SANCHEZ',
+  per_smok_ind: null,
+  co_act_cd: null,
+  co_act_nm: null,
+  co_bus_nm: null,
+  co_cmrc_nm: null,
+  co_estab_dt: null,
+  co_cmrc_bus_nm: null,
+  co_cmrc_fol_nm: null,
+  co_cmrc_add_inf: null,
+  co_cmrc_rlshnshp: null,
+  co_cmrc_ecnmcl_sctr_cd: null,
+  co_cmrc_ecnmcl_sctr_nm: null,
+  co_sspsv_cond: null,
+  co_ctrct_nmbr: null,
+  co_ins_lttr_nmbr: null,
+  co_fid_rl: null,
+  per_job_cd: null,
+  per_job_nm: null,
+  per_job_aka_nm: null,
+  per_job_co_nm: null,
+  per_job_mo_incm_amt: null,
+  per_job_zip_cd: null,
+  per_job_dtl_txt: null,
+  per_job_co_actvty: null,
+  per_job_co_ind_nm: null,
+  per_wt_dscr: null,
+  per_ht_dscr: null,
+  per_lgl_frmt_nm: null,
+  per_job_add_ind: null,
+  per_job_add_cd: null,
+  per_job_add_nm: null,
+  per_job_add_aka_nm: null,
+  per_job_add_mo_incm_amt: null,
+  rec_crt_ts: null,
+  rec_crt_usr_id: null,
+  rec_updt_ts: null,
+  rec_updt_usr_id: null,
+  natl_id_sgst_acpt_ind: null,
+  per_card_emsr_cd: null,
+  co_cmrc_rlshnshp_cd: null,
+  co_cmrc_pblc_fig_ind: null,
+  per_mdm_req: null,
+  co_ctct_nm: null,
+  co_ctct_occp: null
+};
 
 @Injectable({
   providedIn: 'root'
@@ -79,7 +157,7 @@ const URL_JSON_APP = '../assets/swagger/example.json';
 export class ApplicationService {
   private currentStepSource = new BehaviorSubject(1);
   currentValue = this.currentStepSource.asObservable();
-  beneficiaries = new BehaviorSubject([]);
+  beneficiaries = new BehaviorSubject(BENEFICIARIES);
   agents = new BehaviorSubject([]);
   sports = new BehaviorSubject([]);
   diseases = new BehaviorSubject([]);
@@ -233,17 +311,17 @@ export class ApplicationService {
 
     });
     // tslint:disable-next-line:max-line-length
-    return new FormGroup(group, [equalEmailsValidator, higherAssuredImport, validateFunds, validateSameName, validateSameName2, validateSameName3 ]);
+    return new FormGroup(group, [equalEmailsValidator, higherAssuredImport, validateFunds, validateSameName, validateSameName2, validateSameName3]);
   }
 
   toFormGroupReadOnly(applicationObj: Template, detail: any) {
     const group: any = {};
-    const estatus = get(detail, "app_stts_cd");
+    const estatus = get(detail, 'app_stts_cd');
     applicationObj.sections.forEach(section => {
       section.contents.forEach((contentFromSection) => {
         if (contentFromSection.fields) {
           contentFromSection.fields.forEach(field => {
-            if(estatus!==null && estatus>=30){
+            if (estatus !== null && estatus >= 30) {
               field.disable = true;
             }
             field.value = get(detail, field.entityField);
@@ -257,7 +335,7 @@ export class ApplicationService {
               step.contents.forEach((contentFromStep) => {
                 if (contentFromStep.fields) {
                   contentFromStep.fields.forEach(field => {
-                    if(estatus!==null && estatus>=30){
+                    if (estatus !== null && estatus >= 30) {
                       field.disable = true;
                     }
                     field.value = get(detail, field.entityField);
@@ -390,6 +468,7 @@ export class ApplicationService {
     const URL_FOLIO = AppConstants.URL_SERVICE_DEV + '/App/folio';
 
     return this.httpClient.get(URL_FOLIO)
+    // return this.httpClient.get(URL_JSON_APP)
       .pipe(
         map((response: ApplicationJson) => {
           console.log('response:', response);
@@ -420,7 +499,7 @@ export class ApplicationService {
       propertyName = 'participationPercentage';
 
       let name5 = newItem.name; // this.formGroup.controls.beneficiaryName.value;
-      let fatherLastName5 =  newItem.fatherLastName; // this.formGroup.controls.beneficiaryFaLastName.value;
+      let fatherLastName5 = newItem.fatherLastName; // this.formGroup.controls.beneficiaryFaLastName.value;
       let motherLastName5 = newItem.motherLastName; // this.formGroup.controls.beneficiaryMoLastName.value;
 
       if (name5 !== '' && name5 !== undefined) {
@@ -503,8 +582,8 @@ export class ApplicationService {
         if (currentItems.length <= (maxLength - 1)) {
           // the new item can be added
           if (Number(newItem[propertyName]) > 0) {
-            if ( currentItems.length === (maxLength - 1) ) {
-              if ( currentTotalParticipationPercentage + Number(newItem[propertyName]) === 100) {
+            if (currentItems.length === (maxLength - 1)) {
+              if (currentTotalParticipationPercentage + Number(newItem[propertyName]) === 100) {
                 currentItems.push(newItem);
                 if (idTable) {
                   this.setItems(itemType, currentItems, idTable);
@@ -694,7 +773,7 @@ export class ApplicationService {
       responseMessage5 = 'El nombre, el apellido paterno y materno no puede ser el mismo';
 
       let name5 = updatedItem.name;
-      let fatherLastName5 =  updatedItem.fatherLastName;
+      let fatherLastName5 = updatedItem.fatherLastName;
       let motherLastName5 = updatedItem.motherLastName;
 
       if (name5 !== '' && name5 !== undefined) {
@@ -765,8 +844,8 @@ export class ApplicationService {
           // the new item can be added
           if (Number(updatedItem[propertyParticipation]) > 0) {
 
-            if ( currentItems.length === maxLength ) {
-              if ( currentTotalParticipationPercentage + Number(updatedItem[propertyParticipation]) === 100) {
+            if (currentItems.length === maxLength) {
+              if (currentTotalParticipationPercentage + Number(updatedItem[propertyParticipation]) === 100) {
                 const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
                 currentItems[index] = updatedItem;
                 if (idTable) {
@@ -1216,7 +1295,7 @@ export class ApplicationService {
       }
     } else if (tableType === 'table-payment') {
       valueQuestion = this.formGroup.controls.payMode.value;
-      if ( valueQuestion && valueQuestion > 1) {
+      if (valueQuestion && valueQuestion > 1) {
         // validate table content
         if (this.payments.getValue().length === 0) {
           isValid = false;
@@ -1245,7 +1324,7 @@ export class ApplicationService {
     } else if (tableType === 'table-sports') {
       // check question value
       valueQuestion = this.formGroup.controls.extremeSportsQuestion.value;
-      if ( valueQuestion && valueQuestion === true) {
+      if (valueQuestion && valueQuestion === true) {
         // console.log('valueQuestion: ', valueQuestion);
         // validate table content
         if (this.sports.getValue().length === 0) {
@@ -1742,7 +1821,7 @@ export class ApplicationService {
       .pipe(
         map((catalog) => {
           this.contador++;
-          if ( catalog[catalogos] ) {
+          if (catalog[catalogos]) {
             return catalog[catalogos].extension.variations;
           } else {
             // console.log(urlCatalog);
@@ -1768,7 +1847,7 @@ export class ApplicationService {
       console.log('obtiene folio');
       this.httpClient.get(URL_FOLIO, {headers}).subscribe((response: any) => {
         appJson.app_id = response.app_id;
-        console.log('folio nuevo: ',  response.app_id);
+        console.log('folio nuevo: ', response.app_id);
         this.saveSolicitud(appJson);
       });
     } else {
@@ -1789,15 +1868,16 @@ export class ApplicationService {
     });
     // console.log("guarda solicitud");
     appJson = set(appJson, 'insurer.app_id', appJson.app_id);
-    appJson = set(appJson, 'insurer.nationalities', []);
+    appJson = set(appJson, 'insurer.nationalities', null);
     appJson = set(appJson, 'insured', null);
-    //appJson = set(appJson, 'insurer', null);
+    // insurerTest.app_id = appJson.app_id;
+    // appJson = set(appJson, 'insurer', insurerTest);
 
     console.log('appJson on saveSolicitud: ', appJson);
 
     this.httpClient.put(URL, JSON.stringify(appJson), {headers})
       .subscribe((response) => {
-      console.log('response: ', response);
-    });
+        console.log('response: ', response);
+      });
   }
 }
