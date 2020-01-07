@@ -73,12 +73,7 @@ export class ApplicationComponent implements OnInit {
   }
   getJson() {
     this.appService.getApplicationFromJson().subscribe((result) => {
-      // this.applicationJson = JSON.parse(result.toString());
       this.applicationJson = result;
-      let entityFieldElement = 'shareHolders[0].person.per_age';
-
-      set(this.applicationJson, entityFieldElement, 26);
-
       console.log('applicationJson after parse', this.applicationJson);
     });
   }
@@ -127,8 +122,8 @@ export class ApplicationComponent implements OnInit {
     let params = new HttpParams();
     params = params.append('appId', '2001030089');
 
-    this.httpClient.get(AppConstants.URL_SERVICE +"/App/getPdf", {headers, params}).subscribe( (resp:any) => {
-      if(resp.result!=null){
+    this.httpClient.get(AppConstants.URL_SERVICE_DEV +"/App/getPdf", {headers, params}).subscribe( (resp:any) => {
+      if (resp.result !== null) {
         window.open(resp.result.pdfDoc, "_blank");
       }
     });
