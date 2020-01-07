@@ -28,7 +28,7 @@ export const AuthorizationQuestions1: Field[] = [
     enableConditions: '',
     requiredConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'applicationExtension.imp_fct_ind',
     value: ''
   }
 ];
@@ -60,7 +60,7 @@ export const AuthorizationFields1: Field[] = [
     enableConditions: '',
     requiredConditions: '(declarationQuestion=true)',
     entity: '',
-    entityField: '',
+    entityField: 'applicationExtension.imp_fct_spec',
     value: ''
   }
 ];
@@ -124,7 +124,7 @@ export const AuthorizationQuestions2: Field[] = [
     enableConditions: '',
     requiredConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'applicationExtension.rec_comp_inf_ind',
     value: ''
   },
   {
@@ -155,7 +155,7 @@ export const AuthorizationQuestions2: Field[] = [
     enableConditions: '',
     requiredConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'applicationExtension.rec_rgth_inf_ind',
     value: ''
   }
 ];

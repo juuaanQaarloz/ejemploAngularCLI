@@ -27,7 +27,7 @@ export const OtrosSeguros: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'app_own_oth_lif_ins_ind',
     value: ''
   },
   {
@@ -57,6 +57,6 @@ export const OtrosSeguros: Field[] = [
     renderConditions: '(isAsegurado=true)',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'app_own_oth_lif_indamnt',
   },
 ];

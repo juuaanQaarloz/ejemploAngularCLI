@@ -29,7 +29,7 @@ export const NewDocumentField: Field[] = [
     enableConditions: '',
     requiredConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'documents.doc_typ_cd',
     value: ''
   },
   {

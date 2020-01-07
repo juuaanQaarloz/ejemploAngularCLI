@@ -26,7 +26,7 @@ export const statements0: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'app_own_py_frgn_tax_ind',
     value: ''
   }
 ];
@@ -57,7 +57,7 @@ export const statements: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'app_own_pltcl_dclr_ind',
     value: ''
   }
 ];
@@ -90,7 +90,7 @@ export const statements1: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'app_own_frng_ind',
     value: ''
   },
   {
@@ -120,7 +120,7 @@ export const statements1: Field[] = [
     renderConditions: '(foreignQuestion=true)',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'app_own_frng_spec',
     value: '',
     legend: 'En caso de ser extranjero, o tener residencia en el extranjero, especifica las razones para contratar un ' +
       'seguro en territorio nacional.'
@@ -152,7 +152,7 @@ export const statements1: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'app_own_shre_ind',
     value: ''
   }
 ];
@@ -184,7 +184,7 @@ export const statements2: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'app_own_thrd_prty_ind',
     value: ''
   }
 ];
@@ -217,7 +217,7 @@ export const statements3: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'app_own_pymnt_rsrc_ind',
     value: ''
   }
 ];

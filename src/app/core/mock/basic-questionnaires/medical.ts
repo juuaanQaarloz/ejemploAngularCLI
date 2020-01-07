@@ -31,7 +31,7 @@ export const medicalQuestions1: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'applicationExtension.illns_ind',
     value: ''
   }
 ];
@@ -65,7 +65,7 @@ export const medicalQuestions2: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'applicationExtension.illns_tn_yrs_ind',
     value: ''
   }
 ];
@@ -98,7 +98,7 @@ export const medicalQuestions3: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'applicationExtension.ills_indem_ind',
     value: ''
   }
 ];
