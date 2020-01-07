@@ -16,6 +16,7 @@ import {Operation} from '../../models';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import {NewDocumentField} from "../../core/mock/documents/documents";
 
 @Component({
   selector: 'app-field-form',
@@ -378,10 +379,20 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       console.log('Confirma TOKEN MIT 1 --->: ' + this.form.controls[idClabe].value);
       if (this.form.controls[idClabe].value === this.form.controls[this.fieldObj.name].value) {
         console.log('TOKEN MIT 2 --->: ' + this.form.controls[this.fieldObj.name].value);
-        this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
-          .subscribe((results) => {
-            console.log(results);
-          });
+        const bine = Number(this.form.controls[this.fieldObj.name].value.substring(0, 6));
+        if (this.form.controls[this.fieldObj.name].value.length == 16) {
+          this.getDataPaymentMit(bine);
+          /*this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
+            .subscribe((results) => {
+              console.log("Respuesta de mit toker ");
+              console.log(results);
+              console.log(results);
+              // this.getDataPaymentMit(bine);
+            });*/
+        } else if (this.form.controls[this.fieldObj.name].value.length == 18) {
+          console.log("Respuesta de bank bienes");
+          this.getDataPaymentMit(bine);
+        }
       } else {
         this.fieldObj.message = this.messageClabe;
         this.fieldObj.valid = false;
@@ -997,6 +1008,36 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       }*/
     }
   }
+
+  getDataPaymentMit(bine) {
+    console.log('getDataPaymentMit --> ');
+    console.log(bine);
+    this.applicationService.getCatalogById('bankBienes', 'IPRE')
+      .subscribe((results) => {
+        results.forEach((bank) => {
+          if (bine >= Number(bank.infLimit) && bine <= Number(bank.supLimit)) {
+            console.log(bank);
+            console.log("Esta dentro de limites");
+
+            console.log(this.form.controls['txtBank']);
+            this.form.controls['txtBank'].setValue(bank.bankDescription)
+            console.log(this.form.controls['txtBank']);
+            const element = document.getElementById('txtBank');
+
+            console.log(element);
+
+            element.setAttribute('value', bank.bankDescription);
+
+            /*
+            this.form.controls[bank].setValue(bank.retainerId);
+            const element = document.getElementById(bank);
+            element.setAttribute('value', bank.retainerId);
+            */
+          }
+        });
+      });
+  }
+
 }
 
 

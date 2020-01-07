@@ -94,9 +94,8 @@ export class WsService {
    */
   public validateMitToken(mitToken): Observable<any> {
     console.log('Entro a validateMitToken');
-    const BODY: any = {
-      token: mitToken
-    };
+    const BODY = new FormData();
+    BODY.append('token', mitToken);
     return this.http.post(AppConstants.URL_SERVICE + '/validateMitToken', BODY, httpOptionsUndefined);
   }
 
