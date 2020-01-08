@@ -29,7 +29,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     enableConditions: '',
     requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     entity: '',
-    entityField: ''
+    entityField: 'insured.Address[0].strt_nm'
   },
   {
     id: 'field-75',
@@ -58,7 +58,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     enableConditions: '',
     requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     entity: '',
-    entityField: ''
+    entityField: 'insured.Address[0].ext_num'
   },
   {
     id: 'field-76',
@@ -86,7 +86,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: ''
+    entityField: 'insured.Address[0].int_num'
   },
   {
     id: 'field-77',
@@ -115,7 +115,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     enableConditions: '',
     requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     entity: '',
-    entityField: ''
+    entityField: 'insured.Address[0].zip_cod'
   },
   {
     id: 'field-78',
@@ -145,7 +145,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     enableConditions: '',
     requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     entity: '',
-    entityField: ''
+    entityField: 'insured.Address[0].subt_nm'
   },
   {
     id: 'field-79',
@@ -175,7 +175,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     enableConditions: '',
     requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     entity: '',
-    entityField: ''
+    entityField: 'insured.Address[0].mncplty_nm'
   },
   {
     id: 'field-80',
@@ -204,7 +204,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     enableConditions: '',
     requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     entity: '',
-    entityField: ''
+    entityField: 'insured.Address[0].sta_spec'
   },
   {
     id: 'field-81',
@@ -233,6 +233,6 @@ export const DatosDomicilioSolicitante: Field[] = [
     enableConditions: '',
     requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     entity: '',
-    entityField: ''
+    entityField: 'insured.Address[0].cntry_spe'
   }
 ];

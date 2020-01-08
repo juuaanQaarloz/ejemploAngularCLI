@@ -27,7 +27,7 @@ export const InformacionLaboralSolicitante1: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insured.Address[0].',
     value: '',
   }
 ];
