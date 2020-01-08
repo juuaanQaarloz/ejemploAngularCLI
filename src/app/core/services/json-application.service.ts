@@ -125,7 +125,7 @@ export class JsonApplicationService {
       });
 
       console.log('appJson object: ', this.getAppJson());
-      // console.log('appJson json: ', JSON.stringify(this.getAppJson()));
+      console.log('appJson json: ', JSON.stringify(this.getAppJson()));
 
       // return JSON.stringify(this.getAppJson());
       this.appJson.app_stts_cd = step.id;
