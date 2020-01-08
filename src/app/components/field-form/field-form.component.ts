@@ -1012,27 +1012,17 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   getDataPaymentMit(bine) {
     console.log('getDataPaymentMit --> ');
     console.log(bine);
+    const infLimit = 'infLimit';
+    const supLimit = 'supLimit';
+    const txtBank = 'txtBank';
+    const bankDescription = 'bankDescription';
     this.applicationService.getCatalogById('bankBienes', 'IPRE')
       .subscribe((results) => {
         results.forEach((bank) => {
-          if (bine >= Number(bank.infLimit) && bine <= Number(bank.supLimit)) {
-            console.log(bank);
-            console.log("Esta dentro de limites");
-
-            console.log(this.form.controls['txtBank']);
-            this.form.controls['txtBank'].setValue(bank.bankDescription)
-            console.log(this.form.controls['txtBank']);
+          if (bine >= Number(bank[infLimit]) && bine <= Number(bank[supLimit])) {
+            this.form.controls[txtBank].setValue(bank[bankDescription]);
             const element = document.getElementById('txtBank');
-
-            console.log(element);
-
-            element.setAttribute('value', bank.bankDescription);
-
-            /*
-            this.form.controls[bank].setValue(bank.retainerId);
-            const element = document.getElementById(bank);
-            element.setAttribute('value', bank.retainerId);
-            */
+            element.setAttribute('value', bank[bankDescription]);
           }
         });
       });
