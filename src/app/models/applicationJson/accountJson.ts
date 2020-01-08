@@ -1,34 +1,32 @@
 import {BankAccount} from './bankJson/bankAccount';
 
-export interface AccountJson {
-  clct_id?: number;
-  app_id?: number;
-  clct_mthd_id?: string;
-  clct_mthd_nm?: string;
-  clct_card_typ_id?: string;
-  clct_cncpt_id?: number;
-  clct_cur_cd?: string;
-  clct_empe_id?: string;
-  clct_fed_enty_cd?: string;
-  clct_mode_cd?: number;
-  clct_unit_cd?: string;
-  clct_unit_wrk_cntr_cd?: string;
-  prfr_cntct_tm_txt?: string;
-  prfr_cntct_typ_nm?: string;
-  rtnr_id?: string;
-  prfr_py_wk_day_cd?: string;
-  prfr_py_prdcty_cd?: number;
-  prfr_cntct_tm_cd?: string;
-  prfr_cntct_typ_cd?: string;
-  prfr_cntct_day?: string;
-  rec_crt_ts?: string;
-  rec_crt_usr_id?: string;
-  rec_updt_ts?: string;
-  rec_updt_usr_id?: string;
-  rtnr_wrk_cntr_cd?: string;
-  rtnr_lbr_rgm_cd?: string;
-  bankAccount?: BankAccount;
+export class AccountJson {
+  clct_id?: number = null;
+  app_id?: number = null;
+  clct_mthd_id?: string = null;
+  clct_mthd_nm?: string = null;
+  clct_card_typ_id?: string = null;
+  clct_cncpt_id?: number = null;
+  clct_cur_cd?: string = null;
+  clct_empe_id?: string = null;
+  clct_fed_enty_cd?: string = null;
+  clct_mode_cd?: number = null;
+  clct_unit_cd?: string = null;
+  clct_unit_wrk_cntr_cd?: string = null;
+  prfr_cntct_tm_txt?: string = null;
+  prfr_cntct_typ_nm?: string = null;
+  rtnr_id?: string = null;
+  prfr_py_wk_day_cd?: string = null;
+  prfr_py_prdcty_cd?: number = null;
+  prfr_cntct_tm_cd?: string = null;
+  prfr_cntct_typ_cd?: string = null;
+  prfr_cntct_day?: string = null;
+  rec_crt_ts?: string = null;
+  rec_crt_usr_id?: string = null;
+  rec_updt_ts?: string = null;
+  rec_updt_usr_id?: string = null;
+  rtnr_wrk_cntr_cd?: string = null;
+  rtnr_lbr_rgm_cd?: string = null;
+  bankAccount?: BankAccount = null;
 }
 
-export class AccountJsonClass implements AccountJson {
-}

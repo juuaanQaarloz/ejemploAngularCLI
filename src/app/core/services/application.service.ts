@@ -467,11 +467,11 @@ export class ApplicationService {
   getApplicationFromJson(): Observable<ApplicationJson> {
     const URL_FOLIO = AppConstants.URL_SERVICE_DEV + '/App/folio';
 
-    return this.httpClient.get(URL_FOLIO)
-    // return this.httpClient.get(URL_JSON_APP)
+    // return this.httpClient.get(URL_FOLIO)
+    return this.httpClient.get(URL_JSON_APP)
       .pipe(
         map((response: ApplicationJson) => {
-          console.log('response:', response);
+          console.log('RESPONSE:', response);
           return response;
         })
       );
