@@ -157,7 +157,7 @@ const insurerTest = {
 export class ApplicationService {
   private currentStepSource = new BehaviorSubject(1);
   currentValue = this.currentStepSource.asObservable();
-  beneficiaries = new BehaviorSubject(BENEFICIARIES);
+  beneficiaries = new BehaviorSubject([]);
   agents = new BehaviorSubject([]);
   sports = new BehaviorSubject([]);
   diseases = new BehaviorSubject([]);
