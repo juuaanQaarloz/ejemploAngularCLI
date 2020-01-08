@@ -2,7 +2,7 @@ import {AgentCd} from './agentCd';
 
 export class AgentJson {
   app_id?: number = null;
-  agnt_cd?: AgentCd = null;
+  agnt_cd?: AgentCd = new AgentCd();
   agnt_part_per?: number = null;
   part_ord?: number = null;
   rec_crt_ts?: string = null;

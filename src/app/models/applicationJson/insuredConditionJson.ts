@@ -4,15 +4,15 @@ import {InsuredQuestionnaireJson} from './questionaryJson/insuredQuestionnaireJs
 import {BeneciciaryJson} from './beneciciaryJson';
 
 export class InsuredConditionJson {
-  ins_id: number = null;
-  per_app_id: number = null;
-  app_id: number = null;
+  ins_id: number = 0;
+  per_app_id: number = 0;
+  app_id: number = 0;
   aplicationPlan: AplicationPlanJson = null;
-  policyPlan: PolicyPlanJson = null;
+  policyPlan: PolicyPlanJson = null ;
   insuredQuestionnaire: InsuredQuestionnaireJson[] = [];
   beneciciary: BeneciciaryJson[] = [];
-  ins_role_cd: string = null;
-  ins_rel_cd: number = null;
+  ins_role_cd: string = 'string';
+  ins_rel_cd: number = 0;
   rec_crt_ts: string = null;
   rec_crt_usr_id: string = null;
   rec_updt_ts: string = null;

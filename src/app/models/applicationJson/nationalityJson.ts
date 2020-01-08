@@ -1,7 +1,8 @@
 export class NationalityJson {
-  natlty_cd: string = null;
-  party_app_id: number = null;
-  app_id: number = null;
+  natlty_id: number = 0;
+  natlty_cd: string = '';
+  party_app_id: number = 0;
+  app_id: number = 0;
   natlty_nm: string = null;
   rec_crt_ts: string = null;
   rec_crt_usr_id: string = null;

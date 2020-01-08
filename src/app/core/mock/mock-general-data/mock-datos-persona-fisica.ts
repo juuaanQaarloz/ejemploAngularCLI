@@ -486,7 +486,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
     entity: '',
-    entityField: ''
+    entityField: 'insurer.nationalities[0].natlty_nm'
   },
   {
     id: 'field-19',
@@ -515,7 +515,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: ''
+    entityField: 'insurer.nationalities[1].natlty_nm'
   },
   {
     id: 'field-20',
@@ -544,7 +544,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: ''
+    entityField: 'insurer.nationalities[2].natlty_nm'
   },
   {
     id: 'field-21',
@@ -573,6 +573,6 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: ''
+    entityField: 'insurer.nationalities[3].natlty_nm'
   }
 ];

@@ -19,15 +19,7 @@ import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
 import {COVERAGES} from '../mock/coverage/coverage';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
-import {APP_SWAGGER} from '../mock/mock-swagger/mock-swagger-app';
-import set from 'lodash/set';
 import get from 'lodash/get';
-import {AddressJson} from '../../models/applicationJson/addressJson';
-import {DiseaseJson} from '../../models/applicationJson/diseaseJson';
-import {NationalityJson} from '../../models/applicationJson/nationalityJson';
-import {ContactPersonJson} from '../../models/applicationJson/contact/contactPersonJson';
-import {DataContactJson} from '../../models/applicationJson/contact/dataContactJson';
-import {BENEFICIARIES} from '../mock/mock-beneficiaries/mock-beneficiaries';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
@@ -74,82 +66,6 @@ const URL_COVERAGE_OPTIONS = '../assets/catalogs/coverage-options.json';
 const URL_AGENTS_PROMOTORIA = '../assets/catalogs/agents-promotoria.json';
 const URL_PAYMENT_TYPE = '../assets/catalogs/payment-type.json';
 const URL_CARD_TYPE = '../assets/catalogs/card-type.json';
-
-const URL_JSON_APP = '../assets/swagger/example.json';
-
-const insurerTest = {
-  party_app_id: 1,
-  app_id: null,
-  party_natl_id: null,
-  party_ssn: null,
-  per_brth_dt: null,
-  per_age: null,
-  Address: [],
-  diseases: [],
-  nationalities: [],
-  contactPerson: [],
-  dataContact: [],
-  per_brth_cntry_nm: null,
-  per_brth_cntry_cd: null,
-  per_brth_stte_nm: null,
-  per_brth_plc_nm: null,
-  party_typ_cd: null,
-  party_addl_typ_nm: null,
-  per_card_num: null,
-  per_card_typ_cd: null,
-  per_card_typ_nm: null,
-  per_card_emsr: null,
-  per_per_id: null,
-  per_sex_cd: null,
-  per_mry_stts_cd: null,
-  per_frst_nm: 'ODALYS',
-  per_ptrnl_lst_nm: 'MARRON',
-  per_mtrnl_lst_nm: 'SANCHEZ',
-  per_smok_ind: null,
-  co_act_cd: null,
-  co_act_nm: null,
-  co_bus_nm: null,
-  co_cmrc_nm: null,
-  co_estab_dt: null,
-  co_cmrc_bus_nm: null,
-  co_cmrc_fol_nm: null,
-  co_cmrc_add_inf: null,
-  co_cmrc_rlshnshp: null,
-  co_cmrc_ecnmcl_sctr_cd: null,
-  co_cmrc_ecnmcl_sctr_nm: null,
-  co_sspsv_cond: null,
-  co_ctrct_nmbr: null,
-  co_ins_lttr_nmbr: null,
-  co_fid_rl: null,
-  per_job_cd: null,
-  per_job_nm: null,
-  per_job_aka_nm: null,
-  per_job_co_nm: null,
-  per_job_mo_incm_amt: null,
-  per_job_zip_cd: null,
-  per_job_dtl_txt: null,
-  per_job_co_actvty: null,
-  per_job_co_ind_nm: null,
-  per_wt_dscr: null,
-  per_ht_dscr: null,
-  per_lgl_frmt_nm: null,
-  per_job_add_ind: null,
-  per_job_add_cd: null,
-  per_job_add_nm: null,
-  per_job_add_aka_nm: null,
-  per_job_add_mo_incm_amt: null,
-  rec_crt_ts: null,
-  rec_crt_usr_id: null,
-  rec_updt_ts: null,
-  rec_updt_usr_id: null,
-  natl_id_sgst_acpt_ind: null,
-  per_card_emsr_cd: null,
-  co_cmrc_rlshnshp_cd: null,
-  co_cmrc_pblc_fig_ind: null,
-  per_mdm_req: null,
-  co_ctct_nm: null,
-  co_ctct_occp: null
-};
 
 @Injectable({
   providedIn: 'root'
@@ -464,14 +380,14 @@ export class ApplicationService {
     }
   }
 
-  getApplicationFromJson(): Observable<ApplicationJson> {
+  getApplicationBase(): Observable<ApplicationJson> {
     const URL_FOLIO = AppConstants.URL_SERVICE_DEV + '/App/folio';
 
-    // return this.httpClient.get(URL_FOLIO)
-    return this.httpClient.get(URL_JSON_APP)
+    return this.httpClient.get(URL_FOLIO)
+    // return this.httpClient.get(URL_JSON_APP)
       .pipe(
         map((response: ApplicationJson) => {
-          console.log('RESPONSE:', response);
+          console.log('RESPONSE from getApplicationBase:', response);
           return response;
         })
       );
@@ -1849,17 +1765,20 @@ export class ApplicationService {
         if (response) {
           appJson.app_id = response.app_id;
           console.log('folio nuevo: ', response.app_id);
-          this.saveSolicitud(appJson);
+          this.saveSolicitud(appJson).subscribe((response1: ApplicationJson) => {
+            return response1;
+          });
         }
       });
     } else {
       console.log('llama directo al servicio de guardado');
-      this.saveSolicitud(appJson);
+      this.saveSolicitud(appJson).subscribe((response: ApplicationJson) => {
+        return response;
+      });
     }
   }
 
-  saveSolicitud(appJson: ApplicationJson) {
-    console.log('on saveSolicitud');
+  saveSolicitud(appJson: ApplicationJson): Observable<ApplicationJson> {
     const URL = AppConstants.URL_SERVICE_DEV + '/aplication';
     const headers = new HttpHeaders({
       'Accept': 'application/json',
@@ -1868,18 +1787,15 @@ export class ApplicationService {
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
     });
-    // console.log("guarda solicitud");
-    appJson = set(appJson, 'insurer.app_id', appJson.app_id);
-    appJson = set(appJson, 'insurer.nationalities', null);
-    appJson = set(appJson, 'insured', null);
-    // insurerTest.app_id = appJson.app_id;
-    // appJson = set(appJson, 'insurer', insurerTest);
 
-    console.log('appJson on saveSolicitud: ', appJson);
+    console.log('appJson to passed to de save service: ', appJson);
 
-    this.httpClient.put(URL, JSON.stringify(appJson), {headers})
-      .subscribe((response) => {
-        console.log('response: ', response);
-      });
+    return this.httpClient.put(URL, JSON.stringify(appJson), {headers})
+      .pipe(
+        map((response: ApplicationJson) => {
+          console.log('RESPONSE SAVE PUT:', response);
+          return response;
+        })
+      );
   }
 }

@@ -46,7 +46,7 @@ export class SearchResultsComponent implements OnInit {
     let params = new HttpParams();
     params = params.append('app_id', app_id);
 
-    this.httpClient.get( AppConstants.URL_SERVICE  + '/aplication', {headers, params}).subscribe((resp:any) => {
+    this.httpClient.get( AppConstants.URL_SERVICE_DEV  + '/aplication', {headers, params}).subscribe((resp:any) => {
       console.log("detalle");
       console.log(resp.data);
       localStorage.setItem('detail', JSON.stringify(resp.data));

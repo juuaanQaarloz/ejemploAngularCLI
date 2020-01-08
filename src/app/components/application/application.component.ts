@@ -72,12 +72,6 @@ export class ApplicationComponent implements OnInit {
     console.log(user);
     console.log(user['userName']);
   }
-  getJson() {
-    this.appService.getApplicationFromJson().subscribe((result) => {
-      this.applicationJson = result;
-      console.log('applicationJson after parse', this.applicationJson);
-    });
-  }
 
   executeOperation(delegateOperation) {
     console.log('delegateOperation: ', delegateOperation);
@@ -92,9 +86,6 @@ export class ApplicationComponent implements OnInit {
     } else if (delegateOperation === 'toJsonApplication') {
       console.log('on toJsonApplication...');
       // this.getJson();
-    } else if (delegateOperation === 'testGuardadoApplication') {
-      console.log('testGuardadoApplication')
-      this.testSaveFunction();
     }
   }
 
@@ -145,9 +136,5 @@ export class ApplicationComponent implements OnInit {
     errors = this.errorMessage.split('-');
     // console.log('errors: ', errors);
     return errors;
-  }
-
-  testSaveFunction() {
-    this.appService.saveFunction(APP_SWAGGER);
   }
 }
