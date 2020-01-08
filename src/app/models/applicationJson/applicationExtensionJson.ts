@@ -1,6 +1,6 @@
 export class ApplicationExtensionJson {
-  per_id: number = null;
-  app_id: number = null;
+  per_id: number = 0;
+  app_id: number = 0;
   wpn_flg_in: string = null;
   wpn_spcf: string = null;
   rsk_job_ind: string = null;

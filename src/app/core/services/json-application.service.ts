@@ -1,43 +1,29 @@
 import {Injectable} from '@angular/core';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
-import {APP_SWAGGER} from '../mock/mock-swagger/mock-swagger-app';
 import {ApplicationService} from './application.service';
-import {Beneficiary, Step} from '../../models';
+import {Step} from '../../models';
 import set from 'lodash/set';
-import get from 'lodash/get';
 import {calculateAge, transformDate} from '../utilities';
 import {BeneciciaryJson} from '../../models/applicationJson/beneciciaryJson';
 import {PersonJson} from '../../models/applicationJson/personJson';
 import {AgentJson} from '../../models/applicationJson/agentJson/agentJson';
 import {AgentCd} from '../../models/applicationJson/agentJson/agentCd';
 import {AddressJson} from '../../models/applicationJson/addressJson';
-import {DiseaseJson} from '../../models/applicationJson/diseaseJson';
-import {NationalityJson} from '../../models/applicationJson/nationalityJson';
-import {ContactPersonJson} from '../../models/applicationJson/contact/contactPersonJson';
-import {DataContactJson} from '../../models/applicationJson/contact/dataContactJson';
-import {AccountJson} from '../../models/applicationJson/accountJson';
-import {BankAccount} from '../../models/applicationJson/bankJson/bankAccount';
-import {validateAlphanumericValue} from '../validators';
-
-const SWAGGER_MODELS = ['ShareHolderApp', 'PersonJson', 'NationalityJson', 'InsuredConditionJson', 'ForeignCountryTaxJson',
-  'ExtraDataJson', 'DocumentJson', 'DiseaseJson', 'BeneciciaryJson', 'ApplicationJson', 'ApplicationExtensionJson',
-  'AddressJson', 'AccountJson', 'QuesList', 'QuesAns', 'InsuredQuestionnaireJson', 'PolicyPlanJson', 'AplicationPlanJson',
-  'FormatJson', 'Cvr', 'CoverageJson', 'DataContactJson', 'ContactPersonJson', 'BankTransaction', 'BankAccount', 'AgentJson',
-  'AgentCd'
-];
 
 @Injectable({
   providedIn: 'root'
 })
 export class JsonApplicationService {
 
-  appJson: ApplicationJson;
+  appJson: ApplicationJson = new ApplicationJson();
 
   constructor(
     private appService: ApplicationService
   ) {
-    this.appService.getApplicationFromJson().subscribe((result) => {
-      this.appJson = result;
+    this.appService.getApplicationBase().subscribe((response) => {
+      console.log('response: ', response);
+      // get new application folio
+      this.appJson.app_id = response.app_id;
       console.log('applicationJson after parse', this.appJson);
     });
   }
@@ -53,9 +39,6 @@ export class JsonApplicationService {
   saveInJsonSwagger(stepObj: Step) {
     console.log('on saveInJsonSwagger');
     const step = this.appService.getStepById(stepObj.id);
-
-    console.log('appJson: ', this.getAppJson());
-
     if (step) {
       // validate each field individually in the step
       step.contents.forEach((contentFromStep) => {
@@ -68,16 +51,6 @@ export class JsonApplicationService {
               if (value) {
                 if (field.type === 'date') {
                   value = transformDate(value, 'YYYY-MM-DD').toString();
-                }
-                // console.log('value: ', value);
-                // console.log('field.entityField: ', field.entityField);
-                // get property
-                const property = get(this.appJson, field.entityField);
-                // console.log('before property: ', property);
-                // console.log('before typeof property: ', typeof property);
-                if (property) {
-                  // console.log('after property: ', property);
-                  // console.log('typeof property: ', typeof property);
                 }
                 // setting value from FORM to JSON
                 set(this.appJson, field.entityField, value);
@@ -99,19 +72,10 @@ export class JsonApplicationService {
                   let value = this.appService.getFormGroup().controls[field.name].value;
 
                   if (value) {
-                    // setting value from FORM to JSON
                     if (field.type === 'date') {
                       value = transformDate(value, 'YYYY-MM-DD').toString();
                     }
-                    console.log('value: ', value);
-                    // get property
-                    let property = get(this.appJson, field.entityField);
-                    // console.log('before property: ', property);
-                    // console.log('before typeof property: ', typeof property);
-                    if (property) {
-                      // console.log('after property: ', property);
-                      // console.log('typeof property: ', typeof property);
-                    }
+                    // setting value from FORM to JSON
                     set(this.appJson, field.entityField, value);
                   }
                 }
@@ -125,14 +89,15 @@ export class JsonApplicationService {
       });
 
       console.log('appJson object: ', this.getAppJson());
-      console.log('appJson json: ', JSON.stringify(this.getAppJson()));
 
-      // return JSON.stringify(this.getAppJson());
       this.appJson.app_stts_cd = step.id;
       if (step.id === '1' || step.id === '4') {
         let resp = this.appService.getFormGroup().controls.typePerson.value;
       }
-      this.appService.saveFunction(this.getAppJson());
+      this.appService.saveSolicitud(this.getAppJson()).subscribe((response: ApplicationJson) => {
+        console.log('response: ', response);
+        this.setAppJson(response);
+      });
     }
   }
 

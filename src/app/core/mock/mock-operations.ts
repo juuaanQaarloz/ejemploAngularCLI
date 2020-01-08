@@ -201,34 +201,6 @@ export const APPL_OPERATIONS: Operation[] = [
     delegateOperation: 'validateApplication',
     renderConditions: '',
     enableConditions: ''
-  },
-  {
-    id: 'opt-3',
-    idHtml: 'btnToJsonApplication',
-    name: 'toJsonApplication',
-    label: 'CONVERT',
-    type: 'button',
-    style: '',
-    styleClass: 'ml-button-primary',
-    message: '',
-    messageClass: '',
-    delegateOperation: 'toJsonApplication',
-    renderConditions: '',
-    enableConditions: ''
-  },
-  {
-    id: 'opt-4',
-    idHtml: 'btnTestGuardadoApplication',
-    name: 'testGuardadoApplication',
-    label: 'TEST GUARDADO',
-    type: 'button',
-    style: '',
-    styleClass: 'ml-button-primary',
-    message: '',
-    messageClass: '',
-    delegateOperation: 'testGuardadoApplication',
-    renderConditions: '',
-    enableConditions: ''
   }
 ];
 

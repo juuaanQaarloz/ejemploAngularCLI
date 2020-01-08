@@ -1,7 +1,7 @@
 export class AddressJson {
-  addrss_id: number = null;
-  app_id: number = null;
-  per_id: number = null;
+  addrss_id: number = 0;
+  app_id: number = 0;
+  per_id: number = 0;
   strt_nm: string = null;
   ext_num: string = null;
   int_num: string = null;

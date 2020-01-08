@@ -6,15 +6,15 @@ import {ContactPersonJson} from './contact/contactPersonJson';
 import {DataContactJson} from './contact/dataContactJson';
 
 export class PersonJson {
-  party_app_id?: number = null;
-  app_id?: number = null;
+  party_app_id?: number = 0;
+  app_id?: number = 0;
   party_natl_id?: string = null;
   party_ssn?: string = null;
   per_brth_dt?: string = null;
   per_age?: number = null;
-  Address?: AddressJson[] = [];
+  Address?: AddressJson[] = [new AddressJson()];
   diseases?: DiseaseJson[] = [];
-  nationalities?: NationalityJson[] = [];
+  nationalities?: NationalityJson[] = [new NationalityJson()];
   contactPerson?: ContactPersonJson[] = [];
   dataContact?: DataContactJson[] = [];
   per_brth_cntry_nm?: string = null;

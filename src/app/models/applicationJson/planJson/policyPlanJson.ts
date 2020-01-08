@@ -1,12 +1,12 @@
 import {CoverageJson} from '../coverageJson/coverageJson';
 
 export class PolicyPlanJson {
-  ins_inf_pol_pln_id: number = null;
-  pln_pol_id: number = null;
-  ins_id: number = null;
-  app_id: number = null;
+  ins_inf_pol_pln_id: number = 0;
+  pln_pol_id: number = 0;
+  ins_id: number = 0;
+  app_id: number = 0;
   pol_app_dt: string = null;
-  coverage: CoverageJson[] = null;
+  coverage: CoverageJson[] = [];
   pln_pol_cntrc_dt: string = null;
   pln_pol_med_elec_med_rec_amt: number = null;
   pln_pol_orig_cur_cd: string = null;

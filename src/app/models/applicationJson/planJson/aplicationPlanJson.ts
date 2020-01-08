@@ -3,8 +3,8 @@ import {BeneciciaryJson} from '../beneciciaryJson';
 
 export class AplicationPlanJson {
   pln_cd: string = null;
-  ins_id: number = null;
-  app_id: number = null;
+  ins_id: number = 0;
+  app_id: number = 0;
   coverage: Cvr[] = [];
   beneciciary: BeneciciaryJson[] = [];
   pln_crrncy_cd: string = null;

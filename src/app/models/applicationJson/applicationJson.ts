@@ -17,13 +17,13 @@ export class ApplicationJson {
   Format: FormatJson[] = [];
   QuesList: QuesList[] = [];
   QuesAns: QuesAns[] = [];
-  insured: PersonJson = null;
-  insurer: PersonJson = null;
+  insured: PersonJson = new PersonJson();
+  insurer: PersonJson = new PersonJson();
   shareHolders: ShareHolderApp[] = [];
   accounts: AccountJson[] = [];
   foreignCountryTaxes: ForeignCountryTaxJson[] = [];
   extraData: ExtraDataJson[] = [];
-  applicationExtension: ApplicationExtensionJson = null;
+  applicationExtension: ApplicationExtensionJson = new ApplicationExtensionJson();
   documents: DocumentJson[] = [];
   insuredCondition: InsuredConditionJson = null;
   app_bsns_ln_id: string = null;
