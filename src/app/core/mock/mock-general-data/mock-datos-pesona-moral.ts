@@ -28,7 +28,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=morPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.co_bus_nm',
     value: ''
   },
   {
@@ -58,7 +58,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=morPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.co_cmrc_bus_nm',
     value: ''
   },
   {
@@ -88,7 +88,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=morPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.party_natl_id',
     value: ''
   },
   {
@@ -118,7 +118,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=morPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.co_estab_dt',
     value: ''
   },
   {
@@ -149,7 +149,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=morPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.nationalities.natlty_cd',
     value: ''
   },
   {
@@ -180,7 +180,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=morPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.co_cmrc_fol_nm',
     value: ''
   },
   {
@@ -200,7 +200,6 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     source: 'IPRE',
     sourceID: 'economic-sector',
     sourceStructure: ['sectorId', 'sectorName', 'sectorId'],
-
     style: '',
     styleClass: '',
     styleClassError: '',
@@ -212,7 +211,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=morPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.co_cmrc_ecnmcl_sctr_cd',
     value: ''
   },
   {
@@ -240,10 +239,10 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
-    enableConditions: '(economicSector=O)',
-    requiredConditions: '(economicSector=O)',
+    enableConditions: '(economicSector=05)',
+    requiredConditions: '(economicSector=05)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.co_cmrc_ecnmcl_sctr_nm',
     value: '',
     disable: true
   }

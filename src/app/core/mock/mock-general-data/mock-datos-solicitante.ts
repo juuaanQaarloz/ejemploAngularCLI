@@ -29,7 +29,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     enableConditions: '',
     requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insured.per_frst_nm',
     value: '',
   },
   {
@@ -60,7 +60,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     enableConditions: '',
     requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insured.per_ptrnl_lst_nm',
     value: '',
   },
   {
@@ -90,7 +90,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insured.per_mtrnl_lst_nm',
     value: '',
   },
   {
@@ -120,7 +120,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     enableConditions: '',
     requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insured.per_brth_dt',
     value: ''
   },
   {
@@ -150,7 +150,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     enableConditions: '',
     requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insured.per_age',
     disable: true
   },
   {
@@ -180,7 +180,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     enableConditions: '',
     requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insured.party_natl_id',
     value: '',
   },
   {
@@ -209,7 +209,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insured.per_per_id',
     value: '',
   },
   {
@@ -239,7 +239,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     enableConditions: '',
     requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insured.per_sex_cd',
     value: '',
   },
   {
@@ -269,7 +269,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     enableConditions: '',
     requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insured.per_mry_stts_cd',
     value: ''
   },
   // {
@@ -383,7 +383,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     renderConditions: '',
     enableConditions: '',
     requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
-    entity: '',
+    entity: 'insured.per_brth_cntry_nm',
     entityField: '',
   },
   {
@@ -413,7 +413,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     enableConditions: '',
     requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     entity: '',
-    entityField: ''
+    entityField: 'insured.per_brth_stte_nm'
   },
   {
     id: 'field-69',
@@ -443,7 +443,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     enableConditions: '',
     requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insured.Address.towt_nm',
   },
   {
     id: 'field-70',
@@ -473,7 +473,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     enableConditions: '',
     requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insured.per_brth_cntry_nm',
   },
   // {
   //   id: 'field-71',

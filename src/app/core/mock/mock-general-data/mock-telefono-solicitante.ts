@@ -27,7 +27,7 @@ export const DatosTelefonoSolicitante: Field[] = [
         renderConditions: '',
         enableConditions: '',
         entity: '',
-        entityField: ''
+        entityField: 'insured.Address[0].hom_phon'
       },
       {
         id: 'field-83',
@@ -55,7 +55,7 @@ export const DatosTelefonoSolicitante: Field[] = [
         renderConditions: '',
         enableConditions: '',
         entity: '',
-        entityField: ''
+        entityField: 'insured.Address[0].cel_phon'
       },
       {
         id: 'field-84',
@@ -83,6 +83,6 @@ export const DatosTelefonoSolicitante: Field[] = [
         renderConditions: '',
         enableConditions: '',
         entity: '',
-        entityField: ''
+        entityField: 'insured.Address[0].per_mail_nm'
       }
     ];

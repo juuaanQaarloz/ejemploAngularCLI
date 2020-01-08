@@ -28,7 +28,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=morPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.Address[0].strt_nm',
   },
   {
     id: 'field-44',
@@ -57,7 +57,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=morPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.Address[0].ext_num',
   },
   {
     id: 'field-45',
@@ -85,7 +85,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.Address[0].int_num',
   },
   {
     id: 'field-46',
@@ -143,7 +143,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=morPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.Address[0].subt_nm',
   },
   {
     id: 'field-48',
@@ -172,7 +172,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=morPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.Address[0].mncplty_nm',
   },
   {
     id: 'field-49',
@@ -201,7 +201,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=morPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.Address[0].sta_spec',
   },
   {
     id: 'field-50',
@@ -231,7 +231,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=morPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.Address[0].cntry_spe',
   },
   {
     id: 'field-51',
@@ -260,7 +260,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=morPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.Address[0].',
   },
   {
     id: 'field-52',
@@ -317,7 +317,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=morPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.Address[0].hom_phon',
   },
   {
     id: 'field-54',
@@ -345,7 +345,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.Address[0].lab_phon',
   },
   {
     id: 'field-55',
@@ -373,7 +373,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.Address[0].extt_num',
   },
   {
     id: 'field-57',
@@ -402,6 +402,6 @@ export const DatosDomicilioContactoMoral: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=morPerson)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.Address[0].lab_mail_nm',
   }
 ];

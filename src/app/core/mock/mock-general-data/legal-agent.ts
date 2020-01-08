@@ -27,7 +27,7 @@ export const DatosRepresentanteLegal: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'shareHolders.person[0].per_frst_nm',
   },
   {
     id: 'field-49',
@@ -55,7 +55,7 @@ export const DatosRepresentanteLegal: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'shareHolders.person[0].per_ptrnl_lst_nm',
   },
   {
     id: 'field-50',
@@ -83,7 +83,7 @@ export const DatosRepresentanteLegal: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'shareHolders.person[0].per_mtrnl_lst_nm',
   }
 ];
 
@@ -114,7 +114,7 @@ export const DatosRepresentanteLegal1: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'shareHolders.person[0].per_frst_nm',
   },
   {
     id: 'field-52',
@@ -142,7 +142,7 @@ export const DatosRepresentanteLegal1: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'shareHolders.person[0].per_ptrnl_lst_nm',
   },
   {
     id: 'field-53',
@@ -170,7 +170,7 @@ export const DatosRepresentanteLegal1: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'shareHolders.person[0].per_mtrnl_lst_nm',
   }
 ];
 
@@ -203,7 +203,7 @@ export const DatosRepresentanteLegal2: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: ''
+    entityField: 'shareHolders.person[0].per_job_add_ind'
     // value: true
   }
 ];
