@@ -348,6 +348,7 @@ export const APP_SWAGGER: ApplicationJson = {
     nationalities: [
       {
         app_id: 2001060056,
+        natlty_id: 0,
         natlty_cd: 'string',
         natlty_nm: 'string',
         party_app_id: 2001060056,
@@ -517,6 +518,7 @@ export const APP_SWAGGER: ApplicationJson = {
             nationalities: [
               {
                 app_id: 2001060056,
+                natlty_id: 0,
                 natlty_cd: 'string',
                 natlty_nm: 'string',
                 party_app_id: 2001060056,
@@ -693,6 +695,7 @@ export const APP_SWAGGER: ApplicationJson = {
                 nationalities: [
                   {
                     app_id: 2001060056,
+                    natlty_id: 0,
                     natlty_cd: 'string',
                     natlty_nm: 'string',
                     party_app_id: 2001060056,
@@ -921,6 +924,7 @@ export const APP_SWAGGER: ApplicationJson = {
           nationalities: [
             {
               app_id: 2001060056,
+              natlty_id: 0,
               natlty_cd: 'string',
               natlty_nm: 'string',
               party_app_id: 2001060056,
@@ -1134,6 +1138,7 @@ export const APP_SWAGGER: ApplicationJson = {
     nationalities: [
       {
         app_id: 2001060056,
+        natlty_id: 0,
         natlty_cd: 'string',
         natlty_nm: 'string',
         party_app_id: 2001060056,
@@ -1292,6 +1297,7 @@ export const APP_SWAGGER: ApplicationJson = {
         nationalities: [
           {
             app_id: 2001060056,
+            natlty_id: 0,
             natlty_cd: 'string',
             natlty_nm: 'string',
             party_app_id: 2001060056,

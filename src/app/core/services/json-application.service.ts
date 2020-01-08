@@ -48,7 +48,7 @@ export class JsonApplicationService {
             if (field.entityField) {
               // get current value from FORM FIELD
               let value = this.appService.getFormGroup().controls[field.name].value;
-              if (value) {
+              if (value !== null && value !== undefined) {
                 if (field.type === 'date') {
                   value = transformDate(value, 'YYYY-MM-DD').toString();
                 }
@@ -70,8 +70,7 @@ export class JsonApplicationService {
                 if (field.entityField) {
                   // get current value from FORM FIELD
                   let value = this.appService.getFormGroup().controls[field.name].value;
-
-                  if (value) {
+                  if (value !== null && value !== undefined) {
                     if (field.type === 'date') {
                       value = transformDate(value, 'YYYY-MM-DD').toString();
                     }

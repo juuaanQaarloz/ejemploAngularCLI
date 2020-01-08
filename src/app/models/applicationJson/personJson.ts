@@ -1,5 +1,4 @@
 import {AddressJson} from './addressJson';
-import {BankTransaction} from './bankJson/bankTransaction';
 import {DiseaseJson} from './diseaseJson';
 import {NationalityJson} from './nationalityJson';
 import {ContactPersonJson} from './contact/contactPersonJson';
@@ -14,7 +13,7 @@ export class PersonJson {
   per_age?: number = null;
   Address?: AddressJson[] = [new AddressJson()];
   diseases?: DiseaseJson[] = [];
-  nationalities?: NationalityJson[] = [new NationalityJson()];
+  nationalities?: NationalityJson[] = [new NationalityJson(), new NationalityJson(), new NationalityJson(), new NationalityJson()];
   contactPerson?: ContactPersonJson[] = [];
   dataContact?: DataContactJson[] = [];
   per_brth_cntry_nm?: string = null;
