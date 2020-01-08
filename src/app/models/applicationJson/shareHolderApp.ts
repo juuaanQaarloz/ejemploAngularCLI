@@ -1,7 +1,7 @@
 import {PersonJson} from './personJson';
 
-export interface ShareHolderApp {
-  party_app_id:	number;
-  app_id: number;
-  person: PersonJson;
+export class ShareHolderApp {
+  party_app_id:	number = null;
+  app_id: number = null;
+  person: PersonJson = null;
 }
