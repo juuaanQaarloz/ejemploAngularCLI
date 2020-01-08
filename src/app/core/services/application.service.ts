@@ -1845,10 +1845,12 @@ export class ApplicationService {
     // console.log("appJson: "+appJson);
     if (appJson.app_id === 0) {
       console.log('obtiene folio');
-      this.httpClient.get(URL_FOLIO, {headers}).subscribe((response: any) => {
-        appJson.app_id = response.app_id;
-        console.log('folio nuevo: ', response.app_id);
-        this.saveSolicitud(appJson);
+      this.httpClient.get(URL_FOLIO, {headers}).subscribe((response: ApplicationJson) => {
+        if (response) {
+          appJson.app_id = response.app_id;
+          console.log('folio nuevo: ', response.app_id);
+          this.saveSolicitud(appJson);
+        }
       });
     } else {
       console.log('llama directo al servicio de guardado');
