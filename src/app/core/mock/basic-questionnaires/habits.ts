@@ -88,7 +88,7 @@ export const habitsFields: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'applicationExtension.wgt_id',
     value: ''
   },
   {
@@ -117,7 +117,7 @@ export const habitsFields: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'applicationExtension.fhgt_id',
     value: ''
   }
 ];
