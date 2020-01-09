@@ -28,7 +28,7 @@ export const FormasPago: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'accounts.prfr_py_prdcty_cd',
     value: ''
   },
   {
@@ -58,7 +58,7 @@ export const FormasPago: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'accounts.clct_mthd_nm',
     value: ''
   },
   {
@@ -87,7 +87,7 @@ export const FormasPago: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'accounts.prfr_py_wk_day_cd',
     value: '',
   },
 ];
@@ -119,7 +119,7 @@ export const FormasPagoAutorizo: Field[] = [
         renderConditions: '',
         enableConditions: '',
         entity: '',
-        entityField: '',
+        entityField: 'acccount.prfr_cntct_typ_nm',
         value: ''
     },
     {
