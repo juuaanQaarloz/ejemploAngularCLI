@@ -73,7 +73,7 @@ export const BENEFICIARIES: Beneficiary[] =  [
       city: 'CIUDAD',
       country: 'MX'
     },
-    participationPercentage: '10',
+    participationPercentage: '50',
     suspensiveCondition: 'NO', // if typeBeneficiary is Moral person
     contractNumber: '12345678', // if typeBeneficiary is Moral person
     instructionLetterNumber: 'string' // if typeBeneficiary is Moral person

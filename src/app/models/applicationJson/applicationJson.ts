@@ -25,7 +25,7 @@ export class ApplicationJson {
   extraData: ExtraDataJson[] = [];
   applicationExtension: ApplicationExtensionJson = new ApplicationExtensionJson();
   documents: DocumentJson[] = [];
-  insuredCondition: InsuredConditionJson = null;
+  insuredCondition: InsuredConditionJson = new InsuredConditionJson();
   app_bsns_ln_id: string = null;
   app_prdct_id: string = null;
   app_typ_cd: boolean = null;

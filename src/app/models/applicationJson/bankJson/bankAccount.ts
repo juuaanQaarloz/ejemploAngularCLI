@@ -1,7 +1,7 @@
 export class BankAccount {
-  bnk_acct_id?: number = null;
-  clct_id?: number = null;
-  app_id?: number = null;
+  bnk_acct_id?: number = 0;
+  clct_id?: number = 0;
+  app_id?: number = 0;
   pymnt_prrty?: string = null;
   bnk_acct_num?: string = null;
   bnk_acct_tkn_num?: string = null;
