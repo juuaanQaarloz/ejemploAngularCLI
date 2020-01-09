@@ -149,13 +149,19 @@ export class DocumentsComponent implements OnInit {
   downloadFile(field) {
     // console.log('Entro a downloadFile de documents.component');
     // console.log(field.file.type);
+    // console.log(field.file);
     const blob = new Blob([field.file], {
       type: field.file.type
     });
     // console.log('Blob: ');
     // console.log(blob);
-    const url = window.URL.createObjectURL(blob);
-    window.open(url);
+    // const url = window.URL.createObjectURL(blob);
+    // window.open(url);
+
+    var link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = field.file.name;
+    link.click();
   }
 
   downloadZip() {

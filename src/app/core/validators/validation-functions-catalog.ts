@@ -54,5 +54,13 @@ export const validatorsObjects = [
   {
     nameField: 'diagnosticDateD',
     validationFunctions: [DateValidator]
+  },
+  {
+    nameField: 'chargeDay',
+    validationFunctions: [rangeValidator(1, 28)]
+  },
+  {
+    nameField: 'beneficiaryConstitutionDateF',
+    validationFunctions: [DateValidator]
   }
 ];

@@ -740,7 +740,8 @@ export const higherAssuredImport: ValidatorFn = (group: FormGroup): ValidationEr
   const currency = group.controls.currency.value;
   const assuredImport = group.controls.assuredImport.value;
   if (assuredImport !== '') {
-    if (currency === 'mxn') {
+    // if (currency === 'mxn') {
+    if (currency === '0') {
       if (Number(assuredImport) >= Number(0.00)) {
         if (Number(assuredImport) < Number(400000.00)) {
           // console.log('invalidAssuredImportMxn', false);
@@ -751,7 +752,8 @@ export const higherAssuredImport: ValidatorFn = (group: FormGroup): ValidationEr
       } else {
         return null;
       }
-    } else if (currency === 'usd') {
+    // } else if (currency === 'usd') {
+    } else if (currency === '1') {
       if (Number(assuredImport) >= Number(0.00)) {
         if (Number(assuredImport) < Number(40000.00)) {
           return {invalidAssuredImportUsd: true};
@@ -776,7 +778,8 @@ export const validateFunds: ValidatorFn = (group: FormGroup): ValidationErrors |
   const currency = group.controls.currency.value;
   const packing =  group.controls.packing.value;
 
-  if (currency === 'usd') {
+  // if (currency === 'usd') {
+  if (currency === '1') {
     variableFunds = 0;
     variableSaving = 0;
   }
@@ -786,7 +789,8 @@ export const validateFunds: ValidatorFn = (group: FormGroup): ValidationErrors |
      variableRetirement = 0;
      variableSaving = 0;
   }
-  if (currency === 'usd' || currency === 'mxn') {
+  // if (currency === 'usd' || currency === 'mxn') {
+  if (currency === '1' || currency === '0') {
     total = Number(fixedFunds) + Number(variableFunds) + Number(fixedRetirement) +
       Number(variableRetirement) + Number(fixedSaving) + Number(variableSaving);
     // console.log('total', Number(total));

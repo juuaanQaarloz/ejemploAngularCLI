@@ -68,7 +68,7 @@ export const BeneficiaryFieldsM: Field[] = [
     orderAppearance: 3,
     label: 'Relación',
     type: 'text',
-    required: true,
+    required: false,
     placeholder: '',
     length: '',
     minValue: 0,

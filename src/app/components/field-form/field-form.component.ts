@@ -609,10 +609,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       }
     }
 
+    // validar suma asegurada de la sección datos del plan
     if (this.fieldObj.name === 'assuredImport') {
       const currency = this.form.controls.currency.value;
       const assuredImport = this.form.controls.assuredImport.value;
-      if (currency === 'mxn') {
+      // if (currency === 'mxn') {
+      if (currency === '0') {
         if (Number(assuredImport) > Number(0.00)){
           if (Number(assuredImport) < Number(400000.00)) {
             // // console.log('invalidAssuredImportMxn', false);
@@ -621,7 +623,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
             this.setValueField('assuredImport', 'txtAssuredImport', addCurrencyFormat(assuredImport));
           }
         }
-      } else if (currency === 'usd') {
+      // } else if (currency === 'usd') {
+      } else if (currency === '1') {
         if (Number(assuredImport) > Number(0.00)) {
           if (Number(assuredImport) < Number(40000.00)) {
             return {invalidAssuredImportUsd: true};
@@ -630,6 +633,27 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           }
         }
       }
+    }
+
+    if (this.fieldObj.name === 'salary') {
+      const salary = this.form.controls.salary.value;
+
+      if ( salary ) {
+        if ( this.validateIntegerDecimals(this.form.controls.salary.value) ) {
+          this.fieldObj.valid = true;
+          valid = true;
+          this.setValueField('salary', 'txtSalary', addCurrencyFormat(salary));
+        } else {
+          this.fieldObj.valid = false;
+          valid = false;
+          this.form.controls.salary.setValue(null);
+          this.fieldObj.message = 'El ingreso mensual debe contener máximo 10 enteros y 2 decimales.';
+        }
+      } else {
+        this.fieldObj.message = 'El ingreso mensual es obligatorio.';
+      }
+
+
     }
     /*if (this.fieldObj.name === 'txtClabeConfir') {
       const idClabe = 'txtClabe';
@@ -1026,6 +1050,24 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           }
         });
       });
+  }
+
+  validateIntegerDecimals(value) {
+    if ( value ) {
+      let valid = true;
+      if (value.indexOf('.') !== -1) {
+        const array = value.split('.', 2);
+        if ( array[0].toString().length > 10 ) {
+          valid = false;
+        } else if ( array[1].toString().length > 2 ) {
+          valid = false;
+        }
+        return valid;
+      } else {
+        valid = false;
+        return valid;
+      }
+    }
   }
 
 }

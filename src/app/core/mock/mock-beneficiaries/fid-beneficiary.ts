@@ -126,7 +126,7 @@ export const BeneficiaryFieldsF: Field[] = [
     orderAppearance: 5,
     label: 'Especificar',
     type: 'text',
-    required: true,
+    required: false,
     placeholder: '',
     length: '',
     minValue: 0,
