@@ -128,6 +128,14 @@ export class JsonApplicationService {
           this.mapItem('payment', payment, i);
         });
       }
+    } else if (tableType === 'table-sports') {
+      items = this.appService.sports.getValue();
+      if (items.length > 0) {
+        items.forEach((sport, i) => {
+          console.log('sport: ', sport);
+          this.mapItem('sport', sport, i);
+        });
+      }
     }
   }
 
@@ -139,13 +147,11 @@ export class JsonApplicationService {
       newAgentCd.agnt_cd = item.key;
       newAgentCd.agnt_pmtr_cd = item.promotor;
       newAgentCd.agnt_party_nm = item.name;
-      newAgentCd.rec_crt_ts = new Date().toDateString();
 
       newAgent.app_id = this.appJson.app_id;
       newAgent.agnt_cd = newAgentCd;
       newAgent.agnt_part_per = Number(item.participation);
       newAgent.part_ord = index;
-      newAgent.rec_crt_ts = new Date().toDateString();
 
       return newAgent;
     } else if (itemType === 'beneficiary') {
@@ -164,22 +170,20 @@ export class JsonApplicationService {
       address.sta_cod = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].sta_cod : item.address.state;
       address.cntry_cod = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].cntry_cod : item.address.country;
       address.mncplty_nm = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].mncplty_nm : item.address.municipality;
-      address.rec_crt_ts = new Date().toDateString();
 
       person.party_app_id = this.appJson.insurer.party_app_id;
       person.app_id = this.appJson.app_id;
-      person.per_brth_dt = item.beneficiaryType === 'phyPerson' ? item.birthDateOrConstitution : null;
+      person.per_brth_dt = item.beneficiaryType === 'phyPerson' ? transformDate(item.birthDateOrConstitution, 'YYYY-MM-DD').toString() : null;
       person.per_age = item.beneficiaryType === 'phyPerson' ? calculateAge(item.birthDateOrConstitution) : null;
       person.party_typ_cd = item.beneficiaryType === 'phyPerson' ? true : false;
       person.Address[0] = address;
+      person.nationalities = [];
 
-      newBeneficiary.cvr_bene_id = Number(item.beneficiaryId);
       newBeneficiary.app_id = this.appJson.app_id;
       newBeneficiary.bene_tp_cd = item.beneficiaryType;
       newBeneficiary.bene_prtcp_pct = item.participationPercentage;
       newBeneficiary.bene_rel_cd = item.relationship;
       newBeneficiary.person = person;
-      newBeneficiary.rec_crt_ts = new Date().toDateString();
       newBeneficiary.bene_fid_cnd_flg = item.beneficiaryType === 'fidPerson' ? '1' : '0';
       newBeneficiary.bene_fid_cntrc_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : null;
       newBeneficiary.bene_fid_lttr_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : null;
@@ -189,6 +193,9 @@ export class JsonApplicationService {
       return newBeneficiary;
     } else if (itemType === 'payment') {
       // TODO: map payments table
+
+    } else if (itemType === 'sport') {
+      // TODO: map sports table
     }
   }
 }

@@ -1,8 +1,8 @@
 import {BankAccount} from './bankJson/bankAccount';
 
 export class AccountJson {
-  clct_id?: number = null;
-  app_id?: number = null;
+  clct_id?: number = 0;
+  app_id?: number = 0;
   clct_mthd_id?: string = null;
   clct_mthd_nm?: string = null;
   clct_card_typ_id?: string = null;

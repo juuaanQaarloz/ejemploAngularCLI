@@ -11,7 +11,7 @@ export class InsuredConditionJson {
   policyPlan: PolicyPlanJson = null ;
   insuredQuestionnaire: InsuredQuestionnaireJson[] = [];
   beneciciary: BeneciciaryJson[] = [];
-  ins_role_cd: string = 'string';
+  ins_role_cd: string = null;
   ins_rel_cd: number = 0;
   rec_crt_ts: string = null;
   rec_crt_usr_id: string = null;
