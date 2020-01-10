@@ -28,7 +28,8 @@ export const InformaciolLaboral1: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: 'insurer.per_job_aka_nm',
-    value: ''
+    value: '',
+    disable: true
   }
 ];
 

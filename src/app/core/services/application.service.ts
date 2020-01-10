@@ -67,6 +67,7 @@ const URL_COVERAGE_OPTIONS = '../assets/catalogs/coverage-options.json';
 const URL_AGENTS_PROMOTORIA = '../assets/catalogs/agents-promotoria.json';
 const URL_PAYMENT_TYPE = '../assets/catalogs/payment-type.json';
 const URL_CARD_TYPE = '../assets/catalogs/card-type.json';
+const URL_CITY_TOWN = '../assets/catalogs/city-town.json';
 
 @Injectable({
   providedIn: 'root'
@@ -1732,6 +1733,9 @@ export class ApplicationService {
         break;
       case 'cardType':
         urlCatalog = URL_CARD_TYPE;
+        break;
+      case 'cityTown':
+        urlCatalog = URL_CITY_TOWN;
         break;
     }
     return this.httpClient.get(urlCatalog)

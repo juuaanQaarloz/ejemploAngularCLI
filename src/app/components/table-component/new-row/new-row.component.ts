@@ -84,20 +84,58 @@ export class NewRowComponent implements OnInit {
   }
 
   addNewItem() {
-    const formStatus = this.getFormStatus();
-    if (formStatus === 'VALID') {
-      const newItem = this.mapNewItemData();
-      const response = this.appService.addItem(newItem, this.itemType, this.contentTypeId);
+    let formStatus = this.getFormStatus();
 
-      if (response.status) {
-        this.closeDialog();
-      } else {
-        this.modalMessage = response.message;
-        this.modalService.open(this.modalID);
+    Object.keys(this.formGroup.controls).forEach((formControl) =>{
+      if ( formControl === 'extremeSportsD' ) {
+        const value = this.formGroup.controls[formControl].value;
+        if ( value ) {
+          this.appService.getCatalogById('sports', 'IPRE').subscribe((results) => {
+            const index = results.findIndex((i) => i['alias'] === value);
+            if ( index !== -1 ) {
+              formStatus = 'VALID';
+            } else {
+              formStatus = 'INVALID';
+            }
+          });
+        } else {
+          formStatus = 'INVALID';
+        }
+      } else if ( formControl === 'describeDiseasesD' ) {
+        const value = this.formGroup.controls[formControl].value;
+        if ( value ) {
+          this.appService.getCatalogById('diseases', 'IPRE').subscribe((results) => {
+            const index = results.findIndex((i) => i['alias'] === value);
+            if ( index !== -1 ) {
+              formStatus = 'VALID';
+            } else {
+              formStatus = 'INVALID';
+            }
+          });
+        } else {
+          formStatus = 'INVALID';
+        }
       }
-    } else {
-      this.showFormError = true;
-    }
+    });
+    const prueba = this;
+    setTimeout(function() {
+      console.log(formStatus);
+      console.log(formStatus);
+      console.log(formStatus);
+      if (formStatus === 'VALID') {
+        const newItem = prueba.mapNewItemData();
+        const response = prueba.appService.addItem(newItem, prueba.itemType, prueba.contentTypeId);
+
+        if (response.status) {
+          prueba.closeDialog();
+        } else {
+          prueba.modalMessage = response.message;
+          prueba.modalService.open(prueba.modalID);
+        }
+      } else {
+        prueba.showFormError = true;
+      }
+    }, 1000);
   }
 
   mapNewItemData() {

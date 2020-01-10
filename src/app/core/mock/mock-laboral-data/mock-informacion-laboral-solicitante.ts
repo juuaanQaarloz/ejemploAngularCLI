@@ -29,6 +29,7 @@ export const InformacionLaboralSolicitante1: Field[] = [
     entity: '',
     entityField: 'insured.Address[0].',
     value: '',
+    disable: true
   }
 ];
 

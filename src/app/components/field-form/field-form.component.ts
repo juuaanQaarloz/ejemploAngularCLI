@@ -652,8 +652,56 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       } else {
         this.fieldObj.message = 'El ingreso mensual es obligatorio.';
       }
+    }
 
+    // if (this.fieldObj.name === 'stateOfBirth') {
+    //   console.log('Entro a stateOfBirth');
+    //   const value = this.form.controls.stateOfBirth.value;
+    //   console.log(value);
+    //   if ( value && value !== 'OTRO' ) {
+    //     this.form.controls.espState.setValue(null);
+    //     this.form.controls.espState.reset();
+    //   }
+    // }
 
+    // if (this.fieldObj.name === 'city') {
+    //   console.log('Entro a city');
+    //   const value = this.form.controls.city.value;
+    //   console.log(value);
+    //   if ( value && value !== 'OTRO' ) {
+    //     this.form.controls.espCityTown.setValue(null);
+    //     this.form.controls.espCityTown.reset();
+    //   }
+    // }
+
+    if ( this.fieldObj.name === 'extremeSportsD' ) {
+      this.applicationService.getCatalogById(this.fieldObj.sourceID, this.fieldObj.source).subscribe((results) => {
+        const index = results.findIndex((i) => i[this.fieldObj.sourceStructure[1]] === this.form.controls[this.fieldObj.name].value);
+        if ( index !== -1 ) {
+          this.fieldObj.valid = true;
+          valid = true;
+        } else {
+          this.fieldObj.valid = false;
+          valid = false;
+          this.form.controls.extremeSportsD.setValue(null);
+          this.form.controls.extremeSportsD.reset();
+        }
+      });
+    }
+
+    if ( this.fieldObj.name === 'describeDiseasesD' ) {
+      this.applicationService.getCatalogById(this.fieldObj.sourceID, this.fieldObj.source).subscribe((results) => {
+        const index = results.findIndex((i) => i[this.fieldObj.sourceStructure[1]] === this.form.controls[this.fieldObj.name].value);
+        if ( index !== -1 ) {
+          this.fieldObj.valid = true;
+          valid = true;
+        } else {
+          this.fieldObj.valid = false;
+          valid = false;
+          this.form.controls.describeDiseasesD.setValue(null);
+          this.form.controls.describeDiseasesD.reset();
+        }
+      });
     }
     /*if (this.fieldObj.name === 'txtClabeConfir') {
       const idClabe = 'txtClabe';
