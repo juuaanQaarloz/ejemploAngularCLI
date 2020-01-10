@@ -7,8 +7,8 @@ export class InsuredConditionJson {
   ins_id: number = 0;
   per_app_id: number = 0;
   app_id: number = 0;
-  aplicationPlan: AplicationPlanJson = null;
-  policyPlan: PolicyPlanJson = null ;
+  aplicationPlan: AplicationPlanJson = new AplicationPlanJson();
+  policyPlan: PolicyPlanJson = new PolicyPlanJson() ;
   insuredQuestionnaire: InsuredQuestionnaireJson[] = [];
   beneciciary: BeneciciaryJson[] = [];
   ins_role_cd: string = null;

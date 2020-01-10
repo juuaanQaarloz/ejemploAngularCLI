@@ -13,6 +13,7 @@ import {AccountJson} from '../../models/applicationJson/accountJson';
 import {BankAccount} from '../../models/applicationJson/bankJson/bankAccount';
 import {DiseaseJson} from '../../models/applicationJson/diseaseJson';
 import {ForeignCountryTaxJson} from '../../models/applicationJson/foreignCountryTaxJson';
+import {Cvr} from '../../models/applicationJson/coverageJson/cvr';
 
 @Injectable({
   providedIn: 'root'
@@ -113,7 +114,7 @@ export class JsonApplicationService {
         console.log(' beneficiaries: ', items);
         items.forEach((beneficiary, i) => {
           console.log('beneficiary: ', beneficiary);
-          set(this.appJson, `insuredCondition.beneciciary[${i}]`, this.mapItem('beneficiary', beneficiary, i));
+          set(this.appJson, `insuredCondition.aplicationPlan.coverage[${i}]`, this.mapItem('beneficiary', beneficiary, i));
         });
       }
     } else if (tableType === 'table-agent') {
@@ -176,11 +177,12 @@ export class JsonApplicationService {
 
       return newAgent;
     } else if (itemType === 'beneficiary') {
+      let newCoverage: Cvr = new Cvr();
       let newBeneficiary: BeneciciaryJson = new BeneciciaryJson();
       let person: PersonJson = new PersonJson();
       let address: AddressJson = new AddressJson();
 
-      address.addrss_id = 0;
+      /*address.addrss_id = 0;
       address.app_id = this.appJson.app_id;
       address.strt_nm = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].strt_nm : item.address.street;
       address.ext_num = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].ext_num : item.address.exteriorNumber;
@@ -192,26 +194,28 @@ export class JsonApplicationService {
       address.cntry_cod = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].cntry_cod : item.address.country;
       address.mncplty_nm = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].mncplty_nm : item.address.municipality;
 
-      person.party_app_id = this.appJson.insurer.party_app_id;
-      person.app_id = this.appJson.app_id;
-      person.per_brth_dt = item.beneficiaryType === 'phyPerson' ? transformDate(item.birthDateOrConstitution, 'YYYY-MM-DD').toString() : null;
-      person.per_age = item.beneficiaryType === 'phyPerson' ? calculateAge(item.birthDateOrConstitution) : null;
-      person.party_typ_cd = item.beneficiaryType === 'phyPerson' ? true : false;
-      person.Address[0] = address;
+      //person.party_app_id = this.appJson.insurer.party_app_id;
+      //person.app_id = this.appJson.app_id;
+      //person.per_brth_dt = item.beneficiaryType === 'phyPerson' ? transformDate(item.birthDateOrConstitution, 'YYYY-MM-DD').toString() : null;
+      //person.per_age = item.beneficiaryType === 'phyPerson' ? calculateAge(item.birthDateOrConstitution) : null;
+      //person.party_typ_cd = item.beneficiaryType === 'phyPerson' ? true : false;
+      person.Address = [];
       person.nationalities = [];
 
-      newBeneficiary.app_id = this.appJson.app_id;
-      newBeneficiary.bene_tp_cd = item.beneficiaryType;
-      newBeneficiary.bene_prtcp_pct = item.participationPercentage;
-      newBeneficiary.bene_rel_cd = item.relationship;
+      //newBeneficiary.app_id = this.appJson.app_id;
+      //newBeneficiary.bene_tp_cd = item.beneficiaryType;
+      //newBeneficiary.bene_prtcp_pct = item.participationPercentage;
+      //newBeneficiary.bene_rel_cd = item.relationship;
       newBeneficiary.person = person;
-      newBeneficiary.bene_fid_cnd_flg = item.beneficiaryType === 'fidPerson' ? '1' : '0';
-      newBeneficiary.bene_fid_cntrc_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : 'string';
-      newBeneficiary.bene_fid_lttr_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : 'string';
-      newBeneficiary.bene_ref_inst_lttr = item.beneficiaryType === 'fidPerson' ? item.instructionLetterNumber : 'string';
-      newBeneficiary.bene_addrss_sm_inss_ind = item.addressSameAsTitular;
+      //newBeneficiary.bene_fid_cnd_flg = item.beneficiaryType === 'fidPerson' ? '1' : null;
+      //newBeneficiary.bene_fid_cntrc_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : null;
+      //newBeneficiary.bene_fid_lttr_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : null;
+      //newBeneficiary.bene_ref_inst_lttr = item.beneficiaryType === 'fidPerson' ? item.instructionLetterNumber : null;
+      //newBeneficiary.bene_addrss_sm_inss_ind = item.addressSameAsTitular ? item.addressSameAsTitular : null;*/
 
-      return newBeneficiary;
+      newCoverage.beneciciary[0] = newBeneficiary;
+
+      return newCoverage;
     } else if (itemType === 'payment') {
       // TODO: map payments table
       console.log('payment item: ', item);

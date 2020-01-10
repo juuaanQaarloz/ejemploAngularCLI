@@ -383,9 +383,10 @@ export class ApplicationService {
 
   getApplicationBase(): Observable<ApplicationJson> {
     const URL_FOLIO = AppConstants.URL_SERVICE_DEV + '/App/folio';
+    const URL_JSON_TEST = '../assets/swagger/JsonApp_080120.json';
 
-    return this.httpClient.get(URL_FOLIO)
-    // return this.httpClient.get(URL_JSON_APP)
+    // return this.httpClient.get(URL_FOLIO)
+    return this.httpClient.get(URL_JSON_TEST)
       .pipe(
         map((response: ApplicationJson) => {
           console.log('RESPONSE from getApplicationBase:', response);
@@ -1788,6 +1789,7 @@ export class ApplicationService {
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
     });
+
 
     console.log('appJson to passed to de save service: ', appJson);
 
