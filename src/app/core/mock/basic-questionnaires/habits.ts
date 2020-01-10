@@ -117,7 +117,7 @@ export const habitsFields: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: 'applicationExtension.fhgt_id',
+    entityField: 'applicationExtension.hgt_id',
     value: ''
   }
 ];

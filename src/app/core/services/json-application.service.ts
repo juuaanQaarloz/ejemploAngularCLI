@@ -9,6 +9,10 @@ import {PersonJson} from '../../models/applicationJson/personJson';
 import {AgentJson} from '../../models/applicationJson/agentJson/agentJson';
 import {AgentCd} from '../../models/applicationJson/agentJson/agentCd';
 import {AddressJson} from '../../models/applicationJson/addressJson';
+import {AccountJson} from '../../models/applicationJson/accountJson';
+import {BankAccount} from '../../models/applicationJson/bankJson/bankAccount';
+import {DiseaseJson} from '../../models/applicationJson/diseaseJson';
+import {ForeignCountryTaxJson} from '../../models/applicationJson/foreignCountryTaxJson';
 
 @Injectable({
   providedIn: 'root'
@@ -125,7 +129,7 @@ export class JsonApplicationService {
       if (items.length > 0) {
         items.forEach((payment, i) => {
           console.log('payment: ', payment);
-          this.mapItem('payment', payment, i);
+          set(this.appJson, `accounts[${i}]`, this.mapItem('payment', payment, i));
         });
       }
     } else if (tableType === 'table-sports') {
@@ -134,6 +138,23 @@ export class JsonApplicationService {
         items.forEach((sport, i) => {
           console.log('sport: ', sport);
           this.mapItem('sport', sport, i);
+        });
+      }
+    } else if (tableType === 'table-diseases') {
+      items = this.appService.diseases.getValue();
+
+      if (items.length > 0) {
+        items.forEach((disease, i) => {
+          console.log('disease: ', disease);
+          set(this.appJson, `insurer.diseases[${i}]`, this.mapItem('disease', disease, i));
+        });
+      }
+    } else if (tableType === 'table-country') {
+      items = this.appService.countries.getValue();
+      if (items.length > 0) {
+        items.forEach((country, i) => {
+          console.log('country', country);
+          set(this.appJson, `foreignCountryTaxes[${i}]`, this.mapItem('country', country, i));
         });
       }
     }
@@ -157,7 +178,7 @@ export class JsonApplicationService {
     } else if (itemType === 'beneficiary') {
       let newBeneficiary: BeneciciaryJson = new BeneciciaryJson();
       let person: PersonJson = new PersonJson();
-      let address: AddressJson =  new AddressJson();
+      let address: AddressJson = new AddressJson();
 
       address.addrss_id = 0;
       address.app_id = this.appJson.app_id;
@@ -185,17 +206,50 @@ export class JsonApplicationService {
       newBeneficiary.bene_rel_cd = item.relationship;
       newBeneficiary.person = person;
       newBeneficiary.bene_fid_cnd_flg = item.beneficiaryType === 'fidPerson' ? '1' : '0';
-      newBeneficiary.bene_fid_cntrc_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : null;
-      newBeneficiary.bene_fid_lttr_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : null;
-      newBeneficiary.bene_ref_inst_lttr = item.beneficiaryType === 'fidPerson' ? item.instructionLetterNumber : null;
+      newBeneficiary.bene_fid_cntrc_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : 'string';
+      newBeneficiary.bene_fid_lttr_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : 'string';
+      newBeneficiary.bene_ref_inst_lttr = item.beneficiaryType === 'fidPerson' ? item.instructionLetterNumber : 'string';
       newBeneficiary.bene_addrss_sm_inss_ind = item.addressSameAsTitular;
 
       return newBeneficiary;
     } else if (itemType === 'payment') {
       // TODO: map payments table
+      console.log('payment item: ', item);
+      let newAccount: AccountJson = new AccountJson();
+      let newBanckAccount: BankAccount = new BankAccount();
+
+      newBanckAccount.pymnt_prrty = item.paymentId;
+      newBanckAccount.bnk_nm = item.txtBank;
+      newBanckAccount.std_bnk_cd = item.txtClabe;
+
+      newAccount.bankAccount = newBanckAccount;
+      newAccount.clct_card_typ_id = item.selectCard;
+
+      return newAccount;
 
     } else if (itemType === 'sport') {
       // TODO: map sports table
+    } else if (itemType === 'disease') {
+      // TODO: map disease table
+      let newDisease = new DiseaseJson();
+
+      newDisease.illnss_nm = item.name;
+      newDisease.illnss_dt = transformDate(item.diagnosticDate, 'YYYY-MM-DD').toString();
+      newDisease.illnss_drtn = item.duration;
+      newDisease.illnss_hlth_stt = item.actualCondition;
+      newDisease.party_app_id = this.appJson.insurer.party_app_id;
+      newDisease.app_id = this.appJson.app_id;
+
+      return newDisease;
+    } else if (itemType === 'country') {
+      console.log('country: ', item);
+      let newCountry = new ForeignCountryTaxJson();
+
+      newCountry.app_id = this.appJson.app_id;
+      newCountry.cntry_nm = item.statCountry;
+      newCountry.frgn_cntry_tin = item.taxCountryId;
+
+      return newCountry;
     }
   }
 }

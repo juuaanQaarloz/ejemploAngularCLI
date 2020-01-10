@@ -1,7 +1,7 @@
 export class DiseaseJson {
-  illnss_cd: string = null;
-  party_app_id: number = null;
-  app_id: number = null;
+  illnss_cd: string = 'string';
+  party_app_id: number = 0;
+  app_id: number = 0;
   illnss_nm: string = null;
   illnss_dt: string = null;
   illnss_drtn: string = null;
