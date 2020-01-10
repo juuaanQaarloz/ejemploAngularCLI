@@ -74,7 +74,8 @@ const URL_CARD_TYPE = '../assets/catalogs/card-type.json';
 export class ApplicationService {
   private currentStepSource = new BehaviorSubject(1);
   currentValue = this.currentStepSource.asObservable();
-  beneficiaries = new BehaviorSubject(BENEFICIARIES);
+  // beneficiaries = new BehaviorSubject(BENEFICIARIES); uncomment only for test
+  beneficiaries = new BehaviorSubject([]);
   agents = new BehaviorSubject([]);
   sports = new BehaviorSubject([]);
   diseases = new BehaviorSubject([]);

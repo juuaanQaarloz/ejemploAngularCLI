@@ -146,8 +146,7 @@ export const InformacionLaboral: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    // entityField: 'insurer.per_job_mo_incm_amt',
-    entityField: '',
+    entityField: 'insurer.per_job_mo_incm_amt',
     value: ''
   }
 ];

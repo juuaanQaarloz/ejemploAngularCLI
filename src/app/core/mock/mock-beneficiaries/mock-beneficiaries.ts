@@ -54,9 +54,9 @@ export const BENEFICIARIES: Beneficiary[] =  [
       city: 'CDMX',
       country: 'MX'
     },
-    participationPercentage: '100'
+    participationPercentage: '50'
   },
-  /*{
+  {
     beneficiaryId: '5',
     beneficiaryType: 'morPerson',
     relationship: 'OT',
@@ -77,7 +77,8 @@ export const BENEFICIARIES: Beneficiary[] =  [
     suspensiveCondition: 'NO', // if typeBeneficiary is Moral person
     contractNumber: '12345678', // if typeBeneficiary is Moral person
     instructionLetterNumber: 'string' // if typeBeneficiary is Moral person
-  },{
+  }
+  /*{
     beneficiaryId: '6',
     beneficiaryType: 'fidPerson',
     relationship: 'OT',

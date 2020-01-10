@@ -57,7 +57,7 @@ export const Plan0: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: 'InsuredCondition.aplicationPlan.pln_cvr_tp_cd',
+    entityField: 'insuredCondition.aplicationPlan.pln_cvr_tp_cd',
     value: ''
   },
 ];
