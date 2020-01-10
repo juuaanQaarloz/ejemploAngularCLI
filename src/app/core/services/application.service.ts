@@ -75,7 +75,8 @@ const URL_CITY_TOWN = '../assets/catalogs/city-town.json';
 export class ApplicationService {
   private currentStepSource = new BehaviorSubject(1);
   currentValue = this.currentStepSource.asObservable();
-  beneficiaries = new BehaviorSubject(BENEFICIARIES);
+  // beneficiaries = new BehaviorSubject(BENEFICIARIES); uncomment only for test
+  beneficiaries = new BehaviorSubject([]);
   agents = new BehaviorSubject([]);
   sports = new BehaviorSubject([]);
   diseases = new BehaviorSubject([]);
@@ -384,9 +385,10 @@ export class ApplicationService {
 
   getApplicationBase(): Observable<ApplicationJson> {
     const URL_FOLIO = AppConstants.URL_SERVICE_DEV + '/App/folio';
+    const URL_JSON_TEST = '../assets/swagger/JsonApp_080120.json';
 
     return this.httpClient.get(URL_FOLIO)
-    // return this.httpClient.get(URL_JSON_APP)
+    // return this.httpClient.get(URL_JSON_TEST)
       .pipe(
         map((response: ApplicationJson) => {
           console.log('RESPONSE from getApplicationBase:', response);
@@ -1792,6 +1794,7 @@ export class ApplicationService {
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
     });
+
 
     console.log('appJson to passed to de save service: ', appJson);
 

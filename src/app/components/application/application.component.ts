@@ -9,10 +9,7 @@ import {APPL_OPERATIONS} from '../../core/mock/mock-operations';
 import {Template} from '../../models/template';
 import {Operation} from '../../models';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
-import {split} from 'ts-node';
-import set from 'lodash/set';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { APP_SWAGGER } from 'src/app/core/mock/mock-swagger/mock-swagger-app';
 import { AppConstants } from 'src/app/app.constants';
 
 @Component({
@@ -28,8 +25,6 @@ export class ApplicationComponent implements OnInit {
   applOperations = APPL_OPERATIONS;
   items = [];
   errorMessage;
-  isValidApplication = true;
-  applicationJson: ApplicationJson;
 
   closeWindowOpt: Operation = {
     id: 'opt-1',

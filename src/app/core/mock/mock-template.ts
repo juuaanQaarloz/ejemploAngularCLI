@@ -29,7 +29,7 @@ export const MockFieldsContentSection1: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.party_typ_cd',
     value: 'phyPerson',
     disable: false
   }
