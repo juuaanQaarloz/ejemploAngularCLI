@@ -385,8 +385,8 @@ export class ApplicationService {
     const URL_FOLIO = AppConstants.URL_SERVICE_DEV + '/App/folio';
     const URL_JSON_TEST = '../assets/swagger/JsonApp_080120.json';
 
-    // return this.httpClient.get(URL_FOLIO)
-    return this.httpClient.get(URL_JSON_TEST)
+    return this.httpClient.get(URL_FOLIO)
+    // return this.httpClient.get(URL_JSON_TEST)
       .pipe(
         map((response: ApplicationJson) => {
           console.log('RESPONSE from getApplicationBase:', response);

@@ -182,8 +182,6 @@ export class JsonApplicationService {
       let person: PersonJson = new PersonJson();
       let address: AddressJson = new AddressJson();
 
-      /*address.addrss_id = 0;
-      address.app_id = this.appJson.app_id;
       address.strt_nm = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].strt_nm : item.address.street;
       address.ext_num = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].ext_num : item.address.exteriorNumber;
       address.int_num = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].int_num : item.address.interiorNumber;
@@ -194,26 +192,25 @@ export class JsonApplicationService {
       address.cntry_cod = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].cntry_cod : item.address.country;
       address.mncplty_nm = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].mncplty_nm : item.address.municipality;
 
-      //person.party_app_id = this.appJson.insurer.party_app_id;
-      //person.app_id = this.appJson.app_id;
-      //person.per_brth_dt = item.beneficiaryType === 'phyPerson' ? transformDate(item.birthDateOrConstitution, 'YYYY-MM-DD').toString() : null;
-      //person.per_age = item.beneficiaryType === 'phyPerson' ? calculateAge(item.birthDateOrConstitution) : null;
-      //person.party_typ_cd = item.beneficiaryType === 'phyPerson' ? true : false;
-      person.Address = [];
+      person.per_brth_dt = item.beneficiaryType === 'phyPerson' ? transformDate(item.birthDateOrConstitution, 'YYYY-MM-DD').toString() : '2020-01-03';
+      person.per_age = item.beneficiaryType === 'phyPerson' ? calculateAge(item.birthDateOrConstittion) : 0;
+      person.party_typ_cd = item.beneficiaryType === 'phyPerson' ? true : false;
+
       person.nationalities = [];
+      person.Address = [];
 
-      //newBeneficiary.app_id = this.appJson.app_id;
-      //newBeneficiary.bene_tp_cd = item.beneficiaryType;
-      //newBeneficiary.bene_prtcp_pct = item.participationPercentage;
-      //newBeneficiary.bene_rel_cd = item.relationship;
       newBeneficiary.person = person;
-      //newBeneficiary.bene_fid_cnd_flg = item.beneficiaryType === 'fidPerson' ? '1' : null;
-      //newBeneficiary.bene_fid_cntrc_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : null;
-      //newBeneficiary.bene_fid_lttr_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : null;
-      //newBeneficiary.bene_ref_inst_lttr = item.beneficiaryType === 'fidPerson' ? item.instructionLetterNumber : null;
-      //newBeneficiary.bene_addrss_sm_inss_ind = item.addressSameAsTitular ? item.addressSameAsTitular : null;*/
+      newBeneficiary.person.Address.push(address);
+      newBeneficiary.bene_tp_cd = item.beneficiaryType;
+      newBeneficiary.bene_rel_cd = item.relationship;
 
-      newCoverage.beneciciary[0] = newBeneficiary;
+      newCoverage.beneciciary.push(newBeneficiary);
+      newBeneficiary.bene_prtcp_pct = item.participationPercentage;
+      newBeneficiary.bene_fid_cnd_flg = item.beneficiaryType === 'fidPerson' ? 'true' : null;
+      newBeneficiary.bene_fid_cntrc_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : null;
+      newBeneficiary.bene_fid_lttr_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : null;
+      newBeneficiary.bene_ref_inst_lttr = item.beneficiaryType === 'fidPerson' ? item.instructionLetterNumber : null;
+      newBeneficiary.bene_addrss_sm_inss_ind = item.addressSameAsTitular ? item.addressSameAsTitular : null;
 
       return newCoverage;
     } else if (itemType === 'payment') {
