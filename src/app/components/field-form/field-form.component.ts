@@ -380,7 +380,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       if (this.form.controls[idClabe].value === this.form.controls[this.fieldObj.name].value) {
         console.log('TOKEN MIT 2 --->: ' + this.form.controls[this.fieldObj.name].value);
         const bine = Number(this.form.controls[this.fieldObj.name].value.substring(0, 6));
-        if (this.form.controls[this.fieldObj.name].value.length == 16) {
+        if (this.form.controls[this.fieldObj.name].value.length === 16) {
           this.getDataPaymentMit(bine);
           /*this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
             .subscribe((results) => {
@@ -389,8 +389,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
               console.log(results);
               // this.getDataPaymentMit(bine);
             });*/
-        } else if (this.form.controls[this.fieldObj.name].value.length == 18) {
-          console.log("Respuesta de bank bienes");
+        } else if (this.form.controls[this.fieldObj.name].value.length === 18) {
+          console.log('Respuesta de bank bienes');
           this.getDataPaymentMit(bine);
         }
       } else {

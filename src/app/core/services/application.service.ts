@@ -1228,11 +1228,45 @@ export class ApplicationService {
         isValid = true;
       }
     } else if (tableType === 'table-country') {
-      // TODO: validation for table-country
+      valueQuestion = this.formGroup.controls.taxQuestion.value;
+
+      if (valueQuestion && valueQuestion === true) {
+        if (this.countries.getValue().length === 0) {
+          isValid = false;
+          message = 'Debe agregarse al menos un país';
+        } /*else if (this.sports.getValue().length > 5) {
+          isValid = false;
+          message = 'No pueden agregarse más de 5 deportes / actividades';
+        }*/
+      } else {
+        isValid = true;
+      }
     } else if (tableType === 'table-formatwo') {
-      // TODO: validation for table-formatwo
+      valueQuestion = this.formGroup.controls.publicFunctionQuestion.value;
+      if (valueQuestion && valueQuestion === true) {
+        if (this.formatosdos.getValue().length === 0) {
+          isValid = false;
+          message = 'Debe agregarse al menos una persona';
+        } /*else if (this.sports.getValue().length > 5) {
+          isValid = false;
+          message = 'No pueden agregarse más de 5 deportes / actividades';
+        }*/
+      } else {
+        isValid = true;
+      }
     } else if (tableType === 'table-formatfour') {
-      // TODO: validation for table-formatfour
+      valueQuestion = this.formGroup.controls.associationQuestion.value;
+      if (valueQuestion && valueQuestion === true) {
+        if (this.formatosdos.getValue().length === 0) {
+          isValid = false;
+          message = 'Debe agregarse al menos una persona';
+        } /*else if (this.sports.getValue().length > 5) {
+          isValid = false;
+          message = 'No pueden agregarse más de 5 deportes / actividades';
+        }*/
+      } else {
+        isValid = true;
+      }
     } else if (tableType === 'table-formatwob') {
       // TODO: validation for table-formatwob
     } else if (tableType === 'table-formathree') {
@@ -1268,33 +1302,35 @@ export class ApplicationService {
         // validate table content
         if (this.diseases.getValue().length === 0) {
           isValid = false;
-          message = 'Debe agregarse al menos un enfermedad, lesión, estudio o tratamiento';
+          message = 'En la pregunta 1 debe agregarse al menos un enfermedad, lesión, estudio o tratamiento';
         } else if (this.diseases.getValue().length > 10) {
           isValid = false;
           message = 'No pueden agregarse más de 10 enfermedad(es), lesión(es), estudio(s) o tratamiento(s)';
         }
-      } else if (valueQuestion2 && valueQuestion2 === true) {
+      }
+
+      if (valueQuestion2 && valueQuestion2 === true) {
         // console.log('valueQuestion2: ', valueQuestion2);
         // validate table content
         if (this.diseases2.getValue().length === 0) {
           isValid = false;
-          message = 'Debe agregarse al menos un enfermedad, lesión, estudio o tratamiento';
+          message = 'En la pregunta 2 debe agregarse al menos un enfermedad, lesión, estudio o tratamiento';
         } else if (this.diseases2.getValue().length > 10) {
           isValid = false;
           message = 'No pueden agregarse más de 10 enfermedad(es), lesión(es), estudio(s) o tratamiento(s)';
         }
-      } else if (valueQuestion3 && valueQuestion3 === true) {
+      }
+
+      if (valueQuestion3 && valueQuestion3 === true) {
         // console.log('valueQuestion3: ', valueQuestion3);
         // validate table content
         if (this.diseases3.getValue().length === 0) {
           isValid = false;
-          message = 'Debe agregarse al menos un enfermedad, lesión, estudio o tratamiento';
+          message = 'En la pregunta 3 debe agregarse al menos un enfermedad, lesión, estudio o tratamiento';
         } else if (this.diseases3.getValue().length > 10) {
           isValid = false;
           message = 'No pueden agregarse más de 10 enfermedad(es), lesión(es), estudio(s) o tratamiento(s)';
         }
-      } else {
-        isValid = true;
       }
       // console.log('validate table table-diseases');
 
