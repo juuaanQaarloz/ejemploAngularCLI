@@ -13,6 +13,7 @@ import {AccountJson} from '../../models/applicationJson/accountJson';
 import {BankAccount} from '../../models/applicationJson/bankJson/bankAccount';
 import {DiseaseJson} from '../../models/applicationJson/diseaseJson';
 import {ForeignCountryTaxJson} from '../../models/applicationJson/foreignCountryTaxJson';
+import {QuesList} from "../../models/applicationJson/questionaryJson/quesList";
 
 @Injectable({
   providedIn: 'root'
@@ -137,7 +138,7 @@ export class JsonApplicationService {
       if (items.length > 0) {
         items.forEach((sport, i) => {
           console.log('sport: ', sport);
-          this.mapItem('sport', sport, i);
+          set(this.appJson, `QuesList.sport[${i}]`, this.mapItem('sport', sport, i));
         });
       }
     } else if (tableType === 'table-diseases') {
@@ -228,6 +229,15 @@ export class JsonApplicationService {
       return newAccount;
 
     } else if (itemType === 'sport') {
+      let newQuesList = new QuesList();
+
+      newQuesList.actvty_id = item.idSportActivity;
+      newQuesList.clmn_1 = item.name;
+      newQuesList.clmn_2 = item.periodicity;
+      newQuesList.clmn_3 = item.description;
+
+      return newQuesList;
+
       // TODO: map sports table
     } else if (itemType === 'disease') {
       // TODO: map disease table
