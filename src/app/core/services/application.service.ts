@@ -107,9 +107,8 @@ export class ApplicationService {
     return 'Error desde Servicio';
   }
 
-  submitFunction(type) {
+  submitFunction(type, nextSetp?) {
     // console.log(type);
-    // console.log(this.formGroup);
     if (type === 'searchOccupation') {
       this.searchModalFrom = 'contractor';
       this.openOccupationModal('modal-search');
@@ -121,8 +120,8 @@ export class ApplicationService {
     } else if (type === 'nextStep') {
       const currentStep = this.currentStepSource.getValue();
       // console.log('currentStep: ', currentStep);
-
-      let contractorType = this.formGroup.controls['contractorType'].value;
+      this.changeValue(Number(nextSetp.nextStep));
+      /*let contractorType = this.formGroup.controls['contractorType'].value;
       if (currentStep === 0) {
         this.changeValue(1);
       } else if (currentStep === 1) {
@@ -171,7 +170,7 @@ export class ApplicationService {
       } else if (currentStep === 21) {
         this.changeValue(22);
       }
-
+*/
       // // console.log('currentStep2: ', this.currentStepSource.getValue());
     } /*else if (type === 'validateStep') {
       const currentStep = this.currentStepSource.getValue(); // .getValue();
@@ -186,6 +185,11 @@ export class ApplicationService {
   }
 
   changeValue(newValue: number) {
+    console.log(newValue);
+    console.log(newValue);
+    console.log(newValue);
+    console.log(newValue);
+    console.log(newValue);
     this.currentStepSource.next(newValue);
   }
 
@@ -1255,18 +1259,7 @@ export class ApplicationService {
         isValid = true;
       }
     } else if (tableType === 'table-formatfour') {
-      valueQuestion = this.formGroup.controls.associationQuestion.value;
-      if (valueQuestion && valueQuestion === true) {
-        if (this.formatosdos.getValue().length === 0) {
-          isValid = false;
-          message = 'Debe agregarse al menos una persona';
-        } /*else if (this.sports.getValue().length > 5) {
-          isValid = false;
-          message = 'No pueden agregarse más de 5 deportes / actividades';
-        }*/
-      } else {
-        isValid = true;
-      }
+      // TODO: validation for table-formatwob
     } else if (tableType === 'table-formatwob') {
       // TODO: validation for table-formatwob
     } else if (tableType === 'table-formathree') {
