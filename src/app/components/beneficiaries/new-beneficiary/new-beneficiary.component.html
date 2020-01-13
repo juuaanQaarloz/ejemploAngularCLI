@@ -9,7 +9,7 @@
     <div data-forms="floating-label" class="ml-form"
          [ngClass]="content.styleClass">
       <div *ngFor="let field of fields">
-        <app-field-form [fieldObj]="field" [form]="formGroup"></app-field-form>
+        <app-field-form [fieldObj]="field" [form]="formGroup" (executeAction)="beneficiaryChange($event);"></app-field-form>
       </div>
 
       <label *ngIf="this.formGroup.controls.beneficiaryType.value === 'fidPerson'">{{fidMessage}}</label>

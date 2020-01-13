@@ -144,7 +144,8 @@
                [id]="fieldObj.idHtml + radioOption.id"
                [name]="fieldObj.name"
                [value]="radioOption.value"
-               (keydown)="onKeyDownRadio($event, fieldObj.idHtml + (radioOption.id + 1))">
+               (keydown)="onKeyDownRadio($event, fieldObj.idHtml + (radioOption.id + 1))"
+               (click)="onClickRadioButton(radioOption.value)" >
 
         <label>{{radioOption.name}}</label>
       </div>

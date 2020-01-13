@@ -42,4 +42,6 @@ export interface Field {
   accept?: string;
   file?: any;
   button?: boolean;
+  dataUpload?: string;
+  additionalData?: any;
 }

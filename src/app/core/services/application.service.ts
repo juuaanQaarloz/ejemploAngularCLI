@@ -693,7 +693,7 @@ export class ApplicationService {
       responseMessage1 = 'No se pueden agregar más de 10 beneficiarios';
       responseMessage2 = 'La suma de las participaciones de los beneficiarios excede el 100%';
       responseMessage3 = 'El porcentaje de participacion debe de ser mayor a 0';
-      responseMessage4 = 'El nombre no puede ser igual al apellido paterno y materno';
+      responseMessage4 = 'La suma de los porcentajes de participación debe ser igual a 100%';
       responseMessage5 = 'El nombre, el apellido paterno y materno no puede ser el mismo';
 
       let name5 = updatedItem.name;

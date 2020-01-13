@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {Field} from '../../models/field';
 import {FormControl, FormGroup} from '@angular/forms';
 import {SelectOption} from '../../models/select-option-interface';
@@ -27,6 +27,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   @Input() fieldObj: Field;
   @Input() form: FormGroup;
   @Input() item?: any;
+  @Output() executeAction?: any = new EventEmitter<any>();
+
   showSelectLabel = false;
   isSelected = true;
   radioOptions = [];
@@ -703,6 +705,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         }
       });
     }
+
     /*if (this.fieldObj.name === 'txtClabeConfir') {
       const idClabe = 'txtClabe';
       console.log('TOKEN MIT 11 --->: ' + this.form.controls[this.fieldObj.name]);
@@ -864,8 +867,14 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   checkValue(value) {
-    const currentValue = this.form.controls[this.fieldObj.name].value;
-    const defaultValue = this.fieldObj.value;
+    let currentValue: any;
+    let defaultValue: any;
+    if ( this.form.controls[this.fieldObj.name] ) {
+      currentValue = this.form.controls[this.fieldObj.name].value;
+    }
+    if ( this.fieldObj.value ) {
+      defaultValue = this.fieldObj.value;
+    }
     let result: boolean;
     if (currentValue) {
       if (currentValue === value) {
@@ -1118,6 +1127,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
   }
 
+  onClickRadioButton(value) {
+    console.log('Entro a onClickRadioButton: ');
+    if ( this.fieldObj.name === 'beneficiaryType' ) {
+      this.executeAction.emit(value);
+    }
+  }
 }
 
 

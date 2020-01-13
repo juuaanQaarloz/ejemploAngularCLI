@@ -7,6 +7,7 @@ export interface Beneficiary {
   fatherLastName?: string;
   motherLastName?: string;
   relationship: string;
+  espRelationship?: string;
   birthDateOrConstitution: string;
   addressSameAsTitular?: boolean;
   address: Address;

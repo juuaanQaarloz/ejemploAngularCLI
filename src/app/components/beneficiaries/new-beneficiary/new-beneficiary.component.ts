@@ -87,10 +87,14 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
       console.log(this.fields);
       console.log(3);
     }
-    this.formGroup.controls.beneficiaryType.valueChanges.subscribe((value) => {
-      this.beneficiaryType = value;
-      this.fields = this.getFields();
-    });
+    // this.formGroup.get('beneficiaryType').valueChanges.subscribe((value) => {
+    //   console.log('Beneficiary Changes |1');
+    //   this.beneficiaryType = value;
+    //   this.fields = this.getFields();
+    // });
+
+    console.log('Form group onInit: ');
+    console.log(this.formGroup.controls);
   }
 
   ngAfterViewInit(): void {
@@ -265,6 +269,9 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         case 'beneficiaryRelationshipM':
           value = this.config.data.item.relationship;
           break;
+        case 'espBeneficiaryRelationshipM':
+          value = this.config.data.item.espRelationship;
+          break;
         case 'beneficiaryConstitutionDate':
           value = this.config.data.item.birthDateOrConstitution;
           break;
@@ -333,6 +340,10 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           value = this.config.data.item.relationship;
           this.formGroup.controls[field.name].setValue(value);
           break;
+        case 'espBeneficiaryRelationshipF':
+          value = this.config.data.item.espRelationship;
+          this.formGroup.controls[field.name].setValue(value);
+          break;
         case 'participationPercentageF':
           value = this.config.data.item.participationPercentage;
           this.formGroup.controls[field.name].setValue(value);
@@ -374,6 +385,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         ...newBeneficiaryBase,
         businessName: this.formGroup.controls.beneficiaryBusinessName.value,
         relationship: this.formGroup.controls.beneficiaryRelationshipM.value,
+        espRelationship: this.formGroup.controls.espBeneficiaryRelationshipM.value,
         birthDateOrConstitution: transformDate(this.formGroup.controls.beneficiaryConstitutionDate.value, 'YYYY/MM/DD'),
         address: {
           street: this.formGroup.controls.beneficiaryStreetM.value,
@@ -395,6 +407,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         contractNumber: this.formGroup.controls.contractNumber.value,
         instructionLetterNumber: this.formGroup.controls.instructionLetterNumber.value,
         relationship: this.formGroup.controls.beneficiaryRelationshipF.value,
+        espRelationship: this.formGroup.controls.espBeneficiaryRelationshipF.value,
         birthDateOrConstitution: transformDate(this.formGroup.controls.beneficiaryConstitutionDateF.value, 'YYYY/MM/DD'),
         address: {
           street: this.formGroup.controls.beneficiaryStreetF.value,
@@ -445,6 +458,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         ...beneficiaryBase,
         businessName: this.formGroup.controls.beneficiaryBusinessName.value,
         relationship: this.formGroup.controls.beneficiaryRelationshipM.value,
+        espRelationship: this.formGroup.controls.espBeneficiaryRelationshipM.value,
         birthDateOrConstitution: transformDate(this.formGroup.controls.beneficiaryConstitutionDate.value, 'YYYY/MM/DD'),
         address: {
           street: this.formGroup.controls.beneficiaryStreetM.value,
@@ -466,6 +480,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         contractNumber: this.formGroup.controls.contractNumber.value,
         instructionLetterNumber: this.formGroup.controls.instructionLetterNumber.value,
         relationship: this.formGroup.controls.beneficiaryRelationshipF.value,
+        espRelationship: this.formGroup.controls.espBeneficiaryRelationshipF.value,
         birthDateOrConstitution: transformDate(this.formGroup.controls.beneficiaryConstitutionDateF.value, 'YYYY/MM/DD'),
         address: {
           street: this.formGroup.controls.beneficiaryStreetF.value,
@@ -514,7 +529,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   }
 
   setUpFormFields() {
-    let fields = [];
+    const fields = [];
 
     NewBeneficiaryFields.forEach((field) => {
       fields.push(field);
@@ -535,40 +550,47 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   }
 
   getFields() {
-
-    console.log(this.fields);
-    console.log(this.fields);
-    console.log(this.fields);
-    console.log(this.fields);
-
-    console.log('dsfsdfdsfdsfdsf');
-    console.log('dsfsdfdsfdsfdsf');
-    console.log('dsfsdfdsfdsfdsf');
-    console.log('dsfsdfdsfdsfdsf');
-
-    let fields = [];
+    console.log('Entro a getFields');
+    const fields = [];
+    const fieldsPerBeneficiary = [];
 
     NewBeneficiaryFields.forEach((field) => {
       fields.push(field);
+      fieldsPerBeneficiary.push(field);
     });
 
     if (this.beneficiaryType === 'phyPerson') {
       BeneficiaryFieldsP.forEach((field) => {
         fields.push(field);
+        fieldsPerBeneficiary.push(field);
       });
+      this.formGroup = this.applicationService.createNewFormGroup(fieldsPerBeneficiary);
     } else if (this.beneficiaryType === 'morPerson') {
       BeneficiaryFieldsM.forEach((field) => {
         fields.push(field);
+        fieldsPerBeneficiary.push(field);
       });
+      this.formGroup = this.applicationService.createNewFormGroup(fieldsPerBeneficiary);
     } else if (this.beneficiaryType === 'fidPerson') {
       BeneficiaryFieldsF.forEach((field) => {
         fields.push(field);
+        fieldsPerBeneficiary.push(field);
       });
+      this.formGroup = this.applicationService.createNewFormGroup(fieldsPerBeneficiary);
     }
+
     return fields;
   }
 
   getFormStatus() {
     return this.formGroup.status;
+  }
+
+  beneficiaryChange(beneficiaryType) {
+    console.log('Entro a beneficiaryChange: ', beneficiaryType);
+    this.formGroup.controls.beneficiaryType.setValue(beneficiaryType);
+    this.beneficiaryType = beneficiaryType;
+    this.fields = this.getFields();
+    this.formGroup.controls.beneficiaryType.setValue(beneficiaryType);
   }
 }
