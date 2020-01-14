@@ -80,7 +80,7 @@ export const FormasPago: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'Día de cargo es un campo obligatorio',
+    message: 'Día de cargo es un campo obligatorio y solo permite valores entre 1 y 28.',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',

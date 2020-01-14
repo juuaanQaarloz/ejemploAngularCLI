@@ -27,8 +27,9 @@ export const InformacionLaboralSolicitante1: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: 'insured.Address[0].',
+    entityField: 'insurer.per_job_aka_nm',
     value: '',
+    disable: true
   }
 ];
 
@@ -59,7 +60,7 @@ export const InformacionLaboralSolicitante: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insured.per_job_dtl_txt',
     value: ''
   },
   {
@@ -88,7 +89,7 @@ export const InformacionLaboralSolicitante: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insured.per_job_co_nm',
     value: ''
   },
   {
@@ -117,7 +118,7 @@ export const InformacionLaboralSolicitante: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insured.per_job_co_actvty',
     value: ''
   },
   {
@@ -146,7 +147,7 @@ export const InformacionLaboralSolicitante: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insured.per_job_mo_incm_amt',
     value: ''
   },
   {

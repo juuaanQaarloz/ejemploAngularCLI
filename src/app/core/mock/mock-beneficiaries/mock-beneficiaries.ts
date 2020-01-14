@@ -52,7 +52,8 @@ export const BENEFICIARIES: Beneficiary[] =  [
       municipality: 'Venustiano Carranza',
       state: 'CDMX',
       city: 'CDMX',
-      country: 'MX'
+      country: '151'
+      // country: 'MX'
     },
     participationPercentage: '50'
   },
@@ -60,7 +61,7 @@ export const BENEFICIARIES: Beneficiary[] =  [
     beneficiaryId: '5',
     beneficiaryType: 'morPerson',
     relationship: 'OT',
-    businessName: 'Empresa',
+    businessName: 'EMPRESA',
     birthDateOrConstitution: '2001/03/08',
     addressSameAsTitular: false,
     address: {
@@ -69,9 +70,10 @@ export const BENEFICIARIES: Beneficiary[] =  [
       zipCode: '07840',
       neighborhood: 'BECINDARIO',
       municipality: 'MUNICIPIO',
-      state: 'ESTADO',
+      state: 'ESTADO DE MEXICO',
       city: 'CIUDAD',
-      country: 'MX'
+      country: '151'
+      // country: 'MX'
     },
     participationPercentage: '50',
     suspensiveCondition: 'NO', // if typeBeneficiary is Moral person

@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import {ApplicationService} from './application.service';
-import {Step} from '../../models';
+import {Beneficiary, Step} from '../../models';
 import set from 'lodash/set';
+import get from 'lodash/get';
 import {calculateAge, transformDate} from '../utilities';
 import {BeneciciaryJson} from '../../models/applicationJson/beneciciaryJson';
 import {PersonJson} from '../../models/applicationJson/personJson';
@@ -13,7 +14,9 @@ import {AccountJson} from '../../models/applicationJson/accountJson';
 import {BankAccount} from '../../models/applicationJson/bankJson/bankAccount';
 import {DiseaseJson} from '../../models/applicationJson/diseaseJson';
 import {ForeignCountryTaxJson} from '../../models/applicationJson/foreignCountryTaxJson';
-import {QuesList} from "../../models/applicationJson/questionaryJson/quesList";
+import {QuesList} from '../../models/applicationJson/questionaryJson/quesList';
+import {Cvr} from '../../models/applicationJson/coverageJson/cvr';
+
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +33,12 @@ export class JsonApplicationService {
       // get new application folio
       this.appJson.app_id = response.app_id;
       console.log('applicationJson after parse', this.appJson);
+      let partyAppType = this.appService.getFormGroup().controls.typePerson.value;
+      if (partyAppType !== null && partyAppType !== undefined) {
+        // set(this.appJson, 'insurer.party_typ_cd', partyAppType === 'phyPerson' ? true : false);
+        set(this.appJson, 'insurer.party_typ_cd', partyAppType);
+      }
+      console.log(get(this.appJson, 'insurer.party_typ_cd'));
     });
   }
 
@@ -98,6 +107,12 @@ export class JsonApplicationService {
       if (step.id === '1' || step.id === '4') {
         let resp = this.appService.getFormGroup().controls.typePerson.value;
       }
+      if (step.id === '6') {
+        set(this.appJson, 'shareHolders[0].person.Address', []);
+        set(this.appJson, 'shareHolders[0].person.nationalities', []);
+        set(this.appJson, 'shareHolders[1].person.Address', []);
+        set(this.appJson, 'shareHolders[1].person.nationalities', []);
+      }
       this.appService.saveSolicitud(this.getAppJson()).subscribe((response: ApplicationJson) => {
         console.log('response: ', response);
         this.setAppJson(response);
@@ -114,7 +129,7 @@ export class JsonApplicationService {
         console.log(' beneficiaries: ', items);
         items.forEach((beneficiary, i) => {
           console.log('beneficiary: ', beneficiary);
-          set(this.appJson, `insuredCondition.beneciciary[${i}]`, this.mapItem('beneficiary', beneficiary, i));
+          set(this.appJson, `insuredCondition.aplicationPlan.coverage[${i}]`, this.mapItem('beneficiary', beneficiary, i));
         });
       }
     } else if (tableType === 'table-agent') {
@@ -177,42 +192,23 @@ export class JsonApplicationService {
 
       return newAgent;
     } else if (itemType === 'beneficiary') {
+      let newCoverage: Cvr = new Cvr();
       let newBeneficiary: BeneciciaryJson = new BeneciciaryJson();
-      let person: PersonJson = new PersonJson();
-      let address: AddressJson = new AddressJson();
 
-      address.addrss_id = 0;
-      address.app_id = this.appJson.app_id;
-      address.strt_nm = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].strt_nm : item.address.street;
-      address.ext_num = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].ext_num : item.address.exteriorNumber;
-      address.int_num = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].int_num : item.address.interiorNumber;
-      address.zip_cod = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].zip_cod : item.address.zipCode;
-      address.subt_nm = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].zip_cod : item.address.neighborhood;
-      address.towt_nm = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].towt_nm : item.address.city;
-      address.sta_cod = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].sta_cod : item.address.state;
-      address.cntry_cod = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].cntry_cod : item.address.country;
-      address.mncplty_nm = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].mncplty_nm : item.address.municipality;
-
-      person.party_app_id = this.appJson.insurer.party_app_id;
-      person.app_id = this.appJson.app_id;
-      person.per_brth_dt = item.beneficiaryType === 'phyPerson' ? transformDate(item.birthDateOrConstitution, 'YYYY-MM-DD').toString() : null;
-      person.per_age = item.beneficiaryType === 'phyPerson' ? calculateAge(item.birthDateOrConstitution) : null;
-      person.party_typ_cd = item.beneficiaryType === 'phyPerson' ? true : false;
-      person.Address[0] = address;
-      person.nationalities = [];
-
-      newBeneficiary.app_id = this.appJson.app_id;
+      newBeneficiary.person = this.mapPersonBeneficiary(item.beneficiaryType, item);
+      newBeneficiary.person.Address.push(this.mapAddressBeneficiary(item.beneficiaryType, item));
       newBeneficiary.bene_tp_cd = item.beneficiaryType;
-      newBeneficiary.bene_prtcp_pct = item.participationPercentage;
       newBeneficiary.bene_rel_cd = item.relationship;
-      newBeneficiary.person = person;
-      newBeneficiary.bene_fid_cnd_flg = item.beneficiaryType === 'fidPerson' ? '1' : '0';
-      newBeneficiary.bene_fid_cntrc_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : 'string';
-      newBeneficiary.bene_fid_lttr_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : 'string';
-      newBeneficiary.bene_ref_inst_lttr = item.beneficiaryType === 'fidPerson' ? item.instructionLetterNumber : 'string';
-      newBeneficiary.bene_addrss_sm_inss_ind = item.addressSameAsTitular;
 
-      return newBeneficiary;
+      newCoverage.beneciciary.push(newBeneficiary);
+      newBeneficiary.bene_prtcp_pct = item.participationPercentage;
+      newBeneficiary.bene_fid_cnd_flg = item.beneficiaryType === 'fidPerson' ? 'true' : null;
+      newBeneficiary.bene_fid_cntrc_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : null;
+      newBeneficiary.bene_fid_lttr_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : null;
+      newBeneficiary.bene_ref_inst_lttr = item.beneficiaryType === 'fidPerson' ? item.instructionLetterNumber : null;
+      newBeneficiary.bene_addrss_sm_inss_ind = item.addressSameAsTitular ? item.addressSameAsTitular : null;
+
+      return newCoverage;
     } else if (itemType === 'payment') {
       // TODO: map payments table
       console.log('payment item: ', item);
@@ -253,13 +249,83 @@ export class JsonApplicationService {
       return newDisease;
     } else if (itemType === 'country') {
       console.log('country: ', item);
-      let newCountry = new ForeignCountryTaxJson();
+      let newCountry: ForeignCountryTaxJson = new ForeignCountryTaxJson();
 
-      newCountry.app_id = this.appJson.app_id;
       newCountry.cntry_nm = item.statCountry;
       newCountry.frgn_cntry_tin = item.taxCountryId;
 
       return newCountry;
     }
+  }
+
+  mapAddressBeneficiary(beneficiaryType: string, item: Beneficiary) {
+    let address: AddressJson = new AddressJson();
+
+    if (beneficiaryType === 'phyPerson') {
+      // set beneficiary type 'Fisico'
+      address.strt_nm = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].strt_nm : item.address.street;
+      address.ext_num = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].ext_num : item.address.exteriorNumber;
+      address.int_num = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].int_num : item.address.interiorNumber;
+      address.zip_cod = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].zip_cod : item.address.zipCode;
+      address.subt_nm = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].zip_cod : item.address.neighborhood;
+      address.towt_nm = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].towt_nm : item.address.city;
+      address.sta_cod = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].sta_cod : item.address.state;
+      address.cntry_cod = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].cntry_cod : item.address.country;
+      address.mncplty_nm = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].mncplty_nm : item.address.municipality;
+
+    } else if (beneficiaryType === 'morPerson') {
+
+      // set beneficiary type 'Moral'
+      address.strt_nm = item.address.street;
+      address.ext_num = item.address.exteriorNumber;
+      address.int_num = item.address.interiorNumber ? item.address.interiorNumber : null;
+      address.zip_cod = item.address.zipCode;
+      address.subt_nm = item.address.neighborhood;
+      address.towt_nm = item.address.city;
+      address.sta_cod = item.address.state;
+      address.cntry_cod = item.address.country;
+      address.mncplty_nm = item.address.municipality;
+
+    } else if (beneficiaryType === 'fidPerson') {
+      // set beneficiary type 'Fiduciaria'
+      address.strt_nm = 'CALLE';
+      address.ext_num = 'EXT';
+      address.int_num = 'INT';
+      address.zip_cod = 'ZIP_CODE';
+      address.subt_nm = 'SUBURB';
+      address.towt_nm = 'TOWN';
+      address.sta_cod = 'STATE';
+      address.cntry_cod = 'COUNTRY';
+      address.mncplty_nm = 'MUN';
+    }
+
+    return address;
+  }
+
+  mapPersonBeneficiary(beneficiaryType: string, item: Beneficiary) {
+    let person = new PersonJson();
+    person.party_typ_cd = item.beneficiaryType === 'phyPerson' ? true : false;
+
+    if (beneficiaryType === 'phyPerson') {
+      person.per_brth_dt = transformDate(new Date(item.birthDateOrConstitution), 'YYYY-MM-DD').toString();
+      person.per_age = calculateAge(item.birthDateOrConstitution);
+      person.per_frst_nm = item.name;
+      person.per_ptrnl_lst_nm = item.fatherLastName;
+      person.per_mtrnl_lst_nm = item.motherLastName;
+
+    } else if (beneficiaryType === 'morPerson') {
+      person.co_bus_nm = item.businessName;
+      person.co_estab_dt = transformDate(new Date(item.birthDateOrConstitution), 'YYYY-MM-DD').toString();
+
+    } else if (beneficiaryType === 'fidPerson') {
+      person.co_sspsv_cond = item.suspensiveCondition;
+      person.co_ctrct_nmbr = item.contractNumber;
+      person.co_ins_lttr_nmbr = item.instructionLetterNumber;
+    }
+
+    person.nationalities = [];
+    person.Address = [];
+
+    return person;
   }
 }
