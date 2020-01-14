@@ -134,6 +134,7 @@ export const Plan2: Field[] = [
     orderAppearance: 4,
     label: 'Suma Asegurada *',
     type: 'text',
+    subtype: 'currency',
     required: true,
     placeholder: '',
     length: '15',
@@ -155,7 +156,7 @@ export const Plan2: Field[] = [
     // minConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insuredCondition.aplicationPlan.pln_bsc_cvr_ini_amnt',
     value: ''
   },
   {
@@ -185,7 +186,7 @@ export const Plan2: Field[] = [
     enableConditions: '',
     requiredConditions: '(packing=TF)',
     entity: '',
-    entityField: '',
+    entityField: 'insuredCondition.aplicationPlan.pln_bsc_cvr_sv_gl',
     value: ''
   },
   {
@@ -215,7 +216,7 @@ export const Plan2: Field[] = [
     requiredConditions: '(packing=TF)',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insuredCondition.aplicationPlan.pln_bsc_cvr_yrs',
     value: ''
   }
 ];

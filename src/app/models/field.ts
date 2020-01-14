@@ -5,6 +5,7 @@ export interface Field {
   label: string;
   orderAppearance: number;
   type: string;
+  subtype?: string;
   required: boolean;
   placeholder: string;
   length: string;

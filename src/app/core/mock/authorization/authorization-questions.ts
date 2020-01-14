@@ -94,7 +94,7 @@ export const AuthorizationQuestions2: Field[] = [
     enableConditions: '',
     requiredConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'applicationExtension.clnt_fill_ind',
     value: ''
   },
   {

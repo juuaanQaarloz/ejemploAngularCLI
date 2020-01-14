@@ -21,6 +21,7 @@ import {COVERAGES} from '../mock/coverage/coverage';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import get from 'lodash/get';
 import {BENEFICIARIES} from '../mock/mock-beneficiaries/mock-beneficiaries';
+import set = Reflect.set;
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
@@ -1184,8 +1185,8 @@ export class ApplicationService {
       if (!field.disable) {
         field.valid = group.controls[field.name].valid;
         if (field.valid === false) {
-          // console.log('field name: ', field.name);
-          // console.log('errors: ', group.controls[field.name].errors);
+          console.log('field name: ', field.name);
+          console.log('errors: ', group.controls[field.name].errors);
           isValid = false;
         }
       }
@@ -1795,8 +1796,9 @@ export class ApplicationService {
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
     });
 
-
     console.log('appJson to passed to de save service: ', appJson);
+
+    appJson.insurer.per_job_mo_incm_amt = 25000.00;
 
     return this.httpClient.put(URL, JSON.stringify(appJson), {headers})
       .pipe(

@@ -638,8 +638,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     if (this.fieldObj.name === 'salary') {
       const salary = this.form.controls.salary.value;
 
-      if ( salary ) {
-        if ( this.validateIntegerDecimals(this.form.controls.salary.value) ) {
+      if (salary) {
+        if ( this.validateIntegerDecimals(this.form.controls.salary.value)) {
           this.fieldObj.valid = true;
           valid = true;
           this.setValueField('salary', 'txtSalary', addCurrencyFormat(salary));
@@ -840,7 +840,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       if (this.autocompleteOptions.length > 0 && this.fieldObj.type === 'autocomplete') {
         const searchResult =  this.autocompleteOptions.filter(
           autoCompleteOpt => autoCompleteOpt.name === this.form.controls[this.fieldObj.name].value)[0];
-        // console.log('searchResult: ', searchResult);
         if (searchResult) {
           this.fieldObj.valid = true;
         } else {

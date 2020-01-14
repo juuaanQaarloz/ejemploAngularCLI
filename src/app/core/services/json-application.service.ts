@@ -63,6 +63,8 @@ export class JsonApplicationService {
               if (value !== null && value !== undefined) {
                 if (field.type === 'date') {
                   value = transformDate(value, 'YYYY-MM-DD').toString();
+                } else if (field.subtype === 'currency') {
+                  value = Number(value.replace(/[^0-9.-]+/g, ''));
                 }
                 // setting value from FORM to JSON
                 set(this.appJson, field.entityField, value);
@@ -85,6 +87,8 @@ export class JsonApplicationService {
                   if (value !== null && value !== undefined) {
                     if (field.type === 'date') {
                       value = transformDate(value, 'YYYY-MM-DD').toString();
+                    } else if (field.subtype === 'currency') {
+                      value = Number(value.replace(/[^0-9.-]+/g, ''));
                     }
                     // setting value from FORM to JSON
                     set(this.appJson, field.entityField, value);
