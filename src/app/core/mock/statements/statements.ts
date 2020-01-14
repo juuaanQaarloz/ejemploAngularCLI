@@ -124,8 +124,7 @@ export const statements1: Field[] = [
     value: '',
     legend: 'En caso de ser extranjero, o tener residencia en el extranjero, especifica las razones para contratar un ' +
       'seguro en territorio nacional.'
-  }
-  /*,
+  },
   {
     id: 'field-1603',
     idHtml: 'radioAssociationQuestion',
@@ -149,12 +148,12 @@ export const statements1: Field[] = [
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
-    renderConditions: '(associationQuestion=1)',
+    renderConditions: '',
     enableConditions: '',
     entity: '',
     entityField: 'app_own_shre_ind',
     value: ''
-  }*/
+  }
 ];
 
 export const statements2: Field[] = [
@@ -181,7 +180,7 @@ export const statements2: Field[] = [
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
-    renderConditions: '(thirdPersonQuestion=1)',
+    renderConditions: '',
     enableConditions: '',
     entity: '',
     entityField: 'app_own_thrd_prty_ind',
@@ -214,7 +213,7 @@ export const statements3: Field[] = [
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
-    renderConditions: '(supplierQuestion=1)',
+    renderConditions: '',
     enableConditions: '',
     entity: '',
     entityField: 'app_own_pymnt_rsrc_ind',
