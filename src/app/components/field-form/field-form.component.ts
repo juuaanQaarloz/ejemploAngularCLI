@@ -377,7 +377,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
     if (this.fieldObj.name === 'txtClabeConfir') {
       const idClabe = 'txtClabe';
-      console.log('TOKEN MIT 1 --->: ' + this.form.controls[this.fieldObj.name].value);
+      console.log('TOKEN MIT 1 --->:' + this.form.controls[this.fieldObj.name].value);
       console.log('Confirma TOKEN MIT 1 --->: ' + this.form.controls[idClabe].value);
       if (this.form.controls[idClabe].value === this.form.controls[this.fieldObj.name].value) {
         console.log('TOKEN MIT 2 --->: ' + this.form.controls[this.fieldObj.name].value);
