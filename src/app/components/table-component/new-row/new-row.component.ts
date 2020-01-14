@@ -86,7 +86,7 @@ export class NewRowComponent implements OnInit {
   addNewItem() {
     let formStatus = this.getFormStatus();
 
-    Object.keys(this.formGroup.controls).forEach((formControl) =>{
+    Object.keys(this.formGroup.controls).forEach((formControl) => {
       if ( formControl === 'extremeSportsD' ) {
         const value = this.formGroup.controls[formControl].value;
         if ( value ) {
@@ -148,7 +148,8 @@ export class NewRowComponent implements OnInit {
         diagnosticDate: transformDate(this.formGroup.controls.diagnosticDateD.value, 'YYYY/MM/DD'),
         duration: this.formGroup.controls.durationDiseasesD.value,
         actualCondition: this.formGroup.controls.actualMedicalConditionD.value,
-        hasQuestionnaire: false
+        hasQuestionnaire: false,
+        fromTable: this.contentTypeId
       };
 
     } else if (this.itemType === 'sport') {

@@ -7,11 +7,11 @@ export class BeneciciaryJson {
   ins_id: number = 0;
   app_id: number = 0;
   bene_tp_cd: string = null;
-  bene_prtcp_pct: number = 0;
+  bene_prtcp_pct: number = null;
   cvr_bene_cmnt_txt: string = null;
   bene_rel_cd: string = null;
   bene_rel_desc: string = null;
-  bene_party_app_id: number = 0;
+  bene_party_app_id: number = null;
   person: PersonJson = new PersonJson();
   rec_crt_ts: string = null;
   rec_crt_usr_id: string = null;

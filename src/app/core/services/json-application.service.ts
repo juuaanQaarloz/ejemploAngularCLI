@@ -133,7 +133,7 @@ export class JsonApplicationService {
         console.log(' beneficiaries: ', items);
         items.forEach((beneficiary, i) => {
           console.log('beneficiary: ', beneficiary);
-          set(this.appJson, `insuredCondition.aplicationPlan.coverage[${i}]`, this.mapItem('beneficiary', beneficiary, i));
+          set(this.appJson, `insuredCondition.aplicationPlan.beneciciary[${i}]`, this.mapItem('beneficiary', beneficiary, i));
         });
       }
     } else if (tableType === 'table-agent') {
@@ -157,7 +157,7 @@ export class JsonApplicationService {
       if (items.length > 0) {
         items.forEach((sport, i) => {
           console.log('sport: ', sport);
-          set(this.appJson, `QuesList.sport[${i}]`, this.mapItem('sport', sport, i));
+          set(this.appJson, `QuesList[${i}]`, this.mapItem('sport', sport, i));
         });
       }
     } else if (tableType === 'table-diseases') {
@@ -196,7 +196,6 @@ export class JsonApplicationService {
 
       return newAgent;
     } else if (itemType === 'beneficiary') {
-      let newCoverage: Cvr = new Cvr();
       let newBeneficiary: BeneciciaryJson = new BeneciciaryJson();
 
       newBeneficiary.person = this.mapPersonBeneficiary(item.beneficiaryType, item);
@@ -204,7 +203,6 @@ export class JsonApplicationService {
       newBeneficiary.bene_tp_cd = item.beneficiaryType;
       newBeneficiary.bene_rel_cd = item.relationship;
 
-      newCoverage.beneciciary.push(newBeneficiary);
       newBeneficiary.bene_prtcp_pct = item.participationPercentage;
       newBeneficiary.bene_fid_cnd_flg = item.beneficiaryType === 'fidPerson' ? 'true' : null;
       newBeneficiary.bene_fid_cntrc_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : null;
@@ -212,7 +210,9 @@ export class JsonApplicationService {
       newBeneficiary.bene_ref_inst_lttr = item.beneficiaryType === 'fidPerson' ? item.instructionLetterNumber : null;
       newBeneficiary.bene_addrss_sm_inss_ind = item.addressSameAsTitular ? item.addressSameAsTitular : null;
 
-      return newCoverage;
+      console.log('newBeneficiary: ', newBeneficiary);
+
+      return newBeneficiary;
     } else if (itemType === 'payment') {
       // TODO: map payments table
       console.log('payment item: ', item);

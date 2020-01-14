@@ -6,4 +6,5 @@ export interface Disease {
   actualCondition: string;
   hasQuestionnaire: boolean;
   idQuestionnaire?: string;
+  fromTable: string;
 }
