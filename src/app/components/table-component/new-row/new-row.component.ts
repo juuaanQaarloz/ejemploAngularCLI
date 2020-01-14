@@ -141,6 +141,8 @@ export class NewRowComponent implements OnInit {
   mapNewItemData() {
     let newMappedItem = {};
 
+    console.log('contentTypeId: ', this.contentTypeId);
+
     if (this.itemType === 'disease') {
       newMappedItem = {
         idDisease: (this.appService.getLastItemId(this.itemType, this.contentTypeId) + 1).toString(),
