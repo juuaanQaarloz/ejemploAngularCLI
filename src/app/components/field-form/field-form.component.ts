@@ -2,7 +2,7 @@ import {AfterViewInit, Component, Input, OnInit, Output, EventEmitter} from '@an
 import {Field} from '../../models/field';
 import {FormControl, FormGroup} from '@angular/forms';
 import {SelectOption} from '../../models/select-option-interface';
-import {ApplicationService, validateAge} from '../../core/services';
+import {ApplicationService, validateAge, DateValidator} from '../../core/services';
 import {WsService} from '../../core/services/ws.service';
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -851,6 +851,29 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       }
       // console.log('this.fieldObj.valid from isValid: ', this.fieldObj.valid);
       // console.log('this.form.controls[this.fieldObj.name].valid: ', this.form.controls[this.fieldObj.name].valid);
+    }
+
+    if ( this.fieldObj.name === 'beneficiaryBirthDate' ) {
+      const validateDate = DateValidator(this.form.controls.beneficiaryBirthDate);
+      if (validateDate) {
+        this.fieldObj.valid = false;
+      } else {
+        this.fieldObj.valid = true;
+      }
+    } else if ( this.fieldObj.name === 'beneficiaryConstitutionDate' ) {
+      const validateDate = DateValidator(this.form.controls.beneficiaryConstitutionDate);
+      if (validateDate) {
+        this.fieldObj.valid = false;
+      } else {
+        this.fieldObj.valid = true;
+      }
+    } else if ( this.fieldObj.name === 'beneficiaryConstitutionDateF' ) {
+      const validateDate = DateValidator(this.form.controls.beneficiaryConstitutionDateF);
+      if (validateDate) {
+        this.fieldObj.valid = false;
+      } else {
+        this.fieldObj.valid = true;
+      }
     }
   }
 
