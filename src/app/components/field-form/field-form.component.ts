@@ -384,13 +384,13 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         const bine = Number(this.form.controls[this.fieldObj.name].value.substring(0, 6));
         if (this.form.controls[this.fieldObj.name].value.length === 16) {
           this.getDataPaymentMit(bine);
-          /*this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
+          this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
             .subscribe((results) => {
               console.log("Respuesta de mit toker ");
               console.log(results);
               console.log(results);
-              // this.getDataPaymentMit(bine);
-            });*/
+              this.getDataPaymentMit(bine);
+            });
         } else if (this.form.controls[this.fieldObj.name].value.length === 18) {
           console.log('Respuesta de bank bienes');
           this.getDataPaymentMit(bine);
