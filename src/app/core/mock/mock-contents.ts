@@ -1003,7 +1003,7 @@ export const MockContentStep14Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     styleClass: 'questions-type'
     // --------------------------
-  },
+  }/*,
   {
     id: 'content-14.21',
     idParent: 'step-14',
@@ -1153,7 +1153,7 @@ export const MockContentStep14Process1ContentSection2: Content[] = [
     // enableConditions?: 'publicFunctionQuestion=true',
     styleClass: 'modal-type'
     // --------------------------
-  }
+  }*/
   /*{
     id: 'content-14.2',
     idParent: 'step-14',
