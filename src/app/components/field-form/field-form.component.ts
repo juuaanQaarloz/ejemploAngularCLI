@@ -377,20 +377,20 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
     if (this.fieldObj.name === 'txtClabeConfir') {
       const idClabe = 'txtClabe';
-      console.log('TOKEN MIT 1 --->: ' + this.form.controls[this.fieldObj.name].value);
+      console.log('TOKEN MIT 1 --->:' + this.form.controls[this.fieldObj.name].value);
       console.log('Confirma TOKEN MIT 1 --->: ' + this.form.controls[idClabe].value);
       if (this.form.controls[idClabe].value === this.form.controls[this.fieldObj.name].value) {
         console.log('TOKEN MIT 2 --->: ' + this.form.controls[this.fieldObj.name].value);
         const bine = Number(this.form.controls[this.fieldObj.name].value.substring(0, 6));
         if (this.form.controls[this.fieldObj.name].value.length === 16) {
           this.getDataPaymentMit(bine);
-          /*this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
+          this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
             .subscribe((results) => {
-              console.log("Respuesta de mit toker ");
+              console.log('Respuesta de mit token');
               console.log(results);
               console.log(results);
-              // this.getDataPaymentMit(bine);
-            });*/
+              this.getDataPaymentMit(bine);
+            });
         } else if (this.form.controls[this.fieldObj.name].value.length === 18) {
           console.log('Respuesta de bank bienes');
           this.getDataPaymentMit(bine);
@@ -640,8 +640,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     if (this.fieldObj.name === 'salary') {
       const salary = this.form.controls.salary.value;
 
-      if ( salary ) {
-        if ( this.validateIntegerDecimals(this.form.controls.salary.value) ) {
+      if (salary) {
+        if ( this.validateIntegerDecimals(this.form.controls.salary.value)) {
           this.fieldObj.valid = true;
           valid = true;
           this.setValueField('salary', 'txtSalary', addCurrencyFormat(salary));
@@ -843,7 +843,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       if (this.autocompleteOptions.length > 0 && this.fieldObj.type === 'autocomplete') {
         const searchResult =  this.autocompleteOptions.filter(
           autoCompleteOpt => autoCompleteOpt.name === this.form.controls[this.fieldObj.name].value)[0];
-        // console.log('searchResult: ', searchResult);
         if (searchResult) {
           this.fieldObj.valid = true;
         } else {
