@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {Field} from '../../models/field';
 import {FormControl, FormGroup} from '@angular/forms';
 import {SelectOption} from '../../models/select-option-interface';
@@ -27,6 +27,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   @Input() fieldObj: Field;
   @Input() form: FormGroup;
   @Input() item?: any;
+  @Output() executeAction?: any = new EventEmitter<any>();
+
   showSelectLabel = false;
   isSelected = true;
   radioOptions = [];
@@ -380,17 +382,17 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       if (this.form.controls[idClabe].value === this.form.controls[this.fieldObj.name].value) {
         console.log('TOKEN MIT 2 --->: ' + this.form.controls[this.fieldObj.name].value);
         const bine = Number(this.form.controls[this.fieldObj.name].value.substring(0, 6));
-        if (this.form.controls[this.fieldObj.name].value.length == 16) {
+        if (this.form.controls[this.fieldObj.name].value.length === 16) {
           this.getDataPaymentMit(bine);
-          /*this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
+          this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
             .subscribe((results) => {
-              console.log("Respuesta de mit toker ");
+              console.log("Respuesta de mit token");
               console.log(results);
               console.log(results);
-              // this.getDataPaymentMit(bine);
-            });*/
-        } else if (this.form.controls[this.fieldObj.name].value.length == 18) {
-          console.log("Respuesta de bank bienes");
+              this.getDataPaymentMit(bine);
+            });
+        } else if (this.form.controls[this.fieldObj.name].value.length === 18) {
+          console.log('Respuesta de bank bienes');
           this.getDataPaymentMit(bine);
         }
       } else {
@@ -638,8 +640,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     if (this.fieldObj.name === 'salary') {
       const salary = this.form.controls.salary.value;
 
-      if ( salary ) {
-        if ( this.validateIntegerDecimals(this.form.controls.salary.value) ) {
+      if (salary) {
+        if ( this.validateIntegerDecimals(this.form.controls.salary.value)) {
           this.fieldObj.valid = true;
           valid = true;
           this.setValueField('salary', 'txtSalary', addCurrencyFormat(salary));
@@ -703,6 +705,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         }
       });
     }
+
     /*if (this.fieldObj.name === 'txtClabeConfir') {
       const idClabe = 'txtClabe';
       console.log('TOKEN MIT 11 --->: ' + this.form.controls[this.fieldObj.name]);
@@ -840,7 +843,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       if (this.autocompleteOptions.length > 0 && this.fieldObj.type === 'autocomplete') {
         const searchResult =  this.autocompleteOptions.filter(
           autoCompleteOpt => autoCompleteOpt.name === this.form.controls[this.fieldObj.name].value)[0];
-        // console.log('searchResult: ', searchResult);
         if (searchResult) {
           this.fieldObj.valid = true;
         } else {
@@ -864,8 +866,14 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   checkValue(value) {
-    const currentValue = this.form.controls[this.fieldObj.name].value;
-    const defaultValue = this.fieldObj.value;
+    let currentValue: any;
+    let defaultValue: any;
+    if ( this.form.controls[this.fieldObj.name] ) {
+      currentValue = this.form.controls[this.fieldObj.name].value;
+    }
+    if ( this.fieldObj.value ) {
+      defaultValue = this.fieldObj.value;
+    }
     let result: boolean;
     if (currentValue) {
       if (currentValue === value) {
@@ -1118,6 +1126,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
   }
 
+  onClickRadioButton(value) {
+    console.log('Entro a onClickRadioButton: ');
+    if ( this.fieldObj.name === 'beneficiaryType' ) {
+      this.executeAction.emit(value);
+    }
+  }
 }
 
 

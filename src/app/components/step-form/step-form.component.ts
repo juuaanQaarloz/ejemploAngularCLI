@@ -82,7 +82,7 @@ export class StepFormComponent implements OnInit {
     } else if (delegateOperation === 'validateStep') {
       this.validateStep();
       if (this.isValidStep) {
-        this.applicationService.submitFunction('nextStep');
+        this.applicationService.submitFunction('nextStep', this.stepObj);
         // save in JSON
         this.jsonApplicationService.saveInJsonSwagger(this.stepObj);
 

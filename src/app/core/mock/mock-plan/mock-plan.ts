@@ -108,8 +108,8 @@ export const Plan1a: Field[] = [
     maxValue: 0,
     pattern: '',
     source: 'IPRE',
-    sourceID: 'packingdos',
-    sourceStructure: ['id', 'name', 'code'],
+    sourceID: 'plan',
+    sourceStructure: ['key', 'keyValue', 'key'],
     style: '',
     styleClass: '',
     styleClassError: '',
@@ -134,6 +134,7 @@ export const Plan2: Field[] = [
     orderAppearance: 4,
     label: 'Suma Asegurada *',
     type: 'text',
+    subtype: 'currency',
     required: true,
     placeholder: '',
     length: '15',
@@ -155,7 +156,7 @@ export const Plan2: Field[] = [
     // minConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insuredCondition.aplicationPlan.pln_bsc_cvr_ini_amnt',
     value: ''
   },
   {
@@ -185,7 +186,7 @@ export const Plan2: Field[] = [
     enableConditions: '',
     requiredConditions: '(packing=TF)',
     entity: '',
-    entityField: '',
+    entityField: 'insuredCondition.aplicationPlan.pln_bsc_cvr_sv_gl',
     value: ''
   },
   {
@@ -215,7 +216,7 @@ export const Plan2: Field[] = [
     requiredConditions: '(packing=TF)',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insuredCondition.aplicationPlan.pln_bsc_cvr_yrs',
     value: ''
   }
 ];
@@ -307,7 +308,7 @@ export const Plan4: Field[] = [
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
-    enableConditions: '(currency!=usd)',
+    enableConditions: '(currency!=1)',
     entity: '',
     entityField: 'insuredCondition.aplicationPlan.pln_vr_fnd_dist',
     value: '0'
@@ -339,7 +340,7 @@ export const Plan5: Field[] = [
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
-    enableConditions: '(packing=4)',
+    enableConditions: '(packing=RE)',
     entity: '',
     entityField: 'insuredCondition.aplicationPlan.pln_fx_psnl_wthdrwl',
     value: '0'
@@ -368,7 +369,7 @@ export const Plan5: Field[] = [
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
-    enableConditions: '((currency=mxn),&,(packing=4))',
+    enableConditions: '((currency=0),&,(packing=RE))',
     entity: '',
     entityField: 'insuredCondition.aplicationPlan.pln_vr_psnl_wthdrwl',
     value: '0'
@@ -400,7 +401,7 @@ export const Plan6: Field[] = [
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
-    enableConditions: '(packing=4)',
+    enableConditions: '(packing=RE)',
     entity: '',
     entityField: 'insuredCondition.aplicationPlan.pln_fx_spcl_amnt_svgn',
     value: '0'
@@ -429,7 +430,7 @@ export const Plan6: Field[] = [
     messageError: '',
     messageErrorClass: '',
     renderConditions: '',
-    enableConditions: '((currency=mxn),&,(packing=4))',
+    enableConditions: '((currency=0),&,(packing=RE))',
     entity: '',
     entityField: 'insuredCondition.aplicationPlan.pln_vr_spcl_amnt_svgn',
     value: '0'

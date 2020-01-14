@@ -21,6 +21,7 @@ import {COVERAGES} from '../mock/coverage/coverage';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import get from 'lodash/get';
 import {BENEFICIARIES} from '../mock/mock-beneficiaries/mock-beneficiaries';
+import set = Reflect.set;
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
@@ -107,9 +108,8 @@ export class ApplicationService {
     return 'Error desde Servicio';
   }
 
-  submitFunction(type) {
+  submitFunction(type, nextSetp?) {
     // console.log(type);
-    // console.log(this.formGroup);
     if (type === 'searchOccupation') {
       this.searchModalFrom = 'contractor';
       this.openOccupationModal('modal-search');
@@ -121,8 +121,8 @@ export class ApplicationService {
     } else if (type === 'nextStep') {
       const currentStep = this.currentStepSource.getValue();
       // console.log('currentStep: ', currentStep);
-
-      let contractorType = this.formGroup.controls['contractorType'].value;
+      this.changeValue(Number(nextSetp.nextStep));
+      /*let contractorType = this.formGroup.controls['contractorType'].value;
       if (currentStep === 0) {
         this.changeValue(1);
       } else if (currentStep === 1) {
@@ -171,7 +171,7 @@ export class ApplicationService {
       } else if (currentStep === 21) {
         this.changeValue(22);
       }
-
+*/
       // // console.log('currentStep2: ', this.currentStepSource.getValue());
     } /*else if (type === 'validateStep') {
       const currentStep = this.currentStepSource.getValue(); // .getValue();
@@ -186,6 +186,11 @@ export class ApplicationService {
   }
 
   changeValue(newValue: number) {
+    console.log(newValue);
+    console.log(newValue);
+    console.log(newValue);
+    console.log(newValue);
+    console.log(newValue);
     this.currentStepSource.next(newValue);
   }
 
@@ -689,7 +694,7 @@ export class ApplicationService {
       responseMessage1 = 'No se pueden agregar más de 10 beneficiarios';
       responseMessage2 = 'La suma de las participaciones de los beneficiarios excede el 100%';
       responseMessage3 = 'El porcentaje de participacion debe de ser mayor a 0';
-      responseMessage4 = 'El nombre no puede ser igual al apellido paterno y materno';
+      responseMessage4 = 'La suma de los porcentajes de participación debe ser igual a 100%';
       responseMessage5 = 'El nombre, el apellido paterno y materno no puede ser el mismo';
 
       let name5 = updatedItem.name;
@@ -1184,8 +1189,8 @@ export class ApplicationService {
       if (!field.disable) {
         field.valid = group.controls[field.name].valid;
         if (field.valid === false) {
-          // console.log('field name: ', field.name);
-          // console.log('errors: ', group.controls[field.name].errors);
+          console.log('field name: ', field.name);
+          console.log('errors: ', group.controls[field.name].errors);
           isValid = false;
         }
       }
@@ -1228,11 +1233,34 @@ export class ApplicationService {
         isValid = true;
       }
     } else if (tableType === 'table-country') {
-      // TODO: validation for table-country
+      valueQuestion = this.formGroup.controls.taxQuestion.value;
+
+      if (valueQuestion && valueQuestion === true) {
+        if (this.countries.getValue().length === 0) {
+          isValid = false;
+          message = 'Debe agregarse al menos un país';
+        } /*else if (this.sports.getValue().length > 5) {
+          isValid = false;
+          message = 'No pueden agregarse más de 5 deportes / actividades';
+        }*/
+      } else {
+        isValid = true;
+      }
     } else if (tableType === 'table-formatwo') {
-      // TODO: validation for table-formatwo
+      valueQuestion = this.formGroup.controls.publicFunctionQuestion.value;
+      if (valueQuestion && valueQuestion === true) {
+        if (this.formatosdos.getValue().length === 0) {
+          isValid = false;
+          message = 'Debe agregarse al menos una persona';
+        } /*else if (this.sports.getValue().length > 5) {
+          isValid = false;
+          message = 'No pueden agregarse más de 5 deportes / actividades';
+        }*/
+      } else {
+        isValid = true;
+      }
     } else if (tableType === 'table-formatfour') {
-      // TODO: validation for table-formatfour
+      // TODO: validation for table-formatwob
     } else if (tableType === 'table-formatwob') {
       // TODO: validation for table-formatwob
     } else if (tableType === 'table-formathree') {
@@ -1268,33 +1296,35 @@ export class ApplicationService {
         // validate table content
         if (this.diseases.getValue().length === 0) {
           isValid = false;
-          message = 'Debe agregarse al menos un enfermedad, lesión, estudio o tratamiento';
+          message = 'En la pregunta 1 debe agregarse al menos un enfermedad, lesión, estudio o tratamiento';
         } else if (this.diseases.getValue().length > 10) {
           isValid = false;
           message = 'No pueden agregarse más de 10 enfermedad(es), lesión(es), estudio(s) o tratamiento(s)';
         }
-      } else if (valueQuestion2 && valueQuestion2 === true) {
+      }
+
+      if (valueQuestion2 && valueQuestion2 === true) {
         // console.log('valueQuestion2: ', valueQuestion2);
         // validate table content
         if (this.diseases2.getValue().length === 0) {
           isValid = false;
-          message = 'Debe agregarse al menos un enfermedad, lesión, estudio o tratamiento';
+          message = 'En la pregunta 2 debe agregarse al menos un enfermedad, lesión, estudio o tratamiento';
         } else if (this.diseases2.getValue().length > 10) {
           isValid = false;
           message = 'No pueden agregarse más de 10 enfermedad(es), lesión(es), estudio(s) o tratamiento(s)';
         }
-      } else if (valueQuestion3 && valueQuestion3 === true) {
+      }
+
+      if (valueQuestion3 && valueQuestion3 === true) {
         // console.log('valueQuestion3: ', valueQuestion3);
         // validate table content
         if (this.diseases3.getValue().length === 0) {
           isValid = false;
-          message = 'Debe agregarse al menos un enfermedad, lesión, estudio o tratamiento';
+          message = 'En la pregunta 3 debe agregarse al menos un enfermedad, lesión, estudio o tratamiento';
         } else if (this.diseases3.getValue().length > 10) {
           isValid = false;
           message = 'No pueden agregarse más de 10 enfermedad(es), lesión(es), estudio(s) o tratamiento(s)';
         }
-      } else {
-        isValid = true;
       }
       // console.log('validate table table-diseases');
 
@@ -1795,8 +1825,9 @@ export class ApplicationService {
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
     });
 
-
     console.log('appJson to passed to de save service: ', appJson);
+
+    appJson.insurer.per_job_mo_incm_amt = 25000.00;
 
     return this.httpClient.put(URL, JSON.stringify(appJson), {headers})
       .pipe(

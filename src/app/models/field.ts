@@ -5,6 +5,7 @@ export interface Field {
   label: string;
   orderAppearance: number;
   type: string;
+  subtype?: string;
   required: boolean;
   placeholder: string;
   length: string;
@@ -42,4 +43,6 @@ export interface Field {
   accept?: string;
   file?: any;
   button?: boolean;
+  dataUpload?: string;
+  additionalData?: any;
 }

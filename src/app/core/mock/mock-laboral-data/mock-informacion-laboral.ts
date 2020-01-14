@@ -128,6 +128,7 @@ export const InformacionLaboral: Field[] = [
     orderAppearance: 4,
     label: 'Ingreso mensual aproximado* (pesos)',
     type: 'text',
+    subtype: 'currency',
     required: true,
     placeholder: 'Ingreso mensual',
     length: '',
