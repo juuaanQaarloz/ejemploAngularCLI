@@ -125,7 +125,7 @@ export const statements1: Field[] = [
     legend: 'En caso de ser extranjero, o tener residencia en el extranjero, especifica las razones para contratar un ' +
       'seguro en territorio nacional.'
   }
-  ,
+  /*,
   {
     id: 'field-1603',
     idHtml: 'radioAssociationQuestion',
@@ -154,7 +154,7 @@ export const statements1: Field[] = [
     entity: '',
     entityField: 'app_own_shre_ind',
     value: ''
-  }
+  }*/
 ];
 
 export const statements2: Field[] = [

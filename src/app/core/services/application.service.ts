@@ -186,11 +186,6 @@ export class ApplicationService {
   }
 
   changeValue(newValue: number) {
-    console.log(newValue);
-    console.log(newValue);
-    console.log(newValue);
-    console.log(newValue);
-    console.log(newValue);
     this.currentStepSource.next(newValue);
   }
 
@@ -1101,6 +1096,7 @@ export class ApplicationService {
   }
 
   validateFormByStep(stepObj: Step) {
+    console.log('validateFormByStep -----> ');
     const step = this.getStepById(stepObj.id);
     let isValid = true;
     let message = '';
@@ -1108,7 +1104,6 @@ export class ApplicationService {
     if (step) {
       // validate each field individually in the step
       step.contents.forEach((contentFromStep) => {
-
         if (contentFromStep.contentType === 'looseFields') {
           // console.log('here1');
           const validateFieldArrayResult = this.validateFieldArray(contentFromStep.fields);
@@ -1153,12 +1148,10 @@ export class ApplicationService {
       });
 
       if (step.errors) { // check for validation between fields
-        // // console.log('errors: ', step.errors);
         step.errors.forEach((e) => {
           // // console.log('e: ', e);
           const result = this.getStatusError(e.errorName);
           if (result) { // if the error exists the step is not valid
-            // // console.log('result: ', result);
             isValid = false;
             // message = e.errorMsg;
             message = 'Por favor, verfique la información a continuación';
@@ -1234,7 +1227,6 @@ export class ApplicationService {
       }
     } else if (tableType === 'table-country') {
       valueQuestion = this.formGroup.controls.taxQuestion.value;
-
       if (valueQuestion && valueQuestion === true) {
         if (this.countries.getValue().length === 0) {
           isValid = false;

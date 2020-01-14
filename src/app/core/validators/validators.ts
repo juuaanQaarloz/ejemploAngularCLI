@@ -783,7 +783,7 @@ export const validateFunds: ValidatorFn = (group: FormGroup): ValidationErrors |
     variableFunds = 0;
     variableSaving = 0;
   }
-  if (packing !== '4') {
+  if (packing !== 'RE') {
      fixedRetirement = 0;
      fixedSaving = 0;
      variableRetirement = 0;
@@ -793,7 +793,7 @@ export const validateFunds: ValidatorFn = (group: FormGroup): ValidationErrors |
   if (currency === '1' || currency === '0') {
     total = Number(fixedFunds) + Number(variableFunds) + Number(fixedRetirement) +
       Number(variableRetirement) + Number(fixedSaving) + Number(variableSaving);
-    // console.log('total', Number(total));
+    // console.log('Total', Number(total));
     if (total !== 100) {
       return {invalidPlanImport: true};
     } else {
