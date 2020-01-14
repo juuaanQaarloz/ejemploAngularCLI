@@ -386,7 +386,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           this.getDataPaymentMit(bine);
           this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
             .subscribe((results) => {
-              console.log("Respuesta de mit toker ");
+              console.log("Respuesta de mit token");
               console.log(results);
               console.log(results);
               this.getDataPaymentMit(bine);
