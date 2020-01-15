@@ -20,10 +20,6 @@ import {SepomexObj} from '../../models/sepomex-obj';
 import {COVERAGES} from '../mock/coverage/coverage';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import get from 'lodash/get';
-import {BENEFICIARIES} from '../mock/mock-beneficiaries/mock-beneficiaries';
-import set = Reflect.set;
-import {createUrlResolverWithoutPackagePrefix} from '@angular/compiler';
-
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
 const URL_PATTERN_CATALOG = '../assets/catalogs/pattern-catalogs.json';
@@ -71,7 +67,7 @@ const URL_AGENTS_PROMOTORIA = '../assets/catalogs/agents-promotoria.json';
 const URL_PAYMENT_TYPE = '../assets/catalogs/payment-type.json';
 const URL_CARD_TYPE = '../assets/catalogs/card-type.json';
 const URL_CITY_TOWN = '../assets/catalogs/city-town.json';
-const URL_PLANS = '..asstes/catalgos/plans.json';
+const URL_PLANS = '../assets/catalogs/plans.json';
 
 @Injectable({
   providedIn: 'root'
@@ -376,6 +372,7 @@ export class ApplicationService {
       return this.httpClient.get(urlCatalog)
         .pipe(
           map((catalog) => {
+            console.log('catalog[id]: ', catalog[id]);
             return catalog[id];
           })
         );
@@ -1578,23 +1575,36 @@ export class ApplicationService {
   }
 
 
-  getPlanCode(currency: string, cvrType: string, pck: string) {
-    let planCode = '';
+  getPlan(currency?: string, cvrType?: string, pck?: string) {
+    let foundPlan = null;
+    currency = 'D';
+    cvrType = 'B';
+    pck = 'ED';
 
-    /*  this.getCatalogById('IPRE', ['', '', '']).subscribe((results) => {
-      console.log('results: ', results);
-    });*/
+    this.getCatalog('plans', '')
+      .pipe(
+        map((plans: any) => {
+          plans.forEach((plan) => {
+            if (plan.CURRENCY === currency) {
+              if (plan.CLAVE_COV === cvrType) {
+                if (plan.CLAVE_PM === pck) {
+                  foundPlan = plan;
+                }
+              }
+            }
+          });
 
-    // TODO: validate against catalog plan
-
-    return planCode;
+          console.log('foundPlan: ', foundPlan);
+          return foundPlan;
+        })
+    );
   }
 
   enableAdditionalCoverage(coverageName) {
     let currency = this.getFormGroup().controls.currency.value;
     let coverageType = this.getFormGroup().controls.coverageOptions.value;
     let packing = this.getFormGroup().controls.packing.value;
-    let planCode = '';
+    let plan;
     let additionalCoverages = [];
 
     if (currency) {
@@ -1610,10 +1620,11 @@ export class ApplicationService {
           console.log('after currency: ', currency);
           console.log('coverageType: ', coverageType);
           console.log('packing: ', packing);
-          planCode = this.getPlanCode(currency, coverageType, packing);
-          additionalCoverages = this.getAdditionalCvrs(planCode);
-
-          // TODO: enable each additional coverage if exists in the additionalCoverage above
+          plan = this.getPlan(currency, coverageType, packing);
+          console.log('plan: ', plan);
+          if (plan !== null) {
+            console.log('plan: ', plan);
+          }
 
         } else {
           console.log('debe seleccionarse un empaquetamiento');
@@ -1937,6 +1948,31 @@ export class ApplicationService {
       .pipe(
         map((response: ApplicationJson) => {
           console.log('RESPONSE SAVE PUT:', response);
+          return response;
+        })
+      );
+  }
+
+  saveApplication(appJson: ApplicationJson): Observable<any> {
+    const URL = AppConstants.URL_BROKER_SERVICE + '/save';
+
+    return this.httpClient.post(URL, JSON.stringify(appJson))
+      .pipe(
+        map((response) => {
+          console.log('RESPONSE SAVE SERVICE BROKER POST :', response);
+          return response;
+        })
+      );
+  }
+
+  getPDFBroker(appId: string) {
+    console.log('on getPDFBroker');
+    const URL = AppConstants.URL_BROKER_SERVICE + '/getPdf/app_id=' + appId;
+
+    return this.httpClient.get(URL)
+      .pipe(
+        map((response) => {
+          console.log('RESPONSE GET PDF SERVICE BROKER GET :', response);
           return response;
         })
       );

@@ -115,9 +115,14 @@ export class JsonApplicationService {
         set(this.appJson, 'shareHolders[1].person.Address', []);
         set(this.appJson, 'shareHolders[1].person.nationalities', []);
       }
-      this.appService.saveSolicitud(this.getAppJson()).subscribe((response: ApplicationJson) => {
+
+      /*this.appService.saveSolicitud(this.getAppJson()).subscribe((response: ApplicationJson) => {
         console.log('response: ', response);
         this.setAppJson(response);
+      });*/
+
+      this.appService.saveApplication(this.getAppJson()).subscribe((response: ApplicationJson) => {
+        console.log('response: ', response);
       });
     }
   }

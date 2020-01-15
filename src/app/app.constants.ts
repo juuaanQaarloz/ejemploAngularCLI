@@ -6,4 +6,6 @@ export class AppConstants {
   public static readonly URL_SERVICE: string = 'http://dev.des.metlife.com/despriv';
   // public static readonly URL_SERVICE_DEV: string = 'http://10.215.104.61:35741/cp-desws-priv';
   public static readonly URL_SERVICE_DEV: string = 'http://localhost:9080/cp-desws-priv';
+
+  public static readonly URL_BROKER_SERVICE: string = 'http://10.10.202.68:15440/esb/appSerPriv/api/v1/app';
 }
