@@ -122,7 +122,13 @@ export class ApplicationService {
       // // console.log('searchModalFrom B: ', this.searchModalFrom);
     } else if (type === 'nextStep') {
       const currentStep = this.currentStepSource.getValue();
-      // console.log('currentStep: ', currentStep);
+      // console.log('currentStep: ', currentStep)
+      if ( nextSetp.id === '3' && !this.formGroup.controls.contractorType.value) {
+        nextSetp.nextStep = '7';
+      } else if ( nextSetp.id === '3' && this.formGroup.controls.contractorType.value ) {
+        nextSetp.nextStep = '10';
+      }
+      console.log('Step: ', Number(nextSetp.nextStep));
       this.changeValue(Number(nextSetp.nextStep));
       /*let contractorType = this.formGroup.controls['contractorType'].value;
       if (currentStep === 0) {

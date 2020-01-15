@@ -159,7 +159,7 @@ export const MockStepsProcessContentSection2: Step[] = [
     renderConditions: '(contractorType=false,|,typePerson=morPerson)',
     requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
     previousStep: '5',
-    nextStep: '7',
+    nextStep: '10',
     /*added extra from model*/
     isCompleted: false,
     show: false

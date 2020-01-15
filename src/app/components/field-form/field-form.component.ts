@@ -617,25 +617,43 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       }
     }
 
-    // if (this.fieldObj.name === 'stateOfBirth') {
-    //   console.log('Entro a stateOfBirth');
-    //   const value = this.form.controls.stateOfBirth.value;
-    //   console.log(value);
-    //   if ( value && value !== 'OTRO' ) {
-    //     this.form.controls.espState.setValue(null);
-    //     this.form.controls.espState.reset();
-    //   }
-    // }
+    if (this.fieldObj.name === 'salaryS') {
+      const salaryS = this.form.controls.salaryS.value;
 
-    // if (this.fieldObj.name === 'city') {
-    //   console.log('Entro a city');
-    //   const value = this.form.controls.city.value;
-    //   console.log(value);
-    //   if ( value && value !== 'OTRO' ) {
-    //     this.form.controls.espCityTown.setValue(null);
-    //     this.form.controls.espCityTown.reset();
-    //   }
-    // }
+      if (salaryS) {
+        if ( this.validateIntegerDecimals(this.form.controls.salaryS.value)) {
+          this.fieldObj.valid = true;
+          valid = true;
+          this.setValueField('salaryS', 'txtSalaryS', addCurrencyFormat(salaryS));
+        } else {
+          this.fieldObj.valid = false;
+          valid = false;
+          this.form.controls.salaryS.setValue(null);
+          this.fieldObj.message = 'El Ingreso bruto mensual debe contener máximo 10 enteros y 2 decimales.';
+        }
+      } else {
+        this.fieldObj.message = 'El Ingreso bruto mensual es obligatorio.';
+      }
+    }
+
+    if (this.fieldObj.name === 'additionalSalary') {
+      const additionalSalary = this.form.controls.additionalSalary.value;
+
+      if (additionalSalary) {
+        if ( this.validateIntegerDecimals(this.form.controls.additionalSalary.value)) {
+          this.fieldObj.valid = true;
+          valid = true;
+          this.setValueField('additionalSalary', 'txtAdditionalSalary', addCurrencyFormat(additionalSalary));
+        } else {
+          this.fieldObj.valid = false;
+          valid = false;
+          this.form.controls.additionalSalary.setValue(null);
+          this.fieldObj.message = 'El ingreso mensual adicional debe contener máximo 10 enteros y 2 decimales.';
+        }
+      } else {
+        this.fieldObj.message = 'El ingreso mensual adicional es obligatorio.';
+      }
+    }
 
     if ( this.fieldObj.name === 'extremeSportsD' ) {
       this.applicationService.getCatalogById(this.fieldObj.sourceID, this.fieldObj.source).subscribe((results) => {
@@ -809,14 +827,30 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       }
 
     } else {
-      this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
-      if (this.autocompleteOptions.length > 0 && this.fieldObj.type === 'autocomplete') {
-        const searchResult =  this.autocompleteOptions.filter(
-          autoCompleteOpt => autoCompleteOpt.name === this.form.controls[this.fieldObj.name].value)[0];
-        if (searchResult) {
-          this.fieldObj.valid = true;
+      if (this.fieldObj.name === 'stateOfBirth') {
+        const value = this.form.controls.stateOfBirth.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
         } else {
           this.fieldObj.valid = false;
+        }
+      } else if (this.fieldObj.name === 'city') {
+        const value = this.form.controls.city.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      } else {
+        this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        if (this.autocompleteOptions.length > 0 && this.fieldObj.type === 'autocomplete') {
+          const searchResult =  this.autocompleteOptions.filter(
+            autoCompleteOpt => autoCompleteOpt.name === this.form.controls[this.fieldObj.name].value)[0];
+          if (searchResult) {
+            this.fieldObj.valid = true;
+          } else {
+            this.fieldObj.valid = false;
+          }
         }
       }
       // console.log('this.fieldObj.valid from isValid: ', this.fieldObj.valid);

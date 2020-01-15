@@ -125,23 +125,27 @@ export class DocumentsComponent implements OnInit {
     // console.log(typeDocField);
     this.currentItems = this.applicationService.documents.getValue();
     if ( this.fields.length > 3) {
-      this.fields.splice(index, 1);
-      this.formGroup.removeControl(actionField.name);
-      this.fields.splice(index -1, 1);
-      this.formGroup.removeControl(documentField.name);
-      this.fields.splice(index -2, 1);
-      this.formGroup.removeControl(typeDocField.name);
-      let lastChar = actionField.name.substr(actionField.name.length - 1);
-      // console.log("Last Char: ");
-      // console.log(lastChar);
-      // let indexCI = this.currentItems.findIndex((item) => {
-      //   return item.documentId === lastChar;
-      // });
-      // // console.log(indexCI);
-      // // console.log(this.currentItems[indexCI]);
-      // this.currentItems.splice(indexCI, 1);
+      console.log('DocumentId a eliminar: ', actionField);
+      console.log('DocumentId a eliminar: ', Number(actionField.idDocument));
+      const indexCI = this.currentItems.findIndex((item) => {
+        console.log('Item: ', item);
+        console.log('Item: ', Number(item.documentId));
+        console.log(item.documentId === actionField.idDocument);
+        return  Number(item.documentId) === Number(actionField.idDocument);
+      });
+      console.log(indexCI);
+      console.log(this.currentItems[indexCI]);
+      if ( indexCI !== -1 ) {
+        this.currentItems.splice(indexCI, 1);
+        this.fields.splice(index, 1);
+        this.formGroup.removeControl(actionField.name);
+        this.fields.splice(index - 1, 1);
+        this.formGroup.removeControl(documentField.name);
+        this.fields.splice(index - 2, 1);
+        this.formGroup.removeControl(typeDocField.name);
+      }
     }
-    // // console.log(this.currentItems);
+    console.log(this.currentItems);
     // console.log(this.formGroup);
     // console.log(this.formGroup);
   }
