@@ -1,0 +1,292 @@
+{
+  "catalogData": {
+    "catalogInfo": {
+      "version": "4",
+      "name": "FEDERAL_ENTITY",
+      "numColumns": 3,
+      "owner": "IPRE",
+      "status": "ACTIVO",
+      "columns": [
+        {
+          "name": "entityId",
+          "type": "VARCHAR",
+          "length": 2,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 2211,
+          "idcatalog": 30
+        },
+        {
+          "name": "entityName",
+          "type": "VARCHAR",
+          "length": 50,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 2212,
+          "idcatalog": 30
+        },
+        {
+          "name": "renapoId",
+          "type": "VARCHAR",
+          "length": 3,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 2213,
+          "idcatalog": 30
+        }
+      ],
+      "id": 30
+    },
+    "extension": {
+      "variations": [
+        {
+          "rowID": 1,
+          "entityId": "01",
+          "entityName": "AGUASCALIENTES",
+          "renapoId": "AS",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 2,
+          "entityId": "02",
+          "entityName": "BAJA CALIFORNIA",
+          "renapoId": "BC",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 3,
+          "entityId": "03",
+          "entityName": "BAJA CALIFORNIA SUR",
+          "renapoId": "BS",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 4,
+          "entityId": "04",
+          "entityName": "CAMPECHE",
+          "renapoId": "CC",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 5,
+          "entityId": "05",
+          "entityName": "COAHUILA",
+          "renapoId": "CL",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 6,
+          "entityId": "06",
+          "entityName": "COLIMA",
+          "renapoId": "CM",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 7,
+          "entityId": "07",
+          "entityName": "CHIAPAS",
+          "renapoId": "CS",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 8,
+          "entityId": "08",
+          "entityName": "CHIHUAHUA",
+          "renapoId": "CH",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 9,
+          "entityId": "09",
+          "entityName": "CIUDAD DE MEXICO",
+          "renapoId": "DF",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 10,
+          "entityId": "10",
+          "entityName": "DURANGO",
+          "renapoId": "DG",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 11,
+          "entityId": "11",
+          "entityName": "GUANAJUATO",
+          "renapoId": "GT",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 12,
+          "entityId": "12",
+          "entityName": "GUERRERO",
+          "renapoId": "GR",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 13,
+          "entityId": "13",
+          "entityName": "HIDALGO",
+          "renapoId": "HG",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 14,
+          "entityId": "14",
+          "entityName": "JALISCO",
+          "renapoId": "JC",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 15,
+          "entityId": "15",
+          "entityName": "ESTADO DE MEXICO",
+          "renapoId": "MC",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 16,
+          "entityId": "16",
+          "entityName": "MICHOACAN",
+          "renapoId": "MN",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 17,
+          "entityId": "17",
+          "entityName": "MORELOS",
+          "renapoId": "MS",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 18,
+          "entityId": "18",
+          "entityName": "NAYARIT",
+          "renapoId": "NT",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 19,
+          "entityId": "19",
+          "entityName": "NUEVO LEON",
+          "renapoId": "NL",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 20,
+          "entityId": "20",
+          "entityName": "OAXACA",
+          "renapoId": "OC",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 21,
+          "entityId": "21",
+          "entityName": "PUEBLA",
+          "renapoId": "PL",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 22,
+          "entityId": "22",
+          "entityName": "QUERETARO",
+          "renapoId": "QT",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 23,
+          "entityId": "23",
+          "entityName": "QUINTANA ROO",
+          "renapoId": "QR",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 24,
+          "entityId": "24",
+          "entityName": "SAN LUIS POTOSI",
+          "renapoId": "SP",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 25,
+          "entityId": "25",
+          "entityName": "SINALOA",
+          "renapoId": "SL",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 26,
+          "entityId": "26",
+          "entityName": "SONORA",
+          "renapoId": "SR",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 27,
+          "entityId": "27",
+          "entityName": "TABASCO",
+          "renapoId": "TC",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 28,
+          "entityId": "28",
+          "entityName": "TAMAULIPAS",
+          "renapoId": "TS",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 29,
+          "entityId": "29",
+          "entityName": "TLAXCALA",
+          "renapoId": "TL",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 30,
+          "entityId": "30",
+          "entityName": "VERACRUZ",
+          "renapoId": "VZ",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 31,
+          "entityId": "31",
+          "entityName": "YUCATAN",
+          "renapoId": "YN",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 32,
+          "entityId": "32",
+          "entityName": "ZACATECAS",
+          "renapoId": "ZS",
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 34,
+          "entityId": "98",
+          "entityName": "DEFAULT SLIM",
+          "renapoId": "NE",
+          "locale": "es-MX"
+        }
+      ]
+    },
+    "metadata": {
+      "recordCount": 34,
+      "offset": 3135006
+    }
+  },
+  "link": {
+    "link": null
+  }
+}

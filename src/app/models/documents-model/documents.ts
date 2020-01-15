@@ -3,4 +3,5 @@ export interface Documents {
   docName: string;
   docExt: string;
   docType: string;
+  doc: any;
 }

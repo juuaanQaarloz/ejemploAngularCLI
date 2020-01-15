@@ -11,7 +11,7 @@
     <div data-forms="floating-label" class="ml-form"
          [ngClass]="content.styleClass">
       <div *ngFor="let field of fields; last as isLastColumn; index as index;">
-        <app-field-form [fieldObj]="field" [form]="formGroup" style="text-align: center"></app-field-form>
+        <app-field-form [fieldObj]="field" [form]="formGroup" style="text-align: center" (executeAction)="updateDocument($event);"></app-field-form>
 
         <div style="text-align: center">
           <div>

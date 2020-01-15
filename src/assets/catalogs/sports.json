@@ -97,17 +97,6 @@
     "extension": {
       "variations": [
         {
-          "rowID": 1,
-          "sportId": "0",
-          "auraId": "510979231",
-          "name": "No está en la lista",
-          "alias": "No está en la lista",
-          "product": "META",
-          "lineBussines": "PRIVADO",
-          "company": null,
-          "locale": "es-MX"
-        },
-        {
           "rowID": 2,
           "sportId": "1",
           "auraId": "18596751",

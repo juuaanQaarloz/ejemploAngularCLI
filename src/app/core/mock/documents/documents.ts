@@ -30,7 +30,8 @@ export const NewDocumentField: Field[] = [
     requiredConditions: '',
     entity: '',
     entityField: 'documents.doc_typ_cd',
-    value: ''
+    value: '',
+    idDocument: 1
   },
   {
     id: 'field-179',
@@ -61,7 +62,8 @@ export const NewDocumentField: Field[] = [
     requiredConditions: '',
     entity: '',
     entityField: '',
-    value: ''
+    value: '',
+    idDocument: 1
   },
   {
     id: 'field-180',
@@ -93,7 +95,8 @@ export const NewDocumentField: Field[] = [
     entity: '',
     entityField: '',
     value: '',
-    button: true
+    button: true,
+    idDocument: 1
   }
 ];
 
