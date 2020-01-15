@@ -71,6 +71,7 @@ const URL_AGENTS_PROMOTORIA = '../assets/catalogs/agents-promotoria.json';
 const URL_PAYMENT_TYPE = '../assets/catalogs/payment-type.json';
 const URL_CARD_TYPE = '../assets/catalogs/card-type.json';
 const URL_CITY_TOWN = '../assets/catalogs/city-town.json';
+const URL_PLANS = '..asstes/catalgos/plans.json';
 
 @Injectable({
   providedIn: 'root'
@@ -924,7 +925,7 @@ export class ApplicationService {
       this.payments.next(newItems);
     } else if (itemType === 'document') {
       this.documents.next(newItems);
-      console.log(this.documents);
+      // console.log(this.documents);
     }
   }
 
@@ -1576,8 +1577,13 @@ export class ApplicationService {
     return additionaCvrs;
   }
 
+
   getPlanCode(currency: string, cvrType: string, pck: string) {
     let planCode = '';
+
+    /*  this.getCatalogById('IPRE', ['', '', '']).subscribe((results) => {
+      console.log('results: ', results);
+    });*/
 
     // TODO: validate against catalog plan
 
@@ -1867,6 +1873,8 @@ export class ApplicationService {
       case 'cityTown':
         urlCatalog = URL_CITY_TOWN;
         break;
+      case 'plans':
+        urlCatalog = URL_PLANS;
     }
     return this.httpClient.get(urlCatalog)
       .pipe(
@@ -1924,8 +1932,6 @@ export class ApplicationService {
     });
 
     console.log('appJson to passed to de save service: ', appJson);
-
-    appJson.insurer.per_job_mo_incm_amt = 25000.00;
 
     return this.httpClient.put(URL, JSON.stringify(appJson), {headers})
       .pipe(
