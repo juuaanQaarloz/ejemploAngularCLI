@@ -89,7 +89,8 @@ export const Plan1: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: ''
+    entityField: '',
+    detonateFunction: 'enableAdditionalCoverage'
   },
 
 ];

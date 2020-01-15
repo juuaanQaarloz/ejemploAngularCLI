@@ -28,7 +28,8 @@ export const CoverageFieldsItem: Field[] = [
     enableConditions: '(ageS>=18,&,ageS<=55)',
     entity: '',
     entityField: '',
-    value: false
+    value: false,
+    // disable: true
   }, {
     id: 'field-90002',
     idHtml: 'check1Pasi',
@@ -55,7 +56,8 @@ export const CoverageFieldsItem: Field[] = [
     enableConditions: '(ageS>=18,&,ageS<=55)',
     entity: '',
     entityField: '',
-    value: false
+    value: false,
+    // disable: true
   },
   {
     id: 'field-90003',
@@ -85,7 +87,8 @@ export const CoverageFieldsItem: Field[] = [
     entity: '',
     entityField: '',
     value: false,
-    detonateFunctionParams: 'imapo,dimapo'
+    detonateFunctionParams: 'imapo,dimapo',
+    // disable: true
   },
   {
     id: 'field-90004',
@@ -115,7 +118,8 @@ export const CoverageFieldsItem: Field[] = [
     entity: '',
     entityField: '',
     value: false,
-    detonateFunctionParams: 'ima,dimapo'
+    detonateFunctionParams: 'ima,dimapo',
+    // disable: true
   },
   {
     id: 'field-90005',
@@ -145,7 +149,8 @@ export const CoverageFieldsItem: Field[] = [
     entity: '',
     entityField: '',
     value: false,
-    detonateFunctionParams: 'ima,imapo'
+    detonateFunctionParams: 'ima,imapo',
+    // disable: true
   },
   {
     id: 'field-90007',
@@ -173,7 +178,8 @@ export const CoverageFieldsItem: Field[] = [
     enableConditions: '(ageS>=20,&,ageS<=60)',
     entity: '',
     entityField: '',
-    value: false
+    value: false,
+    // disable: true
   },
   {
     id: 'field-90008',
@@ -202,66 +208,8 @@ export const CoverageFieldsItem: Field[] = [
     entity: '',
     entityField: '',
     value: true,
+    // disable: true
   }
-  /*
-{
-  id: 'field-10004',
-  idHtml: 'txtCostdImport',
-  name: 'costImport',
-  orderAppearance: 4,
-  label: '',
-  type: 'text',
-  required: false,
-  placeholder: '',
-  length: '',
-  minValue: 0,
-  maxValue: 40,
-  pattern: '',
-  source: '',
-  sourceID: '',
-  style: '',
-  styleClass: '',
-  styleClassError: '',
-  message: '',
-  messageClass: '',
-  messageError: '',
-  messageErrorClass: '',
-  renderConditions: '',
-  enableConditions: '',
-  entity: '',
-  entityField: '',
-  value: '',
-  disable: true
-},
-{
-  id: 'field-10005',
-  idHtml: 'txtDetail',
-  name: 'detail',
-  orderAppearance: 5,
-  label: '',
-  type: 'text',
-  required: false,
-  placeholder: '',
-  length: '',
-  minValue: 0,
-  maxValue: 40,
-  pattern: '',
-  source: '',
-  sourceID: '',
-  style: '',
-  styleClass: '',
-  styleClassError: '',
-  message: '',
-  messageClass: '',
-  messageError: '',
-  messageErrorClass: '',
-  renderConditions: '',
-  enableConditions: '',
-  entity: '',
-  entityField: '',
-  value: '',
-  disable: true
-}, */
 ];
 
 

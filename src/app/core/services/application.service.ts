@@ -1,7 +1,7 @@
 import {AppConstants} from 'src/app/app.constants';
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';
@@ -22,6 +22,7 @@ import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import get from 'lodash/get';
 import {BENEFICIARIES} from '../mock/mock-beneficiaries/mock-beneficiaries';
 import set = Reflect.set;
+import {createUrlResolverWithoutPackagePrefix} from '@angular/compiler';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
@@ -76,8 +77,8 @@ const URL_CITY_TOWN = '../assets/catalogs/city-town.json';
 export class ApplicationService {
   private currentStepSource = new BehaviorSubject(1);
   currentValue = this.currentStepSource.asObservable();
-  beneficiaries = new BehaviorSubject(BENEFICIARIES); // uncomment only for test
-  // beneficiaries = new BehaviorSubject([]);
+  // beneficiaries = new BehaviorSubject(BENEFICIARIES); // uncomment only for test
+  beneficiaries = new BehaviorSubject([]);
   agents = new BehaviorSubject([]);
   sports = new BehaviorSubject([]);
   diseases = new BehaviorSubject([]);
@@ -95,13 +96,11 @@ export class ApplicationService {
   formGroup: FormGroup;
   searchModalFrom: string;
   applicationObj;
-  applicationJSON: ApplicationJson;
 
   contador = 0;
 
   constructor(private httpClient: HttpClient,
               private modalService: ModalService) {
-    // localStorage.setItem( 'userId', '1');
   }
 
   getErrorMsg() {
@@ -1514,6 +1513,58 @@ export class ApplicationService {
     } else {
       // // console.log('else 2');
       return null;
+    }
+  }
+
+  getAdditionalCvrs(planCode) {
+    let additionaCvrs = [];
+
+    // TODO: search the additionalsCvrs in catalog
+
+    return additionaCvrs;
+  }
+
+  getPlanCode(currency: string, cvrType: string, pck: string) {
+    let planCode = '';
+
+    // TODO: validate against catalog plan
+
+    return planCode;
+  }
+
+  enableAdditionalCoverage(coverageName) {
+    let currency = this.getFormGroup().controls.currency.value;
+    let coverageType = this.getFormGroup().controls.coverageOptions.value;
+    let packing = this.getFormGroup().controls.packing.value;
+    let planCode = '';
+    let additionalCoverages = [];
+
+    if (currency) {
+      if (coverageType) {
+        if (packing) {
+          console.log('before currency: ', currency);
+          if (currency === '0') {
+            currency = 'P';
+          } else if (currency === '1') {
+            currency = 'D';
+          }
+
+          console.log('after currency: ', currency);
+          console.log('coverageType: ', coverageType);
+          console.log('packing: ', packing);
+          planCode = this.getPlanCode(currency, coverageType, packing);
+          additionalCoverages = this.getAdditionalCvrs(planCode);
+
+          // TODO: enable each additional coverage if exists in the additionalCoverage above
+
+        } else {
+          console.log('debe seleccionarse un empaquetamiento');
+        }
+      } else {
+        console.log('debe seleccionarse un tipo de covertura');
+      }
+    } else {
+      console.log('debe seleccionarse un tipo de moneda');
     }
   }
 

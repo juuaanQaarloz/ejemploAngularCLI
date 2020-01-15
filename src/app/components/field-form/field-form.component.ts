@@ -142,84 +142,24 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
       dependedFields.forEach((dependedField) => {
         this.form.controls[dependedField].valueChanges.subscribe((value) => {
-          /*// console.log('value: ', value);
-          // console.log('type of value: ', typeof value);
-          // console.log('length value: ', value.length);*/
-
           if (value !== '') {
-            // console.log('onValueChanges of ', dependedField);
-            // console.log('field name control: ', this.fieldObj.name);
             const resEval = this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form);
-            // console.log('resEval: ', resEval);
 
             if (resEval) {
-              // console.log('here true');
               this.form.controls[this.fieldObj.name].enable();
               this.fieldObj.disable = false;
               status = this.checkState();
 
             } else {
-              // console.log('here false');
               this.form.controls[this.fieldObj.name].disable();
               this.fieldObj.disable = true;
               status = this.checkState();
 
             }
           }
-          /*this.disable = this.checkState2(this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form));
-          // console.log('disable2: ', this.disable);
-          // console.log('this.fieldObj.name: ', this.fieldObj.name);
-          if (this.disable === true) {
-            this.form.controls[this.fieldObj.name].disable();
-          } else {
-            this.form.controls[this.fieldObj.name].enable();
-          }*/
         });
       });
     }
-
-    /*if (this.fieldObj.detonateFunctionParams) {
-      // console.log('onDetonateFunctionParams');
-      if (this.fieldObj.value) {
-        // console.log('this.fieldObj.value: ', this.fieldObj.value);
-        // this.applicationService.evaluateCoverageBehaviour(this.fieldObj.detonateFunctionParams, this.fieldObj.value);
-      }
-      this.form.controls[this.fieldObj.name].valueChanges.subscribe((value => {
-        // console.log('onValueChanges of: ', this.fieldObj.name);
-        // console.log('value: ', value);
-        this.applicationService.evaluateCoverageBehaviour(this.fieldObj.detonateFunctionParams, value);
-      }));
-    }*/
-
-    /*if (this.fieldObj.enableConditions) {
-      // console.log('onEnableConditions...');
-
-      const dependedFields = this.applicationService.getDependedFields(this.fieldObj.enableConditions);
-      // console.log('dependedFields: ', dependedFields);
-
-      const result = this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form);
-      // console.log('result: ', result);
-      if (result) {
-        this.form.controls[this.fieldObj.name].disable();
-      } else {
-        this.form.controls[this.fieldObj.name].enable();
-      }
-      this.disable = this.checkState();
-      // console.log('disable: ', this.disable);
-
-      dependedFields.forEach((dependedField) => {
-        this.form.controls[dependedField].valueChanges.subscribe((value) => {
-          const result2 = this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form);
-          // // console.log('result2: ', result2);
-          if (result2) {
-            this.form.controls[this.fieldObj.name].disable();
-          } else {
-            this.form.controls[this.fieldObj.name].enable();
-          }
-          this.disable = this.checkState();
-        });
-      });
-    }*/
 
     if (this.fieldObj.name === 'age' || this.fieldObj.name === 'ageS') {
       this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
@@ -253,9 +193,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
             this.regExpPattern = stringToRegExp(this.fieldObj.pattern);
           }
         });
-      // this.regExpPattern = stringToRegExp(this.fieldObj.pattern);
-      // this.regExpPattern = this.fieldObj.pattern;
-      // // console.log('regExpPattern: ', this.regExpPattern);
     }
 
     if (this.fieldObj.noAllowedCharactersPattern) {
@@ -264,29 +201,17 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       // // console.log('regExpPattern: ', this.regExpPattern);
     }
 
-    /*if (this.fieldObj.detonateFunction) {
+    this.contadorDoc = 0;
+
+    if (this.fieldObj.detonateFunction) {
+      console.log('detonateFunction: ', this.fieldObj.detonateFunction);
       this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
-        // // console.log('detonateFunction: ', this.fieldObj.detonateFunction);
-        // // console.log('itemFromFieldComponent: ', this.item);
-        if (this.fieldObj.detonateFunction === 'updateItem') {
-          this.item.participationPercentage = value;
-          const result = this.applicationService.updateItem(this.item, 'beneficiary');
-          // // console.log('result: ', result);
-          if (!result.status) {
-            this.fieldObj.valid = false;
-            this.fieldObj.message = '';
-          }
+        console.log('value: ', value);
+        if (this.fieldObj.detonateFunction === 'enableAdditionalCoverage') {
+          this.applicationService.enableAdditionalCoverage('');
         }
       });
-    }*/
-
-    /*this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
-      // console.log('onValueChanges...');
-      // console.log('formGroup: ', this.form);
-      // console.log('formControlName: ', this.fieldObj.name);
-      // console.log('value: ',  value);
-    });*/
-    this.contadorDoc = 0;
+    }
   }
 
   ngAfterViewInit() {
@@ -310,12 +235,22 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onCheckboxChange() {
-    // console.log('onCheckboxChange...');
+    console.log('onCheckboxChange...');
     if (this.fieldObj.detonateFunctionParams) {
       this.applicationService.evaluateCoverageBehaviour(
         this.fieldObj.detonateFunctionParams,
         this.form.controls[this.fieldObj.name].value);
     }
+
+
+    let value = this.form.controls[this.fieldObj.name].value;
+    console.log('value: ', value);
+    if (value === true) {
+      // add to coverages array
+    } else if (value === false) {
+      // remove from coverages array
+    }
+
   }
 
 

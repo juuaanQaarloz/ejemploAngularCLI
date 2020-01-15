@@ -15,8 +15,6 @@ import {BankAccount} from '../../models/applicationJson/bankJson/bankAccount';
 import {DiseaseJson} from '../../models/applicationJson/diseaseJson';
 import {ForeignCountryTaxJson} from '../../models/applicationJson/foreignCountryTaxJson';
 import {QuesList} from '../../models/applicationJson/questionaryJson/quesList';
-import {Cvr} from '../../models/applicationJson/coverageJson/cvr';
-
 
 @Injectable({
   providedIn: 'root'
@@ -133,7 +131,7 @@ export class JsonApplicationService {
         console.log(' beneficiaries: ', items);
         items.forEach((beneficiary, i) => {
           console.log('beneficiary: ', beneficiary);
-          set(this.appJson, `insuredCondition.aplicationPlan.beneciciary[${i}]`, this.mapItem('beneficiary', beneficiary, i));
+          set(this.appJson, `insuredCondition.beneciciary[${i}]`, this.mapItem('beneficiary', beneficiary, i));
         });
       }
     } else if (tableType === 'table-agent') {
