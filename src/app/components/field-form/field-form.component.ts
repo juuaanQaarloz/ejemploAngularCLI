@@ -446,10 +446,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     // console.log('event: ', event.target.files);
     // console.log('Target: ', event);
 
-    let fileList: FileList = event.target.files;
+    const fileList: FileList = event.target.files;
 
     if (fileList.length > 0) {
-      let fileSelected: File = fileList[0];
+      const fileSelected: File = fileList[0];
       // console.log('File selected: ', fileSelected);
       this.fileName = fileSelected.name;
       // console.log(this.fileName);
@@ -475,30 +475,56 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       }
       // console.log('Tamaño valido: ', tamanioValido);
       // let file = null;
-      if (contador == 0 || !tamanioValido) {
+      if (contador === 0 || !tamanioValido) {
         // console.log('1');
         this.form.controls[this.fieldObj.name].reset();
         this.fileName = '';
         this.fieldObj.message = 'Formatos aceptados: ' + this.fieldObj.accept + '. \r\n El tamaño maximo son 5Mb.';
         this.fieldObj.file = null;
+
+        // Update Document
+        if ( this.fieldObj.name.indexOf('fileDocument') > -1 && this.form.controls[this.fieldObj.name] ) {
+          const field = {
+            name: this.fieldObj.name,
+            docName: null,
+            docExt: null,
+            docType: null,
+            doc: null,
+            documentId: this.fieldObj.idDocument
+          };
+          this.executeAction.emit(field);
+        }
       } else {
         // console.log('2');
         this.fieldObj.message = '';
         this.fieldObj.file = fileSelected;
 
-        // COnvertir a base 64
+        // Update Document
+        if ( this.fieldObj.name.indexOf('fileDocument') > -1 && this.form.controls[this.fieldObj.name] ) {
+          const field = {
+            name: this.fieldObj.name,
+            docName: this.fileName,
+            docExt: extensionArchivo,
+            docType: fileSelected.type,
+            doc: fileSelected,
+            documentId: this.fieldObj.idDocument
+          };
+          this.executeAction.emit(field);
+        }
+
+        // Convert to base64
         // file = this.getBase64(fileSelected).then(
         //   data => // console.log(data)
         // );
 
-        let date = new Date();
-        let milliseconds = new Date().getMilliseconds();
+        const date = new Date();
+        const milliseconds = new Date().getMilliseconds();
         // console.log('Date: ');
         // console.log(date);
         // console.log(date.toLocaleString());
         // console.log(milliseconds);
 
-        let filenetSkeletonRequest={
+        const filenetSkeletonRequest = {
           "name": milliseconds + '_' + fileSelected.name,
           "categoryCode": "APPLICATION",
           "typeCode": "EOB",
@@ -528,7 +554,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           }
         };
         //
-        let fd = new FormData();
+        const fd = new FormData();
         fd.append('file', fileSelected);
         fd.append('fileExtension', extensionArchivo);
         fd.append('filenetDocument', JSON.stringify(filenetSkeletonRequest));
@@ -766,6 +792,15 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (event.target.id === 'slctPacking1') {
       this.form.controls.packing.setValue(event.target.value);
+    }
+
+    if ( this.fieldObj.name.indexOf('typeDocument') > -1 && this.form.controls[this.fieldObj.name] ) {
+      const field = {
+        value: this.form.controls[this.fieldObj.name].value,
+        name: this.fieldObj.name,
+        documentId: this.fieldObj.idDocument
+      };
+        this.executeAction.emit(field);
     }
   }
 

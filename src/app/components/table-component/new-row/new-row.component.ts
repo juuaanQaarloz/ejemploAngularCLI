@@ -85,13 +85,14 @@ export class NewRowComponent implements OnInit {
 
   addNewItem() {
     let formStatus = this.getFormStatus();
-
-    Object.keys(this.formGroup.controls).forEach((formControl) =>{
+    let contador = 0;
+    let valueExtremeSport;
+    Object.keys(this.formGroup.controls).forEach((formControl) => {
       if ( formControl === 'extremeSportsD' ) {
-        const value = this.formGroup.controls[formControl].value;
-        if ( value ) {
+        valueExtremeSport = this.formGroup.controls[formControl].value;
+        if ( valueExtremeSport ) {
           this.appService.getCatalogById('sports', 'IPRE').subscribe((results) => {
-            const index = results.findIndex((i) => i['alias'] === value);
+            const index = results.findIndex((i) => i['alias'] === valueExtremeSport);
             if ( index !== -1 ) {
               formStatus = 'VALID';
             } else {
@@ -101,7 +102,9 @@ export class NewRowComponent implements OnInit {
         } else {
           formStatus = 'INVALID';
         }
-      } else if ( formControl === 'describeDiseasesD' ) {
+      }
+
+      if ( formControl === 'describeDiseasesD' ) {
         const value = this.formGroup.controls[formControl].value;
         if ( value ) {
           this.appService.getCatalogById('diseases', 'IPRE').subscribe((results) => {
@@ -116,9 +119,25 @@ export class NewRowComponent implements OnInit {
           formStatus = 'INVALID';
         }
       }
+      if ( formControl === 'periodicityD' ) {
+        const value = this.formGroup.controls[formControl].value;
+        if ( !value ) {
+          contador++;
+        }
+      }
+      if ( formControl === 'otherActivityD' && valueExtremeSport === 'OTRO') {
+        const value = this.formGroup.controls[formControl].value;
+        if ( !value ) {
+          contador++;
+        }
+      }
     });
     const prueba = this;
-    setTimeout(function() {
+    setTimeout(() => {
+      console.log('Contador: ', contador);
+      if ( contador > 0 ) {
+        formStatus = 'INVALID';
+      }
       console.log(formStatus);
       console.log(formStatus);
       console.log(formStatus);

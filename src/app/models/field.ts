@@ -45,4 +45,5 @@ export interface Field {
   button?: boolean;
   dataUpload?: string;
   additionalData?: any;
+  idDocument?: any;
 }

@@ -191,7 +191,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     maxValue: 40,
     pattern: '',
     source: 'IPRE',
-    sourceID: 'federalEntity',
+    sourceID: 'federalEntityCopy',
     sourceStructure: ['entityId', 'entityName', 'entityId'],
     style: '',
     styleClass: '',

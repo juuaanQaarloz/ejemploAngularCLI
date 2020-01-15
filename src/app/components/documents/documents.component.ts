@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ApplicationService} from '../../../app/core/services';
-import {NewDocumentField} from "../../core/mock/documents/documents";
-import {FormatwoOperations} from "../../core/mock/mock-operations";
-import {FormGroup, FormControl, Validators} from "@angular/forms";
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { WsService } from "../../core/services/ws.service";
-import {AppConstants} from "../../app.constants";
+import {NewDocumentField} from '../../core/mock/documents/documents';
+import {FormatwoOperations} from '../../core/mock/mock-operations';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
+import {WsService} from '../../core/services/ws.service';
 
 @Component({
   selector: 'app-documents',
@@ -26,7 +25,7 @@ export class DocumentsComponent implements OnInit {
     contentType: 'looseFields'
   };
 
-  //Variables
+  // Variables
   title: string;
   columnsNames: any[];
   style: string;
@@ -59,12 +58,12 @@ export class DocumentsComponent implements OnInit {
     // console.log('Document-fields', this.fields);
 
     const newDocument = this.mapNewDocumentBase();
-    // const response = this.applicationService.addItem(newDocument, 'document');
-    // this.currentItems = this.applicationService.documents.getValue();
+    const response = this.applicationService.addItem(newDocument, 'document');
+    this.currentItems = this.applicationService.documents.getValue();
   }
 
   getFields() {
-    let fields = [];
+    const fields = [];
     NewDocumentField.forEach((field) => {
       fields.push(field);
     });
@@ -76,8 +75,8 @@ export class DocumentsComponent implements OnInit {
     // console.log('addNewDocument-component ');
     // console.log('formGroup: ', this.formGroup);
     // console.log('formGroup value: ', this.formGroup.value);
-    // const newDocument = this.mapNewDocumentBase();
-    // const response = this.applicationService.addItem(newDocument, 'document');
+    const newDocument = this.mapNewDocumentBase();
+    const response = this.applicationService.addItem(newDocument, 'document');
 
     this.fieldsCopy = JSON.parse(JSON.stringify(this.getFields()));
     // console.log('Fields value: ', this.fields);
@@ -91,11 +90,12 @@ export class DocumentsComponent implements OnInit {
       const validators = [ Validators.required ];
       this.fieldsCopy.forEach((field) => {
         // console.log(field.name);
-        if ( field.name == 'fileDocument' ) {
+        if ( field.name === 'fileDocument' ) {
           field.message = '';
         }
         field.name = field.name + this.contador;
         field.idHtml = field.idHtml + this.contador;
+        field.idDocument = this.contador + 1;
         this.formGroup.addControl(field.name, new FormControl('', validators));
         this.fields.push(field);
       });
@@ -123,7 +123,7 @@ export class DocumentsComponent implements OnInit {
     // console.log(actionField);
     // console.log(documentField);
     // console.log(typeDocField);
-    // this.currentItems = this.applicationService.documents.getValue();
+    this.currentItems = this.applicationService.documents.getValue();
     if ( this.fields.length > 3) {
       this.fields.splice(index, 1);
       this.formGroup.removeControl(actionField.name);
@@ -158,7 +158,7 @@ export class DocumentsComponent implements OnInit {
     // const url = window.URL.createObjectURL(blob);
     // window.open(url);
 
-    var link = document.createElement('a');
+    const link = document.createElement('a');
     link.href = window.URL.createObjectURL(blob);
     link.download = field.file.name;
     link.click();
@@ -168,7 +168,7 @@ export class DocumentsComponent implements OnInit {
     // console.log('Entro a downloadZip de documents.component');
     // console.log(this.fields);
 
-    let ficheros = [];
+    const ficheros = [];
     this.fields.forEach( field => {
       if ( field.type === 'file' && field.file ) {
         ficheros.push(field.file);
@@ -180,7 +180,7 @@ export class DocumentsComponent implements OnInit {
 
     if ( ficheros.length > 0 ) {
 
-      let fd = new FormData();
+      const fd = new FormData();
       for (let i = 0; i < ficheros.length; i++) {
         fd.append('files', ficheros[i]);
       }
@@ -190,13 +190,13 @@ export class DocumentsComponent implements OnInit {
           // console.log('Res: ');
           // console.log(res);
 
-          let url = res.fileUrl + res.fileName;
+          const url = res.fileUrl + res.fileName;
 
           this.wsService.downloadZip(url).subscribe(result => {
               const blob = new Blob([result], {
                 type: 'application/zip'
               });
-              const urlDownload = window.URL.createObjectURL(blob,);
+              const urlDownload = window.URL.createObjectURL(blob);
               // console.log(urlDownload);
               window.open(urlDownload);
 
@@ -227,7 +227,7 @@ export class DocumentsComponent implements OnInit {
   probarToken() {
     // console.log('Entro a probarToken de documents.component');
     // let token = 'aV0Xhgd8a_Yg_7e4n1DVU7LIq8QY5eMwJLXkXOBRTlDbgdEJGHoZ5j_IGGXndQa0scUXOOzUglJYeDkT9H5ECTlH6ewymv5IwS456bQoipIPnThfwwVjt5Kjwh-BAWhR3NQruiXcBYohvRaPsR4CDrFE5CGRJZ-m72vhHUGvjOaCnCBrTHwZ8sTx5udeJTYTDKduCExq3_1iduiAWTV7vZrc9BWRVMbriYF1SIqkcyCpp9SFS_X5cJIloellf_kTSPl5C2GU6EQ5ULfMoP9xCFR4e58ZupOanPP_jLRyMaalvYPWAwcdkGRBiDn9KJgw-XX3usLDJPBK7fXhvb-716fIM598QWroe2FgjvB91z6R7A02AUr7STGew5OfOM-dOI9a0UCUD-vCQMlcqdg4P5juQnsjkPRnZnT4bLFVHR7dMbeqiMiaq8Fi2vwvdsWRphfgfm0aDFJcJ5JjqhjVvgRwnTHMXtAZta0WH2ylvDUYQ1JFck7LPLM5Ks2cSoCTBIhppBAmFb26z00XB7cCiIRlTi_bId6Unr75UxrEL-or0HFO-yNCtUe8FEKbqYY-v-LiY2iRnu7OmgSn0xDc5TR3BOY.PQtnZndCt47gqfR79V8OeQ';
-    let token = '4766841049392466';
+    const token = '4766841049392466';
     this.wsService.validateMitToken(token).subscribe(result => {
         // console.log('Result: ');
         // console.log(result);
@@ -236,6 +236,30 @@ export class DocumentsComponent implements OnInit {
         // console.log("Error: ");
         // console.log(err);
       });
+  }
+
+  updateDocument(field) {
+    const updatedDocument = this.mapDocumentData(field);
+    const response = this.applicationService.updateItem(updatedDocument, 'document');
+  }
+
+  mapDocumentData(field) {
+    if ( field.name.indexOf('typeDocument') > -1 ) {
+      return {
+        documentId: field.documentId,
+        docId: field.value,
+        fieldName: field.name
+      };
+    } else if ( field.name.indexOf('fileDocument') > -1 ) {
+      return {
+        documentId: field.documentId,
+        docName: field.docName,
+        docExt: field.docExt,
+        docType: field.docType,
+        doc: field.doc,
+        fieldName: field.name
+      };
+    }
   }
 
 }

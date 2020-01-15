@@ -37,6 +37,7 @@ const URL_CAT_CONCEPT_RET = '../assets/catalogs/concepto-ret.json';
 const URL_CAT_COUNTRY = '../assets/catalogs/country.json';
 const URL_CAT_ENGINE_VARIABLE = '../assets/catalogs/engine-variables.json';
 const URL_CAT_FEDERAL_ENTITY = '../assets/catalogs/federal-entity.json';
+const URL_CAT_FEDERAL_ENTITY_COPY = '../assets/catalogs/federal-entity-copy.json';
 const URL_CAT_GENDER = '../assets/catalogs/gender.json';
 const URL_CAT_LABORAL_REGIMEN = '../assets/catalogs/laboral-regimen.json';
 const URL_CAT_LIQUIDATION_TYPE = '../assets/catalogs/liquidation-type.json';
@@ -91,6 +92,7 @@ export class ApplicationService {
   formatos427 = new BehaviorSubject([]);
   countries = new BehaviorSubject([]);
   payments = new BehaviorSubject([]);
+  documents = new BehaviorSubject([]);
   coverages = new BehaviorSubject(COVERAGES);
   formGroup: FormGroup;
   searchModalFrom: string;
@@ -490,7 +492,7 @@ export class ApplicationService {
       maxLength = 5;
       responseMessage1 = 'No se pueden agregar más de 5 deportes / actividades';
     } else if (itemType === 'document') {
-      // currentItems = this.documents.getValue();
+      currentItems = this.documents.getValue();
       // console.log('currentItems');
       // console.log(currentItems);
     }
@@ -590,7 +592,7 @@ export class ApplicationService {
       currentItems = this.payments.getValue();
       propertyName = 'paymentId';
     } else if (itemType === 'document') {
-      // currentItems = this.documents.getValue();
+      currentItems = this.documents.getValue();
       currentItems = [];
       propertyName = 'documentId';
       // console.log('currentItems');
@@ -646,9 +648,7 @@ export class ApplicationService {
       propertyItem = 'paymentId';
     } else if (itemType === 'document') {
       // console.log('Entro documents;');
-      // currentItems = this.documents.getValue();
-      currentItems = [];
-      // // console.log(currentItems);
+      currentItems = this.documents.getValue();
       propertyItem = 'documentId';
     }
     const itemsLength = currentItems.length;
@@ -744,6 +744,9 @@ export class ApplicationService {
       maxLength = 5;
       currentItems = this.payments.getValue();
       propertyItem = 'paymentId';
+    } else if ( itemType === 'document' ) {
+      currentItems = this.documents.getValue();
+      propertyItem = 'documentId';
     }
     // const foundItem = currentItems.filter(i => i[propertyItem] === updatedItem[propertyItem])[0];
 
@@ -818,8 +821,45 @@ export class ApplicationService {
         return {status: false, message: responseMessage1};
       }
     } else {
-      const index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
-      currentItems[index] = updatedItem;
+      let index;
+      if ( propertyItem === 'documentId' ) {
+        index = currentItems.findIndex((i) => Number(i[propertyItem]) === Number(updatedItem[propertyItem]));
+        console.log('updatedItem.fieldName: ');
+        console.log(updatedItem.fieldName);
+        console.log('fileDocument: ', updatedItem.fieldName.indexOf('fileDocument') > -1);
+        console.log('typeDocument: ', updatedItem.fieldName.indexOf('typeDocument') > -1);
+        if ( updatedItem.fieldName.indexOf('fileDocument') > -1 ) {
+          if ( updatedItem.docName ) {
+            currentItems[index].docName = updatedItem.docName;
+          } else {
+            currentItems[index].docName = null;
+          }
+          if ( updatedItem.docExt ) {
+            currentItems[index].docExt = updatedItem.docExt;
+          } else {
+            currentItems[index].docExt = null;
+          }
+          if ( updatedItem.docType ) {
+            currentItems[index].docType = updatedItem.docType;
+          } else {
+            currentItems[index].docType = null;
+          }
+          if ( updatedItem.doc ) {
+            currentItems[index].doc = updatedItem.doc;
+          } else {
+            currentItems[index].doc = null;
+          }
+        } else if ( updatedItem.fieldName.indexOf('typeDocument') > -1 ) {
+          if ( updatedItem.docId ) {
+            currentItems[index].docId = updatedItem.docId;
+          } else {
+            currentItems[index].docId = null;
+          }
+        }
+      } else {
+        index = currentItems.findIndex((i) => i[propertyItem] === updatedItem[propertyItem]);
+        currentItems[index] = updatedItem;
+      }
       if (idTable) {
         this.setItems(itemType, currentItems, idTable);
       } else {
@@ -884,8 +924,8 @@ export class ApplicationService {
     } else if (itemType === 'payment') {
       this.payments.next(newItems);
     } else if (itemType === 'document') {
-      // this.documents.next(newItems);
-      // // console.log(this.documents);
+      this.documents.next(newItems);
+      console.log(this.documents);
     }
   }
 
@@ -1096,7 +1136,6 @@ export class ApplicationService {
   }
 
   validateFormByStep(stepObj: Step) {
-    console.log('validateFormByStep -----> ');
     const step = this.getStepById(stepObj.id);
     let isValid = true;
     let message = '';
@@ -1121,6 +1160,19 @@ export class ApplicationService {
             isValid = false;
             message = validateTableResult.msg;
           }
+        } else if (contentFromStep.contentType.includes('documents')) {
+          const documentsValid = this.validateDocument();
+
+          if ( !documentsValid.valid ) {
+            isValid = false;
+            if ( documentsValid.messageNumber === 1 ) {
+              message = 'Por favor, verifique que todos los campos marcados con un * esten llenos.';
+            }
+          }
+          console.log('List documents: ');
+          console.log(this.documents.getValue());
+          console.log(this.documents.getValue());
+          console.log(this.documents.getValue());
         }
 
         if (contentFromStep.contentChildren) {
@@ -1594,8 +1646,7 @@ export class ApplicationService {
     let isValid = true;
     let message = '';
 
-    this.applicationObj.sections.forEach(section => {
-      // // console.log('section: ', section);
+    this.applicationObj.sections.forEach((section, index) => {
       section.contents.forEach((contentFromSection) => {
         if (contentFromSection.fields) {
           const validateFieldArrayResult = this.validateFieldArray(contentFromSection.fields);
@@ -1664,6 +1715,10 @@ export class ApplicationService {
         break;
       case 'federalEntity':
         urlCatalog = URL_CAT_FEDERAL_ENTITY;
+        break;
+      //  federal entity without value other
+      case 'federalEntityCopy':
+        urlCatalog = URL_CAT_FEDERAL_ENTITY_COPY;
         break;
       case 'gender':
         urlCatalog = URL_CAT_GENDER;
@@ -1828,5 +1883,33 @@ export class ApplicationService {
           return response;
         })
       );
+  }
+
+  validateDocument() {
+    const status = {
+      valid: true,
+      messageNumber: 0
+    };
+
+    const documents = this.documents.getValue();
+    if ( documents.length === 1 ) {
+      if ( !documents[0].docId || !documents[0].docName ) {
+        status.valid = false;
+        status.messageNumber = 1;
+      }
+    } else if ( documents.length > 1 ) {
+      let contador = 0;
+      documents.forEach((doc) => {
+        if ( !doc.docId || !doc.docName ) {
+          contador++;
+        }
+      });
+      console.log('Contador: ', contador);
+      if ( contador > 0 ) {
+        status.valid = false;
+        status.messageNumber = 1;
+      }
+    }
+    return status;
   }
 }

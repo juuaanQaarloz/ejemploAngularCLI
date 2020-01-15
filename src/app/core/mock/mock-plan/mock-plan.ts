@@ -101,7 +101,7 @@ export const Plan1a: Field[] = [
     orderAppearance: 3,
     label: 'Empaquetamiento *',
     type: 'select',
-    required: false,
+    required: true,
     placeholder: '',
     length: '',
     minValue: 0,
