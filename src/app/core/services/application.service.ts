@@ -17,7 +17,6 @@ import {
 } from '../validators';
 import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
-import {COVERAGES} from '../mock/coverage/coverage';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import get from 'lodash/get';
 const URL_IPRE = '../assets/catalogs/catalogs.json';
@@ -1614,6 +1613,10 @@ export class ApplicationService {
     let coverageType = this.getFormGroup().controls.coverageOptions.value;
     let packing = this.getFormGroup().controls.packing.value;
     let availableCvrs = ['ep', 'pasi', 'ima', 'imapo', 'dimapo', 'ge'];
+    // clean current coverage array
+    this.coverages.next([]);
+    // set all coverage to disable state
+    this.setCvrValues(availableCvrs);
 
     if (currency) {
       if (coverageType) {
@@ -1625,11 +1628,15 @@ export class ApplicationService {
             console.log('foundPlan: ', foundPlan);
             if (foundPlan !== null) {
               this.currentPlan.next(foundPlan);
-              this.coverages.next([]);
-              this.setCvrValues(availableCvrs);
+              // add et coverage by default
+              this.coverages.next(
+                [{
+                  cvrN: 'et',
+                  planCode: foundPlan.PLAN}]);
 
               foundPlan.MACC ?  this.updateStateCvr('ima', 'enable') :  this.updateStateCvr('ima', 'disable');
-              foundPlan.DI ?  this.updateStateCvr('dimapo', 'enable') :  this.updateStateCvr('dimapo', 'disable');
+              foundPlan.DI ?  this.updateStateCvr('imapo', 'enable') :  this.updateStateCvr('imapo', 'disable');
+              foundPlan.TI ?  this.updateStateCvr('dimapo', 'enable') :  this.updateStateCvr('dimapo', 'disable');
               foundPlan.EP ?  this.updateStateCvr('ep', 'enable') :  this.updateStateCvr('ep', 'disable');
               foundPlan.PASI ?  this.updateStateCvr('pasi', 'enable') :  this.updateStateCvr('pasi', 'disable');
               foundPlan.GRAVES ?  this.updateStateCvr('ge', 'enable') :  this.updateStateCvr('ge', 'disable');
@@ -1649,6 +1656,7 @@ export class ApplicationService {
   setCvrValues(cvrNames) {
     cvrNames.forEach((cvrName) => {
       this.formGroup.controls[cvrName].setValue(false);
+      this.formGroup.controls[cvrName].disable();
     });
   }
 
@@ -1998,7 +2006,9 @@ export class ApplicationService {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
+      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+      'metrolename': localStorage.getItem('metrolename'),
+      'metuid': localStorage.getItem('metuid')
     });
 
     console.log('appJson to passed to de save service: ', appJson);

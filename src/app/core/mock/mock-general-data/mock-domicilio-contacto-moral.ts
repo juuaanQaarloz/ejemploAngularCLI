@@ -260,7 +260,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=morPerson)',
     entity: '',
-    entityField: 'insurer.Address[0].',
+    entityField: 'insurer.co_ctct_nm',
   },
   {
     id: 'field-52',
@@ -288,7 +288,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.co_ctct_occp',
   },
   {
     id: 'field-53',
