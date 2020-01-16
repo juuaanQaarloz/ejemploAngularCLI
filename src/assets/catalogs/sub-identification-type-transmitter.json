@@ -1,0 +1,208 @@
+{
+  "catalogData": {
+    "catalogInfo": {
+      "version": "3",
+      "name": "SUBIDENTIFICATION_TYPE_PRIVATE",
+      "numColumns": 7,
+      "owner": "IPRE",
+      "status": "ACTIVO",
+      "columns": [
+        {
+          "name": "subIdentificationId",
+          "type": "VARCHAR",
+          "length": 4,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3548,
+          "idcatalog": 121
+        },
+        {
+          "name": "subIdentificationDescript",
+          "type": "VARCHAR",
+          "length": 100,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3549,
+          "idcatalog": 121
+        },
+        {
+          "name": "status",
+          "type": "VARCHAR",
+          "length": 1,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3550,
+          "idcatalog": 121
+        },
+        {
+          "name": "documentClass",
+          "type": "VARCHAR",
+          "length": 1,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3551,
+          "idcatalog": 121
+        },
+        {
+          "name": "product",
+          "type": "VARCHAR",
+          "length": 10,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3552,
+          "idcatalog": 121
+        },
+        {
+          "name": "lineBussines",
+          "type": "VARCHAR",
+          "length": 50,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3553,
+          "idcatalog": 121
+        },
+        {
+          "name": "company",
+          "type": "VARCHAR",
+          "length": 50,
+          "format": "",
+          "nullIndicator": true,
+          "pkIndicator": true,
+          "prnIndicator": true,
+          "status": "ACTIVO",
+          "id": 3554,
+          "idcatalog": 121
+        }
+      ],
+      "id": 121
+    },
+    "extension": {
+      "variations": [
+        {
+          "rowID": 1,
+          "subIdentificationId": "1",
+          "subIdentificationDescript": "INSTITUTO FEDERAL ELECTORAL",
+          "status": "S",
+          "documentClass": "1",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 2,
+          "subIdentificationId": "2",
+          "subIdentificationDescript": "INSTITUTO NACIONAL ELECTORAL",
+          "status": "S",
+          "documentClass": "1",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 3,
+          "subIdentificationId": "3",
+          "subIdentificationDescript": "SECRETARIA DE RELACIONES EXTERIORES",
+          "status": "S",
+          "documentClass": "1",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 4,
+          "subIdentificationId": "4",
+          "subIdentificationDescript": "SECRETARIA DE EDUCACION PUBLICA",
+          "status": "S",
+          "documentClass": "1",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 5,
+          "subIdentificationId": "5",
+          "subIdentificationDescript": "SECRETARIA DE LA DEFENSA NACIONAL",
+          "status": "S",
+          "documentClass": "1",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 6,
+          "subIdentificationId": "6",
+          "subIdentificationDescript": "GOBIERNO DEL ESTADO",
+          "status": "S",
+          "documentClass": "1",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 7,
+          "subIdentificationId": "7",
+          "subIdentificationDescript": "INSTITUTO NACIONAL DE LAS PERSONAS ADULTAS MAYORES / SECRETARIA DE DESARROLLO SOCIAL",
+          "status": "S",
+          "documentClass": "1",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 8,
+          "subIdentificationId": "8",
+          "subIdentificationDescript": "INSTITUTO MEXICANO DEL SEGURO SOCIAL",
+          "status": "S",
+          "documentClass": "1",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 9,
+          "subIdentificationId": "9",
+          "subIdentificationDescript": "INSTITUTO NACIONAL DE INMIGRACION",
+          "status": "S",
+          "documentClass": "1",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        }
+      ]
+    },
+    "metadata": {
+      "recordCount": 9,
+      "offset": 4160051
+    }
+  },
+  "link": {
+    "link": null
+  }
+}

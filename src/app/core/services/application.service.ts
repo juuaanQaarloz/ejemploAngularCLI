@@ -59,6 +59,7 @@ const URL_CAT_RELATIONSHIP = '../assets/catalogs/ralationship.json';
 const URL_CAT_RELATIONSHIP_COVERAGE = '../assets/catalogs/relationship-coverage.json';
 const URL_CAT_RETENEDOR = '../assets/catalogs/retenedor.json';
 const URL_CAT_SUB_IDENTIFICATION_TYPE = '../assets/catalogs/sub-identification-type.json';
+const URL_CAT_SUB_IDENTIFICATION_TYPE_TRANSMITTER = '../assets/catalogs/sub-identification-type-transmitter.json';
 const URL_CAT_GUARD_BOX_OPTIONS = '../assets/catalogs/guard-box-options.json';
 const URL_CAT_ECONOMIC_SECTOR_OPTIONS = '../assets/catalogs/economic-sector.json';
 const URL_CAT_BANK_OPTIONS = '../assets/catalogs/bank.json';
@@ -1842,6 +1843,9 @@ export class ApplicationService {
         break;
       case 'subIdentificationType':
         urlCatalog = URL_CAT_SUB_IDENTIFICATION_TYPE;
+        break;
+      case 'subIdentificationTypeTransmitter':
+        urlCatalog = URL_CAT_SUB_IDENTIFICATION_TYPE_TRANSMITTER;
         break;
       case 'guardBoxOptions':
         urlCatalog = URL_CAT_GUARD_BOX_OPTIONS;

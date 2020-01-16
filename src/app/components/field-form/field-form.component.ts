@@ -841,6 +841,90 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         } else {
           this.fieldObj.valid = false;
         }
+      } else if (this.fieldObj.name === 'formatwoStateOfBirth') {
+        const value = this.form.controls.formatwoStateOfBirth.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      } else if (this.fieldObj.name === 'beneficiaryStateM') {
+        const value = this.form.controls.beneficiaryStateM.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      } else if (this.fieldObj.name === 'beneficiaryState') {
+        const value = this.form.controls.beneficiaryState.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      } else if (this.fieldObj.name === 'stateOfBirthS') {
+        const value = this.form.controls.stateOfBirthS.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      } else if (this.fieldObj.name === 'stateM') {
+        const value = this.form.controls.stateM.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      } else if (this.fieldObj.name === 'stateS') {
+        const value = this.form.controls.stateS.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      } else if (this.fieldObj.name === 'state') {
+        const value = this.form.controls.state.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      } else if (this.fieldObj.name === 'formatwoCity') {
+        const value = this.form.controls.formatwoCity.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      } else if (this.fieldObj.name === 'beneficiaryCityF') {
+        const value = this.form.controls.beneficiaryCityF.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      } else if (this.fieldObj.name === 'beneficiaryCityM') {
+        const value = this.form.controls.beneficiaryCityM.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      } else if (this.fieldObj.name === 'beneficiaryCity') {
+        const value = this.form.controls.beneficiaryCity.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      } else if (this.fieldObj.name === 'cityS') {
+        const value = this.form.controls.cityS.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        } else {
+          this.fieldObj.valid = false;
+        }
       } else {
         this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
         if (this.autocompleteOptions.length > 0 && this.fieldObj.type === 'autocomplete') {

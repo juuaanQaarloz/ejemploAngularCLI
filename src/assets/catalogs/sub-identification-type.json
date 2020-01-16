@@ -99,7 +99,7 @@
         {
           "rowID": 1,
           "subIdentificationId": "1",
-          "subIdentificationDescript": "INSTITUTO FEDERAL ELECTORAL",
+          "subIdentificationDescript": "CREDENCIAL IFE IDENTIFICACION",
           "status": "S",
           "documentClass": "1",
           "product": "META",
@@ -110,7 +110,7 @@
         {
           "rowID": 2,
           "subIdentificationId": "2",
-          "subIdentificationDescript": "INSTITUTO NACIONAL ELECTORAL",
+          "subIdentificationDescript": "PASAPORTE",
           "status": "S",
           "documentClass": "1",
           "product": "META",
@@ -121,7 +121,7 @@
         {
           "rowID": 3,
           "subIdentificationId": "3",
-          "subIdentificationDescript": "SECRETARIA DE RELACIONES EXTERIORES",
+          "subIdentificationDescript": "FORMA DE INMIGRACION",
           "status": "S",
           "documentClass": "1",
           "product": "META",
@@ -132,7 +132,7 @@
         {
           "rowID": 4,
           "subIdentificationId": "4",
-          "subIdentificationDescript": "SECRETARIA DE EDUCACION PUBLICA",
+          "subIdentificationDescript": "CÉDULA PROFESIONAL",
           "status": "S",
           "documentClass": "1",
           "product": "META",
@@ -143,7 +143,7 @@
         {
           "rowID": 5,
           "subIdentificationId": "5",
-          "subIdentificationDescript": "SECRETARIA DE LA DEFENSA NACIONAL",
+          "subIdentificationDescript": "CARTILLA SERVICIO MILITAR NACIONAL IDENTIFICACION",
           "status": "S",
           "documentClass": "1",
           "product": "META",
@@ -154,7 +154,7 @@
         {
           "rowID": 6,
           "subIdentificationId": "6",
-          "subIdentificationDescript": "GOBIERNO DEL ESTADO",
+          "subIdentificationDescript": "TARJETA UNICA DE IDENTIDAD MILITAR",
           "status": "S",
           "documentClass": "1",
           "product": "META",
@@ -165,7 +165,7 @@
         {
           "rowID": 7,
           "subIdentificationId": "7",
-          "subIdentificationDescript": "INSTITUTO NACIONAL DE LAS PERSONAS ADULTAS MAYORES / SECRETARIA DE DESARROLLO SOCIAL",
+          "subIdentificationDescript": "TARJETA AFILIACIÓN INAPAM",
           "status": "S",
           "documentClass": "1",
           "product": "META",
@@ -176,7 +176,7 @@
         {
           "rowID": 8,
           "subIdentificationId": "8",
-          "subIdentificationDescript": "INSTITUTO MEXICANO DEL SEGURO SOCIAL",
+          "subIdentificationDescript": "CREDENCIAL O CARNET IMSS",
           "status": "S",
           "documentClass": "1",
           "product": "META",
@@ -187,7 +187,205 @@
         {
           "rowID": 9,
           "subIdentificationId": "9",
-          "subIdentificationDescript": "INSTITUTO NACIONAL DE INMIGRACION",
+          "subIdentificationDescript": "CREDENCIAL INSTITUCIONES MEDIA SUPERIOR-SUPERIOR",
+          "status": "S",
+          "documentClass": "1",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 10,
+          "subIdentificationId": "10",
+          "subIdentificationDescript": "LICENCIA PARA CONDUCIR",
+          "status": "S",
+          "documentClass": "1",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 11,
+          "subIdentificationId": "11",
+          "subIdentificationDescript": "CERTIFICADO DE MATRICULA CONSULAR",
+          "status": "S",
+          "documentClass": "1",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 12,
+          "subIdentificationId": "12",
+          "subIdentificationDescript": "CREDENCIAL ENTIDAD FEDERAL O ESTATAL",
+          "status": "S",
+          "documentClass": "1",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 13,
+          "subIdentificationId": "13",
+          "subIdentificationDescript": "IDENTIFICACIÓN PARA PROGRAMAS DE APOYO",
+          "status": "S",
+          "documentClass": "1",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 14,
+          "subIdentificationId": "14",
+          "subIdentificationDescript": "CONSTANCIA CURP",
+          "status": "S",
+          "documentClass": "1",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 15,
+          "subIdentificationId": "15",
+          "subIdentificationDescript": "CEDULA IDENTIFICACION FISCAL (RFC)",
+          "status": "S",
+          "documentClass": "1",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 16,
+          "subIdentificationId": "16",
+          "subIdentificationDescript": "RECIBO DE LUZ",
+          "status": "S",
+          "documentClass": "2",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 17,
+          "subIdentificationId": "17",
+          "subIdentificationDescript": "RECIBO DE TELEFONO",
+          "status": "S",
+          "documentClass": "2",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 18,
+          "subIdentificationId": "18",
+          "subIdentificationDescript": "IMPUESTO PREDIAL",
+          "status": "S",
+          "documentClass": "2",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 19,
+          "subIdentificationId": "19",
+          "subIdentificationDescript": "RECIBO AGUA",
+          "status": "S",
+          "documentClass": "2",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 20,
+          "subIdentificationId": "20",
+          "subIdentificationDescript": "ESTADOS DE CUENTA BANCARIOS",
+          "status": "S",
+          "documentClass": "2",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 21,
+          "subIdentificationId": "21",
+          "subIdentificationDescript": "CARTA PODER",
+          "status": "S",
+          "documentClass": "1",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 22,
+          "subIdentificationId": "22",
+          "subIdentificationDescript": "ACTA CONSTITUTIVA",
+          "status": "S",
+          "documentClass": "1",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 23,
+          "subIdentificationId": "23",
+          "subIdentificationDescript": "PODERES REPRESENTANTE (SI NO SE ESTABLECE EN ACTA)",
+          "status": "S",
+          "documentClass": "1",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 24,
+          "subIdentificationId": "24",
+          "subIdentificationDescript": "MANIFIESTO INSCRIPCION (RECIENTE CONSTITUCIÓN)",
+          "status": "S",
+          "documentClass": "1",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 25,
+          "subIdentificationId": "25",
+          "subIdentificationDescript": "DOCUMENTO DE EXISTENCIA LEGALIZADO O APOSTILLADO (EMPRESA EXTRANJERA)",
+          "status": "S",
+          "documentClass": "1",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 26,
+          "subIdentificationId": "26",
+          "subIdentificationDescript": "CREDENCIAL IFE IDENTIFICACION",
+          "status": "S",
+          "documentClass": "1",
+          "product": "META",
+          "lineBussines": "PRIVADO",
+          "company": null,
+          "locale": "es-MX"
+        },
+        {
+          "rowID": 27,
+          "subIdentificationId": "27",
+          "subIdentificationDescript": "CARTILLA SERVICIO MILITAR NACIONAL IDENTIFICACION",
           "status": "S",
           "documentClass": "1",
           "product": "META",
@@ -198,7 +396,7 @@
       ]
     },
     "metadata": {
-      "recordCount": 9,
+      "recordCount": 27,
       "offset": 4160051
     }
   },

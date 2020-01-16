@@ -75,7 +75,7 @@ export class DocumentsComponent implements OnInit {
     // console.log('addNewDocument-component ');
     // console.log('formGroup: ', this.formGroup);
     // console.log('formGroup value: ', this.formGroup.value);
-    const newDocument = this.mapNewDocumentBase();
+    const newDocument = this.mapAddDocumentBase();
     const response = this.applicationService.addItem(newDocument, 'document');
 
     this.fieldsCopy = JSON.parse(JSON.stringify(this.getFields()));
@@ -113,6 +113,19 @@ export class DocumentsComponent implements OnInit {
       docName: null,
       docExt: null,
       docType: null,
+      docTypeField: this.content.fields[0].name
+    };
+    return newDocumentBase;
+  }
+
+  mapAddDocumentBase() {
+    const newDocumentBase = {
+      documentId: (this.applicationService.getLastItemId('document') + 1).toString(),
+      docId: null,
+      docName: null,
+      docExt: null,
+      docType: null,
+      docTypeField: this.content.fields[0].name + (this.applicationService.getLastItemId('document')).toString()
     };
     return newDocumentBase;
   }
@@ -252,7 +265,8 @@ export class DocumentsComponent implements OnInit {
       return {
         documentId: field.documentId,
         docId: field.value,
-        fieldName: field.name
+        fieldName: field.name,
+        docTypeField: field.name
       };
     } else if ( field.name.indexOf('fileDocument') > -1 ) {
       return {
@@ -261,7 +275,8 @@ export class DocumentsComponent implements OnInit {
         docExt: field.docExt,
         docType: field.docType,
         doc: field.doc,
-        fieldName: field.name
+        fieldName: field.name,
+        docTypeField: field.name
       };
     }
   }
