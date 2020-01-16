@@ -19,7 +19,7 @@
               <img class="ml-button-delete" (click)="removeItem(index, fields[index], fields[index -1], fields[index -2])">
             </button>
             <button *ngIf="field.button && this.formGroup.controls[fields[index -1]?.name]?.value != '' && this.formGroup.controls[fields[index -1]?.name]?.value"
-                    style="padding: 0; border: none; background: none;"  type="submit">
+                    style="padding: 0; border: none; background: none;" type="submit">
               <img class="ml-button-download" (click)="downloadFile(fields[index -1])">
             </button>
             <button *ngIf="((items.length === 0 || items === null) && showplus==true) && isLastColumn"
@@ -28,7 +28,6 @@
             </button>
           </div>
         </div>
-
       </div>
       <div></div>
       <div></div>

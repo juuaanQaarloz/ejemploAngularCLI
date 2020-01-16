@@ -10,6 +10,7 @@ import {medicalFieldsDialog} from '../../../core/mock/basic-questionnaires/medic
 import {sportsFieldsDialog} from '../../../core/mock/basic-questionnaires/sports-aviation-hobbies';
 import {FORM_MSG_ERROR} from '../../../core/mock/errors/mock-erros-datos-plan';
 import {transformDate} from '../../../core/utilities';
+import {Observable, of} from 'rxjs';
 
 @Component({
   selector: 'app-new-row',
@@ -71,9 +72,49 @@ export class NewRowComponent implements OnInit {
     if (delegateOperation === 'closeDialog') {
       this.closeDialog();
     } else if (delegateOperation === 'addNewItem') {
-      this.addNewItem();
+      Object.keys(this.formGroup.controls).forEach((formControl) => {
+        if ( formControl === 'extremeSportsD' ) {
+          console.log('Va a validar los deportes');
+          this.appService.getCatalogById('sports', 'IPRE').subscribe(result => {
+            if (this.validateSport(result) === 'INVALID' ) {
+              this.addNewItem('INVALID');
+            } else {
+              this.addNewItem();
+            }
+          });
+        } else if ( formControl === 'describeDiseasesD' ) {
+          console.log('Va a validar las enfermedades');
+          this.appService.getCatalogById('diseases', 'IPRE').subscribe((results) => {
+            if (this.validateDesease(results) === 'INVALID' ) {
+              this.addNewItem('INVALID');
+            } else {
+              this.addNewItem();
+            }
+          });
+        }
+      });
     } else if (delegateOperation === 'updateItem') {
-      this.updateItem();
+      Object.keys(this.formGroup.controls).forEach((formControl) => {
+        if ( formControl === 'extremeSportsD' ) {
+          console.log('Va a validar los deportes');
+          this.appService.getCatalogById('sports', 'IPRE').subscribe(result => {
+            if (this.validateSport(result) === 'INVALID' ) {
+              this.updateItem('INVALID');
+            } else {
+              this.updateItem();
+            }
+          });
+        } else if ( formControl === 'describeDiseasesD' ) {
+          console.log('Va a validar las enfermedades');
+          this.appService.getCatalogById('diseases', 'IPRE').subscribe((results) => {
+            if (this.validateDesease(results) === 'INVALID' ) {
+              this.updateItem('INVALID');
+            } else {
+              this.updateItem();
+            }
+          });
+        }
+      });
     } /*else if (delegateOperation === 'closeModal') {
       this.modalService.close(this.modalID);
     }*/
@@ -83,38 +124,28 @@ export class NewRowComponent implements OnInit {
     this.dialog.close();
   }
 
-  addNewItem() {
-    let formStatus = this.getFormStatus();
+  validateSport(list) {
+    const listToCompare = list;
+    let formStatus = 'VALID';
     let contador = 0;
     let valueExtremeSport;
     Object.keys(this.formGroup.controls).forEach((formControl) => {
       if ( formControl === 'extremeSportsD' ) {
         valueExtremeSport = this.formGroup.controls[formControl].value;
+        console.log('-----Value sport-----');
+        console.log(valueExtremeSport);
+        console.log('-----Value sport-----');
         if ( valueExtremeSport ) {
-          this.appService.getCatalogById('sports', 'IPRE').subscribe((results) => {
-            const index = results.findIndex((i) => i['alias'] === valueExtremeSport);
-            if ( index !== -1 ) {
-              formStatus = 'VALID';
-            } else {
-              formStatus = 'INVALID';
-            }
-          });
-        } else {
-          formStatus = 'INVALID';
-        }
-      }
-
-      if ( formControl === 'describeDiseasesD' ) {
-        const value = this.formGroup.controls[formControl].value;
-        if ( value ) {
-          this.appService.getCatalogById('diseases', 'IPRE').subscribe((results) => {
-            const index = results.findIndex((i) => i['alias'] === value);
-            if ( index !== -1 ) {
-              formStatus = 'VALID';
-            } else {
-              formStatus = 'INVALID';
-            }
-          });
+          const index = listToCompare.findIndex((i) => i['alias'] === valueExtremeSport);
+          console.log('indexSport:', index);
+          if ( index !== -1 ) {
+            formStatus = 'VALID';
+          } else {
+            formStatus = 'INVALID';
+          }
+          console.log(formStatus, 'if');
+          console.log(formStatus, 'if');
+          console.log(formStatus, 'if');
         } else {
           formStatus = 'INVALID';
         }
@@ -131,30 +162,63 @@ export class NewRowComponent implements OnInit {
           contador++;
         }
       }
-    });
-    const prueba = this;
-    setTimeout(() => {
       console.log('Contador: ', contador);
       if ( contador > 0 ) {
         formStatus = 'INVALID';
       }
-      console.log(formStatus);
-      console.log(formStatus);
-      console.log(formStatus);
-      if (formStatus === 'VALID') {
-        const newItem = prueba.mapNewItemData();
-        const response = prueba.appService.addItem(newItem, prueba.itemType, prueba.contentTypeId);
+    });
+    console.log('formStatusSports: ', formStatus);
+    return formStatus;
+  }
 
-        if (response.status) {
-          prueba.closeDialog();
+  validateDesease(list) {
+    const listToCompare = list;
+    let formStatus = 'VALID';
+    Object.keys(this.formGroup.controls).forEach((formControl) => {
+      if ( formControl === 'describeDiseasesD' ) {
+        const value = this.formGroup.controls[formControl].value;
+        console.log('-----Value-----');
+        console.log(value);
+        console.log('-----Value-----');
+        if ( value ) {
+          const index = listToCompare.findIndex((i) => i['alias'] === value);
+          if ( index !== -1 ) {
+            formStatus = 'VALID';
+          } else {
+            formStatus = 'INVALID';
+          }
+          console.log(formStatus, 'if');
+          console.log(formStatus, 'if');
+          console.log(formStatus, 'if');
         } else {
-          prueba.modalMessage = response.message;
-          prueba.modalService.open(prueba.modalID);
+          formStatus = 'INVALID';
         }
-      } else {
-        prueba.showFormError = true;
       }
-    }, 1000);
+    });
+    return formStatus;
+  }
+
+  addNewItem(statusValidateCatalog?) {
+    let formStatus = this.getFormStatus();
+    console.log(formStatus);
+    console.log(formStatus);
+    console.log(statusValidateCatalog);
+    console.log(statusValidateCatalog);
+    if ( statusValidateCatalog === 'INVALID' ) {
+      formStatus = statusValidateCatalog;
+    }
+    if (formStatus === 'VALID') {
+      const newItem = this.mapNewItemData();
+      const response = this.appService.addItem(newItem, this.itemType, this.contentTypeId);
+      if (response.status) {
+        this.closeDialog();
+      } else {
+        this.modalMessage = response.message;
+        this.modalService.open(this.modalID);
+      }
+    } else {
+      this.showFormError = true;
+    }
   }
 
   mapNewItemData() {
@@ -185,82 +249,27 @@ export class NewRowComponent implements OnInit {
     return newMappedItem;
   }
 
-  updateItem() {
-    console.log('updateItem');
-    console.log('updateItem');
-    console.log('updateItem');
+  updateItem(statusValidateCatalog?) {
     let formStatus = this.getFormStatus();
-
-    let contador = 0;
-    let valueExtremeSport;
-    Object.keys(this.formGroup.controls).forEach((formControl) => {
-      if ( formControl === 'extremeSportsD' ) {
-        valueExtremeSport = this.formGroup.controls[formControl].value;
-        if ( valueExtremeSport ) {
-          this.appService.getCatalogById('sports', 'IPRE').subscribe((results) => {
-            const index = results.findIndex((i) => i['alias'] === valueExtremeSport);
-            if ( index !== -1 ) {
-              formStatus = 'VALID';
-            } else {
-              formStatus = 'INVALID';
-            }
-          });
-        } else {
-          formStatus = 'INVALID';
-        }
-      }
-
-      if ( formControl === 'describeDiseasesD' ) {
-        const value = this.formGroup.controls[formControl].value;
-        if ( value ) {
-          this.appService.getCatalogById('diseases', 'IPRE').subscribe((results) => {
-            const index = results.findIndex((i) => i['alias'] === value);
-            if ( index !== -1 ) {
-              formStatus = 'VALID';
-            } else {
-              formStatus = 'INVALID';
-            }
-          });
-        } else {
-          formStatus = 'INVALID';
-        }
-      }
-      if ( formControl === 'periodicityD' ) {
-        const value = this.formGroup.controls[formControl].value;
-        if ( !value ) {
-          contador++;
-        }
-      }
-      if ( formControl === 'otherActivityD' && valueExtremeSport === 'OTRO') {
-        const value = this.formGroup.controls[formControl].value;
-        if ( !value ) {
-          contador++;
-        }
-      }
-    });
-
-    const prueba = this;
-    setTimeout(() => {
-      console.log('Contador: ', contador);
-      if ( contador > 0 ) {
-        formStatus = 'INVALID';
-      }
-      console.log(formStatus);
-      console.log(formStatus);
-      console.log(formStatus);
-      if (formStatus === 'VALID') {
-        const updatedItem = prueba.mapItemData();
-        console.log('this.contentId: ', prueba.contentTypeId);
-        if (prueba.contentTypeId) {
-          prueba.appService.updateItem(updatedItem, prueba.itemType, prueba.contentTypeId);
-        } else {
-          prueba.appService.updateItem(updatedItem, prueba.itemType);
-        }
-        prueba.closeDialog();
+    console.log(formStatus);
+    console.log(formStatus);
+    console.log(statusValidateCatalog);
+    console.log(statusValidateCatalog);
+    if ( statusValidateCatalog === 'INVALID' ) {
+      formStatus = statusValidateCatalog;
+    }
+    if (formStatus === 'VALID') {
+      const updatedItem = this.mapItemData();
+      console.log('this.contentId: ', this.contentTypeId);
+      if (this.contentTypeId) {
+        this.appService.updateItem(updatedItem, this.itemType, this.contentTypeId);
       } else {
-        prueba.showFormError = true;
+        this.appService.updateItem(updatedItem, this.itemType);
       }
-    }, 1000);
+      this.closeDialog();
+    } else {
+      this.showFormError = true;
+    }
   }
 
   mapItemData() {

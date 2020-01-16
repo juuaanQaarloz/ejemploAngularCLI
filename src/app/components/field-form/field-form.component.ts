@@ -728,9 +728,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onChangeSelect(event) {
-
-    // console.log('onChangeSelect...');
-    // // console.log('event.target.value: ', event.target.value);
+    console.log('onChangeSelect...');
+    console.log('event.target.value: ', event.target.value);
 
     if (event.target.value === '') {
       this.showSelectLabel = false;
@@ -762,7 +761,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         name: this.fieldObj.name,
         documentId: this.fieldObj.idDocument
       };
-        this.executeAction.emit(field);
+      this.executeAction.emit(field);
     }
   }
 
