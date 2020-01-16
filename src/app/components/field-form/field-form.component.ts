@@ -206,6 +206,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     if (this.fieldObj.detonateFunction) {
       console.log('detonateFunction: ', this.fieldObj.detonateFunction);
       this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
+        console.log('on valueChanges of : ', this.fieldObj.name);
+        console.log('value: ', value);
         if (this.fieldObj.detonateFunction === 'enableAdditionalCoverage') {
           this.applicationService.enableAdditionalCoverage();
         }
@@ -526,11 +528,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onBlur() {
-    let value;
+    console.log('onBlur');
+
+    /*let value;
     value = this.form.controls[this.fieldObj.name].value;
-    this.form.controls[this.fieldObj.name].setValue( correctFieldValueLostFocus(value));
-    // // console.log('onBlur...');
-    // // console.log(this.fieldObj.name);
+    this.form.controls[this.fieldObj.name].setValue( correctFieldValueLostFocus(value));*/
+
     let valid = true;
 
     if (this.fieldObj.name === 'zipCode' || this.fieldObj.name === 'zipCodeS' || this.fieldObj.name === 'zipCodeM') {
@@ -583,8 +586,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       const currency = this.form.controls.currency.value;
       const assuredImport = this.form.controls.assuredImport.value;
       // if (currency === 'mxn') {
-      if (currency === '0') {
-        if (Number(assuredImport) > Number(0.00)){
+      if (currency === '1') {
+        if (Number(assuredImport) > Number(0.00)) {
           if (Number(assuredImport) < Number(400000.00)) {
             // // console.log('invalidAssuredImportMxn', false);
             return { invalidAssuredImportMxn: true};
@@ -593,7 +596,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           }
         }
       // } else if (currency === 'usd') {
-      } else if (currency === '1') {
+      } else if (currency === '2') {
         if (Number(assuredImport) > Number(0.00)) {
           if (Number(assuredImport) < Number(40000.00)) {
             return {invalidAssuredImportUsd: true};

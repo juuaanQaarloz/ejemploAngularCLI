@@ -134,9 +134,7 @@ export class JsonApplicationService {
     if (tableType === 'table-beneficiary') {
       items = this.appService.beneficiaries.getValue();
       if (items.length > 0) {
-        console.log(' beneficiaries: ', items);
         items.forEach((beneficiary, i) => {
-          console.log('beneficiary: ', beneficiary);
           set(this.appJson, `insuredCondition.beneciciary[${i}]`, this.mapItem('beneficiary', beneficiary, i));
         });
       }
@@ -144,7 +142,6 @@ export class JsonApplicationService {
       items = this.appService.agents.getValue();
       if (items.length > 0) {
         items.forEach((agent, i) => {
-          console.log('agent: ', agent);
           set(this.appJson, `agents[${i}]`, this.mapItem('agent', agent, i));
         });
       }
@@ -152,7 +149,6 @@ export class JsonApplicationService {
       items = this.appService.payments.getValue();
       if (items.length > 0) {
         items.forEach((payment, i) => {
-          console.log('payment: ', payment);
           set(this.appJson, `accounts[${i}]`, this.mapItem('payment', payment, i));
         });
       }
@@ -160,7 +156,6 @@ export class JsonApplicationService {
       items = this.appService.sports.getValue();
       if (items.length > 0) {
         items.forEach((sport, i) => {
-          console.log('sport: ', sport);
           set(this.appJson, `QuesList[${i}]`, this.mapItem('sport', sport, i));
         });
       }
@@ -169,7 +164,6 @@ export class JsonApplicationService {
 
       if (items.length > 0) {
         items.forEach((disease, i) => {
-          console.log('disease: ', disease);
           set(this.appJson, `insurer.diseases[${i}]`, this.mapItem('disease', disease, i));
         });
       }
@@ -177,7 +171,6 @@ export class JsonApplicationService {
       items = this.appService.countries.getValue();
       if (items.length > 0) {
         items.forEach((country, i) => {
-          console.log('country', country);
           set(this.appJson, `foreignCountryTaxes[${i}]`, this.mapItem('country', country, i));
         });
       }
@@ -185,7 +178,6 @@ export class JsonApplicationService {
       items = this.appService.coverages.getValue();
       if (items.length > 0) {
         items.forEach((coverage, i) => {
-          console.log('coverage', coverage);
           set(this.appJson, `insuredCondition.aplicationPlan.coverage[${i}]`, this.mapItem('coverage', coverage, i));
         });
       }
@@ -222,12 +214,8 @@ export class JsonApplicationService {
       newBeneficiary.bene_ref_inst_lttr = item.beneficiaryType === 'fidPerson' ? item.instructionLetterNumber : null;
       newBeneficiary.bene_addrss_sm_inss_ind = item.addressSameAsTitular ? item.addressSameAsTitular : null;
 
-      console.log('newBeneficiary: ', newBeneficiary);
-
       return newBeneficiary;
     } else if (itemType === 'payment') {
-      // TODO: map payments table
-      console.log('payment item: ', item);
       let newAccount: AccountJson = new AccountJson();
       let newBanckAccount: BankAccount = new BankAccount();
 
@@ -250,9 +238,7 @@ export class JsonApplicationService {
 
       return newQuesList;
 
-      // TODO: map sports table
     } else if (itemType === 'disease') {
-      // TODO: map disease table
       let newDisease = new DiseaseJson();
 
       newDisease.illnss_nm = item.name;
@@ -264,7 +250,6 @@ export class JsonApplicationService {
 
       return newDisease;
     } else if (itemType === 'country') {
-      console.log('country: ', item);
       let newCountry: ForeignCountryTaxJson = new ForeignCountryTaxJson();
 
       newCountry.cntry_nm = item.statCountry;
@@ -272,7 +257,6 @@ export class JsonApplicationService {
 
       return newCountry;
     } else if (itemType === 'coverage') {
-      console.log('coverage: ', item);
       let newCvr: Cvr = new Cvr();
 
       newCvr.pln_cd = item.planCode;
