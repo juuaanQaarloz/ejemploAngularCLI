@@ -532,7 +532,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     /*let value;
     value = this.form.controls[this.fieldObj.name].value;
-    this.form.controls[this.fieldObj.name].setValue( correctFieldValueLostFocus(value));*/
+    this.form.controls[this.fieldObj.name].setValue(correctFieldValueLostFocus(value));*/
 
     let valid = true;
 
