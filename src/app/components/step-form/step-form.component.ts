@@ -1,10 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Step} from '../../models/step';
 import {FormGroup} from '@angular/forms';
 import {ApplicationService} from '../../core/services';
 import {MockOperations} from '../../core/mock/mock-operations';
 import {FORM_MSG_ERROR} from '../../core/mock/errors/mock-erros-datos-plan';
 import {JsonApplicationService} from '../../core/services/json-application.service';
+import {ContentFormComponent} from '../content-form/content-form.component';
 
 @Component({
   selector: 'app-step-form',
@@ -17,12 +18,14 @@ export class StepFormComponent implements OnInit {
   @Input() isFirst: boolean;
   @Input() isLast: boolean;
   @Input() index: number;
+  @ViewChild(ContentFormComponent, {static: false}) contentFormComponent: ContentFormComponent ;
   accordionExpanded: boolean;
   renderCondition;
   completed = false;
   stepsOperations = MockOperations;
   isValidStep = true;
   stepMsgError = FORM_MSG_ERROR;
+  documentsValid = [];
 
   constructor(private applicationService: ApplicationService,
               private jsonApplicationService: JsonApplicationService
@@ -95,6 +98,10 @@ export class StepFormComponent implements OnInit {
     console.log('response: ', response);
     this.isValidStep = response.status;
     this.stepMsgError = response.msg;
+    if ( response.listDocument && response.listDocument.length > 0 ) {
+      this.documentsValid = response.listDocument;
+      this.contentFormComponent.documentValid(this.documentsValid);
+    }
   }
 
   closeStep() {

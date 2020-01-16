@@ -434,11 +434,13 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
             documentId: this.fieldObj.idDocument
           };
           this.executeAction.emit(field);
+          this.fieldObj.valid = false;
         }
       } else {
         // console.log('2');
         this.fieldObj.message = '';
         this.fieldObj.file = fileSelected;
+        this.fieldObj.valid = true;
 
         // Update Document
         if ( this.fieldObj.name.indexOf('fileDocument') > -1 && this.form.controls[this.fieldObj.name] ) {
@@ -1249,6 +1251,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     if ( this.fieldObj.name === 'beneficiaryType' ) {
       this.executeAction.emit(value);
     }
+  }
+
+  onClickFile() {
+    document.getElementById(this.fieldObj.idHtml).click();
   }
 }
 
