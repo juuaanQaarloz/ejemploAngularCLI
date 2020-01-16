@@ -75,7 +75,7 @@ export class DocumentsComponent implements OnInit {
     // console.log('addNewDocument-component ');
     // console.log('formGroup: ', this.formGroup);
     // console.log('formGroup value: ', this.formGroup.value);
-    const newDocument = this.mapNewDocumentBase();
+    const newDocument = this.mapAddDocumentBase();
     const response = this.applicationService.addItem(newDocument, 'document');
 
     this.fieldsCopy = JSON.parse(JSON.stringify(this.getFields()));
@@ -113,6 +113,19 @@ export class DocumentsComponent implements OnInit {
       docName: null,
       docExt: null,
       docType: null,
+      docTypeField: this.content.fields[0].name
+    };
+    return newDocumentBase;
+  }
+
+  mapAddDocumentBase() {
+    const newDocumentBase = {
+      documentId: (this.applicationService.getLastItemId('document') + 1).toString(),
+      docId: null,
+      docName: null,
+      docExt: null,
+      docType: null,
+      docTypeField: this.content.fields[0].name + (this.applicationService.getLastItemId('document')).toString()
     };
     return newDocumentBase;
   }
@@ -125,23 +138,27 @@ export class DocumentsComponent implements OnInit {
     // console.log(typeDocField);
     this.currentItems = this.applicationService.documents.getValue();
     if ( this.fields.length > 3) {
-      this.fields.splice(index, 1);
-      this.formGroup.removeControl(actionField.name);
-      this.fields.splice(index -1, 1);
-      this.formGroup.removeControl(documentField.name);
-      this.fields.splice(index -2, 1);
-      this.formGroup.removeControl(typeDocField.name);
-      let lastChar = actionField.name.substr(actionField.name.length - 1);
-      // console.log("Last Char: ");
-      // console.log(lastChar);
-      // let indexCI = this.currentItems.findIndex((item) => {
-      //   return item.documentId === lastChar;
-      // });
-      // // console.log(indexCI);
-      // // console.log(this.currentItems[indexCI]);
-      // this.currentItems.splice(indexCI, 1);
+      console.log('DocumentId a eliminar: ', actionField);
+      console.log('DocumentId a eliminar: ', Number(actionField.idDocument));
+      const indexCI = this.currentItems.findIndex((item) => {
+        console.log('Item: ', item);
+        console.log('Item: ', Number(item.documentId));
+        console.log(item.documentId === actionField.idDocument);
+        return  Number(item.documentId) === Number(actionField.idDocument);
+      });
+      console.log(indexCI);
+      console.log(this.currentItems[indexCI]);
+      if ( indexCI !== -1 ) {
+        this.currentItems.splice(indexCI, 1);
+        this.fields.splice(index, 1);
+        this.formGroup.removeControl(actionField.name);
+        this.fields.splice(index - 1, 1);
+        this.formGroup.removeControl(documentField.name);
+        this.fields.splice(index - 2, 1);
+        this.formGroup.removeControl(typeDocField.name);
+      }
     }
-    // // console.log(this.currentItems);
+    console.log(this.currentItems);
     // console.log(this.formGroup);
     // console.log(this.formGroup);
   }
@@ -248,7 +265,8 @@ export class DocumentsComponent implements OnInit {
       return {
         documentId: field.documentId,
         docId: field.value,
-        fieldName: field.name
+        fieldName: field.name,
+        docTypeField: field.name
       };
     } else if ( field.name.indexOf('fileDocument') > -1 ) {
       return {
@@ -257,9 +275,26 @@ export class DocumentsComponent implements OnInit {
         docExt: field.docExt,
         docType: field.docType,
         doc: field.doc,
-        fieldName: field.name
+        fieldName: field.name,
+        docTypeField: field.name
       };
     }
   }
 
+  validateFields(listaDocuments) {
+    console.log('Validate fields documents component: ');
+    console.log(this.fields);
+    const property = 'name';
+    listaDocuments.forEach( (document) => {
+      console.log(document);
+      if ( !document.docId ) {
+            const index = this.fields.findIndex((field) => field[property] === document.docTypeField);
+            console.log(index);
+            this.fields[0].valid = false;
+      }
+      if ( !document.docName ) {
+
+      }
+    });
+  }
 }

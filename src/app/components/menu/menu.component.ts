@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -7,6 +7,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
+  metrolename:string;
+  metuid:string;
 
   menuOptions = [
     {
@@ -23,9 +25,19 @@ export class MenuComponent implements OnInit {
     }
   ];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.activatedRoute.queryParams.subscribe( params => {
+      this.metrolename = params['metrolename'];
+      this.metuid = params['metuid'];
+
+      localStorage.setItem("metrolename", this.metrolename);
+      localStorage.setItem("metuid", this.metuid);
+      
+      //console.log("metrolename: "+this.metrolename);
+      //console.log("metuid: "+this.metuid);
+      });
   }
 
   navigateTo(path) {

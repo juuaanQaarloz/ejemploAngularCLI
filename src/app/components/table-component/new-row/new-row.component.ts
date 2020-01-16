@@ -160,6 +160,8 @@ export class NewRowComponent implements OnInit {
   mapNewItemData() {
     let newMappedItem = {};
 
+    console.log('contentTypeId: ', this.contentTypeId);
+
     if (this.itemType === 'disease') {
       newMappedItem = {
         idDisease: (this.appService.getLastItemId(this.itemType, this.contentTypeId) + 1).toString(),
@@ -167,7 +169,8 @@ export class NewRowComponent implements OnInit {
         diagnosticDate: transformDate(this.formGroup.controls.diagnosticDateD.value, 'YYYY/MM/DD'),
         duration: this.formGroup.controls.durationDiseasesD.value,
         actualCondition: this.formGroup.controls.actualMedicalConditionD.value,
-        hasQuestionnaire: false
+        hasQuestionnaire: false,
+        fromTable: this.contentTypeId
       };
 
     } else if (this.itemType === 'sport') {
@@ -183,19 +186,81 @@ export class NewRowComponent implements OnInit {
   }
 
   updateItem() {
-    const formStatus = this.getFormStatus();
-    if (formStatus === 'VALID') {
-      const updatedItem = this.mapItemData();
-      console.log('this.contentId: ', this.contentTypeId);
-      if (this.contentTypeId) {
-        this.appService.updateItem(updatedItem, this.itemType, this.contentTypeId);
-      } else {
-        this.appService.updateItem(updatedItem, this.itemType);
+    console.log('updateItem');
+    console.log('updateItem');
+    console.log('updateItem');
+    let formStatus = this.getFormStatus();
+
+    let contador = 0;
+    let valueExtremeSport;
+    Object.keys(this.formGroup.controls).forEach((formControl) => {
+      if ( formControl === 'extremeSportsD' ) {
+        valueExtremeSport = this.formGroup.controls[formControl].value;
+        if ( valueExtremeSport ) {
+          this.appService.getCatalogById('sports', 'IPRE').subscribe((results) => {
+            const index = results.findIndex((i) => i['alias'] === valueExtremeSport);
+            if ( index !== -1 ) {
+              formStatus = 'VALID';
+            } else {
+              formStatus = 'INVALID';
+            }
+          });
+        } else {
+          formStatus = 'INVALID';
+        }
       }
-      this.closeDialog();
-    } else {
-      this.showFormError = true;
-    }
+
+      if ( formControl === 'describeDiseasesD' ) {
+        const value = this.formGroup.controls[formControl].value;
+        if ( value ) {
+          this.appService.getCatalogById('diseases', 'IPRE').subscribe((results) => {
+            const index = results.findIndex((i) => i['alias'] === value);
+            if ( index !== -1 ) {
+              formStatus = 'VALID';
+            } else {
+              formStatus = 'INVALID';
+            }
+          });
+        } else {
+          formStatus = 'INVALID';
+        }
+      }
+      if ( formControl === 'periodicityD' ) {
+        const value = this.formGroup.controls[formControl].value;
+        if ( !value ) {
+          contador++;
+        }
+      }
+      if ( formControl === 'otherActivityD' && valueExtremeSport === 'OTRO') {
+        const value = this.formGroup.controls[formControl].value;
+        if ( !value ) {
+          contador++;
+        }
+      }
+    });
+
+    const prueba = this;
+    setTimeout(() => {
+      console.log('Contador: ', contador);
+      if ( contador > 0 ) {
+        formStatus = 'INVALID';
+      }
+      console.log(formStatus);
+      console.log(formStatus);
+      console.log(formStatus);
+      if (formStatus === 'VALID') {
+        const updatedItem = prueba.mapItemData();
+        console.log('this.contentId: ', prueba.contentTypeId);
+        if (prueba.contentTypeId) {
+          prueba.appService.updateItem(updatedItem, prueba.itemType, prueba.contentTypeId);
+        } else {
+          prueba.appService.updateItem(updatedItem, prueba.itemType);
+        }
+        prueba.closeDialog();
+      } else {
+        prueba.showFormError = true;
+      }
+    }, 1000);
   }
 
   mapItemData() {

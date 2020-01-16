@@ -403,6 +403,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
     } else if (this.beneficiaryType === 'fidPerson') {
       return {
         ...newBeneficiaryBase,
+        businessName: 'METLIFE',
         suspensiveCondition: this.formGroup.controls.suspensiveCondition.value,
         contractNumber: this.formGroup.controls.contractNumber.value,
         instructionLetterNumber: this.formGroup.controls.instructionLetterNumber.value,

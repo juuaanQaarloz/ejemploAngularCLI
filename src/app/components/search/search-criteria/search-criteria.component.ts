@@ -45,10 +45,14 @@ export class SearchCriteriaComponent implements OnInit {
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
+      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+      'metrolename': localStorage.getItem('metrolename'),
+      'metuid': localStorage.getItem('metuid')
     });
 
     let params = new HttpParams();
+    params = params.append("AGENT_ID","");
+    params = params.append("SALES_DIVISION_ID", "");
 
     if(this.criteria.param1!='' ){
       params = params.append('fiel', 'APP_DCN_NUM');

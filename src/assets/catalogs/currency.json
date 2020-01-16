@@ -85,8 +85,8 @@
     "extension": {
       "variations": [
         {
-          "rowID": 0,
-          "currencyPrivId": "0",
+          "rowID": 1,
+          "currencyPrivId": "1",
           "description": "PESO MEXICANO",
           "fare": "1",
           "product": "META",
@@ -95,10 +95,10 @@
           "locale": "es-MX"
         },
         {
-          "rowID": 1,
-          "currencyPrivId": "1",
+          "rowID": 2,
+          "currencyPrivId": "2",
           "description": "DOLLAR AMERICANO",
-          "fare": "\"20,007\"",
+          "fare": "20,007",
           "product": "META",
           "lineBussines": "PRIVADO",
           "company": null,

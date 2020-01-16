@@ -29,7 +29,8 @@ export const Plan0: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: 'insuredCondition.aplicationPlan.pln_crrncy_cd',
-    value: ''
+    value: '',
+    detonateFunction: 'enableAdditionalCoverage'
   },
   {
     id: 'field-1402',
@@ -58,7 +59,8 @@ export const Plan0: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: 'insuredCondition.aplicationPlan.pln_cvr_tp_cd',
-    value: ''
+    value: '',
+    detonateFunction: 'enableAdditionalCoverage'
   },
 ];
 
@@ -89,12 +91,13 @@ export const Plan1: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: ''
+    entityField: '',
+    detonateFunction: 'enableAdditionalCoverage'
   },
 
 ];
 export const Plan1a: Field[] = [
-  {
+  /*{
     id: 'field-1401',
     idHtml: 'slctPacking1',
     name: 'packing1',
@@ -122,7 +125,7 @@ export const Plan1a: Field[] = [
     requiredConditions: '(typePerson=morPerson,|,contractorType=false)',
     entity: '',
     entityField: ''
-  },
+  },*/
 
 ];
 
@@ -140,7 +143,8 @@ export const Plan2: Field[] = [
     length: '15',
     minValue: 0,
     maxValue: 15,
-    pattern: '/^([0-9]{1,10}|[0-9]{1,10}\\.[0-9]{1,2})$/',
+    // pattern: '/^([0-9]{1,10}|[0-9]{1,10}\\.[0-9]{1,2})$/',
+    pattern: '/([0-9]{1,10}|[0-9]{1,10}\\.[0-9]{2})$/',
     noAllowedCharactersPattern: '/[^\\d\\.]/',
     source: '',
     sourceID: '',
@@ -151,8 +155,8 @@ export const Plan2: Field[] = [
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
-    renderConditions: '(currency=0,|,currency=1)',
-    requiredConditions: '(currency=0,|,currency=1)',
+    renderConditions: '(currency=1,|,currency=2)',
+    requiredConditions: '(currency=1,|,currency=2)',
     // minConditions: '',
     enableConditions: '',
     entity: '',

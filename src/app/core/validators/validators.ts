@@ -741,7 +741,7 @@ export const higherAssuredImport: ValidatorFn = (group: FormGroup): ValidationEr
   const assuredImport = group.controls.assuredImport.value;
   if (assuredImport !== '') {
     // if (currency === 'mxn') {
-    if (currency === '0') {
+    if (currency === '1') {
       if (Number(assuredImport) >= Number(0.00)) {
         if (Number(assuredImport) < Number(400000.00)) {
           // console.log('invalidAssuredImportMxn', false);
@@ -753,7 +753,7 @@ export const higherAssuredImport: ValidatorFn = (group: FormGroup): ValidationEr
         return null;
       }
     // } else if (currency === 'usd') {
-    } else if (currency === '1') {
+    } else if (currency === '2') {
       if (Number(assuredImport) >= Number(0.00)) {
         if (Number(assuredImport) < Number(40000.00)) {
           return {invalidAssuredImportUsd: true};

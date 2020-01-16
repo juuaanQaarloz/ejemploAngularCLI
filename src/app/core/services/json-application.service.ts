@@ -17,7 +17,6 @@ import {ForeignCountryTaxJson} from '../../models/applicationJson/foreignCountry
 import {QuesList} from '../../models/applicationJson/questionaryJson/quesList';
 import {Cvr} from '../../models/applicationJson/coverageJson/cvr';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -117,10 +116,15 @@ export class JsonApplicationService {
         set(this.appJson, 'shareHolders[1].person.Address', []);
         set(this.appJson, 'shareHolders[1].person.nationalities', []);
       }
+
       this.appService.saveSolicitud(this.getAppJson()).subscribe((response: ApplicationJson) => {
         console.log('response: ', response);
         this.setAppJson(response);
       });
+
+      /*this.appService.saveApplication(this.getAppJson()).subscribe((response: ApplicationJson) => {
+        console.log('response: ', response);
+      });*/
     }
   }
 
@@ -130,17 +134,14 @@ export class JsonApplicationService {
     if (tableType === 'table-beneficiary') {
       items = this.appService.beneficiaries.getValue();
       if (items.length > 0) {
-        console.log(' beneficiaries: ', items);
         items.forEach((beneficiary, i) => {
-          console.log('beneficiary: ', beneficiary);
-          set(this.appJson, `insuredCondition.aplicationPlan.coverage[${i}]`, this.mapItem('beneficiary', beneficiary, i));
+          set(this.appJson, `insuredCondition.beneciciary[${i}]`, this.mapItem('beneficiary', beneficiary, i));
         });
       }
     } else if (tableType === 'table-agent') {
       items = this.appService.agents.getValue();
       if (items.length > 0) {
         items.forEach((agent, i) => {
-          console.log('agent: ', agent);
           set(this.appJson, `agents[${i}]`, this.mapItem('agent', agent, i));
         });
       }
@@ -148,7 +149,6 @@ export class JsonApplicationService {
       items = this.appService.payments.getValue();
       if (items.length > 0) {
         items.forEach((payment, i) => {
-          console.log('payment: ', payment);
           set(this.appJson, `accounts[${i}]`, this.mapItem('payment', payment, i));
         });
       }
@@ -156,8 +156,7 @@ export class JsonApplicationService {
       items = this.appService.sports.getValue();
       if (items.length > 0) {
         items.forEach((sport, i) => {
-          console.log('sport: ', sport);
-          set(this.appJson, `QuesList.sport[${i}]`, this.mapItem('sport', sport, i));
+          set(this.appJson, `QuesList[${i}]`, this.mapItem('sport', sport, i));
         });
       }
     } else if (tableType === 'table-diseases') {
@@ -165,7 +164,6 @@ export class JsonApplicationService {
 
       if (items.length > 0) {
         items.forEach((disease, i) => {
-          console.log('disease: ', disease);
           set(this.appJson, `insurer.diseases[${i}]`, this.mapItem('disease', disease, i));
         });
       }
@@ -173,8 +171,14 @@ export class JsonApplicationService {
       items = this.appService.countries.getValue();
       if (items.length > 0) {
         items.forEach((country, i) => {
-          console.log('country', country);
           set(this.appJson, `foreignCountryTaxes[${i}]`, this.mapItem('country', country, i));
+        });
+      }
+    } else if (tableType === 'table-coverage') {
+      items = this.appService.coverages.getValue();
+      if (items.length > 0) {
+        items.forEach((coverage, i) => {
+          set(this.appJson, `insuredCondition.aplicationPlan.coverage[${i}]`, this.mapItem('coverage', coverage, i));
         });
       }
     }
@@ -196,7 +200,6 @@ export class JsonApplicationService {
 
       return newAgent;
     } else if (itemType === 'beneficiary') {
-      let newCoverage: Cvr = new Cvr();
       let newBeneficiary: BeneciciaryJson = new BeneciciaryJson();
 
       newBeneficiary.person = this.mapPersonBeneficiary(item.beneficiaryType, item);
@@ -204,7 +207,6 @@ export class JsonApplicationService {
       newBeneficiary.bene_tp_cd = item.beneficiaryType;
       newBeneficiary.bene_rel_cd = item.relationship;
 
-      newCoverage.beneciciary.push(newBeneficiary);
       newBeneficiary.bene_prtcp_pct = item.participationPercentage;
       newBeneficiary.bene_fid_cnd_flg = item.beneficiaryType === 'fidPerson' ? 'true' : null;
       newBeneficiary.bene_fid_cntrc_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : null;
@@ -212,10 +214,8 @@ export class JsonApplicationService {
       newBeneficiary.bene_ref_inst_lttr = item.beneficiaryType === 'fidPerson' ? item.instructionLetterNumber : null;
       newBeneficiary.bene_addrss_sm_inss_ind = item.addressSameAsTitular ? item.addressSameAsTitular : null;
 
-      return newCoverage;
+      return newBeneficiary;
     } else if (itemType === 'payment') {
-      // TODO: map payments table
-      console.log('payment item: ', item);
       let newAccount: AccountJson = new AccountJson();
       let newBanckAccount: BankAccount = new BankAccount();
 
@@ -238,9 +238,7 @@ export class JsonApplicationService {
 
       return newQuesList;
 
-      // TODO: map sports table
     } else if (itemType === 'disease') {
-      // TODO: map disease table
       let newDisease = new DiseaseJson();
 
       newDisease.illnss_nm = item.name;
@@ -252,13 +250,19 @@ export class JsonApplicationService {
 
       return newDisease;
     } else if (itemType === 'country') {
-      console.log('country: ', item);
       let newCountry: ForeignCountryTaxJson = new ForeignCountryTaxJson();
 
       newCountry.cntry_nm = item.statCountry;
       newCountry.frgn_cntry_tin = item.taxCountryId;
 
       return newCountry;
+    } else if (itemType === 'coverage') {
+      let newCvr: Cvr = new Cvr();
+
+      newCvr.pln_cd = item.planCode;
+      newCvr.cvr_nm = item.cvrN;
+
+      return newCvr;
     }
   }
 

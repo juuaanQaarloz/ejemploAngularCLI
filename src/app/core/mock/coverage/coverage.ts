@@ -28,7 +28,8 @@ export const CoverageFieldsItem: Field[] = [
     enableConditions: '(ageS>=18,&,ageS<=55)',
     entity: '',
     entityField: '',
-    value: false
+    value: false,
+    disable: true
   }, {
     id: 'field-90002',
     idHtml: 'check1Pasi',
@@ -55,7 +56,8 @@ export const CoverageFieldsItem: Field[] = [
     enableConditions: '(ageS>=18,&,ageS<=55)',
     entity: '',
     entityField: '',
-    value: false
+    value: false,
+    disable: true
   },
   {
     id: 'field-90003',
@@ -85,7 +87,8 @@ export const CoverageFieldsItem: Field[] = [
     entity: '',
     entityField: '',
     value: false,
-    detonateFunctionParams: 'imapo,dimapo'
+    detonateFunctionParams: 'imapo,dimapo',
+    disable: true
   },
   {
     id: 'field-90004',
@@ -115,7 +118,8 @@ export const CoverageFieldsItem: Field[] = [
     entity: '',
     entityField: '',
     value: false,
-    detonateFunctionParams: 'ima,dimapo'
+    detonateFunctionParams: 'ima,dimapo',
+    disable: true
   },
   {
     id: 'field-90005',
@@ -145,7 +149,8 @@ export const CoverageFieldsItem: Field[] = [
     entity: '',
     entityField: '',
     value: false,
-    detonateFunctionParams: 'ima,imapo'
+    detonateFunctionParams: 'ima,imapo',
+    disable: true
   },
   {
     id: 'field-90007',
@@ -173,7 +178,8 @@ export const CoverageFieldsItem: Field[] = [
     enableConditions: '(ageS>=20,&,ageS<=60)',
     entity: '',
     entityField: '',
-    value: false
+    value: false,
+    disable: true
   },
   {
     id: 'field-90008',
@@ -202,124 +208,6 @@ export const CoverageFieldsItem: Field[] = [
     entity: '',
     entityField: '',
     value: true,
+    disable: true
   }
-  /*
-{
-  id: 'field-10004',
-  idHtml: 'txtCostdImport',
-  name: 'costImport',
-  orderAppearance: 4,
-  label: '',
-  type: 'text',
-  required: false,
-  placeholder: '',
-  length: '',
-  minValue: 0,
-  maxValue: 40,
-  pattern: '',
-  source: '',
-  sourceID: '',
-  style: '',
-  styleClass: '',
-  styleClassError: '',
-  message: '',
-  messageClass: '',
-  messageError: '',
-  messageErrorClass: '',
-  renderConditions: '',
-  enableConditions: '',
-  entity: '',
-  entityField: '',
-  value: '',
-  disable: true
-},
-{
-  id: 'field-10005',
-  idHtml: 'txtDetail',
-  name: 'detail',
-  orderAppearance: 5,
-  label: '',
-  type: 'text',
-  required: false,
-  placeholder: '',
-  length: '',
-  minValue: 0,
-  maxValue: 40,
-  pattern: '',
-  source: '',
-  sourceID: '',
-  style: '',
-  styleClass: '',
-  styleClassError: '',
-  message: '',
-  messageClass: '',
-  messageError: '',
-  messageErrorClass: '',
-  renderConditions: '',
-  enableConditions: '',
-  entity: '',
-  entityField: '',
-  value: '',
-  disable: true
-}, */
-];
-
-
-export const COVERAGES: Coverage[] =  [
-  {
-    coverageId: '1',
-    isSelected: false,
-    coverageName: 'Exención',   // EP
-    assuredImport: ' ',
-    cost: ' ',
-    detail: 'EP'
-  },
-  {
-    coverageId: '2',
-    isSelected: false,
-    coverageName: 'Pago de Suma Asegurada por Invalidez Total y Permanente',   // PASI
-    assuredImport: ' ',
-    cost: ' ',
-    detail: 'PASI'
-  },
-  {
-    coverageId: '3',
-    isSelected: false,
-    coverageName: 'Indemnización por Muerte Accidental',   // IMA
-    assuredImport: ' ',
-    cost: ' ',
-    detail: 'IMA'
-  },
-  {
-    coverageId: '4',
-    isSelected: false,
-    coverageName: 'Indemnización por Muerte Accidental y / o Pérdidas Orgánicas',   // IMAPO
-    assuredImport: ' ',
-    cost: ' ',
-    detail: 'IMAPO'
-  },
-  {
-    coverageId: '5',
-    isSelected: false,
-    coverageName: 'Doble indemnización por Muerte Accidental y/o Pérdida Orgánica',   // DIMAPO
-    assuredImport: ' ',
-    cost: ' ',
-    detail: 'DIMAPO'
-  },
-  {
-    coverageId: '6',
-    isSelected: false,
-    coverageName: 'Graves Enfermedades (Suma Asegurada es de $3,000,000 pesos ó $230,000 dolares)',   // GE
-    assuredImport: ' ',
-    cost: ' ',
-    detail: 'GE'
-  },
-  {
-    coverageId: '7',
-    isSelected: true,
-    coverageName: 'Enfermedades en fase Terminal ( cobertura sin costo preseleccionada) ',   // ET
-    assuredImport: ' ',
-    cost: ' ',
-    detail: 'ET'
-  },
 ];

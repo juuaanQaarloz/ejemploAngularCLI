@@ -142,84 +142,24 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
       dependedFields.forEach((dependedField) => {
         this.form.controls[dependedField].valueChanges.subscribe((value) => {
-          /*// console.log('value: ', value);
-          // console.log('type of value: ', typeof value);
-          // console.log('length value: ', value.length);*/
-
           if (value !== '') {
-            // console.log('onValueChanges of ', dependedField);
-            // console.log('field name control: ', this.fieldObj.name);
             const resEval = this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form);
-            // console.log('resEval: ', resEval);
 
             if (resEval) {
-              // console.log('here true');
               this.form.controls[this.fieldObj.name].enable();
               this.fieldObj.disable = false;
               status = this.checkState();
 
             } else {
-              // console.log('here false');
               this.form.controls[this.fieldObj.name].disable();
               this.fieldObj.disable = true;
               status = this.checkState();
 
             }
           }
-          /*this.disable = this.checkState2(this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form));
-          // console.log('disable2: ', this.disable);
-          // console.log('this.fieldObj.name: ', this.fieldObj.name);
-          if (this.disable === true) {
-            this.form.controls[this.fieldObj.name].disable();
-          } else {
-            this.form.controls[this.fieldObj.name].enable();
-          }*/
         });
       });
     }
-
-    /*if (this.fieldObj.detonateFunctionParams) {
-      // console.log('onDetonateFunctionParams');
-      if (this.fieldObj.value) {
-        // console.log('this.fieldObj.value: ', this.fieldObj.value);
-        // this.applicationService.evaluateCoverageBehaviour(this.fieldObj.detonateFunctionParams, this.fieldObj.value);
-      }
-      this.form.controls[this.fieldObj.name].valueChanges.subscribe((value => {
-        // console.log('onValueChanges of: ', this.fieldObj.name);
-        // console.log('value: ', value);
-        this.applicationService.evaluateCoverageBehaviour(this.fieldObj.detonateFunctionParams, value);
-      }));
-    }*/
-
-    /*if (this.fieldObj.enableConditions) {
-      // console.log('onEnableConditions...');
-
-      const dependedFields = this.applicationService.getDependedFields(this.fieldObj.enableConditions);
-      // console.log('dependedFields: ', dependedFields);
-
-      const result = this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form);
-      // console.log('result: ', result);
-      if (result) {
-        this.form.controls[this.fieldObj.name].disable();
-      } else {
-        this.form.controls[this.fieldObj.name].enable();
-      }
-      this.disable = this.checkState();
-      // console.log('disable: ', this.disable);
-
-      dependedFields.forEach((dependedField) => {
-        this.form.controls[dependedField].valueChanges.subscribe((value) => {
-          const result2 = this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form);
-          // // console.log('result2: ', result2);
-          if (result2) {
-            this.form.controls[this.fieldObj.name].disable();
-          } else {
-            this.form.controls[this.fieldObj.name].enable();
-          }
-          this.disable = this.checkState();
-        });
-      });
-    }*/
 
     if (this.fieldObj.name === 'age' || this.fieldObj.name === 'ageS') {
       this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
@@ -253,9 +193,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
             this.regExpPattern = stringToRegExp(this.fieldObj.pattern);
           }
         });
-      // this.regExpPattern = stringToRegExp(this.fieldObj.pattern);
-      // this.regExpPattern = this.fieldObj.pattern;
-      // // console.log('regExpPattern: ', this.regExpPattern);
     }
 
     if (this.fieldObj.noAllowedCharactersPattern) {
@@ -264,29 +201,18 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       // // console.log('regExpPattern: ', this.regExpPattern);
     }
 
-    /*if (this.fieldObj.detonateFunction) {
+    this.contadorDoc = 0;
+
+    if (this.fieldObj.detonateFunction) {
+      console.log('detonateFunction: ', this.fieldObj.detonateFunction);
       this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
-        // // console.log('detonateFunction: ', this.fieldObj.detonateFunction);
-        // // console.log('itemFromFieldComponent: ', this.item);
-        if (this.fieldObj.detonateFunction === 'updateItem') {
-          this.item.participationPercentage = value;
-          const result = this.applicationService.updateItem(this.item, 'beneficiary');
-          // // console.log('result: ', result);
-          if (!result.status) {
-            this.fieldObj.valid = false;
-            this.fieldObj.message = '';
-          }
+        console.log('on valueChanges of : ', this.fieldObj.name);
+        console.log('value: ', value);
+        if (this.fieldObj.detonateFunction === 'enableAdditionalCoverage') {
+          this.applicationService.enableAdditionalCoverage();
         }
       });
-    }*/
-
-    /*this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
-      // console.log('onValueChanges...');
-      // console.log('formGroup: ', this.form);
-      // console.log('formControlName: ', this.fieldObj.name);
-      // console.log('value: ',  value);
-    });*/
-    this.contadorDoc = 0;
+    }
   }
 
   ngAfterViewInit() {
@@ -310,12 +236,27 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onCheckboxChange() {
-    // console.log('onCheckboxChange...');
+    console.log('onCheckboxChange...');
+
     if (this.fieldObj.detonateFunctionParams) {
       this.applicationService.evaluateCoverageBehaviour(
         this.fieldObj.detonateFunctionParams,
         this.form.controls[this.fieldObj.name].value);
     }
+
+
+    let value = this.form.controls[this.fieldObj.name].value;
+
+    console.log('name: ', this.fieldObj.name);
+    console.log('value: ', this.form.controls[this.fieldObj.name].value);
+    if (value === true) {
+      // add to coverages array
+      this.applicationService.updateCoveragesArray('add', this.fieldObj.name);
+    } else if (value === false) {
+      // remove from coverages array
+      this.applicationService.updateCoveragesArray('remove', this.fieldObj.name);
+    }
+
   }
 
 
@@ -493,11 +434,13 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
             documentId: this.fieldObj.idDocument
           };
           this.executeAction.emit(field);
+          this.fieldObj.valid = false;
         }
       } else {
         // console.log('2');
         this.fieldObj.message = '';
         this.fieldObj.file = fileSelected;
+        this.fieldObj.valid = true;
 
         // Update Document
         if ( this.fieldObj.name.indexOf('fileDocument') > -1 && this.form.controls[this.fieldObj.name] ) {
@@ -585,11 +528,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onBlur() {
-    let value;
+    console.log('onBlur');
+
+    /*let value;
     value = this.form.controls[this.fieldObj.name].value;
-    this.form.controls[this.fieldObj.name].setValue( correctFieldValueLostFocus(value));
-    // // console.log('onBlur...');
-    // // console.log(this.fieldObj.name);
+    this.form.controls[this.fieldObj.name].setValue(correctFieldValueLostFocus(value));*/
+
     let valid = true;
 
     if (this.fieldObj.name === 'zipCode' || this.fieldObj.name === 'zipCodeS' || this.fieldObj.name === 'zipCodeM') {
@@ -642,8 +586,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       const currency = this.form.controls.currency.value;
       const assuredImport = this.form.controls.assuredImport.value;
       // if (currency === 'mxn') {
-      if (currency === '0') {
-        if (Number(assuredImport) > Number(0.00)){
+      if (currency === '1') {
+        if (Number(assuredImport) > Number(0.00)) {
           if (Number(assuredImport) < Number(400000.00)) {
             // // console.log('invalidAssuredImportMxn', false);
             return { invalidAssuredImportMxn: true};
@@ -652,7 +596,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           }
         }
       // } else if (currency === 'usd') {
-      } else if (currency === '1') {
+      } else if (currency === '2') {
         if (Number(assuredImport) > Number(0.00)) {
           if (Number(assuredImport) < Number(40000.00)) {
             return {invalidAssuredImportUsd: true};
@@ -682,25 +626,43 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       }
     }
 
-    // if (this.fieldObj.name === 'stateOfBirth') {
-    //   console.log('Entro a stateOfBirth');
-    //   const value = this.form.controls.stateOfBirth.value;
-    //   console.log(value);
-    //   if ( value && value !== 'OTRO' ) {
-    //     this.form.controls.espState.setValue(null);
-    //     this.form.controls.espState.reset();
-    //   }
-    // }
+    if (this.fieldObj.name === 'salaryS') {
+      const salaryS = this.form.controls.salaryS.value;
 
-    // if (this.fieldObj.name === 'city') {
-    //   console.log('Entro a city');
-    //   const value = this.form.controls.city.value;
-    //   console.log(value);
-    //   if ( value && value !== 'OTRO' ) {
-    //     this.form.controls.espCityTown.setValue(null);
-    //     this.form.controls.espCityTown.reset();
-    //   }
-    // }
+      if (salaryS) {
+        if ( this.validateIntegerDecimals(this.form.controls.salaryS.value)) {
+          this.fieldObj.valid = true;
+          valid = true;
+          this.setValueField('salaryS', 'txtSalaryS', addCurrencyFormat(salaryS));
+        } else {
+          this.fieldObj.valid = false;
+          valid = false;
+          this.form.controls.salaryS.setValue(null);
+          this.fieldObj.message = 'El Ingreso bruto mensual debe contener máximo 10 enteros y 2 decimales.';
+        }
+      } else {
+        this.fieldObj.message = 'El Ingreso bruto mensual es obligatorio.';
+      }
+    }
+
+    if (this.fieldObj.name === 'additionalSalary') {
+      const additionalSalary = this.form.controls.additionalSalary.value;
+
+      if (additionalSalary) {
+        if ( this.validateIntegerDecimals(this.form.controls.additionalSalary.value)) {
+          this.fieldObj.valid = true;
+          valid = true;
+          this.setValueField('additionalSalary', 'txtAdditionalSalary', addCurrencyFormat(additionalSalary));
+        } else {
+          this.fieldObj.valid = false;
+          valid = false;
+          this.form.controls.additionalSalary.setValue(null);
+          this.fieldObj.message = 'El ingreso mensual adicional debe contener máximo 10 enteros y 2 decimales.';
+        }
+      } else {
+        this.fieldObj.message = 'El ingreso mensual adicional es obligatorio.';
+      }
+    }
 
     if ( this.fieldObj.name === 'extremeSportsD' ) {
       this.applicationService.getCatalogById(this.fieldObj.sourceID, this.fieldObj.source).subscribe((results) => {
@@ -874,14 +836,114 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       }
 
     } else {
-      this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
-      if (this.autocompleteOptions.length > 0 && this.fieldObj.type === 'autocomplete') {
-        const searchResult =  this.autocompleteOptions.filter(
-          autoCompleteOpt => autoCompleteOpt.name === this.form.controls[this.fieldObj.name].value)[0];
-        if (searchResult) {
-          this.fieldObj.valid = true;
+      if (this.fieldObj.name === 'stateOfBirth') {
+        const value = this.form.controls.stateOfBirth.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
         } else {
           this.fieldObj.valid = false;
+        }
+      } else if (this.fieldObj.name === 'city') {
+        const value = this.form.controls.city.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      } else if (this.fieldObj.name === 'formatwoStateOfBirth') {
+        const value = this.form.controls.formatwoStateOfBirth.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      } else if (this.fieldObj.name === 'beneficiaryStateM') {
+        const value = this.form.controls.beneficiaryStateM.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      } else if (this.fieldObj.name === 'beneficiaryState') {
+        const value = this.form.controls.beneficiaryState.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      } else if (this.fieldObj.name === 'stateOfBirthS') {
+        const value = this.form.controls.stateOfBirthS.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      } else if (this.fieldObj.name === 'stateM') {
+        const value = this.form.controls.stateM.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      } else if (this.fieldObj.name === 'stateS') {
+        const value = this.form.controls.stateS.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      } else if (this.fieldObj.name === 'state') {
+        const value = this.form.controls.state.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      } else if (this.fieldObj.name === 'formatwoCity') {
+        const value = this.form.controls.formatwoCity.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      } else if (this.fieldObj.name === 'beneficiaryCityF') {
+        const value = this.form.controls.beneficiaryCityF.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      } else if (this.fieldObj.name === 'beneficiaryCityM') {
+        const value = this.form.controls.beneficiaryCityM.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      } else if (this.fieldObj.name === 'beneficiaryCity') {
+        const value = this.form.controls.beneficiaryCity.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      } else if (this.fieldObj.name === 'cityS') {
+        const value = this.form.controls.cityS.value;
+        if ( value ) {
+          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        } else {
+          this.fieldObj.valid = false;
+        }
+      } else {
+        this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+        if (this.autocompleteOptions.length > 0 && this.fieldObj.type === 'autocomplete') {
+          const searchResult =  this.autocompleteOptions.filter(
+            autoCompleteOpt => autoCompleteOpt.name === this.form.controls[this.fieldObj.name].value)[0];
+          if (searchResult) {
+            this.fieldObj.valid = true;
+          } else {
+            this.fieldObj.valid = false;
+          }
         }
       }
       // console.log('this.fieldObj.valid from isValid: ', this.fieldObj.valid);
@@ -1189,6 +1251,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     if ( this.fieldObj.name === 'beneficiaryType' ) {
       this.executeAction.emit(value);
     }
+  }
+
+  onClickFile() {
+    document.getElementById(this.fieldObj.idHtml).click();
   }
 }
 

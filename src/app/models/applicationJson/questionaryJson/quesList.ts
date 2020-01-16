@@ -1,6 +1,6 @@
 export class QuesList {
-  app_id: number = null;
-  quest_id: string = null;
+  app_id: number = 0;
+  quest_id: string = '0';
   quest_ttl: string = null;
   quest_typ: string = null;
   actvty_id: string = null;
