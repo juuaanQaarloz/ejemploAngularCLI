@@ -52,7 +52,7 @@ export const MockFieldsContractorType: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'app_st_pa',
     value: true
   }
 ];

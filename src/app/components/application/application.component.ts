@@ -68,6 +68,18 @@ export class ApplicationComponent implements OnInit {
     console.log(user['userName']);
   }
 
+  testGetPDFService() {
+    this.appService.getPDFBroker('2001150001').subscribe((result) => {
+      console.log('result PDF service: ', result);
+    });
+  }
+
+  testGetAPPService() {
+    this.appService.getAppBroker('2001150001').subscribe((result) => {
+      console.log('result GET APP service: ', result);
+    });
+  }
+
   executeOperation(delegateOperation) {
     console.log('delegateOperation: ', delegateOperation);
 

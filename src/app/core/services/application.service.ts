@@ -1,6 +1,6 @@
 import {AppConstants} from 'src/app/app.constants';
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
@@ -20,10 +20,6 @@ import {SepomexObj} from '../../models/sepomex-obj';
 import {COVERAGES} from '../mock/coverage/coverage';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import get from 'lodash/get';
-import {BENEFICIARIES} from '../mock/mock-beneficiaries/mock-beneficiaries';
-import set = Reflect.set;
-import {createUrlResolverWithoutPackagePrefix} from '@angular/compiler';
-
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
 const URL_PATTERN_CATALOG = '../assets/catalogs/pattern-catalogs.json';
@@ -72,7 +68,7 @@ const URL_AGENTS_PROMOTORIA = '../assets/catalogs/agents-promotoria.json';
 const URL_PAYMENT_TYPE = '../assets/catalogs/payment-type.json';
 const URL_CARD_TYPE = '../assets/catalogs/card-type.json';
 const URL_CITY_TOWN = '../assets/catalogs/city-town.json';
-const URL_PLANS = '..asstes/catalgos/plans.json';
+const URL_PLANS = '../assets/catalogs/plans.json';
 
 @Injectable({
   providedIn: 'root'
@@ -96,7 +92,8 @@ export class ApplicationService {
   countries = new BehaviorSubject([]);
   payments = new BehaviorSubject([]);
   documents = new BehaviorSubject([]);
-  coverages = new BehaviorSubject(COVERAGES);
+  currentPlan = new BehaviorSubject(null);
+  coverages = new BehaviorSubject([]);
   formGroup: FormGroup;
   searchModalFrom: string;
   applicationObj;
@@ -383,6 +380,7 @@ export class ApplicationService {
       return this.httpClient.get(urlCatalog)
         .pipe(
           map((catalog) => {
+            console.log('catalog[id]: ', catalog[id]);
             return catalog[id];
           })
         );
@@ -657,6 +655,9 @@ export class ApplicationService {
       // console.log('Entro documents;');
       currentItems = this.documents.getValue();
       propertyItem = 'documentId';
+    } else if (itemType === 'coverage') {
+      currentItems = this.coverages.getValue();
+      propertyItem = 'cvrId';
     }
     const itemsLength = currentItems.length;
     // // console.log('itemsLength: ', itemsLength);
@@ -1585,42 +1586,55 @@ export class ApplicationService {
   }
 
 
-  getPlanCode(currency: string, cvrType: string, pck: string) {
-    let planCode = '';
+  getPlan(currency?: string, cvrType?: string, pck?: string): Observable<any> {
+    let foundPlan = null;
+    let subject = new Subject<any>();
+    /*currency = 'D';
+    cvrType = 'B';
+    pck = 'ED';*/
 
-    /*  this.getCatalogById('IPRE', ['', '', '']).subscribe((results) => {
-      console.log('results: ', results);
-    });*/
+    this.getCatalog('plans', '').subscribe((plans: any) => {
+      plans.forEach((plan) => {
+        if (plan.CLAVE_C2 === currency) {
+          if (plan.CLAVE_COV === cvrType) {
+            if (plan.CLAVE_PM === pck) {
+              foundPlan = plan;
+            }
+          }
+        }
+      });
+      subject.next(foundPlan);
+    });
 
-    // TODO: validate against catalog plan
-
-    return planCode;
+    return subject;
   }
 
-  enableAdditionalCoverage(coverageName) {
+  enableAdditionalCoverage() {
     let currency = this.getFormGroup().controls.currency.value;
     let coverageType = this.getFormGroup().controls.coverageOptions.value;
     let packing = this.getFormGroup().controls.packing.value;
-    let planCode = '';
-    let additionalCoverages = [];
+    let availableCvrs = ['ep', 'pasi', 'ima', 'imapo', 'dimapo', 'ge'];
 
     if (currency) {
       if (coverageType) {
         if (packing) {
-          console.log('before currency: ', currency);
-          if (currency === '0') {
-            currency = 'P';
-          } else if (currency === '1') {
-            currency = 'D';
-          }
-
           console.log('after currency: ', currency);
           console.log('coverageType: ', coverageType);
           console.log('packing: ', packing);
-          planCode = this.getPlanCode(currency, coverageType, packing);
-          additionalCoverages = this.getAdditionalCvrs(planCode);
+          this.getPlan(currency, coverageType, packing).subscribe((foundPlan) => {
+            console.log('foundPlan: ', foundPlan);
+            if (foundPlan !== null) {
+              this.currentPlan.next(foundPlan);
+              this.coverages.next([]);
+              this.setCvrValues(availableCvrs);
 
-          // TODO: enable each additional coverage if exists in the additionalCoverage above
+              foundPlan.MACC ?  this.updateStateCvr('ima', 'enable') :  this.updateStateCvr('ima', 'disable');
+              foundPlan.DI ?  this.updateStateCvr('dimapo', 'enable') :  this.updateStateCvr('dimapo', 'disable');
+              foundPlan.EP ?  this.updateStateCvr('ep', 'enable') :  this.updateStateCvr('ep', 'disable');
+              foundPlan.PASI ?  this.updateStateCvr('pasi', 'enable') :  this.updateStateCvr('pasi', 'disable');
+              foundPlan.GRAVES ?  this.updateStateCvr('ge', 'enable') :  this.updateStateCvr('ge', 'disable');
+            }
+          });
 
         } else {
           console.log('debe seleccionarse un empaquetamiento');
@@ -1630,6 +1644,27 @@ export class ApplicationService {
       }
     } else {
       console.log('debe seleccionarse un tipo de moneda');
+    }
+  }
+  setCvrValues(cvrNames) {
+    cvrNames.forEach((cvrName) => {
+      this.formGroup.controls[cvrName].setValue(false);
+    });
+  }
+
+  updateStateCvr(cvrName, action, exCoverages?) {
+    let status = this.formGroup.controls[cvrName].status;
+
+    console.log('on updateStateCvr');
+    if (action === 'disable') {
+      console.log('status: ', status);
+      if (status === 'VALID') {
+        this.formGroup.controls[cvrName].disable();
+      }
+    } else  if (action === 'enable') {
+      if (status === 'DISABLED') {
+        this.formGroup.controls[cvrName].enable();
+      }
     }
   }
 
@@ -1658,6 +1693,31 @@ export class ApplicationService {
         });
       }
     }
+  }
+
+  updateCoveragesArray(operation, cvrName) {
+    let currentPlan = this.currentPlan.getValue();
+    console.log('currentPlan: ', currentPlan);
+    let currentCoverages = this.coverages.getValue();
+    console.log('current coverages before: ', currentCoverages);
+    if (operation === 'add') {
+      let newCvr = {
+        cvrN: cvrName,
+        planCode: currentPlan.PLAN
+      };
+
+      let searchResult =  currentCoverages.find(x => x.cvrN === cvrName);
+      if (searchResult === undefined) { // coverage those not exist in the array so we can add it
+        currentCoverages.push(newCvr);
+        this.coverages.next(currentCoverages);
+      }
+
+    } else if (operation === 'remove') {
+      currentCoverages = currentCoverages.filter(item => item.cvrN !== cvrName);
+      this.coverages.next(currentCoverages);
+    }
+
+    console.log('current coverages after: ', currentCoverages);
   }
 
   getPatternCatalog(): Observable<[]> {
@@ -1947,6 +2007,44 @@ export class ApplicationService {
       .pipe(
         map((response: ApplicationJson) => {
           console.log('RESPONSE SAVE PUT:', response);
+          return response;
+        })
+      );
+  }
+
+  saveApplication(appJson: ApplicationJson): Observable<any> {
+    const URL = AppConstants.URL_BROKER_SERVICE + '/save';
+
+    return this.httpClient.post(URL, JSON.stringify(appJson))
+      .pipe(
+        map((response) => {
+          console.log('RESPONSE SAVE SERVICE BROKER POST :', response);
+          return response;
+        })
+      );
+  }
+
+  getPDFBroker(appId: string) {
+    console.log('on getPDFBroker');
+    const URL = AppConstants.URL_BROKER_SERVICE + '/getPdf/app_id=' + appId;
+
+    return this.httpClient.get(URL)
+      .pipe(
+        map((response) => {
+          console.log('RESPONSE GET PDF SERVICE BROKER GET :', response);
+          return response;
+        })
+      );
+  }
+
+  getAppBroker(appId: string) {
+    console.log('on getAppBroker');
+    const URL = AppConstants.URL_BROKER_SERVICE + '/getApp/app_id=' + appId;
+
+    return this.httpClient.get(URL)
+      .pipe(
+        map((response) => {
+          console.log('RESPONSE GET APP SERVICE BROKER GET :', response);
           return response;
         })
       );

@@ -206,9 +206,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     if (this.fieldObj.detonateFunction) {
       console.log('detonateFunction: ', this.fieldObj.detonateFunction);
       this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
-        console.log('value: ', value);
         if (this.fieldObj.detonateFunction === 'enableAdditionalCoverage') {
-          this.applicationService.enableAdditionalCoverage('');
+          this.applicationService.enableAdditionalCoverage();
         }
       });
     }
@@ -236,6 +235,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   onCheckboxChange() {
     console.log('onCheckboxChange...');
+
     if (this.fieldObj.detonateFunctionParams) {
       this.applicationService.evaluateCoverageBehaviour(
         this.fieldObj.detonateFunctionParams,
@@ -244,11 +244,15 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
 
     let value = this.form.controls[this.fieldObj.name].value;
-    console.log('value: ', value);
+
+    console.log('name: ', this.fieldObj.name);
+    console.log('value: ', this.form.controls[this.fieldObj.name].value);
     if (value === true) {
       // add to coverages array
+      this.applicationService.updateCoveragesArray('add', this.fieldObj.name);
     } else if (value === false) {
       // remove from coverages array
+      this.applicationService.updateCoveragesArray('remove', this.fieldObj.name);
     }
 
   }
