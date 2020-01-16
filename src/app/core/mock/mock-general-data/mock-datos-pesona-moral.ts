@@ -26,7 +26,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
-    requiredConditions: '(typePerson=morPerson)',
+    requiredConditions: '(typePerson=M)',
     entity: '',
     entityField: 'insurer.co_bus_nm',
     value: ''
@@ -56,7 +56,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
-    requiredConditions: '(typePerson=morPerson)',
+    requiredConditions: '(typePerson=M)',
     entity: '',
     entityField: 'insurer.co_cmrc_bus_nm',
     value: ''
@@ -86,7 +86,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
-    requiredConditions: '(typePerson=morPerson)',
+    requiredConditions: '(typePerson=M)',
     entity: '',
     entityField: 'insurer.party_natl_id',
     value: ''
@@ -116,7 +116,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
-    requiredConditions: '(typePerson=morPerson)',
+    requiredConditions: '(typePerson=M)',
     entity: '',
     entityField: 'insurer.co_estab_dt',
     value: ''
@@ -147,7 +147,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
-    requiredConditions: '(typePerson=morPerson)',
+    requiredConditions: '(typePerson=M)',
     entity: '',
     entityField: 'insurer.nationalities.natlty_cd',
     value: ''
@@ -178,7 +178,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
-    requiredConditions: '(typePerson=morPerson)',
+    requiredConditions: '(typePerson=M)',
     entity: '',
     entityField: 'insurer.co_cmrc_fol_nm',
     value: ''
@@ -209,7 +209,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
-    requiredConditions: '(typePerson=morPerson)',
+    requiredConditions: '(typePerson=M)',
     entity: '',
     entityField: 'insurer.co_cmrc_ecnmcl_sctr_cd',
     value: ''

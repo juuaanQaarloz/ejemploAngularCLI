@@ -1121,7 +1121,7 @@ export const MockContentStep14Process1ContentSection2: Content[] = [
     // process?: Process;
     // fields: Beneficiarios,
     // operations?: Operation[];
-    renderConditions: '(typePerson=morPerson,&,supplierQuestion=false)' ,
+    renderConditions: '(typePerson=M,&,supplierQuestion=false)' ,
     // ---pending---
     // contentChildren?: Array<Content>;
     // -------------
@@ -1143,7 +1143,7 @@ export const MockContentStep14Process1ContentSection2: Content[] = [
     // process?: Process;
     // fields: Beneficiarios,
     // operations?: Operation[];
-    renderConditions: '(typePerson=morPerson)' ,
+    renderConditions: '(typePerson=M)' ,
     // ---pending---
     // contentChildren?: Array<Content>;
     // -------------
@@ -1254,7 +1254,7 @@ export const MockContentStep16Process1ContentSection2: Content[] = [
     // process?: Process;
     fields: Plan1,
     //  operations: SearchOccupationOperationsS,
-    renderConditions: '(typePerson!=morPerson,&,contractorType=true)',
+    renderConditions: '(typePerson!=M,&,contractorType=true)',
     // ---pending---
     // contentChildren?: Array<Content>;
     // -------------
@@ -1274,7 +1274,7 @@ export const MockContentStep16Process1ContentSection2: Content[] = [
     // process?: Process;
     fields: Plan1a,
     //  operations: SearchOccupationOperationsS,
-    renderConditions: '(typePerson=morPerson,|,contractorType=false)',
+    renderConditions: '(typePerson=M,|,contractorType=false)',
     // ---pending---
     // contentChildren?: Array<Content>;
     // -------------
@@ -1694,6 +1694,7 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
     parentType: 'Step',
     idHtml: 'app-content-form-2.43',
     contentType: 'table-diseases,1',
+    contentTypeId: '1',
     // title: 'Enfermedad(es)',
     // process?: Process;
     // fields: medicalFields,
@@ -1737,6 +1738,7 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
     parentType: 'Step',
     idHtml: 'app-content-form-2.43',
     contentType: 'table-diseases,2',
+    contentTypeId: '2',
     // title: 'Enfermedad(es)',
     // process?: Process;
     // fields: medicalFields,
@@ -1780,6 +1782,7 @@ export const MockContentStep19Process1ContentSection2: Content[] = [
     parentType: 'Step',
     idHtml: 'app-content-form-2.43',
     contentType: 'table-diseases,3',
+    contentTypeId: '3',
     // title: 'Enfermedad(es)',
     // process?: Process;
     // fields: medicalFields,

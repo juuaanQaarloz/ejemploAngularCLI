@@ -204,10 +204,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     this.contadorDoc = 0;
 
     if (this.fieldObj.detonateFunction) {
-      console.log('detonateFunction: ', this.fieldObj.detonateFunction);
       this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
-        console.log('on valueChanges of : ', this.fieldObj.name);
-        console.log('value: ', value);
         if (this.fieldObj.detonateFunction === 'enableAdditionalCoverage') {
           this.applicationService.enableAdditionalCoverage();
         }
@@ -216,10 +213,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // // console.log('on ngAfterViewInit...');
+    // console.log('on ngAfterViewInit...');
     if (this.fieldObj.type === 'text' || (this.fieldObj.type === 'autocomplete')) {
       const elem: Element = document.getElementById(this.fieldObj.idHtml);
-      // // // console.log('elem: ', elem);
+      // console.log('elem: ', elem);
       let valueToSet;
       if (elem) {
         if (this.fieldObj.value) { // set default value from configuration
@@ -233,6 +230,11 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         }
       }
     }
+  }
+
+  onChangeOptionSelect(event) {
+    console.log('onChangeOptionSelect');
+    console.log('event: ', event);
   }
 
   onCheckboxChange() {
@@ -1138,7 +1140,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     const typePerson = this.form.controls.typePerson.value;
     const contractorType = this.form.controls.contractorType.value;
 
-    if (typePerson !== 'morPerson') {
+    if (typePerson !== 'M') {
         // quitar elemento
         if (contractorType === false) {
           let el = document.getElementById('slctPacking');

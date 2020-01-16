@@ -17,24 +17,24 @@
     {
       "id": 0,
       "name": "Física",
-      "value": "phyPerson"
+      "value": "P"
     },
     {
       "id": 1,
       "name": "Moral",
-      "value": "morPerson"
+      "value": "M"
     }
   ],
   "typeBeneficiary": [
     {
       "id": 0,
       "name": "Persona física",
-      "value": "phyPerson"
+      "value": "P"
     },
     {
       "id": 1,
       "name": "Persona moral",
-      "value": "morPerson"
+      "value": "M"
     },
     {
       "id": 3,

@@ -260,9 +260,9 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   }
 
   getBeneficiaryTypeLabel() {
-    if (this.item.beneficiaryType === 'phyPerson') {
+    if (this.item.beneficiaryType === 'P') {
       return 'Persona física';
-    } else if (this.item.beneficiaryType === 'morPerson') {
+    } else if (this.item.beneficiaryType === 'M') {
       return 'Persona moral';
     } else {
       return 'MetLife fiduciaria';

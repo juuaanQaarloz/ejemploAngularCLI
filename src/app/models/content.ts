@@ -20,6 +20,7 @@ export interface Content {
   showContent?: boolean;
   styleClass?: string;
   contentType: string; // loose fields, table, questionary
+  contentTypeId?: string;
   description?: string;
   warningMessage?: string;
   legend?: string;
