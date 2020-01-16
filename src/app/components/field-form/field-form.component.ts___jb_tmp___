@@ -1,8 +1,8 @@
-import {AfterViewInit, Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {Field} from '../../models/field';
 import {FormControl, FormGroup} from '@angular/forms';
 import {SelectOption} from '../../models/select-option-interface';
-import {ApplicationService, validateAge, DateValidator} from '../../core/services';
+import {ApplicationService, validateAge} from '../../core/services';
 import {WsService} from '../../core/services/ws.service';
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -27,8 +27,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   @Input() fieldObj: Field;
   @Input() form: FormGroup;
   @Input() item?: any;
-  @Output() executeAction?: any = new EventEmitter<any>();
-
   showSelectLabel = false;
   isSelected = true;
   radioOptions = [];
@@ -142,24 +140,84 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
       dependedFields.forEach((dependedField) => {
         this.form.controls[dependedField].valueChanges.subscribe((value) => {
+          /*// console.log('value: ', value);
+          // console.log('type of value: ', typeof value);
+          // console.log('length value: ', value.length);*/
+
           if (value !== '') {
+            // console.log('onValueChanges of ', dependedField);
+            // console.log('field name control: ', this.fieldObj.name);
             const resEval = this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form);
+            // console.log('resEval: ', resEval);
 
             if (resEval) {
+              // console.log('here true');
               this.form.controls[this.fieldObj.name].enable();
               this.fieldObj.disable = false;
               status = this.checkState();
 
             } else {
+              // console.log('here false');
               this.form.controls[this.fieldObj.name].disable();
               this.fieldObj.disable = true;
               status = this.checkState();
 
             }
           }
+          /*this.disable = this.checkState2(this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form));
+          // console.log('disable2: ', this.disable);
+          // console.log('this.fieldObj.name: ', this.fieldObj.name);
+          if (this.disable === true) {
+            this.form.controls[this.fieldObj.name].disable();
+          } else {
+            this.form.controls[this.fieldObj.name].enable();
+          }*/
         });
       });
     }
+
+    /*if (this.fieldObj.detonateFunctionParams) {
+      // console.log('onDetonateFunctionParams');
+      if (this.fieldObj.value) {
+        // console.log('this.fieldObj.value: ', this.fieldObj.value);
+        // this.applicationService.evaluateCoverageBehaviour(this.fieldObj.detonateFunctionParams, this.fieldObj.value);
+      }
+      this.form.controls[this.fieldObj.name].valueChanges.subscribe((value => {
+        // console.log('onValueChanges of: ', this.fieldObj.name);
+        // console.log('value: ', value);
+        this.applicationService.evaluateCoverageBehaviour(this.fieldObj.detonateFunctionParams, value);
+      }));
+    }*/
+
+    /*if (this.fieldObj.enableConditions) {
+      // console.log('onEnableConditions...');
+
+      const dependedFields = this.applicationService.getDependedFields(this.fieldObj.enableConditions);
+      // console.log('dependedFields: ', dependedFields);
+
+      const result = this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form);
+      // console.log('result: ', result);
+      if (result) {
+        this.form.controls[this.fieldObj.name].disable();
+      } else {
+        this.form.controls[this.fieldObj.name].enable();
+      }
+      this.disable = this.checkState();
+      // console.log('disable: ', this.disable);
+
+      dependedFields.forEach((dependedField) => {
+        this.form.controls[dependedField].valueChanges.subscribe((value) => {
+          const result2 = this.applicationService.evaluateConditions(this.fieldObj.enableConditions, this.form);
+          // // console.log('result2: ', result2);
+          if (result2) {
+            this.form.controls[this.fieldObj.name].disable();
+          } else {
+            this.form.controls[this.fieldObj.name].enable();
+          }
+          this.disable = this.checkState();
+        });
+      });
+    }*/
 
     if (this.fieldObj.name === 'age' || this.fieldObj.name === 'ageS') {
       this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
@@ -193,6 +251,9 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
             this.regExpPattern = stringToRegExp(this.fieldObj.pattern);
           }
         });
+      // this.regExpPattern = stringToRegExp(this.fieldObj.pattern);
+      // this.regExpPattern = this.fieldObj.pattern;
+      // // console.log('regExpPattern: ', this.regExpPattern);
     }
 
     if (this.fieldObj.noAllowedCharactersPattern) {
@@ -201,17 +262,29 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       // // console.log('regExpPattern: ', this.regExpPattern);
     }
 
-    this.contadorDoc = 0;
-
-    if (this.fieldObj.detonateFunction) {
-      console.log('detonateFunction: ', this.fieldObj.detonateFunction);
+    /*if (this.fieldObj.detonateFunction) {
       this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
-        console.log('value: ', value);
-        if (this.fieldObj.detonateFunction === 'enableAdditionalCoverage') {
-          this.applicationService.enableAdditionalCoverage('');
+        // // console.log('detonateFunction: ', this.fieldObj.detonateFunction);
+        // // console.log('itemFromFieldComponent: ', this.item);
+        if (this.fieldObj.detonateFunction === 'updateItem') {
+          this.item.participationPercentage = value;
+          const result = this.applicationService.updateItem(this.item, 'beneficiary');
+          // // console.log('result: ', result);
+          if (!result.status) {
+            this.fieldObj.valid = false;
+            this.fieldObj.message = '';
+          }
         }
       });
-    }
+    }*/
+
+    /*this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
+      // console.log('onValueChanges...');
+      // console.log('formGroup: ', this.form);
+      // console.log('formControlName: ', this.fieldObj.name);
+      // console.log('value: ',  value);
+    });*/
+    this.contadorDoc = 0;
   }
 
   ngAfterViewInit() {
@@ -235,22 +308,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onCheckboxChange() {
-    console.log('onCheckboxChange...');
+    // console.log('onCheckboxChange...');
     if (this.fieldObj.detonateFunctionParams) {
       this.applicationService.evaluateCoverageBehaviour(
         this.fieldObj.detonateFunctionParams,
         this.form.controls[this.fieldObj.name].value);
     }
-
-
-    let value = this.form.controls[this.fieldObj.name].value;
-    console.log('value: ', value);
-    if (value === true) {
-      // add to coverages array
-    } else if (value === false) {
-      // remove from coverages array
-    }
-
   }
 
 
@@ -312,22 +375,22 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
     if (this.fieldObj.name === 'txtClabeConfir') {
       const idClabe = 'txtClabe';
-      console.log('TOKEN MIT 1 --->:' + this.form.controls[this.fieldObj.name].value);
+      console.log('TOKEN MIT 1 --->: ' + this.form.controls[this.fieldObj.name].value);
       console.log('Confirma TOKEN MIT 1 --->: ' + this.form.controls[idClabe].value);
       if (this.form.controls[idClabe].value === this.form.controls[this.fieldObj.name].value) {
         console.log('TOKEN MIT 2 --->: ' + this.form.controls[this.fieldObj.name].value);
         const bine = Number(this.form.controls[this.fieldObj.name].value.substring(0, 6));
-        if (this.form.controls[this.fieldObj.name].value.length === 16) {
+        if (this.form.controls[this.fieldObj.name].value.length == 16) {
           this.getDataPaymentMit(bine);
-          this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
+          /*this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
             .subscribe((results) => {
-              console.log('Respuesta de mit token');
+              console.log("Respuesta de mit toker ");
               console.log(results);
               console.log(results);
-              this.getDataPaymentMit(bine);
-            });
-        } else if (this.form.controls[this.fieldObj.name].value.length === 18) {
-          console.log('Respuesta de bank bienes');
+              // this.getDataPaymentMit(bine);
+            });*/
+        } else if (this.form.controls[this.fieldObj.name].value.length == 18) {
+          console.log("Respuesta de bank bienes");
           this.getDataPaymentMit(bine);
         }
       } else {
@@ -381,10 +444,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     // console.log('event: ', event.target.files);
     // console.log('Target: ', event);
 
-    const fileList: FileList = event.target.files;
+    let fileList: FileList = event.target.files;
 
     if (fileList.length > 0) {
-      const fileSelected: File = fileList[0];
+      let fileSelected: File = fileList[0];
       // console.log('File selected: ', fileSelected);
       this.fileName = fileSelected.name;
       // console.log(this.fileName);
@@ -410,58 +473,30 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       }
       // console.log('Tamaño valido: ', tamanioValido);
       // let file = null;
-      if (contador === 0 || !tamanioValido) {
+      if (contador == 0 || !tamanioValido) {
         // console.log('1');
         this.form.controls[this.fieldObj.name].reset();
         this.fileName = '';
         this.fieldObj.message = 'Formatos aceptados: ' + this.fieldObj.accept + '. \r\n El tamaño maximo son 5Mb.';
         this.fieldObj.file = null;
-
-        // Update Document
-        if ( this.fieldObj.name.indexOf('fileDocument') > -1 && this.form.controls[this.fieldObj.name] ) {
-          const field = {
-            name: this.fieldObj.name,
-            docName: null,
-            docExt: null,
-            docType: null,
-            doc: null,
-            documentId: this.fieldObj.idDocument
-          };
-          this.executeAction.emit(field);
-          this.fieldObj.valid = false;
-        }
       } else {
         // console.log('2');
         this.fieldObj.message = '';
         this.fieldObj.file = fileSelected;
-        this.fieldObj.valid = true;
 
-        // Update Document
-        if ( this.fieldObj.name.indexOf('fileDocument') > -1 && this.form.controls[this.fieldObj.name] ) {
-          const field = {
-            name: this.fieldObj.name,
-            docName: this.fileName,
-            docExt: extensionArchivo,
-            docType: fileSelected.type,
-            doc: fileSelected,
-            documentId: this.fieldObj.idDocument
-          };
-          this.executeAction.emit(field);
-        }
-
-        // Convert to base64
+        // COnvertir a base 64
         // file = this.getBase64(fileSelected).then(
         //   data => // console.log(data)
         // );
 
-        const date = new Date();
-        const milliseconds = new Date().getMilliseconds();
+        let date = new Date();
+        let milliseconds = new Date().getMilliseconds();
         // console.log('Date: ');
         // console.log(date);
         // console.log(date.toLocaleString());
         // console.log(milliseconds);
 
-        const filenetSkeletonRequest = {
+        let filenetSkeletonRequest={
           "name": milliseconds + '_' + fileSelected.name,
           "categoryCode": "APPLICATION",
           "typeCode": "EOB",
@@ -491,12 +526,136 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           }
         };
         //
-        const fd = new FormData();
+        let fd = new FormData();
         fd.append('file', fileSelected);
         fd.append('fileExtension', extensionArchivo);
         fd.append('filenetDocument', JSON.stringify(filenetSkeletonRequest));
 
-        // this.wsService.uploadFilenet(fd);
+        // Upload fileNetDocument ----------------------------------------------
+        // this.wsService.uploadFilenet(fd).subscribe(result => {
+        let responseUpload;
+        // responseUpload = result;
+        // console.log(result);
+        // Si el upload se hace correctamente nos debería devolver algo así.
+        responseUpload = {
+          "number": "idd_DiymD:ONP:{gjBEELPn-jjjj-kBOg-EKnm-EghniKKlknnN}",
+          "formatCode": "pdf",
+          "extension": {
+            "applicationNumber": "fwhgg2323232",
+            "businessTypeCode": "Product Management",
+            "businessTypeDescription": " ",
+            "subTypeCode": "D-EOB",
+            "subTypeDescription": " ",
+            "product": {
+              "number": "1",
+              "typeCode": "Met99",
+              "nameCode": " ",
+              "nameCategoryCode": " "
+            },
+            "fileNetNumber": "{7058826F-0000-C517-8BFE-879FABBDCFF4}"
+          },
+          "createdDate": "2015-07-10 20:24:05",
+          "name": "rfc23232.pdf",
+          "self": "/v2/documents/idd_DiymD:ONP:{gjBEELPn-jjjj-kBOg-EKnm-EghniKKlknnN}",
+          "description": "RFC document",
+          "typeDescription": " ",
+          "location": "https://dms.metlife.com/dms-viewer/web/viewer",
+          "categoryCode": "APPLICATION",
+          "typeCode": "EOB"
+        };
+        this.fieldObj.dataUpload = responseUpload;
+        console.log('Response upload: ');
+        console.log(responseUpload);
+        console.log(this.fieldObj);
+        // },
+        // err => {
+        //   console.log("Error uploadFilenet: ");
+        //   console.log(err);
+        //   this.fieldObj.dataUpload = null;
+        // });
+
+        let fdGet = new FormData();
+        console.log('Number: ');
+        console.log(responseUpload.number);
+        console.log(responseUpload.name);
+        fdGet.append('documentId', responseUpload.number);
+        fdGet.append('documentName', responseUpload.name);
+        fdGet.append('textToShow', 'textToShow');
+
+        // Get fileNetDocument ----------------------------------------------
+        // this.wsService.getFileNet(fdGet).subscribe(result => {
+        //     console.log(result);
+            let respuesta = {
+              "formatCode": "application/pdf",
+              "extension": {
+                "size": {
+                  "unitCode": "",
+                  "value": ""
+                },
+                "encodingTypeCode": "",
+                "applicationNumber": "",
+                "businessTypeCode": "",
+                "businessTypeDescription": "",
+                "subTypeCode": "",
+                "subTypeDescription": "",
+                "product": {
+                  "number": "",
+                  "typeCode": "",
+                  "nameCode": "",
+                  "nameCategoryCode": ""
+                }
+              },
+              "description": "",
+              "typeDescription": "",
+              "categoryCode": "",
+              "content": "JVBERi0xLjQKJaqrrK0KMSAwIG9iago8PAovQ3JlYXRvciAoQXBhY2hlIEZPUCBWZXJzaW9uIDIuMSkKL1Byb2R1",
+              "typeCode": "",
+              "number": "idd_DiymD:ONP:{kjmkPPPn-jjjj-klOO-KKKh-igkiBlhlMjEk}",
+              "createdDate": "",
+              "name": "",
+              "self": "",
+              "location": ""
+            };
+            console.log('Respuesta: ');
+            console.log(respuesta);
+          // },
+          // err => {
+          //   console.log("Error getFileNet: ");
+          //   console.log(err);
+          // });
+
+        let itemToSendSkeleton = {
+          "name": "rfc.pdf",
+          "categoryCode": "APPLICATION",
+          "typeCode": "RFC",
+          "typeDescription": "RFC",
+          "description": "Application 123232 RFC Document",
+          "extension": {
+            "applicationNumber": "fwhgg232322",
+            "statusCode": "In-Active",
+            "businessTypeCode": "Product Management",
+            "businessTypeDescription": "new business",
+            "subTypeCode": "D-EOB",
+            "subTypeDescription": "D EOB subtype"
+          }
+        };
+
+        // Update fileNetDocument ----------------------------------------------
+        let fdUpdate = new FormData();
+        console.log('Number: ');
+        console.log(responseUpload.number);
+        console.log(responseUpload.name);
+        fdUpdate.append('fileToUpdate', JSON.stringify(itemToSendSkeleton));
+        fdUpdate.append('documentName', responseUpload.name);
+        fdUpdate.append('documentId', responseUpload.number);
+
+        this.wsService.updateFileNet(fdUpdate).subscribe(result => {
+          console.log(result);
+          },
+          err => {
+            console.log("Error updateFileNet: ");
+            console.log(err);
+          });
       }
 
       // console.log(this.form);
@@ -525,8 +684,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     let value;
     value = this.form.controls[this.fieldObj.name].value;
     this.form.controls[this.fieldObj.name].setValue( correctFieldValueLostFocus(value));
-    // // console.log('onBlur...');
-    // // console.log(this.fieldObj.name);
+    console.log('onBlur...');
+    console.log(this.fieldObj.name);
     let valid = true;
 
     if (this.fieldObj.name === 'zipCode' || this.fieldObj.name === 'zipCodeS' || this.fieldObj.name === 'zipCodeM') {
@@ -603,8 +762,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     if (this.fieldObj.name === 'salary') {
       const salary = this.form.controls.salary.value;
 
-      if (salary) {
-        if ( this.validateIntegerDecimals(this.form.controls.salary.value)) {
+      if ( salary ) {
+        if ( this.validateIntegerDecimals(this.form.controls.salary.value) ) {
           this.fieldObj.valid = true;
           valid = true;
           this.setValueField('salary', 'txtSalary', addCurrencyFormat(salary));
@@ -619,42 +778,37 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       }
     }
 
-    if (this.fieldObj.name === 'salaryS') {
-      const salaryS = this.form.controls.salaryS.value;
-
-      if (salaryS) {
-        if ( this.validateIntegerDecimals(this.form.controls.salaryS.value)) {
+    if (this.fieldObj.name === 'stateOfBirth') {
+      const value = this.form.controls.stateOfBirth.value;
+      this.applicationService.getCatalogById(this.fieldObj.sourceID, this.fieldObj.source).subscribe((results) => {
+        const index = results.findIndex((i) => i[this.fieldObj.sourceStructure[1]] === this.form.controls[this.fieldObj.name].value);
+        if ( index !== -1 ) {
           this.fieldObj.valid = true;
           valid = true;
-          this.setValueField('salaryS', 'txtSalaryS', addCurrencyFormat(salaryS));
         } else {
-          this.fieldObj.valid = false;
-          valid = false;
-          this.form.controls.salaryS.setValue(null);
-          this.fieldObj.message = 'El Ingreso bruto mensual debe contener máximo 10 enteros y 2 decimales.';
+          this.fieldObj.additionalData = {
+            value: value,
+            idCatalog: null
+          };
+          this.fieldObj.valid = true;
+          valid = true;
+          const indexIdOther = results.findIndex((i) => i[this.fieldObj.sourceStructure[1]] === 'OTRO');
+          const indexIdOthersds = results.findIndex((i) => {
+            console.log(i[this.fieldObj.sourceStructure[1]]);
+          });
+          console.log(indexIdOther);
+          if ( indexIdOther !== -1 ) {
+            this.fieldObj.additionalData.idCatalog = results[indexIdOther];
+          }
         }
-      } else {
-        this.fieldObj.message = 'El Ingreso bruto mensual es obligatorio.';
-      }
+      });
+      console.log(this.fieldObj);
+      console.log(this.fieldObj);
+      console.log(this.fieldObj);
     }
 
-    if (this.fieldObj.name === 'additionalSalary') {
-      const additionalSalary = this.form.controls.additionalSalary.value;
+    if (this.fieldObj.name === 'city') {
 
-      if (additionalSalary) {
-        if ( this.validateIntegerDecimals(this.form.controls.additionalSalary.value)) {
-          this.fieldObj.valid = true;
-          valid = true;
-          this.setValueField('additionalSalary', 'txtAdditionalSalary', addCurrencyFormat(additionalSalary));
-        } else {
-          this.fieldObj.valid = false;
-          valid = false;
-          this.form.controls.additionalSalary.setValue(null);
-          this.fieldObj.message = 'El ingreso mensual adicional debe contener máximo 10 enteros y 2 decimales.';
-        }
-      } else {
-        this.fieldObj.message = 'El ingreso mensual adicional es obligatorio.';
-      }
     }
 
     if ( this.fieldObj.name === 'extremeSportsD' ) {
@@ -686,7 +840,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         }
       });
     }
-
     /*if (this.fieldObj.name === 'txtClabeConfir') {
       const idClabe = 'txtClabe';
       console.log('TOKEN MIT 11 --->: ' + this.form.controls[this.fieldObj.name]);
@@ -747,15 +900,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (event.target.id === 'slctPacking1') {
       this.form.controls.packing.setValue(event.target.value);
-    }
-
-    if ( this.fieldObj.name.indexOf('typeDocument') > -1 && this.form.controls[this.fieldObj.name] ) {
-      const field = {
-        value: this.form.controls[this.fieldObj.name].value,
-        name: this.fieldObj.name,
-        documentId: this.fieldObj.idDocument
-      };
-        this.executeAction.emit(field);
     }
   }
 
@@ -829,141 +973,19 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       }
 
     } else {
-      if (this.fieldObj.name === 'stateOfBirth') {
-        const value = this.form.controls.stateOfBirth.value;
-        if ( value ) {
-          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+      this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
+      if (this.autocompleteOptions.length > 0 && this.fieldObj.type === 'autocomplete') {
+        const searchResult =  this.autocompleteOptions.filter(
+          autoCompleteOpt => autoCompleteOpt.name === this.form.controls[this.fieldObj.name].value)[0];
+        // console.log('searchResult: ', searchResult);
+        if (searchResult) {
+          this.fieldObj.valid = true;
         } else {
           this.fieldObj.valid = false;
-        }
-      } else if (this.fieldObj.name === 'city') {
-        const value = this.form.controls.city.value;
-        if ( value ) {
-          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
-        } else {
-          this.fieldObj.valid = false;
-        }
-      } else if (this.fieldObj.name === 'formatwoStateOfBirth') {
-        const value = this.form.controls.formatwoStateOfBirth.value;
-        if ( value ) {
-          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
-        } else {
-          this.fieldObj.valid = false;
-        }
-      } else if (this.fieldObj.name === 'beneficiaryStateM') {
-        const value = this.form.controls.beneficiaryStateM.value;
-        if ( value ) {
-          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
-        } else {
-          this.fieldObj.valid = false;
-        }
-      } else if (this.fieldObj.name === 'beneficiaryState') {
-        const value = this.form.controls.beneficiaryState.value;
-        if ( value ) {
-          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
-        } else {
-          this.fieldObj.valid = false;
-        }
-      } else if (this.fieldObj.name === 'stateOfBirthS') {
-        const value = this.form.controls.stateOfBirthS.value;
-        if ( value ) {
-          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
-        } else {
-          this.fieldObj.valid = false;
-        }
-      } else if (this.fieldObj.name === 'stateM') {
-        const value = this.form.controls.stateM.value;
-        if ( value ) {
-          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
-        } else {
-          this.fieldObj.valid = false;
-        }
-      } else if (this.fieldObj.name === 'stateS') {
-        const value = this.form.controls.stateS.value;
-        if ( value ) {
-          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
-        } else {
-          this.fieldObj.valid = false;
-        }
-      } else if (this.fieldObj.name === 'state') {
-        const value = this.form.controls.state.value;
-        if ( value ) {
-          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
-        } else {
-          this.fieldObj.valid = false;
-        }
-      } else if (this.fieldObj.name === 'formatwoCity') {
-        const value = this.form.controls.formatwoCity.value;
-        if ( value ) {
-          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
-        } else {
-          this.fieldObj.valid = false;
-        }
-      } else if (this.fieldObj.name === 'beneficiaryCityF') {
-        const value = this.form.controls.beneficiaryCityF.value;
-        if ( value ) {
-          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
-        } else {
-          this.fieldObj.valid = false;
-        }
-      } else if (this.fieldObj.name === 'beneficiaryCityM') {
-        const value = this.form.controls.beneficiaryCityM.value;
-        if ( value ) {
-          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
-        } else {
-          this.fieldObj.valid = false;
-        }
-      } else if (this.fieldObj.name === 'beneficiaryCity') {
-        const value = this.form.controls.beneficiaryCity.value;
-        if ( value ) {
-          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
-        } else {
-          this.fieldObj.valid = false;
-        }
-      } else if (this.fieldObj.name === 'cityS') {
-        const value = this.form.controls.cityS.value;
-        if ( value ) {
-          this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
-        } else {
-          this.fieldObj.valid = false;
-        }
-      } else {
-        this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
-        if (this.autocompleteOptions.length > 0 && this.fieldObj.type === 'autocomplete') {
-          const searchResult =  this.autocompleteOptions.filter(
-            autoCompleteOpt => autoCompleteOpt.name === this.form.controls[this.fieldObj.name].value)[0];
-          if (searchResult) {
-            this.fieldObj.valid = true;
-          } else {
-            this.fieldObj.valid = false;
-          }
         }
       }
       // console.log('this.fieldObj.valid from isValid: ', this.fieldObj.valid);
       // console.log('this.form.controls[this.fieldObj.name].valid: ', this.form.controls[this.fieldObj.name].valid);
-    }
-
-    if ( this.fieldObj.name === 'beneficiaryBirthDate' ) {
-      const validateDate = DateValidator(this.form.controls.beneficiaryBirthDate);
-      if (validateDate) {
-        this.fieldObj.valid = false;
-      } else {
-        this.fieldObj.valid = true;
-      }
-    } else if ( this.fieldObj.name === 'beneficiaryConstitutionDate' ) {
-      const validateDate = DateValidator(this.form.controls.beneficiaryConstitutionDate);
-      if (validateDate) {
-        this.fieldObj.valid = false;
-      } else {
-        this.fieldObj.valid = true;
-      }
-    } else if ( this.fieldObj.name === 'beneficiaryConstitutionDateF' ) {
-      const validateDate = DateValidator(this.form.controls.beneficiaryConstitutionDateF);
-      if (validateDate) {
-        this.fieldObj.valid = false;
-      } else {
-        this.fieldObj.valid = true;
-      }
     }
   }
 
@@ -979,14 +1001,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   checkValue(value) {
-    let currentValue: any;
-    let defaultValue: any;
-    if ( this.form.controls[this.fieldObj.name] ) {
-      currentValue = this.form.controls[this.fieldObj.name].value;
-    }
-    if ( this.fieldObj.value ) {
-      defaultValue = this.fieldObj.value;
-    }
+    const currentValue = this.form.controls[this.fieldObj.name].value;
+    const defaultValue = this.fieldObj.value;
     let result: boolean;
     if (currentValue) {
       if (currentValue === value) {
@@ -1239,16 +1255,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
   }
 
-  onClickRadioButton(value) {
-    console.log('Entro a onClickRadioButton: ');
-    if ( this.fieldObj.name === 'beneficiaryType' ) {
-      this.executeAction.emit(value);
-    }
-  }
-
-  onClickFile() {
-    document.getElementById(this.fieldObj.idHtml).click();
-  }
 }
 
 

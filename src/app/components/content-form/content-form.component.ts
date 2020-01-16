@@ -1,9 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Content} from '../../models/content';
 import {FormGroup} from '@angular/forms';
 import {ApplicationService} from '../../core/services';
 import {RowItem} from '../../models/table-model/row-item';
 import {ColumnSettings} from '../../models/table-model/column-settings';
+import {DocumentsComponent} from '../documents/documents.component';
 
 @Component({
   selector: 'app-content-form',
@@ -13,6 +14,7 @@ import {ColumnSettings} from '../../models/table-model/column-settings';
 export class ContentFormComponent implements OnInit {
   @Input() contentObj: Content;
   @Input() form: FormGroup;
+  @ViewChild(DocumentsComponent, {static: false}) documentsComponent: DocumentsComponent;
   payLoad = '';
   show = true;
   contentTypeId;
@@ -126,5 +128,10 @@ export class ContentFormComponent implements OnInit {
     if (this.contentObj.fields) {
       this.contentObj.fields.sort((a, b) => a.orderAppearance - b.orderAppearance);
     }
+  }
+
+  documentValid(listDocument) {
+    console.log('Content form lista de documentos: ');
+    this.documentsComponent.validateFields(listDocument);
   }
 }

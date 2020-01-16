@@ -191,7 +191,9 @@
   <fieldset *ngSwitchCase="'file'" class="ml-button-primary"
               [ngClass]="{'error': !fieldObj.valid}">
     <div class="pull-left" style="text-align: right; width: 18%;">
-      <label class="ml-button-file">
+      <button class="ml-button-file" [ngClass]="{'ml-form-file-error': !fieldObj.valid}"
+              id="buttonFile" (click)="onClickFile();"
+              style="padding: 0; border: none;">
         <input [type]="'file'"
                [formControlName]="fieldObj.name"
                [id]="fieldObj.idHtml"
@@ -202,15 +204,15 @@
                [accept]="fieldObj.accept"
                class="ml-button-file"
                style='display: none;'>
-      </label>
+      </button>
     </div>
     <div class="pull-right" style="text-align: left; width: 82%;" *ngIf="!fieldObj.message">
       <div style="margin-left: 6%; border: 1px solid gray; text-align: center; height: 42px; white-space: pre; text-overflow: ellipsis; overflow: hidden;">
         {{fileName}}
       </div>
     </div>
-    <div class="pull-right" style="text-align: left; width: 82%;" *ngIf="fieldObj.message">
-      <div style="margin-left: 6%; border: 1px solid gray; text-align: center; height: 42px;">
+    <div class="pull-right" style="text-align: left; width: 82%;" *ngIf="fieldObj.message && !fieldObj.valid">
+      <div [ngClass]="{'ml-form-file-error': !fieldObj.valid}" style="margin-left: 6%; border: 1px solid gray; text-align: center; height: 42px;">
         <span class="ml-form-field-errortext" style="white-space: pre;">{{fieldObj.message}}</span>
         <span style="width: 100%; margin-left: 5px;" type="text" disabled>{{fileName}}</span>
       </div>

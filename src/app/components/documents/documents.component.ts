@@ -281,4 +281,20 @@ export class DocumentsComponent implements OnInit {
     }
   }
 
+  validateFields(listaDocuments) {
+    console.log('Validate fields documents component: ');
+    console.log(this.fields);
+    const property = 'name';
+    listaDocuments.forEach( (document) => {
+      console.log(document);
+      if ( !document.docId ) {
+            const index = this.fields.findIndex((field) => field[property] === document.docTypeField);
+            console.log(index);
+            this.fields[0].valid = false;
+      }
+      if ( !document.docName ) {
+
+      }
+    });
+  }
 }
