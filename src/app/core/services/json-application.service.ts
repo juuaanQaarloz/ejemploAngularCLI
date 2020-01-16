@@ -15,6 +15,7 @@ import {BankAccount} from '../../models/applicationJson/bankJson/bankAccount';
 import {DiseaseJson} from '../../models/applicationJson/diseaseJson';
 import {ForeignCountryTaxJson} from '../../models/applicationJson/foreignCountryTaxJson';
 import {QuesList} from '../../models/applicationJson/questionaryJson/quesList';
+import {Cvr} from '../../models/applicationJson/coverageJson/cvr';
 
 @Injectable({
   providedIn: 'root'
@@ -116,14 +117,14 @@ export class JsonApplicationService {
         set(this.appJson, 'shareHolders[1].person.nationalities', []);
       }
 
-      /*this.appService.saveSolicitud(this.getAppJson()).subscribe((response: ApplicationJson) => {
+      this.appService.saveSolicitud(this.getAppJson()).subscribe((response: ApplicationJson) => {
         console.log('response: ', response);
         this.setAppJson(response);
-      });*/
-
-      this.appService.saveApplication(this.getAppJson()).subscribe((response: ApplicationJson) => {
-        console.log('response: ', response);
       });
+
+      /*this.appService.saveApplication(this.getAppJson()).subscribe((response: ApplicationJson) => {
+        console.log('response: ', response);
+      });*/
     }
   }
 
@@ -178,6 +179,14 @@ export class JsonApplicationService {
         items.forEach((country, i) => {
           console.log('country', country);
           set(this.appJson, `foreignCountryTaxes[${i}]`, this.mapItem('country', country, i));
+        });
+      }
+    } else if (tableType === 'table-coverage') {
+      items = this.appService.coverages.getValue();
+      if (items.length > 0) {
+        items.forEach((coverage, i) => {
+          console.log('coverage', coverage);
+          set(this.appJson, `insuredCondition.aplicationPlan.coverage[${i}]`, this.mapItem('coverage', coverage, i));
         });
       }
     }
@@ -262,6 +271,14 @@ export class JsonApplicationService {
       newCountry.frgn_cntry_tin = item.taxCountryId;
 
       return newCountry;
+    } else if (itemType === 'coverage') {
+      console.log('coverage: ', item);
+      let newCvr: Cvr = new Cvr();
+
+      newCvr.pln_cd = item.planCode;
+      newCvr.cvr_nm = item.cvrN;
+
+      return newCvr;
     }
   }
 

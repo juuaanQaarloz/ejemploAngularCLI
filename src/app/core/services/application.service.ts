@@ -1,6 +1,6 @@
 import {AppConstants} from 'src/app/app.constants';
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
@@ -91,7 +91,8 @@ export class ApplicationService {
   countries = new BehaviorSubject([]);
   payments = new BehaviorSubject([]);
   documents = new BehaviorSubject([]);
-  coverages = new BehaviorSubject(COVERAGES);
+  currentPlan = new BehaviorSubject(null);
+  coverages = new BehaviorSubject([]);
   formGroup: FormGroup;
   searchModalFrom: string;
   applicationObj;
@@ -647,6 +648,9 @@ export class ApplicationService {
       // console.log('Entro documents;');
       currentItems = this.documents.getValue();
       propertyItem = 'documentId';
+    } else if (itemType === 'coverage') {
+      currentItems = this.coverages.getValue();
+      propertyItem = 'cvrId';
     }
     const itemsLength = currentItems.length;
     // // console.log('itemsLength: ', itemsLength);
@@ -1575,56 +1579,55 @@ export class ApplicationService {
   }
 
 
-  getPlan(currency?: string, cvrType?: string, pck?: string) {
+  getPlan(currency?: string, cvrType?: string, pck?: string): Observable<any> {
     let foundPlan = null;
-    currency = 'D';
+    let subject = new Subject<any>();
+    /*currency = 'D';
     cvrType = 'B';
-    pck = 'ED';
+    pck = 'ED';*/
 
-    this.getCatalog('plans', '')
-      .pipe(
-        map((plans: any) => {
-          plans.forEach((plan) => {
-            if (plan.CURRENCY === currency) {
-              if (plan.CLAVE_COV === cvrType) {
-                if (plan.CLAVE_PM === pck) {
-                  foundPlan = plan;
-                }
-              }
+    this.getCatalog('plans', '').subscribe((plans: any) => {
+      plans.forEach((plan) => {
+        if (plan.CLAVE_C2 === currency) {
+          if (plan.CLAVE_COV === cvrType) {
+            if (plan.CLAVE_PM === pck) {
+              foundPlan = plan;
             }
-          });
+          }
+        }
+      });
+      subject.next(foundPlan);
+    });
 
-          console.log('foundPlan: ', foundPlan);
-          return foundPlan;
-        })
-    );
+    return subject;
   }
 
-  enableAdditionalCoverage(coverageName) {
+  enableAdditionalCoverage() {
     let currency = this.getFormGroup().controls.currency.value;
     let coverageType = this.getFormGroup().controls.coverageOptions.value;
     let packing = this.getFormGroup().controls.packing.value;
-    let plan;
-    let additionalCoverages = [];
+    let availableCvrs = ['ep', 'pasi', 'ima', 'imapo', 'dimapo', 'ge'];
 
     if (currency) {
       if (coverageType) {
         if (packing) {
-          console.log('before currency: ', currency);
-          if (currency === '0') {
-            currency = 'P';
-          } else if (currency === '1') {
-            currency = 'D';
-          }
-
           console.log('after currency: ', currency);
           console.log('coverageType: ', coverageType);
           console.log('packing: ', packing);
-          plan = this.getPlan(currency, coverageType, packing);
-          console.log('plan: ', plan);
-          if (plan !== null) {
-            console.log('plan: ', plan);
-          }
+          this.getPlan(currency, coverageType, packing).subscribe((foundPlan) => {
+            console.log('foundPlan: ', foundPlan);
+            if (foundPlan !== null) {
+              this.currentPlan.next(foundPlan);
+              this.coverages.next([]);
+              this.setCvrValues(availableCvrs);
+
+              foundPlan.MACC ?  this.updateStateCvr('ima', 'enable') :  this.updateStateCvr('ima', 'disable');
+              foundPlan.DI ?  this.updateStateCvr('dimapo', 'enable') :  this.updateStateCvr('dimapo', 'disable');
+              foundPlan.EP ?  this.updateStateCvr('ep', 'enable') :  this.updateStateCvr('ep', 'disable');
+              foundPlan.PASI ?  this.updateStateCvr('pasi', 'enable') :  this.updateStateCvr('pasi', 'disable');
+              foundPlan.GRAVES ?  this.updateStateCvr('ge', 'enable') :  this.updateStateCvr('ge', 'disable');
+            }
+          });
 
         } else {
           console.log('debe seleccionarse un empaquetamiento');
@@ -1634,6 +1637,27 @@ export class ApplicationService {
       }
     } else {
       console.log('debe seleccionarse un tipo de moneda');
+    }
+  }
+  setCvrValues(cvrNames) {
+    cvrNames.forEach((cvrName) => {
+      this.formGroup.controls[cvrName].setValue(false);
+    });
+  }
+
+  updateStateCvr(cvrName, action, exCoverages?) {
+    let status = this.formGroup.controls[cvrName].status;
+
+    console.log('on updateStateCvr');
+    if (action === 'disable') {
+      console.log('status: ', status);
+      if (status === 'VALID') {
+        this.formGroup.controls[cvrName].disable();
+      }
+    } else  if (action === 'enable') {
+      if (status === 'DISABLED') {
+        this.formGroup.controls[cvrName].enable();
+      }
     }
   }
 
@@ -1662,6 +1686,31 @@ export class ApplicationService {
         });
       }
     }
+  }
+
+  updateCoveragesArray(operation, cvrName) {
+    let currentPlan = this.currentPlan.getValue();
+    console.log('currentPlan: ', currentPlan);
+    let currentCoverages = this.coverages.getValue();
+    console.log('current coverages before: ', currentCoverages);
+    if (operation === 'add') {
+      let newCvr = {
+        cvrN: cvrName,
+        planCode: currentPlan.PLAN
+      };
+
+      let searchResult =  currentCoverages.find(x => x.cvrN === cvrName);
+      if (searchResult === undefined) { // coverage those not exist in the array so we can add it
+        currentCoverages.push(newCvr);
+        this.coverages.next(currentCoverages);
+      }
+
+    } else if (operation === 'remove') {
+      currentCoverages = currentCoverages.filter(item => item.cvrN !== cvrName);
+      this.coverages.next(currentCoverages);
+    }
+
+    console.log('current coverages after: ', currentCoverages);
   }
 
   getPatternCatalog(): Observable<[]> {
@@ -1973,6 +2022,19 @@ export class ApplicationService {
       .pipe(
         map((response) => {
           console.log('RESPONSE GET PDF SERVICE BROKER GET :', response);
+          return response;
+        })
+      );
+  }
+
+  getAppBroker(appId: string) {
+    console.log('on getAppBroker');
+    const URL = AppConstants.URL_BROKER_SERVICE + '/getApp/app_id=' + appId;
+
+    return this.httpClient.get(URL)
+      .pipe(
+        map((response) => {
+          console.log('RESPONSE GET APP SERVICE BROKER GET :', response);
           return response;
         })
       );

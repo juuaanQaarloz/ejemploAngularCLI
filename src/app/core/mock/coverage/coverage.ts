@@ -29,7 +29,7 @@ export const CoverageFieldsItem: Field[] = [
     entity: '',
     entityField: '',
     value: false,
-    // disable: true
+    disable: true
   }, {
     id: 'field-90002',
     idHtml: 'check1Pasi',
@@ -57,7 +57,7 @@ export const CoverageFieldsItem: Field[] = [
     entity: '',
     entityField: '',
     value: false,
-    // disable: true
+    disable: true
   },
   {
     id: 'field-90003',
@@ -88,7 +88,7 @@ export const CoverageFieldsItem: Field[] = [
     entityField: '',
     value: false,
     detonateFunctionParams: 'imapo,dimapo',
-    // disable: true
+    disable: true
   },
   {
     id: 'field-90004',
@@ -119,7 +119,7 @@ export const CoverageFieldsItem: Field[] = [
     entityField: '',
     value: false,
     detonateFunctionParams: 'ima,dimapo',
-    // disable: true
+    disable: true
   },
   {
     id: 'field-90005',
@@ -150,7 +150,7 @@ export const CoverageFieldsItem: Field[] = [
     entityField: '',
     value: false,
     detonateFunctionParams: 'ima,imapo',
-    // disable: true
+    disable: true
   },
   {
     id: 'field-90007',
@@ -179,7 +179,7 @@ export const CoverageFieldsItem: Field[] = [
     entity: '',
     entityField: '',
     value: false,
-    // disable: true
+    disable: true
   },
   {
     id: 'field-90008',
@@ -208,7 +208,7 @@ export const CoverageFieldsItem: Field[] = [
     entity: '',
     entityField: '',
     value: true,
-    // disable: true
+    disable: true
   }
 ];
 

@@ -29,7 +29,8 @@ export const Plan0: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: 'insuredCondition.aplicationPlan.pln_crrncy_cd',
-    value: ''
+    value: '',
+    detonateFunction: 'enableAdditionalCoverage'
   },
   {
     id: 'field-1402',
@@ -58,7 +59,8 @@ export const Plan0: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: 'insuredCondition.aplicationPlan.pln_cvr_tp_cd',
-    value: ''
+    value: '',
+    detonateFunction: 'enableAdditionalCoverage'
   },
 ];
 
@@ -95,7 +97,7 @@ export const Plan1: Field[] = [
 
 ];
 export const Plan1a: Field[] = [
-  {
+  /*{
     id: 'field-1401',
     idHtml: 'slctPacking1',
     name: 'packing1',
@@ -123,7 +125,7 @@ export const Plan1a: Field[] = [
     requiredConditions: '(typePerson=morPerson,|,contractorType=false)',
     entity: '',
     entityField: ''
-  },
+  },*/
 
 ];
 
