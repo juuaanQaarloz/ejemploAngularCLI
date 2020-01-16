@@ -1201,3 +1201,8 @@ select::-ms-expand {
   font-size: 2rem;
   text-align: center;
 }
+
+.ml-form-file-error {
+  border: solid 1px #DB1818 !important;
+  background-color: #FDE8E8;
+}

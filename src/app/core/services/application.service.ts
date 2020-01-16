@@ -1147,6 +1147,7 @@ export class ApplicationService {
     const step = this.getStepById(stepObj.id);
     let isValid = true;
     let message = '';
+    let validateDocument = false;
 
     if (step) {
       // validate each field individually in the step
@@ -1169,6 +1170,7 @@ export class ApplicationService {
             message = validateTableResult.msg;
           }
         } else if (contentFromStep.contentType.includes('documents')) {
+          validateDocument = true;
           const documentsValid = this.validateDocument();
 
           if ( !documentsValid.valid ) {
@@ -1221,10 +1223,18 @@ export class ApplicationService {
 
       // console.log('isValid from validateFormByStep: ', isValid);
 
-      return {
-        status: isValid,
-        msg: message
-      };
+      if ( validateDocument ) {
+        return {
+          status: isValid,
+          msg: message,
+          listDocument: this.documents.getValue()
+        };
+      } else {
+        return {
+          status: isValid,
+          msg: message
+        };
+      }
     }
   }
 
