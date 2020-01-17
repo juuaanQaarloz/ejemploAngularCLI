@@ -303,7 +303,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     renderConditions: '',
     enableConditions: '',
     requiredConditions: '(typePerson=P)',
-    entity: '',
+    entity: 'app_own_card_typ_cd',
     entityField: 'app_own_card_typ_cd_id',
     value: ''
   },
@@ -365,7 +365,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     renderConditions: '',
     enableConditions: '',
     requiredConditions: '(typePerson=P)',
-    entity: '',
+    entity: 'insurer.per_card_emsr',
     entityField: 'insurer.per_card_emsr'
   },
   {
@@ -395,7 +395,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     renderConditions: '',
     enableConditions: '',
     requiredConditions: '(typePerson=P)',
-    entity: '',
+    entity: 'insurer.per_brth_cntry_nm',
     entityField: 'insurer.per_brth_cntry_nm',
     value: '151'
   },
@@ -489,8 +489,8 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     renderConditions: '',
     enableConditions: '',
     requiredConditions: '(typePerson=P)',
-    entity: '',
-    entityField: 'insurer.nationalities[0].natlty_nm'
+    entity: 'insurer.nationalities[0].natlty_nm',
+    entityField: 'insurer.nationalities[0].natlty_cd'
   },
   {
     id: 'field-19',
@@ -518,8 +518,8 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
-    entity: '',
-    entityField: 'insurer.nationalities[1].natlty_nm'
+    entity: 'insurer.nationalities[1].natlty_nm',
+    entityField: 'insurer.nationalities[1].natlty_cd'
   },
   {
     id: 'field-20',
@@ -547,8 +547,8 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
-    entity: '',
-    entityField: 'insurer.nationalities[2].natlty_nm'
+    entity: 'insurer.nationalities[2].natlty_nm',
+    entityField: 'insurer.nationalities[2].natlty_cd'
   },
   {
     id: 'field-21',
@@ -576,7 +576,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
-    entity: '',
-    entityField: 'insurer.nationalities[3].natlty_nm'
+    entity: 'insurer.nationalities[3].natlty_nm',
+    entityField: 'insurer.nationalities[3].natlty_cd'
   }
 ];
