@@ -1642,6 +1642,7 @@ export class ApplicationService {
               this.coverages.next(
                 [{
                   cvrN: 'et',
+                  cvrC: '0',
                   planCode: foundPlan.PLAN}]);
 
               foundPlan.MACC ?  this.updateStateCvr('ima', 'enable') :  this.updateStateCvr('ima', 'disable');
@@ -1720,8 +1721,9 @@ export class ApplicationService {
     console.log('current coverages before: ', currentCoverages);
     if (operation === 'add') {
       let newCvr = {
-        cvrN: cvrName,
-        planCode: currentPlan.PLAN
+        planCode: currentPlan.PLAN,
+        cvrC: this.getCrvCode(currentPlan, cvrName),
+        cvrN: cvrName
       };
 
       let searchResult =  currentCoverages.find(x => x.cvrN === cvrName);
@@ -1736,6 +1738,28 @@ export class ApplicationService {
     }
 
     console.log('current coverages after: ', currentCoverages);
+  }
+
+  getCrvCode(plan, cvrName) {
+    if (cvrName === 'ep') {
+      console.log('EP: ', plan.EP);
+      return plan.EP;
+    } else if (cvrName === 'pasi') {
+      console.log('PASI: ', plan.PASI);
+      return plan.PASI;
+    } else if (cvrName === 'ima') {
+      console.log('IMA: ', plan.MACC);
+      return plan.MACC;
+    } else if (cvrName === 'imapo') {
+      console.log('IMAPO: ', plan.DI);
+      return plan.DI;
+    } else if (cvrName === 'dimapo') {
+      console.log('DIMAPO: ', plan.TI);
+      return plan.TI;
+    } else if (cvrName === 'ge') {
+      console.log('GRAVES: ', plan.GRAVES);
+      return plan.GRAVES;
+    }
   }
 
   getPatternCatalog(): Observable<[]> {
@@ -2010,7 +2034,7 @@ export class ApplicationService {
   }
 
   saveSolicitud(appJson: ApplicationJson): Observable<ApplicationJson> {
-    const URL = AppConstants.URL_SERVICE_DEV + '/aplication';
+    const URL = AppConstants.URL_SERVICE_DEV + '/application';
     const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -2022,6 +2046,7 @@ export class ApplicationService {
     });
 
     console.log('appJson to passed to de save service: ', appJson);
+    // console.log('appJson to passed to de save service2: ', JSON.stringify(appJson));
 
     return this.httpClient.put(URL, JSON.stringify(appJson), {headers})
       .pipe(

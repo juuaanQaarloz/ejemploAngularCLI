@@ -5,6 +5,7 @@ export class Cvr {
   pln_cd: string = '0';
   ins_id: number = 0;
   app_id: number = 0;
+  cvr_nm_cd: string = null;
   cvr_nm: string = null;
   cvr_dt: string = '2020-01-03';
   beneciciary: BeneciciaryJson[] = [];

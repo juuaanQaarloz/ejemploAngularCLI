@@ -5,6 +5,7 @@ export class AplicationPlanJson {
   pln_cd: string = '0';
   ins_id: number = 0;
   app_id: number = 0;
+  pln_nm: string = null;
   coverage: Cvr[] = [];
   beneciciary: BeneciciaryJson[] = [];
   pln_crrncy_cd: string = null;
