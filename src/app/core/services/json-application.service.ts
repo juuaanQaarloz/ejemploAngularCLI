@@ -66,13 +66,18 @@ export class JsonApplicationService {
                   value = transformDate(value, 'YYYY-MM-DD').toString();
                 } else if (field.subtype === 'currency') {
                   value = Number(value.replace(/[^0-9.-]+/g, ''));
-                } else if (field.type === 'select' || field.type === 'autocomplete') {
-                  console.log('additionalData: ', field.additionalData);
-                  console.log('fieldName: ', field.name);
+                } else if (field.type === 'select') {
+                  console.log('select additionalData: ', field.additionalData);
                   if (field.entity && field.additionalData !== undefined) {
-                    // set(this.appJson, field.entity, field.additionalData.name);
+                    set(this.appJson, field.entity, field.additionalData.name);
+                  }
+                } else if (field.type === 'autocomplete') {
+                  console.log('autocomplete additionalData: ', field.additionalData);
+                  if (field.entity && field.additionalData !== undefined) {
+                    set(this.appJson, field.entity, field.additionalData.value);
                   }
                 }
+
                 // setting value from FORM to JSON
                 set(this.appJson, field.entityField, value);
               }
@@ -204,6 +209,7 @@ export class JsonApplicationService {
       items = this.appService.coverages.getValue();
       if (items.length > 0) {
         set(this.appJson, `insuredCondition.aplicationPlan.pln_cd`, this.appService.currentPlan.getValue().PLAN);
+        set(this.appJson, `insuredCondition.aplicationPlan.pln_nm`, this.appService.currentPlan.getValue().DESCRIP);
         items.forEach((coverage, i) => {
           set(this.appJson, `insuredCondition.aplicationPlan.coverage[${i}]`, this.mapItem('coverage', coverage, i));
         });
@@ -288,8 +294,8 @@ export class JsonApplicationService {
       let newCvr: Cvr = new Cvr();
 
       newCvr.pln_cd = item.planCode;
+      newCvr.cvr_nm_cd = item.cvrC;
       newCvr.cvr_nm = item.cvrN;
-      newCvr.cvr_cd = item.cvrC;
 
       return newCvr;
     }
