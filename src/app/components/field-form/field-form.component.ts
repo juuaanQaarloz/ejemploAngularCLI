@@ -6,17 +6,14 @@ import {ApplicationService, validateAge, DateValidator} from '../../core/service
 import {WsService} from '../../core/services/ws.service';
 import {MatIconRegistry} from '@angular/material';
 import {DomSanitizer} from '@angular/platform-browser';
-import {addCurrencyFormat, addSlashesToDate} from '../../core/utilities';
-import {calculateRFC, correctFieldValue, correctFieldValueLostFocus, stringToRegExp, transformDate} from '../../core/utilities';
+import {addCurrencyFormat} from '../../core/utilities';
+import {calculateRFC, correctFieldValue, stringToRegExp, transformDate} from '../../core/utilities';
 import {SepomexObj} from '../../models/sepomex-obj';
 import {Pattern} from '../../models/pattern/pattern';
-import {DialogRef} from '../dialog/dialog-ref';
 import {ModalService} from '../custom-modal';
 import {Operation} from '../../models';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
-import {NewDocumentField} from "../../core/mock/documents/documents";
+import {HttpClient} from '@angular/common/http';
+import set from 'lodash/set';
 
 @Component({
   selector: 'app-field-form',
@@ -345,11 +342,19 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
   }
 
-  onKeyUpAutoComplete(event) {
-    // console.log('onKeyUpAutoComplete event: ', event);
+  onKeyUpAutoComplete(event, selectedOption) {
+    console.log('onKeyUpAutoComplete: ');
+    console.log('option: ', selectedOption);
+
+    this.fieldObj.additionalData = selectedOption;
+    console.log('this.fieldObj.additionalData: ', this.fieldObj.additionalData);
+
+    /*if (this.fieldObj.entity) {
+      this.fieldObj.additionalData = selectedOption;
+    }*/
+
     let value;
     value = event.source.value;
-    // console.log('value: ', value);
 
     if ( this.fieldObj.name === 'agentName') {
       const nombreVar = 'agentPromotor';
@@ -730,8 +735,16 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onChangeSelect(event) {
-    console.log('onChangeSelect...');
-    console.log('event.target.value: ', event.target.value);
+    /*const selectedIndex = event.target.selectedIndex;
+    const selectedOption = this.selectOptions[event.target.selectedIndex - 1];
+    this.fieldObj.additionalData = selectedOption;*/
+
+    if (this.fieldObj.entity) {
+      let selectedIndex = event.target.selectedIndex;
+      let selectedOption = this.selectOptions[event.target.selectedIndex - 1];
+
+      this.fieldObj.additionalData = selectedOption;
+    }
 
     if (event.target.value === '') {
       this.showSelectLabel = false;

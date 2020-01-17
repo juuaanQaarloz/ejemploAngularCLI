@@ -71,7 +71,7 @@
               (change)="onChangeSelect($event)"
               (blur)="onBlur()">
         <option value="" [selected]="isSelected"> {{fieldObj.label}} </option>
-        <option *ngFor="let opt of selectOptions" [value]="opt.value" (change)="onChangeOptionSelect($event)"
+        <option *ngFor="let opt of selectOptions" [value]="opt.value"
                 [selected]="checkValue(opt.value)">{{opt.name}}</option>
 
       </select>
@@ -250,17 +250,9 @@
     </fieldset>
 
     <mat-autocomplete #auto="matAutocomplete">
-      <!--<mat-option *ngIf="loading" class="is-loading"><mat-spinner diameter="10"></mat-spinner></mat-option>
-      <ng-container *ngIf="!loading && (autocompleteOptions | filter: form.controls[fieldObj.name].value) | async as result">
-        <mat-option *ngFor="let option of result" [value]="option.name"
-                    (onSelectionChange)="onKeyUpAutoComplete($event)">
-          {{option.name}}
-        </mat-option>
-      </ng-container>-->
-      <!--<mat-option *ngIf="!loading" class="is-loading"><mat-spinner diameter="10"></mat-spinner></mat-option>-->
       <ng-container *ngIf="loading && (autocompleteOptions | filter: form.controls[fieldObj.name].value) as result">
         <mat-option *ngFor="let option of result" [value]="option.name"
-                    (onSelectionChange)="onKeyUpAutoComplete($event)">
+                    (onSelectionChange)="onKeyUpAutoComplete($event, option)">
           {{option.name}}
         </mat-option>
       </ng-container>
