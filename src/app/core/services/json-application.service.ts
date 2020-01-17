@@ -265,7 +265,7 @@ export class JsonApplicationService {
       newDisease.illnss_hlth_stt = item.actualCondition;
       newDisease.party_app_id = this.appJson.insurer.party_app_id;
       newDisease.app_id = this.appJson.app_id;
-      newDisease.qstn_id = item.fromTable;
+      newDisease.qstnid = item.fromTable;
 
       return newDisease;
     } else if (itemType === 'country') {

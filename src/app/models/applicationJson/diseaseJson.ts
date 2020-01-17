@@ -7,7 +7,7 @@ export class DiseaseJson {
   illnss_drtn: string = null;
   illnss_hlth_stt: string = null;
   sctn_id: string = null;
-  qstn_id: string = null;
+  qstnid: string = null;
   rec_crt_ts: string = null;
   rec_crt_usr_id: string = null;
   rec_updt_ts: string = null;
