@@ -148,7 +148,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     renderConditions: '',
     enableConditions: '',
     requiredConditions: '(typePerson=M)',
-    entity: '',
+    entity: 'insurer.nationalities.natlty_nm',
     entityField: 'insurer.nationalities.natlty_cd',
     value: ''
   },
@@ -210,7 +210,7 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     renderConditions: '',
     enableConditions: '',
     requiredConditions: '(typePerson=M)',
-    entity: '',
+    entity: 'insurer.co_cmrc_ecnmcl_sctr_nm',
     entityField: 'insurer.co_cmrc_ecnmcl_sctr_cd',
     value: ''
   },

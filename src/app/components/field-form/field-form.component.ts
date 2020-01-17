@@ -356,26 +356,57 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     let value;
     value = event.source.value;
 
-    if ( this.fieldObj.name === 'agentName') {
-      const nombreVar = 'agentPromotor';
-      const agente = 'nombreAgente';
+    if ( this.fieldObj.name === 'agentKey') {
+      const nombreVar = 'agentName';
+      const nombreVarTwo = 'keyPromotor';
+      const agente = 'agente';
       this.applicationService.getCatalogById('agentsProfile', 'IPRE')
         .subscribe((results) => {
           const index = results.findIndex((i) => i[agente] === this.form.controls[this.fieldObj.name].value);
           if ( index !== -1 ) {
             const resp: any = results[index];
-            if (resp.nombrePromotoria !== null) {
-              this.form.controls[nombreVar].setValue(resp.nombrePromotoria);
-              const element = document.getElementById('txtAgentPromotor');
-              element.setAttribute('value', resp.nombrePromotoria);
+            if (resp.nombreAgente !== null) {
+              this.form.controls[nombreVar].setValue(resp.nombreAgente);
+              const element = document.getElementById('txtAgentName');
+              element.setAttribute('value', resp.nombreAgente);
             } else {
               this.form.controls[nombreVar].reset();
-              const element = document.getElementById('txtAgentPromotor');
+              const element = document.getElementById('txtAgentName');
+              element.setAttribute('value', null);
+            }
+            if (resp.promotoria !== null) {
+              this.form.controls[nombreVarTwo].setValue(resp.promotoria);
+              const element = document.getElementById('txtKeyPromotor');
+              element.setAttribute('value', resp.promotoria);
+            } else {
+              this.form.controls[nombreVarTwo].reset();
+              const element = document.getElementById('txtKeyPromotor');
               element.setAttribute('value', null);
             }
           }
-      });
+        });
     }
+
+    // if ( this.fieldObj.name === 'agentName') {
+    //   const nombreVar = 'agentPromotor';
+    //   const agente = 'nombreAgente';
+    //   this.applicationService.getCatalogById('agentsProfile', 'IPRE')
+    //     .subscribe((results) => {
+    //       const index = results.findIndex((i) => i[agente] === this.form.controls[this.fieldObj.name].value);
+    //       if ( index !== -1 ) {
+    //         const resp: any = results[index];
+    //         if (resp.nombrePromotoria !== null) {
+    //           this.form.controls[nombreVar].setValue(resp.nombrePromotoria);
+    //           const element = document.getElementById('txtAgentPromotor');
+    //           element.setAttribute('value', resp.nombrePromotoria);
+    //         } else {
+    //           this.form.controls[nombreVar].reset();
+    //           const element = document.getElementById('txtAgentPromotor');
+    //           element.setAttribute('value', null);
+    //         }
+    //       }
+    //   });
+    // }
 
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
     event.source.value = correctFieldValue(value);

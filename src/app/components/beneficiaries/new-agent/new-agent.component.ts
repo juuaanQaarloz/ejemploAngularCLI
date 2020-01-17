@@ -77,6 +77,9 @@ export class NewAgentComponent implements OnInit {
         case 'agentPromotor':
           value = this.config.data.item.promotor;
           break;
+        case 'keyPromotor':
+          value = this.config.data.item.promotor;
+          break;
         case 'agentKey':
           value = this.config.data.item.key;
           break;
@@ -111,7 +114,8 @@ export class NewAgentComponent implements OnInit {
       agentId: (this.applicationService.getLastItemId('agent') + 1).toString(),
       name: this.formGroup.controls.agentName.value,
       key: this.formGroup.controls.agentKey.value,
-      promotor: this.formGroup.controls.agentPromotor.value,
+      // promotor: this.formGroup.controls.agentPromotor.value,
+      promotor: this.formGroup.controls.keyPromotor.value,
       participation: this.formGroup.controls.agentParticipation.value
     };
     return newMappedAgent;
@@ -156,7 +160,8 @@ export class NewAgentComponent implements OnInit {
       agentId: this.config.data.item.agentId,
       name: this.formGroup.controls.agentName.value,
       key: this.formGroup.controls.agentKey.value,
-      promotor: this.formGroup.controls.agentPromotor.value,
+      // promotor: this.formGroup.controls.agentPromotor.value,
+      promotor: this.formGroup.controls.keyPromotor.value,
       participation: this.formGroup.controls.agentParticipation.value
     };
     return mappedAgent;
