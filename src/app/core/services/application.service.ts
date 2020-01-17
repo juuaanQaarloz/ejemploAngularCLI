@@ -2041,8 +2041,8 @@ export class ApplicationService {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-      'metrolename': localStorage.getItem('metrolename'),
-      'metuid': localStorage.getItem('metuid')
+      'metrolename': 'DES_Supervisor',
+      'metuid': 'N3333876'
     });
 
     console.log('appJson to passed to de save service: ', appJson);
