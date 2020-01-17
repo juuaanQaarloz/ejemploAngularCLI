@@ -122,7 +122,7 @@ export const Plan1a: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
-    requiredConditions: '(typePerson=morPerson,|,contractorType=false)',
+    requiredConditions: '(typePerson=M,|,contractorType=false)',
     entity: '',
     entityField: ''
   },*/

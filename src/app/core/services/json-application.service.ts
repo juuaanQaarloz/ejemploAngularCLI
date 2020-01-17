@@ -34,7 +34,7 @@ export class JsonApplicationService {
       console.log('applicationJson after parse', this.appJson);
       let partyAppType = this.appService.getFormGroup().controls.typePerson.value;
       if (partyAppType !== null && partyAppType !== undefined) {
-        // set(this.appJson, 'insurer.party_typ_cd', partyAppType === 'phyPerson' ? true : false);
+        // set(this.appJson, 'insurer.party_typ_cd', partyAppType === 'P' ? true : false);
         set(this.appJson, 'insurer.party_typ_cd', partyAppType);
       }
       console.log(get(this.appJson, 'insurer.party_typ_cd'));
@@ -74,7 +74,7 @@ export class JsonApplicationService {
           });
         } else if (contentFromStep.contentType.includes('table')) {
           // TODO: Integrate table structure in JSON structure
-          this.mapTableToJson(contentFromStep.contentType);
+          this.mapTableToJson(contentFromStep.contentType, contentFromStep.contentTypeId);
         }
 
         if (contentFromStep.contentChildren) {
@@ -98,7 +98,7 @@ export class JsonApplicationService {
               });
             } else if (contentChild.contentType.includes('table')) {
               // TODO: Integrate table structure in JSON structure
-              this.mapTableToJson(contentChild.contentType);
+              this.mapTableToJson(contentChild.contentType, contentChild.contentTypeId);
             }
           });
         }
@@ -128,7 +128,7 @@ export class JsonApplicationService {
     }
   }
 
-  mapTableToJson(tableType: string) {
+  mapTableToJson(tableType: string, tableId?: string) {
     let items;
     console.log('tableType: ', tableType);
     if (tableType === 'table-beneficiary') {
@@ -161,12 +161,30 @@ export class JsonApplicationService {
       }
     } else if (tableType === 'table-diseases') {
       items = this.appService.diseases.getValue();
+      let items2 = this.appService.diseases2.getValue();
+      let items3 = this.appService.diseases3.getValue();
 
       if (items.length > 0) {
         items.forEach((disease, i) => {
+          console.log('disease item: ', disease);
           set(this.appJson, `insurer.diseases[${i}]`, this.mapItem('disease', disease, i));
         });
       }
+
+      if (items2.length > 0) {
+        items2.forEach((disease, i) => {
+          console.log('disease item: ', disease);
+          set(this.appJson, `insurer.diseases[${i + items.length}]`, this.mapItem('disease', disease, i));
+        });
+      }
+
+      if (items3.length > 0) {
+        items3.forEach((disease, i) => {
+          console.log('disease item: ', disease);
+          set(this.appJson, `insurer.diseases[${i + items.length + items2.length}]`, this.mapItem('disease', disease, i));
+        });
+      }
+
     } else if (tableType === 'table-country') {
       items = this.appService.countries.getValue();
       if (items.length > 0) {
@@ -247,6 +265,7 @@ export class JsonApplicationService {
       newDisease.illnss_hlth_stt = item.actualCondition;
       newDisease.party_app_id = this.appJson.insurer.party_app_id;
       newDisease.app_id = this.appJson.app_id;
+      newDisease.qstnid = item.fromTable;
 
       return newDisease;
     } else if (itemType === 'country') {
@@ -269,7 +288,7 @@ export class JsonApplicationService {
   mapAddressBeneficiary(beneficiaryType: string, item: Beneficiary) {
     let address: AddressJson = new AddressJson();
 
-    if (beneficiaryType === 'phyPerson') {
+    if (beneficiaryType === 'P') {
       // set beneficiary type 'Fisico'
       address.strt_nm = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].strt_nm : item.address.street;
       address.ext_num = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].ext_num : item.address.exteriorNumber;
@@ -281,7 +300,7 @@ export class JsonApplicationService {
       address.cntry_cod = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].cntry_cod : item.address.country;
       address.mncplty_nm = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].mncplty_nm : item.address.municipality;
 
-    } else if (beneficiaryType === 'morPerson') {
+    } else if (beneficiaryType === 'M') {
 
       // set beneficiary type 'Moral'
       address.strt_nm = item.address.street;
@@ -312,16 +331,16 @@ export class JsonApplicationService {
 
   mapPersonBeneficiary(beneficiaryType: string, item: Beneficiary) {
     let person = new PersonJson();
-    person.party_typ_cd = item.beneficiaryType === 'phyPerson' ? true : false;
+    person.party_typ_cd = item.beneficiaryType === 'P' ? true : false;
 
-    if (beneficiaryType === 'phyPerson') {
+    if (beneficiaryType === 'P') {
       person.per_brth_dt = transformDate(new Date(item.birthDateOrConstitution), 'YYYY-MM-DD').toString();
       person.per_age = calculateAge(item.birthDateOrConstitution);
       person.per_frst_nm = item.name;
       person.per_ptrnl_lst_nm = item.fatherLastName;
       person.per_mtrnl_lst_nm = item.motherLastName;
 
-    } else if (beneficiaryType === 'morPerson') {
+    } else if (beneficiaryType === 'M') {
       person.co_bus_nm = item.businessName;
       person.co_estab_dt = transformDate(new Date(item.birthDateOrConstitution), 'YYYY-MM-DD').toString();
 

@@ -2,9 +2,9 @@
      [ngStyle]="{'background-color':  this.applicationService.determinateEvenOrOdd(index) ? '#E5F4FB': '#FFFFFF'}">
   <div *ngIf="itemType === 'beneficiary'" class="item-attribute">{{getBeneficiaryTypeLabel()}}</div>
   <div class="item-attribute"
-       *ngIf="itemType === 'beneficiary' && item.beneficiaryType === 'phyPerson'">{{item.name + ' ' + item.fatherLastName + ' ' + item.motherLastName}}</div>
+       *ngIf="itemType === 'beneficiary' && item.beneficiaryType === 'P'">{{item.name + ' ' + item.fatherLastName + ' ' + item.motherLastName}}</div>
   <div class="item-attribute"
-       *ngIf="itemType === 'beneficiary' && (item.beneficiaryType === 'morPerson' || item.beneficiaryType === 'fidPerson')">{{item.businessName}}</div>
+       *ngIf="itemType === 'beneficiary' && (item.beneficiaryType === 'M' || item.beneficiaryType === 'fidPerson')">{{item.businessName}}</div>
   <div class="item-attribute" *ngIf="itemType === 'beneficiary'">{{item.birthDateOrConstitution}}</div>
   <div *ngIf="itemType === 'formatwo'" class="item-attribute">{{getFormaTwoTypeLabel()}}</div>
   <div class="item-attribute"

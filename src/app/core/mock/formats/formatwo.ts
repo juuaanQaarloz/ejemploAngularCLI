@@ -898,7 +898,7 @@ export const NewFormatwoFields: Field[] = [
 export const BENEFICIARIES: Beneficiary[] =  [
   {
     beneficiaryId: '1',
-    beneficiaryType: 'phyPerson',
+    beneficiaryType: 'P',
     name: 'ODALYS', // if typeBeneficiary is Physic person
     fatherLastName: 'MARRON', // if typeBeneficiary is Physic person
     motherLastName: 'SANCHEZ', // if typeBeneficiary is Physic person
@@ -919,7 +919,7 @@ export const BENEFICIARIES: Beneficiary[] =  [
   },
   {
     beneficiaryId: '5',
-    beneficiaryType: 'morPerson',
+    beneficiaryType: 'M',
     relationship: 'OT',
     businessName: 'Empresa',
     birthDateOrConstitution: '2001/03/08',

@@ -27,7 +27,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
-    requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
+    requiredConditions: '(contractorType=false,|,typePerson=M)',
     entity: '',
     entityField: 'insured.Address[0].strt_nm'
   },
@@ -56,7 +56,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
-    requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
+    requiredConditions: '(contractorType=false,|,typePerson=M)',
     entity: '',
     entityField: 'insured.Address[0].ext_num'
   },
@@ -113,7 +113,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
-    requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
+    requiredConditions: '(contractorType=false,|,typePerson=M)',
     entity: '',
     entityField: 'insured.Address[0].zip_cod'
   },
@@ -143,7 +143,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
-    requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
+    requiredConditions: '(contractorType=false,|,typePerson=M)',
     entity: '',
     entityField: 'insured.Address[0].subt_nm'
   },
@@ -173,7 +173,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
-    requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
+    requiredConditions: '(contractorType=false,|,typePerson=M)',
     entity: '',
     entityField: 'insured.Address[0].mncplty_nm'
   },
@@ -202,7 +202,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
-    requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
+    requiredConditions: '(contractorType=false,|,typePerson=M)',
     entity: '',
     entityField: 'insured.Address[0].sta_spec'
   },
@@ -231,7 +231,7 @@ export const DatosDomicilioSolicitante: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
-    requiredConditions: '(contractorType=false,|,typePerson=morPerson)',
+    requiredConditions: '(contractorType=false,|,typePerson=M)',
     entity: '',
     entityField: 'insured.Address[0].cntry_spe'
   }

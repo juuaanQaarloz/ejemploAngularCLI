@@ -54,7 +54,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   modalMessage = 'La suma de las participaciones de los beneficiarios excede el 100%';
   fileNameUpload = 'Ningún archivo seleccionado';
   fidMessage = 'Se requiere adjuntar documentos:  Carta instrucción a la fiduciaria';
-  beneficiaryType = 'phyPerson';
+  beneficiaryType = 'P';
   showplus = false;
   fields = [];
   showFormError = false;
@@ -82,7 +82,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
       console.log(2);
     } else {
       this.operationType = 'add';
-      this.beneficiaryType = 'phyPerson';
+      this.beneficiaryType = 'P';
       this.fields = this.getFields();
       console.log(this.fields);
       console.log(3);
@@ -157,10 +157,10 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
 
     switch (this.config.data.item.beneficiaryType) {
-      case 'phyPerson':
+      case 'P':
         this.setBeneficiaryP();
         break;
-      case 'morPerson':
+      case 'M':
         this.setBeneficiaryM();
         break;
       case 'fidPerson':
@@ -358,7 +358,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
       beneficiaryType: this.formGroup.controls.beneficiaryType.value
     };
 
-    if (this.beneficiaryType === 'phyPerson') {
+    if (this.beneficiaryType === 'P') {
       return {
         ...newBeneficiaryBase,
         name: this.formGroup.controls.beneficiaryName.value,
@@ -380,7 +380,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         },
         participationPercentage: this.formGroup.controls.participationPercentageP.value,
       };
-    } else if (this.beneficiaryType === 'morPerson') {
+    } else if (this.beneficiaryType === 'M') {
       return {
         ...newBeneficiaryBase,
         businessName: this.formGroup.controls.beneficiaryBusinessName.value,
@@ -432,7 +432,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
       beneficiaryType: this.formGroup.controls.beneficiaryType.value
     };
 
-    if (this.beneficiaryType === 'phyPerson') {
+    if (this.beneficiaryType === 'P') {
       return {
         ...beneficiaryBase,
         name: this.formGroup.controls.beneficiaryName.value,
@@ -454,7 +454,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         },
         participationPercentage: this.formGroup.controls.participationPercentageP.value,
       };
-    } else if (this.beneficiaryType === 'morPerson') {
+    } else if (this.beneficiaryType === 'M') {
       return {
         ...beneficiaryBase,
         businessName: this.formGroup.controls.beneficiaryBusinessName.value,
@@ -560,13 +560,13 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
       fieldsPerBeneficiary.push(field);
     });
 
-    if (this.beneficiaryType === 'phyPerson') {
+    if (this.beneficiaryType === 'P') {
       BeneficiaryFieldsP.forEach((field) => {
         fields.push(field);
         fieldsPerBeneficiary.push(field);
       });
       this.formGroup = this.applicationService.createNewFormGroup(fieldsPerBeneficiary);
-    } else if (this.beneficiaryType === 'morPerson') {
+    } else if (this.beneficiaryType === 'M') {
       BeneficiaryFieldsM.forEach((field) => {
         fields.push(field);
         fieldsPerBeneficiary.push(field);

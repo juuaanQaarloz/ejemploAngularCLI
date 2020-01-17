@@ -29,14 +29,14 @@ export const NewBeneficiaryFields: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: 'insuredCondition.aplicationPlan.coverage.beneciciary.person.party_typ_cd',
-    value: 'phyPerson'
+    value: 'P'
   }
 ];
 
 export const BENEFICIARIES: Beneficiary[] =  [
   {
     beneficiaryId: '1',
-    beneficiaryType: 'phyPerson',
+    beneficiaryType: 'P',
     name: 'ODALYS', // if typeBeneficiary is Physic person
     fatherLastName: 'MARRON', // if typeBeneficiary is Physic person
     motherLastName: 'SANCHEZ', // if typeBeneficiary is Physic person
@@ -59,7 +59,7 @@ export const BENEFICIARIES: Beneficiary[] =  [
   },
   {
     beneficiaryId: '5',
-    beneficiaryType: 'morPerson',
+    beneficiaryType: 'M',
     relationship: 'OT',
     businessName: 'EMPRESA',
     birthDateOrConstitution: '2001/03/08',
