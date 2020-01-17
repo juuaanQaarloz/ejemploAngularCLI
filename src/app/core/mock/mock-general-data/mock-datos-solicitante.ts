@@ -384,7 +384,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     enableConditions: '',
     requiredConditions: '(contractorType=false,|,typePerson=M)',
     entity: 'insured.per_brth_cntry_nm',
-    entityField: '',
+    entityField: 'insured.per_brth_cntry_cd',
   },
   {
     id: 'field-68',
@@ -473,7 +473,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     renderConditions: '',
     enableConditions: '',
     requiredConditions: '(contractorType=false,|,typePerson=M)',
-    entity: '',
+    entity: 'insured.natlty_nm',
     entityField: 'insured.per_brth_cntry_nm',
   },
   // {
