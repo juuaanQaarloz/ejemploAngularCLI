@@ -2034,7 +2034,7 @@ export class ApplicationService {
   }
 
   saveSolicitud(appJson: ApplicationJson): Observable<ApplicationJson> {
-    const URL = AppConstants.URL_SERVICE_DEV + '/aplication';
+    const URL = AppConstants.URL_SERVICE_DEV + '/application';
     const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json',
@@ -2046,6 +2046,7 @@ export class ApplicationService {
     });
 
     console.log('appJson to passed to de save service: ', appJson);
+    // console.log('appJson to passed to de save service2: ', JSON.stringify(appJson));
 
     return this.httpClient.put(URL, JSON.stringify(appJson), {headers})
       .pipe(
