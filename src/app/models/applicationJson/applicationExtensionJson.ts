@@ -25,7 +25,7 @@ export class ApplicationExtensionJson {
   imp_fct_spec: string = null;
   eml_rec_ind: boolean = null;
   rec_comp_inf_ind: boolean = null;
-  rec_rgth_inf_ind: number = null;
+  rec_rgth_inf_ind: boolean = null;
   rec_lgl_not_ind: number = null;
   prv_adv_dta_usg_ind: number = null;
   prv_adv_dta_trns_ind: number = null;
