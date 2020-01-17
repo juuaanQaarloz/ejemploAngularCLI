@@ -1761,7 +1761,7 @@ export class ApplicationService {
         if (agent.agente === userHeaders + '') {
           const mapAgent = {
             agentId: agent.agente, name: agent.nombreAgente, key: agent.promotoria,
-            promotor: agent.nombrePromotoria, participation: 100
+            promotor: agent.promotoria, participation: 100
           };
           // insert user == agent
           this.addItem(mapAgent, 'agent');
@@ -1781,7 +1781,7 @@ export class ApplicationService {
     // const headerUser = {
     // userId: stores.getItem('userId') !== null ? stores.getItem('userId') : '9504'
     // };
-    return stores.getItem(key) != null ? stores.getItem(key) : '9503';
+    return stores.getItem(key) != null ? stores.getItem(key) : '9505';
   }
 
   validateApplicationForm() {

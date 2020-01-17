@@ -38,10 +38,6 @@ export class WsService {
     // };
     // return this.http.post('http://10.0.0.69:8080/CP-DES_UI_PRIV_6979/getFilenetDocument', BODY, httpOptions)
     return this.http.post( AppConstants.URL_SERVICE  + '/uploadClientFile', formData, httpOptionsUndefined)
-    // return this.http.get('http://localhost:9080/despriv/keepAlive/Hola', httpOptions )
-      .subscribe(data => (
-        console.log(data)
-        ));
   }
 
   public submitApplication(submitRequest) {
@@ -97,6 +93,28 @@ export class WsService {
     const BODY = new FormData();
     BODY.append('token', mitToken);
     return this.http.post(AppConstants.URL_SERVICE + '/validateMitToken', BODY, httpOptionsUndefined);
+  }
+
+  /**
+   * Metodo para DESCARGAR los archivos de FILENET
+   */
+  public getFileNet(formData) {
+    console.log('Entro a getFileNet');
+    // const BODY: any = {
+    //   formData
+    // };
+    return this.http.post( AppConstants.URL_SERVICE  + '/getFilenetDocument', formData, httpOptionsUndefined)
+  }
+
+  /**
+   * Metodo para MODIFICAR los archivos de FILENET
+   */
+  public updateFileNet(formData) {
+    console.log('Entro a updateFileNet');
+    // const BODY: any = {
+    //   formData
+    // };
+    return this.http.post( AppConstants.URL_SERVICE  + '/updateFilenetDocument', formData, httpOptionsUndefined)
   }
 
 }
