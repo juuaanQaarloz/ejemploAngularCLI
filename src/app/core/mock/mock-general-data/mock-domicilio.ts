@@ -233,7 +233,7 @@ export const DatosDomicilio: Field[] = [
     renderConditions: '',
     enableConditions: '',
     requiredConditions: '(typePerson=phyPerson)',
-    entity: '',
+    entity: 'insurer.Address[0].cntry_spe',
     entityField: 'insurer.Address[0].cntry_cod',
   },
   {

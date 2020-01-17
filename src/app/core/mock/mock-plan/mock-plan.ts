@@ -91,7 +91,7 @@ export const Plan1: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insuredCondition.aplicationPlan.pln_cd',
     detonateFunction: 'enableAdditionalCoverage'
   },
 

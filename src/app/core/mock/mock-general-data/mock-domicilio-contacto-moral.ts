@@ -230,8 +230,8 @@ export const DatosDomicilioContactoMoral: Field[] = [
     renderConditions: '',
     enableConditions: '',
     requiredConditions: '(typePerson=morPerson)',
-    entity: '',
-    entityField: 'insurer.Address[0].cntry_spe',
+    entity: 'insurer.Address[0].cntry_spe',
+    entityField: 'insurer.Address[0].cntry_cod',
   },
   {
     id: 'field-51',

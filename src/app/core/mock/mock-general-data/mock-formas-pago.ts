@@ -57,8 +57,8 @@ export const FormasPago: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
-    entity: '',
-    entityField: 'accounts.clct_mthd_nm',
+    entity: 'accounts.clct_mthd_nm',
+    entityField: 'accounts.clct_mthd_id',
     value: ''
   },
   {
@@ -118,8 +118,8 @@ export const FormasPagoAutorizo: Field[] = [
         messageErrorClass: '',
         renderConditions: '',
         enableConditions: '',
-        entity: '',
-        entityField: 'acccount.prfr_cntct_typ_nm',
+        entity: 'acccount.prfr_cntct_typ_nm',
+        entityField: 'acccount.prfr_cntct_typ_cd',
         value: ''
     },
     {
