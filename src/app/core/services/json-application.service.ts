@@ -66,7 +66,18 @@ export class JsonApplicationService {
                   value = transformDate(value, 'YYYY-MM-DD').toString();
                 } else if (field.subtype === 'currency') {
                   value = Number(value.replace(/[^0-9.-]+/g, ''));
+                } else if (field.type === 'select') {
+                  console.log('select additionalData: ', field.additionalData);
+                  if (field.entity && field.additionalData !== undefined) {
+                    set(this.appJson, field.entity, field.additionalData.name);
+                  }
+                } else if (field.type === 'autocomplete') {
+                  console.log('autocomplete additionalData: ', field.additionalData);
+                  if (field.entity && field.additionalData !== undefined) {
+                    set(this.appJson, field.entity, field.additionalData.value);
+                  }
                 }
+
                 // setting value from FORM to JSON
                 set(this.appJson, field.entityField, value);
               }
@@ -90,6 +101,8 @@ export class JsonApplicationService {
                       value = transformDate(value, 'YYYY-MM-DD').toString();
                     } else if (field.subtype === 'currency') {
                       value = Number(value.replace(/[^0-9.-]+/g, ''));
+                    } else if (field.type === 'select') {
+                      console.log('additionalData: ', field.additionalData);
                     }
                     // setting value from FORM to JSON
                     set(this.appJson, field.entityField, value);
@@ -195,6 +208,8 @@ export class JsonApplicationService {
     } else if (tableType === 'table-coverage') {
       items = this.appService.coverages.getValue();
       if (items.length > 0) {
+        set(this.appJson, `insuredCondition.aplicationPlan.pln_cd`, this.appService.currentPlan.getValue().PLAN);
+        set(this.appJson, `insuredCondition.aplicationPlan.pln_nm`, this.appService.currentPlan.getValue().DESCRIP);
         items.forEach((coverage, i) => {
           set(this.appJson, `insuredCondition.aplicationPlan.coverage[${i}]`, this.mapItem('coverage', coverage, i));
         });
@@ -265,7 +280,7 @@ export class JsonApplicationService {
       newDisease.illnss_hlth_stt = item.actualCondition;
       newDisease.party_app_id = this.appJson.insurer.party_app_id;
       newDisease.app_id = this.appJson.app_id;
-      newDisease.qstnid = item.fromTable;
+      newDisease.qstn_id = item.fromTable;
 
       return newDisease;
     } else if (itemType === 'country') {
@@ -279,6 +294,7 @@ export class JsonApplicationService {
       let newCvr: Cvr = new Cvr();
 
       newCvr.pln_cd = item.planCode;
+      newCvr.cvr_nm_cd = item.cvrC;
       newCvr.cvr_nm = item.cvrN;
 
       return newCvr;
