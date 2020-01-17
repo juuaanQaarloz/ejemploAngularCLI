@@ -113,7 +113,8 @@ export class DocumentsComponent implements OnInit {
       docName: null,
       docExt: null,
       docType: null,
-      docTypeField: this.content.fields[0].name
+      docTypeField: this.content.fields[0].name,
+      docFileField: this.content.fields[1].name
     };
     return newDocumentBase;
   }
@@ -125,7 +126,8 @@ export class DocumentsComponent implements OnInit {
       docName: null,
       docExt: null,
       docType: null,
-      docTypeField: this.content.fields[0].name + (this.applicationService.getLastItemId('document')).toString()
+      docTypeField: this.content.fields[0].name + (this.applicationService.getLastItemId('document')).toString(),
+      docFileField: this.content.fields[1].name + (this.applicationService.getLastItemId('document')).toString()
     };
     return newDocumentBase;
   }
@@ -276,24 +278,23 @@ export class DocumentsComponent implements OnInit {
         docType: field.docType,
         doc: field.doc,
         fieldName: field.name,
-        docTypeField: field.name
+        docFileField: field.name
       };
     }
   }
 
   validateFields(listaDocuments) {
-    console.log('Validate fields documents component: ');
-    console.log(this.fields);
     const property = 'name';
     listaDocuments.forEach( (document) => {
-      console.log(document);
       if ( !document.docId ) {
-            const index = this.fields.findIndex((field) => field[property] === document.docTypeField);
-            console.log(index);
-            this.fields[0].valid = false;
+        const index = this.fields.findIndex((field) => field[property] === document.docTypeField);
+        this.fields[index].valid = false;
       }
       if ( !document.docName ) {
-
+        const index = this.fields.findIndex((field) => field[property] === document.docFileField);
+        this.fields[index].valid = false;
+        this.fields[index].message = 'Formatos aceptados: .pdf,.png,.jpg,.bmp. \n' +
+          ' El tamaño maximo son 5Mb..';
       }
     });
   }

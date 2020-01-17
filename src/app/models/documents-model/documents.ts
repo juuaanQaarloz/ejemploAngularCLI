@@ -5,4 +5,5 @@ export interface Documents {
   docType: string;
   doc: any;
   docTypeField: string;
+  docFileField: string;
 }
