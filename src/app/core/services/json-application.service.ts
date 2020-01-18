@@ -162,7 +162,7 @@ export class JsonApplicationService {
       items = this.appService.payments.getValue();
       if (items.length > 0) {
         items.forEach((payment, i) => {
-          set(this.appJson, `accounts[${i}]`, this.mapItem('payment', payment, i));
+          set(this.appJson, `accounts[${i + 1}]`, this.mapItem('payment', payment, i));
         });
       }
     } else if (tableType === 'table-sports') {

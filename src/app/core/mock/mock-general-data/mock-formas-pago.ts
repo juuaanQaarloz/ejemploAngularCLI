@@ -28,7 +28,7 @@ export const FormasPago: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: 'accounts.prfr_py_prdcty_cd',
+    entityField: 'accounts[0].prfr_py_prdcty_cd',
     value: ''
   },
   {
@@ -57,8 +57,8 @@ export const FormasPago: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
-    entity: 'accounts.clct_mthd_nm',
-    entityField: 'accounts.clct_mthd_id',
+    entity: 'accounts[0].clct_mthd_nm',
+    entityField: 'accounts[0].clct_mthd_id',
     value: ''
   },
   {
@@ -87,7 +87,7 @@ export const FormasPago: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: 'accounts.prfr_py_wk_day_cd',
+    entityField: 'accounts[0].prfr_py_wk_day_cd',
     value: '',
   },
 ];
@@ -118,8 +118,8 @@ export const FormasPagoAutorizo: Field[] = [
         messageErrorClass: '',
         renderConditions: '',
         enableConditions: '',
-        entity: 'acccount.prfr_cntct_typ_nm',
-        entityField: 'acccount.prfr_cntct_typ_cd',
+        entity: 'acccounts[0].prfr_cntct_typ_nm',
+        entityField: 'acccount[0].prfr_cntct_typ_cd',
         value: ''
     },
     {
@@ -149,7 +149,7 @@ export const FormasPagoAutorizo: Field[] = [
         renderConditions: '(contactMedium=3)',
         enableConditions: '',
         entity: '',
-        entityField: '',
+        entityField: 'accounts[0].prfr_cntct_day',
         value: '',
     },
     {
@@ -179,7 +179,7 @@ export const FormasPagoAutorizo: Field[] = [
         renderConditions: '(contactMedium=3)',
         enableConditions: '',
         entity: '',
-        entityField: '',
+        entityField: 'accounts[0].prfr_cntct_tm_cd',
         value: '',
     },
 ];

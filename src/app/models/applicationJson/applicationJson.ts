@@ -20,7 +20,7 @@ export class ApplicationJson {
   insured: PersonJson = new PersonJson();
   insurer: PersonJson = new PersonJson();
   shareHolders: ShareHolderApp[] = [new ShareHolderApp(), new ShareHolderApp()];
-  accounts: AccountJson[] = [];
+  accounts: AccountJson[] = [new AccountJson()];
   foreignCountryTaxes: ForeignCountryTaxJson[] = [];
   extraData: ExtraDataJson[] = [];
   applicationExtension: ApplicationExtensionJson = new ApplicationExtensionJson();
