@@ -580,3 +580,36 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     entityField: 'insurer.nationalities[3].natlty_cd'
   }
 ];
+
+export const authorization: Field[] = [
+  {
+    id: 'field-2',
+    idHtml: 'rdioAuthorizationSec1',
+    name: 'authorizationSec1',
+    orderAppearance: 1,
+    label: 'Autorizó recibir información y documentación de mi seguro y en su caso la póliza de seguro resultante en ' +
+      'formato PDF (Portable Document Format) u otro formato electrónico equivalente, por medio del correo electrónico antes señalado.',
+    type: 'radio',
+    required: true,
+    placeholder: '',
+    length: '',
+    minValue: 0,
+    maxValue: 0,
+    pattern: '',
+    source: 'IPRE',
+    sourceID: 'guardBoxOptions',
+    sourceStructure: ['id', 'label', 'value'],
+    style: '',
+    styleClass: '',
+    styleClassError: '',
+    message: '',
+    messageClass: '',
+    messageError: '',
+    messageErrorClass: '',
+    renderConditions: '',
+    enableConditions: '',
+    entity: '',
+    entityField: '',
+    value: ''
+  }
+];

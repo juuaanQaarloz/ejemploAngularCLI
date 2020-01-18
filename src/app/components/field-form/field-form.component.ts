@@ -258,14 +258,41 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   }
 
+  verifyMask() {
+    let value = this.form.controls[this.fieldObj.name].value;
+    if ( value ) {
+      value = value.toString().replace('$', '');
+      value = value.replace(/[,]/g, '');
+      console.log(value);
+      this.form.controls[this.fieldObj.name].setValue(value);
+    }
+  }
+
+  position(event) {
+    const start = event.srcElement.selectionStart;
+    const value = event.target.value;
+    if (this.fieldObj.subtype !== 'currency') {
+      event.target.value = correctFieldValue(value);
+    }
+    event.srcElement.selectionStart = start;
+    event.srcElement.selectionEnd = start;
+    const elem: Element = document.getElementById(this.fieldObj.idHtml);
+    elem.setAttribute('value', event.target.value);
+    this.form.controls[this.fieldObj.name].setValue(event.target.value);
+
+    this.onKeyUp(event);
+  }
 
   onKeyUp(event) {
     let value;
     value = event.target.value;
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
-    event.target.value = correctFieldValue(value);
-    elem.setAttribute('value', event.target.value);
-    this.form.controls[this.fieldObj.name].setValue(event.target.value);
+    // if (this.fieldObj.subtype !== 'currency') {
+    //   console.log('uppercase');
+    //   event.target.value = correctFieldValue(value);
+    // }
+    // elem.setAttribute('value', event.target.value);
+    // this.form.controls[this.fieldObj.name].setValue(event.target.value);
     if (this.fieldObj.name === 'assuredImport') {
       // // console.log('Entro assuredImport: ');
       // event.target.value = addCurrencyFormat(event.target.value);
@@ -728,6 +755,25 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           valid = false;
           this.form.controls.describeDiseasesD.setValue(null);
           this.form.controls.describeDiseasesD.reset();
+        }
+      });
+    }
+
+    if ( this.fieldObj.name === 'agentKey' ) {
+      this.applicationService.getCatalogById(this.fieldObj.sourceID, this.fieldObj.source).subscribe((results) => {
+        const index = results.findIndex((i) => i[this.fieldObj.sourceStructure[1]] === this.form.controls[this.fieldObj.name].value);
+        if ( index !== -1 ) {
+          this.fieldObj.valid = true;
+          valid = true;
+        } else {
+          this.fieldObj.valid = false;
+          valid = false;
+          this.form.controls.agentKey.setValue(null);
+          this.form.controls.agentKey.reset();
+          this.form.controls.agentName.setValue(null);
+          this.form.controls.agentName.reset();
+          this.form.controls.keyPromotor.setValue(null);
+          this.form.controls.keyPromotor.reset();
         }
       });
     }
