@@ -40,19 +40,20 @@ export class SearchCriteriaComponent implements OnInit {
   }
 
   search() {
+    console.log("metrolename: "+localStorage.getItem('metrolename'));
     const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-      'metrolename': localStorage.getItem('metrolename'),
-      'metuid': localStorage.getItem('metuid')
+      'metrolename': 'MX-6979_DES_G_OPS',
+      'metuserid': localStorage.getItem('metuid')
     });
 
     let params = new HttpParams();
-    params = params.append("AGENT_ID","");
-    params = params.append("SALES_DIVISION_ID", "");
+    params = params.append("agentId","");
+    params = params.append("promotoryId", "");
 
     if(this.criteria.param1!='' ){
       params = params.append('fiel', 'APP_DCN_NUM');
@@ -71,7 +72,7 @@ export class SearchCriteriaComponent implements OnInit {
       params = params.append('value', this.criteria.param4);
     }
 
-    this.httpClient.get( AppConstants.URL_SERVICE_DEV  + '/aplication', {headers, params}).subscribe((resp:any) => {
+    this.httpClient.get( AppConstants.URL_SERVICE_DEV  + '/application', {headers, params}).subscribe((resp:any) => {
       localStorage.setItem('search', JSON.stringify(resp.data));
       console.log('resp: ', resp);
       this.router.navigate(['search','results']);

@@ -16,7 +16,7 @@
                             <tr *ngFor="let record of records | paginate: { itemsPerPage: numItems, currentPage: p }">
                                 <td class="{{ column.align }}" *ngFor="let column of columns">
                                     <span *ngIf="column.type=='id'">
-                                        <a (click)="detail(record['app_id'])">
+                                        <a (click)="detail(record['appId'])">
                                             <b>{{ record[column.field] }}</b>
                                         </a>
                                     </span>
