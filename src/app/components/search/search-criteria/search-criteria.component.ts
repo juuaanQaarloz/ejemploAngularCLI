@@ -24,6 +24,9 @@ const httpOptionsUndefined = {
   styleUrls: ['./search-criteria.component.css']
 })
 export class SearchCriteriaComponent implements OnInit {
+  metrolename:string;
+  metroluid:string;
+
   criteria = {
     param1: '',
     param2: '',
@@ -37,18 +40,23 @@ export class SearchCriteriaComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log("localStorage");
+    console.log(localStorage.getItem("metrolename"));
+    this.metrolename = localStorage.getItem("metrolename");
+    this.metroluid = localStorage.getItem("metroluid")
   }
 
   search() {
-    console.log("metrolename: "+localStorage.getItem('metrolename'));
+    //console.log("metrolename: "+this.metrolename);
+    //console.log("metroluid: "+this.metroluid);
     const headers = new HttpHeaders({
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-      'metrolename': 'MX-6979_DES_G_OPS',
-      'metuserid': localStorage.getItem('metuid')
+      'metrolename': this.metrolename,
+      'metuserid': this.metroluid
     });
 
     let params = new HttpParams();

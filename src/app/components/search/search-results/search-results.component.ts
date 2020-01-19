@@ -9,6 +9,8 @@ import { AppConstants } from 'src/app/app.constants';
   styleUrls: ['./search-results.component.css']
 })
 export class SearchResultsComponent implements OnInit {
+  metrolename:string;
+  metroluid:string;
   columns: any;
   records: any = [];
   p: any;
@@ -20,6 +22,11 @@ export class SearchResultsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log("localStorage");
+    console.log(localStorage.getItem("metrolename"));
+    this.metrolename = localStorage.getItem("metrolename");
+    this.metroluid = localStorage.getItem("metroluid")
+
     this.columns = [
       { field: 'appDcnNum', label: 'FUC', align: 'text-center', type: 'string'},
       { field: 'appId', label: 'Folio DES', align: 'text-left', type: 'id'},

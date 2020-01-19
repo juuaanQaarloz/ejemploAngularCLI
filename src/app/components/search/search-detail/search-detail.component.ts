@@ -9,6 +9,7 @@ import { ModalService } from '../../custom-modal';
 import { MockTemplate } from 'src/app/core/mock/mock-template';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { SearchService } from '../search.service';
 
 @Component({
   selector: 'app-search-detail',
@@ -30,7 +31,8 @@ export class SearchDetailComponent implements OnInit {
     private httpClient: HttpClient,
     public dialog: DialogService,
     private modalService: ModalService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private searchService: SearchService
   ) {
   }
 
@@ -63,24 +65,7 @@ export class SearchDetailComponent implements OnInit {
   downloadPDF() {
     console.log("PDF");
     console.log(this.appId);
-    const headers = new HttpHeaders({
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-      'metrolename': 'MX-6979_DES_G_OPS',
-      'metuserid': localStorage.getItem('metuid')
-    });
-
-    let params = new HttpParams();
-    params = params.append('appId', this.appId);
-
-    this.httpClient.get(AppConstants.URL_SERVICE +"/App/getPdf", {headers, params}).subscribe( (resp:any) => {
-      if(resp.result!=null){
-        window.open(resp.result.pdfDoc, "_blank");
-      }
-    });
+    this.searchService.downloadPDF(this.appId);
   }
 
   validateForm() {
