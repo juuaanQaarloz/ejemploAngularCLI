@@ -791,7 +791,7 @@ export const validateFunds: ValidatorFn = (group: FormGroup): ValidationErrors |
   }
 
   // if (currency === 'usd' || currency === 'mxn') {
-  if (currency === '1' || currency === '0') {
+  if (currency === '1' || currency === '2') {
     total = Number(fixedFunds) + Number(variableFunds) + Number(fixedRetirement) +
       Number(variableRetirement) + Number(fixedSaving) + Number(variableSaving);
     // console.log('Total', Number(total));
