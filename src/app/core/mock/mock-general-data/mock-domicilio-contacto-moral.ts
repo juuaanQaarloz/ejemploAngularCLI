@@ -405,3 +405,36 @@ export const DatosDomicilioContactoMoral: Field[] = [
     entityField: 'insurer.Address[0].lab_mail_nm',
   }
 ];
+
+export const authorizationSection5: Field[] = [
+  {
+    id: 'field-100',
+    idHtml: 'rdioAuthorizationSec5',
+    name: 'authorizationSec5',
+    orderAppearance: 1,
+    label: 'Autorizó recibir información y documentación de mi seguro y en su caso la póliza de seguro resultante en ' +
+      'formato PDF (Portable Document Format) u otro formato electrónico equivalente, por medio del correo electrónico antes señalado.',
+    type: 'radio',
+    required: true,
+    placeholder: '',
+    length: '',
+    minValue: 0,
+    maxValue: 0,
+    pattern: '',
+    source: 'IPRE',
+    sourceID: 'guardBoxOptions',
+    sourceStructure: ['id', 'label', 'value'],
+    style: '',
+    styleClass: '',
+    styleClassError: '',
+    message: '',
+    messageClass: '',
+    messageError: '',
+    messageErrorClass: '',
+    renderConditions: '',
+    enableConditions: '',
+    entity: '',
+    entityField: 'app_own_rcv_email_ind',
+    value: ''
+  }
+];

@@ -1,7 +1,9 @@
 import {BeneciciaryJson} from '../beneciciaryJson';
 
 export class Cvr {
+  cvr_id: string =  null;
   cvr_cd: string = '0';
+  pln_id: string = '0';
   pln_cd: string = '0';
   ins_id: number = 0;
   app_id: number = 0;

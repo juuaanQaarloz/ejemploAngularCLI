@@ -178,7 +178,7 @@ export class ApplicationService {
       }
 */
       // // console.log('currentStep2: ', this.currentStepSource.getValue());
-    } /*else if (type === 'validateStep') {
+    }/*else if (type === 'validateStep') {
       const currentStep = this.currentStepSource.getValue(); // .getValue();
       // // console.log('onValidateStep currentStep: ', currentStep);
       // // console.log('onValidateStep currentStep: ', currentStep + 1);
@@ -1784,7 +1784,7 @@ export class ApplicationService {
       agents.catalogData.extension.variations.forEach(agent => {
         if (agent.agente === userHeaders + '') {
           const mapAgent = {
-            agentId: agent.agente, name: agent.nombreAgente, key: agent.promotoria,
+            agentId: agent.agente, name: agent.nombreAgente, key: agent.agente,
             promotor: agent.promotoria, participation: 100
           };
           // insert user == agent
@@ -1805,7 +1805,7 @@ export class ApplicationService {
     // const headerUser = {
     // userId: stores.getItem('userId') !== null ? stores.getItem('userId') : '9504'
     // };
-    return stores.getItem(key) != null ? stores.getItem(key) : '9505';
+    return stores.getItem(key) != null ? stores.getItem(key) : '1120';
   }
 
   validateApplicationForm() {

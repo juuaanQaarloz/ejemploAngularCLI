@@ -15,8 +15,9 @@
              placeholder="{{fieldObj.placeholder}}"
              value=""
              [maxlength]="fieldObj.maxValue"
-             (keyup)="onKeyUp($event)"
-             (blur)="onBlur()">
+             (keyup)="position($event)"
+             (blur)="onBlur()"
+             (click)="verifyMask()">
       <span [ngStyle]="{'background': this.disable ? '#EBEBE4':''}">{{fieldObj.label}}</span>
       <a *ngIf="fieldObj.canChangeType" href="javascript:;" (click)="onClickToggle()"
          class="ml-form-field-togglevisible"

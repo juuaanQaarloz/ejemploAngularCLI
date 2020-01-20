@@ -1,10 +1,10 @@
 import {Content, Field} from '../../models';
-import {DatosGeneralesPersonaFisica} from './mock-general-data/mock-datos-persona-fisica';
+import {DatosGeneralesPersonaFisica, authorization} from './mock-general-data/mock-datos-persona-fisica';
 import {DatosDomicilio} from './mock-general-data/mock-domicilio';
 import {MockOperations, RowOperations, SearchOccupationOperations, SearchOccupationOperationsS} from './mock-operations';
 import {InformaciolLaboral1, InformacionLaboral} from './mock-laboral-data/mock-informacion-laboral';
 import {DatosGeneralesPersonaMoral} from './mock-general-data/mock-datos-pesona-moral';
-import {DatosDomicilioContactoMoral} from './mock-general-data/mock-domicilio-contacto-moral';
+import {DatosDomicilioContactoMoral, authorizationSection5} from './mock-general-data/mock-domicilio-contacto-moral';
 import {DatosRepresentanteLegal, DatosRepresentanteLegal1, DatosRepresentanteLegal2} from './mock-general-data/legal-agent';
 import {DatosGeneralesSolicitante} from './mock-general-data/mock-datos-solicitante';
 import {DatosDomicilioSolicitante} from './mock-general-data/mock-domicilio-solicitante';
@@ -99,16 +99,16 @@ export const MockContentStep1Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass?: 'string';
     // --------------------------
-  }
-  /*{
+  },
+  {
     id: 'content-2.3',
     idParent: 'step-1',
     parentType: 'Step',
     idHtml: 'app-content-form-2.3',
     title: '',
     // process?: Process;
-    // fields: DatosDomicilio,
-    operations: MockOperations,
+    fields: authorization,
+    // operations: MockOperations,
     renderConditions: '',
     // ---pending---
     // contentChildren?: Array<Content>;
@@ -116,11 +116,11 @@ export const MockContentStep1Process1ContentSection2: Content[] = [
 
     // --added extra from model--
     showContent: true,
-    contentType: 'looseFields'
+    contentType: 'looseFields',
     // enableConditions?: 'string';
-    // styleClass: 'string',
+    styleClass: 'questions-type',
     // --------------------------
-  }*/
+  }
 ];
 
 export const MockContentStep2Process1ContentSection2: Content[] = [
@@ -300,16 +300,16 @@ export const MockContentStep5Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     // styleClass?: 'string';
     // --------------------------
-  }
-  /*{
+  },
+  {
     id: 'content-2.12',
     idParent: 'step-3',
     parentType: 'Step',
     idHtml: 'app-content-form-2.12',
     title: '',
     // process?: Process;
-    // fields: DatosDomicilio,
-    operations: MockOperations,
+    fields: authorizationSection5,
+    // operations: MockOperations,
     renderConditions: '',
     // ---pending---
     // contentChildren?: Array<Content>;
@@ -317,11 +317,11 @@ export const MockContentStep5Process1ContentSection2: Content[] = [
 
     // --added extra from model--
     showContent: true,
-    contentType: 'looseFields'
+    contentType: 'looseFields',
     // enableConditions?: 'string';
-    // styleClass: 'string',
+    styleClass: 'questions-type',
     // --------------------------
-  }*/
+  }
 ];
 
 export const MockContentStep6Process1ContentSection2: Content[] = [

@@ -2,6 +2,7 @@ import {Cvr} from '../coverageJson/cvr';
 import {BeneciciaryJson} from '../beneciciaryJson';
 
 export class AplicationPlanJson {
+  pln_id: string = '0';
   pln_cd: string = '0';
   ins_id: number = 0;
   app_id: number = 0;
