@@ -37,7 +37,7 @@ export class JsonApplicationService {
         // set(this.appJson, 'insurer.party_typ_cd', partyAppType === 'P' ? true : false);
         set(this.appJson, 'insurer.party_typ_cd', partyAppType);
       }
-      console.log(get(this.appJson, 'insurer.party_typ_cd'));
+      // console.log(get(this.appJson, 'insurer.party_typ_cd'));
     });
   }
 
@@ -67,16 +67,14 @@ export class JsonApplicationService {
                 } else if (field.subtype === 'currency') {
                   value = Number(value.replace(/[^0-9.-]+/g, ''));
                 } else if (field.type === 'select') {
-                  console.log('select additionalData: ', field.additionalData);
                   if (field.entity && field.additionalData !== undefined) {
-                    console.log('field.additionalData.name: ', field.additionalData.name);
-                    console.log('field.entity: ', field.entity);
                     set(this.appJson, field.entity, field.additionalData.name);
                   }
                 } else if (field.type === 'autocomplete') {
                   console.log('autocomplete additionalData: ', field.additionalData);
                   if (field.entity && field.additionalData !== undefined) {
-                    set(this.appJson, field.entity, field.additionalData.value);
+                    value = field.additionalData.value;
+                    set(this.appJson, field.entity, field.additionalData.name);
                   }
                 }
 
@@ -106,15 +104,13 @@ export class JsonApplicationService {
                     } else if (field.type === 'select') {
                       console.log('select additionalData: ', field.additionalData);
                       if (field.entity && field.additionalData !== undefined) {
-                        console.log('field.additionalData.name: ', field.additionalData.name);
-                        console.log('field.entity: ', field.entity);
                         set(this.appJson, field.entity, field.additionalData.name);
-                        console.log('appJson object: ', this.getAppJson());
                       }
                     } else if (field.type === 'autocomplete') {
                       console.log('autocomplete additionalData: ', field.additionalData);
                       if (field.entity && field.additionalData !== undefined) {
-                        set(this.appJson, field.entity, field.additionalData.value);
+                        value = field.additionalData.value;
+                        set(this.appJson, field.entity, field.additionalData.name);
                       }
                     }
                     // setting value from FORM to JSON
@@ -130,7 +126,7 @@ export class JsonApplicationService {
         }
       });
 
-      console.log('appJson object: ', this.getAppJson());
+      // console.log('appJson object: ', this.getAppJson());
 
       this.appJson.app_stts_cd = step.id;
       if (step.id === '1' || step.id === '4') {
@@ -222,7 +218,6 @@ export class JsonApplicationService {
       items = this.appService.coverages.getValue();
       if (items.length > 0) {
         set(this.appJson, `insuredCondition.aplicationPlan.pln_cd`, this.appService.currentPlan.getValue().PLAN);
-        // set(this.appJson, `insuredCondition.aplicationPlan.pln_nm`, this.appService.currentPlan.getValue().DESCRIP);
         items.forEach((coverage, i) => {
           set(this.appJson, `insuredCondition.aplicationPlan.coverage[${i}]`, this.mapItem('coverage', coverage, i));
         });

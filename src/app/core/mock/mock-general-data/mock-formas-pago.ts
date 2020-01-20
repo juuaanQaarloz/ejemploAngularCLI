@@ -118,8 +118,8 @@ export const FormasPagoAutorizo: Field[] = [
         messageErrorClass: '',
         renderConditions: '',
         enableConditions: '',
-        entity: 'acccounts[0].prfr_cntct_typ_nm',
-        entityField: 'acccount[0].prfr_cntct_typ_cd',
+        entity: 'accounts[0].prfr_cntct_typ_nm',
+        entityField: 'account[0].prfr_cntct_typ_cd',
         value: ''
     },
     {
