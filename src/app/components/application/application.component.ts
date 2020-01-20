@@ -11,6 +11,7 @@ import {Operation} from '../../models';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { AppConstants } from 'src/app/app.constants';
+import { SearchService } from '../search/search.service';
 
 @Component({
   selector: 'app-application',
@@ -45,7 +46,8 @@ export class ApplicationComponent implements OnInit {
               private httpClient: HttpClient,
               public dialog: DialogService,
               private modalService: ModalService,
-              private storageService: StorageService
+              private storageService: StorageService,
+              private searchService: SearchService
   ) {
   }
 
@@ -110,22 +112,7 @@ export class ApplicationComponent implements OnInit {
   }
 
   downloadPDF() {
-    const headers = new HttpHeaders({
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
-    });
-
-    let params = new HttpParams();
-    params = params.append('appId', '2001030089');
-
-    this.httpClient.get(AppConstants.URL_SERVICE_DEV +"/App/getPdf", {headers, params}).subscribe( (resp:any) => {
-      if (resp.result !== null) {
-        window.open(resp.result.pdfDoc, "_blank");
-      }
-    });
+    this.searchService.downloadPDF("2001030089");
   }
 
   validateApplication() {

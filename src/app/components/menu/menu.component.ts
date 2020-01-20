@@ -8,7 +8,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 })
 export class MenuComponent implements OnInit {
   metrolename:string;
-  metuid:string;
+  metroluid:string;
 
   menuOptions = [
     {
@@ -30,13 +30,13 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe( params => {
       this.metrolename = params['metrolename'];
-      this.metuid = params['metuid'];
+      this.metroluid = params['metroluid'];
 
       localStorage.setItem("metrolename", this.metrolename);
-      localStorage.setItem("metuid", this.metuid);
+      localStorage.setItem("metroluid", this.metroluid);
       
-      //console.log("metrolename: "+this.metrolename);
-      //console.log("metuid: "+this.metuid);
+      console.log("metrolename: "+this.metrolename);
+      console.log("metroluid: "+this.metroluid);
       });
   }
 
