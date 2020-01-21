@@ -149,7 +149,6 @@ export class NewPaymentComponent implements OnInit {
       txtBank: this.formGroup.controls.txtBank.value,
       txtClabe: this.formGroup.controls.txtClabe.value,
       selectCard: this.formGroup.controls.selectCard.value,
-      txtCardNumber: this.formGroup.controls.txtCardNumber.value,
     };
     return newPaymentBase;
   }
