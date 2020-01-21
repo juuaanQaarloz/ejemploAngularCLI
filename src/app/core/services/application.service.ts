@@ -398,7 +398,7 @@ export class ApplicationService {
       'Accept': 'application/json',
       'x-ibm-client-id': '7a0c9407-970c-47fd-ae34-edee734de4e9',
       'authorization': 'Bearer ' + TOKEN,
-      'metrolename': 'DES_Supervisor',
+      'metrolename': 'DES_Admin',
       'metuserid': 'N3333876'
     });
 
@@ -2074,7 +2074,7 @@ export class ApplicationService {
       'Accept': 'application/json',
       'x-ibm-client-id': '7a0c9407-970c-47fd-ae34-edee734de4e9',
       'authorization': 'Bearer ' + TOKEN,
-      'metrolename': 'DES_Supervisor',
+      'metrolename': 'DES_Admin',
       'metuserid': 'N3333876'
     });
 
@@ -2098,9 +2098,9 @@ export class ApplicationService {
 
     const headers = new HttpHeaders({
       'Accept': 'application/json',
-      'x-ibm-client-id': '7a0c9407-970c-47fd-ae34-edee734de4e9',
+      'x-ibm-client-id': '633f644e-53a8-4faf-a2a4-5e5d919cc69b',
       'authorization': 'Bearer ' + TOKEN,
-      'metrolename': 'DES_Supervisor',
+      'metrolename': 'DES_Admin',
       'metuserid': 'N3333876'
     });
 
@@ -2121,7 +2121,7 @@ export class ApplicationService {
       'Accept': 'application/json',
       'x-ibm-client-id': '7a0c9407-970c-47fd-ae34-edee734de4e9',
       'authorization': 'Bearer ' + TOKEN,
-      'metrolename': 'DES_Supervisor',
+      'metrolename': 'DES_Admin',
       'metuserid': 'N3333876'
     });
 
@@ -2160,5 +2160,26 @@ export class ApplicationService {
       }
     }
     return status;
+  }
+
+  getUserData() {
+    console.log('on getUserData');
+    const URL = AppConstants.URL_SERVICE_DEV + '/getUserData';
+
+    /*const headers = new HttpHeaders({
+      'Accept': 'application/json',
+      'x-ibm-client-id': '7a0c9407-970c-47fd-ae34-edee734de4e9',
+      'authorization': 'Bearer ' + TOKEN,
+      'metrolename': 'DES_Admin',
+      'metuserid': 'N3333876'
+    });*/
+
+    return this.httpClient.get(URL, { })
+      .pipe(
+        map((response) => {
+          console.log('RESPONSE POST FROM GET USER DATA CALL :', response);
+          return response;
+        })
+      );
   }
 }

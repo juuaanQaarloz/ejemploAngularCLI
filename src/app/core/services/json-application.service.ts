@@ -30,8 +30,6 @@ export class JsonApplicationService {
     private storageService: StorageService
   ) {
 
-    console.log('sessionUser: ', this.storageService.getSessionUser());
-    console.log('token: ', this.storageService.getCurrentToken());
     this.appService.getApplicationBase().subscribe((response) => {
       console.log('response: ', response);
       // get new application folio

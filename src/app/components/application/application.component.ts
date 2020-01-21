@@ -12,6 +12,7 @@ import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 import {AppConstants} from 'src/app/app.constants';
 import {SearchService} from '../search/search.service';
+import {JsonApplicationService} from '../../core/services/json-application.service';
 
 @Component({
   selector: 'app-application',
@@ -47,7 +48,8 @@ export class ApplicationComponent implements OnInit {
               public dialog: DialogService,
               private modalService: ModalService,
               private storageService: StorageService,
-              private searchService: SearchService
+              private searchService: SearchService,
+              private jsonAppService: JsonApplicationService
   ) {
   }
 
@@ -64,14 +66,14 @@ export class ApplicationComponent implements OnInit {
       'participationPercentage',
       '40');*/
     console.log('Entro a la aplicación');
-    console.log('Session user: ');
+    console.log('Session user: ', this.storageService.setCurrentSession(null));
     let user = this.storageService.getSessionUser();
     console.log(user);
     console.log(user['userName']);
   }
 
   testGetPDFService() {
-    this.appService.getPDFBroker('2001210074').subscribe((result: any) => {
+    this.appService.getPDFBroker(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result: any) => {
       console.log('result PDF service: ', result);
       if (result) {
 
@@ -91,7 +93,7 @@ export class ApplicationComponent implements OnInit {
   }
 
   testGetAPPService() {
-    this.appService.getAppBroker('2001200002').subscribe((result) => {
+    this.appService.getAppBroker(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result) => {
       console.log('result GET APP service: ', result);
     });
   }
