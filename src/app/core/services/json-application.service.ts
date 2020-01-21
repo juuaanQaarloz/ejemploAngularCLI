@@ -16,6 +16,7 @@ import {DiseaseJson} from '../../models/applicationJson/diseaseJson';
 import {ForeignCountryTaxJson} from '../../models/applicationJson/foreignCountryTaxJson';
 import {QuesList} from '../../models/applicationJson/questionaryJson/quesList';
 import {Cvr} from '../../models/applicationJson/coverageJson/cvr';
+import {StorageService} from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,12 @@ export class JsonApplicationService {
   appJson: ApplicationJson = new ApplicationJson();
 
   constructor(
-    private appService: ApplicationService
+    private appService: ApplicationService,
+    private storageService: StorageService
   ) {
+
+    console.log('sessionUser: ', this.storageService.getSessionUser());
+    console.log('token: ', this.storageService.getCurrentToken());
     this.appService.getApplicationBase().subscribe((response) => {
       console.log('response: ', response);
       // get new application folio
@@ -133,21 +138,15 @@ export class JsonApplicationService {
       if (step.id === '1' || step.id === '4') {
         let resp = this.appService.getFormGroup().controls.typePerson.value;
       }
-      if (step.id === '6') {
-        set(this.appJson, 'shareHolders[0].person.Address', []);
-        set(this.appJson, 'shareHolders[0].person.nationalities', []);
-        set(this.appJson, 'shareHolders[1].person.Address', []);
-        set(this.appJson, 'shareHolders[1].person.nationalities', []);
-      }
 
-      /*this.appService.saveSolicitud(this.getAppJson()).subscribe((response: ApplicationJson) => {
+      this.appService.saveSolicitud(this.getAppJson()).subscribe((response: ApplicationJson) => {
         console.log('response: ', response);
         this.setAppJson(response);
-      });*/
-
-      this.appService.saveApplication(this.getAppJson()).subscribe((response: ApplicationJson) => {
-        console.log('response: ', response);
       });
+
+      /*this.appService.saveApplication(this.getAppJson()).subscribe((response: ApplicationJson) => {
+        console.log('response: ', response);
+      });*/
     }
   }
 

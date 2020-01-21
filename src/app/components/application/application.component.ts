@@ -9,9 +9,9 @@ import {APPL_OPERATIONS} from '../../core/mock/mock-operations';
 import {Template} from '../../models/template';
 import {Operation} from '../../models';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { AppConstants } from 'src/app/app.constants';
-import { SearchService } from '../search/search.service';
+import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
+import {AppConstants} from 'src/app/app.constants';
+import {SearchService} from '../search/search.service';
 
 @Component({
   selector: 'app-application',
@@ -71,8 +71,22 @@ export class ApplicationComponent implements OnInit {
   }
 
   testGetPDFService() {
-    this.appService.getPDFBroker('2001200002').subscribe((result) => {
+    this.appService.getPDFBroker('2001210074').subscribe((result: any) => {
       console.log('result PDF service: ', result);
+      if (result) {
+
+        // response.data -> response data base64 encoded
+        // decoding the data via atob()
+        const byteArray = new Uint8Array(atob(result.binaryData).split('').map(char => char.charCodeAt(0)));
+        let blob = new Blob([byteArray], {type: 'application/pdf'});
+
+        // Here is your URL you can use
+        const url = window.URL.createObjectURL(blob);
+
+        // i.e. display the PDF content via iframe
+        document.querySelector('iframe').src = url;
+
+      }
     });
   }
 
@@ -112,7 +126,7 @@ export class ApplicationComponent implements OnInit {
   }
 
   downloadPDF() {
-    this.searchService.downloadPDF("2001030089");
+    this.searchService.downloadPDF('2001030089');
   }
 
   validateApplication() {

@@ -90,8 +90,8 @@ export class SearchCriteriaComponent implements OnInit {
     });
   }
 
-  validParam1(){
-    if(this.criteria.param1!='' && (this.criteria.param2!='' || this.criteria.param3!='' || this.criteria.param4!='')){
+  validParam1() {
+    if (this.criteria.param1!='' && (this.criteria.param2!='' || this.criteria.param3!='' || this.criteria.param4!='')){
       return false;
     }
     return true;

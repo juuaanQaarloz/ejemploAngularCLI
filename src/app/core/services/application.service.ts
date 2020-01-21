@@ -2080,6 +2080,9 @@ export class ApplicationService {
 
     set(appJson, 'type_operation_app', 'save');
 
+    // console.log('json send: ', JSON.stringify(appJson));
+
+    // return this.httpClient.put(URL, JSON.stringify(appJson), {headers}) use put instead of post
     return this.httpClient.post(URL, JSON.stringify(appJson), {headers})
       .pipe(
         map((response) => {

@@ -38,7 +38,8 @@ export class SearchDetailComponent implements OnInit {
   ngOnInit() {
     this.detail = JSON.parse(localStorage.getItem('detail'));
     this.appId = this.detail.app_id;
-    this.jsonApplicationService.setAppJson(this.detail);
+    this.jsonApplicationService.setAppJson(localStorage.getItem('detail'));
+    console.log('appJson: ', this.jsonApplicationService.getAppJson());
     console.log(this.detail);
     this.appService.setApplicationObject(MockTemplate);
     this.applicationObj = this.appService.getApplicationObject();
@@ -57,7 +58,7 @@ export class SearchDetailComponent implements OnInit {
       'beneficiary',
       '1',
       'participationPercentage',
-      '40');*/  
+      '40');*/
   }
 
   getFormValue() {
