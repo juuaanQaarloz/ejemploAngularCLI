@@ -22,10 +22,10 @@ export class SearchResultsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log("localStorage");
-    console.log(localStorage.getItem("metrolename"));
+    //console.log("localStorage");
+    //console.log(localStorage.getItem("metrolename"));
     this.metrolename = localStorage.getItem("metrolename");
-    this.metroluid = localStorage.getItem("metroluid")
+    this.metroluid = localStorage.getItem("metroluid");
 
     this.columns = [
       { field: 'appDcnNum', label: 'FUC', align: 'text-center', type: 'string'},
@@ -53,8 +53,8 @@ export class SearchResultsComponent implements OnInit {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-      'metrolename': 'MX-6979_DES_G_OPS',
-      'metuserid': localStorage.getItem('metuid')
+      'metrolename': localStorage.getItem('metrolename'),
+      'metuserid': localStorage.getItem('metroluid')
     });
 
     let params = new HttpParams();
