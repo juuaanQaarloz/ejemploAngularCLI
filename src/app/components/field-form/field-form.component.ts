@@ -353,7 +353,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         const bine = Number(this.form.controls[this.fieldObj.name].value.substring(0, 6));
         if (this.form.controls[this.fieldObj.name].value.length === 15){
           this.getDataPaymentMit(bine);
-          this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
+          this.wsService.validateMitToken(this.form.controls[this.fieldObj.name]  .value)
             .subscribe((results) => {
               console.log('-- Respuesta de mit token --');
               console.log(results);
