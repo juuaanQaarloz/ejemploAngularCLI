@@ -19,6 +19,8 @@ import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import get from 'lodash/get';
+import {TOKEN} from '../mock/mock_token';
+import set from 'lodash/set';
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
 const URL_PATTERN_CATALOG = '../assets/catalogs/pattern-catalogs.json';
@@ -391,9 +393,16 @@ export class ApplicationService {
 
   getApplicationBase(): Observable<ApplicationJson> {
     const URL_FOLIO = AppConstants.URL_SERVICE_DEV + '/App/folio';
-    const URL_JSON_TEST = '../assets/swagger/JsonApp_080120.json';
+    // const URL_JSON_TEST = '../assets/swagger/JsonApp_080120.json';
+    const headers = new HttpHeaders({
+      'Accept': 'application/json',
+      'x-ibm-client-id': '7a0c9407-970c-47fd-ae34-edee734de4e9',
+      'authorization': 'Bearer ' + TOKEN,
+      'metrolename': 'DES_Supervisor',
+      'metuserid': 'N3333876'
+    });
 
-    return this.httpClient.get(URL_FOLIO)
+    return this.httpClient.get(URL_FOLIO, {headers})
     // return this.httpClient.get(URL_JSON_TEST)
       .pipe(
         map((response: ApplicationJson) => {
@@ -2058,9 +2067,20 @@ export class ApplicationService {
   }
 
   saveApplication(appJson: ApplicationJson): Observable<any> {
+    console.log('on saveApplication..');
     const URL = AppConstants.URL_BROKER_SERVICE + '/save';
 
-    return this.httpClient.post(URL, JSON.stringify(appJson))
+    const headers = new HttpHeaders({
+      'Accept': 'application/json',
+      'x-ibm-client-id': '7a0c9407-970c-47fd-ae34-edee734de4e9',
+      'authorization': 'Bearer ' + TOKEN,
+      'metrolename': 'DES_Supervisor',
+      'metuserid': 'N3333876'
+    });
+
+    set(appJson, 'type_operation_app', 'save');
+
+    return this.httpClient.post(URL, JSON.stringify(appJson), {headers})
       .pipe(
         map((response) => {
           console.log('RESPONSE SAVE SERVICE BROKER POST :', response);
@@ -2073,7 +2093,15 @@ export class ApplicationService {
     console.log('on getPDFBroker');
     const URL = AppConstants.URL_BROKER_SERVICE + '/getPdf/app_id=' + appId;
 
-    return this.httpClient.get(URL)
+    const headers = new HttpHeaders({
+      'Accept': 'application/json',
+      'x-ibm-client-id': '7a0c9407-970c-47fd-ae34-edee734de4e9',
+      'authorization': 'Bearer ' + TOKEN,
+      'metrolename': 'DES_Supervisor',
+      'metuserid': 'N3333876'
+    });
+
+    return this.httpClient.get(URL, {headers})
       .pipe(
         map((response) => {
           console.log('RESPONSE GET PDF SERVICE BROKER GET :', response);
@@ -2086,7 +2114,15 @@ export class ApplicationService {
     console.log('on getAppBroker');
     const URL = AppConstants.URL_BROKER_SERVICE + '/getApp/app_id=' + appId;
 
-    return this.httpClient.get(URL)
+    const headers = new HttpHeaders({
+      'Accept': 'application/json',
+      'x-ibm-client-id': '7a0c9407-970c-47fd-ae34-edee734de4e9',
+      'authorization': 'Bearer ' + TOKEN,
+      'metrolename': 'DES_Supervisor',
+      'metuserid': 'N3333876'
+    });
+
+    return this.httpClient.get(URL, {headers})
       .pipe(
         map((response) => {
           console.log('RESPONSE GET APP SERVICE BROKER GET :', response);

@@ -107,7 +107,7 @@ export const sportsFields1: Field[] = [
     pattern: '',
     source: 'IPRE',
     sourceID: 'cilindrada',
-    sourceStructure: ['key', 'keyValue', 'key'],
+    sourceStructure: ['key', 'keyValue', 'keyValue'],
     style: '',
     styleClass: '',
     styleClassError: '',

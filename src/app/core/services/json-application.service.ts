@@ -67,11 +67,12 @@ export class JsonApplicationService {
                 } else if (field.subtype === 'currency') {
                   value = Number(value.replace(/[^0-9.-]+/g, ''));
                 } else if (field.type === 'select') {
+                  // console.log('select additionalData: ', field.additionalData);
                   if (field.entity && field.additionalData !== undefined) {
                     set(this.appJson, field.entity, field.additionalData.name);
                   }
                 } else if (field.type === 'autocomplete') {
-                  console.log('autocomplete additionalData: ', field.additionalData);
+                  // console.log('autocomplete additionalData: ', field.additionalData);
                   if (field.entity && field.additionalData !== undefined) {
                     value = field.additionalData.value;
                     set(this.appJson, field.entity, field.additionalData.name);
@@ -102,12 +103,12 @@ export class JsonApplicationService {
                     } else if (field.subtype === 'currency') {
                       value = Number(value.replace(/[^0-9.-]+/g, ''));
                     } else if (field.type === 'select') {
-                      console.log('select additionalData: ', field.additionalData);
+                      // console.log('select additionalData: ', field.additionalData);
                       if (field.entity && field.additionalData !== undefined) {
                         set(this.appJson, field.entity, field.additionalData.name);
                       }
                     } else if (field.type === 'autocomplete') {
-                      console.log('autocomplete additionalData: ', field.additionalData);
+                      // console.log('autocomplete additionalData: ', field.additionalData);
                       if (field.entity && field.additionalData !== undefined) {
                         value = field.additionalData.value;
                         set(this.appJson, field.entity, field.additionalData.name);
@@ -139,14 +140,14 @@ export class JsonApplicationService {
         set(this.appJson, 'shareHolders[1].person.nationalities', []);
       }
 
-      this.appService.saveSolicitud(this.getAppJson()).subscribe((response: ApplicationJson) => {
+      /*this.appService.saveSolicitud(this.getAppJson()).subscribe((response: ApplicationJson) => {
         console.log('response: ', response);
         this.setAppJson(response);
-      });
-
-      /*this.appService.saveApplication(this.getAppJson()).subscribe((response: ApplicationJson) => {
-        console.log('response: ', response);
       });*/
+
+      this.appService.saveApplication(this.getAppJson()).subscribe((response: ApplicationJson) => {
+        console.log('response: ', response);
+      });
     }
   }
 

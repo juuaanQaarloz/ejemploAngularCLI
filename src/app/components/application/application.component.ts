@@ -71,13 +71,13 @@ export class ApplicationComponent implements OnInit {
   }
 
   testGetPDFService() {
-    this.appService.getPDFBroker('2001150001').subscribe((result) => {
+    this.appService.getPDFBroker('2001200002').subscribe((result) => {
       console.log('result PDF service: ', result);
     });
   }
 
   testGetAPPService() {
-    this.appService.getAppBroker('2001150001').subscribe((result) => {
+    this.appService.getAppBroker('2001200002').subscribe((result) => {
       console.log('result GET APP service: ', result);
     });
   }

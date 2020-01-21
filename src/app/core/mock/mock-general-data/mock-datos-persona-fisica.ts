@@ -396,7 +396,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=P)',
     entity: 'insurer.per_brth_cntry_nm',
-    entityField: 'insurer.per_brth_cntry_nm',
+    entityField: 'insurer.per_brth_cntry_cd',
     value: '151'
   },
   {
