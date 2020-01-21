@@ -14,6 +14,7 @@ import {ModalService} from '../custom-modal';
 import {Operation} from '../../models';
 import {HttpClient} from '@angular/common/http';
 import set from 'lodash/set';
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-field-form',
@@ -344,23 +345,47 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
     if (this.fieldObj.name === 'txtClabeConfir') {
       const idClabe = 'txtClabe';
+      const selectCard = 'selectCard';
       console.log('TOKEN MIT 1 --->:' + this.form.controls[this.fieldObj.name].value);
       console.log('Confirma TOKEN MIT 1 --->: ' + this.form.controls[idClabe].value);
       if (this.form.controls[idClabe].value === this.form.controls[this.fieldObj.name].value) {
         console.log('TOKEN MIT 2 --->: ' + this.form.controls[this.fieldObj.name].value);
         const bine = Number(this.form.controls[this.fieldObj.name].value.substring(0, 6));
-        if (this.form.controls[this.fieldObj.name].value.length === 16) {
+        if (this.form.controls[this.fieldObj.name].value.length === 15){
           this.getDataPaymentMit(bine);
           this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
             .subscribe((results) => {
-              console.log('Respuesta de mit token');
+              console.log('-- Respuesta de mit token --');
               console.log(results);
-              console.log(results);
+              console.log('----------------------------');
+              //if(results)
+              this.form.controls[selectCard].setValue("4");
               this.getDataPaymentMit(bine);
             });
+          console.log("Fin de AMEX");
+        } else if (this.form.controls[this.fieldObj.name].value.length === 16 ) {
+          this.getDataPaymentMit(bine);
+          this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
+            .subscribe((results) => {
+              console.log('--Respuesta de mit token--');
+              console.log(results);
+              console.log('---------------------------');
+              results.pipe(
+                map( (result)=> {
+                  console.log("result -> " + result);
+                })
+              );
+              /*if(this.results.push(data) === '00'){
+                console.log("El Token es valido.");
+              }*/
+              this.getDataPaymentMit(bine);
+            });
+          console.log("Fin de Tarjeta Credito y debito");
         } else if (this.form.controls[this.fieldObj.name].value.length === 18) {
           console.log('Respuesta de bank bienes');
           this.getDataPaymentMit(bine);
+          //Se le asigna el valor de CLABE
+          this.form.controls[selectCard].setValue("3");
         }
       } else {
         this.fieldObj.message = this.messageClabe;
