@@ -7,8 +7,6 @@ import {Router, ActivatedRoute} from '@angular/router';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  metrolename:string;
-  metroluid:string;
 
   menuOptions = [
     {
@@ -25,9 +23,10 @@ export class MenuComponent implements OnInit {
     }
   ];
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+    /*
     this.activatedRoute.queryParams.subscribe( params => {
       this.metrolename = params['metrolename'];
       this.metroluid = params['metroluid'];
@@ -37,7 +36,7 @@ export class MenuComponent implements OnInit {
       
       console.log("metrolename: "+this.metrolename);
       console.log("metroluid: "+this.metroluid);
-      });
+    });*/
   }
 
   navigateTo(path) {

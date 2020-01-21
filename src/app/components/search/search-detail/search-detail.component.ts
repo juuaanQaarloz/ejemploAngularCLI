@@ -7,9 +7,9 @@ import { ApplicationService } from 'src/app/core/services';
 import { DialogService } from '../../dialog/dialog.service';
 import { ModalService } from '../../custom-modal';
 import { MockTemplate } from 'src/app/core/mock/mock-template';
-import { ActivatedRoute } from '@angular/router';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import set from 'lodash/set';
 import { SearchService } from '../search.service';
+import { JsonApplicationService } from 'src/app/core/services/json-application.service';
 
 @Component({
   selector: 'app-search-detail',
@@ -28,22 +28,29 @@ export class SearchDetailComponent implements OnInit {
   errors:any;
 
   constructor(private appService: ApplicationService,
-    private httpClient: HttpClient,
     public dialog: DialogService,
     private modalService: ModalService,
-    private route: ActivatedRoute,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private jsonApplicationService: JsonApplicationService
   ) {
   }
 
   ngOnInit() {
     this.detail = JSON.parse(localStorage.getItem('detail'));
     this.appId = this.detail.app_id;
+    this.jsonApplicationService.setAppJson(this.detail);
     console.log(this.detail);
     this.appService.setApplicationObject(MockTemplate);
     this.applicationObj = this.appService.getApplicationObject();
     this.formGroup = this.appService.toFormGroupReadOnly(this.applicationObj, this.detail);
     this.appService.setFormGroup(this.formGroup);
+
+    let partyAppType = this.appService.getFormGroup().controls.typePerson.value;
+    if (partyAppType !== null && partyAppType !== undefined) {
+      // set(this.appJson, 'insurer.party_typ_cd', partyAppType === 'P' ? true : false);
+      set(this.detail, 'insurer.party_typ_cd', partyAppType);
+    }
+
     // an example array of 150 items to be paged
     this.items = Array(150).fill(0).map((x, i) => ({ id: (i + 1), name: `Item ${i + 1}` }));
     /*this.appService.updateItemProperty(
