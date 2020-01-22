@@ -39,8 +39,7 @@ export class SearchDetailComponent implements OnInit {
     this.detail = JSON.parse(localStorage.getItem('detail'));
     this.appId = this.detail.app_id;
     this.jsonApplicationService.setAppJson(localStorage.getItem('detail'));
-    console.log('appJson: ', this.jsonApplicationService.getAppJson());
-    console.log(this.detail);
+    console.log(this.jsonApplicationService.getAppJson());
     this.appService.setApplicationObject(MockTemplate);
     this.applicationObj = this.appService.getApplicationObject();
     this.formGroup = this.appService.toFormGroupReadOnly(this.applicationObj, this.detail);

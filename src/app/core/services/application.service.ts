@@ -1156,7 +1156,6 @@ export class ApplicationService {
     let isValid = true;
     let message = '';
     let validateDocument = false;
-
     if (step) {
       // validate each field individually in the step
       step.contents.forEach((contentFromStep) => {
@@ -1216,7 +1215,6 @@ export class ApplicationService {
           });
         }
       });
-
       if (step.errors) { // check for validation between fields
         step.errors.forEach((e) => {
           // // console.log('e: ', e);
@@ -1260,8 +1258,17 @@ export class ApplicationService {
       if (!field.disable) {
         field.valid = group.controls[field.name].valid;
         if (field.valid === false) {
-          console.log('field name: ', field.name);
-          console.log('errors: ', group.controls[field.name].errors);
+          // console.log('field name: ', field.name);
+          // console.log('errors: ', group.controls[field.name].errors);
+          isValid = false;
+        }
+      } else if ( field.disable && (field.name === 'occupation' || field.name === 'occupationS') ) {
+        if ( group.controls[field.name].value ) {
+          field.valid = true;
+        } else {
+          field.valid = false;
+        }
+        if (field.valid === false) {
           isValid = false;
         }
       }
@@ -1814,7 +1821,7 @@ export class ApplicationService {
     // const headerUser = {
     // userId: stores.getItem('userId') !== null ? stores.getItem('userId') : '9504'
     // };
-    return stores.getItem(key) != null ? stores.getItem(key) : '1120';
+    return stores.getItem(key) != null ? stores.getItem(key) : '1112';
   }
 
   validateApplicationForm() {
@@ -1839,6 +1846,8 @@ export class ApplicationService {
                   const evaluateStepResult = this.validateFormByStep(step);
                   if (evaluateStepResult.status === false) {
                     isValid = false;
+                    step.isValid = false;
+                    step.message = evaluateStepResult.msg;
                     message = message + step.id + ') ' + step.title + '-';
                   }
                 }
@@ -1846,6 +1855,8 @@ export class ApplicationService {
                 const evaluateStepResult = this.validateFormByStep(step);
                 if (evaluateStepResult.status === false) {
                   isValid = false;
+                  step.isValid = false;
+                  step.message = evaluateStepResult.msg;
                   message = message + step.id + ') ' + step.title + '-';
                 }
               }
