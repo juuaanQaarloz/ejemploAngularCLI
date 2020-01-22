@@ -1812,7 +1812,7 @@ export class ApplicationService {
     // const headerUser = {
     // userId: stores.getItem('userId') !== null ? stores.getItem('userId') : '9504'
     // };
-    return stores.getItem(key) != null ? stores.getItem(key) : '1120';
+    return stores.getItem(key) != null ? stores.getItem(key) : '1112';
   }
 
   validateApplicationForm() {
