@@ -27,6 +27,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   @Input() item?: any;
   @Output() executeAction?: any = new EventEmitter<any>();
 
+  stringifiedData: any;
   showSelectLabel = false;
   isSelected = true;
   radioOptions = [];
@@ -59,6 +60,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     delegateOperation: 'closeModal',
     renderConditions: '',
     enableConditions: ''
+  };
+
+  myToken = {
+    message: "",
+    success: false,
+    data: ""
   };
 
   constructor(private applicationService: ApplicationService,
@@ -352,33 +359,34 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         console.log('TOKEN MIT 2 --->: ' + this.form.controls[this.fieldObj.name].value);
         const bine = Number(this.form.controls[this.fieldObj.name].value.substring(0, 6));
         if (this.form.controls[this.fieldObj.name].value.length === 15){
-          this.getDataPaymentMit(bine);
           this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
             .subscribe((results) => {
               console.log('-- Respuesta de mit token --');
               console.log(results);
               console.log('----------------------------');
-              //if(results)
-              this.form.controls[selectCard].setValue("4");
-              this.getDataPaymentMit(bine);
+              this.myToken = results;
+              if(this.myToken.data === '00'){
+                console.log("El Token es valido.");
+                this.getDataPaymentMit(bine);
+                this.form.controls[selectCard].setValue("4");
+              }else{
+                console.log("El Token no es valido.")
+              }
             });
           console.log("Fin de AMEX");
         } else if (this.form.controls[this.fieldObj.name].value.length === 16 ) {
-          this.getDataPaymentMit(bine);
           this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
             .subscribe((results) => {
               console.log('--Respuesta de mit token--');
               console.log(results);
               console.log('---------------------------');
-              results.pipe(
-                map( (result)=> {
-                  console.log("result -> " + result);
-                })
-              );
-              /*if(this.results.push(data) === '00'){
+              this.myToken = results;
+              if(this.myToken.data === '00'){
                 console.log("El Token es valido.");
-              }*/
-              this.getDataPaymentMit(bine);
+                this.getDataPaymentMit(bine);
+              }else{
+                console.log("El Token no es valido.")
+              }
             });
           console.log("Fin de Tarjeta Credito y debito");
         } else if (this.form.controls[this.fieldObj.name].value.length === 18) {
