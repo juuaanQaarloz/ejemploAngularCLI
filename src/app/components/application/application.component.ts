@@ -74,22 +74,28 @@ export class ApplicationComponent implements OnInit {
 
   testGetPDFService() {
     this.appService.getPDFBroker(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result: any) => {
+    // this.appService.getPDFBroker('2001210028').subscribe((result: any) => {
       console.log('result PDF service: ', result);
       if (result) {
-
-        // response.data -> response data base64 encoded
-        // decoding the data via atob()
-        const byteArray = new Uint8Array(atob(result.binaryData).split('').map(char => char.charCodeAt(0)));
-        let blob = new Blob([byteArray], {type: 'application/pdf'});
-
-        // Here is your URL you can use
-        const url = window.URL.createObjectURL(blob);
-
-        // i.e. display the PDF content via iframe
-        document.querySelector('iframe').src = url;
+        // console.log('binaryData: ', result.binaryData);
+        this.convertPdf(result.binaryData);
 
       }
     });
+  }
+
+  fromHexaToBase64(hexa) {
+    return btoa(String.fromCharCode.apply(null, hexa.replace(/\r|\n/g, '').replace(/([\da-fA-F]{2}) ?/g, '0x$1 ').replace(/ +$/, '').split(' ')));
+  }
+
+  convertPdf(base64) {
+    const linkSource = 'data:application/pdf;base64,' + this.fromHexaToBase64(base64);
+    const downloadLink = document.createElement('a');
+    const fileName = 'sample.pdf';
+
+    downloadLink.href = linkSource;
+    downloadLink.download = fileName;
+    downloadLink.click();
   }
 
   testGetAPPService() {
@@ -128,7 +134,16 @@ export class ApplicationComponent implements OnInit {
   }
 
   downloadPDF() {
-    this.searchService.downloadPDF('2001030089');
+    // this.searchService.downloadPDF('2001030089');
+    this.appService.getPDFBroker(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result: any) => {
+      // this.appService.getPDFBroker('2001210028').subscribe((result: any) => {
+      console.log('result PDF service: ', result);
+      if (result) {
+        // console.log('binaryData: ', result.binaryData);
+        this.convertPdf(result.binaryData);
+
+      }
+    });
   }
 
   validateApplication() {

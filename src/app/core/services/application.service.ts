@@ -2072,7 +2072,7 @@ export class ApplicationService {
 
     const headers = new HttpHeaders({
       'Accept': 'application/json',
-      'x-ibm-client-id': '7a0c9407-970c-47fd-ae34-edee734de4e9',
+      'x-ibm-client-id': '633f644e-53a8-4faf-a2a4-5e5d919cc69b',
       'authorization': 'Bearer ' + TOKEN,
       'metrolename': 'DES_Admin',
       'metuserid': 'N3333876'
@@ -2119,7 +2119,7 @@ export class ApplicationService {
 
     const headers = new HttpHeaders({
       'Accept': 'application/json',
-      'x-ibm-client-id': '7a0c9407-970c-47fd-ae34-edee734de4e9',
+      'x-ibm-client-id': '633f644e-53a8-4faf-a2a4-5e5d919cc69b',
       'authorization': 'Bearer ' + TOKEN,
       'metrolename': 'DES_Admin',
       'metuserid': 'N3333876'
@@ -2166,15 +2166,15 @@ export class ApplicationService {
     console.log('on getUserData');
     const URL = AppConstants.URL_SERVICE_DEV + '/getUserData';
 
-    /*const headers = new HttpHeaders({
+    const headers = new HttpHeaders({
       'Accept': 'application/json',
-      'x-ibm-client-id': '7a0c9407-970c-47fd-ae34-edee734de4e9',
-      'authorization': 'Bearer ' + TOKEN,
-      'metrolename': 'DES_Admin',
-      'metuserid': 'N3333876'
-    });*/
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+    });
 
-    return this.httpClient.get(URL, { })
+    return this.httpClient.get(URL, {headers})
       .pipe(
         map((response) => {
           console.log('RESPONSE POST FROM GET USER DATA CALL :', response);
