@@ -22,9 +22,9 @@ export class StorageService {
   }
 
   setCurrentSession(session: Session): void {
-    /*this.appService.getUserData().subscribe((response) => {
+    this.appService.getUserData().subscribe((response) => {
       console.log('on Subscribe from setCurrentSession: ', response);
-    });*/
+    });
     this.currentSession = session;
     console.log('session: ', session);
     this.localStorageService.setItem('currentUser', JSON.stringify(session));
