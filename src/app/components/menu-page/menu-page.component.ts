@@ -43,11 +43,25 @@ export class MenuPageComponent implements OnInit {
         });
       }
 
-      localStorage.setItem("userId", '1120');
       console.log("metrolename: "+localStorage.getItem('metrolename'));
       console.log("metroluid: "+localStorage.getItem('metroluid'));
       console.log("token: "+localStorage.getItem('token'));
-      console.log("userId: "+localStorage.getItem('userId'));
+
+      const URL_AGENT_USER = '../assets/catalogs/agent-user.json';
+
+      this.httpClient.get(URL_AGENT_USER).subscribe( (resp:any) => {
+        console.log("AGENT_USER");
+        console.log(resp);
+
+        if(resp!==null){
+          resp.agentUser.forEach(item => {
+            if(item.metroluid === localStorage.getItem('metroluid')){
+              localStorage.setItem('userId', item.agentId);
+            }
+          });  
+        }
+        console.log("userId: "+localStorage.getItem('userId'));
+      });
     });
   }
 }
