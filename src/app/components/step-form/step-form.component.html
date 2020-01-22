@@ -44,6 +44,40 @@
     </div>
     <hr class="ml-step-hr" [ngStyle]="{'display':  isLast ? 'none': ''}">
   </div>
+
+  <jw-modal [id]= modalLoadingId
+            [modalType]="'overlay'">
+    <div *ngIf="showLoading" class="ml-loader-container">
+      <div class="ml-loader">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="ml-loader-label"><p>Guardando...</p></div>
+    </div>
+  </jw-modal>
+
+  <jw-modal [id]= modalErrorId
+            [modalType]="'overlay'">
+    <div class="overlay-container">
+      <div style="text-align: right">
+      <img class="button-close" (click)="closeModal(modalErrorId)">
+    </div>
+      <p class="header-small"> Ha ocurrido un error con el guardado :(</p>
+
+      <div class="operation-modal">
+        <app-operation-form [operationObj]= closeWindowOpt
+                            (click)="executeOperation(closeWindowOpt.delegateOperation)">
+        </app-operation-form>
+      </div>
+    </div>
+  </jw-modal>
+
 </div>
 <!-- ends Progress Indicator Step -->
 

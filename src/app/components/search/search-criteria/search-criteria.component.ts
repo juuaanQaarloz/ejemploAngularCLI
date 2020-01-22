@@ -56,10 +56,10 @@ export class SearchCriteriaComponent implements OnInit {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-      'metrolename': this.metrolename,
-      //'metrolename': 'MX-6979_DES_G_OPS',
-      'metuserid': this.metroluid
-      //'metuserid': 'N3333987'
+      // 'metrolename': this.metrolename,
+      'metrolename': 'MX-6979_DES_G_OPS',
+      // 'metuserid': this.metroluid
+      'metuserid': 'N3333987'
     });
 
     let params = new HttpParams();

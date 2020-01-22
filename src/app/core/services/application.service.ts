@@ -396,7 +396,11 @@ export class ApplicationService {
     // const URL_JSON_TEST = '../assets/swagger/JsonApp_080120.json';
     const headers = new HttpHeaders({
       'Accept': 'application/json',
-      'x-ibm-client-id': '7a0c9407-970c-47fd-ae34-edee734de4e9',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': 'localhost:4000',
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+      'x-ibm-client-id': '633f644e-53a8-4faf-a2a4-5e5d919cc69b',
       'authorization': 'Bearer ' + TOKEN,
       'metrolename': 'DES_Admin',
       'metuserid': 'N3333876'

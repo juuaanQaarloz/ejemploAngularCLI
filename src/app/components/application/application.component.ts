@@ -5,7 +5,7 @@ import {MockTemplate} from '../../core/mock/mock-template';
 import {DialogService} from '../dialog/dialog.service';
 import {ModalService} from '../custom-modal';
 import * as jsPDF from 'jspdf';
-import {APPL_OPERATIONS} from '../../core/mock/mock-operations';
+import {APPL_OPERATIONS, CLOSE_MODALS_OPT} from '../../core/mock/mock-operations';
 import {Template} from '../../models/template';
 import {Operation} from '../../models';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
@@ -28,20 +28,7 @@ export class ApplicationComponent implements OnInit {
   items = [];
   errorMessage;
 
-  closeWindowOpt: Operation = {
-    id: 'opt-1',
-    idHtml: 'btnClose',
-    name: 'cerrar',
-    label: 'CERRAR',
-    type: 'button',
-    style: '',
-    styleClass: 'ml-button-primary',
-    message: '',
-    messageClass: '',
-    delegateOperation: 'closeModal',
-    renderConditions: '',
-    enableConditions: ''
-  };
+  closeWindowOpt = CLOSE_MODALS_OPT;
 
   constructor(private appService: ApplicationService,
               private httpClient: HttpClient,

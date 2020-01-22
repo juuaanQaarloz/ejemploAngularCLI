@@ -41,6 +41,8 @@ export class JsonApplicationService {
         set(this.appJson, 'insurer.party_typ_cd', partyAppType);
       }
       // console.log(get(this.appJson, 'insurer.party_typ_cd'));
+    }, error => {
+      console.log('onError: ', error);
     });
   }
 
@@ -137,10 +139,14 @@ export class JsonApplicationService {
         let resp = this.appService.getFormGroup().controls.typePerson.value;
       }
 
-      this.appService.saveSolicitud(this.getAppJson()).subscribe((response: ApplicationJson) => {
+      return this.getAppJson();
+
+      /*this.appService.saveSolicitud(this.getAppJson()).subscribe((response: ApplicationJson) => {
         console.log('response: ', response);
         this.setAppJson(response);
-      });
+      }, error => {
+        console.log(error);
+      });*/
 
       /*this.appService.saveApplication(this.getAppJson()).subscribe((response: ApplicationJson) => {
         console.log('response: ', response);
