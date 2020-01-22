@@ -15,4 +15,6 @@ export interface Step {
   show: boolean;
   errors?: Array<Error>;
   requiredConditions?: string;
+  isValid: boolean;
+  message?: string;
 }

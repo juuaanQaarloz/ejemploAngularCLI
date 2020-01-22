@@ -28,11 +28,9 @@
                   !accordionExpanded ? 'hide': '',
                   (completed && !isLast) ? 'completed': ''
                   ]">
-
-
-  <div *ngIf="!isValidStep" class="ml-msg ml-msg-error">
+  <div *ngIf="!stepObj.isValid" class="ml-msg ml-msg-error">
     <span class="ml-msg-txt"><span class="fa fa-exclamation-circle high-priority"></span>
-      {{stepMsgError}} </span>
+      {{stepObj.message}} </span>
   </div>
   <app-error-banner *ngIf="stepObj.errors" [errors]="stepObj.errors"></app-error-banner>
 

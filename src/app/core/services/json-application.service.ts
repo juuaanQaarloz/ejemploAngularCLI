@@ -257,8 +257,6 @@ export class JsonApplicationService {
       newBanckAccount.std_bnk_cd = item.txtClabe;
 
       newAccount.bankAccount = newBanckAccount;
-      newAccount.clct_card_typ_id = item.selectCard;
-
       return newAccount;
 
     } else if (itemType === 'sport') {

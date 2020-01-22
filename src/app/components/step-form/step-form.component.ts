@@ -23,8 +23,8 @@ export class StepFormComponent implements OnInit {
   renderCondition;
   completed = false;
   stepsOperations = MockOperations;
-  isValidStep = true;
-  stepMsgError = FORM_MSG_ERROR;
+  // isValidStep = true;
+  // stepMsgError = FORM_MSG_ERROR;
   documentsValid = [];
 
   constructor(private applicationService: ApplicationService,
@@ -84,7 +84,7 @@ export class StepFormComponent implements OnInit {
       this.closeStep();
     } else if (delegateOperation === 'validateStep') {
       this.validateStep();
-      if (this.isValidStep) {
+      if (this.stepObj.isValid) {
         this.applicationService.submitFunction('nextStep', this.stepObj);
         // save in JSON
         this.jsonApplicationService.saveInJsonSwagger(this.stepObj);
@@ -96,8 +96,9 @@ export class StepFormComponent implements OnInit {
   validateStep() {
     const response = this.applicationService.validateFormByStep(this.stepObj);
     console.log('response: ', response);
-    this.isValidStep = response.status;
-    this.stepMsgError = response.msg;
+    this.stepObj.isValid = response.status;
+    // this.stepMsgError =
+    this.stepObj.message = response.msg ? response.msg : this.stepObj.message;
     if ( response.listDocument && response.listDocument.length > 0 ) {
       this.documentsValid = response.listDocument;
       this.contentFormComponent.documentValid(this.documentsValid);

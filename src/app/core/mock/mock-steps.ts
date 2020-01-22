@@ -47,7 +47,9 @@ export const MockStepsProcessContentSection2: Step[] = [
     /*added extra from model*/
     isCompleted: false,
     show: true,
-    errors: ERROSDATOSPERSONAFISICA
+    errors: ERROSDATOSPERSONAFISICA,
+    isValid: true,
+    message: ''
   },
   {
     id: '2',
@@ -62,7 +64,9 @@ export const MockStepsProcessContentSection2: Step[] = [
     /*added extra from model*/
     isCompleted: false,
     show: true,
-    errors: ERRORS_DOM_CONT
+    errors: ERRORS_DOM_CONT,
+    isValid: true,
+    message: ''
   },
   {
     id: '3',
@@ -76,7 +80,9 @@ export const MockStepsProcessContentSection2: Step[] = [
     nextStep: '10',
     /*added extra from model*/
     isCompleted: false,
-    show: false
+    show: false,
+    isValid: true,
+    message: ''
   },
   {
     id: '4',
@@ -90,7 +96,9 @@ export const MockStepsProcessContentSection2: Step[] = [
     nextStep: '5',
     /*added extra from model*/
     isCompleted: false,
-    show: false
+    show: false,
+    isValid: true,
+    message: ''
   },
   {
     id: '5',
@@ -104,7 +112,9 @@ export const MockStepsProcessContentSection2: Step[] = [
     nextStep: '6',
     /*added extra from model*/
     isCompleted: false,
-    show: false
+    show: false,
+    isValid: true,
+    message: ''
   },
   {
     id: '6',
@@ -119,7 +129,9 @@ export const MockStepsProcessContentSection2: Step[] = [
     /*added extra from model*/
     isCompleted: false,
     show: false,
-    errors: ERROSDATOSREPRESENTANTE
+    errors: ERROSDATOSREPRESENTANTE,
+    isValid: true,
+    message: ''
   },
   {
     id: '7',
@@ -134,7 +146,9 @@ export const MockStepsProcessContentSection2: Step[] = [
     /*added extra from model*/
     isCompleted: false,
     show: false,
-    errors: ERROSDATOSSOLICITANTE
+    errors: ERROSDATOSSOLICITANTE,
+    isValid: true,
+    message: ''
   },
   {
     id: '8',
@@ -148,7 +162,9 @@ export const MockStepsProcessContentSection2: Step[] = [
     nextStep: '9',
     /*added extra from model*/
     isCompleted: false,
-    show: false
+    show: false,
+    isValid: true,
+    message: ''
   },
   {
     id: '9',
@@ -162,7 +178,9 @@ export const MockStepsProcessContentSection2: Step[] = [
     nextStep: '10',
     /*added extra from model*/
     isCompleted: false,
-    show: false
+    show: false,
+    isValid: true,
+    message: ''
   },
   {
     id: '10',
@@ -175,7 +193,9 @@ export const MockStepsProcessContentSection2: Step[] = [
     nextStep: '11',
     /*added extra from model*/
     isCompleted: false,
-    show: true
+    show: true,
+    isValid: true,
+    message: ''
   },
   {
     id: '11',
@@ -188,7 +208,9 @@ export const MockStepsProcessContentSection2: Step[] = [
     nextStep: '12',
     /*added extra from model*/
     isCompleted: false,
-    show: true
+    show: true,
+    isValid: true,
+    message: ''
   },
   {
     id: '12',
@@ -201,7 +223,9 @@ export const MockStepsProcessContentSection2: Step[] = [
     nextStep: '13',
     /*added extra from model*/
     isCompleted: false,
-    show: true
+    show: true,
+    isValid: true,
+    message: ''
   },
   {
     id: '13',
@@ -214,7 +238,9 @@ export const MockStepsProcessContentSection2: Step[] = [
     nextStep: '14',
     /*added extra from model*/
     isCompleted: false,
-    show: true
+    show: true,
+    isValid: true,
+    message: ''
   },
   {
     id: '14',
@@ -227,7 +253,9 @@ export const MockStepsProcessContentSection2: Step[] = [
     nextStep: '15',
     /*added extra from model*/
     isCompleted: false,
-    show: true
+    show: true,
+    isValid: true,
+    message: ''
   },
   {
     id: '15',
@@ -240,7 +268,9 @@ export const MockStepsProcessContentSection2: Step[] = [
     nextStep: '16',
     /*added extra from model*/
     isCompleted: false,
-    show: true
+    show: true,
+    isValid: true,
+    message: ''
   },
   {
     id: '16',
@@ -254,7 +284,9 @@ export const MockStepsProcessContentSection2: Step[] = [
     /*added extra from model*/
     isCompleted: false,
     show: true,
-    errors: ERROSDATOSPLAN
+    errors: ERROSDATOSPLAN,
+    isValid: true,
+    message: ''
   },
   {
     id: '17',
@@ -266,7 +298,9 @@ export const MockStepsProcessContentSection2: Step[] = [
     previousStep: '16',
     nextStep: '18',
     isCompleted: false,
-    show: true
+    show: true,
+    isValid: true,
+    message: ''
   },
   {
     id: '18',
@@ -278,7 +312,9 @@ export const MockStepsProcessContentSection2: Step[] = [
     previousStep: '17',
     nextStep: '19',
     isCompleted: false,
-    show: true
+    show: true,
+    isValid: true,
+    message: ''
   },
   {
     id: '19',
@@ -290,7 +326,9 @@ export const MockStepsProcessContentSection2: Step[] = [
     previousStep: '18',
     nextStep: '20',
     isCompleted: false,
-    show: true
+    show: true,
+    isValid: true,
+    message: ''
   },
   {
     id: '20',
@@ -302,7 +340,9 @@ export const MockStepsProcessContentSection2: Step[] = [
     previousStep: '19',
     nextStep: '21',
     isCompleted: false,
-    show: true
+    show: true,
+    isValid: true,
+    message: ''
   },
   {
     id: '21',
@@ -314,7 +354,9 @@ export const MockStepsProcessContentSection2: Step[] = [
     previousStep: '20',
     nextStep: '1',
     isCompleted: false,
-    show: true
+    show: true,
+    isValid: true,
+    message: ''
   },
   {
     id: '22',
@@ -323,9 +365,11 @@ export const MockStepsProcessContentSection2: Step[] = [
     title: 'Carga de Documentos',
     contents: MockContentStep22Process1ContentSection2,
     renderConditions: '',
-    previousStep: '20',
+    previousStep: '21',
     nextStep: '1',
     isCompleted: false,
-    show: true
+    show: true,
+    isValid: true,
+    message: ''
   }
 ];

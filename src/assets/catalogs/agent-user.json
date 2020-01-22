@@ -1,0 +1,23 @@
+{
+    "agentUser": [
+      {
+        "metroluid": "123",
+        "agentId": "1112",
+        "promotoryId": "ABC",
+        "promotoryName": "AABBCC"
+      },
+      {
+        "metroluid": "456",
+        "agentId": "1120",
+        "promotoryId": "QWERTY",
+        "promotoryName": "QWERTY"
+      },
+      {
+        "metroluid": "789",
+        "agentId": "1095",
+        "promotoryId": "PARTY",
+        "promotoryName": "PARTY"
+      }
+    ]
+  }
+  
