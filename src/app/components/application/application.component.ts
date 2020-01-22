@@ -60,7 +60,7 @@ export class ApplicationComponent implements OnInit {
   }
 
   testGetPDFService() {
-    this.appService.getPDFBroker(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result: any) => {
+    this.appService.getPDF(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result: any) => {
     // this.appService.getPDFBroker('2001210028').subscribe((result: any) => {
       console.log('result PDF service: ', result);
       if (result) {
@@ -86,7 +86,7 @@ export class ApplicationComponent implements OnInit {
   }
 
   testGetAPPService() {
-    this.appService.getAppBroker(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result) => {
+    this.appService.getApplication(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result) => {
       console.log('result GET APP service: ', result);
     });
   }
@@ -122,14 +122,17 @@ export class ApplicationComponent implements OnInit {
 
   downloadPDF() {
     // this.searchService.downloadPDF('2001030089');
-    this.appService.getPDFBroker(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result: any) => {
-      // this.appService.getPDFBroker('2001210028').subscribe((result: any) => {
+    // this.appService.getPDFBroker(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result: any) => {
+    this.appService.getPDF('2001220018').subscribe((result: any) => {
       console.log('result PDF service: ', result);
       if (result) {
         // console.log('binaryData: ', result.binaryData);
         this.convertPdf(result.binaryData);
 
       }
+    }, error => {
+      console.log('onError PDFBroker:');
+      console.log(error);
     });
   }
 

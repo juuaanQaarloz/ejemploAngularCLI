@@ -132,7 +132,7 @@ export class SearchCriteriaComponent implements OnInit {
     return true;
   }
 
-  hideAlert(){
+  hideAlert() {
     if( this.validParam1() && this.validParam2() && this.validParam3() && this.validParam4() ){
       return false;
     }

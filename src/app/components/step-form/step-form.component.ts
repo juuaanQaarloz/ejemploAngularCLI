@@ -99,7 +99,7 @@ export class StepFormComponent implements OnInit {
         this.showLoading = true;
         this.openDialog(this.modalLoadingId);
         // save in JSON
-        this.applicationService.saveSolicitud(this.jsonApplicationService.saveInJsonSwagger(this.stepObj))
+        this.applicationService.saveApplication(this.jsonApplicationService.saveInJsonSwagger(this.stepObj))
           .subscribe((response: ApplicationJson) => {
             console.log('response: ', response);
             this.jsonApplicationService.setAppJson(response);

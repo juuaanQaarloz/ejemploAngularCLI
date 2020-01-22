@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { AppConstants } from 'src/app/app.constants';
+import {TOKEN_CHANNEL} from '../../core/mock/mock_token';
 
 
 @Component({
@@ -28,10 +29,11 @@ export class MenuPageComponent implements OnInit {
     localStorage.setItem( 'sessionUser', JSON.stringify(sessionUser));
 
     this.activatedRoute.queryParams.subscribe( params => {
-      if(params['metrolename']!==undefined && params['metroluid']!==undefined){
+      if (params['metrolename']!==undefined && params['metroluid']!==undefined){
         localStorage.setItem("metrolename", params['metrolename']);
         localStorage.setItem("metroluid", params['metroluid']);
-      }else{ 
+        localStorage.setItem("token", TOKEN_CHANNEL);
+      } else {
         console.log("entra al servicio getUserData");
         this.httpClient.get( AppConstants.URL_SERVICE_DEV  + '/getUserData').subscribe((resp:any) => {
           this.metrolename = resp.data.metrolename;
@@ -39,7 +41,7 @@ export class MenuPageComponent implements OnInit {
           this.token = resp.data.temporalToken;
           localStorage.setItem("metrolename", resp.data.metrolename);
           localStorage.setItem("metroluid", resp.data.metUserId);
-          localStorage.setItem("token", resp.data.temporalToken); 
+          localStorage.setItem("token", resp.data.temporalToken);
         });
       }
 
@@ -58,7 +60,7 @@ export class MenuPageComponent implements OnInit {
             if(item.metroluid === localStorage.getItem('metroluid')){
               localStorage.setItem('userId', item.agentId);
             }
-          });  
+          });
         }
         console.log("userId: "+localStorage.getItem('userId'));
       });

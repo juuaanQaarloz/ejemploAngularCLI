@@ -28,23 +28,7 @@ export class JsonApplicationService {
   constructor(
     private appService: ApplicationService,
     private storageService: StorageService
-  ) {
-
-    this.appService.getApplicationBase().subscribe((response) => {
-      console.log('response: ', response);
-      // get new application folio
-      this.appJson.app_id = response.app_id;
-      console.log('applicationJson after parse', this.appJson);
-      let partyAppType = this.appService.getFormGroup().controls.typePerson.value;
-      if (partyAppType !== null && partyAppType !== undefined) {
-        // set(this.appJson, 'insurer.party_typ_cd', partyAppType === 'P' ? true : false);
-        set(this.appJson, 'insurer.party_typ_cd', partyAppType);
-      }
-      // console.log(get(this.appJson, 'insurer.party_typ_cd'));
-    }, error => {
-      console.log('onError: ', error);
-    });
-  }
+  ) { }
 
   getAppJson() {
     return this.appJson;
@@ -140,17 +124,6 @@ export class JsonApplicationService {
       }
 
       return this.getAppJson();
-
-      /*this.appService.saveSolicitud(this.getAppJson()).subscribe((response: ApplicationJson) => {
-        console.log('response: ', response);
-        this.setAppJson(response);
-      }, error => {
-        console.log(error);
-      });*/
-
-      /*this.appService.saveApplication(this.getAppJson()).subscribe((response: ApplicationJson) => {
-        console.log('response: ', response);
-      });*/
     }
   }
 
