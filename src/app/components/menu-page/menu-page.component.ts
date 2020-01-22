@@ -28,23 +28,22 @@ export class MenuPageComponent implements OnInit {
     localStorage.setItem( 'sessionUser', JSON.stringify(sessionUser));
 
     this.activatedRoute.queryParams.subscribe( params => {
-      this.metrolename = params['metrolename'];
-      this.metroluid = params['metroluid'];
-
-      if(this.metrolename===undefined || this.metroluid===undefined){
+      if(params['metrolename']!==undefined && params['metroluid']!==undefined){
+        localStorage.setItem("metrolename", params['metrolename']);
+        localStorage.setItem("metroluid", params['metroluid']);
+      }else{ 
         console.log("entra al servicio getUserData");
         this.httpClient.get( AppConstants.URL_SERVICE_DEV  + '/getUserData').subscribe((resp:any) => {
           this.metrolename = resp.data.metrolename;
           this.metroluid = resp.data.metUserId;
           this.token = resp.data.temporalToken;
-          localStorage.setItem("token", this.token); 
+          localStorage.setItem("metrolename", resp.data.metrolename);
+          localStorage.setItem("metroluid", resp.data.metUserId);
+          localStorage.setItem("token", resp.data.temporalToken); 
         });
       }
 
-      localStorage.setItem("metrolename", this.metrolename);
-      localStorage.setItem("metroluid", this.metroluid);
       localStorage.setItem("userId", '1120');
-
       console.log("metrolename: "+localStorage.getItem('metrolename'));
       console.log("metroluid: "+localStorage.getItem('metroluid'));
       console.log("token: "+localStorage.getItem('token'));
