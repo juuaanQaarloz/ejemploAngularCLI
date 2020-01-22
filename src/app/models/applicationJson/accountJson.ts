@@ -5,7 +5,6 @@ export class AccountJson {
   app_id: number = 0;
   clct_mthd_id: string = '0';
   clct_mthd_nm: string = null;
-  clct_card_typ_id: string = '0';
   clct_cncpt_id: number = 0;
   clct_cur_cd: string = null;
   clct_empe_id: string = '0';
