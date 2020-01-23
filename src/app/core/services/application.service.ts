@@ -21,6 +21,7 @@ import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import get from 'lodash/get';
 import {TOKEN, TOKEN_CHANNEL, X_IBM_CLIENT_ID_CHANNEL} from '../mock/mock_token';
 import set from 'lodash/set';
+
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
 const URL_PATTERN_CATALOG = '../assets/catalogs/pattern-catalogs.json';
@@ -2018,16 +2019,21 @@ export class ApplicationService {
 
   saveApplication(appJson: ApplicationJson): Observable<ApplicationJson> {
     const URL = AppConstants.URL_BROKER_SERVICE + '/save';
+
+    let metrolname = localStorage.getItem('metrolename');
+    let metuserid = localStorage.getItem('metroluid');
+    let token = localStorage.getItem('token');
+
     const headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-      'metrolename': 'DES_Admin',
-      'metuserid': 'N3333876',
+      'metrolename': metrolname ? metrolname : 'DES_Admin',
+      'metuserid': metuserid ? metuserid : 'N3333876',
       'x-ibm-client-id': X_IBM_CLIENT_ID_CHANNEL,
-      'authorization': 'Bearer ' + TOKEN_CHANNEL
+      'authorization': token ? 'Bearer ' + token : 'Bearer ' + TOKEN_CHANNEL
     };
 
     console.log('appJson to passed to de save service: ', appJson);
@@ -2047,7 +2053,9 @@ export class ApplicationService {
     console.log('on getPDFBroker');
     const URL = AppConstants.URL_BROKER_SERVICE + '/getPdf/app_id=' + appId;
 
-    // const headers = new HttpHeaders(this.getGlobalHeaders());
+    let metrolname = localStorage.getItem('metrolename');
+    let metuserid = localStorage.getItem('metroluid');
+    let token = localStorage.getItem('token');
 
     const headers = {
       'Accept': 'application/json',
@@ -2055,10 +2063,10 @@ export class ApplicationService {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-      'metrolename': 'DES_Admin',
-      'metuserid': 'N3333876',
+      'metrolename': metrolname ? metrolname : 'DES_Admin',
+      'metuserid': metuserid ? metuserid : 'N3333876',
       'x-ibm-client-id': X_IBM_CLIENT_ID_CHANNEL,
-      'authorization': 'Bearer ' + TOKEN_CHANNEL
+      'authorization': token ? 'Bearer ' + token : 'Bearer ' + TOKEN_CHANNEL
     };
 
     return this.httpClient.get(URL, {headers})
@@ -2074,13 +2082,21 @@ export class ApplicationService {
     console.log('on getAppBroker');
     const URL = AppConstants.URL_BROKER_SERVICE + '/getApp/app_id=' + appId;
 
-    const headers = new HttpHeaders({
+    let metrolname = localStorage.getItem('metrolename');
+    let metuserid = localStorage.getItem('metroluid');
+    let token = localStorage.getItem('token');
+
+    const headers = {
       'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+      'metrolename': metrolname ? metrolname : 'DES_Admin',
+      'metuserid': metuserid ? metuserid : 'N3333876',
       'x-ibm-client-id': X_IBM_CLIENT_ID_CHANNEL,
-      'authorization': 'Bearer ' + TOKEN_CHANNEL,
-      'metrolename': 'DES_Admin',
-      'metuserid': 'N3333876'
-    });
+      'authorization': token ? 'Bearer ' + token : 'Bearer ' + TOKEN_CHANNEL
+    };
 
     return this.httpClient.get(URL, {headers})
       .pipe(
