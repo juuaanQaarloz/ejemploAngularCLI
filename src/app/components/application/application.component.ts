@@ -13,6 +13,7 @@ import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 import {AppConstants} from 'src/app/app.constants';
 import {SearchService} from '../search/search.service';
 import {JsonApplicationService} from '../../core/services/json-application.service';
+import {empty} from "rxjs/internal/Observer";
 
 @Component({
   selector: 'app-application',
@@ -27,8 +28,11 @@ export class ApplicationComponent implements OnInit {
   applOperations = APPL_OPERATIONS;
   items = [];
   errorMessage;
-
+  viewLoading = false;
   closeWindowOpt = CLOSE_MODALS_OPT;
+
+  modalErrorId;
+  modalLoadPDFId;
 
   constructor(private appService: ApplicationService,
               private httpClient: HttpClient,
@@ -41,6 +45,8 @@ export class ApplicationComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.modalErrorId = 'modal-error-pdf';
+    this.modalLoadPDFId = 'modal-loading';
     this.appService.setApplicationObject(MockTemplate);
     this.applicationObj = this.appService.getApplicationObject();
     this.formGroup = this.appService.toFormGroup(this.applicationObj);
@@ -63,6 +69,7 @@ export class ApplicationComponent implements OnInit {
     this.appService.getPDF(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result: any) => {
     // this.appService.getPDFBroker('2001210028').subscribe((result: any) => {
       console.log('result PDF service: ', result);
+
       if (result) {
         // console.log('binaryData: ', result.binaryData);
         this.convertPdf(result.binaryData);
@@ -101,6 +108,7 @@ export class ApplicationComponent implements OnInit {
       this.validateApplication();
     } else if (delegateOperation === 'closeModal') {
       this.closeModal('modal-error');
+      this.closeModal(this.modalErrorId);
     } else if (delegateOperation === 'toJsonApplication') {
       console.log('on toJsonApplication...');
       // this.getJson();
@@ -112,25 +120,27 @@ export class ApplicationComponent implements OnInit {
     // // console.log(this.formGroup.value);
   }
 
-  openDialog(modalID: string) {
-    this.modalService.open(modalID);
-  }
-
-  closeModal(modalID: string) {
-    this.modalService.close(modalID);
-  }
-
   downloadPDF() {
     // this.searchService.downloadPDF('2001030089');
+    // this.appService.getPDFBroker(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result: any) => {
+    this.viewLoading = true;
+    this.openDialog(this.modalLoadPDFId);
     this.appService.getPDF(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result: any) => {
     // this.appService.getPDF('2001220018').subscribe((result: any) => {
       console.log('result PDF service: ', result);
-      if (result) {
+      if (result (empty)) {
+        console.log('No se puede generar el PDF');
+        this.viewLoading = false;
+        this.closeModal(this.modalLoadPDFId);
+        this.openDialog(this.modalErrorId);
+      } else {
         // console.log('binaryData: ', result.binaryData);
         this.convertPdf(result.binaryData);
-
       }
     }, error => {
+      this.viewLoading = false;
+      this.closeModal(this.modalLoadPDFId);
+      this.openDialog(this.modalErrorId);
       console.log('onError PDFBroker:');
       console.log(error);
     });
@@ -152,4 +162,14 @@ export class ApplicationComponent implements OnInit {
     // console.log('errors: ', errors);
     return errors;
   }
+
+
+  openDialog(modalID: string) {
+    this.modalService.open(modalID);
+  }
+
+  closeModal(modalID: string) {
+    this.modalService.close(modalID);
+  }
+
 }
