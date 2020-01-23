@@ -45,6 +45,9 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   modalID = 'modal-warning1';
   modalMessage = 'La suma de las participaciones de los agentes excede el 100%';
   messageClabe = 'CLABE/Token y Confirmar CLABE/Token no coinciden';
+  messageToken = 'El Token ingresado no es valido, favor de verificar';
+  messageBine = 'CLABE/Token no se encuentra disponible para MetLife';
+  flagMitToken = false;
   fileName: string;
   contadorDoc: number;
   okOperation: Operation = {
@@ -59,13 +62,13 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     messageClass: '',
     delegateOperation: 'closeModal',
     renderConditions: '',
-    enableConditions: ''
+    enableConditions: '',
   };
 
   myToken = {
     message: "",
     success: false,
-    data: ""
+    data: "",
   };
 
   constructor(private applicationService: ApplicationService,
@@ -353,46 +356,44 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     if (this.fieldObj.name === 'txtClabeConfir') {
       const idClabe = 'txtClabe';
       const selectCard = 'selectCard';
-      console.log('TOKEN MIT 1 --->:' + this.form.controls[this.fieldObj.name].value);
-      console.log('Confirma TOKEN MIT 1 --->: ' + this.form.controls[idClabe].value);
       if (this.form.controls[idClabe].value === this.form.controls[this.fieldObj.name].value) {
-        console.log('TOKEN MIT 2 --->: ' + this.form.controls[this.fieldObj.name].value);
         const bine = Number(this.form.controls[this.fieldObj.name].value.substring(0, 6));
         if (this.form.controls[this.fieldObj.name].value.length === 15){
           this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
             .subscribe((results) => {
-              console.log('-- Respuesta de mit token --');
               console.log(results);
-              console.log('----------------------------');
               this.myToken = results;
               if(this.myToken.data === '00'){
                 console.log("El Token es valido.");
+                //this.flagMitToken = true;
                 this.getDataPaymentMit(bine);
                 this.form.controls[selectCard].setValue("4");
+                this.fieldObj.message = this.messageToken;
               }else{
+                //this.flagMitToken = false;
+                this.fieldObj.message = this.messageToken;
+                this.fieldObj.valid = false;
                 console.log("El Token no es valido.")
               }
             });
-          console.log("Fin de AMEX");
         } else if (this.form.controls[this.fieldObj.name].value.length === 16 ) {
           this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
             .subscribe((results) => {
-              console.log('--Respuesta de mit token--');
               console.log(results);
-              console.log('---------------------------');
               this.myToken = results;
               if(this.myToken.data === '00'){
+                //this.flagMitToken = true;
                 console.log("El Token es valido.");
                 this.getDataPaymentMit(bine);
               }else{
+                //this.flagMitToken = false;
+                this.fieldObj.message = this.messageToken;
+                this.fieldObj.valid = false;
                 console.log("El Token no es valido.")
               }
             });
-          console.log("Fin de Tarjeta Credito y debito");
         } else if (this.form.controls[this.fieldObj.name].value.length === 18) {
-          console.log('Respuesta de bank bienes');
           this.getDataPaymentMit(bine);
-          //Se le asigna el valor de CLABE
           this.form.controls[selectCard].setValue("3");
         }
       } else {
@@ -1340,6 +1341,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     const supLimit = 'supLimit';
     const txtBank = 'txtBank';
     const bankDescription = 'bankDescription';
+    let contador = 0;
     this.applicationService.getCatalogById('bankBienes', 'IPRE')
       .subscribe((results) => {
         results.forEach((bank) => {
@@ -1347,8 +1349,15 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
             this.form.controls[txtBank].setValue(bank[bankDescription]);
             const element = document.getElementById('txtBank');
             element.setAttribute('value', bank[bankDescription]);
+            contador++;
           }
         });
+        if(contador == 0){
+          const element = document.getElementById('txtBank');
+          element.setAttribute('value', '');
+          this.fieldObj.message = this.messageBine;
+          this.fieldObj.valid = false;
+        }
       });
   }
 
