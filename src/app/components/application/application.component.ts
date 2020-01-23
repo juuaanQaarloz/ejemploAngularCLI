@@ -79,17 +79,24 @@ export class ApplicationComponent implements OnInit {
   }
 
   fromHexaToBase64(hexa) {
+
     return btoa(String.fromCharCode.apply(null, hexa.replace(/\r|\n/g, '').replace(/([\da-fA-F]{2}) ?/g, '0x$1 ').replace(/ +$/, '').split(' ')));
+
   }
 
   convertPdf(base64) {
-    const linkSource = 'data:application/pdf;base64,' + this.fromHexaToBase64(base64);
-    const downloadLink = document.createElement('a');
-    const fileName = 'sample.pdf';
 
-    downloadLink.href = linkSource;
-    downloadLink.download = fileName;
-    downloadLink.click();
+    if ( base64 === null ) {
+      console.log('ocurrio un error al generar el pdf');
+    } else {
+      const linkSource = 'data:application/pdf;base64,' + this.fromHexaToBase64(base64);
+      const downloadLink = document.createElement('a');
+      const fileName = 'sample.pdf';
+
+      downloadLink.href = linkSource;
+      downloadLink.download = fileName;
+      downloadLink.click();
+    }
   }
 
   testGetAPPService() {
@@ -129,15 +136,15 @@ export class ApplicationComponent implements OnInit {
       this.viewLoading = false;
       this.closeModal(this.modalLoadPDFId);
       console.log('result PDF service: ', result);
-      if (result (empty)) {
-        console.log('No se puede generar el PDF');
-        this.viewLoading = false;
+      if (result) {
+        // console.log('No se puede generar el PDF');
+        /*this.viewLoading = false;
         this.closeModal(this.modalLoadPDFId);
-        this.openDialog(this.modalErrorId);
-      } else {
-        // console.log('binaryData: ', result.binaryData);
+        this.openDialog(this.modalErrorId);*/
         this.convertPdf(result.binaryData);
+        // console.log('binaryData: ', result.binaryData);
       }
+
     }, error => {
       this.viewLoading = false;
       this.closeModal(this.modalLoadPDFId);
