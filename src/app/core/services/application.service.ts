@@ -19,7 +19,6 @@ import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import get from 'lodash/get';
-import {TOKEN, TOKEN_CHANNEL, X_IBM_CLIENT_ID_CHANNEL} from '../mock/mock_token';
 import set from 'lodash/set';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
@@ -2018,16 +2017,14 @@ export class ApplicationService {
   }
 
   saveApplication(appJson: ApplicationJson): Observable<ApplicationJson> {
-    const URL = AppConstants.URL_BROKER_SERVICE + '/save';
+    console.log('on saveApplication');
+    const URL = AppConstants.URL_SERVICE_DEV + '/application';
 
     let metrolname = localStorage.getItem('metrolename');
     let metuserid = localStorage.getItem('metroluid');
-    // let token = localStorage.getItem('token');
-    let token = TOKEN_CHANNEL;
 
     console.log('metrolname: ', metrolname);
     console.log('metuserid: ', metuserid);
-    console.log('token: ', token);
 
     const headers = {
       'Accept': 'application/json',
@@ -2036,19 +2033,17 @@ export class ApplicationService {
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
       'metrolename': metrolname ? metrolname : 'DES_Admin',
-      'metuserid': metuserid ? metuserid : 'N3333876',
-      'x-ibm-client-id': X_IBM_CLIENT_ID_CHANNEL,
-      'authorization': token ? 'Bearer ' + token : 'Bearer ' + TOKEN_CHANNEL
+      'metuserid': metuserid ? metuserid : 'N3333876'
     };
 
     console.log('appJson to passed to de save service: ', appJson);
     // console.log('appJson to passed to de save service2: ', JSON.stringify(appJson));
-    set(appJson, 'type_operation_app', 'save');
+    // set(appJson, 'type_operation_app', 'save');
 
-    return this.httpClient.post(URL, JSON.stringify(appJson), {headers})
+    return this.httpClient.put(URL, JSON.stringify(appJson), {headers})
       .pipe(
         map((response: ApplicationJson) => {
-          console.log('RESPONSE SAVE POST:', response);
+          console.log('RESPONSE SAVE PUT:', response);
           return response;
         })
       );
@@ -2056,11 +2051,10 @@ export class ApplicationService {
 
   getPDF(appId: string) {
     console.log('on getPDFBroker');
-    const URL = AppConstants.URL_BROKER_SERVICE + '/getPdf/app_id=' + appId;
+    const URL = AppConstants.URL_SERVICE_DEV + '/getPdf/app_id=' + appId;
 
     let metrolname = localStorage.getItem('metrolename');
     let metuserid = localStorage.getItem('metroluid');
-    let token = localStorage.getItem('token');
 
     const headers = {
       'Accept': 'application/json',
@@ -2069,15 +2063,13 @@ export class ApplicationService {
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
       'metrolename': metrolname ? metrolname : 'DES_Admin',
-      'metuserid': metuserid ? metuserid : 'N3333876',
-      'x-ibm-client-id': X_IBM_CLIENT_ID_CHANNEL,
-      'authorization': token ? 'Bearer ' + token : 'Bearer ' + TOKEN_CHANNEL
+      'metuserid': metuserid ? metuserid : 'N3333876'
     };
 
     return this.httpClient.get(URL, {headers})
       .pipe(
         map((response) => {
-          console.log('RESPONSE GET PDF SERVICE BROKER GET :', response);
+          console.log('RESPONSE GET PDF SERVICE GET :', response);
           return response;
         })
       );
@@ -2085,11 +2077,10 @@ export class ApplicationService {
 
   getApplication(appId: string) {
     console.log('on getAppBroker');
-    const URL = AppConstants.URL_BROKER_SERVICE + '/getApp/app_id=' + appId;
+    const URL = AppConstants.URL_SERVICE_DEV + '/getApp/app_id=' + appId;
 
     let metrolname = localStorage.getItem('metrolename');
     let metuserid = localStorage.getItem('metroluid');
-    let token = localStorage.getItem('token');
 
     const headers = {
       'Accept': 'application/json',
@@ -2098,15 +2089,13 @@ export class ApplicationService {
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
       'metrolename': metrolname ? metrolname : 'DES_Admin',
-      'metuserid': metuserid ? metuserid : 'N3333876',
-      'x-ibm-client-id': X_IBM_CLIENT_ID_CHANNEL,
-      'authorization': token ? 'Bearer ' + token : 'Bearer ' + TOKEN_CHANNEL
+      'metuserid': metuserid ? metuserid : 'N3333876'
     };
 
     return this.httpClient.get(URL, {headers})
       .pipe(
         map((response) => {
-          console.log('RESPONSE GET APP SERVICE BROKER GET :', response);
+          console.log('RESPONSE GET APP SERVICE GET :', response);
           return response;
         })
       );
@@ -2155,9 +2144,16 @@ export class ApplicationService {
     return this.httpClient.get(URL, {headers})
       .pipe(
         map((response) => {
-          console.log('RESPONSE POST FROM GET USER DATA CALL :', response);
+          console.log('RESPONSE FROM GET USER DATA CALL :', response);
           return response;
         })
       );
+  }
+
+  getDPToken() {
+    return this.httpClient.get(AppConstants.URL_SERVICE_DEV + '/getdptoken').pipe(map((response) => {
+      console.log('RESPONSE FROM GET DP TOKEN CALL :', response);
+      return response;
+    }));
   }
 }

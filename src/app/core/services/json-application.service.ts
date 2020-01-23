@@ -26,8 +26,7 @@ export class JsonApplicationService {
   appJson: ApplicationJson = new ApplicationJson();
 
   constructor(
-    private appService: ApplicationService,
-    private storageService: StorageService
+    private appService: ApplicationService
   ) { }
 
   getAppJson() {
