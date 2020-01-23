@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { AppConstants } from 'src/app/app.constants';
-import {TOKEN_CHANNEL} from '../../core/mock/mock_token';
+import {TOKEN_CHANNEL, X_IBM_CLIENT_ID_CHANNEL} from '../../core/mock/mock_token';
+import {ApplicationService} from '../../core/services';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class MenuPageComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private appService: ApplicationService
   ) { }
 
   ngOnInit() {
@@ -33,15 +35,21 @@ export class MenuPageComponent implements OnInit {
         localStorage.setItem("metrolename", params['metrolename']);
         localStorage.setItem("metroluid", params['metroluid']);
         localStorage.setItem("token", TOKEN_CHANNEL);
+
+        this.setGlobalHeaders();
       } else {
         console.log("entra al servicio getUserData");
         this.httpClient.get( AppConstants.URL_SERVICE_DEV  + '/getUserData').subscribe((resp:any) => {
+          console.log('resp: ', resp)
           this.metrolename = resp.data.metrolename;
           this.metroluid = resp.data.metUserId;
           this.token = resp.data.temporalToken;
+          console.log('resp: ', resp.data);
           localStorage.setItem("metrolename", resp.data.metrolename);
           localStorage.setItem("metroluid", resp.data.metUserId);
           localStorage.setItem("token", resp.data.temporalToken);
+
+          this.setGlobalHeaders();
         });
       }
 
@@ -65,5 +73,23 @@ export class MenuPageComponent implements OnInit {
         console.log("userId: "+localStorage.getItem('userId'));
       });
     });
+  }
+
+  setGlobalHeaders() {
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+      'metrolename': localStorage.getItem('metrolename'),
+      'metuserid': localStorage.getItem('metroluid'),
+      'x-ibm-client-id': X_IBM_CLIENT_ID_CHANNEL,
+      'authorization': 'Bearer ' + localStorage.getItem('token'),
+    };
+
+    console.log('headers: ', headers);
+
+    this.appService.setGlobalHeader(headers);
   }
 }

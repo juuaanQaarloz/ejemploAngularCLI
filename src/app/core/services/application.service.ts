@@ -95,6 +95,7 @@ export class ApplicationService {
   documents = new BehaviorSubject([]);
   currentPlan = new BehaviorSubject(null);
   coverages = new BehaviorSubject([]);
+  globalHeaders;
   formGroup: FormGroup;
   searchModalFrom: string;
   applicationObj;
@@ -103,6 +104,14 @@ export class ApplicationService {
 
   constructor(private httpClient: HttpClient,
               private modalService: ModalService) {
+  }
+
+  setGlobalHeader(newHeaders) {
+    this.globalHeaders = newHeaders;
+  }
+
+  getGlobalHeaders() {
+    return this.globalHeaders;
   }
 
   getErrorMsg() {
@@ -2005,7 +2014,7 @@ export class ApplicationService {
 
   saveApplication(appJson: ApplicationJson): Observable<ApplicationJson> {
     const URL = AppConstants.URL_BROKER_SERVICE + '/save';
-    const headers = new HttpHeaders({
+    const headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
@@ -2014,8 +2023,8 @@ export class ApplicationService {
       'metrolename': 'DES_Admin',
       'metuserid': 'N3333876',
       'x-ibm-client-id': X_IBM_CLIENT_ID_CHANNEL,
-      'authorization': 'Bearer ' + TOKEN_CHANNEL,
-    });
+      'authorization': 'Bearer ' + TOKEN_CHANNEL
+    };
 
     console.log('appJson to passed to de save service: ', appJson);
     // console.log('appJson to passed to de save service2: ', JSON.stringify(appJson));
@@ -2034,13 +2043,19 @@ export class ApplicationService {
     console.log('on getPDFBroker');
     const URL = AppConstants.URL_BROKER_SERVICE + '/getPdf/app_id=' + appId;
 
-    const headers = new HttpHeaders({
+    // const headers = new HttpHeaders(this.getGlobalHeaders());
+
+    const headers = {
       'Accept': 'application/json',
-      'x-ibm-client-id': '633f644e-53a8-4faf-a2a4-5e5d919cc69b',
-      'authorization': 'Bearer ' + TOKEN,
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
       'metrolename': 'DES_Admin',
-      'metuserid': 'N3333876'
-    });
+      'metuserid': 'N3333876',
+      'x-ibm-client-id': X_IBM_CLIENT_ID_CHANNEL,
+      'authorization': 'Bearer ' + TOKEN_CHANNEL
+    };
 
     return this.httpClient.get(URL, {headers})
       .pipe(

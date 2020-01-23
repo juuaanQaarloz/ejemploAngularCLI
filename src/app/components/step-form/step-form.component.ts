@@ -98,9 +98,9 @@ export class StepFormComponent implements OnInit {
       if (this.stepObj.isValid) {
         this.showLoading = true;
         this.openDialog(this.modalLoadingId);
-        // save in JSON
+
         this.applicationService.saveApplication(this.jsonApplicationService.saveInJsonSwagger(this.stepObj))
-          .subscribe((response: ApplicationJson) => {
+          .subscribe((response: any) => {
             console.log('response: ', response);
             this.jsonApplicationService.setAppJson(response);
             this.showLoading = false;
