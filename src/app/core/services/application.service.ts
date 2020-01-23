@@ -2022,7 +2022,12 @@ export class ApplicationService {
 
     let metrolname = localStorage.getItem('metrolename');
     let metuserid = localStorage.getItem('metroluid');
-    let token = localStorage.getItem('token');
+    // let token = localStorage.getItem('token');
+    let token = TOKEN_CHANNEL;
+
+    console.log('metrolname: ', metrolname);
+    console.log('metuserid: ', metuserid);
+    console.log('token: ', token);
 
     const headers = {
       'Accept': 'application/json',

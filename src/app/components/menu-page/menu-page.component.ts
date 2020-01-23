@@ -38,9 +38,8 @@ export class MenuPageComponent implements OnInit {
 
         this.setGlobalHeaders();
       } else {
-        console.log("entra al servicio getUserData");
-        this.httpClient.get( AppConstants.URL_SERVICE_DEV  + '/getUserData').subscribe((resp:any) => {
-          console.log('resp: ', resp)
+        this.httpClient.get( AppConstants.URL_SERVICE_DEV  + '/getUserData').subscribe((resp: any) => {
+          console.log('resp: ', resp);
           this.metrolename = resp.data.metrolename;
           this.metroluid = resp.data.metUserId;
           this.token = resp.data.temporalToken;
@@ -50,6 +49,8 @@ export class MenuPageComponent implements OnInit {
           localStorage.setItem("token", resp.data.temporalToken);
 
           this.setGlobalHeaders();
+        }, error => {
+          console.log('on Error getUserData: ', error);
         });
       }
 
