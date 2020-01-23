@@ -12,7 +12,7 @@ import {ApplicationExtensionJson} from './applicationExtensionJson';
 import {ShareHolderApp} from './shareHolderApp';
 
 export class ApplicationJson {
-  app_id: number = 0;
+  app_id: number = null;
   agents: AgentJson[] = [];
   Format: FormatJson[] = [];
   QuesList: QuesList[] = [];
