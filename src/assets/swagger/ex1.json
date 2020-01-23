@@ -158,7 +158,6 @@
         "rec_updt_usr_id": "string",
         "std_bnk_cd": "string"
       },
-      "clct_card_typ_id": "string",
       "clct_cncpt_id": 0,
       "clct_cur_cd": "string",
       "clct_empe_id": "string",

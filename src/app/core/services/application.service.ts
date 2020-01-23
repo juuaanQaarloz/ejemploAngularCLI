@@ -1840,6 +1840,8 @@ export class ApplicationService {
                     step.isValid = false;
                     step.message = evaluateStepResult.msg;
                     message = message + step.id + ') ' + step.title + '-';
+                  } else {
+                    step.isValid = true;
                   }
                 }
               } else {
@@ -1849,6 +1851,8 @@ export class ApplicationService {
                   step.isValid = false;
                   step.message = evaluateStepResult.msg;
                   message = message + step.id + ') ' + step.title + '-';
+                } else {
+                  step.isValid = true;
                 }
               }
             });
