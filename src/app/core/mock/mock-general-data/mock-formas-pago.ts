@@ -63,7 +63,7 @@ export const FormasPago: Field[] = [
   },
   {
     id: 'field-55',
-    idHtml: 'txtNameS',
+    idHtml: 'txtChargeDay',
     name: 'chargeDay',
     orderAppearance: 3,
     label: 'Día de cargo*',
