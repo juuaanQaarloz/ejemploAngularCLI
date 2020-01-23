@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import { AppConstants } from 'src/app/app.constants';
+import {AppConstants} from 'src/app/app.constants';
 import {TOKEN_CHANNEL, X_IBM_CLIENT_ID_CHANNEL} from '../../core/mock/mock_token';
 import {ApplicationService} from '../../core/services';
 
@@ -12,15 +12,16 @@ import {ApplicationService} from '../../core/services';
   styleUrls: ['./menu-page.component.css']
 })
 export class MenuPageComponent implements OnInit {
-  metrolename:string;
-  metroluid:string;
-  token:string;
+  metrolename: string;
+  metroluid: string;
+  token: string;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private httpClient: HttpClient,
     private appService: ApplicationService
-  ) { }
+  ) {
+  }
 
   ngOnInit() {
     console.log('Entro a la aplicación menuPage');
@@ -28,25 +29,32 @@ export class MenuPageComponent implements OnInit {
       userName: 'N3333876',
       userType: 'New'
     };
-    localStorage.setItem( 'sessionUser', JSON.stringify(sessionUser));
+    localStorage.setItem('sessionUser', JSON.stringify(sessionUser));
 
-    this.activatedRoute.queryParams.subscribe( params => {
-      if (params['metrolename']!==undefined && params['metroluid']!==undefined){
-        localStorage.setItem("metrolename", params['metrolename']);
-        localStorage.setItem("metroluid", params['metroluid']);
-        localStorage.setItem("token", TOKEN_CHANNEL);
+    this.activatedRoute.queryParams.subscribe(params => {
+      if (params['metrolename'] !== undefined && params['metroluid'] !== undefined) {
+        localStorage.setItem('metrolename', params['metrolename']);
+        localStorage.setItem('metroluid', params['metroluid']);
+        localStorage.setItem('token', TOKEN_CHANNEL);
 
         this.setGlobalHeaders();
       } else {
-        this.httpClient.get( AppConstants.URL_SERVICE_DEV  + '/getUserData').subscribe((resp: any) => {
+
+        this.httpClient.get(AppConstants.URL_SERVICE_DEV + '/getdptoken').subscribe((resp: any) => {
+          console.log('entra al servicio getDpToken');
+          console.log(resp);
+        });
+
+        this.httpClient.get(AppConstants.URL_SERVICE_DEV + '/getUserData').subscribe((resp: any) => {
+          console.log('entra al servicio getUserData');
           console.log('resp: ', resp);
           this.metrolename = resp.data.metrolename;
           this.metroluid = resp.data.metUserId;
           this.token = resp.data.temporalToken;
           console.log('resp: ', resp.data);
-          localStorage.setItem("metrolename", resp.data.metrolename);
-          localStorage.setItem("metroluid", resp.data.metUserId);
-          localStorage.setItem("token", resp.data.temporalToken);
+          localStorage.setItem('metrolename', resp.data.metrolename);
+          localStorage.setItem('metroluid', resp.data.metUserId);
+          localStorage.setItem('token', resp.data.temporalToken);
 
           this.setGlobalHeaders();
         }, error => {
@@ -54,24 +62,24 @@ export class MenuPageComponent implements OnInit {
         });
       }
 
-      console.log("metrolename: "+localStorage.getItem('metrolename'));
-      console.log("metroluid: "+localStorage.getItem('metroluid'));
-      console.log("token: "+localStorage.getItem('token'));
+      console.log('metrolename: ' + localStorage.getItem('metrolename'));
+      console.log('metroluid: ' + localStorage.getItem('metroluid'));
+      console.log('token: ' + localStorage.getItem('token'));
 
       const URL_AGENT_USER = '../assets/catalogs/agent-user.json';
 
-      this.httpClient.get(URL_AGENT_USER).subscribe( (resp:any) => {
-        console.log("AGENT_USER");
+      this.httpClient.get(URL_AGENT_USER).subscribe((resp: any) => {
+        console.log('AGENT_USER');
         console.log(resp);
 
-        if(resp!==null){
+        if (resp !== null) {
           resp.agentUser.forEach(item => {
-            if(item.metroluid === localStorage.getItem('metroluid')){
+            if (item.metroluid === localStorage.getItem('metroluid')) {
               localStorage.setItem('userId', item.agentId);
             }
           });
         }
-        console.log("userId: "+localStorage.getItem('userId'));
+        console.log('userId: ' + localStorage.getItem('userId'));
       });
     });
   }
