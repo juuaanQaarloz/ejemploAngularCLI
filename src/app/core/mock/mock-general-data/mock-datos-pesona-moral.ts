@@ -148,8 +148,8 @@ export const DatosGeneralesPersonaMoral: Field[] = [
     renderConditions: '',
     enableConditions: '',
     requiredConditions: '(typePerson=M)',
-    entity: 'insurer.nationalities.natlty_nm',
-    entityField: 'insurer.nationalities.natlty_cd',
+    entity: 'insurer.nationalities[0].natlty_nm',
+    entityField: 'insurer.nationalities[0].natlty_cd',
     value: ''
   },
   {

@@ -90,7 +90,7 @@ export const Plan1: Field[] = [
     messageErrorClass: '',
     renderConditions: '',
     enableConditions: '',
-    entity: '',
+    entity: 'insuredCondition.aplicationPlan.pln_nm',
     entityField: 'insuredCondition.aplicationPlan.pln_cd',
     detonateFunction: 'enableAdditionalCoverage'
   },

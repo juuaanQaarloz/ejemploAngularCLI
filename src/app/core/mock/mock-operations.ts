@@ -383,3 +383,18 @@ export const OKOPT: Operation = {
   renderConditions: '',
   enableConditions: ''
 };
+
+export const CLOSE_MODALS_OPT: Operation = {
+  id: 'opt-1',
+  idHtml: 'btnClose',
+  name: 'cerrar',
+  label: 'CERRAR',
+  type: 'button',
+  style: '',
+  styleClass: 'ml-button-primary',
+  message: '',
+  messageClass: '',
+  delegateOperation: 'closeModal',
+  renderConditions: '',
+  enableConditions: ''
+};

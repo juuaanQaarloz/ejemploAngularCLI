@@ -16,6 +16,7 @@ import {DiseaseJson} from '../../models/applicationJson/diseaseJson';
 import {ForeignCountryTaxJson} from '../../models/applicationJson/foreignCountryTaxJson';
 import {QuesList} from '../../models/applicationJson/questionaryJson/quesList';
 import {Cvr} from '../../models/applicationJson/coverageJson/cvr';
+import {StorageService} from './storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -26,20 +27,7 @@ export class JsonApplicationService {
 
   constructor(
     private appService: ApplicationService
-  ) {
-    this.appService.getApplicationBase().subscribe((response) => {
-      console.log('response: ', response);
-      // get new application folio
-      this.appJson.app_id = response.app_id;
-      console.log('applicationJson after parse', this.appJson);
-      let partyAppType = this.appService.getFormGroup().controls.typePerson.value;
-      if (partyAppType !== null && partyAppType !== undefined) {
-        // set(this.appJson, 'insurer.party_typ_cd', partyAppType === 'P' ? true : false);
-        set(this.appJson, 'insurer.party_typ_cd', partyAppType);
-      }
-      console.log(get(this.appJson, 'insurer.party_typ_cd'));
-    });
-  }
+  ) { }
 
   getAppJson() {
     return this.appJson;
@@ -67,14 +55,15 @@ export class JsonApplicationService {
                 } else if (field.subtype === 'currency') {
                   value = Number(value.replace(/[^0-9.-]+/g, ''));
                 } else if (field.type === 'select') {
-                  console.log('select additionalData: ', field.additionalData);
+                  // console.log('select additionalData: ', field.additionalData);
                   if (field.entity && field.additionalData !== undefined) {
                     set(this.appJson, field.entity, field.additionalData.name);
                   }
                 } else if (field.type === 'autocomplete') {
-                  console.log('autocomplete additionalData: ', field.additionalData);
+                  // console.log('autocomplete additionalData: ', field.additionalData);
                   if (field.entity && field.additionalData !== undefined) {
-                    set(this.appJson, field.entity, field.additionalData.value);
+                    value = field.additionalData.value;
+                    set(this.appJson, field.entity, field.additionalData.name);
                   }
                 }
 
@@ -102,7 +91,16 @@ export class JsonApplicationService {
                     } else if (field.subtype === 'currency') {
                       value = Number(value.replace(/[^0-9.-]+/g, ''));
                     } else if (field.type === 'select') {
-                      console.log('additionalData: ', field.additionalData);
+                      // console.log('select additionalData: ', field.additionalData);
+                      if (field.entity && field.additionalData !== undefined) {
+                        set(this.appJson, field.entity, field.additionalData.name);
+                      }
+                    } else if (field.type === 'autocomplete') {
+                      // console.log('autocomplete additionalData: ', field.additionalData);
+                      if (field.entity && field.additionalData !== undefined) {
+                        value = field.additionalData.value;
+                        set(this.appJson, field.entity, field.additionalData.name);
+                      }
                     }
                     // setting value from FORM to JSON
                     set(this.appJson, field.entityField, value);
@@ -117,27 +115,14 @@ export class JsonApplicationService {
         }
       });
 
-      console.log('appJson object: ', this.getAppJson());
+      // console.log('appJson object: ', this.getAppJson());
 
       this.appJson.app_stts_cd = step.id;
       if (step.id === '1' || step.id === '4') {
         let resp = this.appService.getFormGroup().controls.typePerson.value;
       }
-      if (step.id === '6') {
-        set(this.appJson, 'shareHolders[0].person.Address', []);
-        set(this.appJson, 'shareHolders[0].person.nationalities', []);
-        set(this.appJson, 'shareHolders[1].person.Address', []);
-        set(this.appJson, 'shareHolders[1].person.nationalities', []);
-      }
 
-      this.appService.saveSolicitud(this.getAppJson()).subscribe((response: ApplicationJson) => {
-        console.log('response: ', response);
-        this.setAppJson(response);
-      });
-
-      /*this.appService.saveApplication(this.getAppJson()).subscribe((response: ApplicationJson) => {
-        console.log('response: ', response);
-      });*/
+      return this.getAppJson();
     }
   }
 
@@ -209,7 +194,6 @@ export class JsonApplicationService {
       items = this.appService.coverages.getValue();
       if (items.length > 0) {
         set(this.appJson, `insuredCondition.aplicationPlan.pln_cd`, this.appService.currentPlan.getValue().PLAN);
-        set(this.appJson, `insuredCondition.aplicationPlan.pln_nm`, this.appService.currentPlan.getValue().DESCRIP);
         items.forEach((coverage, i) => {
           set(this.appJson, `insuredCondition.aplicationPlan.coverage[${i}]`, this.mapItem('coverage', coverage, i));
         });

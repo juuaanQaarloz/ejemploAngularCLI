@@ -19,6 +19,8 @@ import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import get from 'lodash/get';
+import set from 'lodash/set';
+
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
 const URL_PATTERN_CATALOG = '../assets/catalogs/pattern-catalogs.json';
@@ -93,6 +95,7 @@ export class ApplicationService {
   documents = new BehaviorSubject([]);
   currentPlan = new BehaviorSubject(null);
   coverages = new BehaviorSubject([]);
+  globalHeaders;
   formGroup: FormGroup;
   searchModalFrom: string;
   applicationObj;
@@ -101,6 +104,14 @@ export class ApplicationService {
 
   constructor(private httpClient: HttpClient,
               private modalService: ModalService) {
+  }
+
+  setGlobalHeader(newHeaders) {
+    this.globalHeaders = newHeaders;
+  }
+
+  getGlobalHeaders() {
+    return this.globalHeaders;
   }
 
   getErrorMsg() {
@@ -120,9 +131,9 @@ export class ApplicationService {
     } else if (type === 'nextStep') {
       const currentStep = this.currentStepSource.getValue();
       // console.log('currentStep: ', currentStep)
-      if ( nextSetp.id === '3' && !this.formGroup.controls.contractorType.value) {
+      if (nextSetp.id === '3' && !this.formGroup.controls.contractorType.value) {
         nextSetp.nextStep = '7';
-      } else if ( nextSetp.id === '3' && this.formGroup.controls.contractorType.value ) {
+      } else if (nextSetp.id === '3' && this.formGroup.controls.contractorType.value) {
         nextSetp.nextStep = '10';
       }
       console.log('Step: ', Number(nextSetp.nextStep));
@@ -387,20 +398,6 @@ export class ApplicationService {
       // console.log('Catalogos IPRE');
       return this.getCatalog(id, source);
     }
-  }
-
-  getApplicationBase(): Observable<ApplicationJson> {
-    const URL_FOLIO = AppConstants.URL_SERVICE_DEV + '/App/folio';
-    const URL_JSON_TEST = '../assets/swagger/JsonApp_080120.json';
-
-    return this.httpClient.get(URL_FOLIO)
-    // return this.httpClient.get(URL_JSON_TEST)
-      .pipe(
-        map((response: ApplicationJson) => {
-          console.log('RESPONSE from getApplicationBase:', response);
-          return response;
-        })
-      );
   }
 
   addItem(newItem, itemType: string, idTable?: string) {
@@ -751,7 +748,7 @@ export class ApplicationService {
       maxLength = 5;
       currentItems = this.payments.getValue();
       propertyItem = 'paymentId';
-    } else if ( itemType === 'document' ) {
+    } else if (itemType === 'document') {
       currentItems = this.documents.getValue();
       propertyItem = 'documentId';
     }
@@ -829,35 +826,35 @@ export class ApplicationService {
       }
     } else {
       let index;
-      if ( propertyItem === 'documentId' ) {
+      if (propertyItem === 'documentId') {
         index = currentItems.findIndex((i) => Number(i[propertyItem]) === Number(updatedItem[propertyItem]));
         console.log('updatedItem.fieldName: ');
         console.log(updatedItem.fieldName);
         console.log('fileDocument: ', updatedItem.fieldName.indexOf('fileDocument') > -1);
         console.log('typeDocument: ', updatedItem.fieldName.indexOf('typeDocument') > -1);
-        if ( updatedItem.fieldName.indexOf('fileDocument') > -1 ) {
-          if ( updatedItem.docName ) {
+        if (updatedItem.fieldName.indexOf('fileDocument') > -1) {
+          if (updatedItem.docName) {
             currentItems[index].docName = updatedItem.docName;
           } else {
             currentItems[index].docName = null;
           }
-          if ( updatedItem.docExt ) {
+          if (updatedItem.docExt) {
             currentItems[index].docExt = updatedItem.docExt;
           } else {
             currentItems[index].docExt = null;
           }
-          if ( updatedItem.docType ) {
+          if (updatedItem.docType) {
             currentItems[index].docType = updatedItem.docType;
           } else {
             currentItems[index].docType = null;
           }
-          if ( updatedItem.doc ) {
+          if (updatedItem.doc) {
             currentItems[index].doc = updatedItem.doc;
           } else {
             currentItems[index].doc = null;
           }
-        } else if ( updatedItem.fieldName.indexOf('typeDocument') > -1 ) {
-          if ( updatedItem.docId ) {
+        } else if (updatedItem.fieldName.indexOf('typeDocument') > -1) {
+          if (updatedItem.docId) {
             currentItems[index].docId = updatedItem.docId;
           } else {
             currentItems[index].docId = null;
@@ -1171,9 +1168,9 @@ export class ApplicationService {
           validateDocument = true;
           const documentsValid = this.validateDocument();
 
-          if ( !documentsValid.valid ) {
+          if (!documentsValid.valid) {
             isValid = false;
-            if ( documentsValid.messageNumber === 1 ) {
+            if (documentsValid.messageNumber === 1) {
               message = 'Por favor, verifique que todos los campos marcados con un * esten llenos.';
             }
           }
@@ -1220,7 +1217,7 @@ export class ApplicationService {
 
       // console.log('isValid from validateFormByStep: ', isValid);
 
-      if ( validateDocument ) {
+      if (validateDocument) {
         return {
           status: isValid,
           msg: message,
@@ -1253,8 +1250,8 @@ export class ApplicationService {
           // console.log('errors: ', group.controls[field.name].errors);
           isValid = false;
         }
-      } else if ( field.disable && (field.name === 'occupation' || field.name === 'occupationS') ) {
-        if ( group.controls[field.name].value ) {
+      } else if (field.disable && (field.name === 'occupation' || field.name === 'occupationS')) {
+        if (group.controls[field.name].value) {
           field.valid = true;
         } else {
           field.valid = false;
@@ -1650,14 +1647,15 @@ export class ApplicationService {
                 [{
                   cvrN: 'et',
                   cvrC: '0',
-                  planCode: foundPlan.PLAN}]);
+                  planCode: foundPlan.PLAN
+                }]);
 
-              foundPlan.MACC ?  this.updateStateCvr('ima', 'enable') :  this.updateStateCvr('ima', 'disable');
-              foundPlan.DI ?  this.updateStateCvr('imapo', 'enable') :  this.updateStateCvr('imapo', 'disable');
-              foundPlan.TI ?  this.updateStateCvr('dimapo', 'enable') :  this.updateStateCvr('dimapo', 'disable');
-              foundPlan.EP ?  this.updateStateCvr('ep', 'enable') :  this.updateStateCvr('ep', 'disable');
-              foundPlan.PASI ?  this.updateStateCvr('pasi', 'enable') :  this.updateStateCvr('pasi', 'disable');
-              foundPlan.GRAVES ?  this.updateStateCvr('ge', 'enable') :  this.updateStateCvr('ge', 'disable');
+              foundPlan.MACC ? this.updateStateCvr('ima', 'enable') : this.updateStateCvr('ima', 'disable');
+              foundPlan.DI ? this.updateStateCvr('imapo', 'enable') : this.updateStateCvr('imapo', 'disable');
+              foundPlan.TI ? this.updateStateCvr('dimapo', 'enable') : this.updateStateCvr('dimapo', 'disable');
+              foundPlan.EP ? this.updateStateCvr('ep', 'enable') : this.updateStateCvr('ep', 'disable');
+              foundPlan.PASI ? this.updateStateCvr('pasi', 'enable') : this.updateStateCvr('pasi', 'disable');
+              foundPlan.GRAVES ? this.updateStateCvr('ge', 'enable') : this.updateStateCvr('ge', 'disable');
             }
           });
 
@@ -1671,6 +1669,7 @@ export class ApplicationService {
       console.log('debe seleccionarse un tipo de moneda');
     }
   }
+
   setCvrValues(cvrNames) {
     cvrNames.forEach((cvrName) => {
       this.formGroup.controls[cvrName].setValue(false);
@@ -1687,7 +1686,7 @@ export class ApplicationService {
       if (status === 'VALID') {
         this.formGroup.controls[cvrName].disable();
       }
-    } else  if (action === 'enable') {
+    } else if (action === 'enable') {
       if (status === 'DISABLED') {
         this.formGroup.controls[cvrName].enable();
       }
@@ -1733,7 +1732,7 @@ export class ApplicationService {
         cvrN: cvrName
       };
 
-      let searchResult =  currentCoverages.find(x => x.cvrN === cvrName);
+      let searchResult = currentCoverages.find(x => x.cvrN === cvrName);
       if (searchResult === undefined) { // coverage those not exist in the array so we can add it
         currentCoverages.push(newCvr);
         this.coverages.next(currentCoverages);
@@ -2017,51 +2016,29 @@ export class ApplicationService {
       );
   }
 
-  saveFunction(appJson: ApplicationJson) {
-    console.log('on saveFunctions');
-    const URL_FOLIO = AppConstants.URL_SERVICE_DEV + '/App/folio';
-    const headers = new HttpHeaders({
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
-    });
-
-    // console.log("appJson: "+appJson);
-    if (appJson.app_id === 0) {
-      console.log('obtiene folio');
-      this.httpClient.get(URL_FOLIO, {headers}).subscribe((response: ApplicationJson) => {
-        if (response) {
-          appJson.app_id = response.app_id;
-          console.log('folio nuevo: ', response.app_id);
-          this.saveSolicitud(appJson).subscribe((response1: ApplicationJson) => {
-            return response1;
-          });
-        }
-      });
-    } else {
-      console.log('llama directo al servicio de guardado');
-      this.saveSolicitud(appJson).subscribe((response: ApplicationJson) => {
-        return response;
-      });
-    }
-  }
-
-  saveSolicitud(appJson: ApplicationJson): Observable<ApplicationJson> {
+  saveApplication(appJson: ApplicationJson): Observable<ApplicationJson> {
+    console.log('on saveApplication');
     const URL = AppConstants.URL_SERVICE_DEV + '/application';
-    const headers = new HttpHeaders({
+
+    let metrolname = localStorage.getItem('metrolename');
+    let metuserid = localStorage.getItem('metroluid');
+
+    console.log('metrolname: ', metrolname);
+    console.log('metuserid: ', metuserid);
+
+    const headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-      'metrolename': 'DES_Supervisor',
-      'metuserid': 'N3333876'
-    });
+      'metrolename': metrolname ? metrolname : 'DES_Admin',
+      'metuserid': metuserid ? metuserid : 'N3333876'
+    };
 
     console.log('appJson to passed to de save service: ', appJson);
     // console.log('appJson to passed to de save service2: ', JSON.stringify(appJson));
+    // set(appJson, 'type_operation_app', 'save');
 
     return this.httpClient.put(URL, JSON.stringify(appJson), {headers})
       .pipe(
@@ -2072,39 +2049,53 @@ export class ApplicationService {
       );
   }
 
-  saveApplication(appJson: ApplicationJson): Observable<any> {
-    const URL = AppConstants.URL_BROKER_SERVICE + '/save';
-
-    return this.httpClient.post(URL, JSON.stringify(appJson))
-      .pipe(
-        map((response) => {
-          console.log('RESPONSE SAVE SERVICE BROKER POST :', response);
-          return response;
-        })
-      );
-  }
-
-  getPDFBroker(appId: string) {
+  getPDF(appId: string) {
     console.log('on getPDFBroker');
-    const URL = AppConstants.URL_BROKER_SERVICE + '/getPdf/app_id=' + appId;
+    const URL = AppConstants.URL_SERVICE_DEV + '/getPdf/app_id=' + appId;
 
-    return this.httpClient.get(URL)
+    let metrolname = localStorage.getItem('metrolename');
+    let metuserid = localStorage.getItem('metroluid');
+
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+      'metrolename': metrolname ? metrolname : 'DES_Admin',
+      'metuserid': metuserid ? metuserid : 'N3333876'
+    };
+
+    return this.httpClient.get(URL, {headers})
       .pipe(
         map((response) => {
-          console.log('RESPONSE GET PDF SERVICE BROKER GET :', response);
+          console.log('RESPONSE GET PDF SERVICE GET :', response);
           return response;
         })
       );
   }
 
-  getAppBroker(appId: string) {
+  getApplication(appId: string) {
     console.log('on getAppBroker');
-    const URL = AppConstants.URL_BROKER_SERVICE + '/getApp/app_id=' + appId;
+    const URL = AppConstants.URL_SERVICE_DEV + '/getApp/app_id=' + appId;
 
-    return this.httpClient.get(URL)
+    let metrolname = localStorage.getItem('metrolename');
+    let metuserid = localStorage.getItem('metroluid');
+
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+      'metrolename': metrolname ? metrolname : 'DES_Admin',
+      'metuserid': metuserid ? metuserid : 'N3333876'
+    };
+
+    return this.httpClient.get(URL, {headers})
       .pipe(
         map((response) => {
-          console.log('RESPONSE GET APP SERVICE BROKER GET :', response);
+          console.log('RESPONSE GET APP SERVICE GET :', response);
           return response;
         })
       );
@@ -2117,24 +2108,52 @@ export class ApplicationService {
     };
 
     const documents = this.documents.getValue();
-    if ( documents.length === 1 ) {
-      if ( !documents[0].docId || !documents[0].docName ) {
+    if (documents.length === 1) {
+      if (!documents[0].docId || !documents[0].docName) {
         status.valid = false;
         status.messageNumber = 1;
       }
-    } else if ( documents.length > 1 ) {
+    } else if (documents.length > 1) {
       let contador = 0;
       documents.forEach((doc) => {
-        if ( !doc.docId || !doc.docName ) {
+        if (!doc.docId || !doc.docName) {
           contador++;
         }
       });
       console.log('Contador: ', contador);
-      if ( contador > 0 ) {
+      if (contador > 0) {
         status.valid = false;
         status.messageNumber = 1;
       }
     }
     return status;
+  }
+
+  getUserData() {
+    console.log('on getUserData');
+    const URL = AppConstants.URL_SERVICE_DEV + '/getUserData';
+
+    const headers = new HttpHeaders({
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+    });
+
+    return this.httpClient.get(URL, {headers})
+      .pipe(
+        map((response) => {
+          console.log('RESPONSE FROM GET USER DATA CALL :', response);
+          return response;
+        })
+      );
+  }
+
+  getDPToken() {
+    return this.httpClient.get(AppConstants.URL_SERVICE_DEV + '/getdptoken').pipe(map((response) => {
+      console.log('RESPONSE FROM GET DP TOKEN CALL :', response);
+      return response;
+    }));
   }
 }

@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import {Router} from '@angular/router';
 import {User} from '../../models/user.interface';
 import {Session} from '../../models/session.interface';
+import {HttpClient} from '@angular/common/http';
+import {AppConstants} from '../../app.constants';
+import {ApplicationService} from './application.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,13 +14,16 @@ export class StorageService {
   private localStorageService;
   private currentSession: Session = null;
 
-  constructor(private router: Router) {
+  constructor(private router: Router,
+              private appService: ApplicationService
+              ) {
     this.localStorageService = localStorage;
     this.currentSession = this.loadSessionData();
   }
 
   setCurrentSession(session: Session): void {
     this.currentSession = session;
+    console.log('session: ', session);
     this.localStorageService.setItem('currentUser', JSON.stringify(session));
   }
 
