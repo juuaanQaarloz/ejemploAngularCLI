@@ -32,6 +32,11 @@ export class MenuPageComponent implements OnInit {
         localStorage.setItem("metrolename", params['metrolename']);
         localStorage.setItem("metroluid", params['metroluid']);
       }else{ 
+        console.log("entra al servicio getDpToken");
+        this.httpClient.get( AppConstants.URL_SERVICE_DEV  + '/getdptoken').subscribe((resp:any) => {
+          console.log(resp);
+        });
+
         console.log("entra al servicio getUserData");
         this.httpClient.get( AppConstants.URL_SERVICE_DEV  + '/getUserData').subscribe((resp:any) => {
           this.metrolename = resp.data.metrolename;
