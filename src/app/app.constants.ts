@@ -6,7 +6,7 @@ export class AppConstants {
   // https://dev.des.metlife.com/despriv -> DES intermedio
   // http://usazebasu0350l.met_intnet.net:35741/cp-desws-priv -> DES directo
 
-  public static readonly URL_SERVICE_DEV: string = 'http://usazebasu0350l.met_intnet.net:35741/cp-desws-priv';
+  public static readonly URL_SERVICE_DEV: string = 'https://dev.des.metlife.com/despriv';
 }
 
 
