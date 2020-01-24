@@ -19,8 +19,8 @@ import {ModalService} from '../../components/custom-modal';
 import {SepomexObj} from '../../models/sepomex-obj';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import get from 'lodash/get';
-import {TOKEN, TOKEN_CHANNEL, X_IBM_CLIENT_ID_CHANNEL} from '../mock/mock_token';
 import set from 'lodash/set';
+
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
 const URL_PATTERN_CATALOG = '../assets/catalogs/pattern-catalogs.json';
@@ -95,6 +95,7 @@ export class ApplicationService {
   documents = new BehaviorSubject([]);
   currentPlan = new BehaviorSubject(null);
   coverages = new BehaviorSubject([]);
+  globalHeaders;
   formGroup: FormGroup;
   searchModalFrom: string;
   applicationObj;
@@ -103,6 +104,14 @@ export class ApplicationService {
 
   constructor(private httpClient: HttpClient,
               private modalService: ModalService) {
+  }
+
+  setGlobalHeader(newHeaders) {
+    this.globalHeaders = newHeaders;
+  }
+
+  getGlobalHeaders() {
+    return this.globalHeaders;
   }
 
   getErrorMsg() {
@@ -1830,6 +1839,8 @@ export class ApplicationService {
                     step.isValid = false;
                     step.message = evaluateStepResult.msg;
                     message = message + step.id + ') ' + step.title + '-';
+                  } else {
+                    step.isValid = true;
                   }
                 }
               } else {
@@ -1839,6 +1850,8 @@ export class ApplicationService {
                   step.isValid = false;
                   step.message = evaluateStepResult.msg;
                   message = message + step.id + ') ' + step.title + '-';
+                } else {
+                  step.isValid = true;
                 }
               }
             });
@@ -2004,27 +2017,33 @@ export class ApplicationService {
   }
 
   saveApplication(appJson: ApplicationJson): Observable<ApplicationJson> {
-    const URL = AppConstants.URL_BROKER_SERVICE + '/save';
-    const headers = new HttpHeaders({
+    console.log('on saveApplication');
+    const URL = AppConstants.URL_SERVICE_DEV + '/application';
+
+    let metrolname = localStorage.getItem('metrolename');
+    let metuserid = localStorage.getItem('metroluid');
+
+    console.log('metrolname: ', metrolname);
+    console.log('metuserid: ', metuserid);
+
+    const headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-      'metrolename': 'DES_Admin',
-      'metuserid': 'N3333876',
-      'x-ibm-client-id': X_IBM_CLIENT_ID_CHANNEL,
-      'authorization': 'Bearer ' + TOKEN_CHANNEL,
-    });
+      'metrolename': metrolname ? metrolname : 'DES_Admin',
+      'metuserid': metuserid ? metuserid : 'N3333876'
+    };
 
     console.log('appJson to passed to de save service: ', appJson);
     // console.log('appJson to passed to de save service2: ', JSON.stringify(appJson));
-    set(appJson, 'type_operation_app', 'save');
+    // set(appJson, 'type_operation_app', 'save');
 
-    return this.httpClient.post(URL, JSON.stringify(appJson), {headers})
+    return this.httpClient.put(URL, JSON.stringify(appJson), {headers})
       .pipe(
         map((response: ApplicationJson) => {
-          console.log('RESPONSE SAVE POST:', response);
+          console.log('RESPONSE SAVE PUT:', response);
           return response;
         })
       );
@@ -2032,20 +2051,25 @@ export class ApplicationService {
 
   getPDF(appId: string) {
     console.log('on getPDFBroker');
-    const URL = AppConstants.URL_BROKER_SERVICE + '/getPdf/app_id=' + appId;
+    const URL = AppConstants.URL_SERVICE_DEV + '/getPdf/app_id=' + appId;
 
-    const headers = new HttpHeaders({
+    let metrolname = localStorage.getItem('metrolename');
+    let metuserid = localStorage.getItem('metroluid');
+
+    const headers = {
       'Accept': 'application/json',
-      'x-ibm-client-id': '633f644e-53a8-4faf-a2a4-5e5d919cc69b',
-      'authorization': 'Bearer ' + TOKEN,
-      'metrolename': 'DES_Admin',
-      'metuserid': 'N3333876'
-    });
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+      'metrolename': metrolname ? metrolname : 'DES_Admin',
+      'metuserid': metuserid ? metuserid : 'N3333876'
+    };
 
     return this.httpClient.get(URL, {headers})
       .pipe(
         map((response) => {
-          console.log('RESPONSE GET PDF SERVICE BROKER GET :', response);
+          console.log('RESPONSE GET PDF SERVICE GET :', response);
           return response;
         })
       );
@@ -2053,20 +2077,25 @@ export class ApplicationService {
 
   getApplication(appId: string) {
     console.log('on getAppBroker');
-    const URL = AppConstants.URL_BROKER_SERVICE + '/getApp/app_id=' + appId;
+    const URL = AppConstants.URL_SERVICE_DEV + '/getApp/app_id=' + appId;
 
-    const headers = new HttpHeaders({
+    let metrolname = localStorage.getItem('metrolename');
+    let metuserid = localStorage.getItem('metroluid');
+
+    const headers = {
       'Accept': 'application/json',
-      'x-ibm-client-id': X_IBM_CLIENT_ID_CHANNEL,
-      'authorization': 'Bearer ' + TOKEN_CHANNEL,
-      'metrolename': 'DES_Admin',
-      'metuserid': 'N3333876'
-    });
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+      'metrolename': metrolname ? metrolname : 'DES_Admin',
+      'metuserid': metuserid ? metuserid : 'N3333876'
+    };
 
     return this.httpClient.get(URL, {headers})
       .pipe(
         map((response) => {
-          console.log('RESPONSE GET APP SERVICE BROKER GET :', response);
+          console.log('RESPONSE GET APP SERVICE GET :', response);
           return response;
         })
       );
@@ -2115,9 +2144,16 @@ export class ApplicationService {
     return this.httpClient.get(URL, {headers})
       .pipe(
         map((response) => {
-          console.log('RESPONSE POST FROM GET USER DATA CALL :', response);
+          console.log('RESPONSE FROM GET USER DATA CALL :', response);
           return response;
         })
       );
+  }
+
+  getDPToken() {
+    return this.httpClient.get(AppConstants.URL_SERVICE_DEV + '/getdptoken').pipe(map((response) => {
+      console.log('RESPONSE FROM GET DP TOKEN CALL :', response);
+      return response;
+    }));
   }
 }
