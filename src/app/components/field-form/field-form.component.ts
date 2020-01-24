@@ -15,6 +15,7 @@ import {Operation} from '../../models';
 import {HttpClient} from '@angular/common/http';
 import set from 'lodash/set';
 import {map} from "rxjs/operators";
+import {element} from "protractor";
 
 @Component({
   selector: 'app-field-form',
@@ -47,7 +48,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   messageClabe = 'CLABE/Token y Confirmar CLABE/Token no coinciden';
   messageToken = 'El Token ingresado no es valido, favor de verificar';
   messageBine = 'CLABE/Token no se encuentra disponible para MetLife';
-  flagMitToken = false;
+  messageLength17 = 'El número de caracteres es invalido.';
   fileName: string;
   contadorDoc: number;
   okOperation: Operation = {
@@ -353,9 +354,21 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     if (this.fieldObj.name === 'assuredImport') {
       // // console.log('Entro assuredImport: ');
     }
+
+    if(this.fieldObj.name === 'txtBank'){
+      console.log('Dentro de txtBank');
+      this.clearTxtBank();
+      this.form.controls['txtBank'].setValue("BANCA SERFIN S.A");
+      const element = document.getElementById('txtBank');
+      element.setAttribute('disabled', 'true');
+      this.clearTxtClabe();
+      this.clearTxtClabeConfir();
+    }
+
     if (this.fieldObj.name === 'txtClabeConfir') {
       const idClabe = 'txtClabe';
       const selectCard = 'selectCard';
+      this.clearTxtBank();
       if (this.form.controls[idClabe].value === this.form.controls[this.fieldObj.name].value) {
         const bine = Number(this.form.controls[this.fieldObj.name].value.substring(0, 6));
         if (this.form.controls[this.fieldObj.name].value.length === 15){
@@ -365,12 +378,9 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
               this.myToken = results;
               if(this.myToken.data === '00'){
                 console.log("El Token es valido.");
-                //this.flagMitToken = true;
                 this.getDataPaymentMit(bine);
                 this.form.controls[selectCard].setValue("4");
-                this.fieldObj.message = this.messageToken;
               }else{
-                //this.flagMitToken = false;
                 this.fieldObj.message = this.messageToken;
                 this.fieldObj.valid = false;
                 console.log("El Token no es valido.")
@@ -393,10 +403,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
               }
             });
         } else if (this.form.controls[this.fieldObj.name].value.length === 18) {
-          this.getDataPaymentMit(bine);
           this.form.controls[selectCard].setValue("3");
+          this.getDataPaymentMit(bine);
         }
       } else {
+        this.clearTxtBank();
+        this.clearSelectCard();
         this.fieldObj.message = this.messageClabe;
         this.fieldObj.valid = false;
       }
@@ -812,6 +824,21 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       });
     }
 
+    if(this.fieldObj.name === 'txtClabe') {
+      const idClabe = 'txtClabe';
+      if (this.form.controls[idClabe].value === this.form.controls[this.fieldObj.name].value) {
+        //ignore
+      } else {
+        this.clearTxtClabeConfir();
+        this.clearSelectCard();
+        this.clearTxtBank();
+      }
+    if(this.form.controls[this.fieldObj.name].value.length === 17){
+      console.log("Entre a 17");
+      this.fieldObj.message = this.messageLength17;
+      this.fieldObj.valid = false;
+      }
+    }
     /*if (this.fieldObj.name === 'txtClabeConfir') {
       const idClabe = 'txtClabe';
       console.log('TOKEN MIT 11 --->: ' + this.form.controls[this.fieldObj.name]);
@@ -1353,12 +1380,41 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           }
         });
         if(contador == 0){
-          const element = document.getElementById('txtBank');
-          element.setAttribute('value', '');
+          this.clearTxtBank();
+          this.clearTxtClabe();
+          this.clearSelectCard();
           this.fieldObj.message = this.messageBine;
           this.fieldObj.valid = false;
         }
       });
+  }
+
+  clearTxtBank(){
+    const txtBank = 'txtBank';
+    this.form.controls[txtBank].setValue('');
+    const element = document.getElementById('txtBank');
+    element.setAttribute('value', '');
+  }
+
+  clearTxtClabe(){
+    const txtClabe = 'txtClabe';
+    this.form.controls[txtClabe].setValue('');
+    const element = document.getElementById(txtClabe);
+    element.setAttribute('value', '');
+  }
+
+  clearTxtClabeConfir(){
+    const txtClabeConfir = 'txtClabeConfir';
+    this.form.controls[txtClabeConfir].setValue('');
+    const element = document.getElementById(txtClabeConfir);
+    element.setAttribute('value', '');
+  }
+
+  clearSelectCard(){
+    const selectCard = 'selectCard';
+    this.form.controls[selectCard].setValue('');
+    const element = document.getElementById(selectCard);
+    element.setAttribute('value', '');
   }
 
   validateIntegerDecimals(value) {
