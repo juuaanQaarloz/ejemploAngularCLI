@@ -1,23 +1,67 @@
 {
     "agentUser": [
-      {
-        "metroluid": "123",
-        "agentId": "1112",
-        "promotoryId": "ABC",
-        "promotoryName": "AABBCC"
-      },
-      {
-        "metroluid": "456",
-        "agentId": "1120",
-        "promotoryId": "QWERTY",
-        "promotoryName": "QWERTY"
-      },
-      {
-        "metroluid": "789",
-        "agentId": "1095",
-        "promotoryId": "PARTY",
-        "promotoryName": "PARTY"
-      }
+      [
+        {
+          "metroluid": "N3333876",
+          "agentId": 92636,
+          "promotoryId": 619,
+          "promotoryName": ""
+        },
+        {
+          "metroluid": "DSRO8886",
+          "agentId": 13257,
+          "promotoryId": 119,
+          "promotoryName": ""
+        },
+        {
+          "metroluid": "N3173939",
+          "agentId": "",
+          "promotoryId": "",
+          "promotoryName": ""
+        },
+        {
+          "metroluid": "GGIS4693",
+          "agentId": 92367,
+          "promotoryId": 619,
+          "promotoryName": ""
+        },
+        {
+          "metroluid": "BCAN5237",
+          "agentId": 92371,
+          "promotoryId": 199,
+          "promotoryName": ""
+        },
+        {
+          "metroluid": "ORVI0133",
+          "agentId": 14390,
+          "promotoryId": 662,
+          "promotoryName": ""
+        },
+        {
+          "metroluid": "N3132510",
+          "agentId": 62345,
+          "promotoryId": 614,
+          "promotoryName": ""
+        },
+        {
+          "metroluid": "N3223047",
+          "agentId": 3807,
+          "promotoryId": 522,
+          "promotoryName": ""
+        },
+        {
+          "metroluid": "N3429533",
+          "agentId": 15658,
+          "promotoryId": 669,
+          "promotoryName": ""
+        },
+        {
+          "metroluid": "AMPA3609",
+          "agentId": 92636,
+          "promotoryId": 619,
+          "promotoryName": ""
+        }
+      ]
     ]
   }
   
