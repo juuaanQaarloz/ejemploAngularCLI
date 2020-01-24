@@ -2038,7 +2038,7 @@ export class ApplicationService {
 
     console.log('appJson to passed to de save service: ', appJson);
     // console.log('appJson to passed to de save service2: ', JSON.stringify(appJson));
-    // set(appJson, 'type_operation_app', 'save');
+    set(appJson, 'type_operation_app', 'save');
 
     return this.httpClient.put(URL, JSON.stringify(appJson), {headers})
       .pipe(
@@ -2051,7 +2051,7 @@ export class ApplicationService {
 
   getPDF(appId: string) {
     console.log('on getPDFBroker');
-    const URL = AppConstants.URL_SERVICE_DEV + '/getPdf/app_id=' + appId;
+    const URL = AppConstants.URL_SERVICE_DEV + '/App/getPdf/app_id=' + appId;
 
     let metrolname = localStorage.getItem('metrolename');
     let metuserid = localStorage.getItem('metroluid');
