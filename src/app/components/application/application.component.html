@@ -12,8 +12,6 @@
       <p class="folio" *ngIf="appFolio">{{'Número de solicitud CP DES: ' + appFolio}}</p>
       <p class="folio" *ngIf="appFuc">{{'Número de solicitud: ' + appFuc}}</p>
     </div>
-    <!--<button (click)="testGetPDFService()">TEST BROKER PDF</button>
-    <button (click)="testGetAPPService()">TEST BROKER GET</button>-->
 
     <div class="container">
       <app-section-form *ngFor="let section of applicationObj.sections" [form]="formGroup"

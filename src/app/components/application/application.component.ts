@@ -1,19 +1,15 @@
 import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {ApplicationService, AuthService, StorageService} from '../../core/services';
+import {FormGroup} from '@angular/forms';
+import {ApplicationService, StorageService} from '../../core/services';
 import {MockTemplate} from '../../core/mock/mock-template';
 import {DialogService} from '../dialog/dialog.service';
 import {ModalService} from '../custom-modal';
-import * as jsPDF from 'jspdf';
 import {APPL_OPERATIONS, CLOSE_MODALS_OPT} from '../../core/mock/mock-operations';
 import {Template} from '../../models/template';
-import {Operation} from '../../models';
-import {ApplicationJson} from '../../models/applicationJson/applicationJson';
-import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
-import {AppConstants} from 'src/app/app.constants';
+import {HttpClient} from '@angular/common/http';
 import {SearchService} from '../search/search.service';
 import {JsonApplicationService} from '../../core/services/json-application.service';
-import {empty} from "rxjs/internal/Observer";
+import {empty} from 'rxjs/internal/Observer';
 import {Subscription} from 'rxjs';
 
 @Component({
@@ -65,11 +61,6 @@ export class ApplicationComponent implements OnInit, OnDestroy {
     this.appService.setFormGroup(this.formGroup);
     // an example array of 150 items to be paged
     this.items = Array(150).fill(0).map((x, i) => ({id: (i + 1), name: `Item ${i + 1}`}));
-    /*this.appService.updateItemProperty(
-      'beneficiary',
-      '1',
-      'participationPercentage',
-      '40');*/
     console.log('Entro a la aplicación');
     console.log('Session user: ', this.storageService.setCurrentSession(null));
     let user = this.storageService.getSessionUser();
@@ -79,19 +70,6 @@ export class ApplicationComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-  }
-
-  testGetPDFService() {
-    this.appService.getPDF(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result: any) => {
-    // this.appService.getPDFBroker('2001210028').subscribe((result: any) => {
-      console.log('result PDF service: ', result);
-
-      if (result) {
-        // console.log('binaryData: ', result.binaryData);
-        this.convertPdf(result.binaryData);
-
-      }
-    });
   }
 
   fromHexaToBase64(hexa) {
@@ -106,12 +84,6 @@ export class ApplicationComponent implements OnInit, OnDestroy {
     downloadLink.href = linkSource;
     downloadLink.download = fileName;
     downloadLink.click();
-  }
-
-  testGetAPPService() {
-    this.appService.getApplication(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result) => {
-      console.log('result GET APP service: ', result);
-    });
   }
 
   executeOperation(delegateOperation) {
@@ -133,16 +105,12 @@ export class ApplicationComponent implements OnInit, OnDestroy {
 
   getFormValue() {
     this.payLoad = JSON.stringify(this.formGroup.value);
-    // // console.log(this.formGroup.value);
   }
 
   downloadPDF() {
-    // this.searchService.downloadPDF('2001030089');
-    // this.appService.getPDFBroker(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result: any) => {
     this.viewLoading = true;
     this.openDialog(this.modalLoadPDFId);
     this.appService.getPDF(this.jsonAppService.getAppJson().app_id.toString()).subscribe((response: any) => {
-    // this.appService.getPDF('2001220018').subscribe((result: any) => {
       console.log('result PDF service: ', response);
       if (response (empty)) {
         console.log('No se puede generar el PDF');
@@ -150,7 +118,6 @@ export class ApplicationComponent implements OnInit, OnDestroy {
         this.closeModal(this.modalLoadPDFId);
         this.openDialog(this.modalErrorId);
       } else {
-        // console.log('binaryData: ', result.binaryData);
         this.convertPdf(response.result.binaryData);
       }
     }, error => {
@@ -178,7 +145,6 @@ export class ApplicationComponent implements OnInit, OnDestroy {
     // console.log('errors: ', errors);
     return errors;
   }
-
 
   openDialog(modalID: string) {
     this.modalService.open(modalID);

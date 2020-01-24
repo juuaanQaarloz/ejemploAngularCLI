@@ -2019,8 +2019,8 @@ export class ApplicationService {
 
   saveApplication(appJson: ApplicationJson): Observable<ApplicationJson> {
     console.log('on saveApplication');
-    // const URL = AppConstants.URL_SERVICE_DEV + '/saveUpdateApp';
-    const URL = AppConstants.URL_SERVICE_DEV + '/save';
+    const URL = AppConstants.URL_SERVICE_DEV + '/saveUpdateApp';
+    // const URL = AppConstants.URL_SERVICE_DEV + '/save';
 
     let metrolname = localStorage.getItem('metrolename');
     let metuserid = localStorage.getItem('metroluid');
@@ -2035,9 +2035,9 @@ export class ApplicationService {
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
       'metrolename': metrolname ? metrolname : 'DES_Admin',
-      'metuserid': metuserid ? metuserid : 'N3333876',
-      'x-ibm-client-id': '7a0c9407-970c-47fd-ae34-edee734de4e9',
-      'authorization': 'Bearer ' + TOKEN
+      'metuserid': metuserid ? metuserid : 'N3333876'
+      /*'x-ibm-client-id': '7a0c9407-970c-47fd-ae34-edee734de4e9',
+      'authorization': 'Bearer ' + TOKEN*/
     };
 
     console.log('appJson to passed to de save service: ', appJson);
