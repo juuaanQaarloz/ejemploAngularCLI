@@ -137,7 +137,7 @@ export class ApplicationComponent implements OnInit {
     if ( this.jsonAppService.getAppJson().app_id === null ) {
       this.viewLoading = false;
       this.closeModal(this.modalLoadPDFId);
-
+      this.openDialog(this.modalErrorId);
     } else {
       this.appService.getPDF(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result: any) => {
         // this.appService.getPDF('2001220018').subscribe((result: any) => {
