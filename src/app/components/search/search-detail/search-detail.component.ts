@@ -31,8 +31,7 @@ export class SearchDetailComponent implements OnInit {
     public dialog: DialogService,
     private modalService: ModalService,
     private searchService: SearchService,
-    private jsonApplicationService: JsonApplicationService
-  ) {
+    private jsonApplicationService: JsonApplicationService) {
   }
 
   ngOnInit() {
@@ -73,7 +72,14 @@ export class SearchDetailComponent implements OnInit {
   downloadPDF() {
     console.log("PDF");
     console.log(this.appId);
-    this.searchService.downloadPDF(this.appId);
+    if (this.appId) {
+      // this.searchService.downloadPDF(this.appId);
+      this.appService.getPDF(this.appId).subscribe((response) => {
+        console.log('response from PDF: ', response);
+      }, error => {
+        console.log('on Error from download PDF: ', error);
+      });
+    }
   }
 
   validateForm() {

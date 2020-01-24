@@ -16,15 +16,18 @@ export class SearchService {
     //console.log(appId);
     console.log("localStorage.getItem('metroluid')");
     console.log(localStorage.getItem('metroluid'));
-    const headers = new HttpHeaders({
+    let metrolname = localStorage.getItem('metrolename');
+    let metuserid = localStorage.getItem('metroluid');
+
+    const headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-      'metrolename': 'MX-6979_DES_G_OPS',
-      'metuserid': localStorage.getItem('metroluid')
-    });
+      'metrolename': metrolname ? metrolname : 'DES_Admin',
+      'metuserid': metuserid ? metuserid : 'N3333876'
+    };
 
     let params = new HttpParams();
     params = params.append('appId', appId);

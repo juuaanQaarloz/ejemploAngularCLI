@@ -50,17 +50,18 @@ export class SearchCriteriaComponent implements OnInit {
   search() {
     //console.log("metrolename: "+this.metrolename);
     //console.log("metroluid: "+this.metroluid);
-    const headers = new HttpHeaders({
+    let metrolname = localStorage.getItem('metrolename');
+    let metuserid = localStorage.getItem('metroluid');
+
+    const headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-      // 'metrolename': this.metrolename,
-      'metrolename': 'MX-6979_DES_G_OPS',
-      // 'metuserid': this.metroluid
-      'metuserid': 'N3333987'
-    });
+      'metrolename': metrolname ? metrolname : 'DES_Admin',
+      'metuserid': metuserid ? metuserid : 'N3333876'
+    };
 
     let params = new HttpParams();
     params = params.append("agentId","");
@@ -83,7 +84,7 @@ export class SearchCriteriaComponent implements OnInit {
       params = params.append('value', this.criteria.param4);
     }
 
-    this.httpClient.get( AppConstants.URL_SERVICE_DEV  + '/application', {headers, params}).subscribe((resp:any) => {
+    this.httpClient.get( AppConstants.URL_SERVICE_DEV  + '/getApp', {headers, params}).subscribe((resp:any) => {
       localStorage.setItem('search', JSON.stringify(resp.data));
       console.log('resp: ', resp);
       this.router.navigate(['search','results']);
