@@ -2038,7 +2038,7 @@ export class ApplicationService {
 
     console.log('appJson to passed to de save service: ', appJson);
     // console.log('appJson to passed to de save service2: ', JSON.stringify(appJson));
-    // set(appJson, 'type_operation_app', 'save');
+    set(appJson, 'type_operation_app', 'save');
 
     return this.httpClient.put(URL, JSON.stringify(appJson), {headers})
       .pipe(
