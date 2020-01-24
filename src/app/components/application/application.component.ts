@@ -67,7 +67,7 @@ export class ApplicationComponent implements OnInit {
 
   testGetPDFService() {
     this.appService.getPDF(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result: any) => {
-    // this.appService.getPDFBroker('2001210028').subscribe((result: any) => {
+      // this.appService.getPDFBroker('2001210028').subscribe((result: any) => {
       console.log('result PDF service: ', result);
 
       if (result) {
@@ -88,6 +88,7 @@ export class ApplicationComponent implements OnInit {
 
     if ( base64 === null ) {
       console.log('ocurrio un error al generar el pdf');
+      this.openDialog(this.modalErrorId);
     } else {
       const linkSource = 'data:application/pdf;base64,' + this.fromHexaToBase64(base64);
       const downloadLink = document.createElement('a');
