@@ -103,6 +103,8 @@ export class StepFormComponent implements OnInit {
           .subscribe((response: any) => {
             console.log('response: ', response);
             this.jsonApplicationService.setAppJson(response.data);
+            console.log('response.data: ', response.data);
+            this.jsonApplicationService.change(response.data);
             this.showLoading = false;
             this.closeModal(this.modalLoadingId);
             this.applicationService.submitFunction('nextStep', this.stepObj);

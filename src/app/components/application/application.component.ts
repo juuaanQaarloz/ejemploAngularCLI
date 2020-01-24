@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {ApplicationService, AuthService, StorageService} from '../../core/services';
 import {MockTemplate} from '../../core/mock/mock-template';
@@ -14,13 +14,14 @@ import {AppConstants} from 'src/app/app.constants';
 import {SearchService} from '../search/search.service';
 import {JsonApplicationService} from '../../core/services/json-application.service';
 import {empty} from "rxjs/internal/Observer";
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-application',
   templateUrl: './application.component.html',
   styleUrls: ['./application.component.css'],
 })
-export class ApplicationComponent implements OnInit {
+export class ApplicationComponent implements OnInit, OnDestroy {
   applicationObj: Template;
   payLoad = '';
   formGroup: FormGroup;
@@ -34,6 +35,11 @@ export class ApplicationComponent implements OnInit {
   modalErrorId;
   modalLoadPDFId;
 
+  appFolio;
+  appFuc;
+
+  subscription: Subscription;
+
   constructor(private appService: ApplicationService,
               private httpClient: HttpClient,
               public dialog: DialogService,
@@ -45,6 +51,12 @@ export class ApplicationComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.subscription = this.jsonAppService.appJsonChange.subscribe((appJson) => {
+      this.appFolio = appJson.app_id.toString();
+      this.appFuc = appJson.app_dcn_num;
+    });
+
     this.modalErrorId = 'modal-error-pdf';
     this.modalLoadPDFId = 'modal-loading';
     this.appService.setApplicationObject(MockTemplate);
@@ -63,6 +75,10 @@ export class ApplicationComponent implements OnInit {
     let user = this.storageService.getSessionUser();
     console.log(user);
     console.log(user['userName']);
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   testGetPDFService() {
@@ -125,17 +141,17 @@ export class ApplicationComponent implements OnInit {
     // this.appService.getPDFBroker(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result: any) => {
     this.viewLoading = true;
     this.openDialog(this.modalLoadPDFId);
-    this.appService.getPDF(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result: any) => {
+    this.appService.getPDF(this.jsonAppService.getAppJson().app_id.toString()).subscribe((response: any) => {
     // this.appService.getPDF('2001220018').subscribe((result: any) => {
-      console.log('result PDF service: ', result);
-      if (result (empty)) {
+      console.log('result PDF service: ', response);
+      if (response (empty)) {
         console.log('No se puede generar el PDF');
         this.viewLoading = false;
         this.closeModal(this.modalLoadPDFId);
         this.openDialog(this.modalErrorId);
       } else {
         // console.log('binaryData: ', result.binaryData);
-        this.convertPdf(result.binaryData);
+        this.convertPdf(response.result.binaryData);
       }
     }, error => {
       this.viewLoading = false;
