@@ -66,7 +66,7 @@ export const NewPaymentFields: Field[] = [
     orderAppearance: 3,
     label: 'Banco emisor de tarjeta / CLABE',
     type: 'autocomplete',
-    required: true,
+    required: false,
     placeholder: 'Banco emisor de tarjeta / CLABE*',
     length: '80',
     minValue: 0,
