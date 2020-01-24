@@ -13,7 +13,7 @@ import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
 import {AppConstants} from 'src/app/app.constants';
 import {SearchService} from '../search/search.service';
 import {JsonApplicationService} from '../../core/services/json-application.service';
-import {empty} from "rxjs/internal/Observer";
+import {empty} from 'rxjs/internal/Observer';
 
 @Component({
   selector: 'app-application',
@@ -60,9 +60,9 @@ export class ApplicationComponent implements OnInit {
       '40');*/
     console.log('Entro a la aplicación');
     console.log('Session user: ', this.storageService.setCurrentSession(null));
-    let user = this.storageService.getSessionUser();
+    const user = this.storageService.getSessionUser();
     console.log(user);
-    console.log(user['userName']);
+    console.log(user.userName);
   }
 
   testGetPDFService() {
@@ -132,25 +132,32 @@ export class ApplicationComponent implements OnInit {
     // this.appService.getPDFBroker(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result: any) => {
     this.viewLoading = true;
     this.openDialog(this.modalLoadPDFId);
-    this.appService.getPDF(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result: any) => {
-    // this.appService.getPDF('2001220018').subscribe((result: any) => {
-      console.log('result PDF service: ', result);
-      if (result) {
-        // console.log('No se puede generar el PDF');
-        /*this.viewLoading = false;
-        this.closeModal(this.modalLoadPDFId);
-        this.openDialog(this.modalErrorId);*/
-        this.convertPdf(result.binaryData);
-        // console.log('binaryData: ', result.binaryData);
-      }
-
-    }, error => {
+    console.log( 'valor de app_id' , this.jsonAppService.getAppJson().app_id);
+    if ( this.jsonAppService.getAppJson().app_id === null ) {
       this.viewLoading = false;
       this.closeModal(this.modalLoadPDFId);
-      this.openDialog(this.modalErrorId);
-      console.log('onError PDFBroker:');
-      console.log(error);
-    });
+
+    } else {
+      this.appService.getPDF(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result: any) => {
+        // this.appService.getPDF('2001220018').subscribe((result: any) => {
+        console.log('result PDF service: ', result);
+        if (result) {
+          // console.log('No se puede generar el PDF');
+          /*this.viewLoading = false;
+          this.closeModal(this.modalLoadPDFId);
+          this.openDialog(this.modalErrorId);*/
+          this.convertPdf(result.binaryData);
+          // console.log('binaryData: ', result.binaryData);
+        }
+
+      }, error => {
+        this.viewLoading = false;
+        this.closeModal(this.modalLoadPDFId);
+        this.openDialog(this.modalErrorId);
+        console.log('onError PDFBroker:');
+        console.log(error);
+      });
+    }
   }
 
   validateApplication() {
