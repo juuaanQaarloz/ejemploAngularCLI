@@ -2051,7 +2051,7 @@ export class ApplicationService {
 
   getPDF(appId: string) {
     console.log('on getPDFBroker');
-    const URL = AppConstants.URL_SERVICE_DEV + '/getPdf/app_id=' + appId;
+    const URL = AppConstants.URL_SERVICE_DEV + '/App/getPdf/app_id=' + appId;
 
     let metrolname = localStorage.getItem('metrolename');
     let metuserid = localStorage.getItem('metroluid');
