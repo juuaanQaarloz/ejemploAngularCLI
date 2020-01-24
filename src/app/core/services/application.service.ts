@@ -2042,7 +2042,7 @@ export class ApplicationService {
 
     return this.httpClient.post(URL, JSON.stringify(appJson), {headers})
       .pipe(
-        map((response: ApplicationJson) => {
+        map((response: any) => {
           console.log('RESPONSE SAVE PUT:', response);
           return response;
         })
