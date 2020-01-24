@@ -355,19 +355,36 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       // // console.log('Entro assuredImport: ');
     }
 
-    if(this.fieldObj.name === 'txtBank'){
-      console.log('Dentro de txtBank');
-      this.clearTxtBank();
-      this.form.controls['txtBank'].setValue("BANCA SERFIN S.A");
-      const element = document.getElementById('txtBank');
-      element.setAttribute('disabled', 'true');
-      this.clearTxtClabe();
-      this.clearTxtClabeConfir();
+    if(this.fieldObj.name === 'txtClabe') {
+      const idClabe = 'txtClabe';
+      const txtClabeConfir = document.getElementById("txtClabeConfir");
+      if (this.form.controls[idClabe].value === this.form.controls[this.fieldObj.name].value) {
+        const txtBank = document.getElementById('txtBank');
+        const selectCard = document.getElementById('selectCard');
+        txtBank.setAttribute('readonly','true');
+        selectCard.setAttribute('readonly','true');
+        //ignore
+      } else {
+        this.clearTxtClabeConfir();
+        this.clearSelectCard();
+        this.clearTxtBank();
+      }
+      if(this.form.controls[this.fieldObj.name].value.length === 17){
+        console.log("Entre a 17");
+        this.fieldObj.message = this.messageLength17;
+        this.fieldObj.valid = false;
+        txtClabeConfir.setAttribute("readonly","true");
+      }else if(this.form.controls[this.fieldObj.name].value.length === 18 ||
+        this.form.controls[this.fieldObj.name].value.length === 16 ||
+        this.form.controls[this.fieldObj.name].value.length === 15){
+        txtClabeConfir.removeAttribute("readonly");
+      }
     }
 
     if (this.fieldObj.name === 'txtClabeConfir') {
       const idClabe = 'txtClabe';
       const selectCard = 'selectCard';
+      const element = document.getElementById(selectCard);
       this.clearTxtBank();
       if (this.form.controls[idClabe].value === this.form.controls[this.fieldObj.name].value) {
         const bine = Number(this.form.controls[this.fieldObj.name].value.substring(0, 6));
@@ -380,9 +397,13 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
                 console.log("El Token es valido.");
                 this.getDataPaymentMit(bine);
                 this.form.controls[selectCard].setValue("4");
+                element.setAttribute('value','4');
               }else{
                 this.fieldObj.message = this.messageToken;
                 this.fieldObj.valid = false;
+                this.clearTxtClabe();
+                this.clearTxtBank();
+                this.clearSelectCard();
                 console.log("El Token no es valido.")
               }
             });
@@ -403,7 +424,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
               }
             });
         } else if (this.form.controls[this.fieldObj.name].value.length === 18) {
-          this.form.controls[selectCard].setValue("3");
+          this.form.controls[selectCard].setValue('3');
+          element.setAttribute('value','3');
           this.getDataPaymentMit(bine);
         }
       } else {
@@ -413,7 +435,9 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         this.fieldObj.valid = false;
       }
     }
+
   }
+
 
   onKeyUpAutoComplete(event, selectedOption) {
     console.log('onKeyUpAutoComplete: ');
@@ -824,21 +848,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       });
     }
 
-    if(this.fieldObj.name === 'txtClabe') {
-      const idClabe = 'txtClabe';
-      if (this.form.controls[idClabe].value === this.form.controls[this.fieldObj.name].value) {
-        //ignore
-      } else {
-        this.clearTxtClabeConfir();
-        this.clearSelectCard();
-        this.clearTxtBank();
-      }
-    if(this.form.controls[this.fieldObj.name].value.length === 17){
-      console.log("Entre a 17");
-      this.fieldObj.message = this.messageLength17;
-      this.fieldObj.valid = false;
-      }
-    }
+
     /*if (this.fieldObj.name === 'txtClabeConfir') {
       const idClabe = 'txtClabe';
       console.log('TOKEN MIT 11 --->: ' + this.form.controls[this.fieldObj.name]);
@@ -854,6 +864,25 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       }
     }*/
     // las validaciones deben estar antes
+
+    if(this.fieldObj.name === 'selectCard'){
+      this.clearSelectCard();
+      this.form.controls['selectCard'].setValue("4");
+      this.clearTxtBank();
+      this.clearTxtClabe();
+      this.clearTxtClabeConfir();
+    }
+
+    if(this.fieldObj.name === 'txtBank'){
+      console.log('Dentro de txtBank');
+      this.clearTxtBank();
+      this.form.controls['txtBank'].setValue("BANCA SERFIN S.A");
+      const element = document.getElementById('txtBank');
+      element.setAttribute('disabled', 'true');
+      this.clearTxtClabe();
+      this.clearTxtClabeConfir();
+    }
+
     if (valid) {
       this.isValid();
     }

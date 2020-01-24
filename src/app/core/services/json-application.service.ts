@@ -17,6 +17,7 @@ import {ForeignCountryTaxJson} from '../../models/applicationJson/foreignCountry
 import {QuesList} from '../../models/applicationJson/questionaryJson/quesList';
 import {Cvr} from '../../models/applicationJson/coverageJson/cvr';
 import {StorageService} from './storage.service';
+import {Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,10 +25,16 @@ import {StorageService} from './storage.service';
 export class JsonApplicationService {
 
   appJson: ApplicationJson = new ApplicationJson();
+  appJsonChange: Subject<ApplicationJson> = new Subject<ApplicationJson>();
 
   constructor(
     private appService: ApplicationService
   ) { }
+
+  change(updateJsonApplication) {
+    console.log('on Change: ', updateJsonApplication);
+    this.appJsonChange.next(updateJsonApplication);
+  }
 
   getAppJson() {
     return this.appJson;

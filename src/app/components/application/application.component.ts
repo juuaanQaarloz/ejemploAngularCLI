@@ -1,26 +1,23 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {ApplicationService, AuthService, StorageService} from '../../core/services';
+import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {FormGroup} from '@angular/forms';
+import {ApplicationService, StorageService} from '../../core/services';
 import {MockTemplate} from '../../core/mock/mock-template';
 import {DialogService} from '../dialog/dialog.service';
 import {ModalService} from '../custom-modal';
-import * as jsPDF from 'jspdf';
 import {APPL_OPERATIONS, CLOSE_MODALS_OPT} from '../../core/mock/mock-operations';
 import {Template} from '../../models/template';
-import {Operation} from '../../models';
-import {ApplicationJson} from '../../models/applicationJson/applicationJson';
-import {HttpClient, HttpParams, HttpHeaders} from '@angular/common/http';
-import {AppConstants} from 'src/app/app.constants';
+import {HttpClient} from '@angular/common/http';
 import {SearchService} from '../search/search.service';
 import {JsonApplicationService} from '../../core/services/json-application.service';
 import {empty} from 'rxjs/internal/Observer';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-application',
   templateUrl: './application.component.html',
   styleUrls: ['./application.component.css'],
 })
-export class ApplicationComponent implements OnInit {
+export class ApplicationComponent implements OnInit, OnDestroy {
   applicationObj: Template;
   payLoad = '';
   formGroup: FormGroup;
@@ -34,6 +31,11 @@ export class ApplicationComponent implements OnInit {
   modalErrorId;
   modalLoadPDFId;
 
+  appFolio;
+  appFuc;
+
+  subscription: Subscription;
+
   constructor(private appService: ApplicationService,
               private httpClient: HttpClient,
               public dialog: DialogService,
@@ -45,6 +47,12 @@ export class ApplicationComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.subscription = this.jsonAppService.appJsonChange.subscribe((appJson) => {
+      this.appFolio = appJson.app_id.toString();
+      this.appFuc = appJson.app_dcn_num;
+    });
+
     this.modalErrorId = 'modal-error-pdf';
     this.modalLoadPDFId = 'modal-loading';
     this.appService.setApplicationObject(MockTemplate);
@@ -53,35 +61,19 @@ export class ApplicationComponent implements OnInit {
     this.appService.setFormGroup(this.formGroup);
     // an example array of 150 items to be paged
     this.items = Array(150).fill(0).map((x, i) => ({id: (i + 1), name: `Item ${i + 1}`}));
-    /*this.appService.updateItemProperty(
-      'beneficiary',
-      '1',
-      'participationPercentage',
-      '40');*/
     console.log('Entro a la aplicación');
     console.log('Session user: ', this.storageService.setCurrentSession(null));
-    const user = this.storageService.getSessionUser();
+    let user = this.storageService.getSessionUser();
     console.log(user);
-    console.log(user.userName);
+    console.log(user['userName']);
   }
 
-  testGetPDFService() {
-    this.appService.getPDF(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result: any) => {
-      // this.appService.getPDFBroker('2001210028').subscribe((result: any) => {
-      console.log('result PDF service: ', result);
-
-      if (result) {
-        // console.log('binaryData: ', result.binaryData);
-        this.convertPdf(result.binaryData);
-
-      }
-    });
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   fromHexaToBase64(hexa) {
-
     return btoa(String.fromCharCode.apply(null, hexa.replace(/\r|\n/g, '').replace(/([\da-fA-F]{2}) ?/g, '0x$1 ').replace(/ +$/, '').split(' ')));
-
   }
 
   convertPdf(base64) {
@@ -98,12 +90,6 @@ export class ApplicationComponent implements OnInit {
       downloadLink.download = fileName;
       downloadLink.click();
     }
-  }
-
-  testGetAPPService() {
-    this.appService.getApplication(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result) => {
-      console.log('result GET APP service: ', result);
-    });
   }
 
   executeOperation(delegateOperation) {
@@ -125,12 +111,9 @@ export class ApplicationComponent implements OnInit {
 
   getFormValue() {
     this.payLoad = JSON.stringify(this.formGroup.value);
-    // // console.log(this.formGroup.value);
   }
 
   downloadPDF() {
-    // this.searchService.downloadPDF('2001030089');
-    // this.appService.getPDFBroker(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result: any) => {
     this.viewLoading = true;
     this.openDialog(this.modalLoadPDFId);
     console.log( 'valor de app_id' , this.jsonAppService.getAppJson().app_id);
@@ -143,12 +126,7 @@ export class ApplicationComponent implements OnInit {
         // this.appService.getPDF('2001220018').subscribe((result: any) => {
         console.log('result PDF service: ', result);
         if (result) {
-          // console.log('No se puede generar el PDF');
-          /*this.viewLoading = false;
-          this.closeModal(this.modalLoadPDFId);
-          this.openDialog(this.modalErrorId);*/
           this.convertPdf(result.binaryData);
-          // console.log('binaryData: ', result.binaryData);
         }
 
       }, error => {
@@ -177,7 +155,6 @@ export class ApplicationComponent implements OnInit {
     // console.log('errors: ', errors);
     return errors;
   }
-
 
   openDialog(modalID: string) {
     this.modalService.open(modalID);

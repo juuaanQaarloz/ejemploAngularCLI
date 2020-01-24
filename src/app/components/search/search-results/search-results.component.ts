@@ -47,20 +47,23 @@ export class SearchResultsComponent implements OnInit {
   }
 
   detail(app_id: any){
-    const headers = new HttpHeaders({
+    let metrolname = localStorage.getItem('metrolename');
+    let metuserid = localStorage.getItem('metroluid');
+
+    const headers = {
       'Accept': 'application/json',
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-      'metrolename': localStorage.getItem('metrolename'),
-      'metuserid': localStorage.getItem('metroluid')
-    });
+      'metrolename': metrolname ? metrolname : 'DES_Admin',
+      'metuserid': metuserid ? metuserid : 'N3333876'
+    };
 
     let params = new HttpParams();
     params = params.append('app_id', app_id);
 
-    this.httpClient.get( AppConstants.URL_SERVICE_DEV  + '/application', {headers, params}).subscribe((resp:any) => {
+    this.httpClient.get( AppConstants.URL_SERVICE_DEV  + '/getApp', {headers, params}).subscribe((resp:any) => {
       console.log("detalle");
       console.log(resp.data);
       localStorage.setItem('detail', JSON.stringify(resp.data));
