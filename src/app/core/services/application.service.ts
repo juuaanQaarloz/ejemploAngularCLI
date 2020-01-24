@@ -2040,7 +2040,7 @@ export class ApplicationService {
     // console.log('appJson to passed to de save service2: ', JSON.stringify(appJson));
     set(appJson, 'type_operation_app', 'save');
 
-    return this.httpClient.put(URL, JSON.stringify(appJson), {headers})
+    return this.httpClient.post(URL, JSON.stringify(appJson), {headers})
       .pipe(
         map((response: ApplicationJson) => {
           console.log('RESPONSE SAVE PUT:', response);
