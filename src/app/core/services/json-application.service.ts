@@ -170,6 +170,7 @@ export class JsonApplicationService {
         items.forEach((sport, i) => {
           set(this.appJson, `QuesList[${i}]`, this.mapItem('sport', sport, i));
         });
+        // set(this.appJson, '', '');
       }
     } else if (tableType === 'table-diseases') {
       items = this.appService.diseases.getValue();
@@ -283,6 +284,8 @@ export class JsonApplicationService {
     } else if (itemType === 'country') {
       let newCountry: ForeignCountryTaxJson = new ForeignCountryTaxJson();
 
+
+      newCountry.cntry_cd = item.countryId;
       newCountry.cntry_nm = item.statCountry;
       newCountry.frgn_cntry_tin = item.taxCountryId;
 

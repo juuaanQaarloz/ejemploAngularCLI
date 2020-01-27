@@ -16,7 +16,7 @@ export const NewCountryFields: Field[] = [
     pattern: '',
     source: 'IPRE',
     sourceID: 'country',
-    sourceStructure: ['countryID', 'description', 'countryID'],
+    sourceStructure: ['countryID', 'description', 'description'],
     style: '',
     styleClass: '',
     styleClassError: '',
