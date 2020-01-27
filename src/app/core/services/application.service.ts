@@ -58,6 +58,7 @@ const URL_CAT_SUB_IDENTIFICATION_TYPE_TRANSMITTER = '../assets/catalogs/sub-iden
 const URL_CAT_GUARD_BOX_OPTIONS = '../assets/catalogs/guard-box-options.json';
 const URL_CAT_ECONOMIC_SECTOR_OPTIONS = '../assets/catalogs/economic-sector.json';
 const URL_CAT_BANK_OPTIONS = '../assets/catalogs/bank.json';
+const URL_CAT_TIPO_CUENTA_BANK_OPTIONS = '../assets/catalogs/tipo-cuenta-bank.json';
 const URL_CURRENCY_OPTIONS = '../assets/catalogs/currency.json';
 const URL_CILINDRADA_OPTIONS = '../assets/catalogs/cilindrada.json';
 const URL_SPORTS_OPTIONS = '../assets/catalogs/sports.json';
@@ -1968,6 +1969,9 @@ export class ApplicationService {
         break;
       case 'bank':
         urlCatalog = URL_CAT_BANK_OPTIONS;
+        break;
+      case 'tipo-cuenta-bank':
+        urlCatalog = URL_CAT_TIPO_CUENTA_BANK_OPTIONS;
         break;
       case 'currency':
         urlCatalog = URL_CURRENCY_OPTIONS;
