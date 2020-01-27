@@ -82,13 +82,17 @@ export class MenuPageComponent implements OnInit {
         console.log(resp);
 
         if (resp !== null) {
-          resp.agentUser.forEach(item => {
-            if (item.metroluid === localStorage.getItem('metroluid')) {
-              localStorage.setItem('userId', item.agentId);
-            }
+          resp.agentUser.forEach(array => {
+            array.forEach((item) => {
+              if (item.metroluid === localStorage.getItem('metroluid')) {
+                localStorage.setItem('userId', item.agentId);
+                localStorage.setItem('promotoryId', item.promotoryId);
+              }
+            });
           });
         }
         console.log('userId: ' + localStorage.getItem('userId'));
+        console.log('promotoryId: ' + localStorage.getItem('promotoryId'));
       });
     });
   }

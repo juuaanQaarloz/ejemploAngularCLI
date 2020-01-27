@@ -221,12 +221,11 @@ export class JsonApplicationService {
       let newAgent: AgentJson = new AgentJson();
       let newAgentCd: AgentCd = new AgentCd();
 
-      newAgentCd.agnt_id = item.key;
+      newAgentCd.agnt_cd = item.key;
       newAgentCd.agnt_pmtr_cd = item.promotor;
       newAgentCd.agnt_party_nm = item.name;
 
       newAgent.app_id = this.appJson.app_id;
-      newAgent.agnt_id = item.key;
       newAgent.agnt_cd = newAgentCd;
       newAgent.agnt_part_per = Number(item.participation);
       newAgent.part_ord = index;

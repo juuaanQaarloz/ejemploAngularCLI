@@ -48,10 +48,19 @@ export class SearchCriteriaComponent implements OnInit {
   }
 
   search() {
-    // console.log("metrolename: "+this.metrolename);
-    // console.log("metroluid: "+this.metroluid);
+
     let metrolname = localStorage.getItem('metrolename');
     let metuserid = localStorage.getItem('metroluid');
+    let agentID = '';
+    let promoID = '';
+
+    console.log('metrolname: ', metrolname);
+    if (metrolname !== 'MX-6979_DES_G_OPS') {
+      console.log('inside if');
+      agentID = localStorage.getItem('userId');
+      promoID = localStorage.getItem('promotoryId');
+    }
+
 
     const headers = {
       'Accept': 'application/json',
@@ -64,8 +73,8 @@ export class SearchCriteriaComponent implements OnInit {
     };
 
     let params = new HttpParams();
-    params = params.append('agentId', '');
-    params = params.append('promotoryId',  '');
+    params = params.append('agentId', agentID);
+    params = params.append('promotoryId', promoID);
 
     if (this.criteria.param1 !== '' ) {
       params = params.append('fiel', 'APP_DCN_NUM');
