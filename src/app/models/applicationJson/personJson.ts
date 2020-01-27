@@ -20,7 +20,7 @@ export class PersonJson {
   per_brth_cntry_cd: string = null;
   per_brth_stte_nm: string = null;
   per_brth_plc_nm: string = null;
-  party_typ_cd: boolean = false;
+  party_typ_cd: string = null;
   party_addl_typ_nm: string = null;
   per_card_num: string = null;
   per_card_typ_cd: string = null;

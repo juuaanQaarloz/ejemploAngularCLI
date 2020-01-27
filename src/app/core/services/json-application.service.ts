@@ -75,6 +75,10 @@ export class JsonApplicationService {
                 }
 
                 // setting value from FORM to JSON
+
+                if (field.name === 'typePerson') {
+                  console.log('value: ', value);
+                }
                 set(this.appJson, field.entityField, value);
               }
             }
@@ -110,6 +114,9 @@ export class JsonApplicationService {
                       }
                     }
                     // setting value from FORM to JSON
+                    if (field.name === 'typePerson') {
+                      console.log('value: ', value);
+                    }
                     set(this.appJson, field.entityField, value);
                   }
                 }
@@ -336,7 +343,7 @@ export class JsonApplicationService {
 
   mapPersonBeneficiary(beneficiaryType: string, item: Beneficiary) {
     let person = new PersonJson();
-    person.party_typ_cd = item.beneficiaryType === 'P' ? true : false;
+    person.party_typ_cd = item.beneficiaryType;
 
     if (beneficiaryType === 'P') {
       person.per_brth_dt = transformDate(new Date(item.birthDateOrConstitution), 'YYYY-MM-DD').toString();

@@ -2042,7 +2042,9 @@ export class ApplicationService {
 
     console.log('appJson to passed to de save service: ', appJson);
     // console.log('appJson to passed to de save service2: ', JSON.stringify(appJson));
+    set(appJson, 'insurer.party_typ_cd', this.getFormGroup().controls.typePerson.value);
     set(appJson, 'type_operation_app', 'save');
+
 
     return this.httpClient.post(URL, JSON.stringify(appJson), {headers})
       .pipe(
