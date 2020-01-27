@@ -77,13 +77,19 @@ export class ApplicationComponent implements OnInit, OnDestroy {
   }
 
   convertPdf(base64) {
-    const linkSource = 'data:application/pdf;base64,' + this.fromHexaToBase64(base64);
-    const downloadLink = document.createElement('a');
-    const fileName = 'sample.pdf';
 
-    downloadLink.href = linkSource;
-    downloadLink.download = fileName;
-    downloadLink.click();
+    if ( base64 === null ) {
+      console.log('ocurrio un error al generar el pdf');
+      this.openDialog(this.modalErrorId);
+    } else {
+      const linkSource = 'data:application/pdf;base64,' + this.fromHexaToBase64(base64);
+      const downloadLink = document.createElement('a');
+      const fileName = 'sample.pdf';
+
+      downloadLink.href = linkSource;
+      downloadLink.download = fileName;
+      downloadLink.click();
+    }
   }
 
   executeOperation(delegateOperation) {
@@ -110,23 +116,27 @@ export class ApplicationComponent implements OnInit, OnDestroy {
   downloadPDF() {
     this.viewLoading = true;
     this.openDialog(this.modalLoadPDFId);
-    this.appService.getPDF(this.jsonAppService.getAppJson().app_id.toString()).subscribe((response: any) => {
-      console.log('result PDF service: ', response);
-      if (response (empty)) {
-        console.log('No se puede generar el PDF');
-        this.viewLoading = false;
-        this.closeModal(this.modalLoadPDFId);
-        this.openDialog(this.modalErrorId);
-      } else {
-        this.convertPdf(response.result.binaryData);
-      }
-    }, error => {
+    console.log( 'valor de app_id' , this.jsonAppService.getAppJson().app_id);
+    if ( this.jsonAppService.getAppJson().app_id === null ) {
       this.viewLoading = false;
       this.closeModal(this.modalLoadPDFId);
       this.openDialog(this.modalErrorId);
-      console.log('onError PDFBroker:');
-      console.log(error);
-    });
+    } else {
+      this.appService.getPDF(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result: any) => {
+        // this.appService.getPDF('2001220018').subscribe((result: any) => {
+        console.log('result PDF service: ', result);
+        if (result) {
+          this.convertPdf(result.binaryData);
+        }
+
+      }, error => {
+        this.viewLoading = false;
+        this.closeModal(this.modalLoadPDFId);
+        this.openDialog(this.modalErrorId);
+        console.log('onError PDFBroker:');
+        console.log(error);
+      });
+    }
   }
 
   validateApplication() {
