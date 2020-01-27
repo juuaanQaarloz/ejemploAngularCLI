@@ -79,14 +79,11 @@ export class MenuPageComponent implements OnInit {
 
       this.httpClient.get(URL_AGENT_USER).subscribe((resp: any) => {
         console.log('AGENT_USER');
-        console.log('resp: ', resp);
+        console.log(resp);
 
         if (resp !== null) {
-          const metroluid = localStorage.getItem('metroluid');
           resp.agentUser.forEach(item => {
-            console.log('agentInfo: ', item);
-            if (item.metroluid === metroluid) {
-              console.log('inside if');
+            if (item.metroluid === localStorage.getItem('metroluid')) {
               localStorage.setItem('userId', item.agentId);
             }
           });

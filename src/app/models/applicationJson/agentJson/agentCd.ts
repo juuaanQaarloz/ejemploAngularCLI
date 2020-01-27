@@ -1,4 +1,5 @@
 export class AgentCd {
+  agnt_id: string = '';
   agnt_cd: string = '';
   agnt_mail: string = 'string';
   agnt_party_nm: string = 'string';
