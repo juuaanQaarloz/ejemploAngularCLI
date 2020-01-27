@@ -7,9 +7,6 @@
 
   <div style="background-color: white">
 
-    <!--<button (click)="searchModal(modalLoadPDFId)">SEARCH MODAL</button>
-    <button (click)="getAllModals()">GET ALL MODALS</button>-->
-
     <div style="text-align: center">
       <h1 class="title">Solicitudes MetaLife</h1>
       <p class="folio" *ngIf="appFolio">{{'Número de solicitud CP DES: ' + appFolio}}</p>
@@ -44,7 +41,6 @@
         <p *ngFor="let errorMsg of getMessages()">{{errorMsg}}</p>
       </div>
 
-      <!--<p>{{errorMessage}}</p>-->
       <div class="operation-modal">
         <app-operation-form [operationObj]=closeWindowOpt
                             (click)="executeOperation(closeWindowOpt.delegateOperation)">
