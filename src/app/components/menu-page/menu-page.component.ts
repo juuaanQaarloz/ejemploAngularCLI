@@ -52,12 +52,21 @@ export class MenuPageComponent implements OnInit {
       } else {
 
         this.appService.getUserData().subscribe((data: any) => {
-          console.log('entra al servicio getUserData');
-          this.metrolename = data.data.metrolename;
-          this.metroluid = data.data.metUserId;
+          console.log('entra al servicio getUserData: ', data);
+          let metrolnamePrev = data.data.metrolename;
+
+          if (metrolnamePrev.includes('^')) {
+            // filtrar user metrolname
+            const resultSlipt = metrolnamePrev.split('^');
+            this.metrolename = resultSlipt[1];
+
+          } else  {
+            this.metrolename = data.data.metrolename;
+          }
+
           console.log('resp: ', data.data);
-          localStorage.setItem('metrolename', data.data.metrolename);
-          localStorage.setItem('metroluid', data.data.metUserId);
+          localStorage.setItem('metrolename', data.data.metrolename ? data.data.metrolename : 'DES_Admin');
+          localStorage.setItem('metroluid', data.data.metUserId ? data.data.metUserId : 'N3333876');
         }, error => {
           console.log('on Error from getUserData: ', error);
         });

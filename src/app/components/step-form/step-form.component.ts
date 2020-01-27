@@ -44,10 +44,7 @@ export class StepFormComponent implements OnInit {
 
     this.modalErrorId = 'modal-error-save' + this.stepObj.id;
     this.modalLoadingId = 'modal-loading' + this.stepObj.id;
-    // console.log('step: ', this.stepObj);
     this.applicationService.currentValue.subscribe(value => {
-      // console.log('value: ', value);
-      // console.log('id step: ', this.stepObj.id);
       if (Number(this.stepObj.id) === value) {
         if (Number(this.stepObj.id) === 0) {
           this.accordionExpanded = false;
