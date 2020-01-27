@@ -126,6 +126,8 @@ export class ApplicationComponent implements OnInit, OnDestroy {
         // this.appService.getPDF('2001220018').subscribe((result: any) => {
         console.log('result PDF service: ', response);
         if (response) {
+          this.viewLoading = false;
+          this.closeModal(this.modalLoadPDFId);
           this.convertPdf(response.binaryData);
         }
 
@@ -162,6 +164,15 @@ export class ApplicationComponent implements OnInit, OnDestroy {
 
   closeModal(modalID: string) {
     this.modalService.close(modalID);
+  }
+
+  searchModal(modalID: string) {
+    this.modalService.search(modalID);
+  }
+
+  getAllModals() {
+    const allModals = this.modalService.getAllModals();
+    console.log('allModals: ', allModals);
   }
 
 }
