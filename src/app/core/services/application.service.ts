@@ -2045,6 +2045,11 @@ export class ApplicationService {
     set(appJson, 'insurer.party_typ_cd', this.getFormGroup().controls.typePerson.value);
     set(appJson, 'type_operation_app', 'save');
 
+    // verificar si el solicitante es el mismo que el contratante y replicar la info
+    if (this.getFormGroup().controls.contractorType.value) {
+      set(appJson, 'insured', appJson.insurer);
+    }
+
 
     return this.httpClient.post(URL, JSON.stringify(appJson), {headers})
       .pipe(
