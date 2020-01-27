@@ -1,12 +1,12 @@
-import { ModalService } from './../../custom-modal/modal.service';
-import { DialogRef } from './../../dialog/dialog-ref';
-import { DialogConfig } from './../../dialog/dialog-config';
-import { ApplicationService } from './../../../core/services/application.service';
-import { FormGroup } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
-import { NewPaymentFields } from 'src/app/core/mock/formats/payment';
-import { FormatwoOperations } from 'src/app/core/mock/mock-operations';
-import { Operation } from 'src/app/models';
+import {ModalService} from './../../custom-modal/modal.service';
+import {DialogRef} from './../../dialog/dialog-ref';
+import {DialogConfig} from './../../dialog/dialog-config';
+import {ApplicationService} from './../../../core/services/application.service';
+import {FormGroup} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {NewPaymentFields} from 'src/app/core/mock/formats/payment';
+import {FormatwoOperations} from 'src/app/core/mock/mock-operations';
+import {Operation} from 'src/app/models';
 import {FORM_MSG_ERROR} from '../../../core/mock/errors/mock-erros-datos-plan';
 
 @Component({
@@ -55,7 +55,7 @@ export class NewPaymentComponent implements OnInit {
   constructor(private applicationService: ApplicationService,
               public config: DialogConfig,
               public dialog: DialogRef,
-              private modalService: ModalService ) {
+              private modalService: ModalService) {
   }
 
   ngOnInit() {
@@ -67,7 +67,6 @@ export class NewPaymentComponent implements OnInit {
 
     this.formGroup.controls.txtBank.valueChanges.subscribe((value) => {
       // this.formatwoType = value;
-      console.log('txtBank');
       this.fields = this.getFields();
     });
 
@@ -126,21 +125,28 @@ export class NewPaymentComponent implements OnInit {
   }
 
   setPaymentValues() {
+    console.log('..On setPayment..');
     this.fields.forEach((field) => {
       let value;
       switch (field.name) {
-        case 'bank':
-          value = this.config.data.item.txtBank.value;
+        case 'txtClabe':
+          value = this.config.data.item.txtClabe;
           break;
-        /*
-       case 'formatwoBirthDate':
-         value = this.config.data.beneficiary.birthDate;
-         break; */
+        case 'txtClabeConfir':
+          //Ignore
+          break;
+        case 'txtBank':
+          value = this.config.data.item.txtBank;
+          break;
+        case 'selectCard':
+          value = this.config.data.item.selectCard;
+          break;
+        default:
+          console.error('Something is wrong, please try late');
+          break;
       }
       this.formGroup.controls[field.name].setValue(value);
     });
-    console.log('form values: ');
-    console.log(this.formGroup.value);
   }
 
   mapNewPaymentData() {

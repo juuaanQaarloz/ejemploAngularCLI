@@ -849,7 +849,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
 
 
-    /*if (this.fieldObj.name === 'txtClabeConfir') {
+    /*if (this.fieldObj.name === 'dtxtClabeConfir') {
       const idClabe = 'txtClabe';
       console.log('TOKEN MIT 11 --->: ' + this.form.controls[this.fieldObj.name]);
       if (this.form.controls[idClabe] === this.form.controls[this.fieldObj.name]) {
@@ -874,7 +874,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
 
     if(this.fieldObj.name === 'txtBank'){
-      console.log('Dentro de txtBank');
       this.clearTxtBank();
       this.form.controls['txtBank'].setValue("BANCA SERFIN S.A");
       const element = document.getElementById('txtBank');
@@ -1392,7 +1391,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   getDataPaymentMit(bine) {
     console.log('getDataPaymentMit --> ');
-    console.log(bine);
     const infLimit = 'infLimit';
     const supLimit = 'supLimit';
     const txtBank = 'txtBank';
