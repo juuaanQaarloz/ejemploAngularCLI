@@ -122,11 +122,11 @@ export class ApplicationComponent implements OnInit, OnDestroy {
       this.closeModal(this.modalLoadPDFId);
       this.openDialog(this.modalErrorId);
     } else {
-      this.appService.getPDF(this.jsonAppService.getAppJson().app_id.toString()).subscribe((result: any) => {
+      this.appService.getPDF(this.jsonAppService.getAppJson().app_id.toString()).subscribe((response: any) => {
         // this.appService.getPDF('2001220018').subscribe((result: any) => {
-        console.log('result PDF service: ', result);
-        if (result) {
-          this.convertPdf(result.binaryData);
+        console.log('result PDF service: ', response);
+        if (response) {
+          this.convertPdf(response.binaryData);
         }
 
       }, error => {

@@ -54,7 +54,6 @@ export class StepFormComponent implements OnInit {
       } else {
         this.accordionExpanded = false;
       }
-      // console.log('from child', this.accordionExpanded);
     });
 
     if (this.stepObj.renderConditions) {
@@ -98,7 +97,7 @@ export class StepFormComponent implements OnInit {
 
         this.applicationService.saveApplication(this.jsonApplicationService.saveInJsonSwagger(this.stepObj))
           .subscribe((response: any) => {
-            console.log('response: ', response);
+            console.log('response from saveApplication service in component step: ', response);
             this.jsonApplicationService.setAppJson(response.data);
             console.log('response.data: ', response.data);
             this.jsonApplicationService.change(response.data);
