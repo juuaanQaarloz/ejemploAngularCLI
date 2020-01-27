@@ -133,7 +133,7 @@ export class NewCountryComponent implements OnInit {
   }
 
   setCountryValues() {
-    this.fields.forEach((field) => {
+    this.content.fields.forEach((field) => {
       let value;
       switch (field.name) {
         case 'name':
@@ -155,7 +155,8 @@ export class NewCountryComponent implements OnInit {
 
   mapNewCountryData() {
     const newCountryBase = {
-      countryId: (this.applicationService.getLastItemId('country') + 1).toString(),
+      // countryId: (this.applicationService.getLastItemId('country') + 1).toString(),
+      countryId: this.content.fields[0].additionalData.id,
       statCountry: this.formGroup.controls.statCountry.value,
       taxCountryId: this.formGroup.controls.taxCountryId.value,
       participation: '1',

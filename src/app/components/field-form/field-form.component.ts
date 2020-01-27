@@ -902,16 +902,18 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onChangeSelect(event) {
-    /*const selectedIndex = event.target.selectedIndex;
+    const selectedIndex = event.target.selectedIndex;
     const selectedOption = this.selectOptions[event.target.selectedIndex - 1];
-    this.fieldObj.additionalData = selectedOption;*/
+    this.fieldObj.additionalData = selectedOption;
 
-    if (this.fieldObj.entity) {
+    console.log('selectedOption: ', selectedOption);
+
+    /*if (this.fieldObj.entity) {
       let selectedIndex = event.target.selectedIndex;
       let selectedOption = this.selectOptions[event.target.selectedIndex - 1];
 
       this.fieldObj.additionalData = selectedOption;
-    }
+    }*/
 
     if (event.target.value === '') {
       this.showSelectLabel = false;
