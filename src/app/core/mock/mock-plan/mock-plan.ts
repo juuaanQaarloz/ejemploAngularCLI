@@ -123,8 +123,8 @@ export const Plan1a: Field[] = [
     renderConditions: '',
     enableConditions: '',
     requiredConditions: '(typePerson=M,|,contractorType=false)',
-    entity: '',
-    entityField: ''
+    entity: 'insuredCondition.aplicationPlan.pln_nm',
+    entityField: 'insuredCondition.aplicationPlan.pln_cd',
   }
 
 ];

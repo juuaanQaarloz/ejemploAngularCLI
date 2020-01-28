@@ -27,7 +27,7 @@ export const InformacionLaboralSolicitante1: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: 'insurer.per_job_aka_nm',
+    entityField: 'insured.per_job_aka_nm',
     value: '',
     disable: true
   }
@@ -179,7 +179,7 @@ export const InformacionLaboralSolicitante: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insured.per_job_add_ind',
     value: ''
   },
   {
@@ -209,7 +209,7 @@ export const InformacionLaboralSolicitante: Field[] = [
     renderConditions: '(additionalOccupation=true)',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insured.per_job_add_nm',
     value: ''
   },
   {
@@ -239,7 +239,7 @@ export const InformacionLaboralSolicitante: Field[] = [
     renderConditions: '(additionalOccupation=true)',
     enableConditions: '',
     entity: '',
-    entityField: '',
+    entityField: 'insured.per_job_add_mo_incm_amt',
     value: ''
   }
 ];
