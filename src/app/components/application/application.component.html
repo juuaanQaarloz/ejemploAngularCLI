@@ -15,7 +15,9 @@
 
     <div class="container">
       <app-section-form *ngFor="let section of applicationObj.sections" [form]="formGroup"
-                        [sectionObj]="section"></app-section-form>
+                        [sectionObj]="section">
+
+      </app-section-form>
 
       <div class="operation">
         <app-operation-form *ngFor="let appOperation of applOperations"

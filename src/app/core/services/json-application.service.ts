@@ -3,7 +3,6 @@ import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import {ApplicationService} from './application.service';
 import {Beneficiary, Step} from '../../models';
 import set from 'lodash/set';
-import get from 'lodash/get';
 import {calculateAge, transformDate} from '../utilities';
 import {BeneciciaryJson} from '../../models/applicationJson/beneciciaryJson';
 import {PersonJson} from '../../models/applicationJson/personJson';

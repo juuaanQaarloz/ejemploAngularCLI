@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { AppConstants } from 'src/app/app.constants';
+import {ApplicationService} from '../../../core/services';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -26,22 +27,25 @@ const httpOptionsUndefined = {
 export class SearchCriteriaComponent implements OnInit {
   metrolename: string;
   metroluid: string;
+  url_services;
 
   criteria = {
     param1: '',
     param2: '',
     param3: '',
     param4: ''
-  }
+  };
 
   constructor(
     private httpClient: HttpClient,
-    private router: Router
+    private router: Router,
+    private appService: ApplicationService
   ) { }
 
   ngOnInit() {
     this.metrolename = localStorage.getItem('metrolename');
     this.metroluid = localStorage.getItem('metroluid');
+    this.url_services = this.appService.getUrlServices();
     // console.log("search criteria");
     // console.log(this.metrolename);
     // console.log(this.metroluid);
@@ -93,7 +97,7 @@ export class SearchCriteriaComponent implements OnInit {
       params = params.append('value', this.criteria.param4);
     }
 
-    this.httpClient.get( AppConstants.URL_SERVICE_DEV  + '/getApp', {headers, params}).subscribe((resp: any) => {
+    this.httpClient.get( this.url_services  + '/getApp', {headers, params}).subscribe((resp: any) => {
       localStorage.setItem('search', JSON.stringify(resp.data));
       console.log('resp: ', resp);
       this.router.navigate(['search', 'results']);
