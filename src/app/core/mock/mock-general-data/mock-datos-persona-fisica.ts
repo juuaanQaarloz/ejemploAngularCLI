@@ -354,7 +354,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     noAllowedCharactersPattern: '/[^a-zA-ZñÑ0-9]/',
     source: 'IPRE',
     sourceID: 'subIdentificationTypeTransmitter',
-    sourceStructure: ['subIdentificationId', 'subIdentificationDescript', 'subIdentificationDescript'],
+    sourceStructure: ['subIdentificationId', 'subIdentificationDescript', 'subIdentificationId'],
     style: '',
     styleClass: '',
     styleClassError: '',

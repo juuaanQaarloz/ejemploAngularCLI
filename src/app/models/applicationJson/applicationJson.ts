@@ -44,7 +44,7 @@ export class ApplicationJson {
   app_own_tp_ind: boolean = null;
   app_own_card_num: string = null;
   app_own_card_typ_cd: string = null;
-  app_own_card_typ_cd_id: boolean = null;
+  app_own_card_typ_cd_id: string = null;
   app_own_card_subtyp_cd_id: boolean = null;
   app_own_card_emsr: string = null;
   app_own_card_rvw_ind: boolean = null;

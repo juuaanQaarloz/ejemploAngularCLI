@@ -70,7 +70,7 @@ export class PersonJson {
   rec_updt_ts: string = null;
   rec_updt_usr_id: string = null;
   natl_id_sgst_acpt_ind: boolean = false;
-  per_card_emsr_cd: number = 0;
+  per_card_emsr_cd: string = null;
   co_cmrc_rlshnshp_cd: number = 0;
   co_cmrc_pblc_fig_ind: string = null;
   per_mdm_req: string = null;
