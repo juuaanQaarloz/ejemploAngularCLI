@@ -16,7 +16,6 @@ import {DiseaseJson} from '../../models/applicationJson/diseaseJson';
 import {ForeignCountryTaxJson} from '../../models/applicationJson/foreignCountryTaxJson';
 import {QuesList} from '../../models/applicationJson/questionaryJson/quesList';
 import {Cvr} from '../../models/applicationJson/coverageJson/cvr';
-import {StorageService} from './storage.service';
 import {Subject} from 'rxjs';
 
 @Injectable({
@@ -226,7 +225,7 @@ export class JsonApplicationService {
       newAgentCd.agnt_party_nm = item.name;
 
       newAgent.app_id = this.appJson.app_id;
-      newAgent.agnt_cd = newAgentCd;
+      newAgent.agnt_id = newAgentCd;
       newAgent.agnt_part_per = Number(item.participation);
       newAgent.part_ord = index;
 
