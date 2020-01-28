@@ -354,7 +354,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     noAllowedCharactersPattern: '/[^a-zA-ZñÑ0-9]/',
     source: 'IPRE',
     sourceID: 'subIdentificationTypeTransmitter',
-    sourceStructure: ['subIdentificationId', 'subIdentificationDescript', 'subIdentificationId'],
+    sourceStructure: ['subIdentificationId', 'subIdentificationDescript', 'subIdentificationDescript'],
     style: '',
     styleClass: '',
     styleClassError: '',
@@ -366,7 +366,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=P)',
     entity: 'insurer.per_card_emsr',
-    entityField: 'insurer.per_card_emsr'
+    entityField: 'insurer.per_card_emsr_cd'
   },
   {
     id: 'field-15',
