@@ -236,7 +236,8 @@ export class JsonApplicationService {
       newBeneficiary.person = this.mapPersonBeneficiary(item.beneficiaryType, item);
       newBeneficiary.person.Address.push(this.mapAddressBeneficiary(item.beneficiaryType, item));
       newBeneficiary.bene_tp_cd = item.beneficiaryType;
-      newBeneficiary.bene_rel_cd = item.relationship;
+      newBeneficiary.bene_rel_cd = item.relationshipCd;
+      newBeneficiary.bene_rel_desc = item.item.relationship;
 
       newBeneficiary.bene_prtcp_pct = item.participationPercentage;
       newBeneficiary.bene_fid_cnd_flg = item.beneficiaryType === 'fidPerson' ? 'true' : null;
