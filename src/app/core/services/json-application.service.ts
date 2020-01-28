@@ -16,7 +16,6 @@ import {DiseaseJson} from '../../models/applicationJson/diseaseJson';
 import {ForeignCountryTaxJson} from '../../models/applicationJson/foreignCountryTaxJson';
 import {QuesList} from '../../models/applicationJson/questionaryJson/quesList';
 import {Cvr} from '../../models/applicationJson/coverageJson/cvr';
-import {StorageService} from './storage.service';
 import {Subject} from 'rxjs';
 
 @Injectable({
