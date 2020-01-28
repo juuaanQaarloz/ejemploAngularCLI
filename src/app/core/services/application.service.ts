@@ -1883,44 +1883,27 @@ export class ApplicationService {
     };
   }
 
-  /*isApplicationComplete() {
+  isApplicationComplete() {
+    let result = true;
     this.applicationObj.sections.forEach((section, index) => {
       section.contents.forEach((contentFromSection) => {
         if (contentFromSection.fields) {
-
+          console.log('contentFromSection');
         } else {
           if (contentFromSection.process) {
             contentFromSection.process.steps.forEach(step => {
-              if (step.requiredConditions) {
-                const requiredConditionsResult = this.evaluateConditions(step.requiredConditions, this.formGroup);
-                if (requiredConditionsResult) {
-                  const evaluateStepResult = this.validateFormByStep(step);
-                  if (evaluateStepResult.status === false) {
-                    isValid = false;
-                    step.isValid = false;
-                    step.message = evaluateStepResult.msg;
-                    message = message + step.id + ') ' + step.title + '-';
-                  } else {
-                    step.isValid = true;
-                  }
-                }
-              } else {
-                const evaluateStepResult = this.validateFormByStep(step);
-                if (evaluateStepResult.status === false) {
-                  isValid = false;
-                  step.isValid = false;
-                  step.message = evaluateStepResult.msg;
-                  message = message + step.id + ') ' + step.title + '-';
-                } else {
-                  step.isValid = true;
-                }
+              console.log('step: ', step);
+              if (step.isCompleted === false) {
+                result = false;
               }
             });
           }
         }
       });
     });
-  }*/
+
+    return result;
+  }
 
   // @ts-ignore
   getCatalog(id: string, source: string): Observable<[]> {

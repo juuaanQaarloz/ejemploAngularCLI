@@ -89,6 +89,14 @@ export class StepFormComponent implements OnInit {
         this.showLoading = true;
         this.openDialog(this.modalLoadingId);
 
+        /*this.completed = true;
+        this.stepObj.isCompleted = true;
+
+        if (this.stepObj.id === '21') {
+          console.log('isApplicationComplete: ', this.applicationService.isApplicationComplete());
+          this.applicationService.changeLastStepCompleted(true);
+        }*/
+
         this.applicationService.saveApplication(this.jsonApplicationService.saveInJsonSwagger(this.stepObj))
           .subscribe((response: any) => {
             console.log('response from saveApplication service in component step: ', response);
@@ -121,7 +129,6 @@ export class StepFormComponent implements OnInit {
     const response = this.applicationService.validateFormByStep(this.stepObj);
     console.log('response: ', response);
     this.stepObj.isValid = response.status;
-    // this.stepMsgError =
     this.stepObj.message = response.msg ? response.msg : this.stepObj.message;
     if (response.listDocument && response.listDocument.length > 0) {
       this.documentsValid = response.listDocument;
@@ -141,10 +148,6 @@ export class StepFormComponent implements OnInit {
 
   openDialog(modalID: string) {
     this.modalService.open(modalID);
-  }
-
-  checkApplicationState() {
-
   }
 }
 
