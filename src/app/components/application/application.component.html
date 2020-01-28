@@ -41,7 +41,6 @@
         <p *ngFor="let errorMsg of getMessages()">{{errorMsg}}</p>
       </div>
 
-      <!--<p>{{errorMessage}}</p>-->
       <div class="operation-modal">
         <app-operation-form [operationObj]=closeWindowOpt
                             (click)="executeOperation(closeWindowOpt.delegateOperation)">

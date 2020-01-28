@@ -16,11 +16,11 @@ export class PersonJson {
   nationalities: NationalityJson[] = [new NationalityJson(), new NationalityJson(), new NationalityJson(), new NationalityJson()];
   contactPerson: ContactPersonJson[] = [];
   dataContact: DataContactJson[] = [];
-  per_brth_cntry_nm: string = null;
+  per_brth_cntry_nm: string = 'MEXICO';
   per_brth_cntry_cd: string = null;
   per_brth_stte_nm: string = null;
   per_brth_plc_nm: string = null;
-  party_typ_cd: boolean = false;
+  party_typ_cd: string = null;
   party_addl_typ_nm: string = null;
   per_card_num: string = null;
   per_card_typ_cd: string = null;
@@ -70,7 +70,7 @@ export class PersonJson {
   rec_updt_ts: string = null;
   rec_updt_usr_id: string = null;
   natl_id_sgst_acpt_ind: boolean = false;
-  per_card_emsr_cd: number = 0;
+  per_card_emsr_cd: string = null;
   co_cmrc_rlshnshp_cd: number = 0;
   co_cmrc_pblc_fig_ind: string = null;
   per_mdm_req: string = null;

@@ -14,6 +14,7 @@ export class AccountJson {
   clct_unit_wrk_cntr_cd: string = null;
   prfr_cntct_tm_txt: string = null;
   prfr_cntct_typ_nm: string = null;
+  prfr_cntct_day_nm: string = null;
   rtnr_id: string = '0';
   prfr_py_wk_day_cd: string = null;
   prfr_py_prdcty_cd: number = null;

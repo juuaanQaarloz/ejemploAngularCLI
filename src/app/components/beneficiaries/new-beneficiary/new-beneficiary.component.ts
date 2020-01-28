@@ -364,7 +364,8 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         name: this.formGroup.controls.beneficiaryName.value,
         fatherLastName: this.formGroup.controls.beneficiaryFaLastName.value,
         motherLastName: this.formGroup.controls.beneficiaryMoLastName.value,
-        relationship: this.formGroup.controls.beneficiaryRelationshipP.value,
+        relationshipCd: this.formGroup.controls.beneficiaryRelationshipP.value,
+        relationship: BeneficiaryFieldsF[4].additionalData.name,
         birthDateOrConstitution: transformDate(this.formGroup.controls.beneficiaryBirthDate.value, 'YYYY/MM/DD'),
         addressSameAsTitular: this.formGroup.controls.sameAsTitular.value,
         address: {
@@ -384,7 +385,8 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
       return {
         ...newBeneficiaryBase,
         businessName: this.formGroup.controls.beneficiaryBusinessName.value,
-        relationship: this.formGroup.controls.beneficiaryRelationshipM.value,
+        relationship: BeneficiaryFieldsM[1].additionalData.name,
+        relationshipCd: this.formGroup.controls.beneficiaryRelationshipM.value,
         espRelationship: this.formGroup.controls.espBeneficiaryRelationshipM.value,
         birthDateOrConstitution: transformDate(this.formGroup.controls.beneficiaryConstitutionDate.value, 'YYYY/MM/DD'),
         address: {
@@ -407,7 +409,8 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         suspensiveCondition: this.formGroup.controls.suspensiveCondition.value,
         contractNumber: this.formGroup.controls.contractNumber.value,
         instructionLetterNumber: this.formGroup.controls.instructionLetterNumber.value,
-        relationship: this.formGroup.controls.beneficiaryRelationshipF.value,
+        relationshipCd: this.formGroup.controls.beneficiaryRelationshipF.value,
+        relationship: BeneficiaryFieldsF[4].additionalData.name,
         espRelationship: this.formGroup.controls.espBeneficiaryRelationshipF.value,
         birthDateOrConstitution: transformDate(this.formGroup.controls.beneficiaryConstitutionDateF.value, 'YYYY/MM/DD'),
         address: {

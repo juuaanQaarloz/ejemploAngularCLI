@@ -123,8 +123,8 @@ export const Plan1a: Field[] = [
     renderConditions: '',
     enableConditions: '',
     requiredConditions: '(typePerson=M,|,contractorType=false)',
-    entity: '',
-    entityField: ''
+    entity: 'insuredCondition.aplicationPlan.pln_nm',
+    entityField: 'insuredCondition.aplicationPlan.pln_cd',
   }
 
 ];
@@ -287,7 +287,7 @@ export const Plan4: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: 'insuredCondition.aplicationPlan.pln_fx_fnd_dist',
-    value: '100'
+    value: 100
   },
   {
     id: 'field-1407',
@@ -316,7 +316,7 @@ export const Plan4: Field[] = [
     enableConditions: '(currency!=2)',
     entity: '',
     entityField: 'insuredCondition.aplicationPlan.pln_vr_fnd_dist',
-    value: '0'
+    value: 0
   }
 ];
 
@@ -348,7 +348,7 @@ export const Plan5: Field[] = [
     enableConditions: '(packing=RE)',
     entity: '',
     entityField: 'insuredCondition.aplicationPlan.pln_fx_psnl_wthdrwl',
-    value: '0'
+    value: 0
   },
   {
     id: 'field-1409',
@@ -377,7 +377,7 @@ export const Plan5: Field[] = [
     enableConditions: '((currency=1),&,(packing=RE))',
     entity: '',
     entityField: 'insuredCondition.aplicationPlan.pln_vr_psnl_wthdrwl',
-    value: '0'
+    value: 0
   }
 ];
 
@@ -409,7 +409,7 @@ export const Plan6: Field[] = [
     enableConditions: '(packing=RE)',
     entity: '',
     entityField: 'insuredCondition.aplicationPlan.pln_fx_spcl_amnt_svgn',
-    value: '0'
+    value: 0
   },
   {
     id: 'field-1409',
@@ -438,7 +438,7 @@ export const Plan6: Field[] = [
     enableConditions: '((currency=1),&,(packing=RE))',
     entity: '',
     entityField: 'insuredCondition.aplicationPlan.pln_vr_spcl_amnt_svgn',
-    value: '0'
+    value: 0
   }
 ];
 

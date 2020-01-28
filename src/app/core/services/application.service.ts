@@ -61,6 +61,7 @@ const URL_CAT_SUB_IDENTIFICATION_TYPE_TRANSMITTER = '../assets/catalogs/sub-iden
 const URL_CAT_GUARD_BOX_OPTIONS = '../assets/catalogs/guard-box-options.json';
 const URL_CAT_ECONOMIC_SECTOR_OPTIONS = '../assets/catalogs/economic-sector.json';
 const URL_CAT_BANK_OPTIONS = '../assets/catalogs/bank.json';
+const URL_CAT_TIPO_CUENTA_BANK_OPTIONS = '../assets/catalogs/tipo-cuenta-bank.json';
 const URL_CURRENCY_OPTIONS = '../assets/catalogs/currency.json';
 const URL_CILINDRADA_OPTIONS = '../assets/catalogs/cilindrada.json';
 const URL_SPORTS_OPTIONS = '../assets/catalogs/sports.json';
@@ -1973,6 +1974,9 @@ export class ApplicationService {
       case 'bank':
         urlCatalog = URL_CAT_BANK_OPTIONS;
         break;
+      case 'tipo-cuenta-bank':
+        urlCatalog = URL_CAT_TIPO_CUENTA_BANK_OPTIONS;
+        break;
       case 'currency':
         urlCatalog = URL_CURRENCY_OPTIONS;
         break;
@@ -2042,7 +2046,15 @@ export class ApplicationService {
 
     console.log('appJson to passed to de save service: ', appJson);
     // console.log('appJson to passed to de save service2: ', JSON.stringify(appJson));
+    // set(appJson, 'insurer.party_typ_cd', this.getFormGroup().controls.typePerson.value);
+    appJson.insurer.party_typ_cd = this.getFormGroup().controls.typePerson.value;
     set(appJson, 'type_operation_app', 'save');
+
+    // verificar si el solicitante es el mismo que el contratante y replicar la info
+    if (this.getFormGroup().controls.contractorType.value) {
+      set(appJson, 'insured', appJson.insurer);
+    }
+
 
     return this.httpClient.post(URL, JSON.stringify(appJson), {headers})
       .pipe(
@@ -2055,7 +2067,7 @@ export class ApplicationService {
 
   getPDF(appId: string) {
     console.log('on getPDFBroker');
-    const URL = AppConstants.URL_SERVICE_DEV + '/getPdf?app_id=' + appId;
+    const URL = AppConstants.URL_SERVICE_DEV + '/getPdf?appId=' + appId;
 
     let metrolname = localStorage.getItem('metrolename');
     let metuserid = localStorage.getItem('metroluid');

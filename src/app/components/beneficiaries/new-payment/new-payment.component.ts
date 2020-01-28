@@ -1,12 +1,12 @@
-import { ModalService } from './../../custom-modal/modal.service';
-import { DialogRef } from './../../dialog/dialog-ref';
-import { DialogConfig } from './../../dialog/dialog-config';
-import { ApplicationService } from './../../../core/services/application.service';
-import { FormGroup } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
-import { NewPaymentFields } from 'src/app/core/mock/formats/payment';
-import { FormatwoOperations } from 'src/app/core/mock/mock-operations';
-import { Operation } from 'src/app/models';
+import {ModalService} from './../../custom-modal/modal.service';
+import {DialogRef} from './../../dialog/dialog-ref';
+import {DialogConfig} from './../../dialog/dialog-config';
+import {ApplicationService} from './../../../core/services/application.service';
+import {FormGroup} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {NewPaymentFields} from 'src/app/core/mock/formats/payment';
+import {FormatwoOperations} from 'src/app/core/mock/mock-operations';
+import {Operation} from 'src/app/models';
 import {FORM_MSG_ERROR} from '../../../core/mock/errors/mock-erros-datos-plan';
 
 @Component({
@@ -55,7 +55,7 @@ export class NewPaymentComponent implements OnInit {
   constructor(private applicationService: ApplicationService,
               public config: DialogConfig,
               public dialog: DialogRef,
-              private modalService: ModalService ) {
+              private modalService: ModalService) {
   }
 
   ngOnInit() {
@@ -64,12 +64,6 @@ export class NewPaymentComponent implements OnInit {
     console.log('formGroup', this.formGroup);
     this.fields = this.getFields();
     console.log('payment-fields', this.fields);
-
-    this.formGroup.controls.txtBank.valueChanges.subscribe((value) => {
-      // this.formatwoType = value;
-      console.log('txtBank');
-      this.fields = this.getFields();
-    });
 
     if (this.config.data !== null) {
       this.operationType = 'edit';
@@ -99,10 +93,18 @@ export class NewPaymentComponent implements OnInit {
 
   updateFormatwo() {
     const formStatus = this.getFormStatus();
+    console.log('formStatus: ', formStatus);
+
     if (formStatus === 'VALID') {
       const updatedBeneficiary = this.mapPaymentData();
-      // this.applicationService.updateItem(updatedBeneficiary, 'beneficiary');
-      this.closeDialog();
+      const response = this.applicationService.updateItem(updatedBeneficiary, 'payment');
+      console.log('response: ', response);
+      if (response.status) {
+        this.closeDialog();
+      } else {
+        this.modalMessage = response.message;
+        this.modalService.open(this.modalID);
+      }
     } else {
       this.showFormError = true;
     }
@@ -126,21 +128,27 @@ export class NewPaymentComponent implements OnInit {
   }
 
   setPaymentValues() {
+    console.log('..On setPayment..');
     this.fields.forEach((field) => {
       let value;
       switch (field.name) {
-        case 'bank':
-          value = this.config.data.item.txtBank.value;
+        case 'txtClabe':
+          value = this.config.data.item.txtClabe;
+          this.formGroup.controls[field.name].setValue(value);
           break;
-        /*
-       case 'formatwoBirthDate':
-         value = this.config.data.beneficiary.birthDate;
-         break; */
+        case 'txtClabeConfir':
+          //Ignore
+          break;
+        case 'txtBank':
+          value = this.config.data.item.txtBank;
+          this.formGroup.controls[field.name].setValue(value);
+          break;
+        case 'selectCard':
+          value = this.config.data.item.selectCard;
+          this.formGroup.controls[field.name].setValue(value);
+          break;
       }
-      this.formGroup.controls[field.name].setValue(value);
     });
-    console.log('form values: ');
-    console.log(this.formGroup.value);
   }
 
   mapNewPaymentData() {
@@ -170,6 +178,8 @@ export class NewPaymentComponent implements OnInit {
     const paymentBase = {
       paymentId: this.config.data.item.paymentId,
       txtBank: this.formGroup.controls.txtBank.value,
+      txtClabe: this.formGroup.controls.txtClabe.value,
+      selectCard: this.formGroup.controls.selectCard.value,
     };
     return paymentBase;
   }

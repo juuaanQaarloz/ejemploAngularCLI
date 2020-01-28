@@ -366,7 +366,7 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=P)',
     entity: 'insurer.per_card_emsr',
-    entityField: 'insurer.per_card_emsr'
+    entityField: 'insurer.per_card_emsr_cd'
   },
   {
     id: 'field-15',

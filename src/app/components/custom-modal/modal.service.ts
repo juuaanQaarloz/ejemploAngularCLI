@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({providedIn: 'root'})
 export class ModalService {
   private modals: any[] = [];
 
@@ -24,5 +24,19 @@ export class ModalService {
     // close modal specified by id
     const modal = this.modals.find(x => x.id === id);
     modal.close();
+  }
+
+  search(id: string) {
+    const modal = this.modals.find(x => x.id === id);
+    console.log('on search from ModalService: ', modal);
+    if (modal) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  getAllModals() {
+    return this.modals;
   }
 }

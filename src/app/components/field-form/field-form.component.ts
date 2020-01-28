@@ -83,16 +83,17 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+
     if (this.fieldObj.type === 'radio' || this.fieldObj.type === 'select'
       || this.fieldObj.type === 'checkbox-n' || this.fieldObj.type === 'select-multiple'
-      || this.fieldObj.type === 'autocomplete' || this.fieldObj.type === 'select-1' ) {
+      || this.fieldObj.type === 'autocomplete' || this.fieldObj.type === 'select-1') {
       this.getOptions();
     }
     if (this.fieldObj.type === 'select' && this.fieldObj.value) {
       this.showSelectLabel = true;
     }
 
-    if (this.fieldObj.type === 'select-1' || this.fieldObj.type === 'select-change' ) {
+    if (this.fieldObj.type === 'select-1' || this.fieldObj.type === 'select-change') {
       let el = document.getElementById('slctPacking');
       this.getOptionsDefine('packing', 'IPRE', 'select-1', el);
     }
@@ -272,7 +273,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   verifyMask() {
     let value = this.form.controls[this.fieldObj.name].value;
-    if ( value ) {
+    if (value) {
       value = value.toString().replace('$', '');
       value = value.replace(/[,]/g, '');
       console.log(value);
@@ -355,28 +356,28 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       // // console.log('Entro assuredImport: ');
     }
 
-    if(this.fieldObj.name === 'txtClabe') {
+    if (this.fieldObj.name === 'txtClabe') {
       const idClabe = 'txtClabe';
-      const txtClabeConfir = document.getElementById("txtClabeConfir");
+      const txtClabeConfir = document.getElementById('txtClabeConfir');
       if (this.form.controls[idClabe].value === this.form.controls[this.fieldObj.name].value) {
         const txtBank = document.getElementById('txtBank');
         const selectCard = document.getElementById('selectCard');
-        txtBank.setAttribute('readonly','true');
-        selectCard.setAttribute('readonly','true');
+        txtBank.setAttribute('readonly', 'true');
+        selectCard.setAttribute('readonly', 'true');
         //ignore
       } else {
         this.clearTxtClabeConfir();
         this.clearSelectCard();
         this.clearTxtBank();
       }
-      if(this.form.controls[this.fieldObj.name].value.length === 17){
+      if (this.form.controls[this.fieldObj.name].value.length === 17) {
         console.log("Entre a 17");
         this.fieldObj.message = this.messageLength17;
         this.fieldObj.valid = false;
-        txtClabeConfir.setAttribute("readonly","true");
-      }else if(this.form.controls[this.fieldObj.name].value.length === 18 ||
+        txtClabeConfir.setAttribute("readonly", "true");
+      } else if (this.form.controls[this.fieldObj.name].value.length === 18 ||
         this.form.controls[this.fieldObj.name].value.length === 16 ||
-        this.form.controls[this.fieldObj.name].value.length === 15){
+        this.form.controls[this.fieldObj.name].value.length === 15) {
         txtClabeConfir.removeAttribute("readonly");
       }
     }
@@ -388,17 +389,17 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       this.clearTxtBank();
       if (this.form.controls[idClabe].value === this.form.controls[this.fieldObj.name].value) {
         const bine = Number(this.form.controls[this.fieldObj.name].value.substring(0, 6));
-        if (this.form.controls[this.fieldObj.name].value.length === 15){
+        if (this.form.controls[this.fieldObj.name].value.length === 15) {
           this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
             .subscribe((results) => {
               console.log(results);
               this.myToken = results;
-              if(this.myToken.data === '00'){
-                console.log("El Token es valido.");
+              if (this.myToken.data === '00') {
+                console.log('El Token es valido.');
                 this.getDataPaymentMit(bine);
-                this.form.controls[selectCard].setValue("4");
-                element.setAttribute('value','4');
-              }else{
+                this.form.controls[selectCard].setValue('4');
+                element.setAttribute('value', '4');
+              } else {
                 this.fieldObj.message = this.messageToken;
                 this.fieldObj.valid = false;
                 this.clearTxtClabe();
@@ -407,26 +408,26 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
                 console.log("El Token no es valido.")
               }
             });
-        } else if (this.form.controls[this.fieldObj.name].value.length === 16 ) {
+        } else if (this.form.controls[this.fieldObj.name].value.length === 16) {
           this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
             .subscribe((results) => {
-              console.log(results);
               this.myToken = results;
-              if(this.myToken.data === '00'){
-                //this.flagMitToken = true;
+              if (this.myToken.data === '00') {
                 console.log("El Token es valido.");
                 this.getDataPaymentMit(bine);
-              }else{
-                //this.flagMitToken = false;
+                this.getDataCardMit(bine);
+              } else {
                 this.fieldObj.message = this.messageToken;
                 this.fieldObj.valid = false;
-                console.log("El Token no es valido.")
+                this.clearTxtClabe();
+                this.clearTxtBank();
+                this.clearSelectCard();
+                console.log('El Token no es valido.');
               }
             });
         } else if (this.form.controls[this.fieldObj.name].value.length === 18) {
-          this.form.controls[selectCard].setValue('3');
-          element.setAttribute('value','3');
           this.getDataPaymentMit(bine);
+          this.getDataCardMit(bine);
         }
       } else {
         this.clearTxtBank();
@@ -453,14 +454,14 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     let value;
     value = event.source.value;
 
-    if ( this.fieldObj.name === 'agentKey') {
+    if (this.fieldObj.name === 'agentKey') {
       const nombreVar = 'agentName';
       const nombreVarTwo = 'keyPromotor';
       const agente = 'agente';
       this.applicationService.getCatalogById('agentsProfile', 'IPRE')
         .subscribe((results) => {
           const index = results.findIndex((i) => i[agente] === this.form.controls[this.fieldObj.name].value);
-          if ( index !== -1 ) {
+          if (index !== -1) {
             const resp: any = results[index];
             if (resp.nombreAgente !== null) {
               this.form.controls[nombreVar].setValue(resp.nombreAgente);
@@ -559,7 +560,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         this.fieldObj.file = null;
 
         // Update Document
-        if ( this.fieldObj.name.indexOf('fileDocument') > -1 && this.form.controls[this.fieldObj.name] ) {
+        if (this.fieldObj.name.indexOf('fileDocument') > -1 && this.form.controls[this.fieldObj.name]) {
           const field = {
             name: this.fieldObj.name,
             docName: null,
@@ -578,7 +579,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         this.fieldObj.valid = true;
 
         // Update Document
-        if ( this.fieldObj.name.indexOf('fileDocument') > -1 && this.form.controls[this.fieldObj.name] ) {
+        if (this.fieldObj.name.indexOf('fileDocument') > -1 && this.form.controls[this.fieldObj.name]) {
           const field = {
             name: this.fieldObj.name,
             docName: this.fileName,
@@ -701,7 +702,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         valid = false;
         this.fieldObj.message = 'La participación no puede ser 0';
       }
-    } else if ( this.fieldObj.name === 'agentParticipation') {
+    } else if (this.fieldObj.name === 'agentParticipation') {
       if (!this.form.controls[this.fieldObj.name].value || Number(this.form.controls[this.fieldObj.name].value) === 0) {
         this.fieldObj.valid = false;
         valid = false;
@@ -725,12 +726,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         if (Number(assuredImport) > Number(0.00)) {
           if (Number(assuredImport) < Number(400000.00)) {
             // // console.log('invalidAssuredImportMxn', false);
-            return { invalidAssuredImportMxn: true};
+            return {invalidAssuredImportMxn: true};
           } else {
             this.setValueField('assuredImport', 'txtAssuredImport', addCurrencyFormat(assuredImport));
           }
         }
-      // } else if (currency === 'usd') {
+        // } else if (currency === 'usd') {
       } else if (currency === '2') {
         if (Number(assuredImport) > Number(0.00)) {
           if (Number(assuredImport) < Number(40000.00)) {
@@ -746,7 +747,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       const salary = this.form.controls.salary.value;
 
       if (salary) {
-        if ( this.validateIntegerDecimals(this.form.controls.salary.value)) {
+        if (this.validateIntegerDecimals(this.form.controls.salary.value)) {
           this.fieldObj.valid = true;
           valid = true;
           this.setValueField('salary', 'txtSalary', addCurrencyFormat(salary));
@@ -765,7 +766,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       const salaryS = this.form.controls.salaryS.value;
 
       if (salaryS) {
-        if ( this.validateIntegerDecimals(this.form.controls.salaryS.value)) {
+        if (this.validateIntegerDecimals(this.form.controls.salaryS.value)) {
           this.fieldObj.valid = true;
           valid = true;
           this.setValueField('salaryS', 'txtSalaryS', addCurrencyFormat(salaryS));
@@ -784,7 +785,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       const additionalSalary = this.form.controls.additionalSalary.value;
 
       if (additionalSalary) {
-        if ( this.validateIntegerDecimals(this.form.controls.additionalSalary.value)) {
+        if (this.validateIntegerDecimals(this.form.controls.additionalSalary.value)) {
           this.fieldObj.valid = true;
           valid = true;
           this.setValueField('additionalSalary', 'txtAdditionalSalary', addCurrencyFormat(additionalSalary));
@@ -799,10 +800,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       }
     }
 
-    if ( this.fieldObj.name === 'extremeSportsD' ) {
+    if (this.fieldObj.name === 'extremeSportsD') {
       this.applicationService.getCatalogById(this.fieldObj.sourceID, this.fieldObj.source).subscribe((results) => {
         const index = results.findIndex((i) => i[this.fieldObj.sourceStructure[1]] === this.form.controls[this.fieldObj.name].value);
-        if ( index !== -1 ) {
+        if (index !== -1) {
           this.fieldObj.valid = true;
           valid = true;
         } else {
@@ -814,10 +815,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       });
     }
 
-    if ( this.fieldObj.name === 'describeDiseasesD' ) {
+    if (this.fieldObj.name === 'describeDiseasesD') {
       this.applicationService.getCatalogById(this.fieldObj.sourceID, this.fieldObj.source).subscribe((results) => {
         const index = results.findIndex((i) => i[this.fieldObj.sourceStructure[1]] === this.form.controls[this.fieldObj.name].value);
-        if ( index !== -1 ) {
+        if (index !== -1) {
           this.fieldObj.valid = true;
           valid = true;
         } else {
@@ -829,10 +830,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       });
     }
 
-    if ( this.fieldObj.name === 'agentKey' ) {
+    if (this.fieldObj.name === 'agentKey') {
       this.applicationService.getCatalogById(this.fieldObj.sourceID, this.fieldObj.source).subscribe((results) => {
         const index = results.findIndex((i) => i[this.fieldObj.sourceStructure[1]] === this.form.controls[this.fieldObj.name].value);
-        if ( index !== -1 ) {
+        if (index !== -1) {
           this.fieldObj.valid = true;
           valid = true;
         } else {
@@ -849,7 +850,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
 
 
-    /*if (this.fieldObj.name === 'txtClabeConfir') {
+    /*if (this.fieldObj.name === 'dtxtClabeConfir') {
       const idClabe = 'txtClabe';
       console.log('TOKEN MIT 11 --->: ' + this.form.controls[this.fieldObj.name]);
       if (this.form.controls[idClabe] === this.form.controls[this.fieldObj.name]) {
@@ -865,7 +866,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }*/
     // las validaciones deben estar antes
 
-    if(this.fieldObj.name === 'selectCard'){
+    if (this.fieldObj.name === 'selectCard') {
       this.clearSelectCard();
       this.form.controls['selectCard'].setValue("4");
       this.clearTxtBank();
@@ -873,8 +874,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       this.clearTxtClabeConfir();
     }
 
-    if(this.fieldObj.name === 'txtBank'){
-      console.log('Dentro de txtBank');
+    if (this.fieldObj.name === 'txtBank') {
       this.clearTxtBank();
       this.form.controls['txtBank'].setValue("BANCA SERFIN S.A");
       const element = document.getElementById('txtBank');
@@ -902,16 +902,18 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onChangeSelect(event) {
-    /*const selectedIndex = event.target.selectedIndex;
+    const selectedIndex = event.target.selectedIndex;
     const selectedOption = this.selectOptions[event.target.selectedIndex - 1];
-    this.fieldObj.additionalData = selectedOption;*/
+    this.fieldObj.additionalData = selectedOption;
 
-    if (this.fieldObj.entity) {
+    console.log('selectedOption: ', selectedOption);
+
+    /*if (this.fieldObj.entity) {
       let selectedIndex = event.target.selectedIndex;
       let selectedOption = this.selectOptions[event.target.selectedIndex - 1];
 
       this.fieldObj.additionalData = selectedOption;
-    }
+    }*/
 
     if (event.target.value === '') {
       this.showSelectLabel = false;
@@ -937,7 +939,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       this.form.controls.packing.setValue(event.target.value);
     }
 
-    if ( this.fieldObj.name.indexOf('typeDocument') > -1 && this.form.controls[this.fieldObj.name] ) {
+    if (this.fieldObj.name.indexOf('typeDocument') > -1 && this.form.controls[this.fieldObj.name]) {
       const field = {
         value: this.form.controls[this.fieldObj.name].value,
         name: this.fieldObj.name,
@@ -999,10 +1001,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     if (this.fieldObj.name === 'typePerson') {
       // this.setPacking();
       // this.setValueField('packing', 'slctPacking', this.selectOptions1);
-     }
+    }
     if (this.fieldObj.name === 'contractorType') {
       // this.setPacking();
-     }
+    }
 
     if (formControlName) {
       // console.log('formControlNameEntro: ', formControlName);
@@ -1019,98 +1021,98 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     } else {
       if (this.fieldObj.name === 'stateOfBirth') {
         const value = this.form.controls.stateOfBirth.value;
-        if ( value ) {
+        if (value) {
           this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
         } else {
           this.fieldObj.valid = false;
         }
       } else if (this.fieldObj.name === 'city') {
         const value = this.form.controls.city.value;
-        if ( value ) {
+        if (value) {
           this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
         } else {
           this.fieldObj.valid = false;
         }
       } else if (this.fieldObj.name === 'formatwoStateOfBirth') {
         const value = this.form.controls.formatwoStateOfBirth.value;
-        if ( value ) {
+        if (value) {
           this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
         } else {
           this.fieldObj.valid = false;
         }
       } else if (this.fieldObj.name === 'beneficiaryStateM') {
         const value = this.form.controls.beneficiaryStateM.value;
-        if ( value ) {
+        if (value) {
           this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
         } else {
           this.fieldObj.valid = false;
         }
       } else if (this.fieldObj.name === 'beneficiaryState') {
         const value = this.form.controls.beneficiaryState.value;
-        if ( value ) {
+        if (value) {
           this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
         } else {
           this.fieldObj.valid = false;
         }
       } else if (this.fieldObj.name === 'stateOfBirthS') {
         const value = this.form.controls.stateOfBirthS.value;
-        if ( value ) {
+        if (value) {
           this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
         } else {
           this.fieldObj.valid = false;
         }
       } else if (this.fieldObj.name === 'stateM') {
         const value = this.form.controls.stateM.value;
-        if ( value ) {
+        if (value) {
           this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
         } else {
           this.fieldObj.valid = false;
         }
       } else if (this.fieldObj.name === 'stateS') {
         const value = this.form.controls.stateS.value;
-        if ( value ) {
+        if (value) {
           this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
         } else {
           this.fieldObj.valid = false;
         }
       } else if (this.fieldObj.name === 'state') {
         const value = this.form.controls.state.value;
-        if ( value ) {
+        if (value) {
           this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
         } else {
           this.fieldObj.valid = false;
         }
       } else if (this.fieldObj.name === 'formatwoCity') {
         const value = this.form.controls.formatwoCity.value;
-        if ( value ) {
+        if (value) {
           this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
         } else {
           this.fieldObj.valid = false;
         }
       } else if (this.fieldObj.name === 'beneficiaryCityF') {
         const value = this.form.controls.beneficiaryCityF.value;
-        if ( value ) {
+        if (value) {
           this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
         } else {
           this.fieldObj.valid = false;
         }
       } else if (this.fieldObj.name === 'beneficiaryCityM') {
         const value = this.form.controls.beneficiaryCityM.value;
-        if ( value ) {
+        if (value) {
           this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
         } else {
           this.fieldObj.valid = false;
         }
       } else if (this.fieldObj.name === 'beneficiaryCity') {
         const value = this.form.controls.beneficiaryCity.value;
-        if ( value ) {
+        if (value) {
           this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
         } else {
           this.fieldObj.valid = false;
         }
       } else if (this.fieldObj.name === 'cityS') {
         const value = this.form.controls.cityS.value;
-        if ( value ) {
+        if (value) {
           this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
         } else {
           this.fieldObj.valid = false;
@@ -1118,7 +1120,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       } else {
         this.fieldObj.valid = this.form.controls[this.fieldObj.name].valid;
         if (this.autocompleteOptions.length > 0 && this.fieldObj.type === 'autocomplete') {
-          const searchResult =  this.autocompleteOptions.filter(
+          const searchResult = this.autocompleteOptions.filter(
             autoCompleteOpt => autoCompleteOpt.name === this.form.controls[this.fieldObj.name].value)[0];
           if (searchResult) {
             this.fieldObj.valid = true;
@@ -1131,21 +1133,21 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       // console.log('this.form.controls[this.fieldObj.name].valid: ', this.form.controls[this.fieldObj.name].valid);
     }
 
-    if ( this.fieldObj.name === 'beneficiaryBirthDate' ) {
+    if (this.fieldObj.name === 'beneficiaryBirthDate') {
       const validateDate = DateValidator(this.form.controls.beneficiaryBirthDate);
       if (validateDate) {
         this.fieldObj.valid = false;
       } else {
         this.fieldObj.valid = true;
       }
-    } else if ( this.fieldObj.name === 'beneficiaryConstitutionDate' ) {
+    } else if (this.fieldObj.name === 'beneficiaryConstitutionDate') {
       const validateDate = DateValidator(this.form.controls.beneficiaryConstitutionDate);
       if (validateDate) {
         this.fieldObj.valid = false;
       } else {
         this.fieldObj.valid = true;
       }
-    } else if ( this.fieldObj.name === 'beneficiaryConstitutionDateF' ) {
+    } else if (this.fieldObj.name === 'beneficiaryConstitutionDateF') {
       const validateDate = DateValidator(this.form.controls.beneficiaryConstitutionDateF);
       if (validateDate) {
         this.fieldObj.valid = false;
@@ -1169,10 +1171,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   checkValue(value) {
     let currentValue: any;
     let defaultValue: any;
-    if ( this.form.controls[this.fieldObj.name] ) {
+    if (this.form.controls[this.fieldObj.name]) {
       currentValue = this.form.controls[this.fieldObj.name].value;
     }
-    if ( this.fieldObj.value ) {
+    if (this.fieldObj.value) {
       defaultValue = this.fieldObj.value;
     }
     let result: boolean;
@@ -1296,7 +1298,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   setFunds() {
-    if (this.form.controls.currency ) {
+    if (this.form.controls.currency) {
       const currency = this.form.controls.currency.value;
       if (currency === 'usd') {
         this.setValueField('variableSaving', 'txtVariableSaving', 0);
@@ -1304,7 +1306,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         this.setValueField('variableFunds', 'txtVariableFunds', 0);
       }
     }
-    if ( this.form.controls.packing ) {
+    if (this.form.controls.packing) {
       const packing = this.form.controls.packing.value;
       if (packing !== '4') {
         this.setValueField('fixedSaving', 'txtFixedSaving', 0);
@@ -1320,26 +1322,26 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     const contractorType = this.form.controls.contractorType.value;
 
     if (typePerson !== 'M') {
-        // quitar elemento
-        if (contractorType === false) {
-          let el = document.getElementById('slctPacking');
-          // this.form.controls.packing.reset();
-          // this.setValueField('packing', 'slctPacking', 'selectOptions1');
-          this.getOptionsDefine('packingdos', 'IPRE', 'select-1', el);
-          // getOptionsDefine(sourceID , source, sourceStructure , type , el: Element )
-        } else {
-           let el = document.getElementById('slctPacking');
-           // this.form.controls.packing.reset();
-           this.getOptionsDefine('packing', 'IPRE', 'select-1', el);
-
-        }
+      // quitar elemento
+      if (contractorType === false) {
+        let el = document.getElementById('slctPacking');
+        // this.form.controls.packing.reset();
+        // this.setValueField('packing', 'slctPacking', 'selectOptions1');
+        this.getOptionsDefine('packingdos', 'IPRE', 'select-1', el);
+        // getOptionsDefine(sourceID , source, sourceStructure , type , el: Element )
       } else {
-          // quitar elemento
-          let el = document.getElementById('slctPacking');
-          // this.form.controls.packing.reset('selectOptions1', []);
-          this.getOptionsDefine('packingdos', 'IPRE', 'select-1', el);
+        let el = document.getElementById('slctPacking');
+        // this.form.controls.packing.reset();
+        this.getOptionsDefine('packing', 'IPRE', 'select-1', el);
 
-     }
+      }
+    } else {
+      // quitar elemento
+      let el = document.getElementById('slctPacking');
+      // this.form.controls.packing.reset('selectOptions1', []);
+      this.getOptionsDefine('packingdos', 'IPRE', 'select-1', el);
+
+    }
   }
 
   closeModal(modalID: string) {
@@ -1352,7 +1354,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
   }
 
-  getOptionsDefine(sourceID , source , type , el: Element ) {
+  getOptionsDefine(sourceID, source, type, el: Element) {
     let options = [];
     this.selectOptions1 = [];
     // this.form.controls.slctPacking.reset(el);
@@ -1361,7 +1363,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     this.applicationService.getCatalogById(sourceID, source)
       .subscribe((results) => {
         options = results;
-       //  // console.log('packing: results ', results);
+        //  // console.log('packing: results ', results);
         if (options !== undefined) {
           options.forEach((selectItem) => {
             if (type === 'select-1') {
@@ -1372,7 +1374,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
         }
       });
-    }
+  }
 
   onKeyDownRadio(event, nextElementId) {
     if (event.keyCode === 9) { // tab clicked
@@ -1391,8 +1393,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   getDataPaymentMit(bine) {
-    console.log('getDataPaymentMit --> ');
-    console.log(bine);
+    console.log('getPaymentCardMit --> ');
     const infLimit = 'infLimit';
     const supLimit = 'supLimit';
     const txtBank = 'txtBank';
@@ -1403,12 +1404,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         results.forEach((bank) => {
           if (bine >= Number(bank[infLimit]) && bine <= Number(bank[supLimit])) {
             this.form.controls[txtBank].setValue(bank[bankDescription]);
-            const element = document.getElementById('txtBank');
+            const element = document.getElementById(txtBank);
             element.setAttribute('value', bank[bankDescription]);
             contador++;
           }
         });
-        if(contador == 0){
+        if (contador == 0) {
           this.clearTxtBank();
           this.clearTxtClabe();
           this.clearSelectCard();
@@ -1418,28 +1419,72 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       });
   }
 
-  clearTxtBank(){
+  getDataCardMit(bine) {
+    console.log('getDataCardMit --> ');
+    const binInferior = 'binInferior';
+    const binSuperior = 'binSuperior';
+    const selectCard = 'selectCard';
+    const desTipoTarjeta = 'desTipoTarjeta';
+    let contador = 0;
+    this.applicationService.getCatalogById('tipo-cuenta-bank', 'IPRE')
+      .subscribe((results) => {
+        results.forEach((bank) => {
+          if (bine >= Number(bank[binInferior]) && bine <= Number(bank[binSuperior])) {
+            let option = '';
+            switch (bank[desTipoTarjeta]) {
+              case 'DEBITO':
+                console.log('debito');
+                option = '1';
+                break;
+              case 'CREDITO':
+                console.log('credito');
+                option = '2';
+                break;
+              case 'CLABE':
+                console.log('clabe');
+                option = '3';
+                break;
+            }
+            this.form.controls[selectCard].setValue(option);
+            // tslint:disable-next-line:no-shadowed-variable
+            const element = document.getElementById(selectCard);
+            element.setAttribute('value', option);
+            contador++;
+          }
+        });
+        if (contador === 0) {
+          this.clearTxtBank();
+          this.clearTxtClabe();
+          this.clearSelectCard();
+          this.fieldObj.message = this.messageBine;
+          this.fieldObj.valid = false;
+        }
+      });
+  }
+
+
+  clearTxtBank() {
     const txtBank = 'txtBank';
     this.form.controls[txtBank].setValue('');
     const element = document.getElementById('txtBank');
     element.setAttribute('value', '');
   }
 
-  clearTxtClabe(){
+  clearTxtClabe() {
     const txtClabe = 'txtClabe';
     this.form.controls[txtClabe].setValue('');
     const element = document.getElementById(txtClabe);
     element.setAttribute('value', '');
   }
 
-  clearTxtClabeConfir(){
+  clearTxtClabeConfir() {
     const txtClabeConfir = 'txtClabeConfir';
     this.form.controls[txtClabeConfir].setValue('');
     const element = document.getElementById(txtClabeConfir);
     element.setAttribute('value', '');
   }
 
-  clearSelectCard(){
+  clearSelectCard() {
     const selectCard = 'selectCard';
     this.form.controls[selectCard].setValue('');
     const element = document.getElementById(selectCard);
@@ -1447,13 +1492,13 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   validateIntegerDecimals(value) {
-    if ( value ) {
+    if (value) {
       let valid = true;
       if (value.indexOf('.') !== -1) {
         const array = value.split('.', 2);
-        if ( array[0].toString().length > 10 ) {
+        if (array[0].toString().length > 10) {
           valid = false;
-        } else if ( array[1].toString().length > 2 ) {
+        } else if (array[1].toString().length > 2) {
           valid = false;
         }
         return valid;
@@ -1466,7 +1511,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   onClickRadioButton(value) {
     console.log('Entro a onClickRadioButton: ');
-    if ( this.fieldObj.name === 'beneficiaryType' ) {
+    if (this.fieldObj.name === 'beneficiaryType') {
       this.executeAction.emit(value);
     }
   }
