@@ -101,11 +101,25 @@ export class ApplicationService {
   formGroup: FormGroup;
   searchModalFrom: string;
   applicationObj;
-
   contador = 0;
+  lastStepCompleted: Subject<boolean> = new Subject<boolean>();
+  url_services = '';
 
   constructor(private httpClient: HttpClient,
               private modalService: ModalService) {
+  }
+
+  changeLastStepCompleted(newValue) {
+    console.log('changeLastStepCompleted: ', newValue);
+    this.lastStepCompleted.next(newValue);
+  }
+
+  setUrlServices(url) {
+    this.url_services = url;
+  }
+
+  getUrlServices() {
+    return this.url_services;
   }
 
   setGlobalHeader(newHeaders) {
@@ -1784,6 +1798,7 @@ export class ApplicationService {
   }
 
   getAgentItemUser() {
+    console.log('on getAgetnItemUser');
     // get headers user
     const userHeaders = this.getHeadersUser('userId');
     // console.log('userHeaders --< ' + userHeaders);
@@ -1867,6 +1882,45 @@ export class ApplicationService {
       msg: message
     };
   }
+
+  /*isApplicationComplete() {
+    this.applicationObj.sections.forEach((section, index) => {
+      section.contents.forEach((contentFromSection) => {
+        if (contentFromSection.fields) {
+
+        } else {
+          if (contentFromSection.process) {
+            contentFromSection.process.steps.forEach(step => {
+              if (step.requiredConditions) {
+                const requiredConditionsResult = this.evaluateConditions(step.requiredConditions, this.formGroup);
+                if (requiredConditionsResult) {
+                  const evaluateStepResult = this.validateFormByStep(step);
+                  if (evaluateStepResult.status === false) {
+                    isValid = false;
+                    step.isValid = false;
+                    step.message = evaluateStepResult.msg;
+                    message = message + step.id + ') ' + step.title + '-';
+                  } else {
+                    step.isValid = true;
+                  }
+                }
+              } else {
+                const evaluateStepResult = this.validateFormByStep(step);
+                if (evaluateStepResult.status === false) {
+                  isValid = false;
+                  step.isValid = false;
+                  step.message = evaluateStepResult.msg;
+                  message = message + step.id + ') ' + step.title + '-';
+                } else {
+                  step.isValid = true;
+                }
+              }
+            });
+          }
+        }
+      });
+    });
+  }*/
 
   // @ts-ignore
   getCatalog(id: string, source: string): Observable<[]> {
@@ -2023,7 +2077,7 @@ export class ApplicationService {
 
   saveApplication(appJson: ApplicationJson): Observable<ApplicationJson> {
     console.log('on saveApplication');
-    const URL = AppConstants.URL_SERVICE_DEV + '/saveUpdateApp';
+    const URL = this.url_services + '/saveUpdateApp';
     // const URL = AppConstants.URL_SERVICE_DEV + '/save';
 
     let metrolname = localStorage.getItem('metrolename');
@@ -2067,7 +2121,7 @@ export class ApplicationService {
 
   getPDF(appId: string) {
     console.log('on getPDFBroker');
-    const URL = AppConstants.URL_SERVICE_DEV + '/getPdf?appId=' + appId;
+    const URL = this.url_services + '/getPdf?appId=' + appId;
 
     let metrolname = localStorage.getItem('metrolename');
     let metuserid = localStorage.getItem('metroluid');
@@ -2093,7 +2147,7 @@ export class ApplicationService {
 
   getApplication(appId: string) {
     console.log('on getAppBroker');
-    const URL = AppConstants.URL_SERVICE_DEV + '/getApp?app_id=' + appId;
+    const URL = this.url_services + '/getApp?app_id=' + appId;
 
     let metrolname = localStorage.getItem('metrolename');
     let metuserid = localStorage.getItem('metroluid');
@@ -2147,7 +2201,7 @@ export class ApplicationService {
 
   getUserData() {
     console.log('on getUserData');
-    const URL = AppConstants.URL_SERVICE_DEV + '/getUserData';
+    const URL = this.url_services + '/getUserData';
 
     const headers = new HttpHeaders({
       'Accept': 'application/json',
@@ -2167,7 +2221,7 @@ export class ApplicationService {
   }
 
   getDPToken() {
-    return this.httpClient.get(AppConstants.URL_SERVICE_DEV + '/getdptoken').pipe(map((response) => {
+    return this.httpClient.get(this.url_services + '/getdptoken').pipe(map((response) => {
       console.log('RESPONSE FROM GET DP TOKEN CALL :', response);
       return response;
     }));

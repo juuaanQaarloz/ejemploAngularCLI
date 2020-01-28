@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpParams, HttpClient } from '@angular/common/http';
 import { AppConstants } from 'src/app/app.constants';
+import {ApplicationService} from '../../core/services';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,8 @@ import { AppConstants } from 'src/app/app.constants';
 export class SearchService {
 
   constructor(
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private appService: ApplicationService
   ) { }
 
   downloadPDF(appId) {
@@ -32,7 +34,9 @@ export class SearchService {
     let params = new HttpParams();
     params = params.append('appId', appId);
 
-    this.httpClient.get(AppConstants.URL_SERVICE +"/App/getPdf", {headers, params}).subscribe( (resp:any) => {
+    const URL_SERVICES = this.appService.getUrlServices();
+
+    this.httpClient.get( URL_SERVICES +"/App/getPdf", {headers, params}).subscribe( (resp:any) => {
       if(resp.result!=null){
         window.open(resp.result.pdfDoc, "_blank");
       }

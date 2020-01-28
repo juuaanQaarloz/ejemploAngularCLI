@@ -3,7 +3,6 @@ import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import {ApplicationService} from './application.service';
 import {Beneficiary, Step} from '../../models';
 import set from 'lodash/set';
-import get from 'lodash/get';
 import {calculateAge, transformDate} from '../utilities';
 import {BeneciciaryJson} from '../../models/applicationJson/beneciciaryJson';
 import {PersonJson} from '../../models/applicationJson/personJson';
@@ -220,7 +219,7 @@ export class JsonApplicationService {
       let newAgent: AgentJson = new AgentJson();
       let newAgentCd: AgentCd = new AgentCd();
 
-      newAgentCd.agnt_cd = item.key;
+      newAgentCd.agnt_py_cd = item.key;
       newAgentCd.agnt_pmtr_cd = item.promotor;
       newAgentCd.agnt_party_nm = item.name;
 

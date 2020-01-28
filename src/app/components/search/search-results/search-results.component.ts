@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { AppConstants } from 'src/app/app.constants';
+import {ApplicationService} from '../../../core/services';
 
 @Component({
   selector: 'app-search-results',
@@ -15,15 +16,18 @@ export class SearchResultsComponent implements OnInit {
   records: any = [];
   p: any;
   numItems: number = 10;
+  url_services;
 
   constructor(
     private httpClient: HttpClient,
-    private router: Router
+    private router: Router,
+    private appService: ApplicationService
   ) { }
 
   ngOnInit() {
     //console.log("localStorage");
     //console.log(localStorage.getItem("metrolename"));
+    this.url_services = this.appService.getUrlServices();
     this.metrolename = localStorage.getItem("metrolename");
     this.metroluid = localStorage.getItem("metroluid");
 
@@ -63,7 +67,7 @@ export class SearchResultsComponent implements OnInit {
     let params = new HttpParams();
     params = params.append('app_id', app_id);
 
-    this.httpClient.get( AppConstants.URL_SERVICE_DEV  + '/getApp', {headers, params}).subscribe((resp:any) => {
+    this.httpClient.get( this.url_services  + '/getApp', {headers, params}).subscribe((resp:any) => {
       console.log("detalle");
       console.log(resp.data);
       localStorage.setItem('detail', JSON.stringify(resp.data));

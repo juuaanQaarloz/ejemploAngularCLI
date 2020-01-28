@@ -358,7 +358,8 @@ export const MockStepsProcessContentSection2: Step[] = [
     isValid: true,
     message: ''
   },
-  {
+  // uncommend when file net is ready to use
+  /*{
     id: '22',
     idProcess: 'process-1',
     idHtml: 'app-step-form-22',
@@ -371,5 +372,5 @@ export const MockStepsProcessContentSection2: Step[] = [
     show: true,
     isValid: true,
     message: ''
-  }
+  }*/
 ];

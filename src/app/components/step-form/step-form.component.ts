@@ -1,12 +1,10 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Step} from '../../models/step';
 import {FormGroup} from '@angular/forms';
 import {ApplicationService} from '../../core/services';
 import {CLOSE_MODALS_OPT, MockOperations} from '../../core/mock/mock-operations';
-import {FORM_MSG_ERROR} from '../../core/mock/errors/mock-erros-datos-plan';
 import {JsonApplicationService} from '../../core/services/json-application.service';
 import {ContentFormComponent} from '../content-form/content-form.component';
-import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import {ModalService} from '../custom-modal';
 
 @Component({
@@ -25,8 +23,6 @@ export class StepFormComponent implements OnInit {
   renderCondition;
   completed = false;
   stepsOperations = MockOperations;
-  // isValidStep = true;
-  // stepMsgError = FORM_MSG_ERROR;
   documentsValid = [];
   showLoading = false;
 
@@ -68,9 +64,7 @@ export class StepFormComponent implements OnInit {
   }
 
   toggleAccordion() {
-    // console.log('before: ', this.accordionExpanded);
     this.accordionExpanded = this.accordionExpanded ? false : true;
-    // console.log('after: ', this.accordionExpanded);
   }
 
   completeStep() {
@@ -105,6 +99,12 @@ export class StepFormComponent implements OnInit {
             this.closeModal(this.modalLoadingId);
             this.applicationService.submitFunction('nextStep', this.stepObj);
             this.completed = true;
+            this.stepObj.isCompleted = true;
+            // emits a true when the section 21 is valid and save
+            /*if (this.stepObj.id === '21') {
+              console.log('application Object: ', this.applicationService.getApplicationObject());
+              this.applicationService.changeLastStepCompleted(true);
+            }*/
           }, error => {
             this.showLoading = false;
             this.closeModal(this.modalLoadingId);
@@ -141,6 +141,10 @@ export class StepFormComponent implements OnInit {
 
   openDialog(modalID: string) {
     this.modalService.open(modalID);
+  }
+
+  checkApplicationState() {
+
   }
 }
 
