@@ -65,11 +65,6 @@ export class NewPaymentComponent implements OnInit {
     this.fields = this.getFields();
     console.log('payment-fields', this.fields);
 
-    this.formGroup.controls.txtBank.valueChanges.subscribe((value) => {
-      // this.formatwoType = value;
-      this.fields = this.getFields();
-    });
-
     if (this.config.data !== null) {
       this.operationType = 'edit';
       this.setPaymentValues();
@@ -98,10 +93,18 @@ export class NewPaymentComponent implements OnInit {
 
   updateFormatwo() {
     const formStatus = this.getFormStatus();
+    console.log('formStatus: ', formStatus);
+
     if (formStatus === 'VALID') {
       const updatedBeneficiary = this.mapPaymentData();
-      // this.applicationService.updateItem(updatedBeneficiary, 'beneficiary');
-      this.closeDialog();
+      const response = this.applicationService.updateItem(updatedBeneficiary, 'payment');
+      console.log('response: ', response);
+      if (response.status) {
+        this.closeDialog();
+      } else {
+        this.modalMessage = response.message;
+        this.modalService.open(this.modalID);
+      }
     } else {
       this.showFormError = true;
     }
@@ -131,21 +134,20 @@ export class NewPaymentComponent implements OnInit {
       switch (field.name) {
         case 'txtClabe':
           value = this.config.data.item.txtClabe;
+          this.formGroup.controls[field.name].setValue(value);
           break;
         case 'txtClabeConfir':
           //Ignore
           break;
         case 'txtBank':
           value = this.config.data.item.txtBank;
+          this.formGroup.controls[field.name].setValue(value);
           break;
         case 'selectCard':
           value = this.config.data.item.selectCard;
-          break;
-        default:
-          console.error('Something is wrong, please try late');
+          this.formGroup.controls[field.name].setValue(value);
           break;
       }
-      this.formGroup.controls[field.name].setValue(value);
     });
   }
 
@@ -176,6 +178,8 @@ export class NewPaymentComponent implements OnInit {
     const paymentBase = {
       paymentId: this.config.data.item.paymentId,
       txtBank: this.formGroup.controls.txtBank.value,
+      txtClabe: this.formGroup.controls.txtClabe.value,
+      selectCard: this.formGroup.controls.selectCard.value,
     };
     return paymentBase;
   }
