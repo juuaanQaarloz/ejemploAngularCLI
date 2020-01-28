@@ -179,21 +179,21 @@ export class JsonApplicationService {
       if (items.length > 0) {
         items.forEach((disease, i) => {
           console.log('disease item: ', disease);
-          set(this.appJson, `insurer.diseases[${i}]`, this.mapItem('disease', disease, i));
+          set(this.appJson, `insured.diseases[${i}]`, this.mapItem('disease', disease, i));
         });
       }
 
       if (items2.length > 0) {
         items2.forEach((disease, i) => {
           console.log('disease item: ', disease);
-          set(this.appJson, `insurer.diseases[${i + items.length}]`, this.mapItem('disease', disease, i));
+          set(this.appJson, `insured.diseases[${i + items.length}]`, this.mapItem('disease', disease, i));
         });
       }
 
       if (items3.length > 0) {
         items3.forEach((disease, i) => {
           console.log('disease item: ', disease);
-          set(this.appJson, `insurer.diseases[${i + items.length + items2.length}]`, this.mapItem('disease', disease, i));
+          set(this.appJson, `insured.diseases[${i + items.length + items2.length}]`, this.mapItem('disease', disease, i));
         });
       }
 
@@ -275,7 +275,7 @@ export class JsonApplicationService {
       newDisease.illnss_dt = transformDate(item.diagnosticDate, 'YYYY-MM-DD').toString();
       newDisease.illnss_drtn = item.duration;
       newDisease.illnss_hlth_stt = item.actualCondition;
-      newDisease.party_app_id = this.appJson.insurer.party_app_id;
+      newDisease.party_app_id = this.appJson.insured.party_app_id;
       newDisease.app_id = this.appJson.app_id;
       newDisease.qstn_id = item.fromTable;
 
@@ -283,7 +283,12 @@ export class JsonApplicationService {
     } else if (itemType === 'country') {
       let newCountry: ForeignCountryTaxJson = new ForeignCountryTaxJson();
 
-
+      newCountry.app_id = this.appJson.app_id;
+      if(this.appJson.foreignCountryTaxes != null &&
+            index < this.appJson.foreignCountryTaxes.length &&
+              this.appJson.foreignCountryTaxes[index] != null){
+        newCountry.cntry_id = this.appJson.foreignCountryTaxes[index].cntry_id;
+      }
       newCountry.cntry_cd = item.countryId;
       newCountry.cntry_nm = item.statCountry;
       newCountry.frgn_cntry_tin = item.taxCountryId;
