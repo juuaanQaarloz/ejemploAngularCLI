@@ -83,6 +83,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+
     if (this.fieldObj.type === 'radio' || this.fieldObj.type === 'select'
       || this.fieldObj.type === 'checkbox-n' || this.fieldObj.type === 'select-multiple'
       || this.fieldObj.type === 'autocomplete' || this.fieldObj.type === 'select-1') {
@@ -416,9 +417,11 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
                 this.getDataPaymentMit(bine);
                 this.getDataCardMit(bine);
               } else {
-                //this.flagMitToken = false;
                 this.fieldObj.message = this.messageToken;
                 this.fieldObj.valid = false;
+                this.clearTxtClabe();
+                this.clearTxtBank();
+                this.clearSelectCard();
                 console.log('El Token no es valido.');
               }
             });
