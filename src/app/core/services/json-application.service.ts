@@ -219,7 +219,7 @@ export class JsonApplicationService {
       let newAgent: AgentJson = new AgentJson();
       let newAgentCd: AgentCd = new AgentCd();
 
-      newAgentCd.agnt_cd = item.key;
+      newAgentCd.agnt_py_cd = item.key;
       newAgentCd.agnt_pmtr_cd = item.promotor;
       newAgentCd.agnt_party_nm = item.name;
 

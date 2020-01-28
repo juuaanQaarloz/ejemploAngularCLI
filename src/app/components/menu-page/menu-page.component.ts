@@ -1,9 +1,9 @@
-import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {ApplicationService} from '../../core/services';
-import {timer, Observable, Subject, of, from, Subscription} from 'rxjs';
-import {switchMap, takeUntil, catchError, map} from 'rxjs/operators';
+import {timer, Subscription} from 'rxjs';
+import {switchMap} from 'rxjs/operators';
 import {WINDOW} from '../../core/providers/windowProviders';
 
 @Component({
