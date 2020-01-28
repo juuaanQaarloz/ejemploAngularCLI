@@ -64,7 +64,6 @@ export class MenuPageComponent implements OnInit {
         localStorage.setItem('metrolename', this.metrolename);
         localStorage.setItem('metroluid', params['metroluid']);
 
-        this.setGlobalHeaders();
       } else {
 
         this.appService.getUserData().subscribe((data: any) => {
@@ -85,7 +84,7 @@ export class MenuPageComponent implements OnInit {
 
           console.log('resp: ', data.data);
           localStorage.setItem('metrolename', this.metrolename);
-          localStorage.setItem('metroluid', data.data.metroluid);
+          localStorage.setItem('metroluid', data.data.metUserId);
         }, error => {
           console.log('on Error from getUserData: ', error);
         });
@@ -134,22 +133,6 @@ export class MenuPageComponent implements OnInit {
     }
 
     console.log('url_services: ', this.appService.getUrlServices());
-  }
-
-  setGlobalHeaders() {
-    const headers = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-      'metrolename': localStorage.getItem('metrolename'),
-      'metuserid': localStorage.getItem('metroluid')
-    };
-
-    console.log('headers: ', headers);
-
-    this.appService.setGlobalHeader(headers);
   }
 
   /*ngOnDestroy(): void {
