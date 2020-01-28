@@ -16,7 +16,7 @@ export class PersonJson {
   nationalities: NationalityJson[] = [new NationalityJson(), new NationalityJson(), new NationalityJson(), new NationalityJson()];
   contactPerson: ContactPersonJson[] = [];
   dataContact: DataContactJson[] = [];
-  per_brth_cntry_nm: string = null;
+  per_brth_cntry_nm: string = 'MEXICO';
   per_brth_cntry_cd: string = null;
   per_brth_stte_nm: string = null;
   per_brth_plc_nm: string = null;
