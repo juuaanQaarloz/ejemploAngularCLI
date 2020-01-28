@@ -117,7 +117,7 @@ export class ApplicationComponent implements OnInit, OnDestroy {
     this.viewLoading = true;
     this.openDialog(this.modalLoadPDFId);
     console.log( 'valor de app_id' , this.jsonAppService.getAppJson().app_id);
-    if ( this.jsonAppService.getAppJson().app_id === null ) {
+    if (this.jsonAppService.getAppJson().app_id === null) {
       this.viewLoading = false;
       this.closeModal(this.modalLoadPDFId);
       this.openDialog(this.modalErrorId);

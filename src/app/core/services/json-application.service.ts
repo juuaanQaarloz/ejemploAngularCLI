@@ -225,7 +225,7 @@ export class JsonApplicationService {
       newAgentCd.agnt_party_nm = item.name;
 
       newAgent.app_id = this.appJson.app_id;
-      newAgent.agnt_cd = newAgentCd;
+      newAgent.agnt_id = newAgentCd;
       newAgent.agnt_part_per = Number(item.participation);
       newAgent.part_ord = index;
 
