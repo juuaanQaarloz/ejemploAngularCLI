@@ -85,7 +85,7 @@ export class MenuPageComponent implements OnInit {
 
           console.log('resp: ', data.data);
           localStorage.setItem('metrolename', this.metrolename ? this.metrolename : 'DES_Admin');
-          localStorage.setItem('metroluid', this.metrolename ? this.metrolename : 'N3333876');
+          localStorage.setItem('metroluid', data.data.metroluid ? data.data.metroluid : 'N3333876');
         }, error => {
           console.log('on Error from getUserData: ', error);
         });

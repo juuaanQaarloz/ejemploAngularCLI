@@ -1798,6 +1798,7 @@ export class ApplicationService {
   }
 
   getAgentItemUser() {
+    console.log('on getAgetnItemUser');
     // get headers user
     const userHeaders = this.getHeadersUser('userId');
     // console.log('userHeaders --< ' + userHeaders);
