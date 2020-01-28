@@ -385,6 +385,7 @@ export const DatosGeneralesSolicitante: Field[] = [
     requiredConditions: '(contractorType=false,|,typePerson=M)',
     entity: 'insured.per_brth_cntry_nm',
     entityField: 'insured.per_brth_cntry_cd',
+    value: '151'
   },
   {
     id: 'field-68',

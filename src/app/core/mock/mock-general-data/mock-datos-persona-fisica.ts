@@ -490,7 +490,8 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=P)',
     entity: 'insurer.nationalities[0].natlty_nm',
-    entityField: 'insurer.nationalities[0].natlty_cd'
+    entityField: 'insurer.nationalities[0].natlty_cd',
+    value: '151'
   },
   {
     id: 'field-19',
@@ -610,6 +611,6 @@ export const authorization: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: 'app_own_rcv_email_ind',
-    value: ''
+    value: false
   }
 ];

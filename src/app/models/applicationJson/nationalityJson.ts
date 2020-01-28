@@ -3,7 +3,7 @@ export class NationalityJson {
   natlty_cd: string = '';
   party_app_id: number = 0;
   app_id: number = 0;
-  natlty_nm: string = null;
+  natlty_nm: string = 'MEXICO';
   rec_crt_ts: string = null;
   rec_crt_usr_id: string = null;
   rec_updt_ts: string = null;

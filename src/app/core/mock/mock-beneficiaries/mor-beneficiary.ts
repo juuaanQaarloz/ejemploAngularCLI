@@ -420,6 +420,6 @@ export const BeneficiaryFieldsM: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: ''
+    value: '151'
   }
 ];

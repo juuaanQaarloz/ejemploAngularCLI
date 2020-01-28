@@ -28,7 +28,7 @@ export const sportsQuestions1: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: 'applicationExtension.sprt_flg_ind',
-    value: ''
+    value: false
   },
   {
     id: 'field-144',
@@ -57,7 +57,7 @@ export const sportsQuestions1: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: 'applicationExtension.sprt_mtrc_ind',
-    value: ''
+    value: false
   }
 ];
 
@@ -155,7 +155,7 @@ export const sportQuestions2: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: 'applicationExtension.sprt_xtrm_ind',
-    value: ''
+    value: false
   }
 ];
 

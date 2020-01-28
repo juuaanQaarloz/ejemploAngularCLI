@@ -2092,8 +2092,8 @@ export class ApplicationService {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-      'metrolename': metrolname ? metrolname : 'DES_Admin',
-      'metuserid': metuserid ? metuserid : 'N3333876'
+      'metrolename': metrolname,
+      'metuserid': metuserid
       /*'x-ibm-client-id': '7a0c9407-970c-47fd-ae34-edee734de4e9',
       'authorization': 'Bearer ' + TOKEN*/
     };
@@ -2132,8 +2132,8 @@ export class ApplicationService {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-      'metrolename': metrolname ? metrolname : 'DES_Admin',
-      'metuserid': metuserid ? metuserid : 'N3333876'
+      'metrolename': metrolname,
+      'metuserid': metuserid
     };
 
     return this.httpClient.get(URL, {headers})
@@ -2158,8 +2158,8 @@ export class ApplicationService {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-      'metrolename': metrolname ? metrolname : 'DES_Admin',
-      'metuserid': metuserid ? metuserid : 'N3333876'
+      'metrolename': metrolname,
+      'metuserid': metuserid
     };
 
     return this.httpClient.get(URL, {headers})

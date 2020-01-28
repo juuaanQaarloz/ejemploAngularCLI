@@ -235,6 +235,7 @@ export const DatosDomicilio: Field[] = [
     requiredConditions: '(typePerson=P)',
     entity: 'insurer.Address[0].cntry_spe',
     entityField: 'insurer.Address[0].cntry_cod',
+    value: '151'
   },
   {
     id: 'field-30',

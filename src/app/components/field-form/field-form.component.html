@@ -145,6 +145,7 @@
                [id]="fieldObj.idHtml + radioOption.id"
                [name]="fieldObj.name"
                [value]="radioOption.value"
+               [checked]="radioOption.value === fieldObj.value"
                (keydown)="onKeyDownRadio($event, fieldObj.idHtml + (radioOption.id + 1))"
                (click)="onClickRadioButton(radioOption.value)">
 

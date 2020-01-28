@@ -72,8 +72,8 @@ export class SearchCriteriaComponent implements OnInit {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-      'metrolename': metrolname ? metrolname : 'DES_Admin',
-      'metuserid': metuserid ? metuserid : 'N3333876'
+      'metrolename': metrolname,
+      'metuserid': metuserid
     };
 
     let params = new HttpParams();

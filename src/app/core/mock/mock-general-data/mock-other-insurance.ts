@@ -28,7 +28,7 @@ export const OtrosSeguros: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: 'app_own_oth_lif_ins_ind',
-    value: ''
+    value: false
   },
   {
     id: 'field-25',
