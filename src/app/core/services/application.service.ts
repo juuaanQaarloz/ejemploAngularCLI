@@ -2081,17 +2081,19 @@ export class ApplicationService {
       'authorization': 'Bearer ' + TOKEN*/
     };
 
-    console.log('appJson to passed to de save service: ', appJson);
+
     // console.log('appJson to passed to de save service2: ', JSON.stringify(appJson));
     // set(appJson, 'insurer.party_typ_cd', this.getFormGroup().controls.typePerson.value);
     appJson.insurer.party_typ_cd = this.getFormGroup().controls.typePerson.value;
     set(appJson, 'type_operation_app', 'save');
 
     // verificar si el solicitante es el mismo que el contratante y replicar la info
-    if (this.getFormGroup().controls.contractorType.value) {
+    if (this.getFormGroup().controls.contractorType.value === true && this.getFormGroup().controls.typePerson.value === 'P') {
+      console.log('HERE');
       set(appJson, 'insured', appJson.insurer);
     }
 
+    console.log('appJson to passed to de save service: ', appJson);
 
     return this.httpClient.post(URL, JSON.stringify(appJson), {headers})
       .pipe(
