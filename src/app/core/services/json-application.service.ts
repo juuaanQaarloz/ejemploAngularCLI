@@ -17,6 +17,7 @@ import {ForeignCountryTaxJson} from '../../models/applicationJson/foreignCountry
 import {QuesList} from '../../models/applicationJson/questionaryJson/quesList';
 import {Cvr} from '../../models/applicationJson/coverageJson/cvr';
 import {Subject} from 'rxjs';
+import {forEachComment} from "tslint";
 
 @Injectable({
   providedIn: 'root'
@@ -158,9 +159,9 @@ export class JsonApplicationService {
       }
     } else if (tableType === 'table-payment') {
       items = this.appService.payments.getValue();
-      if (items.length > 0) {
+      if (items.length >= 0) {
         items.forEach((payment, i) => {
-          set(this.appJson, `accounts[${i + 1}]`, this.mapItem('payment', payment, i));
+          set(this.appJson, `accounts[${i}]`, this.mapItem('payment', payment, i));
         });
       }
     } else if (tableType === 'table-sports') {
@@ -248,14 +249,24 @@ export class JsonApplicationService {
 
       return newBeneficiary;
     } else if (itemType === 'payment') {
-      let newAccount: AccountJson = new AccountJson();
-      let newBanckAccount: BankAccount = new BankAccount();
+      console.log('Iterator', index);
+      let newAccount: AccountJson = this.appJson.accounts[index];
+      switch (index) {
+        case 0:
+          let newBanckAccount: BankAccount = new BankAccount();
 
-      newBanckAccount.pymnt_prrty = item.paymentId;
-      newBanckAccount.bnk_nm = item.txtBank;
-      newBanckAccount.std_bnk_cd = item.txtClabe;
+          newBanckAccount.pymnt_prrty = item.paymentId;
+          newBanckAccount.bnk_nm = item.txtBank;
+          newBanckAccount.std_bnk_cd = item.txtClabe;
 
-      newAccount.bankAccount = newBanckAccount;
+          newAccount.bankAccount = newBanckAccount;
+          break;
+        default:
+          this.paymentIteratorZero(this.appJson.accounts[0], index);
+          console.log('Default:', index);
+          //newAccount.bankAccount = newBanckAccount;
+          break;
+      }
       return newAccount;
 
     } else if (itemType === 'sport') {
@@ -374,5 +385,10 @@ export class JsonApplicationService {
     person.Address = [];
 
     return person;
+  }
+
+  paymentIteratorZero(accountJson: AccountJson, index: number){
+    console.log('Method paymentIteratorZero ->');
+    console.log(accountJson);
   }
 }
