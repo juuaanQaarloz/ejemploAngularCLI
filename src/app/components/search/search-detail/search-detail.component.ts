@@ -1,15 +1,14 @@
-import { AppConstants } from 'src/app/app.constants';
-import { pdfOperation } from './../../../core/mock/mock-operations';
-import { FormGroup } from '@angular/forms';
-import { Template } from './../../../models/template';
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ApplicationService } from 'src/app/core/services';
-import { DialogService } from '../../dialog/dialog.service';
-import { ModalService } from '../../custom-modal';
-import { MockTemplate } from 'src/app/core/mock/mock-template';
+import {pdfOperation} from './../../../core/mock/mock-operations';
+import {FormGroup} from '@angular/forms';
+import {Template} from './../../../models/template';
+import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
+import {ApplicationService} from 'src/app/core/services';
+import {DialogService} from '../../dialog/dialog.service';
+import {ModalService} from '../../custom-modal';
+import {MockTemplate} from 'src/app/core/mock/mock-template';
 import set from 'lodash/set';
-import { SearchService } from '../search.service';
-import { JsonApplicationService } from 'src/app/core/services/json-application.service';
+import {SearchService} from '../search.service';
+import {JsonApplicationService} from 'src/app/core/services/json-application.service';
 
 @Component({
   selector: 'app-search-detail',
@@ -18,20 +17,19 @@ import { JsonApplicationService } from 'src/app/core/services/json-application.s
 })
 export class SearchDetailComponent implements OnInit {
   appId: string;
-  detail:any;
+  detail: any;
   applicationObj: Template;
   payLoad = '';
   formGroup: FormGroup;
-  @ViewChild('content', { static: true }) content: ElementRef;
+  @ViewChild('content', {static: true}) content: ElementRef;
   pdfOperation = pdfOperation;
-  items = [];
-  errors:any;
+  errors: any;
 
   constructor(private appService: ApplicationService,
-    public dialog: DialogService,
-    private modalService: ModalService,
-    private searchService: SearchService,
-    private jsonApplicationService: JsonApplicationService) {
+              public dialog: DialogService,
+              private modalService: ModalService,
+              private searchService: SearchService,
+              private jsonApplicationService: JsonApplicationService) {
   }
 
   ngOnInit() {
@@ -50,14 +48,6 @@ export class SearchDetailComponent implements OnInit {
       // set(this.appJson, 'insurer.party_typ_cd', partyAppType === 'P' ? true : false);
       set(this.detail, 'insurer.party_typ_cd', partyAppType);
     }
-
-    // an example array of 150 items to be paged
-    this.items = Array(150).fill(0).map((x, i) => ({ id: (i + 1), name: `Item ${i + 1}` }));
-    /*this.appService.updateItemProperty(
-      'beneficiary',
-      '1',
-      'participationPercentage',
-      '40');*/
   }
 
   getFormValue() {
@@ -70,7 +60,7 @@ export class SearchDetailComponent implements OnInit {
   }
 
   downloadPDF() {
-    console.log("PDF");
+    console.log('PDF');
     console.log(this.appId);
     if (this.appId) {
       // this.searchService.downloadPDF(this.appId);

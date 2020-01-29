@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { AppConstants } from 'src/app/app.constants';
 import {ApplicationService} from '../../../core/services';
+import {JsonApplicationService} from '../../../core/services/json-application.service';
 
 @Component({
   selector: 'app-search-results',
@@ -21,7 +22,8 @@ export class SearchResultsComponent implements OnInit {
   constructor(
     private httpClient: HttpClient,
     private router: Router,
-    private appService: ApplicationService
+    private appService: ApplicationService,
+    private jsonAppService: JsonApplicationService
   ) { }
 
   ngOnInit() {
@@ -42,12 +44,13 @@ export class SearchResultsComponent implements OnInit {
       { field: 'recUpdtTs', label: 'Fecha de modificación', align: 'text-center', type: 'date'}
     ];
 
-    if(JSON.parse(localStorage.getItem('search'))!==null){
+    if (JSON.parse(localStorage.getItem('search')) !== null ) {
       this.records = JSON.parse(localStorage.getItem('search'));
       console.log("records");
       console.log(this.records);
-    }else
-    this.records = [];
+    } else {
+      this.records = [];
+    }
   }
 
   detail(app_id: any) {
@@ -68,8 +71,12 @@ export class SearchResultsComponent implements OnInit {
     params = params.append('app_id', app_id);
 
     this.httpClient.get( this.url_services  + '/getApp', {headers, params}).subscribe((resp:any) => {
-      console.log("detalle");
-      console.log(resp.data);
+      console.log('detalle: ', resp.data);
+
+      // set the result json if the search globally
+      this.jsonAppService.setAppJson(resp.data);
+
+      console.log('detail in json service: ', this.jsonAppService.getAppJson());
       localStorage.setItem('detail', JSON.stringify(resp.data));
       this.router.navigate(['search','detail', app_id]);
     });

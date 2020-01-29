@@ -11,6 +11,7 @@ const routes: Routes = [
     { path: 'application2', component: ApplicationComponent },
     { path: 'search', component: SearchCriteriaComponent },
     { path: 'search/results', component: SearchResultsComponent },
+    // { path: 'search/detail/:id', component: ApplicationComponent },
     { path: 'search/detail/:id', component: SearchDetailComponent },
     { path: 'menuPage', component: MenuPageComponent },
     { path: '', redirectTo: '/menuPage', pathMatch: 'full' },
