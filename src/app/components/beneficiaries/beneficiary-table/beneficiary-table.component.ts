@@ -37,7 +37,8 @@ const FIELDS: Field[] = [
     enableConditions: '',
     requiredConditions: '',
     entity: '',
-    entityField: 'insuredCondition.aplicationPlan.coverage.beneciciary.person.co_cmrc_add_inf',
+    //entityField: 'insuredCondition.aplicationPlan.coverage.beneciciary.person.co_cmrc_add_inf',
+    entityField: 'app_add_commts',
     value: '',
     disable: false
   }

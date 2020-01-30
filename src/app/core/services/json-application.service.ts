@@ -252,7 +252,7 @@ export class JsonApplicationService {
       newBeneficiary.bene_fid_cntrc_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : null;
       newBeneficiary.bene_fid_lttr_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : null;
       newBeneficiary.bene_ref_inst_lttr = item.beneficiaryType === 'fidPerson' ? item.instructionLetterNumber : null;
-      newBeneficiary.bene_addrss_sm_inss_ind = item.addressSameAsTitular ? item.addressSameAsTitular : null;
+      newBeneficiary.bene_addrss_sm_inss_ind = item.addressSameAsTitular !== undefined && item.addressSameAsTitular !== null && item.addressSameAsTitular !== '' ? item.addressSameAsTitular : null;
 
       return newBeneficiary;
     } else if (itemType === 'payment') {

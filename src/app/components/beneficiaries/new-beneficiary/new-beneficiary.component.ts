@@ -353,7 +353,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   }
 
   mapNewBeneficiaryData() {
-    const newBeneficiaryBase = {
+    let newBeneficiaryBase = {
       beneficiaryId: (this.applicationService.getLastItemId('beneficiary') + 1).toString(),
       beneficiaryType: this.formGroup.controls.beneficiaryType.value
     };

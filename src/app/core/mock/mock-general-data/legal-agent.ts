@@ -203,7 +203,7 @@ export const DatosRepresentanteLegal2: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: 'shareHolders[0].person.per_job_add_ind'
+    entityField: 'app_guard_box_ind'
     // value: true
   }
 ];
