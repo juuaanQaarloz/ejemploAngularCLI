@@ -287,35 +287,33 @@ export class ApplicationService {
           if (contentFromSection.process) {
             contentFromSection.process.steps.forEach(step => {
               step.contents.forEach((contentFromStep) => {
-                if (contentFromStep.contentType === 'looseFields') {
+                if (contentFromStep.contentType === 'looseFields' || contentFromStep.fields) {
                   contentFromStep.fields.forEach((field) => {
-                    if (field !== undefined) {
-                      if (field.entityField) {
-                        // get value from json
-                        let value = get(detail, field.entityField);
-                        /*console.log('fiel.label: ', field.label);
-                        console.log('fiel.name: ', field.name);
-                        console.log('entityField: ', field.entityField);*/
+                    if (field.entityField) {
+                      // get value from json
+                      let value = get(detail, field.entityField);
+                      /*console.log('fiel.label: ', field.label);
+                      console.log('fiel.name: ', field.name);
+                      console.log('entityField: ', field.entityField);*/
 
-                        if (value !== null && value !== undefined) {
-                          if (estatus !== null && estatus >= 30) {
-                            field.disable = true;
-                          }
-                          // setting value from JSON to FORM
-                          if (value === 'true' || value === 'false') {
-                            value = Boolean(JSON.parse(value));
-                          } else if (field.type === 'select') {
-                            // console.log('is select');
-                            value = value.toString();
-                          }
-                          // console.log('value: ', value);
-                          field.value = value;
+                      if (value !== null && value !== undefined) {
+                        if (estatus !== null && estatus >= 30) {
+                          field.disable = true;
                         }
+                        // setting value from JSON to FORM
+                        if (value === 'true' || value === 'false') {
+                          value = Boolean(JSON.parse(value));
+                        } else if (field.type === 'select') {
+                          // console.log('is select');
+                          value = value.toString();
+                        }
+                        // console.log('value: ', value);
+                        field.value = value;
                       }
-                      group[field.name] = new FormControl(
-                        field.value || '',
-                        this.getValidationFunctions(field));
                     }
+                    group[field.name] = new FormControl(
+                      field.value || '',
+                      this.getValidationFunctions(field));
                   });
                 } else if (contentFromStep.contentType.includes('table')) {
                   // TODO: Set tables from JSON
@@ -325,35 +323,33 @@ export class ApplicationService {
                 if (contentFromStep.contentChildren) {
                   // console.log('onContentFromStep.contentChildren...');
                   contentFromStep.contentChildren.forEach(contentChild => {
-                    if (contentChild.contentType === 'looseFields') {
+                    if (contentChild.contentType === 'looseFields' || contentChild.fields) {
                       contentChild.fields.forEach((field) => {
-                        if (field !== undefined) {
-                          if (field.entityField) {
-                            // get value from json
-                            let value = get(detail, field.entityField);
-                            /*console.log('fiel.label: ', field.label);
-                            console.log('fiel.name: ', field.name);
-                            console.log('entityField: ', field.entityField);*/
+                        if (field.entityField) {
+                          // get value from json
+                          let value = get(detail, field.entityField);
+                          /*console.log('fiel.label: ', field.label);
+                          console.log('fiel.name: ', field.name);
+                          console.log('entityField: ', field.entityField);*/
 
-                            if (value !== null && value !== undefined) {
-                              if (estatus !== null && estatus >= 30) {
-                                field.disable = true;
-                              }
-                              if (value === 'true' || value === 'false') {
-                                value = Boolean(JSON.parse(value));
-                              } else if (field.type === 'select') {
-                                // console.log('is select');
-                                value = value.toString();
-                              }
-                              // console.log('value: ', value);
-                              // setting value from JSON to FORM
-                              field.value = value;
+                          if (value !== null && value !== undefined) {
+                            if (estatus !== null && estatus >= 30) {
+                              field.disable = true;
                             }
+                            if (value === 'true' || value === 'false') {
+                              value = Boolean(JSON.parse(value));
+                            } else if (field.type === 'select') {
+                              // console.log('is select');
+                              value = value.toString();
+                            }
+                            // console.log('value: ', value);
+                            // setting value from JSON to FORM
+                            field.value = value;
                           }
-                          group[field.name] = new FormControl(
-                            field.value || '',
-                            this.getValidationFunctions(field));
                         }
+                        group[field.name] = new FormControl(
+                          field.value || '',
+                          this.getValidationFunctions(field));
                       });
                     } else if (contentChild.contentType.includes('table')) {
                       // TODO: Set tables from JSON
@@ -2282,7 +2278,12 @@ export class ApplicationService {
         });
       }
     } else if (tableType === 'table-payment') {
-      // TODO
+      items = json.accounts;
+      if (items.length > 0) {
+        items.forEach((item) => {
+          this.addItem(this.mapItemJson('payment', item), 'payment');
+        });
+      }
     } else if (tableType === 'table-sports') {
       items = json.QuesList;
       if (items.length > 0) {
@@ -2339,8 +2340,8 @@ export class ApplicationService {
         relationshipCd: item.bene_rel_cd,
         espRelationship: '',
         birthDateOrConstitution: item.bene_tp_cd === 'P' ?
-          item.person.per_brth_dt.replace(/-/g , '/') :
-          item.person.co_estab_dt.replace(/-/g , '/'),
+          item.person.per_brth_dt.replace(/-/g, '/') :
+          item.person.co_estab_dt.replace(/-/g, '/'),
         addressSameAsTitular: item.bene_addrss_sm_inss_ind,
         address: {
           street: item.person.Address[0].strt_nm,
@@ -2371,7 +2372,20 @@ export class ApplicationService {
       };
       return newMappedAgent;
     } else if (itemType === 'payment') {
-      // TODO
+
+      console.log('item : ', item);
+
+      const newPayment = {
+        paymentId: item.bankAccount.pymnt_prrty,
+        txtBank: item.bankAccount.bnk_nm,
+        txtClabe: item.bankAccount.bnk_acct_tkn_num ? item.bankAccount.bnk_acct_tkn_num : item.bankAccount.std_bnk_cd,
+        selectCard: item.clct_card_typ_id,
+      };
+
+      console.log('newPayment: ', newPayment);
+      return newPayment;
+
+
     } else if (itemType === 'sport') {
       const newSport = {
         idSportActivity: item.actvty_id,
