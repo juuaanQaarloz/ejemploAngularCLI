@@ -87,14 +87,13 @@ export class ApplicationComponent implements OnInit, OnDestroy {
   }
 
   convertPdf(base64) {
-
     if (base64 === null) {
       console.log('ocurrio un error al generar el pdf');
       this.openDialog(this.modalErrorId);
     } else {
       const linkSource = 'data:application/pdf;base64,' + this.fromHexaToBase64(base64);
       const downloadLink = document.createElement('a');
-      const fileName = 'sample.pdf';
+      const fileName = this.appFolio + '.pdf';
 
       downloadLink.href = linkSource;
       downloadLink.download = fileName;

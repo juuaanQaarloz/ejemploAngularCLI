@@ -1031,7 +1031,7 @@
     "app_own_frng_spec": "",
     "app_own_shre_ind": false,
     "app_own_thrd_prty_ind": false,
-    "app_own_pymnt_rdrc_ind": null,
+    "app_own_pymnt_rdrc_ind": true,
     "app_own_rcv_email_ind": true,
     "app_own_oth_lif_ins_ind": true,
     "app_own_oth_lif_ins_nm": null,
@@ -1054,7 +1054,7 @@
     "aura_fnl_rspns_cd": null,
     "aura_fnl_rspns_txt": null,
     "app_rjct_txt": null,
-    "app_add_commts": null,
+    "app_add_commts": "ESTO ES UN COMENTARIO ADICIONAL",
     "type_operation_app": "save"
   },
   "message": "https://dev.api.metlife.com/metlife/development/channel/applicationservices/v1/tenants/MET_MEXICO/application/save"

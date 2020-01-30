@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Content} from '../../../models';
 import {ApplicationService} from '../../../core/services';
 import {FormGroup} from '@angular/forms';
+import {CoverageFieldsItem} from '../../../core/mock/coverage/coverage';
 
 @Component({
   selector: 'app-coverage',
@@ -19,6 +20,7 @@ export class CoverageComponent implements OnInit {
   ];
   style = 'even-coverage';
   styleClass = 'item-row-coverage';
+  fields = CoverageFieldsItem;
 
   constructor(public applicationService: ApplicationService) { }
 

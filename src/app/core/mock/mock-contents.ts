@@ -1,7 +1,7 @@
 import {Content, Field} from '../../models';
 import {DatosGeneralesPersonaFisica, authorization} from './mock-general-data/mock-datos-persona-fisica';
 import {DatosDomicilio} from './mock-general-data/mock-domicilio';
-import {MockOperations, RowOperations, SearchOccupationOperations, SearchOccupationOperationsS} from './mock-operations';
+import {SearchOccupationOperations, SearchOccupationOperationsS} from './mock-operations';
 import {InformaciolLaboral1, InformacionLaboral} from './mock-laboral-data/mock-informacion-laboral';
 import {DatosGeneralesPersonaMoral} from './mock-general-data/mock-datos-pesona-moral';
 import {DatosDomicilioContactoMoral, authorizationSection5} from './mock-general-data/mock-domicilio-contacto-moral';
@@ -9,10 +9,10 @@ import {DatosRepresentanteLegal, DatosRepresentanteLegal1, DatosRepresentanteLeg
 import {DatosGeneralesSolicitante} from './mock-general-data/mock-datos-solicitante';
 import {DatosDomicilioSolicitante} from './mock-general-data/mock-domicilio-solicitante';
 import {InformacionLaboralSolicitante, InformacionLaboralSolicitante1} from './mock-laboral-data/mock-informacion-laboral-solicitante';
-import {sportQuestions2, sportsFields1, sportsFields2, sportsQuestions1} from './basic-questionnaires/sports-aviation-hobbies';
+import {sportQuestions2, sportsFields1, sportsQuestions1} from './basic-questionnaires/sports-aviation-hobbies';
 import {habitsFields, habitsQuestions, habitsQuestions2} from './basic-questionnaires/habits';
 import {weaponsFields, weaponsFields1, weaponsQuestions, weaponsQuestions1} from './basic-questionnaires/weapons-questions';
-import {medicalFields, medicalQuestions1, medicalQuestions2, medicalQuestions3} from './basic-questionnaires/medical';
+import {medicalQuestions1, medicalQuestions2, medicalQuestions3} from './basic-questionnaires/medical';
 import {AgentQuestion, AgentQuestion1} from './mock-agents/mock-agents-questions';
 import {AuthorizationFields1, AuthorizationQuestions1, AuthorizationQuestions2} from './authorization/authorization-questions';
 import {Plan0, Plan1, Plan1a, Plan2, Plan3, Plan4, Plan5, Plan6, Plan7} from './mock-plan/mock-plan';

@@ -2264,12 +2264,10 @@ export class ApplicationService {
   }
 
   setJsonToTable(tableType: string, json: ApplicationJson) {
-    let items = [];
     console.log('tableType: ', tableType);
+    let items = [];
     if (tableType === 'table-beneficiary') {
       items = json.insuredCondition.beneciciary;
-      console.log('items: ', items);
-
       if (items.length > 0) {
         items.forEach((item) => {
           this.addItem(this.mapItemJson('beneficiary', item), 'beneficiary');
@@ -2278,7 +2276,6 @@ export class ApplicationService {
 
     } else if (tableType === 'table-agent') {
       items = json.agents;
-      console.log('items: ', items);
       if (items.length > 0) {
         items.forEach((item) => {
           this.addItem(this.mapItemJson('agent', item), 'agent');
@@ -2288,13 +2285,11 @@ export class ApplicationService {
       // TODO
     } else if (tableType === 'table-sports') {
       items = json.QuesList;
-      console.log('items: ', items);
       if (items.length > 0) {
         items.forEach((item) => {
           this.addItem(this.mapItemJson('sport', item), 'sport');
         });
       }
-      // TODO
     } else if (tableType === 'table-diseases,1' || tableType === 'table-diseases,2' || tableType === 'table-diseases,3') {
       if (tableType === 'table-diseases,1') {
         json.insured.diseases.forEach((item) => {
@@ -2315,7 +2310,6 @@ export class ApplicationService {
           }
         });
       }
-      console.log('items: ', items);
       if (items.length > 0) {
         items.forEach((item) => {
           this.addItem(this.mapItemJson('disease', item), 'disease', item.qstn_id);
@@ -2323,7 +2317,6 @@ export class ApplicationService {
       }
     } else if (tableType === 'table-country') {
       items = json.foreignCountryTaxes;
-      console.log('items: ', items);
       if (items.length > 0) {
         items.forEach((item) => {
           this.addItem(this.mapItemJson('country', item), 'country');
