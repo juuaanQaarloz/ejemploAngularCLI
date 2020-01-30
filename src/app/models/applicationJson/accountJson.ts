@@ -27,6 +27,7 @@ export class AccountJson {
   rec_updt_usr_id: string = null;
   rtnr_wrk_cntr_cd: string = null;
   rtnr_lbr_rgm_cd: string = null;
+  clct_card_typ_id: string  = null;
   bankAccount: BankAccount = new BankAccount();
 }
 
