@@ -26,10 +26,12 @@ export class JsonApplicationService {
 
   appJson: ApplicationJson = new ApplicationJson();
   appJsonChange: Subject<ApplicationJson> = new Subject<ApplicationJson>();
+  accountZero: AccountJson = new AccountJson();
 
   constructor(
     private appService: ApplicationService
-  ) { }
+  ) {
+  }
 
   change(updateJsonApplication) {
     console.log('on Change: ', updateJsonApplication);
@@ -161,7 +163,11 @@ export class JsonApplicationService {
       items = this.appService.payments.getValue();
       if (items.length >= 0) {
         items.forEach((payment, i) => {
-          set(this.appJson, `accounts[${i}]`, this.mapItem('payment', payment, i));
+          if (i === 0) {
+            set(this.appJson, 'accounts[0].bankAccount', this.mapItem('payment', payment, i));
+          } else {
+            set(this.appJson, `accounts[${i}]`, this.mapItem('payment', payment, i));
+          }
         });
       }
     } else if (tableType === 'table-sports') {
@@ -249,25 +255,35 @@ export class JsonApplicationService {
 
       return newBeneficiary;
     } else if (itemType === 'payment') {
-      console.log('Iterator', index);
-      let newAccount: AccountJson = this.appJson.accounts[index];
-      switch (index) {
-        case 0:
-          let newBanckAccount: BankAccount = new BankAccount();
-
-          newBanckAccount.pymnt_prrty = item.paymentId;
-          newBanckAccount.bnk_nm = item.txtBank;
+      let newAccount: AccountJson = new AccountJson();
+      let newBanckAccount: BankAccount = new BankAccount();
+      if (index === 0) {
+        this.accountZero = this.appJson.accounts[0];
+        if (item.txtClabe.length === 18) {
           newBanckAccount.std_bnk_cd = item.txtClabe;
+        } else {
+          newBanckAccount.bnk_acct_tkn_num = item.txtClabe;
+        }
+        newBanckAccount.pymnt_prrty = item.paymentId;
+        newBanckAccount.bnk_nm = item.txtBank;
 
-          newAccount.bankAccount = newBanckAccount;
-          break;
-        default:
-          this.paymentIteratorZero(this.appJson.accounts[0], index);
-          console.log('Default:', index);
-          //newAccount.bankAccount = newBanckAccount;
-          break;
+        return newBanckAccount;
+      } else {
+        newAccount = this.paymentIteratorZero(this.accountZero, index);
+
+        newAccount.prfr_cntct_typ_nm = this.accountZero.prfr_cntct_typ_nm;
+        if (item.txtClabe.length === 18) {
+          newBanckAccount.std_bnk_cd = item.txtClabe;
+        } else {
+          newBanckAccount.bnk_acct_tkn_num = item.txtClabe;
+        }
+
+        newBanckAccount.pymnt_prrty = item.paymentId;
+        newBanckAccount.bnk_nm = item.txtBank;
+
+        newAccount.bankAccount = newBanckAccount;
+        return newAccount;
       }
-      return newAccount;
 
     } else if (itemType === 'sport') {
       let newQuesList = new QuesList();
@@ -295,9 +311,9 @@ export class JsonApplicationService {
       let newCountry: ForeignCountryTaxJson = new ForeignCountryTaxJson();
 
       newCountry.app_id = this.appJson.app_id;
-      if(this.appJson.foreignCountryTaxes != null &&
-            index < this.appJson.foreignCountryTaxes.length &&
-              this.appJson.foreignCountryTaxes[index] != null){
+      if (this.appJson.foreignCountryTaxes != null &&
+        index < this.appJson.foreignCountryTaxes.length &&
+        this.appJson.foreignCountryTaxes[index] != null) {
         newCountry.cntry_id = this.appJson.foreignCountryTaxes[index].cntry_id;
       }
       newCountry.cntry_cd = item.countryId;
@@ -387,8 +403,20 @@ export class JsonApplicationService {
     return person;
   }
 
-  paymentIteratorZero(accountJson: AccountJson, index: number){
-    console.log('Method paymentIteratorZero ->');
-    console.log(accountJson);
+  paymentIteratorZero(accountJson: AccountJson, index: number) {
+
+    let newAccount: AccountJson = new AccountJson();
+
+    newAccount.clct_mthd_id = accountJson.clct_mthd_id;
+    newAccount.clct_mthd_nm = accountJson.clct_mthd_nm;
+    newAccount.clct_cncpt_id = accountJson.clct_cncpt_id;
+    newAccount.prfr_cntct_typ_cd = accountJson.prfr_cntct_typ_cd;
+    newAccount.prfr_cntct_typ_nm = accountJson.prfr_cntct_typ_nm;
+    newAccount.prfr_py_wk_day_cd = accountJson.prfr_py_wk_day_cd;
+    newAccount.prfr_py_prdcty_cd = accountJson.prfr_py_prdcty_cd;
+    newAccount.prfr_cntct_tm_cd = accountJson.prfr_cntct_tm_cd;
+    newAccount.prfr_cntct_day = accountJson.prfr_cntct_day;
+
+    return newAccount;
   }
 }
