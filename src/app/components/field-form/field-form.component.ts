@@ -373,7 +373,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         this.clearTxtBank();
       }
       if (this.form.controls[this.fieldObj.name].value.length === 17) {
-        console.log("Entre a 17");
         this.fieldObj.message = this.messageLength17;
         this.fieldObj.valid = false;
         txtClabeConfir.setAttribute("readonly", "true");
@@ -394,7 +393,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         if (this.form.controls[this.fieldObj.name].value.length === 15) {
           this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
             .subscribe((results) => {
-              console.log(results);
               this.myToken = results;
               if (this.myToken.data === '00') {
                 console.log('El Token es valido.');
