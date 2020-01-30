@@ -385,8 +385,11 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
       return {
         ...newBeneficiaryBase,
         businessName: this.formGroup.controls.beneficiaryBusinessName.value,
-        relationship: BeneficiaryFieldsM[1].additionalData.name,
+        relationship: BeneficiaryFieldsM[1].additionalData ?
+          BeneficiaryFieldsM[1].additionalData.name :
+          this.formGroup.controls.espBeneficiaryRelationshipM.value,
         relationshipCd: this.formGroup.controls.beneficiaryRelationshipM.value,
+        espRelationship: this.formGroup.controls.espBeneficiaryRelationshipM.value,
         birthDateOrConstitution: transformDate(this.formGroup.controls.beneficiaryConstitutionDate.value, 'YYYY/MM/DD'),
         address: {
           street: this.formGroup.controls.beneficiaryStreetM.value,
@@ -409,7 +412,9 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         contractNumber: this.formGroup.controls.contractNumber.value,
         instructionLetterNumber: this.formGroup.controls.instructionLetterNumber.value,
         relationshipCd: this.formGroup.controls.beneficiaryRelationshipF.value,
-        relationship: BeneficiaryFieldsF[4].additionalData.name,
+        relationship: BeneficiaryFieldsF[3].additionalData ?
+          BeneficiaryFieldsF[3].additionalData.name :
+          this.formGroup.controls.espBeneficiaryRelationshipF.value,
         espRelationship: this.formGroup.controls.espBeneficiaryRelationshipF.value,
         birthDateOrConstitution: transformDate(this.formGroup.controls.beneficiaryConstitutionDateF.value, 'YYYY/MM/DD'),
         address: {

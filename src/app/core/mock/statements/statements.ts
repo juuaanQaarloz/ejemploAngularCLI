@@ -216,7 +216,7 @@ export const statements3: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: 'app_own_pymnt_rsrc_ind',
+    entityField: 'app_own_pymnt_rdrc_ind',
     value: false
   }
 ];

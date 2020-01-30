@@ -260,7 +260,7 @@ export class JsonApplicationService {
         this.accountZero = this.appJson.accounts[0];
         if (item.txtClabe.length === 18) {
           newBanckAccount.std_bnk_cd = item.txtClabe;
-        } else if (item.txtClabe.length === 16){
+        } else if (item.txtClabe.length === 16) {
           newBanckAccount.bnk_acct_tkn_num = item.txtClabe;
           this.appJson.accounts[0].clct_card_typ_id = item.selectCard;
         } else {
