@@ -4,7 +4,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from 'rxjs/operators';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Template} from '../../models/template';
-import {Field, Occupation, Step} from '../../models';
+import {Address, Field, Occupation, Step} from '../../models';
 import {
   equalEmailsValidator,
   higherAssuredImport,
@@ -21,6 +21,9 @@ import get from 'lodash/get';
 import set from 'lodash/set';
 import {JsonApplicationService} from './json-application.service';
 import {transformDate} from '../utilities';
+import {BeneficiaryFieldsP} from '../mock/mock-beneficiaries/phy-beneficiary';
+import {BeneficiaryFieldsM} from '../mock/mock-beneficiaries/mor-beneficiary';
+import {BeneficiaryFieldsF} from '../mock/mock-beneficiaries/fid-beneficiary';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
@@ -2266,6 +2269,13 @@ export class ApplicationService {
     if (tableType === 'table-beneficiary') {
       items = json.insuredCondition.beneciciary;
       console.log('items: ', items);
+
+      if (items.length > 0) {
+        items.forEach((item) => {
+          this.addItem(this.mapItemJson('beneficiary', item), 'beneficiary');
+        });
+      }
+
     } else if (tableType === 'table-agent') {
       items = json.agents;
       console.log('items: ', items);
@@ -2279,6 +2289,11 @@ export class ApplicationService {
     } else if (tableType === 'table-sports') {
       items = json.QuesList;
       console.log('items: ', items);
+      if (items.length > 0) {
+        items.forEach((item) => {
+          this.addItem(this.mapItemJson('sport', item), 'sport');
+        });
+      }
       // TODO
     } else if (tableType === 'table-diseases,1' || tableType === 'table-diseases,2' || tableType === 'table-diseases,3') {
       if (tableType === 'table-diseases,1') {
@@ -2321,9 +2336,39 @@ export class ApplicationService {
 
   mapItemJson(itemType, item) {
     if (itemType === 'beneficiary') {
-      // TODO
-    } else if (itemType === 'agent') {
+      const newBeneficiary = {
+        beneficiaryId: (this.getLastItemId('beneficiary') + 1).toString(),
+        beneficiaryType: item.bene_tp_cd,
+        name: item.person.per_frst_nm,
+        fatherLastName: item.person.per_ptrnl_lst_nm,
+        motherLastName: item.person.per_mtrnl_lst_nm,
+        relationship: item.bene_rel_desc,
+        relationshipCd: item.bene_rel_cd,
+        espRelationship: '',
+        birthDateOrConstitution: item.bene_tp_cd === 'P' ?
+          item.person.per_brth_dt.replace(/-/g , '/') :
+          item.person.co_estab_dt.replace(/-/g , '/'),
+        addressSameAsTitular: item.bene_addrss_sm_inss_ind,
+        address: {
+          street: item.person.Address[0].strt_nm,
+          exteriorNumber: item.person.Address[0].ext_num,
+          interiorNumber: item.person.Address[0].int_num, // optional
+          zipCode: item.person.Address[0].zip_cod,
+          neighborhood: item.person.Address[0].subt_nm,
+          municipality: item.person.Address[0].mncplty_nm,
+          state: item.person.Address[0].sta_cod,
+          city: item.person.Address[0].towt_nm,
+          country: item.person.Address[0].cntry_spe,
+        },
+        participationPercentage: item.bene_prtcp_pct,
+        businessName: item.person.co_bus_nm,
+        suspensiveCondition: item.person.co_sspsv_cond,
+        contractNumber: item.person.co_ctrct_nmbr,
+        instructionLetterNumber: item.person.co_ins_lttr_nmbr
+      };
+      return newBeneficiary;
 
+    } else if (itemType === 'agent') {
       const newMappedAgent = {
         agentId: (this.getLastItemId('agent') + 1).toString(),
         name: item.agnt_id.agnt_party_nm,
@@ -2331,14 +2376,20 @@ export class ApplicationService {
         promotor: item.agnt_id.agnt_pmtr_cd,
         participation: item.agnt_part_per
       };
-
       return newMappedAgent;
     } else if (itemType === 'payment') {
       // TODO
     } else if (itemType === 'sport') {
-      // TODO
-    } else if (itemType === 'disease') {
+      const newSport = {
+        idSportActivity: item.actvty_id,
+        name: item.clmn_1,
+        periodicity: item.clmn_2,
+        description: item.clmn_3,
+      };
 
+      return newSport;
+
+    } else if (itemType === 'disease') {
       const newDisease = {
         idDisease: (this.getLastItemId('disease', item.qstn_id)).toString(),
         name: item.illnss_nm,
@@ -2348,12 +2399,8 @@ export class ApplicationService {
         hasQuestionnaire: false,
         fromTable: item.qstn_id
       };
-
-      console.log('newDisease: ', newDisease);
-
       return newDisease;
     } else if (itemType === 'country') {
-      // TODO
       const newCountry = {
         countryId: item.cntry_cd,
         statCountry: item.cntry_nm,

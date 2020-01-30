@@ -133,24 +133,20 @@ export class NewCountryComponent implements OnInit {
   }
 
   setCountryValues() {
+    console.log('this.config.data.item: ', this.config.data.item);
     this.content.fields.forEach((field) => {
       let value;
       switch (field.name) {
-        case 'name':
-          value = this.config.data.item.statCountry.value;
+        case 'statCountry':
+          value = this.config.data.item.statCountry;
           break;
         case 'taxCountryId':
           value = this.config.data.item.taxCountryId;
           break;
-        /*
-       case 'formatwoBirthDate':
-         value = this.config.data.beneficiary.birthDate;
-         break; */
       }
       this.formGroup.controls[field.name].setValue(value);
+      console.log('this.formGroup.controls[field.name].value: ', this.formGroup.controls[field.name].value);
     });
-    console.log('form values: ');
-    console.log(this.formGroup.value);
   }
 
   mapNewCountryData() {
