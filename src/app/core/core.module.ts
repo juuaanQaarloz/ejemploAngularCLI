@@ -9,6 +9,7 @@ import { StyleCellDirective } from './directives/style-cell.directive';
 import { AutocompleteDirective } from './directives/autocomplete.directive';
 import { AutocompleteContentDirective } from './directives/autocomplete-content.directive';
 import { FilterPipe } from './pipes/filter.pipe';
+import { BlockCopyPasteDirective } from './directives/block-copy-paste.directive';
 
 @NgModule({
   imports: [CommonModule],
@@ -19,7 +20,9 @@ import { FilterPipe } from './pipes/filter.pipe';
     StyleCellDirective,
     AutocompleteDirective,
     AutocompleteContentDirective,
-    FilterPipe],
+    FilterPipe,
+    BlockCopyPasteDirective],
+
   exports: [
     TrackScrollDirective,
     OnlyGivenCharactersDirective,
@@ -27,7 +30,8 @@ import { FilterPipe } from './pipes/filter.pipe';
     StyleCellDirective,
     AutocompleteDirective,
     AutocompleteContentDirective,
-    FilterPipe
+    FilterPipe,
+    BlockCopyPasteDirective
   ],
   providers: [
     AuthGuard,

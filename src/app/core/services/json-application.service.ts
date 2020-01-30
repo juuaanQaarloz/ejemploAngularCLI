@@ -260,6 +260,9 @@ export class JsonApplicationService {
         this.accountZero = this.appJson.accounts[0];
         if (item.txtClabe.length === 18) {
           newBanckAccount.std_bnk_cd = item.txtClabe;
+        } else if (item.txtClabe.length === 16){
+          newBanckAccount.bnk_acct_tkn_num = item.txtClabe;
+          newAccount.clct_card_typ_id = item.selectCard;
         } else {
           newBanckAccount.bnk_acct_tkn_num = item.txtClabe;
         }
@@ -273,6 +276,9 @@ export class JsonApplicationService {
         newAccount.prfr_cntct_typ_nm = this.accountZero.prfr_cntct_typ_nm;
         if (item.txtClabe.length === 18) {
           newBanckAccount.std_bnk_cd = item.txtClabe;
+        } else if (item.txtClabe.length === 16){
+          newBanckAccount.bnk_acct_tkn_num = item.txtClabe;
+          newAccount.clct_card_typ_id = item.selectCard;
         } else {
           newBanckAccount.bnk_acct_tkn_num = item.txtClabe;
         }
