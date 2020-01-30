@@ -1,65 +1,67 @@
 <div id="content" #content>
-    <app-header></app-header>
-    <app-menu></app-menu>
-    <div style="background-color: white">
-        <div style="text-align: center">
-            <h1 class="title">Resultados</h1>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="table-responsive">
-                    <table class="table table-sm">
-                        <thead>
-                            <th *ngFor="let column of columns" class="text-center">{{ column.label }}</th>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let record of records | paginate: { itemsPerPage: numItems, currentPage: p }">
-                                <td class="{{ column.align }}" *ngFor="let column of columns">
+  <app-header></app-header>
+  <app-menu></app-menu>
+  <div style="background-color: white">
+    <div style="text-align: center">
+      <h1 class="title">Resultados</h1>
+    </div>
+      <!--<button (click)="detail('2001290008')">TO DETAIL </button>-->
+
+    <div class="container">
+      <div class="row">
+        <div class="table-responsive">
+          <table class="table table-sm">
+            <thead>
+            <th *ngFor="let column of columns" class="text-center">{{ column.label }}</th>
+            </thead>
+            <tbody>
+            <tr *ngFor="let record of records | paginate: { itemsPerPage: numItems, currentPage: p }">
+              <td class="{{ column.align }}" *ngFor="let column of columns">
                                     <span *ngIf="column.type=='id'">
                                         <a (click)="detail(record['appId'])">
                                             <b>{{ record[column.field] }}</b>
                                         </a>
                                     </span>
-                                    <span *ngIf="column.type=='date'">{{ record[column.field] | date: 'dd/MM/yyyy' }}</span>
-                                    <span *ngIf="column.type=='string'">{{ record[column.field] }}</span>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-sm-10 col-md-10 col-lg-10">
-                    Total de registros: {{ records.length }}
-                </div>
-                <div class="col-sm-2 col-md-2 col-lg-2 text-right">
-                    <!-- <select class="form-control" [(ngModel)]="numItems">
-                        <option value="5">5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
-                        <option value="20">20</option>
-                    </select> -->
-
-                    <fieldset class="ml-form-field ml-form-field-select">
-                        <legend>Resultados por página</legend>
-                        <select class="form-control" name="Resultados por página" [(ngModel)]="numItems">
-                            <option value="5">5</option>
-                            <option value="10">10</option>
-                            <option value="15">15</option>
-                            <option value="20">20</option>
-                        </select>
-                    </fieldset>
-                </div>
-            </div>
-            <br />
-            <div class="row">
-                <div class="col-sm-12 col-md-12 col-lg-12 text-center">
-                    <pagination-controls class="paginator" (pageChange)="p = $event" previousLabel="" nextLabel="">
-                    </pagination-controls>
-                </div>
-            </div>
+                <span *ngIf="column.type=='date'">{{ record[column.field] | date: 'dd/MM/yyyy' }}</span>
+                <span *ngIf="column.type=='string'">{{ record[column.field] }}</span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
         </div>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-sm-10 col-md-10 col-lg-10">
+          Total de registros: {{ records.length }}
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2 text-right">
+          <!-- <select class="form-control" [(ngModel)]="numItems">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+          </select> -->
+
+          <fieldset class="ml-form-field ml-form-field-select">
+            <legend>Resultados por página</legend>
+            <select class="form-control" name="Resultados por página" [(ngModel)]="numItems">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+            </select>
+          </fieldset>
+        </div>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+          <pagination-controls class="paginator" (pageChange)="p = $event" previousLabel="" nextLabel="">
+          </pagination-controls>
+        </div>
+      </div>
     </div>
-    <app-footer></app-footer>
+  </div>
+  <app-footer></app-footer>
 </div>

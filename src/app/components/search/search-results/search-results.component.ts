@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { AppConstants } from 'src/app/app.constants';
 import {ApplicationService} from '../../../core/services';
 import {JsonApplicationService} from '../../../core/services/json-application.service';
 
@@ -69,16 +68,18 @@ export class SearchResultsComponent implements OnInit {
 
     let params = new HttpParams();
     params = params.append('app_id', app_id);
+    const DUMMY_SEARCH_JSON = '../assets/dummies/dummy-search-result.json';
 
-    this.httpClient.get( this.url_services  + '/getApp', {headers, params}).subscribe((resp:any) => {
-      console.log('detalle: ', resp.data);
+    this.httpClient.get( this.url_services  + '/getApp', {headers, params}).subscribe((response :any) => {
+    // this.httpClient.get(DUMMY_SEARCH_JSON).subscribe((response: any) => {
+      console.log('detalle: ', response.data);
 
       // set the result json if the search globally
-      this.jsonAppService.setAppJson(resp.data);
+      this.jsonAppService.setAppJson(response.data);
 
       console.log('detail in json service: ', this.jsonAppService.getAppJson());
-      localStorage.setItem('detail', JSON.stringify(resp.data));
-      this.router.navigate(['search','detail', app_id]);
+      // localStorage.setItem('detail', JSON.stringify(response.data));
+      this.router.navigate(['search', 'detail', app_id]);
     });
   }
 }

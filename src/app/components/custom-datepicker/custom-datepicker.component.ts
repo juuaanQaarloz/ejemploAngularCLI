@@ -31,13 +31,21 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
         // console.log('this.disable: ', this.disable);
       });
     }
+
+
   }
 
   ngAfterViewInit() {
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
     let value;
-    if (this.fieldObj.value) {
-      value = new Date(new Date(this.fieldObj.value));
+    let currentValue = this.fieldObj.value.toString();
+    if (currentValue) {
+      console.log('currentValue before if : ', currentValue);
+      if (currentValue.includes('-')) {
+        currentValue = currentValue.replace(/-/g , '/');
+      }
+      console.log('currentValue after if : ', currentValue);
+      value = new Date(new Date(currentValue));
       elem.setAttribute('value', value);
       this.form.controls[this.fieldObj.name].setValue(value);
     } else if (this.form.controls[this.fieldObj.name].value) { // set value from an older capture
@@ -90,8 +98,6 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   }
 
   onBlur() {
-    // console.log('onBlur from custom-datepicker');
-    // // console.log('formControlValue: ', this.form.controls[this.fieldObj.name]);
     this.validate.emit(true);
   }
 
@@ -107,7 +113,6 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   }
 
   onKeyUp() {
-    // console.log('onKeyUp from custom-datepicker');
     this.validate.emit(true);
   }
 

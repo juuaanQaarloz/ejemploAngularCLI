@@ -119,7 +119,7 @@ export const FormasPagoAutorizo: Field[] = [
         renderConditions: '',
         enableConditions: '',
         entity: 'accounts[0].prfr_cntct_typ_nm',
-        entityField: 'account[0].prfr_cntct_typ_cd',
+        entityField: 'accounts[0].prfr_cntct_typ_cd',
         value: ''
     },
     {

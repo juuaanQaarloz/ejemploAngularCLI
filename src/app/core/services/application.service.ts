@@ -1,4 +1,3 @@
-import {AppConstants} from 'src/app/app.constants';
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable, Subject} from 'rxjs';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
@@ -20,7 +19,8 @@ import {SepomexObj} from '../../models/sepomex-obj';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import get from 'lodash/get';
 import set from 'lodash/set';
-import {TOKEN} from '../mock/dummy_token';
+import {JsonApplicationService} from './json-application.service';
+import {transformDate} from '../utilities';
 
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
@@ -284,28 +284,79 @@ export class ApplicationService {
           if (contentFromSection.process) {
             contentFromSection.process.steps.forEach(step => {
               step.contents.forEach((contentFromStep) => {
-                if (contentFromStep.fields) {
-                  contentFromStep.fields.forEach(field => {
-                    if (estatus !== null && estatus >= 30) {
-                      field.disable = true;
+                if (contentFromStep.contentType === 'looseFields') {
+                  contentFromStep.fields.forEach((field) => {
+                    if (field !== undefined) {
+                      if (field.entityField) {
+                        // get value from json
+                        let value = get(detail, field.entityField);
+                        /*console.log('fiel.label: ', field.label);
+                        console.log('fiel.name: ', field.name);
+                        console.log('entityField: ', field.entityField);*/
+
+                        if (value !== null && value !== undefined) {
+                          if (estatus !== null && estatus >= 30) {
+                            field.disable = true;
+                          }
+                          // setting value from JSON to FORM
+                          if (value === 'true' || value === 'false') {
+                            value = Boolean(JSON.parse(value));
+                          } else if (field.type === 'select') {
+                            // console.log('is select');
+                            value = value.toString();
+                          }
+                          // console.log('value: ', value);
+                          field.value = value;
+                        }
+                      }
+                      group[field.name] = new FormControl(
+                        field.value || '',
+                        this.getValidationFunctions(field));
                     }
-                    field.value = get(detail, field.entityField);
-                    group[field.name] = new FormControl(
-                      field.value || '',
-                      this.getValidationFunctions(field));
                   });
-                } else {
-                  if (contentFromStep.contentChildren) {
-                    contentFromStep.contentChildren.forEach(contentChild => {
-                      if (contentChild.fields) {
-                        contentChild.fields.forEach(field => {
+                } else if (contentFromStep.contentType.includes('table')) {
+                  // TODO: Set tables from JSON
+                  this.setJsonToTable(contentFromStep.contentType, detail);
+                }
+
+                if (contentFromStep.contentChildren) {
+                  // console.log('onContentFromStep.contentChildren...');
+                  contentFromStep.contentChildren.forEach(contentChild => {
+                    if (contentChild.contentType === 'looseFields') {
+                      contentChild.fields.forEach((field) => {
+                        if (field !== undefined) {
+                          if (field.entityField) {
+                            // get value from json
+                            let value = get(detail, field.entityField);
+                            /*console.log('fiel.label: ', field.label);
+                            console.log('fiel.name: ', field.name);
+                            console.log('entityField: ', field.entityField);*/
+
+                            if (value !== null && value !== undefined) {
+                              if (estatus !== null && estatus >= 30) {
+                                field.disable = true;
+                              }
+                              if (value === 'true' || value === 'false') {
+                                value = Boolean(JSON.parse(value));
+                              } else if (field.type === 'select') {
+                                // console.log('is select');
+                                value = value.toString();
+                              }
+                              // console.log('value: ', value);
+                              // setting value from JSON to FORM
+                              field.value = value;
+                            }
+                          }
                           group[field.name] = new FormControl(
                             field.value || '',
                             this.getValidationFunctions(field));
-                        });
-                      }
-                    });
-                  }
+                        }
+                      });
+                    } else if (contentChild.contentType.includes('table')) {
+                      // TODO: Set tables from JSON
+                      this.setJsonToTable(contentFromStep.contentType, detail);
+                    }
+                  });
                 }
               });
             });
@@ -313,6 +364,7 @@ export class ApplicationService {
         }
       });
     });
+
     return new FormGroup(group, [equalEmailsValidator, higherAssuredImport, validateFunds]);
   }
 
@@ -353,10 +405,6 @@ export class ApplicationService {
 
   getValidationFunctions(field: Field): any[] {
     let validationFunctions = [];
-
-    if (field.name === 'beneficiaryBirthDate') {
-      // console.log('isRequired: ', field.required);
-    }
 
     if (field.required) {
       validationFunctions.push(Validators.required);
@@ -2210,5 +2258,111 @@ export class ApplicationService {
       console.log('RESPONSE FROM GET DP TOKEN CALL :', response);
       return response;
     }));
+  }
+
+  setJsonToTable(tableType: string, json: ApplicationJson) {
+    let items = [];
+    console.log('tableType: ', tableType);
+    if (tableType === 'table-beneficiary') {
+      items = json.insuredCondition.beneciciary;
+      console.log('items: ', items);
+    } else if (tableType === 'table-agent') {
+      items = json.agents;
+      console.log('items: ', items);
+      if (items.length > 0) {
+        items.forEach((item) => {
+          this.addItem(this.mapItemJson('agent', item), 'agent');
+        });
+      }
+    } else if (tableType === 'table-payment') {
+      // TODO
+    } else if (tableType === 'table-sports') {
+      items = json.QuesList;
+      console.log('items: ', items);
+      // TODO
+    } else if (tableType === 'table-diseases,1' || tableType === 'table-diseases,2' || tableType === 'table-diseases,3') {
+      if (tableType === 'table-diseases,1') {
+        json.insured.diseases.forEach((item) => {
+          if (item.qstn_id === '1') {
+            items.push(item);
+          }
+        });
+      } else if (tableType === 'table-diseases,2') {
+        json.insured.diseases.forEach((item) => {
+          if (item.qstn_id === '2') {
+            items.push(item);
+          }
+        });
+      } else if (tableType === 'table-diseases,3') {
+        json.insured.diseases.forEach((item) => {
+          if (item.qstn_id === '3') {
+            items.push(item);
+          }
+        });
+      }
+      console.log('items: ', items);
+      if (items.length > 0) {
+        items.forEach((item) => {
+          this.addItem(this.mapItemJson('disease', item), 'disease', item.qstn_id);
+        });
+      }
+    } else if (tableType === 'table-country') {
+      items = json.foreignCountryTaxes;
+      console.log('items: ', items);
+      if (items.length > 0) {
+        items.forEach((item) => {
+          this.addItem(this.mapItemJson('country', item), 'country');
+        });
+      }
+    } else if (tableType === 'table-coverage') {
+      // TODO
+    }
+  }
+
+  mapItemJson(itemType, item) {
+    if (itemType === 'beneficiary') {
+      // TODO
+    } else if (itemType === 'agent') {
+
+      const newMappedAgent = {
+        agentId: (this.getLastItemId('agent') + 1).toString(),
+        name: item.agnt_id.agnt_party_nm,
+        key: item.agnt_id.agnt_py_cd,
+        promotor: item.agnt_id.agnt_pmtr_cd,
+        participation: item.agnt_part_per
+      };
+
+      return newMappedAgent;
+    } else if (itemType === 'payment') {
+      // TODO
+    } else if (itemType === 'sport') {
+      // TODO
+    } else if (itemType === 'disease') {
+
+      const newDisease = {
+        idDisease: (this.getLastItemId('disease', item.qstn_id)).toString(),
+        name: item.illnss_nm,
+        diagnosticDate: item.illnss_dt.replace(/-/g, '/'),
+        duration: item.illnss_drtn,
+        actualCondition: item.illnss_hlth_stt,
+        hasQuestionnaire: false,
+        fromTable: item.qstn_id
+      };
+
+      console.log('newDisease: ', newDisease);
+
+      return newDisease;
+    } else if (itemType === 'country') {
+      // TODO
+      const newCountry = {
+        countryId: item.cntry_cd,
+        statCountry: item.cntry_nm,
+        taxCountryId: item.frgn_cntry_tin
+      };
+
+      return newCountry;
+    } else if (itemType === 'coverage') {
+      // TODO
+    }
   }
 }

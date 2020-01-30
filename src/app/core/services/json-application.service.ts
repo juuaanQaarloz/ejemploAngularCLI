@@ -3,6 +3,7 @@ import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import {ApplicationService} from './application.service';
 import {Beneficiary, Step} from '../../models';
 import set from 'lodash/set';
+import get from 'lodash/get';
 import {calculateAge, transformDate} from '../utilities';
 import {BeneciciaryJson} from '../../models/applicationJson/beneciciaryJson';
 import {PersonJson} from '../../models/applicationJson/personJson';
@@ -79,11 +80,12 @@ export class JsonApplicationService {
                   console.log('value: ', value);
                 }
                 set(this.appJson, field.entityField, value);
+                console.log('value: ', value);
+
               }
             }
           });
         } else if (contentFromStep.contentType.includes('table')) {
-          // TODO: Integrate table structure in JSON structure
           this.mapTableToJson(contentFromStep.contentType, contentFromStep.contentTypeId);
         }
 
@@ -117,18 +119,16 @@ export class JsonApplicationService {
                       console.log('value: ', value);
                     }
                     set(this.appJson, field.entityField, value);
+                    console.log('value: ', value);
                   }
                 }
               });
             } else if (contentChild.contentType.includes('table')) {
-              // TODO: Integrate table structure in JSON structure
               this.mapTableToJson(contentChild.contentType, contentChild.contentTypeId);
             }
           });
         }
       });
-
-      // console.log('appJson object: ', this.getAppJson());
 
       this.appJson.app_stts_cd = step.id;
       if (step.id === '1' || step.id === '4') {
@@ -209,7 +209,7 @@ export class JsonApplicationService {
       if (items.length > 0) {
         set(this.appJson, `insuredCondition.aplicationPlan.pln_cd`, this.appService.currentPlan.getValue().PLAN);
         items.forEach((coverage, i) => {
-          set(this.appJson, `insuredCondition.aplicationPlan.coverage[${i}]`, this.mapItem('coverage', coverage, i));
+          set(this.appJson, `<insuredCondition.aplicationPlan.coverage>[${i}]`, this.mapItem('coverage', coverage, i));
         });
       }
     }
@@ -296,9 +296,9 @@ export class JsonApplicationService {
       let newCountry: ForeignCountryTaxJson = new ForeignCountryTaxJson();
 
       newCountry.app_id = this.appJson.app_id;
-      if(this.appJson.foreignCountryTaxes != null &&
+      if (this.appJson.foreignCountryTaxes != null &&
             index < this.appJson.foreignCountryTaxes.length &&
-              this.appJson.foreignCountryTaxes[index] != null){
+              this.appJson.foreignCountryTaxes[index] != null) {
         newCountry.cntry_id = this.appJson.foreignCountryTaxes[index].cntry_id;
       }
       newCountry.cntry_cd = item.countryId;
@@ -388,7 +388,7 @@ export class JsonApplicationService {
     return person;
   }
 
-  paymentIteratorZero(accountJson: AccountJson, index: number){
+  paymentIteratorZero(accountJson: AccountJson, index: number) {
     console.log('Method paymentIteratorZero ->');
     console.log(accountJson);
   }

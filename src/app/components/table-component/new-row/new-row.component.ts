@@ -1,7 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {ApplicationService} from '../../../core/services';
-import {Content, Field, Operation} from '../../../models';
+import {Content, Operation} from '../../../models';
 import {DialogConfig} from '../../dialog/dialog-config';
 import {DialogRef} from '../../dialog/dialog-ref';
 import {OKOPT, RowOperations} from '../../../core/mock/mock-operations';
@@ -10,7 +10,6 @@ import {medicalFieldsDialog} from '../../../core/mock/basic-questionnaires/medic
 import {sportsFieldsDialog} from '../../../core/mock/basic-questionnaires/sports-aviation-hobbies';
 import {FORM_MSG_ERROR} from '../../../core/mock/errors/mock-erros-datos-plan';
 import {transformDate} from '../../../core/utilities';
-import {Observable, of} from 'rxjs';
 
 @Component({
   selector: 'app-new-row',

@@ -29,7 +29,7 @@ export class ApplicationExtensionJson {
   rec_lgl_not_ind: number = null;
   prv_adv_dta_usg_ind: number = null;
   prv_adv_dta_trns_ind: number = null;
-  cntrbtn_tx: number = null;
+  cntrbtn_tx: number = 0;
   wthdrwls_tx: number = null;
   cntrbtn_amnt: number = null;
   wthdrwls_amnt: number = null;

@@ -9,6 +9,7 @@ import {MockTemplate} from 'src/app/core/mock/mock-template';
 import set from 'lodash/set';
 import {SearchService} from '../search.service';
 import {JsonApplicationService} from 'src/app/core/services/json-application.service';
+import {ApplicationJson} from '../../../models/applicationJson/applicationJson';
 
 @Component({
   selector: 'app-search-detail',
@@ -17,6 +18,7 @@ import {JsonApplicationService} from 'src/app/core/services/json-application.ser
 })
 export class SearchDetailComponent implements OnInit {
   appId: string;
+  appFuc: string;
   detail: any;
   applicationObj: Template;
   payLoad = '';
@@ -33,11 +35,9 @@ export class SearchDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.detail = JSON.parse(localStorage.getItem('detail'));
+    this.detail = this.jsonApplicationService.getAppJson();
     this.appId = this.detail.app_id;
-    this.jsonApplicationService.setAppJson(localStorage.getItem('detail'));
-    console.log(this.jsonApplicationService.getAppJson());
-    console.log('this.detail: ', this.detail);
+    this.appFuc = this.detail.app_dcn_num;
     this.appService.setApplicationObject(MockTemplate);
     this.applicationObj = this.appService.getApplicationObject();
     this.formGroup = this.appService.toFormGroupReadOnly(this.applicationObj, this.detail);
@@ -71,66 +71,4 @@ export class SearchDetailComponent implements OnInit {
       });
     }
   }
-
-  validateForm() {
-    /*Object.keys(this.formGroup.controls).forEach(key => {
-      // // console.log('formControlName: ', key);
-      // // // console.log('formControl: ', this.formGroup.controls[key]);
-      const isValid =  this.formGroup.controls[key].valid;
-      if (!isValid) {
-        this.formGroup.controls[key].markAsTouched();
-      } else {
-        this.formGroup.controls[key].markAsUntouched();
-      }
-      // // console.log('isValid: ', isValid);
-    });*/
-
-    this.applicationObj.sections.forEach(section => {
-      section.contents.forEach((contentFromSection) => {
-        if (contentFromSection.fields) {
-          contentFromSection.fields.forEach(field => {
-            field.valid = this.formGroup.controls[field.name].valid;
-            // // console.log('formControlName: ', field.name);
-            // // console.log('valid: ', field.valid);
-          });
-        } else {
-          if (contentFromSection.process) {
-            contentFromSection.process.steps.forEach(step => {
-              step.contents.forEach((contentFromStep) => {
-                if (contentFromStep.fields) {
-                  contentFromStep.fields.forEach(field => {
-                    field.valid = this.formGroup.controls[field.name].valid;
-                    // // console.log('formControlName: ', field.name);
-                    // // console.log('valid: ', field.valid);
-                  });
-                } else {
-                  if (contentFromStep.contentChildren) {
-                    contentFromStep.contentChildren.forEach(contentChild => {
-                      if (contentChild.fields) {
-                        contentChild.fields.forEach(field => {
-                          field.valid = this.formGroup.controls[field.name].valid;
-                          // // console.log('formControlName: ', field.name);
-                          // // console.log('valid: ', field.valid);
-                        });
-                      }
-                    });
-                  }
-                }
-              });
-            });
-          }
-        }
-      });
-
-    });
-  }
-
-  getValidateField() {
-    this.errors = this.formGroup.errors;
-    console.log('erros: ', this.errors);
-    if (this.errors) {
-      console.log('invalidEmailConfirmation: ', this.errors.invalidEmailConfirmation);
-    }
-  }
-
 }
