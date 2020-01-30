@@ -65,7 +65,7 @@ export class JsonApplicationService {
                   value = Number(value.replace(/[^0-9.-]+/g, ''));
                 } else if (field.type === 'select') {
                   // console.log('select additionalData: ', field.additionalData);
-                  if (field.entity && field.additionalData !== undefined) {
+                  if (field.entity && field.additionalData !== undefined && field.additionalData !== '') {
                     set(this.appJson, field.entity, field.additionalData.name);
                   }
                 } else if (field.type === 'autocomplete') {
