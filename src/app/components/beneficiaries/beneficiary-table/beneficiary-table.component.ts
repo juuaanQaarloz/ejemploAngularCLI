@@ -320,7 +320,7 @@ export class BeneficiaryTableComponent implements OnInit {
       });
     } else if (this.type ===  'table-payment') {
       this.title = 'Información bancaria';
-      this.columnsNames = ['Banco emisor de tarjeta/CLABE', ' CLABE', 'Tarjeta',
+      this.columnsNames = ['Banco emisor de tarjeta/CLABE', '  CLABE/TOKEN', 'Tarjeta',
       ];
       this.itemsType = 'payment';
       this.style = 'even-beneficiary';
