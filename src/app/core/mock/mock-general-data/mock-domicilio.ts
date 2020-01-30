@@ -204,8 +204,8 @@ export const DatosDomicilio: Field[] = [
     renderConditions: '',
     enableConditions: '',
     requiredConditions: '(typePerson=P)',
-    entity: 'insurer.Address[0].sta_cod',
-    entityField: 'insurer.Address[0].sta_spec',
+    entity: 'insurer.Address[0].sta_spec',
+    entityField: 'insurer.Address[0].sta_cod',
   },
   {
     id: 'field-29',
