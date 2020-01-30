@@ -215,7 +215,7 @@ export class JsonApplicationService {
       if (items.length > 0) {
         set(this.appJson, `insuredCondition.aplicationPlan.pln_cd`, this.appService.currentPlan.getValue().PLAN);
         items.forEach((coverage, i) => {
-          set(this.appJson, `<insuredCondition.aplicationPlan.coverage>[${i}]`, this.mapItem('coverage', coverage, i));
+          set(this.appJson, `insuredCondition.aplicationPlan.coverage[${i}]`, this.mapItem('coverage', coverage, i));
         });
       }
     }
