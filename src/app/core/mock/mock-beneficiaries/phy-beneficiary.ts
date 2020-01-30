@@ -1,5 +1,40 @@
 import {Field} from '../../../models';
 
+export const BeneficiaryFieldsInfo: Field[] = [
+  {
+    id: 'field-117',
+    idHtml: 'txtAdditionalComments',
+    name: 'additionalComments',
+    label: 'Información adicional',
+    orderAppearance: 1,
+    type: 'text',
+    required: false,
+    placeholder: '',
+    length: '750',
+    minValue: 0,
+    maxValue: 750,
+    pattern: '/^(?=.*$)(?=[^A-ZÑ0-9\\s]*[A-ZÑ0-9\\s])(?:([A-ZÑ0-9\\s])\\1?(?!\\1\\1))*$/',
+    noAllowedCharactersPattern: '/[^a-zA-ZñÑ0-9\\s]/',
+    source: '',
+    sourceID: '',
+    style: '',
+    styleClass: '',
+    styleClassError: '',
+    message: 'La información adicional no pueden exceder los 750 caracteres',
+    messageClass: '',
+    messageError: '', // new
+    messageErrorClass: '', // new
+    renderConditions: '',
+    enableConditions: '',
+    requiredConditions: '',
+    entity: '',
+    //entityField: 'insuredCondition.aplicationPlan.coverage.beneciciary.person.co_cmrc_add_inf',
+    entityField: 'app_add_commts',
+    value: '',
+    disable: false
+  }
+];
+
 export const BeneficiaryFieldsP: Field[] = [
   {
     id: 'field-94',

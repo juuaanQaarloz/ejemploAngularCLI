@@ -86,7 +86,7 @@ export class BeneficiaryTableComponent implements OnInit {
         idParent: 'step-7',
         parentType: 'Step',
         idHtml: 'app-content-form-2.21',
-        fields: FIELDS,
+        fields: [],
         showContent: true,
         styleClass: 'modal-type',
         renderConditions: '',

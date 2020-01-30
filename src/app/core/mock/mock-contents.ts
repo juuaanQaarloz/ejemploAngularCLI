@@ -24,6 +24,7 @@ import { OtrosSeguros } from './mock-general-data/mock-other-insurance';
 import {CoverageFieldsItem} from './coverage/coverage';
 // Documentos
 import { Documents } from './documents/documents';
+import {BeneficiaryFieldsInfo} from './mock-beneficiaries/phy-beneficiary';
 
 export const MockFieldsContractorType: Field[] = [
   {
@@ -721,7 +722,27 @@ export const MockContentStep11Process1ContentSection2: Content[] = [
     // enableConditions?: 'string';
     styleClass: 'modal-type'
     // --------------------------
-  }
+  },
+  {
+    id: 'content-2.34',
+    idParent: 'step-11',
+    parentType: 'Step',
+    idHtml: 'app-content-form-2.34',
+    contentType: 'looseFields',
+    // process?: Process;
+    fields: BeneficiaryFieldsInfo,
+    // operations?: Operation[];
+    renderConditions: '',
+    // ---pending---
+    // contentChildren?: Array<Content>;
+    // -------------
+
+    // --added extra from model--
+    showContent: true,
+    styleClass: 'modal-type'
+    // enableConditions?: 'string';
+    // --------------------------
+  },
   /*{
     id: 'content-2.34',
     idParent: 'step-11',

@@ -210,7 +210,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           value = this.config.data.item.birthDateOrConstitution;
           break;
         case 'beneficiaryRelationshipP':
-          value = this.config.data.item.relationship;
+          value = this.config.data.item.relationshipCd;
           break;
         case 'participationPercentageP':
           value = this.config.data.item.participationPercentage;
@@ -267,7 +267,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           value = this.config.data.item.businessName;
           break;
         case 'beneficiaryRelationshipM':
-          value = this.config.data.item.relationship;
+          value = this.config.data.item.relationshipCd;
           break;
         case 'espBeneficiaryRelationshipM':
           value = this.config.data.item.espRelationship;

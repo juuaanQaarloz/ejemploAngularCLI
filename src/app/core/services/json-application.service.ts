@@ -17,7 +17,6 @@ import {ForeignCountryTaxJson} from '../../models/applicationJson/foreignCountry
 import {QuesList} from '../../models/applicationJson/questionaryJson/quesList';
 import {Cvr} from '../../models/applicationJson/coverageJson/cvr';
 import {Subject} from 'rxjs';
-import {forEachComment} from "tslint";
 
 @Injectable({
   providedIn: 'root'
@@ -175,7 +174,6 @@ export class JsonApplicationService {
         items.forEach((sport, i) => {
           set(this.appJson, `QuesList[${i}]`, this.mapItem('sport', sport, i));
         });
-        // set(this.appJson, '', '');
       }
     } else if (tableType === 'table-diseases') {
       items = this.appService.diseases.getValue();
