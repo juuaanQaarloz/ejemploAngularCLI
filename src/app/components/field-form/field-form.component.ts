@@ -13,9 +13,6 @@ import {Pattern} from '../../models/pattern/pattern';
 import {ModalService} from '../custom-modal';
 import {Operation} from '../../models';
 import {HttpClient} from '@angular/common/http';
-import set from 'lodash/set';
-import {map} from "rxjs/operators";
-import {element} from "protractor";
 
 @Component({
   selector: 'app-field-form',
@@ -219,6 +216,11 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           this.applicationService.enableAdditionalCoverage();
         }
       });
+    }
+
+    // set default value to field radio type
+    if (this.fieldObj.type === 'radio') {
+      this.form.controls[this.fieldObj.name].setValue(this.fieldObj.value);
     }
   }
 

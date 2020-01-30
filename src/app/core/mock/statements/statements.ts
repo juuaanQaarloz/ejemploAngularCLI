@@ -27,7 +27,7 @@ export const statements0: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: 'app_own_py_frgn_tax_ind',
-    value: ''
+    value: false
   }
 ];
 export const statements: Field[] = [
@@ -58,7 +58,7 @@ export const statements: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: 'app_own_pltcl_dclr_ind',
-    value: ''
+    value: false
   }
 ];
 
@@ -91,7 +91,7 @@ export const statements1: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: 'app_own_frng_ind',
-    value: ''
+    value: false
   },
   {
     id: 'field-1610',
@@ -152,7 +152,7 @@ export const statements1: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: 'app_own_shre_ind',
-    value: ''
+    value: false
   }
 ];
 
@@ -184,7 +184,7 @@ export const statements2: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: 'app_own_thrd_prty_ind',
-    value: ''
+    value: false
   }
 ];
 
@@ -217,6 +217,6 @@ export const statements3: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: 'app_own_pymnt_rsrc_ind',
-    value: ''
+    value: false
   }
 ];

@@ -1,33 +1,32 @@
 <div id="content" #content>
-    <app-header>
-  
-    </app-header>
-  
-    <app-menu></app-menu>
-  
-    <div style="background-color: white">
-  
-      <div style="text-align: center">
-        <h1 class="title">Solicitud MetaLife</h1>
-      </div>
-      <!-- <app-operation-form [operationObj]="pdfOperation" (click)="getValidateField()"></app-operation-form> -->
-  
-      <!--<app-error-banner [message]="'Please check the information below.'"></app-error-banner>-->
-  
-      <div class="container" *ngFor="let section of applicationObj.sections">
-        <app-section-form [form]="formGroup" [sectionObj]="section"></app-section-form>
-      </div>
-  
-      <app-operation-form [operationObj]="pdfOperation" (click)="downloadPDF()"></app-operation-form>
-  
+  <app-header>
+  </app-header>
+
+  <app-menu></app-menu>
+
+  <div style="background-color: white">
+
+    <div style="text-align: center">
+      <h1 class="title">Solicitud MetaLife</h1>
+      <p class="folio">{{'Número de solicitud CP DES: ' + appId}}</p>
+      <p class="folio">{{'Número de solicitud: ' + appFuc}}</p>
     </div>
-  
-    <jw-modal [id]="'modal-search'"
-              [modalType]="'overlay'">
-      <app-search-occupation [modalID]="'modal-search'"></app-search-occupation>
-    </jw-modal>
-  
-    <app-footer></app-footer>
-  
+
+    <div class="container">
+      <app-section-form *ngFor="let section of applicationObj.sections"
+                        [form]="formGroup" [sectionObj]="section"></app-section-form>
+
+      <div class="operation">
+        <app-operation-form [operationObj]="pdfOperation" (click)="downloadPDF()"></app-operation-form>
+      </div>
+    </div>
   </div>
-  
+
+  <jw-modal [id]="'modal-search'"
+            [modalType]="'overlay'">
+    <app-search-occupation [modalID]="'modal-search'"></app-search-occupation>
+  </jw-modal>
+
+  <app-footer></app-footer>
+
+</div>

@@ -29,7 +29,7 @@ export const weaponsQuestions: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: 'applicationExtension.wpn_flg_in',
-    value: ''
+    value: false
   }
 ];
 
@@ -95,7 +95,7 @@ export const weaponsQuestions1: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: 'applicationExtension.rsk_job_ind',
-    value: ''
+    value: false
   }
 ];
 

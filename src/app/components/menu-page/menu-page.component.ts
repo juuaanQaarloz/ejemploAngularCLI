@@ -1,9 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 import {ApplicationService} from '../../core/services';
-import {timer, Observable, Subject, of, from, Subscription} from 'rxjs';
-import {switchMap, takeUntil, catchError, map} from 'rxjs/operators';
+import {timer, Subscription} from 'rxjs';
+import {switchMap} from 'rxjs/operators';
+import {WINDOW} from '../../core/providers/windowProviders';
 
 @Component({
   selector: 'app-menu-page',
@@ -20,14 +21,16 @@ export class MenuPageComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private httpClient: HttpClient,
-    private appService: ApplicationService
+    private appService: ApplicationService,
+    @Inject(WINDOW) private window: Window
   ) {
   }
 
   ngOnInit() {
 
+    this.setUrlServices();
     // call the getdptoken every 30 min while the app is running (30 * 60) * 1000)
-    this.subscription = timer(0,  ((30 * 60) * 1000)).pipe(
+    this.subscription = timer(0, ((30 * 60) * 1000)).pipe(
       switchMap(() => this.appService.getDPToken())
     ).subscribe(result => {
       console.log('entra al servicio getdptoken');
@@ -45,28 +48,43 @@ export class MenuPageComponent implements OnInit {
 
     this.activatedRoute.queryParams.subscribe(params => {
       if (params['metrolename'] !== undefined && params['metroluid'] !== undefined) {
-        localStorage.setItem('metrolename', params['metrolename']);
+        let metrolnamePrev = params['metrolename'];
+
+        if (metrolnamePrev.includes('^')) {
+          console.log('if gorro: ');
+          // filtrar user metrolname
+          const resultSlipt = metrolnamePrev.split('^');
+          console.log('resultSplit: ', resultSlipt);
+          this.metrolename = resultSlipt[1];
+
+        } else {
+          this.metrolename = params['metrolename'];
+        }
+
+        localStorage.setItem('metrolename', this.metrolename);
         localStorage.setItem('metroluid', params['metroluid']);
 
-        this.setGlobalHeaders();
       } else {
 
         this.appService.getUserData().subscribe((data: any) => {
           console.log('entra al servicio getUserData: ', data);
+          // let metrolnamePrev = 'GNA^DES_Admin';
           let metrolnamePrev = data.data.metrolename;
 
           if (metrolnamePrev.includes('^')) {
+            console.log('if gorro: ');
             // filtrar user metrolname
             const resultSlipt = metrolnamePrev.split('^');
+            console.log('resultSplit: ', resultSlipt);
             this.metrolename = resultSlipt[1];
 
-          } else  {
+          } else {
             this.metrolename = data.data.metrolename;
           }
 
           console.log('resp: ', data.data);
-          localStorage.setItem('metrolename', data.data.metrolename ? data.data.metrolename : 'DES_Admin');
-          localStorage.setItem('metroluid', data.data.metUserId ? data.data.metUserId : 'N3333876');
+          localStorage.setItem('metrolename', this.metrolename);
+          localStorage.setItem('metroluid', data.data.metUserId);
         }, error => {
           console.log('on Error from getUserData: ', error);
         });
@@ -97,20 +115,24 @@ export class MenuPageComponent implements OnInit {
     });
   }
 
-  setGlobalHeaders() {
-    const headers = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-      'metrolename': localStorage.getItem('metrolename'),
-      'metuserid': localStorage.getItem('metroluid')
-    };
+  getHostname(): string {
+    return this.window.location.hostname;
+  }
 
-    console.log('headers: ', headers);
+  setUrlServices() {
+    const hostName = this.getHostname();
 
-    this.appService.setGlobalHeader(headers);
+    console.log('hostName: ', hostName);
+
+    if (hostName.includes('dev') || hostName === 'localhost') {
+      this.appService.setUrlServices('https://dev.des.metlife.com/despriv');
+    } else if (hostName.includes('qa')) {
+      this.appService.setUrlServices('https://qa.des.metlife.com/despriv');
+    } else if (hostName.includes('int'))  {
+      this.appService.setUrlServices('https://int.des.metlife.com/despriv');
+    }
+
+    console.log('url_services: ', this.appService.getUrlServices());
   }
 
   /*ngOnDestroy(): void {

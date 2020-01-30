@@ -11,7 +11,7 @@ export class AddressJson {
   sta_cod: string = null;
   sta_spec: string = null;
   cntry_cod: string = null;
-  cntry_spe: string = null;
+  cntry_spe: string = 'MEXICO';
   hom_phon: string = null;
   lab_phon: string = null;
   extt_num: string = null;

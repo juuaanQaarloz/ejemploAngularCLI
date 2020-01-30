@@ -232,7 +232,8 @@ export const DatosDomicilioSolicitante: Field[] = [
     renderConditions: '',
     enableConditions: '',
     requiredConditions: '(contractorType=false,|,typePerson=M)',
-    entity: '',
-    entityField: 'insured.Address[0].cntry_spe'
+    entity: 'insured.Address[0].cntry_spe',
+    entityField: 'insured.Address[0].cntry_cod',
+    value: '151'
   }
 ];

@@ -57,6 +57,7 @@ import { SearchDetailComponent } from './components/search/search-detail/search-
 import { DocumentsComponent } from './components/documents/documents.component';
 import { AppConstants } from './app.constants';
 import { NgxPaginationModule } from 'ngx-pagination';
+import {WINDOW_PROVIDERS} from './core/providers/windowProviders';
 
 // @ts-ignore
 @NgModule({
@@ -125,7 +126,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
   providers: [
     AppConstants,
     { provide: DateAdapter, useClass: MyDateAdapter},
-    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS}
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS},
+    WINDOW_PROVIDERS
     ]
 })
 export class AppModule { }

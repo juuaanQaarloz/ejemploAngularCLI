@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { AppConstants } from 'src/app/app.constants';
+import {ApplicationService} from '../../../core/services';
+import {JsonApplicationService} from '../../../core/services/json-application.service';
 
 @Component({
   selector: 'app-search-results',
@@ -15,15 +16,19 @@ export class SearchResultsComponent implements OnInit {
   records: any = [];
   p: any;
   numItems: number = 10;
+  url_services;
 
   constructor(
     private httpClient: HttpClient,
-    private router: Router
+    private router: Router,
+    private appService: ApplicationService,
+    private jsonAppService: JsonApplicationService
   ) { }
 
   ngOnInit() {
     //console.log("localStorage");
     //console.log(localStorage.getItem("metrolename"));
+    this.url_services = this.appService.getUrlServices();
     this.metrolename = localStorage.getItem("metrolename");
     this.metroluid = localStorage.getItem("metroluid");
 
@@ -38,15 +43,16 @@ export class SearchResultsComponent implements OnInit {
       { field: 'recUpdtTs', label: 'Fecha de modificación', align: 'text-center', type: 'date'}
     ];
 
-    if(JSON.parse(localStorage.getItem('search'))!==null){
+    if (JSON.parse(localStorage.getItem('search')) !== null ) {
       this.records = JSON.parse(localStorage.getItem('search'));
       console.log("records");
       console.log(this.records);
-    }else
-    this.records = [];
+    } else {
+      this.records = [];
+    }
   }
 
-  detail(app_id: any){
+  detail(app_id: any) {
     let metrolname = localStorage.getItem('metrolename');
     let metuserid = localStorage.getItem('metroluid');
 
@@ -56,18 +62,24 @@ export class SearchResultsComponent implements OnInit {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-      'metrolename': metrolname ? metrolname : 'DES_Admin',
-      'metuserid': metuserid ? metuserid : 'N3333876'
+      'metrolename': metrolname,
+      'metuserid': metuserid
     };
 
     let params = new HttpParams();
     params = params.append('app_id', app_id);
+    const DUMMY_SEARCH_JSON = '../assets/dummies/dummy-search-result.json';
 
-    this.httpClient.get( AppConstants.URL_SERVICE_DEV  + '/getApp', {headers, params}).subscribe((resp:any) => {
-      console.log("detalle");
-      console.log(resp.data);
-      localStorage.setItem('detail', JSON.stringify(resp.data));
-      this.router.navigate(['search','detail', app_id]);
+    this.httpClient.get( this.url_services  + '/getApp', {headers, params}).subscribe((response :any) => {
+    // this.httpClient.get(DUMMY_SEARCH_JSON).subscribe((response: any) => {
+      console.log('detalle: ', response.data);
+
+      // set the result json if the search globally
+      this.jsonAppService.setAppJson(response.data);
+
+      console.log('detail in json service: ', this.jsonAppService.getAppJson());
+      // localStorage.setItem('detail', JSON.stringify(response.data));
+      this.router.navigate(['search', 'detail', app_id]);
     });
   }
 }

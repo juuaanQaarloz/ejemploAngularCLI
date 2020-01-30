@@ -1,0 +1,36 @@
+:host{
+  /*height: 100vh;*/
+}
+
+.title {
+  font-family: Georgia;
+  font-size: 44px;
+  font-weight: bold;
+  line-height: 1.5;
+  color: #000;
+  /*padding-top: 100px;*/
+}
+
+.footer-buttons {
+  width: 100%;
+  /*position: fixed;*/
+  /*bottom: 20px;*/
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  grid-gap: 15px;
+  margin-left: 56px;
+}
+
+.container {
+  /*background-color: #d9d9d6;*/
+  width: 100%;
+}
+
+.folio {
+  text-align: right;
+  font-weight: bold;
+  margin-left: auto;
+}
+
+
+

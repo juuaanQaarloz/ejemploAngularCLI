@@ -82,11 +82,12 @@ export class JsonApplicationService {
                   console.log('value: ', value);
                 }
                 set(this.appJson, field.entityField, value);
+                console.log('value: ', value);
+
               }
             }
           });
         } else if (contentFromStep.contentType.includes('table')) {
-          // TODO: Integrate table structure in JSON structure
           this.mapTableToJson(contentFromStep.contentType, contentFromStep.contentTypeId);
         }
 
@@ -120,18 +121,16 @@ export class JsonApplicationService {
                       console.log('value: ', value);
                     }
                     set(this.appJson, field.entityField, value);
+                    console.log('value: ', value);
                   }
                 }
               });
             } else if (contentChild.contentType.includes('table')) {
-              // TODO: Integrate table structure in JSON structure
               this.mapTableToJson(contentChild.contentType, contentChild.contentTypeId);
             }
           });
         }
       });
-
-      // console.log('appJson object: ', this.getAppJson());
 
       this.appJson.app_stts_cd = step.id;
       if (step.id === '1' || step.id === '4') {
@@ -216,7 +215,7 @@ export class JsonApplicationService {
       if (items.length > 0) {
         set(this.appJson, `insuredCondition.aplicationPlan.pln_cd`, this.appService.currentPlan.getValue().PLAN);
         items.forEach((coverage, i) => {
-          set(this.appJson, `insuredCondition.aplicationPlan.coverage[${i}]`, this.mapItem('coverage', coverage, i));
+          set(this.appJson, `<insuredCondition.aplicationPlan.coverage>[${i}]`, this.mapItem('coverage', coverage, i));
         });
       }
     }
@@ -227,7 +226,7 @@ export class JsonApplicationService {
       let newAgent: AgentJson = new AgentJson();
       let newAgentCd: AgentCd = new AgentCd();
 
-      newAgentCd.agnt_cd = item.key;
+      newAgentCd.agnt_py_cd = item.key;
       newAgentCd.agnt_pmtr_cd = item.promotor;
       newAgentCd.agnt_party_nm = item.name;
 
@@ -240,11 +239,13 @@ export class JsonApplicationService {
     } else if (itemType === 'beneficiary') {
       let newBeneficiary: BeneciciaryJson = new BeneciciaryJson();
 
+      console.log('item beneficiary: ', item);
+
       newBeneficiary.person = this.mapPersonBeneficiary(item.beneficiaryType, item);
       newBeneficiary.person.Address.push(this.mapAddressBeneficiary(item.beneficiaryType, item));
       newBeneficiary.bene_tp_cd = item.beneficiaryType;
       newBeneficiary.bene_rel_cd = item.relationshipCd;
-      newBeneficiary.bene_rel_desc = item.item.relationship;
+      newBeneficiary.bene_rel_desc = item.relationship;
 
       newBeneficiary.bene_prtcp_pct = item.participationPercentage;
       newBeneficiary.bene_fid_cnd_flg = item.beneficiaryType === 'fidPerson' ? 'true' : null;

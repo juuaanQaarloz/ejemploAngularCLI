@@ -11,6 +11,7 @@ import {SearchService} from '../search/search.service';
 import {JsonApplicationService} from '../../core/services/json-application.service';
 import {empty} from 'rxjs/internal/Observer';
 import {Subscription} from 'rxjs';
+import {ActivatedRoute, ParamMap} from '@angular/router';
 
 @Component({
   selector: 'app-application',
@@ -23,7 +24,6 @@ export class ApplicationComponent implements OnInit, OnDestroy {
   formGroup: FormGroup;
   @ViewChild('content', {static: false}) content: ElementRef;
   applOperations = APPL_OPERATIONS;
-  items = [];
   errorMessage;
   viewLoading = false;
   closeWindowOpt = CLOSE_MODALS_OPT;
@@ -42,11 +42,23 @@ export class ApplicationComponent implements OnInit, OnDestroy {
               private modalService: ModalService,
               private storageService: StorageService,
               private searchService: SearchService,
-              private jsonAppService: JsonApplicationService
+              private jsonAppService: JsonApplicationService,
+              private activatedRoute: ActivatedRoute,
   ) {
   }
 
   ngOnInit() {
+
+    this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
+      if (params.has('id')) {
+        // edit existing application
+        console.log('params.id: ', params.get('id'));
+      } else {
+        // create new application
+        console.log('new app');
+      }
+
+    });
 
     this.subscription = this.jsonAppService.appJsonChange.subscribe((appJson) => {
       this.appFolio = appJson.app_id.toString();
@@ -59,8 +71,6 @@ export class ApplicationComponent implements OnInit, OnDestroy {
     this.applicationObj = this.appService.getApplicationObject();
     this.formGroup = this.appService.toFormGroup(this.applicationObj);
     this.appService.setFormGroup(this.formGroup);
-    // an example array of 150 items to be paged
-    this.items = Array(150).fill(0).map((x, i) => ({id: (i + 1), name: `Item ${i + 1}`}));
     console.log('Entro a la aplicación');
     console.log('Session user: ', this.storageService.setCurrentSession(null));
     let user = this.storageService.getSessionUser();
@@ -78,7 +88,7 @@ export class ApplicationComponent implements OnInit, OnDestroy {
 
   convertPdf(base64) {
 
-    if ( base64 === null ) {
+    if (base64 === null) {
       console.log('ocurrio un error al generar el pdf');
       this.openDialog(this.modalErrorId);
     } else {
@@ -105,18 +115,13 @@ export class ApplicationComponent implements OnInit, OnDestroy {
       this.closeModal(this.modalErrorId);
     } else if (delegateOperation === 'toJsonApplication') {
       console.log('on toJsonApplication...');
-      // this.getJson();
     }
-  }
-
-  getFormValue() {
-    this.payLoad = JSON.stringify(this.formGroup.value);
   }
 
   downloadPDF() {
     this.viewLoading = true;
     this.openDialog(this.modalLoadPDFId);
-    console.log( 'valor de app_id' , this.jsonAppService.getAppJson().app_id);
+    console.log('valor de app_id', this.jsonAppService.getAppJson().app_id);
     if (this.jsonAppService.getAppJson().app_id === null) {
       this.viewLoading = false;
       this.closeModal(this.modalLoadPDFId);
@@ -154,7 +159,6 @@ export class ApplicationComponent implements OnInit, OnDestroy {
   getMessages() {
     let errors = [];
     errors = this.errorMessage.split('-');
-    // console.log('errors: ', errors);
     return errors;
   }
 
@@ -165,14 +169,4 @@ export class ApplicationComponent implements OnInit, OnDestroy {
   closeModal(modalID: string) {
     this.modalService.close(modalID);
   }
-
-  searchModal(modalID: string) {
-    this.modalService.search(modalID);
-  }
-
-  getAllModals() {
-    const allModals = this.modalService.getAllModals();
-    console.log('allModals: ', allModals);
-  }
-
 }

@@ -279,7 +279,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
 
   setFieldsValues() {
     if (this.itemType === 'beneficiary') {
-      this.formGroup.controls[this.fields[0].name].setValue(this.item.relationship);
+      this.formGroup.controls[this.fields[0].name].setValue(this.item.relationshipCd);
       this.formGroup.controls[this.fields[1].name].setValue(this.item.participationPercentage);
     } else if (this.itemType === 'agent') {
       this.formGroup.controls[this.fields[0].name].setValue(this.item.name);

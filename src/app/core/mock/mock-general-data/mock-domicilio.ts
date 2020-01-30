@@ -30,6 +30,7 @@ export const DatosDomicilio: Field[] = [
     requiredConditions: '(typePerson=P)',
     entity: '',
     entityField: 'insurer.Address[0].strt_nm',
+    value: ''
   },
   {
     id: 'field-23',
@@ -203,8 +204,8 @@ export const DatosDomicilio: Field[] = [
     renderConditions: '',
     enableConditions: '',
     requiredConditions: '(typePerson=P)',
-    entity: 'insurer.Address[0].sta_spec',
-    entityField: 'insurer.Address[0].sta_cod',
+    entity: 'insurer.Address[0].sta_cod',
+    entityField: 'insurer.Address[0].sta_spec',
   },
   {
     id: 'field-29',
@@ -235,6 +236,7 @@ export const DatosDomicilio: Field[] = [
     requiredConditions: '(typePerson=P)',
     entity: 'insurer.Address[0].cntry_spe',
     entityField: 'insurer.Address[0].cntry_cod',
+    value: '151'
   },
   {
     id: 'field-30',
