@@ -114,7 +114,7 @@ export const DatosDomicilioContactoMoral: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=M)',
     entity: '',
-    entityField: '',
+    entityField: 'insurer.Address[0].zip_cod'
   },
   {
     id: 'field-47',

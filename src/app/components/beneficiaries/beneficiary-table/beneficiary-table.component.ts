@@ -7,7 +7,7 @@ import {NewAgentComponent} from '../new-agent/new-agent.component';
 import {NewFormatwoComponent} from '../new-formatwo/new-formatwo.component';
 import {NewCountryComponent} from '../new-country/new-country.component';
 import {NewRowComponent} from '../../table-component/new-row/new-row.component';
-import { NewPaymentComponent } from '../new-payment/new-payment.component';
+import {NewPaymentComponent } from '../new-payment/new-payment.component';
 
 const FIELDS: Field[] = [
   {
