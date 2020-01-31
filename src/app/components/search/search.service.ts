@@ -14,10 +14,10 @@ export class SearchService {
   ) { }
 
   downloadPDF(appId) {
-    //console.log("PDF");
-    //console.log(appId);
-    console.log("localStorage.getItem('metroluid')");
-    console.log(localStorage.getItem('metroluid'));
+    //// console.log("PDF");
+    //// console.log(appId);
+    // console.log("localStorage.getItem('metroluid')");
+    // console.log(localStorage.getItem('metroluid'));
     let metrolname = localStorage.getItem('metrolename');
     let metuserid = localStorage.getItem('metroluid');
 

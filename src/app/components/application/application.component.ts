@@ -42,24 +42,12 @@ export class ApplicationComponent implements OnInit, OnDestroy {
               private modalService: ModalService,
               private storageService: StorageService,
               private searchService: SearchService,
-              private jsonAppService: JsonApplicationService,
-              private activatedRoute: ActivatedRoute,
+              private jsonAppService: JsonApplicationService
   ) {
   }
 
   ngOnInit() {
-
-    this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
-      if (params.has('id')) {
-        // edit existing application
-        console.log('params.id: ', params.get('id'));
-      } else {
-        // create new application
-        console.log('new app');
-      }
-
-    });
-
+    console.log('ngOnInit ApplicationComponent');
     this.subscription = this.jsonAppService.appJsonChange.subscribe((appJson) => {
       this.appFolio = appJson.app_id.toString();
       this.appFuc = appJson.app_dcn_num;
@@ -68,14 +56,15 @@ export class ApplicationComponent implements OnInit, OnDestroy {
     this.modalErrorId = 'modal-error-pdf';
     this.modalLoadPDFId = 'modal-loading';
     this.appService.setApplicationObject(MockTemplate);
+    console.log('MockTemplate: ', MockTemplate);
     this.applicationObj = this.appService.getApplicationObject();
     this.formGroup = this.appService.toFormGroup(this.applicationObj);
     this.appService.setFormGroup(this.formGroup);
-    console.log('Entro a la aplicación');
-    console.log('Session user: ', this.storageService.setCurrentSession(null));
+    // console.log('Entro a la aplicación');
+    // console.log('Session user: ', this.storageService.setCurrentSession(null));
     let user = this.storageService.getSessionUser();
-    console.log(user);
-    console.log(user['userName']);
+    // console.log(user);
+    // console.log(user['userName']);
   }
 
   ngOnDestroy(): void {
@@ -88,7 +77,7 @@ export class ApplicationComponent implements OnInit, OnDestroy {
 
   convertPdf(base64) {
     if (base64 === null) {
-      console.log('ocurrio un error al generar el pdf');
+      // console.log('ocurrio un error al generar el pdf');
       this.openDialog(this.modalErrorId);
     } else {
       const linkSource = 'data:application/pdf;base64,' + this.fromHexaToBase64(base64);
@@ -102,25 +91,25 @@ export class ApplicationComponent implements OnInit, OnDestroy {
   }
 
   executeOperation(delegateOperation) {
-    console.log('delegateOperation: ', delegateOperation);
+    // console.log('delegateOperation: ', delegateOperation);
 
     if (delegateOperation === 'generatePDF') {
       this.downloadPDF();
     } else if (delegateOperation === 'validateApplication') {
-      console.log('validateApplication ');
+      // console.log('validateApplication ');
       this.validateApplication();
     } else if (delegateOperation === 'closeModal') {
       this.closeModal('modal-error');
       this.closeModal(this.modalErrorId);
     } else if (delegateOperation === 'toJsonApplication') {
-      console.log('on toJsonApplication...');
+      // console.log('on toJsonApplication...');
     }
   }
 
   downloadPDF() {
     this.viewLoading = true;
     this.openDialog(this.modalLoadPDFId);
-    console.log('valor de app_id', this.jsonAppService.getAppJson().app_id);
+    // console.log('valor de app_id', this.jsonAppService.getAppJson().app_id);
     if (this.jsonAppService.getAppJson().app_id === null) {
       this.viewLoading = false;
       this.closeModal(this.modalLoadPDFId);
@@ -128,7 +117,7 @@ export class ApplicationComponent implements OnInit, OnDestroy {
     } else {
       this.appService.getPDF(this.jsonAppService.getAppJson().app_id.toString()).subscribe((response: any) => {
         // this.appService.getPDF('2001220018').subscribe((result: any) => {
-        console.log('result PDF service: ', response);
+        // console.log('result PDF service: ', response);
         if (response) {
           this.viewLoading = false;
           this.closeModal(this.modalLoadPDFId);
@@ -139,19 +128,19 @@ export class ApplicationComponent implements OnInit, OnDestroy {
         this.viewLoading = false;
         this.closeModal(this.modalLoadPDFId);
         this.openDialog(this.modalErrorId);
-        console.log('onError PDFBroker:');
-        console.log(error);
+        // console.log('onError PDFBroker:');
+        // console.log(error);
       });
     }
   }
 
   validateApplication() {
     const response = this.appService.validateApplicationForm();
-    console.log('response: ', response);
+    // console.log('response: ', response);
     if (response.status === false) {
       this.openDialog('modal-error');
       this.errorMessage = response.msg;
-      console.log('errorMessage: ', this.errorMessage);
+      // console.log('errorMessage: ', this.errorMessage);
     }
   }
 

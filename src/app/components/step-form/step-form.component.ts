@@ -75,12 +75,12 @@ export class StepFormComponent implements OnInit {
 
   getErrorStatus(errorId) {
     const status = this.applicationService.getStatusError(errorId);
-    console.log('status: ', status);
+    // console.log('status: ', status);
     return status;
   }
 
   executeOperation(delegateOperation) {
-    console.log('delegateOperation: ', delegateOperation);
+    // console.log('delegateOperation: ', delegateOperation);
     if (delegateOperation === 'closeStep') {
       this.closeStep();
     } else if (delegateOperation === 'validateStep') {
@@ -93,15 +93,15 @@ export class StepFormComponent implements OnInit {
         this.stepObj.isCompleted = true;
 
         if (this.stepObj.id === '21') {
-          console.log('isApplicationComplete: ', this.applicationService.isApplicationComplete());
+          // console.log('isApplicationComplete: ', this.applicationService.isApplicationComplete());
           this.applicationService.changeLastStepCompleted(true);
         }*/
 
         this.applicationService.saveApplication(this.jsonApplicationService.saveInJsonSwagger(this.stepObj))
           .subscribe((response: any) => {
-            console.log('response from saveApplication service in component step: ', response);
+            // console.log('response from saveApplication service in component step: ', response);
             this.jsonApplicationService.setAppJson(response.data);
-            console.log('response.data: ', response.data);
+            // console.log('response.data: ', response.data);
             this.jsonApplicationService.change(response.data);
             this.showLoading = false;
             this.closeModal(this.modalLoadingId);
@@ -110,14 +110,14 @@ export class StepFormComponent implements OnInit {
             this.stepObj.isCompleted = true;
             // emits a true when the section 21 is valid and save
             /*if (this.stepObj.id === '21') {
-              console.log('application Object: ', this.applicationService.getApplicationObject());
+              // console.log('application Object: ', this.applicationService.getApplicationObject());
               this.applicationService.changeLastStepCompleted(true);
             }*/
           }, error => {
             this.showLoading = false;
             this.closeModal(this.modalLoadingId);
             this.openDialog(this.modalErrorId);
-            console.log('error: ', error);
+            // console.log('error: ', error);
           });
       }
     } else if (delegateOperation === 'closeModal') {
@@ -127,7 +127,7 @@ export class StepFormComponent implements OnInit {
 
   validateStep() {
     const response = this.applicationService.validateFormByStep(this.stepObj);
-    console.log('response: ', response);
+    // console.log('response: ', response);
     this.stepObj.isValid = response.status;
     this.stepObj.message = response.msg ? response.msg : this.stepObj.message;
     if (response.listDocument && response.listDocument.length > 0) {
@@ -137,7 +137,7 @@ export class StepFormComponent implements OnInit {
   }
 
   closeStep() {
-    console.log('onCloseStep...');
+    // console.log('onCloseStep...');
     this.accordionExpanded = false;
     // this.applicationService.changeValue(this.index + 1);
   }

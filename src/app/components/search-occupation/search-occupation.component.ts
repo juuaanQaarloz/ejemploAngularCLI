@@ -91,16 +91,16 @@ export class SearchOccupationComponent implements OnInit {
   }
 
   searchOccupation(keyWord: string) {
-    console.log('buscando ocupacion...', keyWord);
+    // console.log('buscando ocupacion...', keyWord);
     this.foundOccupations = [];
     this.appService.getCatalogById(FIELDS[0].sourceID, FIELDS[0].source).subscribe((occupations: Occupation[]) => {
-      console.log(occupations);
+      // console.log(occupations);
       occupations.forEach((occupation) => {
         if (occupation.name.includes(keyWord.toUpperCase())) {
           this.foundOccupations.push(occupation);
         }
       });
-      console.log(this.foundOccupations.length);
+      // console.log(this.foundOccupations.length);
       if (this.foundOccupations.length === 0) {
         this.notResultsFound = true;
       } else {
@@ -110,7 +110,7 @@ export class SearchOccupationComponent implements OnInit {
   }
 
   setOccupation(selectedOccupation: Occupation) {
-    // // console.log('selectedOccupation... ', selectedOccupation);
+    // // // console.log('selectedOccupation... ', selectedOccupation);
     this.appService.setSelectedOccupation(selectedOccupation,);
     this.closeModal(this.modalID);
 

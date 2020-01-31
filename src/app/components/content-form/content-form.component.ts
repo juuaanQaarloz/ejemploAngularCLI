@@ -121,7 +121,7 @@ export class ContentFormComponent implements OnInit {
 
   getFormValue() {
     this.payLoad = JSON.stringify(this.form.value);
-    // console.log(this.form.value);
+    // // console.log(this.form.value);
   }
 
   orderFields() {
@@ -131,7 +131,7 @@ export class ContentFormComponent implements OnInit {
   }
 
   documentValid(listDocument) {
-    console.log('Content form lista de documentos: ');
+    // console.log('Content form lista de documentos: ');
     this.documentsComponent.validateFields(listDocument);
   }
 }

@@ -28,7 +28,7 @@ export class PaginationComponent implements OnInit {
 
   ngOnInit() {
     this.allItems = this.items;
-    // console.log('allItems.length: ', this.allItems.length);
+    // // console.log('allItems.length: ', this.allItems.length);
     this.setPage(1);
   }
 
@@ -45,7 +45,7 @@ export class PaginationComponent implements OnInit {
   }
 
   setOccupation(selectedOccupation: Occupation) {
-    // // console.log('selectedOccupation... ', selectedOccupation);
+    // // // console.log('selectedOccupation... ', selectedOccupation);
     this.appService.setSelectedOccupation(selectedOccupation,);
     this.closeModal(this.modalID);
   }

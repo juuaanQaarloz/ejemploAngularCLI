@@ -9,7 +9,6 @@ import {MockTemplate} from 'src/app/core/mock/mock-template';
 import set from 'lodash/set';
 import {SearchService} from '../search.service';
 import {JsonApplicationService} from 'src/app/core/services/json-application.service';
-import {ApplicationJson} from '../../../models/applicationJson/applicationJson';
 
 @Component({
   selector: 'app-search-detail',
@@ -52,7 +51,7 @@ export class SearchDetailComponent implements OnInit {
 
   getFormValue() {
     this.payLoad = JSON.stringify(this.formGroup.value);
-    // // console.log(this.formGroup.value);
+    // // // console.log(this.formGroup.value);
   }
 
   openDialog(modalID: string) {
@@ -60,14 +59,14 @@ export class SearchDetailComponent implements OnInit {
   }
 
   downloadPDF() {
-    console.log('PDF');
-    console.log(this.appId);
+    // console.log('PDF');
+    // console.log(this.appId);
     if (this.appId) {
       // this.searchService.downloadPDF(this.appId);
       this.appService.getPDF(this.appId).subscribe((response) => {
-        console.log('response from PDF: ', response);
+        // console.log('response from PDF: ', response);
       }, error => {
-        console.log('on Error from download PDF: ', error);
+        // console.log('on Error from download PDF: ', error);
       });
     }
   }

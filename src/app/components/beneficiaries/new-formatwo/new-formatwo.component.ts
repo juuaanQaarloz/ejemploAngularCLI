@@ -60,12 +60,12 @@ export class NewFormatwoComponent implements OnInit {
 
   ngOnInit() {
     this.formGroup = this.applicationService.createNewFormGroup(this.content.fields);
-    console.log('formGroup', this.formGroup);
+    // console.log('formGroup', this.formGroup);
     this.fields = this.getFields();
 
     this.formGroup.controls.formatwoType.valueChanges.subscribe((value) => {
       // this.formatwoType = value;
-      console.log('formatwoType');
+      // console.log('formatwoType');
       this.fields = this.getFields();
     });
 
@@ -79,8 +79,8 @@ export class NewFormatwoComponent implements OnInit {
   }
 
   addNewFormatwo() {
-    console.log('addNewFormatwo-component ');
-    console.log('formGroup value: ', this.formGroup.value);
+    // console.log('addNewFormatwo-component ');
+    // console.log('formGroup value: ', this.formGroup.value);
     const newFormatwo = this.mapNewFormatwoData();
     const response = this.applicationService.addItem(newFormatwo, 'formatwo');
 
@@ -99,7 +99,7 @@ export class NewFormatwoComponent implements OnInit {
   }
 
   executeOperation(delegateOperation: string) {
-    console.log('delegateOperation: ', delegateOperation);
+    // console.log('delegateOperation: ', delegateOperation);
     if (delegateOperation === 'closeDialog') {
       this.closeDialog();
     } else if (delegateOperation === 'addNewBeneficiary') {
@@ -138,8 +138,8 @@ export class NewFormatwoComponent implements OnInit {
       }
       this.formGroup.controls[field.name].setValue(value);
     });
-    console.log('form values: ');
-    console.log(this.formGroup.value);
+    // console.log('form values: ');
+    // console.log(this.formGroup.value);
   }
 
   mapNewFormatwoData() {
@@ -163,7 +163,7 @@ export class NewFormatwoComponent implements OnInit {
     NewFormatwoFields.forEach((field) => {
       fields.push(field);
     });
-    console.log('getFields: ', fields);
+    // console.log('getFields: ', fields);
     return fields;
   }
 

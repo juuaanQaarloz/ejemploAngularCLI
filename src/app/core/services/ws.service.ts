@@ -32,7 +32,7 @@ export class WsService {
    * Metodo para SUBIR los archivos al FILENET
    */
   public uploadFilenet(formData) {
-    console.log('Entro a uploadFilenet');
+    // console.log('Entro a uploadFilenet');
     // const BODY: any = {
     //   formData
     // };
@@ -41,8 +41,8 @@ export class WsService {
   }
 
   public submitApplication(submitRequest) {
-    console.log('Entro a submitApplication');
-    console.log(submitRequest);
+    // console.log('Entro a submitApplication');
+    // console.log(submitRequest);
     const BODY: any = {
       submitRequest
     };
@@ -56,9 +56,9 @@ export class WsService {
    * Metodo para CREAR el ZIP
    */
   public createZip(ficheros): Observable<any> {
-    console.log('Entro a createZip');
-    console.log('ficheros');
-    console.log(ficheros);
+    // console.log('Entro a createZip');
+    // console.log('ficheros');
+    // console.log(ficheros);
     const BODY: any = {
         archivos: ficheros
     };
@@ -69,7 +69,7 @@ export class WsService {
    * Metodo para DESCARGAR de las ruta fisica el ZIP
    */
   public downloadZip(url): Observable<any> {
-    console.log('Entro a downloadZip');
+    // console.log('Entro a downloadZip');
     const fd = new FormData();
     fd.append('pcURI', url);
     return this.http.post(AppConstants.URL_SERVICE + '/downloadZip', fd, {responseType: 'arraybuffer'});
@@ -79,7 +79,7 @@ export class WsService {
    * Metodo para ELIMINAR de las ruta fisica el ZIP
    */
   public deleteZip(url): Observable<any> {
-    console.log('Entro a deleteZip');
+    // console.log('Entro a deleteZip');
     const fd = new FormData();
     fd.append('pcURI', url);
     return this.http.post(AppConstants.URL_SERVICE + '/deleteZip', fd, httpOptionsUndefined);
@@ -89,7 +89,7 @@ export class WsService {
    * Metodo para validar el token de la forma de pago
    */
   public validateMitToken(mitToken): Observable<any> {
-    console.log('Entro a validateMitToken');
+    // console.log('Entro a validateMitToken');
     const BODY = new FormData();
     BODY.append('token', mitToken);
     return this.http.post(AppConstants.URL_SERVICE + '/validateMitToken', BODY, httpOptionsUndefined);
@@ -99,7 +99,7 @@ export class WsService {
    * Metodo para DESCARGAR los archivos de FILENET
    */
   public getFileNet(formData) {
-    console.log('Entro a getFileNet');
+    // console.log('Entro a getFileNet');
     // const BODY: any = {
     //   formData
     // };
@@ -110,7 +110,7 @@ export class WsService {
    * Metodo para MODIFICAR los archivos de FILENET
    */
   public updateFileNet(formData) {
-    console.log('Entro a updateFileNet');
+    // console.log('Entro a updateFileNet');
     // const BODY: any = {
     //   formData
     // };

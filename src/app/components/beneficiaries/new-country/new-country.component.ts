@@ -63,13 +63,13 @@ export class NewCountryComponent implements OnInit {
 
   ngOnInit() {
     this.formGroup = this.applicationService.createNewFormGroup(this.content.fields);
-    console.log('formGroup', this.formGroup);
+    // console.log('formGroup', this.formGroup);
     this.fields = this.getFields();
-    console.log('country-fields', this.fields);
+    // console.log('country-fields', this.fields);
 
     this.formGroup.controls.statCountry.valueChanges.subscribe((value) => {
       // this.formatwoType = value;
-      console.log('statCountry');
+      // console.log('statCountry');
       this.fields = this.getFields();
     });
 
@@ -83,8 +83,8 @@ export class NewCountryComponent implements OnInit {
   }
 
   addNewCountry() {
-    // console.log('addNewCountry-component ');
-    // console.log('formGroup value: ', this.formGroup.value);
+    // // console.log('addNewCountry-component ');
+    // // console.log('formGroup value: ', this.formGroup.value);
     const formStatus = this.getFormStatus();
     if (formStatus === 'VALID') {
       const newCountry = this.mapNewCountryData();
@@ -116,7 +116,7 @@ export class NewCountryComponent implements OnInit {
   }
 
   executeOperation(delegateOperation: string) {
-    console.log('delegateOperation: ', delegateOperation);
+    // console.log('delegateOperation: ', delegateOperation);
     if (delegateOperation === 'closeDialog') {
       this.closeDialog();
     } else if (delegateOperation === 'addNewBeneficiary') {
@@ -133,7 +133,7 @@ export class NewCountryComponent implements OnInit {
   }
 
   setCountryValues() {
-    console.log('this.config.data.item: ', this.config.data.item);
+    // console.log('this.config.data.item: ', this.config.data.item);
     this.content.fields.forEach((field) => {
       let value;
       switch (field.name) {
@@ -145,7 +145,7 @@ export class NewCountryComponent implements OnInit {
           break;
       }
       this.formGroup.controls[field.name].setValue(value);
-      console.log('this.formGroup.controls[field.name].value: ', this.formGroup.controls[field.name].value);
+      // console.log('this.formGroup.controls[field.name].value: ', this.formGroup.controls[field.name].value);
     });
   }
 
@@ -168,7 +168,7 @@ export class NewCountryComponent implements OnInit {
     NewCountryFields.forEach((field) => {
       fields.push(field);
     });
-    console.log('getFields: ', fields);
+    // console.log('getFields: ', fields);
     return fields;
   }
 
