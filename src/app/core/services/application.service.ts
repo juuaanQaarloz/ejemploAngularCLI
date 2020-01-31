@@ -315,13 +315,14 @@ export class ApplicationService {
                       field.value || '',
                       this.getValidationFunctions(field));
                   });
-                } else if (contentFromStep.contentType.includes('table')) {
+                }
+                if (contentFromStep.contentType.includes('table')) {
                   // TODO: Set tables from JSON
+                  console.log('contentFromStep.contentType: ', contentFromStep.contentType);
                   this.setJsonToTable(contentFromStep.contentType, detail);
                 }
 
                 if (contentFromStep.contentChildren) {
-                  // console.log('onContentFromStep.contentChildren...');
                   contentFromStep.contentChildren.forEach(contentChild => {
                     if (contentChild.contentType === 'looseFields' || contentChild.fields) {
                       contentChild.fields.forEach((field) => {
@@ -351,8 +352,10 @@ export class ApplicationService {
                           field.value || '',
                           this.getValidationFunctions(field));
                       });
-                    } else if (contentChild.contentType.includes('table')) {
+                    }
+                    if (contentChild.contentType.includes('table')) {
                       // TODO: Set tables from JSON
+                      console.log('contentChild.contentType: ', contentChild.contentType);
                       this.setJsonToTable(contentFromStep.contentType, detail);
                     }
                   });
@@ -2260,7 +2263,6 @@ export class ApplicationService {
   }
 
   setJsonToTable(tableType: string, json: ApplicationJson) {
-    console.log('tableType: ', tableType);
     let items = [];
     if (tableType === 'table-beneficiary') {
       items = json.insuredCondition.beneciciary;
@@ -2324,7 +2326,24 @@ export class ApplicationService {
         });
       }
     } else if (tableType === 'table-coverage') {
-      // TODO
+      items = json.insuredCondition.aplicationPlan.coverage;
+      const plan = json.insuredCondition.aplicationPlan;
+      console.log('insuredCondition.aplicationPlan: ', plan);
+      console.log('send values: ', plan.pln_crrncy_cd, plan.pln_cvr_tp_cd, plan.pln_nm);
+
+      this.getPlan(plan.pln_crrncy_cd, plan.pln_cvr_tp_cd, 'TF').subscribe((foundPlan) => {
+        console.log('foundPlan: ', foundPlan);
+        if (foundPlan !== null) {
+          this.currentPlan.next(foundPlan);
+          if (items.length > 0) {
+            items.forEach((item) => {
+              console.log('item: ', item);
+              this.updateCoveragesArray('add', item.cvr_nm);
+            });
+          }
+        }
+      });
+
     }
   }
 
@@ -2372,17 +2391,12 @@ export class ApplicationService {
       };
       return newMappedAgent;
     } else if (itemType === 'payment') {
-
-      console.log('item : ', item);
-
       const newPayment = {
         paymentId: item.bankAccount.pymnt_prrty,
         txtBank: item.bankAccount.bnk_nm,
         txtClabe: item.bankAccount.bnk_acct_tkn_num ? item.bankAccount.bnk_acct_tkn_num : item.bankAccount.std_bnk_cd,
         selectCard: item.clct_card_typ_id,
       };
-
-      console.log('newPayment: ', newPayment);
       return newPayment;
 
 
