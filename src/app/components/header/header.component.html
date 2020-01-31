@@ -8,7 +8,7 @@
            (mouseover)="onMouseMove($event)"
            (mouseout)="onMouseMove($event)"/>
       <span id="labelHome" (mouseover)="onMouseMove($event)"
-            (mouseout)="onMouseMove($event)">
+            (mouseout)="onMouseMove($event)" (click)="home()">
         INICIO</span>
     </a>
   </div>
@@ -21,7 +21,7 @@
     <a href="" class="ml-icon-link-menu" (click)="logout()"
        [ngStyle]="{'padding':resizeHeaderHeight ? '3px' : '9px' }">
       <span id="labelSecurity" (mouseover)="onMouseMove($event)"
-            (mouseout)="onMouseMove($event)">
+            (mouseout)="onMouseMove($event)" (click)="logout()">
         CERRAR SESION</span>
       <img id="iconSecurity" [src]='"../../../assets/icons/" + iconSecurity + ".svg"'
            (mouseover)="onMouseMove($event)"

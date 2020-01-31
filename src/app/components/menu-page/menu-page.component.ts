@@ -124,12 +124,14 @@ export class MenuPageComponent implements OnInit {
 
     console.log('hostName: ', hostName);
 
-    if (hostName.includes('dev') || hostName === 'localhost') {
+    if (hostName.includes('dev') ) {
       this.appService.setUrlServices('https://dev.des.metlife.com/despriv');
     } else if (hostName.includes('qa')) {
       this.appService.setUrlServices('https://qa.des.metlife.com/despriv');
     } else if (hostName.includes('int'))  {
       this.appService.setUrlServices('https://int.des.metlife.com/despriv');
+    } else if (hostName.includes('localhost') ) {
+      this.appService.setUrlServices('http://localhost:9080/despriv');
     }
 
     console.log('url_services: ', this.appService.getUrlServices());

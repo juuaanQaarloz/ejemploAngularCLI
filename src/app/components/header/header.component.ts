@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/core/services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +12,10 @@ export class HeaderComponent implements OnInit {
   iconHome = 'home-icon';
   iconSecurity = 'security-icon';
 
-  constructor() { }
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
@@ -40,15 +45,18 @@ export class HeaderComponent implements OnInit {
     // // console.log('event: ', event.target.id);
   }
 
-  logout(): void {
-    // console.log('on LogOut...');
-    /*this.authService.logout().subscribe(
+  logout(){
+    console.log('logout');
+    this.authService.logout().subscribe(
       response => {
-        if (response) {
-          this.storageService.logout();
-        }
+        console.log(response);
+        this.home();
       }
-    );*/
+    );
   }
 
+  home(){
+    console.log("redirect to home");
+    this.router.navigate(['https://dev.des.metlife.com/des/#/']);
+  }
 }
