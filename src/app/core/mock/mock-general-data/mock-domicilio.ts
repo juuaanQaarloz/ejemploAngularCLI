@@ -352,6 +352,6 @@ export const DatosDomicilio: Field[] = [
     enableConditions: '',
     requiredConditions: '(typePerson=P)',
     entity: '',
-    entityField: ''
+    entityField: 'insurer.Address[0].per_mail_nm'
   }
 ];
