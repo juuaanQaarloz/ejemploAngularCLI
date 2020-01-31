@@ -48,6 +48,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   messageLength17 = 'El número de caracteres es invalido.';
   fileName: string;
   contadorDoc: number;
+  modalMitToken = 'modal-MitToken';
   okOperation: Operation = {
     id: 'opt-1',
     idHtml: 'btnOK',
@@ -393,6 +394,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         if (this.form.controls[this.fieldObj.name].value.length === 15) {
           this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
             .subscribe((results) => {
+              this.modalService.open(this.modalMitToken);
               this.myToken = results;
               if (this.myToken.data === '00') {
                 console.log('El Token es valido.');
@@ -407,10 +409,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
                 this.clearSelectCard();
                 console.log("El Token no es valido.")
               }
+              this.modalService.close(this.modalMitToken);
             });
         } else if (this.form.controls[this.fieldObj.name].value.length === 16) {
           this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
             .subscribe((results) => {
+              this.modalService.open(this.modalMitToken);
               this.myToken = results;
               if (this.myToken.data === '00') {
                 console.log("El Token es valido.");
@@ -424,6 +428,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
                 this.clearSelectCard();
                 console.log('El Token no es valido.');
               }
+              this.modalService.close(this.modalMitToken);
             });
         } else if (this.form.controls[this.fieldObj.name].value.length === 18) {
           this.getDataPaymentMit(bine);
