@@ -44,9 +44,9 @@ export class DocumentsComponent implements OnInit {
 
   ngOnInit() {
     this.contador = 0;
-    // console.log("Carga de documentos");
+    // // console.log("Carga de documentos");
     this.formGroup = this.applicationService.createNewFormGroup(this.content.fields);
-    // console.log('formGroup', this.formGroup);
+    // // console.log('formGroup', this.formGroup);
     this.fields = this.getFields();
     this.title = 'Carga de Documentos';
     this.columnsNames = ['Tipo de Documentos*', 'Documento*', 'Acciones'];
@@ -55,7 +55,7 @@ export class DocumentsComponent implements OnInit {
     this.style = 'even-document';
     this.showplus = true;
 
-    // console.log('Document-fields', this.fields);
+    // // console.log('Document-fields', this.fields);
 
     const newDocument = this.mapNewDocumentBase();
     const response = this.applicationService.addItem(newDocument, 'document');
@@ -67,20 +67,20 @@ export class DocumentsComponent implements OnInit {
     NewDocumentField.forEach((field) => {
       fields.push(field);
     });
-    // console.log('getFields: ', fields);
+    // // console.log('getFields: ', fields);
     return fields;
   }
 
   addNewDocument() {
-    // console.log('addNewDocument-component ');
-    // console.log('formGroup: ', this.formGroup);
-    // console.log('formGroup value: ', this.formGroup.value);
+    // // console.log('addNewDocument-component ');
+    // // console.log('formGroup: ', this.formGroup);
+    // // console.log('formGroup value: ', this.formGroup.value);
     const newDocument = this.mapAddDocumentBase();
     const response = this.applicationService.addItem(newDocument, 'document');
 
     this.fieldsCopy = JSON.parse(JSON.stringify(this.getFields()));
-    // console.log('Fields value: ', this.fields);
-    // console.log('FieldsCopy value: ', this.fieldsCopy);
+    // // console.log('Fields value: ', this.fields);
+    // // console.log('FieldsCopy value: ', this.fieldsCopy);
 
     this.addFiles();
   }
@@ -89,7 +89,7 @@ export class DocumentsComponent implements OnInit {
       this.contador++;
       const validators = [ Validators.required ];
       this.fieldsCopy.forEach((field) => {
-        // console.log(field.name);
+        // // console.log(field.name);
         if ( field.name === 'fileDocument' ) {
           field.message = '';
         }
@@ -100,10 +100,10 @@ export class DocumentsComponent implements OnInit {
         this.fields.push(field);
       });
 
-    // console.log("Fields: ");
-    // console.log(this.fields);
-    // console.log(this.fieldsCopy);
-    // console.log(this.formGroup);
+    // // console.log("Fields: ");
+    // // console.log(this.fields);
+    // // console.log(this.fieldsCopy);
+    // // console.log(this.formGroup);
   }
 
   mapNewDocumentBase() {
@@ -133,23 +133,23 @@ export class DocumentsComponent implements OnInit {
   }
 
   removeItem(index, actionField, documentField, typeDocField) {
-    // console.log('Entro a removeItem de documents.component');
-    // console.log(this.fields.length);
-    // console.log(actionField);
-    // console.log(documentField);
-    // console.log(typeDocField);
+    // // console.log('Entro a removeItem de documents.component');
+    // // console.log(this.fields.length);
+    // // console.log(actionField);
+    // // console.log(documentField);
+    // // console.log(typeDocField);
     this.currentItems = this.applicationService.documents.getValue();
     if ( this.fields.length > 3) {
-      console.log('DocumentId a eliminar: ', actionField);
-      console.log('DocumentId a eliminar: ', Number(actionField.idDocument));
+      // console.log('DocumentId a eliminar: ', actionField);
+      // console.log('DocumentId a eliminar: ', Number(actionField.idDocument));
       const indexCI = this.currentItems.findIndex((item) => {
-        console.log('Item: ', item);
-        console.log('Item: ', Number(item.documentId));
-        console.log(item.documentId === actionField.idDocument);
+        // console.log('Item: ', item);
+        // console.log('Item: ', Number(item.documentId));
+        // console.log(item.documentId === actionField.idDocument);
         return  Number(item.documentId) === Number(actionField.idDocument);
       });
-      console.log(indexCI);
-      console.log(this.currentItems[indexCI]);
+      // console.log(indexCI);
+      // console.log(this.currentItems[indexCI]);
       if ( indexCI !== -1 ) {
         this.currentItems.splice(indexCI, 1);
         this.fields.splice(index, 1);
@@ -160,20 +160,20 @@ export class DocumentsComponent implements OnInit {
         this.formGroup.removeControl(typeDocField.name);
       }
     }
-    console.log(this.currentItems);
-    // console.log(this.formGroup);
-    // console.log(this.formGroup);
+    // console.log(this.currentItems);
+    // // console.log(this.formGroup);
+    // // console.log(this.formGroup);
   }
 
   downloadFile(field) {
-    // console.log('Entro a downloadFile de documents.component');
-    // console.log(field.file.type);
-    // console.log(field.file);
+    // // console.log('Entro a downloadFile de documents.component');
+    // // console.log(field.file.type);
+    // // console.log(field.file);
     const blob = new Blob([field.file], {
       type: field.file.type
     });
-    // console.log('Blob: ');
-    // console.log(blob);
+    // // console.log('Blob: ');
+    // // console.log(blob);
     // const url = window.URL.createObjectURL(blob);
     // window.open(url);
 
@@ -184,8 +184,8 @@ export class DocumentsComponent implements OnInit {
   }
 
   downloadZip() {
-    // console.log('Entro a downloadZip de documents.component');
-    // console.log(this.fields);
+    // // console.log('Entro a downloadZip de documents.component');
+    // // console.log(this.fields);
 
     const ficheros = [];
     this.fields.forEach( field => {
@@ -193,9 +193,9 @@ export class DocumentsComponent implements OnInit {
         ficheros.push(field.file);
       }
     });
-    // console.log('Ficheros: ');
-    // console.log(ficheros);
-    // console.log(ficheros.length);
+    // // console.log('Ficheros: ');
+    // // console.log(ficheros);
+    // // console.log(ficheros.length);
 
     if ( ficheros.length > 0 ) {
 
@@ -206,8 +206,8 @@ export class DocumentsComponent implements OnInit {
 
       this.wsService.createZip(fd).subscribe(
         res => {
-          // console.log('Res: ');
-          // console.log(res);
+          // // console.log('Res: ');
+          // // console.log(res);
 
           const url = res.fileUrl + res.fileName;
 
@@ -216,25 +216,25 @@ export class DocumentsComponent implements OnInit {
                 type: 'application/zip'
               });
               const urlDownload = window.URL.createObjectURL(blob);
-              // console.log(urlDownload);
+              // // console.log(urlDownload);
               window.open(urlDownload);
 
               this.wsService.deleteZip(url).subscribe(result => {
-                  // console.log(result);
+                  // // console.log(result);
                 },
                 err => {
-                  // console.log("Error Delete: ");
-                  // console.log(err);
+                  // // console.log("Error Delete: ");
+                  // // console.log(err);
                 });
             },
             err => {
-              // console.log("Error Download: ");
-              // console.log(err);
+              // // console.log("Error Download: ");
+              // // console.log(err);
             });
         },
         err => {
-          // console.log("Error Create Zip: ");
-          // console.log(err);
+          // // console.log("Error Create Zip: ");
+          // // console.log(err);
         }
       );
 
@@ -244,16 +244,16 @@ export class DocumentsComponent implements OnInit {
 
 //  Prueba de token
   probarToken() {
-    // console.log('Entro a probarToken de documents.component');
+    // // console.log('Entro a probarToken de documents.component');
     // let token = 'aV0Xhgd8a_Yg_7e4n1DVU7LIq8QY5eMwJLXkXOBRTlDbgdEJGHoZ5j_IGGXndQa0scUXOOzUglJYeDkT9H5ECTlH6ewymv5IwS456bQoipIPnThfwwVjt5Kjwh-BAWhR3NQruiXcBYohvRaPsR4CDrFE5CGRJZ-m72vhHUGvjOaCnCBrTHwZ8sTx5udeJTYTDKduCExq3_1iduiAWTV7vZrc9BWRVMbriYF1SIqkcyCpp9SFS_X5cJIloellf_kTSPl5C2GU6EQ5ULfMoP9xCFR4e58ZupOanPP_jLRyMaalvYPWAwcdkGRBiDn9KJgw-XX3usLDJPBK7fXhvb-716fIM598QWroe2FgjvB91z6R7A02AUr7STGew5OfOM-dOI9a0UCUD-vCQMlcqdg4P5juQnsjkPRnZnT4bLFVHR7dMbeqiMiaq8Fi2vwvdsWRphfgfm0aDFJcJ5JjqhjVvgRwnTHMXtAZta0WH2ylvDUYQ1JFck7LPLM5Ks2cSoCTBIhppBAmFb26z00XB7cCiIRlTi_bId6Unr75UxrEL-or0HFO-yNCtUe8FEKbqYY-v-LiY2iRnu7OmgSn0xDc5TR3BOY.PQtnZndCt47gqfR79V8OeQ';
     const token = '4766841049392466';
     this.wsService.validateMitToken(token).subscribe(result => {
-        // console.log('Result: ');
-        // console.log(result);
+        // // console.log('Result: ');
+        // // console.log(result);
       },
       err => {
-        // console.log("Error: ");
-        // console.log(err);
+        // // console.log("Error: ");
+        // // console.log(err);
       });
   }
 

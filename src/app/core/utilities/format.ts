@@ -86,7 +86,7 @@ export function correctFieldValue(val) {
  * @return (string) the given value in upper case, trimmed and with only 1 space between words
  */
 export function correctFieldValueLostFocus(val) {
-  // console.debug("AQui paso al perder el foco");
+  // // console.debug("AQui paso al perder el foco");
   if (!nullUndefinedOrEmptyValidation(val)) {
       val = val.trim();
   } else {
@@ -107,7 +107,7 @@ export function transformDate(date: Date, format: string) {
 export function stringToRegExp(str) {
   const match = (/^\/(.*)\/([a-z]*)$/).exec(str);
   const result = new RegExp(match[1], match[2]);
-  // console.log('result: ', result);
+  // // console.log('result: ', result);
   return result;
 }
 

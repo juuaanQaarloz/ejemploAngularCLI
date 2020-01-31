@@ -68,9 +68,9 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    console.log(1);
+    // console.log(1);
     this.formGroup = this.applicationService.createNewFormGroup(this.content.fields);
-    console.log(this.formGroup);
+    // console.log(this.formGroup);
 
     if (this.config.data !== null) {
       this.operationType = 'edit';
@@ -78,23 +78,23 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
       this.fields = this.getFields();
       this.setBeneficiaryValues();
-      console.log(this.fields);
-      console.log(2);
+      // console.log(this.fields);
+      // console.log(2);
     } else {
       this.operationType = 'add';
       this.beneficiaryType = 'P';
       this.fields = this.getFields();
-      console.log(this.fields);
-      console.log(3);
+      // console.log(this.fields);
+      // console.log(3);
     }
     // this.formGroup.get('beneficiaryType').valueChanges.subscribe((value) => {
-    //   console.log('Beneficiary Changes |1');
+    //   // console.log('Beneficiary Changes |1');
     //   this.beneficiaryType = value;
     //   this.fields = this.getFields();
     // });
 
-    console.log('Form group onInit: ');
-    console.log(this.formGroup.controls);
+    // console.log('Form group onInit: ');
+    // console.log(this.formGroup.controls);
   }
 
   ngAfterViewInit(): void {
@@ -118,12 +118,12 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
   updateBeneficiary() {
     const formStatus = this.getFormStatus();
-    console.log('formStatus: ', formStatus);
+    // console.log('formStatus: ', formStatus);
 
     if (formStatus === 'VALID') {
       const updatedBeneficiary = this.mapBeneficiaryData();
       const response = this.applicationService.updateItem(updatedBeneficiary, 'beneficiary');
-      console.log('response: ', response);
+      // console.log('response: ', response);
       if (response.status) {
         this.closeDialog();
       } else {
@@ -153,7 +153,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
   setBeneficiaryValues() {
 
-    console.log('this.config.data.item.beneficiaryType: ', this.config.data.item.beneficiaryType);
+    // console.log('this.config.data.item.beneficiaryType: ', this.config.data.item.beneficiaryType);
 
 
     switch (this.config.data.item.beneficiaryType) {
@@ -170,8 +170,8 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
     /*const itemAttrNames = [];
     Object.keys(this.config.data.item).forEach((key, index) => {
-      console.log('key: ', key);
-      console.log('index: ', index);
+      // console.log('key: ', key);
+      // console.log('index: ', index);
 
       /*if (index !== 0) { // skip the id attr to coindice with the fields
         itemAttrNames.push(key);
@@ -180,19 +180,19 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   }
 
   setBeneficiaryP() {
-    console.log('on setBeneficiaryP...');
+    // console.log('on setBeneficiaryP...');
 
     /*this.fields.forEach((field) => {
-      console.log('field.name: ', field.name);
+      // console.log('field.name: ', field.name);
       const value = this.formGroup.controls[field.name].value;
-      // console.log('value: ', value);
+      // // console.log('value: ', value);
     });*/
 
-    console.log('item: ', this.config.data.item);
+    // console.log('item: ', this.config.data.item);
 
     this.fields.forEach((field) => {
       let value;
-      console.log('field.name: ', field.name);
+      // console.log('field.name: ', field.name);
       switch (field.name) {
         case 'beneficiaryType':
           value = this.config.data.item.beneficiaryType;
@@ -246,18 +246,18 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           value = this.config.data.item.address.country;
           break;
       }
-      console.log('value: ', value);
-      console.log('field.name: ', field.name);
+      // console.log('value: ', value);
+      // console.log('field.name: ', field.name);
       this.formGroup.controls[field.name].setValue(value);
     });
   }
 
   setBeneficiaryM() {
-    console.log('on setBeneficiaryM...');
+    // console.log('on setBeneficiaryM...');
 
     this.fields.forEach((field) => {
       let value;
-      console.log('field.name: ', field.name);
+      // console.log('field.name: ', field.name);
 
       switch (field.name) {
         case 'beneficiaryType':
@@ -306,18 +306,18 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           value = this.config.data.item.address.country;
           break;
       }
-      console.log('value: ', value);
-      console.log('field.name: ', field.name);
+      // console.log('value: ', value);
+      // console.log('field.name: ', field.name);
       this.formGroup.controls[field.name].setValue(value);
     });
   }
 
   setBeneficiaryF() {
-    console.log('on setBeneficiaryF...');
+    // console.log('on setBeneficiaryF...');
 
     this.fields.forEach((field) => {
       let value;
-      console.log('field.name: ', field.name);
+      // console.log('field.name: ', field.name);
 
       switch (field.name) {
         case 'beneficiaryType':
@@ -511,7 +511,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   }
 
   fileChange(event) {
-    // console.log('event.target.files: ', event.target.files);
+    // // console.log('event.target.files: ', event.target.files);
     const fileList = event.target.files;
     if (fileList.length > 0) {
       this.fileNameUpload = fileList[0].name;
@@ -530,8 +530,8 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         .map(res => res.json())
         .catch(error => Observable.throw(error))
         .subscribe(
-          data => // console.log('success'),
-          error => // console.log(error)
+          data => // // console.log('success'),
+          error => // // console.log(error)
         )
     }*/
   }
@@ -558,7 +558,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   }
 
   getFields() {
-    console.log('Entro a getFields');
+    // console.log('Entro a getFields');
     const fields = [];
     const fieldsPerBeneficiary = [];
 
@@ -595,7 +595,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   }
 
   beneficiaryChange(beneficiaryType) {
-    console.log('Entro a beneficiaryChange: ', beneficiaryType);
+    // console.log('Entro a beneficiaryChange: ', beneficiaryType);
     this.formGroup.controls.beneficiaryType.setValue(beneficiaryType);
     this.beneficiaryType = beneficiaryType;
     this.fields = this.getFields();

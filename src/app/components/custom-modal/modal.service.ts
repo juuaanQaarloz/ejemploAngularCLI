@@ -28,7 +28,7 @@ export class ModalService {
 
   search(id: string) {
     const modal = this.modals.find(x => x.id === id);
-    console.log('on search from ModalService: ', modal);
+    // console.log('on search from ModalService: ', modal);
     if (modal) {
       return true;
     } else {

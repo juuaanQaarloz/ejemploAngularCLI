@@ -37,7 +37,7 @@ export class AutocompleteDirective implements OnInit, OnDestroy {
         .subscribe(( value: string ) => {
           const elem: Element = document.getElementById(this.host.nativeElement.id);
           elem.setAttribute('value', value);
-          // console.log('this.host: ', this.host.nativeElement.id);
+          // // console.log('this.host: ', this.host.nativeElement.id);
           this.control.setValue(value);
           this.close();
         });
@@ -57,7 +57,7 @@ export class AutocompleteDirective implements OnInit, OnDestroy {
     this.overlayRef.attach(template);
 
     overlayClickOutside(this.overlayRef, this.origin).subscribe(() => {
-      console.log('overlayClickOutside');
+      // console.log('overlayClickOutside');
       this.close();
     });
   }

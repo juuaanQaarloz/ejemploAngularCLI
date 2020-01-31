@@ -59,11 +59,11 @@ export class NewPaymentComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('ngOnInit');
+    // console.log('ngOnInit');
     this.formGroup = this.applicationService.createNewFormGroup(this.content.fields);
-    console.log('formGroup', this.formGroup);
+    // console.log('formGroup', this.formGroup);
     this.fields = this.getFields();
-    console.log('payment-fields', this.fields);
+    // console.log('payment-fields', this.fields);
 
     if (this.config.data !== null) {
       this.operationType = 'edit';
@@ -74,7 +74,7 @@ export class NewPaymentComponent implements OnInit {
   }
 
   addNewPayment() {
-    console.log(' addNewPayment ---> ');
+    // console.log(' addNewPayment ---> ');
     const formStatus = this.getFormStatus();
     if (formStatus === 'VALID') {
       const newPayment = this.mapNewPaymentData();
@@ -93,12 +93,12 @@ export class NewPaymentComponent implements OnInit {
 
   updateFormatwo() {
     const formStatus = this.getFormStatus();
-    console.log('formStatus: ', formStatus);
+    // console.log('formStatus: ', formStatus);
 
     if (formStatus === 'VALID') {
       const updatedBeneficiary = this.mapPaymentData();
       const response = this.applicationService.updateItem(updatedBeneficiary, 'payment');
-      console.log('response: ', response);
+      // console.log('response: ', response);
       if (response.status) {
         this.closeDialog();
       } else {
@@ -111,7 +111,7 @@ export class NewPaymentComponent implements OnInit {
   }
 
   executeOperation(delegateOperation: string) {
-    console.log('delegateOperation: ', delegateOperation);
+    // console.log('delegateOperation: ', delegateOperation);
     if (delegateOperation === 'closeDialog') {
       this.closeDialog();
     } else if (delegateOperation === 'addNewBeneficiary') {
@@ -128,7 +128,7 @@ export class NewPaymentComponent implements OnInit {
   }
 
   setPaymentValues() {
-    console.log('..On setPayment..');
+    // console.log('..On setPayment..');
     this.fields.forEach((field) => {
       let value;
       switch (field.name) {
@@ -170,7 +170,7 @@ export class NewPaymentComponent implements OnInit {
     NewPaymentFields.forEach((field) => {
       fields.push(field);
     });
-    console.log('getFields: ', fields);
+    // console.log('getFields: ', fields);
     return fields;
   }
 

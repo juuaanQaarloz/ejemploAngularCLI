@@ -23,7 +23,7 @@ export class StorageService {
 
   setCurrentSession(session: Session): void {
     this.currentSession = session;
-    console.log('session: ', session);
+    // console.log('session: ', session);
     this.localStorageService.setItem('currentUser', JSON.stringify(session));
   }
 

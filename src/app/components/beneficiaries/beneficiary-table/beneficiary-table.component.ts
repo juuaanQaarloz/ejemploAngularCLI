@@ -159,7 +159,7 @@ export class BeneficiaryTableComponent implements OnInit {
       this.showplus = true;
       this.style = 'even-agent';
 
-      console.log('contentTypeId: ', this.contentTypeId);
+      // console.log('contentTypeId: ', this.contentTypeId);
 
       if (this.contentTypeId === '1') {
         this.applicationService.diseases.subscribe((value) => {
@@ -174,7 +174,7 @@ export class BeneficiaryTableComponent implements OnInit {
           this.items = value;
         });
       }
-      console.log('contentTypeId: ', this.contentTypeId);
+      // console.log('contentTypeId: ', this.contentTypeId);
     } else if (this.type ===  'table-formatfour') {
       this.title = 'Datos Formato Cuatro';
       this.columnsNames = ['Razon social', 'RFC', 'Fecha de constitución', 'Nombre comercial',
@@ -339,12 +339,12 @@ export class BeneficiaryTableComponent implements OnInit {
     if (this.type === 'table-beneficiary') {
       ref = this.dialog.open(NewBeneficiaryComponent, {data: null});
       ref.afterClosed.subscribe((result) => {
-        console.log('dialog closed FROM BENEFICIARY TABLE, result: ', result);
+        // console.log('dialog closed FROM BENEFICIARY TABLE, result: ', result);
       });
     } else if (this.type === 'table-agent') {
       ref = this.dialog.open(NewAgentComponent, {data: null});
       ref.afterClosed.subscribe((result) => {
-        console.log('dialog closed FROM AGENT TABLE, result: ', result);
+        // console.log('dialog closed FROM AGENT TABLE, result: ', result);
       });
     } else if (this.type === 'table-sports') {
       ref = this.dialog.open(NewRowComponent,
@@ -356,7 +356,7 @@ export class BeneficiaryTableComponent implements OnInit {
             itemType: 'sport'
           }});
       ref.afterClosed.subscribe((result) => {
-        console.log('dialog closed FROM DISEASES TABLE, result: ', result);
+        // console.log('dialog closed FROM DISEASES TABLE, result: ', result);
       });
     } else if (this.type === 'table-diseases') {
       this.dialog.open(NewRowComponent,
@@ -371,22 +371,22 @@ export class BeneficiaryTableComponent implements OnInit {
     } else if (this.type === 'table-formatwo') {
       ref = this.dialog.open(NewFormatwoComponent, {data: null});
       ref.afterClosed.subscribe((result) => {
-        console.log('dialog closed FROM FORMATWO TABLE, result: ', result);
+        // console.log('dialog closed FROM FORMATWO TABLE, result: ', result);
       });
     } else if (this.type === 'table-coverage') {
       // ref = this.dialog.open(NewFormatwoComponent, {data: null});
       /* ref.afterClosed.subscribe((result) => {
-        console.log('dialog closed FROM FORMATWO TABLE, result: ', result);
+        // console.log('dialog closed FROM FORMATWO TABLE, result: ', result);
       }); */
     } else if (this.type === 'table-country') {
       ref = this.dialog.open(NewCountryComponent, {data: null});
       ref.afterClosed.subscribe((result) => {
-        console.log('dialog closed FROM OUNTRY TABLE, result: ', result);
+        // console.log('dialog closed FROM OUNTRY TABLE, result: ', result);
       });
     } else if (this.type === 'table-payment') {
       ref = this.dialog.open(NewPaymentComponent, {data: null});
       ref.afterClosed.subscribe((result) => {
-        console.log('dialog closed FROM OUNTRY TABLE, result: ', result);
+        // console.log('dialog closed FROM OUNTRY TABLE, result: ', result);
       });
     }
   }

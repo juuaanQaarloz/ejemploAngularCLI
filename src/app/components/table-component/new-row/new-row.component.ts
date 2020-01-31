@@ -73,7 +73,7 @@ export class NewRowComponent implements OnInit {
     } else if (delegateOperation === 'addNewItem') {
       Object.keys(this.formGroup.controls).forEach((formControl) => {
         if ( formControl === 'extremeSportsD' ) {
-          console.log('Va a validar los deportes');
+          // console.log('Va a validar los deportes');
           this.appService.getCatalogById('sports', 'IPRE').subscribe(result => {
             if (this.validateSport(result) === 'INVALID' ) {
               this.addNewItem('INVALID');
@@ -82,7 +82,7 @@ export class NewRowComponent implements OnInit {
             }
           });
         } else if ( formControl === 'describeDiseasesD' ) {
-          console.log('Va a validar las enfermedades');
+          // console.log('Va a validar las enfermedades');
           this.appService.getCatalogById('diseases', 'IPRE').subscribe((results) => {
             if (this.validateDesease(results) === 'INVALID' ) {
               this.addNewItem('INVALID');
@@ -95,7 +95,7 @@ export class NewRowComponent implements OnInit {
     } else if (delegateOperation === 'updateItem') {
       Object.keys(this.formGroup.controls).forEach((formControl) => {
         if ( formControl === 'extremeSportsD' ) {
-          console.log('Va a validar los deportes');
+          // console.log('Va a validar los deportes');
           this.appService.getCatalogById('sports', 'IPRE').subscribe(result => {
             if (this.validateSport(result) === 'INVALID' ) {
               this.updateItem('INVALID');
@@ -104,7 +104,7 @@ export class NewRowComponent implements OnInit {
             }
           });
         } else if ( formControl === 'describeDiseasesD' ) {
-          console.log('Va a validar las enfermedades');
+          // console.log('Va a validar las enfermedades');
           this.appService.getCatalogById('diseases', 'IPRE').subscribe((results) => {
             if (this.validateDesease(results) === 'INVALID' ) {
               this.updateItem('INVALID');
@@ -131,20 +131,20 @@ export class NewRowComponent implements OnInit {
     Object.keys(this.formGroup.controls).forEach((formControl) => {
       if ( formControl === 'extremeSportsD' ) {
         valueExtremeSport = this.formGroup.controls[formControl].value;
-        console.log('-----Value sport-----');
-        console.log(valueExtremeSport);
-        console.log('-----Value sport-----');
+        // console.log('-----Value sport-----');
+        // console.log(valueExtremeSport);
+        // console.log('-----Value sport-----');
         if ( valueExtremeSport ) {
           const index = listToCompare.findIndex((i) => i['alias'] === valueExtremeSport);
-          console.log('indexSport:', index);
+          // console.log('indexSport:', index);
           if ( index !== -1 ) {
             formStatus = 'VALID';
           } else {
             formStatus = 'INVALID';
           }
-          console.log(formStatus, 'if');
-          console.log(formStatus, 'if');
-          console.log(formStatus, 'if');
+          // console.log(formStatus, 'if');
+          // console.log(formStatus, 'if');
+          // console.log(formStatus, 'if');
         } else {
           formStatus = 'INVALID';
         }
@@ -161,12 +161,12 @@ export class NewRowComponent implements OnInit {
           contador++;
         }
       }
-      console.log('Contador: ', contador);
+      // console.log('Contador: ', contador);
       if ( contador > 0 ) {
         formStatus = 'INVALID';
       }
     });
-    console.log('formStatusSports: ', formStatus);
+    // console.log('formStatusSports: ', formStatus);
     return formStatus;
   }
 
@@ -176,9 +176,9 @@ export class NewRowComponent implements OnInit {
     Object.keys(this.formGroup.controls).forEach((formControl) => {
       if ( formControl === 'describeDiseasesD' ) {
         const value = this.formGroup.controls[formControl].value;
-        console.log('-----Value-----');
-        console.log(value);
-        console.log('-----Value-----');
+        // console.log('-----Value-----');
+        // console.log(value);
+        // console.log('-----Value-----');
         if ( value ) {
           const index = listToCompare.findIndex((i) => i['alias'] === value);
           if ( index !== -1 ) {
@@ -186,9 +186,9 @@ export class NewRowComponent implements OnInit {
           } else {
             formStatus = 'INVALID';
           }
-          console.log(formStatus, 'if');
-          console.log(formStatus, 'if');
-          console.log(formStatus, 'if');
+          // console.log(formStatus, 'if');
+          // console.log(formStatus, 'if');
+          // console.log(formStatus, 'if');
         } else {
           formStatus = 'INVALID';
         }
@@ -199,10 +199,10 @@ export class NewRowComponent implements OnInit {
 
   addNewItem(statusValidateCatalog?) {
     let formStatus = this.getFormStatus();
-    console.log(formStatus);
-    console.log(formStatus);
-    console.log(statusValidateCatalog);
-    console.log(statusValidateCatalog);
+    // console.log(formStatus);
+    // console.log(formStatus);
+    // console.log(statusValidateCatalog);
+    // console.log(statusValidateCatalog);
     if ( statusValidateCatalog === 'INVALID' ) {
       formStatus = statusValidateCatalog;
     }
@@ -223,7 +223,7 @@ export class NewRowComponent implements OnInit {
   mapNewItemData() {
     let newMappedItem = {};
 
-    console.log('contentTypeId: ', this.contentTypeId);
+    // console.log('contentTypeId: ', this.contentTypeId);
 
     if (this.itemType === 'disease') {
       newMappedItem = {
@@ -250,16 +250,16 @@ export class NewRowComponent implements OnInit {
 
   updateItem(statusValidateCatalog?) {
     let formStatus = this.getFormStatus();
-    console.log(formStatus);
-    console.log(formStatus);
-    console.log(statusValidateCatalog);
-    console.log(statusValidateCatalog);
+    // console.log(formStatus);
+    // console.log(formStatus);
+    // console.log(statusValidateCatalog);
+    // console.log(statusValidateCatalog);
     if ( statusValidateCatalog === 'INVALID' ) {
       formStatus = statusValidateCatalog;
     }
     if (formStatus === 'VALID') {
       const updatedItem = this.mapItemData();
-      console.log('this.contentId: ', this.contentTypeId);
+      // console.log('this.contentId: ', this.contentTypeId);
       if (this.contentTypeId) {
         this.appService.updateItem(updatedItem, this.itemType, this.contentTypeId);
       } else {
@@ -304,7 +304,7 @@ export class NewRowComponent implements OnInit {
         foundedOperations.push(filterResult);
       }
     });
-    // console.log('foundedOperations: ', foundedOperations);
+    // // console.log('foundedOperations: ', foundedOperations);
     return foundedOperations;
   }
 
@@ -326,7 +326,7 @@ export class NewRowComponent implements OnInit {
   }
 
   getFormStatus() {
-    console.log('this.appService.validateFieldArray(this.content.fields): ', this.appService.validateFieldArray(this.content.fields, this.formGroup));
+    // console.log('this.appService.validateFieldArray(this.content.fields): ', this.appService.validateFieldArray(this.content.fields, this.formGroup));
     return this.formGroup.status;
   }
 

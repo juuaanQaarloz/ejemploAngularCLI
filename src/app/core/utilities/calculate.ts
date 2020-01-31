@@ -342,7 +342,7 @@ export function calculateRFC(apellidoPaterno: string, apellidoMaterno: string, n
 
       if (flag || /^[A-ZÑ]$/.test(letter)) {
 
-        // // console.log('anexx1.' + letter + ': ', anexx1[letter]);
+        // // // console.log('anexx1.' + letter + ': ', anexx1[letter]);
         // nameTransformed = nameTransformed + (window as any).eval('anexx1.' + letter);
         nameTransformed = nameTransformed + anexx1[letter];
       }
@@ -471,7 +471,7 @@ export function calculateRFC(apellidoPaterno: string, apellidoMaterno: string, n
       if (typeof (value) !== 'undefined') {
         // if (value !== undefined) {
 
-        // // console.log('value: ', value);
+        // // // console.log('value: ', value);
 
         result = result + (Number(value) * factor);
         factor--;
@@ -479,9 +479,9 @@ export function calculateRFC(apellidoPaterno: string, apellidoMaterno: string, n
     }
 
     // var quotient2 = parseInt(result/11);
-    // // console.log('result: ', result);
+    // // // console.log('result: ', result);
     const residue2 = Number(result % 11);
-    // // console.log('residue2: ', residue2);
+    // // // console.log('residue2: ', residue2);
 
     if (residue2 === 0) {
 

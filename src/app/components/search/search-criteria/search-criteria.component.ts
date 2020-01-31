@@ -46,9 +46,9 @@ export class SearchCriteriaComponent implements OnInit {
     this.metrolename = localStorage.getItem('metrolename');
     this.metroluid = localStorage.getItem('metroluid');
     this.url_services = this.appService.getUrlServices();
-    // console.log("search criteria");
-    // console.log(this.metrolename);
-    // console.log(this.metroluid);
+    // // console.log("search criteria");
+    // // console.log(this.metrolename);
+    // // console.log(this.metroluid);
   }
 
   search() {
@@ -58,9 +58,9 @@ export class SearchCriteriaComponent implements OnInit {
     let agentID = '';
     let promoID = '';
 
-    console.log('metrolname: ', metrolname);
+    // console.log('metrolname: ', metrolname);
     if (metrolname !== 'MX-6979_DES_G_OPS') {
-      console.log('inside if');
+      // console.log('inside if');
       agentID = localStorage.getItem('userId');
       promoID = localStorage.getItem('promotoryId');
     }
@@ -99,7 +99,7 @@ export class SearchCriteriaComponent implements OnInit {
 
     this.httpClient.get( this.url_services  + '/getApp', {headers, params}).subscribe((resp: any) => {
       localStorage.setItem('search', JSON.stringify(resp.data));
-      console.log('resp: ', resp);
+      // console.log('resp: ', resp);
       this.router.navigate(['search', 'results']);
     });
   }
