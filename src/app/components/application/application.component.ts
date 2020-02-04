@@ -10,7 +10,7 @@ import {HttpClient} from '@angular/common/http';
 import {SearchService} from '../search/search.service';
 import {JsonApplicationService} from '../../core/services/json-application.service';
 import {empty} from 'rxjs/internal/Observer';
-import {Subscription} from 'rxjs';
+import {BehaviorSubject, Subscription} from 'rxjs';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 
 @Component({
@@ -56,7 +56,6 @@ export class ApplicationComponent implements OnInit, OnDestroy {
     this.modalErrorId = 'modal-error-pdf';
     this.modalLoadPDFId = 'modal-loading';
     this.appService.setApplicationObject(MockTemplate);
-    console.log('MockTemplate: ', MockTemplate);
     this.applicationObj = this.appService.getApplicationObject();
     this.formGroup = this.appService.toFormGroup(this.applicationObj);
     this.appService.setFormGroup(this.formGroup);
@@ -65,6 +64,18 @@ export class ApplicationComponent implements OnInit, OnDestroy {
     let user = this.storageService.getSessionUser();
     // console.log(user);
     // console.log(user['userName']);
+
+    // clean tables
+    this.appService.beneficiaries.next([]);
+    this.appService.agents.next([]);
+    this.appService.sports.next([]);
+    this.appService.diseases.next([]);
+    this.appService.diseases2.next([]);
+    this.appService.diseases3.next([]);
+    this.appService.countries.next([]);
+    this.appService.payments.next([]);
+    this.appService.coverages.next([]);
+    this.appService.currentPlan.next(null);
   }
 
   ngOnDestroy(): void {

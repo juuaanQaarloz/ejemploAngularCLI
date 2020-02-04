@@ -19,6 +19,7 @@ import {SepomexObj} from '../../models/sepomex-obj';
 import {ApplicationJson} from '../../models/applicationJson/applicationJson';
 import get from 'lodash/get';
 import set from 'lodash/set';
+
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
 const URL_PATTERN_CATALOG = '../assets/catalogs/pattern-catalogs.json';
@@ -289,7 +290,10 @@ export class ApplicationService {
                         } else if (field.type === 'select') {
                           value = value.toString();
                         }
-                        field.value = value;
+                        if (field.type ===  'radio') {
+                          field.value = value;
+                        }
+                        // field.value = value;
                       }
                     }
                     group[field.name] = new FormControl(
@@ -318,7 +322,10 @@ export class ApplicationService {
                             } else if (field.type === 'select') {
                               value = value.toString();
                             }
-                            field.value = value;
+                            if (field.type ===  'radio') {
+                              field.value = value;
+                            }
+                            // field.value = value;
                           }
                         }
                         group[field.name] = new FormControl(
