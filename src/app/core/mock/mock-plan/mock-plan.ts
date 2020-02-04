@@ -59,7 +59,6 @@ export const Plan0: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: 'insuredCondition.aplicationPlan.pln_cvr_tp_cd',
-    value: '',
     detonateFunction: 'enableAdditionalCoverage'
   },
 ];

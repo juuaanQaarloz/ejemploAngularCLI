@@ -23,7 +23,7 @@
                                         </a>
                                     </span>
                 <span *ngIf="column.type=='date'">{{ record[column.field] | date: 'dd/MM/yyyy' }}</span>
-                <span *ngIf="column.type=='string'">{{ record[column.field] }}</span>
+                <span *ngIf="column.type=='string'">{{ record[column.field] | transform: column.field }}</span>
               </td>
             </tr>
             </tbody>
