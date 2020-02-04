@@ -49,6 +49,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   fileName: string;
   contadorDoc: number;
   modalMitToken = 'modal-MitToken';
+  modalTokenError = 'modal-TokenError';
   okOperation: Operation = {
     id: 'opt-1',
     idHtml: 'btnOK',
@@ -360,6 +361,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
 
     if (this.fieldObj.name === 'txtClabe') {
+      this.clearTxtClabeConfir();
       const idClabe = 'txtClabe';
       const txtClabeConfir = document.getElementById('txtClabeConfir');
       if (this.form.controls[idClabe].value === this.form.controls[this.fieldObj.name].value) {
@@ -392,9 +394,9 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       if (this.form.controls[idClabe].value === this.form.controls[this.fieldObj.name].value) {
         const bine = Number(this.form.controls[this.fieldObj.name].value.substring(0, 6));
         if (this.form.controls[this.fieldObj.name].value.length === 15) {
+          this.modalService.open(this.modalMitToken);
           this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
             .subscribe((results) => {
-              this.modalService.open(this.modalMitToken);
               this.myToken = results;
               if (this.myToken.data === '00') {
                 // console.log('El Token es valido.');
@@ -410,11 +412,14 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
                 // console.log("El Token no es valido.")
               }
               this.modalService.close(this.modalMitToken);
+            }, error => {
+              this.modalService.close(this.modalMitToken);
+              this.modalService.open(this.modalTokenError);
             });
         } else if (this.form.controls[this.fieldObj.name].value.length === 16) {
+          this.modalService.open(this.modalMitToken);
           this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
             .subscribe((results) => {
-              this.modalService.open(this.modalMitToken);
               this.myToken = results;
               if (this.myToken.data === '00') {
                 // console.log("El Token es valido.");
@@ -429,6 +434,9 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
                 // console.log('El Token no es valido.');
               }
               this.modalService.close(this.modalMitToken);
+            }, error => {
+              this.modalService.close(this.modalMitToken);
+              this.modalService.open(this.modalTokenError);
             });
         } else if (this.form.controls[this.fieldObj.name].value.length === 18) {
           this.getDataPaymentMit(bine);
@@ -853,23 +861,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         }
       });
     }
-
-
-    /*if (this.fieldObj.name === 'dtxtClabeConfir') {
-      const idClabe = 'txtClabe';
-      // console.log('TOKEN MIT 11 --->: ' + this.form.controls[this.fieldObj.name]);
-      if (this.form.controls[idClabe] === this.form.controls[this.fieldObj.name]) {
-        // console.log('TOKEN MIT 22 --->: ' + this.form.controls[this.fieldObj.name]);
-        this.wsService.validateMitToken(this.form.controls[this.fieldObj.name])
-          .subscribe((results) => {
-            // console.log(results);
-          });
-      } else {
-        this.fieldObj.message = this.messageClabe;
-        this.fieldObj.valid = false;
-      }
-    }*/
-    // las validaciones deben estar antes
 
     if (this.fieldObj.name === 'selectCard') {
       this.clearSelectCard();

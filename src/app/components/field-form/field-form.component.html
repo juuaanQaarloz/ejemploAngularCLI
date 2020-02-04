@@ -319,4 +319,20 @@
       </div>
   </jw-modal>
 
+  <jw-modal [id]= modalTokenError
+            [modalType]="'overlay'">
+    <div class="overlay-container">
+      <div style="text-align: right">
+        <img class="button-close" (click)="closeModal(modalTokenError)">
+      </div>
+      <p class="header-small"> Lo sentimos, el servicio de validación token no esta disponible en este momento</p>
+
+      <div class="operation-modal">
+        <app-operation-form [operationObj]= okOperation
+                            (click)="executeOperation(okOperation.delegateOperation)">
+        </app-operation-form>
+      </div>
+    </div>
+  </jw-modal>
+
 </div>
