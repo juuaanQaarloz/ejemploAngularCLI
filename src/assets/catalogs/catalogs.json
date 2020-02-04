@@ -23,27 +23,27 @@
   ],
   "sector": [
     {
-      "id": 0,
+      "id": 1,
       "name": "INDUSTRIA",
       "code": "I"
     },
     {
-      "id": 1,
+      "id": 2,
       "name": "SERVICIOS",
       "code": "S"
     },
     {
-      "id": 2,
+      "id": 3,
       "name": "ACTIVIDADES AGROPECUARIAS",
       "code": "AA"
     },
     {
-      "id": 3,
+      "id": 4,
       "name": "GOBIERNO",
       "code": "G"
     },
     {
-      "id": 4,
+      "id": 5,
       "name": "OTRO",
       "code": "O"
     }
