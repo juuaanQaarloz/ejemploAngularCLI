@@ -36,18 +36,16 @@ export class SearchResultsComponent implements OnInit {
     this.columns = [
       {field: 'appDcnNum', label: 'FUC', align: 'text-center', type: 'string'},
       {field: 'appId', label: 'Folio DES', align: 'text-left', type: 'id'},
-      {field: 'agntPmtrCd', label: 'Promotoria', align: 'text-left', type: 'string'},
+      {field: 'agntPmtrCd', label: 'Promotoría', align: 'text-left', type: 'string'},
       {field: 'appPolNum', label: 'Núm Póliza', align: 'text-left', type: 'string'},
       {field: 'partyNatlId', label: 'RFC', align: 'text-left', type: 'string'},
-      {field: 'docStts', label: 'Status', align: 'text-left', type: 'string'},
+      {field: 'appSttsCd', label: 'Status', align: 'text-left', type: 'string'},
       {field: 'recCrtTs', label: 'Fecha de solicitud', align: 'text-center', type: 'date'},
       {field: 'recUpdtTs', label: 'Fecha de modificación', align: 'text-center', type: 'date'}
     ];
 
     if (JSON.parse(localStorage.getItem('search')) !== null) {
       this.records = JSON.parse(localStorage.getItem('search'));
-      // console.log("records");
-      // console.log(this.records);
     } else {
       this.records = [];
     }
@@ -71,8 +69,8 @@ export class SearchResultsComponent implements OnInit {
     params = params.append('app_id', app_id);
     const DUMMY_SEARCH_JSON = '../assets/dummies/dummy-search-result.json';
 
-    this.httpClient.get(this.url_services + '/getApp', {headers, params}).subscribe((response: any) => {
-    // this.httpClient.get(DUMMY_SEARCH_JSON).subscribe((response: any) => {
+    // this.httpClient.get(this.url_services + '/getApp', {headers, params}).subscribe((response: any) => {
+    this.httpClient.get(DUMMY_SEARCH_JSON).subscribe((response: any) => {
       // console.log('detalle: ', response.data);
 
       // set the result json if the search globally

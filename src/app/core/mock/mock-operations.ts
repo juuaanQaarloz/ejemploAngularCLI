@@ -209,7 +209,7 @@ export const pdfOperation = {
   id: 'opt-1',
   idHtml: 'btnGeneratePDF',
   name: 'generatePDF',
-  label: 'PDF',
+  label: 'GENERAR PDF',
   type: 'button',
   style: '',
   styleClass: 'ml-button-primary',

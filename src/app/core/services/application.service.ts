@@ -216,6 +216,12 @@ export class ApplicationService {
       section.contents.forEach((contentFromSection) => {
         if (contentFromSection.fields) {
           contentFromSection.fields.forEach(field => {
+            if (field.name === 'age' || field.name === 'ageS' || field.name === 'costContributions' ) {
+              field.disable = true;
+            } else {
+              field.disable = false;
+            }
+
             group[field.name] = new FormControl(
               field.value || '',
               this.getValidationFunctions(field));
@@ -226,6 +232,11 @@ export class ApplicationService {
               step.contents.forEach((contentFromStep) => {
                 if (contentFromStep.fields) {
                   contentFromStep.fields.forEach(field => {
+                    if (field.name === 'age' || field.name === 'ageS' || field.name === 'costContributions') {
+                      field.disable = true;
+                    } else {
+                      field.disable = false;
+                    }
                     group[field.name] = new FormControl(
                       field.value || '',
                       this.getValidationFunctions(field));
@@ -235,6 +246,11 @@ export class ApplicationService {
                     contentFromStep.contentChildren.forEach(contentChild => {
                       if (contentChild.fields) {
                         contentChild.fields.forEach(field => {
+                          if (field.name === 'age' || field.name === 'ageS' || field.name === 'costContributions') {
+                            field.disable = true;
+                          } else {
+                            field.disable = false;
+                          }
                           group[field.name] = new FormControl(
                             field.value || '',
                             this.getValidationFunctions(field));
@@ -248,7 +264,6 @@ export class ApplicationService {
           }
         }
       });
-
     });
     // tslint:disable-next-line:max-line-length
     return new FormGroup(group, [equalEmailsValidator, higherAssuredImport, validateFunds, validateSameName, validateSameName2, validateSameName3]);

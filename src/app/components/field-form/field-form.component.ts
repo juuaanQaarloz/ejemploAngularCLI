@@ -221,7 +221,9 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     // set default value to field radio type
     if (this.fieldObj.type === 'radio') {
-      this.form.controls[this.fieldObj.name].setValue(this.fieldObj.value);
+      if (this.fieldObj.value !== undefined) {
+        this.form.controls[this.fieldObj.name].setValue(this.fieldObj.value);
+      }
     }
   }
 

@@ -10,6 +10,7 @@ import { AutocompleteDirective } from './directives/autocomplete.directive';
 import { AutocompleteContentDirective } from './directives/autocomplete-content.directive';
 import { FilterPipe } from './pipes/filter.pipe';
 import { BlockCopyPasteDirective } from './directives/block-copy-paste.directive';
+import { TransformPipe } from './pipes/transform.pipe';
 
 @NgModule({
   imports: [CommonModule],
@@ -21,7 +22,8 @@ import { BlockCopyPasteDirective } from './directives/block-copy-paste.directive
     AutocompleteDirective,
     AutocompleteContentDirective,
     FilterPipe,
-    BlockCopyPasteDirective],
+    BlockCopyPasteDirective,
+    TransformPipe],
 
   exports: [
     TrackScrollDirective,
@@ -31,7 +33,8 @@ import { BlockCopyPasteDirective } from './directives/block-copy-paste.directive
     AutocompleteDirective,
     AutocompleteContentDirective,
     FilterPipe,
-    BlockCopyPasteDirective
+    BlockCopyPasteDirective,
+    TransformPipe
   ],
   providers: [
     AuthGuard,
