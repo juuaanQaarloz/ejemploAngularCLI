@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
       data => this.correctLogin(data),
       error => {
         this.error = error;
-        // console.log('error: ', error);
+        // // console.log('error: ', error);
       });
   }
 

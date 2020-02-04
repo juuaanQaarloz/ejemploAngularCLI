@@ -11,7 +11,7 @@ export class AuthGuard implements CanActivate {
 
   canActivate() {
 
-    // // console.log(this.storageService.isAuthenticated());
+    // // // console.log(this.storageService.isAuthenticated());
     if (this.storageService.isAuthenticated()) {
       // logged in so return true
       return true;

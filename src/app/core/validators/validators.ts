@@ -156,7 +156,7 @@ export function validateDateFormat(control: AbstractControl): { [key: string]: a
     return {invalidDate: { valid: false, value: control.value}};
     // return false;
   }*/
-  // console.log('onValidateFormat: ', control.value);
+  // // console.log('onValidateFormat: ', control.value);
   if (!datePattern.test(control.value)) {
     return {invalidDate: {valid: false, value: control.value}};
     // return false;
@@ -166,11 +166,11 @@ export function validateDateFormat(control: AbstractControl): { [key: string]: a
 }
 
 export function AgeValidator(minAge = 18, maxAge = 70): any {
-  // console.log('on AgeValidator');
+  // // console.log('on AgeValidator');
   return (control: FormControl): { [key: string]: any } => {
     const val = control.value;
 
-    console.log('val: ', val);
+    // console.log('val: ', val);
 
     if (val < minAge || val > maxAge) {
       return {invalidAge: true};
@@ -181,7 +181,7 @@ export function AgeValidator(minAge = 18, maxAge = 70): any {
 }
 
 /*export function DateValidator(format = 'YYYY/MM/DD'): any {
-  // console.log('onDateValidator...');
+  // // console.log('onDateValidator...');
   return (control: FormControl): { [key: string]: any } => {
     const currentDate = moment().format(format);
     const val = moment(control.value, format, true);
@@ -685,24 +685,24 @@ export function validateEmailConfirmation(targetKey: string, toMatchKey: string)
     const email = group.controls[targetKey].value;
     const emailConfirmation = group.controls[toMatchKey].value;
     if (email !== emailConfirmation) {
-      // console.log('not valid email confirmation');
+      // // console.log('not valid email confirmation');
       return {invalidEmailConfirmation: {valid: false, value: emailConfirmation.value}};
     }
-    console.log('valid email conformation');
+    // console.log('valid email conformation');
     return null;
   };
 }
 
 export const equalEmailsValidator: ValidatorFn = (group: FormGroup): ValidationErrors | null => {
-  // console.log('on EqualEmailsValidator');
+  // // console.log('on EqualEmailsValidator');
   const email = group.controls.email.value;
   const confirmationEmail = group.controls.emailConfirmation.value;
 
   if (email !== confirmationEmail) {
-    // console.log('not equals emails');
+    // // console.log('not equals emails');
     return { invalidEmailConfirmation: true };
   } else {
-    // console.log('equal emails valid');
+    // // console.log('equal emails valid');
     return null;
   }
 };
@@ -710,7 +710,7 @@ export const equalEmailsValidator: ValidatorFn = (group: FormGroup): ValidationE
 /*export const hasRequiredField = (abstractControl: AbstractControl): boolean => {
   if (abstractControl.validator) {
     const validator = abstractControl.validator({}as AbstractControl);
-    console.log('validator: ', validator);
+    // console.log('validator: ', validator);
     if (validator && validator.required) {
       return true;
     }
@@ -744,7 +744,7 @@ export const higherAssuredImport: ValidatorFn = (group: FormGroup): ValidationEr
     if (currency === '1') {
       if (Number(assuredImport) >= Number(0.00)) {
         if (Number(assuredImport) < Number(400000.00)) {
-          // console.log('invalidAssuredImportMxn', false);
+          // // console.log('invalidAssuredImportMxn', false);
           return {invalidAssuredImportMxn: true};
         } else {
           return null;
@@ -794,13 +794,13 @@ export const validateFunds: ValidatorFn = (group: FormGroup): ValidationErrors |
   if (currency === '1' || currency === '2') {
     total = Number(fixedFunds) + Number(variableFunds) + Number(fixedRetirement) +
       Number(variableRetirement) + Number(fixedSaving) + Number(variableSaving);
-    // console.log('fixedFunds: ', fixedFunds);
-    // console.log('variableFunds: ', variableFunds);
-    // console.log('fixedRetirement: ', fixedRetirement);
-    // console.log('variableRetirement: ', variableRetirement);
-    // console.log('fixedSaving: ', fixedSaving);
-    // console.log('variableSaving: ', variableSaving);
-    // console.log('Total', Number(total));
+    // // console.log('fixedFunds: ', fixedFunds);
+    // // console.log('variableFunds: ', variableFunds);
+    // // console.log('fixedRetirement: ', fixedRetirement);
+    // // console.log('variableRetirement: ', variableRetirement);
+    // // console.log('fixedSaving: ', fixedSaving);
+    // // console.log('variableSaving: ', variableSaving);
+    // // console.log('Total', Number(total));
     if (total !== 100) {
       return {invalidPlanImport: true};
     } else {

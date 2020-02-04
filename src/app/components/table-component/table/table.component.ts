@@ -52,7 +52,7 @@ export class TableComponent implements OnInit, OnChanges {
   }
 
   addRow() {
-    console.log('addRow clicked...');
+    // console.log('addRow clicked...');
     let ref;
     ref = this.dialogService.open(NewRowComponent,
       {data: {
@@ -61,7 +61,7 @@ export class TableComponent implements OnInit, OnChanges {
         drawerTitle: 'Enfermedad(s)'
       }});
     ref.afterClosed.subscribe((result) => {
-      // console.log('dialog closed FROM BENEFICIARY TABLE, result: ', result);
+      // // console.log('dialog closed FROM BENEFICIARY TABLE, result: ', result);
     });
   }
 

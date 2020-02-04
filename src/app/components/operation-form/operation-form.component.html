@@ -1,7 +1,6 @@
 <a href="javascript:;" *ngIf="show"
-   [ngClass]="operationObj.styleClass"
+   [ngClass]="operationObj.disable ? 'ml-button-disabled' : operationObj.styleClass"
    (click)="executeOperation(operationObj.delegateOperation)">
 
   {{operationObj.label}}
 </a>
-

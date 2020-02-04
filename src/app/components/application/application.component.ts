@@ -10,7 +10,7 @@ import {HttpClient} from '@angular/common/http';
 import {SearchService} from '../search/search.service';
 import {JsonApplicationService} from '../../core/services/json-application.service';
 import {empty} from 'rxjs/internal/Observer';
-import {Subscription} from 'rxjs';
+import {BehaviorSubject, Subscription} from 'rxjs';
 import {ActivatedRoute, ParamMap} from '@angular/router';
 
 @Component({
@@ -35,6 +35,7 @@ export class ApplicationComponent implements OnInit, OnDestroy {
   appFuc;
 
   subscription: Subscription;
+  modalMessage;
 
   constructor(private appService: ApplicationService,
               private httpClient: HttpClient,
@@ -42,24 +43,12 @@ export class ApplicationComponent implements OnInit, OnDestroy {
               private modalService: ModalService,
               private storageService: StorageService,
               private searchService: SearchService,
-              private jsonAppService: JsonApplicationService,
-              private activatedRoute: ActivatedRoute,
+              private jsonAppService: JsonApplicationService
   ) {
   }
 
   ngOnInit() {
-
-    this.activatedRoute.paramMap.subscribe((params: ParamMap) => {
-      if (params.has('id')) {
-        // edit existing application
-        console.log('params.id: ', params.get('id'));
-      } else {
-        // create new application
-        console.log('new app');
-      }
-
-    });
-
+    console.log('ngOnInit ApplicationComponent');
     this.subscription = this.jsonAppService.appJsonChange.subscribe((appJson) => {
       this.appFolio = appJson.app_id.toString();
       this.appFuc = appJson.app_dcn_num;
@@ -71,11 +60,23 @@ export class ApplicationComponent implements OnInit, OnDestroy {
     this.applicationObj = this.appService.getApplicationObject();
     this.formGroup = this.appService.toFormGroup(this.applicationObj);
     this.appService.setFormGroup(this.formGroup);
-    console.log('Entro a la aplicación');
-    console.log('Session user: ', this.storageService.setCurrentSession(null));
+    // console.log('Entro a la aplicación');
+    // console.log('Session user: ', this.storageService.setCurrentSession(null));
     let user = this.storageService.getSessionUser();
-    console.log(user);
-    console.log(user['userName']);
+    // console.log(user);
+    // console.log(user['userName']);
+
+    // clean tables
+    this.appService.beneficiaries.next([]);
+    this.appService.agents.next([]);
+    this.appService.sports.next([]);
+    this.appService.diseases.next([]);
+    this.appService.diseases2.next([]);
+    this.appService.diseases3.next([]);
+    this.appService.countries.next([]);
+    this.appService.payments.next([]);
+    this.appService.coverages.next([]);
+    this.appService.currentPlan.next(null);
   }
 
   ngOnDestroy(): void {
@@ -88,7 +89,7 @@ export class ApplicationComponent implements OnInit, OnDestroy {
 
   convertPdf(base64) {
     if (base64 === null) {
-      console.log('ocurrio un error al generar el pdf');
+      // console.log('ocurrio un error al generar el pdf');
       this.openDialog(this.modalErrorId);
     } else {
       const linkSource = 'data:application/pdf;base64,' + this.fromHexaToBase64(base64);
@@ -101,26 +102,27 @@ export class ApplicationComponent implements OnInit, OnDestroy {
     }
   }
 
-  executeOperation(delegateOperation) {
-    console.log('delegateOperation: ', delegateOperation);
-
-    if (delegateOperation === 'generatePDF') {
-      this.downloadPDF();
-    } else if (delegateOperation === 'validateApplication') {
-      console.log('validateApplication ');
-      this.validateApplication();
-    } else if (delegateOperation === 'closeModal') {
-      this.closeModal('modal-error');
-      this.closeModal(this.modalErrorId);
-    } else if (delegateOperation === 'toJsonApplication') {
-      console.log('on toJsonApplication...');
+  executeOperation(delegateOperation, disable?) {
+    // console.log('delegateOperation: ', delegateOperation);
+    if (disable !== true) {
+      if (delegateOperation === 'generatePDF') {
+        this.downloadPDF();
+      } else if (delegateOperation === 'validateApplication') {
+        // console.log('validateApplication ');
+        this.validateApplication();
+      } else if (delegateOperation === 'closeModal') {
+        this.closeModal('modal-error');
+        this.closeModal(this.modalErrorId);
+      } else if (delegateOperation === 'toJsonApplication') {
+        // console.log('on toJsonApplication...');
+      }
     }
   }
 
   downloadPDF() {
     this.viewLoading = true;
     this.openDialog(this.modalLoadPDFId);
-    console.log('valor de app_id', this.jsonAppService.getAppJson().app_id);
+    this.modalMessage = 'Generando PDF ... ';
     if (this.jsonAppService.getAppJson().app_id === null) {
       this.viewLoading = false;
       this.closeModal(this.modalLoadPDFId);
@@ -128,7 +130,7 @@ export class ApplicationComponent implements OnInit, OnDestroy {
     } else {
       this.appService.getPDF(this.jsonAppService.getAppJson().app_id.toString()).subscribe((response: any) => {
         // this.appService.getPDF('2001220018').subscribe((result: any) => {
-        console.log('result PDF service: ', response);
+        // console.log('result PDF service: ', response);
         if (response) {
           this.viewLoading = false;
           this.closeModal(this.modalLoadPDFId);
@@ -138,20 +140,47 @@ export class ApplicationComponent implements OnInit, OnDestroy {
       }, error => {
         this.viewLoading = false;
         this.closeModal(this.modalLoadPDFId);
+        this.modalMessage = 'Lo sentimos, ha ocurrido un error al generar el PDF';
         this.openDialog(this.modalErrorId);
-        console.log('onError PDFBroker:');
-        console.log(error);
       });
     }
   }
 
   validateApplication() {
     const response = this.appService.validateApplicationForm();
-    console.log('response: ', response);
     if (response.status === false) {
       this.openDialog('modal-error');
       this.errorMessage = response.msg;
-      console.log('errorMessage: ', this.errorMessage);
+    } else if (response.status === true) {
+      let currentJson = this.jsonAppService.getAppJson();
+
+      // change the status of the application to 'Validada' --> '30'
+      currentJson.app_stts_cd = '30';
+      console.log('current JSON: ', this.jsonAppService.getAppJson());
+
+      this.jsonAppService.setAppJson(currentJson);
+
+      this.viewLoading = true;
+      this.openDialog(this.modalLoadPDFId);
+      this.modalMessage = 'Validando solicitud ... ';
+      // able 'GENERAR PDF button
+      APPL_OPERATIONS[1].disable = false;
+
+      this.appService.saveApplication(currentJson).subscribe((res: any) => {
+        console.log('response from saveApplication on ValidateApplication: ', res);
+        if (res.data) {
+          console.log('res.data: ', res.data);
+          this.jsonAppService.setAppJson(res.data);
+          this.viewLoading = false;
+          this.closeModal(this.modalLoadPDFId);
+        }
+      }, error => {
+        console.log('error: ', error);
+        this.viewLoading = false;
+        this.closeModal(this.modalLoadPDFId);
+        this.modalMessage = 'Lo sentimos, ha ocurrido un error al validar la solicitud';
+        this.openDialog(this.modalErrorId);
+      });
     }
   }
 

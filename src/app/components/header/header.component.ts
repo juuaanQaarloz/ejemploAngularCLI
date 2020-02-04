@@ -42,21 +42,21 @@ export class HeaderComponent implements OnInit {
         this.iconSecurity = 'security-icon';
       }
     }
-    // // console.log('event: ', event.target.id);
+    // // // console.log('event: ', event.target.id);
   }
 
   logout(){
-    console.log('logout');
+    // console.log('logout');
     this.authService.logout().subscribe(
       response => {
-        console.log(response);
+        // console.log(response);
         this.home();
       }
     );
   }
 
   home(){
-    console.log("redirect to home");
+    // console.log("redirect to home");
     this.router.navigate(['https://dev.des.metlife.com/des/#/']);
   }
 }

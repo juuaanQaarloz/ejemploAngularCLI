@@ -20,7 +20,7 @@ export class ErrorBannerComponent implements OnInit {
   getErrorStatus(errorName) {
     let result = false;
     const statusError = this.appService.getStatusError(errorName);
-    // console.log('statuError: ', statusError);
+    // // console.log('statuError: ', statusError);
     if (statusError) {
       result = true;
     }

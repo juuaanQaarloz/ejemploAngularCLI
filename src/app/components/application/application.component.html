@@ -21,7 +21,7 @@
       <div class="operation">
         <app-operation-form *ngFor="let appOperation of applOperations"
                             [operationObj]="appOperation"
-                            (click)="executeOperation(appOperation.delegateOperation)"></app-operation-form>
+                            (click)="executeOperation(appOperation.delegateOperation, appOperation.disable)"></app-operation-form>
       </div>
     </div>
   </div>
@@ -67,7 +67,7 @@
         <div></div>
         <div></div>
       </div>
-      <div class="ml-loader-label"><p>Generando PDF...</p></div>
+      <div class="ml-loader-label"><p>{{modalMessage}}</p></div>
     </div>
   </jw-modal>
 
@@ -77,7 +77,7 @@
       <div style="text-align: right">
         <img class="button-close" (click)="closeModal(modalErrorId)">
       </div>
-      <p class="header-small"> Ha ocurrido un error al generar el PDF :( </p>
+      <p class="header-small">{{modalMessage}}</p>
 
       <div class="operation-modal">
         <app-operation-form [operationObj]= closeWindowOpt

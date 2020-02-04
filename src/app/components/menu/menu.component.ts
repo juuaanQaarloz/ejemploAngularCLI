@@ -33,9 +33,9 @@ export class MenuComponent implements OnInit {
 
       localStorage.setItem("metrolename", this.metrolename);
       localStorage.setItem("metroluid", this.metroluid);
-      
-      console.log("metrolename: "+this.metrolename);
-      console.log("metroluid: "+this.metroluid);
+
+      // console.log("metrolename: "+this.metrolename);
+      // console.log("metroluid: "+this.metroluid);
     });*/
   }
 

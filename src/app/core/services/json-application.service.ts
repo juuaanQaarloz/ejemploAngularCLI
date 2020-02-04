@@ -33,7 +33,7 @@ export class JsonApplicationService {
   }
 
   change(updateJsonApplication) {
-    console.log('on Change: ', updateJsonApplication);
+    // console.log('on Change: ', updateJsonApplication);
     this.appJsonChange.next(updateJsonApplication);
   }
 
@@ -46,7 +46,7 @@ export class JsonApplicationService {
   }
 
   saveInJsonSwagger(stepObj: Step) {
-    console.log('on saveInJsonSwagger');
+    // console.log('on saveInJsonSwagger');
     const step = this.appService.getStepById(stepObj.id);
     if (step) {
       // validate each field individually in the step
@@ -63,12 +63,12 @@ export class JsonApplicationService {
                 } else if (field.subtype === 'currency') {
                   value = Number(value.replace(/[^0-9.-]+/g, ''));
                 } else if (field.type === 'select') {
-                  // console.log('select additionalData: ', field.additionalData);
+                  // // console.log('select additionalData: ', field.additionalData);
                   if (field.entity && field.additionalData !== undefined && field.additionalData !== '') {
                     set(this.appJson, field.entity, field.additionalData.name);
                   }
                 } else if (field.type === 'autocomplete') {
-                  // console.log('autocomplete additionalData: ', field.additionalData);
+                  // // console.log('autocomplete additionalData: ', field.additionalData);
                   if (field.entity && field.additionalData !== undefined) {
                     value = field.additionalData.value;
                     set(this.appJson, field.entity, field.additionalData.name);
@@ -78,10 +78,10 @@ export class JsonApplicationService {
                 // setting value from FORM to JSON
 
                 if (field.name === 'typePerson') {
-                  console.log('value: ', value);
+                  // console.log('value: ', value);
                 }
                 set(this.appJson, field.entityField, value);
-                console.log('value: ', value);
+                // console.log('value: ', value);
 
               }
             }
@@ -91,7 +91,7 @@ export class JsonApplicationService {
         }
 
         if (contentFromStep.contentChildren) {
-          // console.log('onContentFromStep.contentChildren...');
+          // // console.log('onContentFromStep.contentChildren...');
           contentFromStep.contentChildren.forEach(contentChild => {
             if (contentChild.contentType === 'looseFields') {
               contentChild.fields.forEach((field) => {
@@ -104,12 +104,12 @@ export class JsonApplicationService {
                     } else if (field.subtype === 'currency') {
                       value = Number(value.replace(/[^0-9.-]+/g, ''));
                     } else if (field.type === 'select') {
-                      // console.log('select additionalData: ', field.additionalData);
+                      // // console.log('select additionalData: ', field.additionalData);
                       if (field.entity && field.additionalData !== undefined) {
                         set(this.appJson, field.entity, field.additionalData.name);
                       }
                     } else if (field.type === 'autocomplete') {
-                      // console.log('autocomplete additionalData: ', field.additionalData);
+                      // // console.log('autocomplete additionalData: ', field.additionalData);
                       if (field.entity && field.additionalData !== undefined) {
                         value = field.additionalData.value;
                         set(this.appJson, field.entity, field.additionalData.name);
@@ -117,10 +117,10 @@ export class JsonApplicationService {
                     }
                     // setting value from FORM to JSON
                     if (field.name === 'typePerson') {
-                      console.log('value: ', value);
+                      // console.log('value: ', value);
                     }
                     set(this.appJson, field.entityField, value);
-                    console.log('value: ', value);
+                    // console.log('value: ', value);
                   }
                 }
               });
@@ -142,7 +142,7 @@ export class JsonApplicationService {
 
   mapTableToJson(tableType: string, tableId?: string) {
     let items;
-    console.log('tableType: ', tableType);
+    // console.log('tableType: ', tableType);
     if (tableType === 'table-beneficiary') {
       items = this.appService.beneficiaries.getValue();
       if (items.length > 0) {
@@ -182,21 +182,21 @@ export class JsonApplicationService {
 
       if (items.length > 0) {
         items.forEach((disease, i) => {
-          console.log('disease item: ', disease);
+          // console.log('disease item: ', disease);
           set(this.appJson, `insured.diseases[${i}]`, this.mapItem('disease', disease, i));
         });
       }
 
       if (items2.length > 0) {
         items2.forEach((disease, i) => {
-          console.log('disease item: ', disease);
+          // console.log('disease item: ', disease);
           set(this.appJson, `insured.diseases[${i + items.length}]`, this.mapItem('disease', disease, i));
         });
       }
 
       if (items3.length > 0) {
         items3.forEach((disease, i) => {
-          console.log('disease item: ', disease);
+          // console.log('disease item: ', disease);
           set(this.appJson, `insured.diseases[${i + items.length + items2.length}]`, this.mapItem('disease', disease, i));
         });
       }
@@ -237,7 +237,7 @@ export class JsonApplicationService {
     } else if (itemType === 'beneficiary') {
       let newBeneficiary: BeneciciaryJson = new BeneciciaryJson();
 
-      console.log('item beneficiary: ', item);
+      // console.log('item beneficiary: ', item);
 
       newBeneficiary.person = this.mapPersonBeneficiary(item.beneficiaryType, item);
       newBeneficiary.person.Address.push(this.mapAddressBeneficiary(item.beneficiaryType, item));

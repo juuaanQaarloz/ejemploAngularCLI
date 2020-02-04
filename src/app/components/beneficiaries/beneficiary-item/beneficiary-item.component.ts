@@ -128,7 +128,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
     }
 
     if (this.columnSettings) {
-      // console.log('columnSettings');
+      // // console.log('columnSettings');
       this.getItemAttrNames();
     }
     this.modalId = this.constructModalId();
@@ -301,7 +301,7 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
 
       // this.formGroup.controls[this.fields[2].name].setValue(this.item.detail);
     } else if (this.itemType === 'country') {
-      // // console.log('item: ', this.item);
+      // // // console.log('item: ', this.item);
       // this.formGroup.controls[this.fields[0].name].setValue(this.item.taxCountryId); // fatherLastName
     }
   }
@@ -320,9 +320,9 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   }
 
   clearFields() {
-    // // console.log('onClear...', this.index);
+    // // // console.log('onClear...', this.index);
     this.fields.forEach((field) => {
-      // // console.log('onClear...', field.value);
+      // // // console.log('onClear...', field.value);
       field.value = '';
     });
   }
@@ -332,12 +332,12 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   }
 
   closeModal(modalId: string) {
-    // console.log('contentTypeId: from closeModal: ', this.contentTypeId);
+    // // console.log('contentTypeId: from closeModal: ', this.contentTypeId);
     this.modalService.close(modalId);
   }
 
   executeOperation(delegateOperation: string) {
-    // console.log('contentTypeId from executeOperation: ', this.contentTypeId);
+    // // console.log('contentTypeId from executeOperation: ', this.contentTypeId);
     if (delegateOperation === 'closeModal') {
       this.closeModal(this.modalId);
     } else if (delegateOperation === 'deleteBeneficiary') {
@@ -346,13 +346,13 @@ export class BeneficiaryItemComponent implements OnInit, AfterViewInit {
   }
 
   showPlus() {
-    // console.log('this.itemType: ', this.itemType);
+    // // console.log('this.itemType: ', this.itemType);
 
     if (this.itemType === 'sport') {
-      // console.log('isLast: ', this.isLast);
-      // console.log('totalItems: ', this.totalItems);
-      // console.log('maxItems: ', this.maxItems);
-      // console.log('this.totalPercentageItems: ', this.totalParticipationPercentageItems);
+      // // console.log('isLast: ', this.isLast);
+      // // console.log('totalItems: ', this.totalItems);
+      // // console.log('maxItems: ', this.maxItems);
+      // // console.log('this.totalPercentageItems: ', this.totalParticipationPercentageItems);
     }
 
     if (this.isLast) {

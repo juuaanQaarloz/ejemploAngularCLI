@@ -23,12 +23,12 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     if (this.fieldObj.disable) {
       this.form.controls[this.fieldObj.name].disable();
-      // console.log('this.disable: ', this.disable);
+      // // console.log('this.disable: ', this.disable);
       this.disable = this.checkState();
-      // console.log('this.disable: ', this.disable);
+      // // console.log('this.disable: ', this.disable);
       this.form.controls[this.fieldObj.name].valueChanges.subscribe(() => {
         this.disable = this.checkState();
-        // console.log('this.disable: ', this.disable);
+        // // console.log('this.disable: ', this.disable);
       });
     }
 
@@ -40,11 +40,11 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
     let value;
     let currentValue = this.fieldObj.value.toString();
     if (currentValue) {
-      console.log('currentValue before if : ', currentValue);
+      // console.log('currentValue before if : ', currentValue);
       if (currentValue.includes('-')) {
         currentValue = currentValue.replace(/-/g , '/');
       }
-      console.log('currentValue after if : ', currentValue);
+      // console.log('currentValue after if : ', currentValue);
       value = new Date(new Date(currentValue));
       elem.setAttribute('value', value);
       this.form.controls[this.fieldObj.name].setValue(value);
@@ -56,15 +56,15 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   }
 
   onDateInput(typeEvent: string, event) {
-    // console.log('onDateInput...');
+    // // console.log('onDateInput...');
     if (typeEvent === 'input') {
       event.targetElement.value = addSlashesToDate(event.targetElement.value);
-      // console.log('type of input: ', typeof event.targetElement.value);
+      // // console.log('type of input: ', typeof event.targetElement.value);
     }
   }
 
   onDateChange(event) {
-    // console.log('onDateChange...');
+    // // console.log('onDateChange...');
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
     let contractorType;
 
@@ -74,11 +74,11 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
     }
 
     elem.setAttribute('value', event.targetElement.value);
-    console.log('type of date: ', typeof event.targetElement.value);
+    // console.log('type of date: ', typeof event.targetElement.value);
 
     if (this.fieldObj.name === 'birthDate' || this.fieldObj.name === 'birthDateS' || this.fieldObj.name === 'formatwoBirthDate') {
       const age = calculateAge(event.targetElement.value);
-      // // console.log('edad: ', age);
+      // // // console.log('edad: ', age);
       if (age) {
         if (this.fieldObj.name === 'birthDate') {
           if (contractorType === true) {
@@ -118,7 +118,7 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
 
   checkState() {
     const status = this.form.controls[this.fieldObj.name].status;
-    // console.log('state: ', status);
+    // // console.log('state: ', status);
     let result = false;
     if (status === 'DISABLED') {
       result = true;
