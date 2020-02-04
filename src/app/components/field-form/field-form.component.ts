@@ -65,9 +65,9 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   };
 
   myToken = {
-    message: "",
+    message: '',
     success: false,
-    data: "",
+    data: '',
   };
 
   constructor(private applicationService: ApplicationService,
@@ -92,7 +92,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
 
     if (this.fieldObj.type === 'select-1' || this.fieldObj.type === 'select-change') {
-      let el = document.getElementById('slctPacking');
+      const el = document.getElementById('slctPacking');
       this.getOptionsDefine('packing', 'IPRE', 'select-1', el);
     }
 
@@ -260,7 +260,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
 
 
-    let value = this.form.controls[this.fieldObj.name].value;
+    const value = this.form.controls[this.fieldObj.name].value;
 
     console.log('name: ', this.fieldObj.name);
     console.log('value: ', this.form.controls[this.fieldObj.name].value);
@@ -309,6 +309,11 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     // }
     // elem.setAttribute('value', event.target.value);
     // this.form.controls[this.fieldObj.name].setValue(event.target.value);
+
+
+    if (this.fieldObj.subtype === 'password') {
+      this.toggleVisible = true;
+    }
     if (this.fieldObj.name === 'assuredImport') {
       // // console.log('Entro assuredImport: ');
       // event.target.value = addCurrencyFormat(event.target.value);
@@ -367,7 +372,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         const selectCard = document.getElementById('selectCard');
         txtBank.setAttribute('readonly', 'true');
         selectCard.setAttribute('readonly', 'true');
-        //ignore
+        // ignore
       } else {
         this.clearTxtClabeConfir();
         this.clearSelectCard();
@@ -376,11 +381,11 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       if (this.form.controls[this.fieldObj.name].value.length === 17) {
         this.fieldObj.message = this.messageLength17;
         this.fieldObj.valid = false;
-        txtClabeConfir.setAttribute("readonly", "true");
+        txtClabeConfir.setAttribute('readonly', 'true');
       } else if (this.form.controls[this.fieldObj.name].value.length === 18 ||
         this.form.controls[this.fieldObj.name].value.length === 16 ||
         this.form.controls[this.fieldObj.name].value.length === 15) {
-        txtClabeConfir.removeAttribute("readonly");
+        txtClabeConfir.removeAttribute('readonly');
       }
     }
 
@@ -407,7 +412,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
                 this.clearTxtClabe();
                 this.clearTxtBank();
                 this.clearSelectCard();
-                console.log("El Token no es valido.")
+                console.log('El Token no es valido.');
               }
               this.modalService.close(this.modalMitToken);
             });
@@ -417,7 +422,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
               this.modalService.open(this.modalMitToken);
               this.myToken = results;
               if (this.myToken.data === '00') {
-                console.log("El Token es valido.");
+                console.log('El Token es valido.');
                 this.getDataPaymentMit(bine);
                 this.getDataCardMit(bine);
               } else {
@@ -609,31 +614,31 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         // console.log(milliseconds);
 
         const filenetSkeletonRequest = {
-          "name": milliseconds + '_' + fileSelected.name,
-          "categoryCode": "APPLICATION",
-          "typeCode": "EOB",
-          "typeDescription": " ",
-          "formatCode": extensionArchivoCopy,
-          "description": fileSelected.name,
-          "content": "JVBERi0xLjQKJaqrrK0KMSAwIG9iago8PAovQ3JlYXRvciAoQXBhY2hlIEZPUCBWZXJzaW9uIDIuMSkKL1Byb2R1",
-          "extension": {
-            "size": {
-              "unitCode": "B",
-              "value": fileSelected.size
+          name: milliseconds + '_' + fileSelected.name,
+          categoryCode: 'APPLICATION',
+          typeCode: 'EOB',
+          typeDescription: ' ',
+          formatCode: extensionArchivoCopy,
+          description: fileSelected.name,
+          content: 'JVBERi0xLjQKJaqrrK0KMSAwIG9iago8PAovQ3JlYXRvciAoQXBhY2hlIEZPUCBWZXJzaW9uIDIuMSkKL1Byb2R1',
+          extension: {
+            size: {
+              unitCode: 'B',
+              value: fileSelected.size
             },
-            "applicationNumber": "fwhgg2323232",
-            "businessTypeCode": "Product Management",
-            "businessTypeDescription": " ",
-            "subTypeCode": "D-EOB",
-            "subTypeDescription": " ",
-            "initiatedDateTime": date.toLocaleString(),
-            "initiatorNumber": "",
-            "initiatorTypeCode": 123456789,
-            "product": {
-              "number": this.contadorDoc,
-              "typeCode": "Met99",
-              "nameCode": " ",
-              "nameCategoryCode": " "
+            applicationNumber: 'fwhgg2323232',
+            businessTypeCode: 'Product Management',
+            businessTypeDescription: ' ',
+            subTypeCode: 'D-EOB',
+            subTypeDescription: ' ',
+            initiatedDateTime: date.toLocaleString(),
+            initiatorNumber: '',
+            initiatorTypeCode: 123456789,
+            product: {
+              number: this.contadorDoc,
+              typeCode: 'Met99',
+              nameCode: ' ',
+              nameCategoryCode: ' '
             }
           }
         };
@@ -670,6 +675,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   onBlur() {
     console.log('onBlur');
+
+    if (this.fieldObj.subtype === 'password') {
+      this.toggleVisible = false;
+    }
 
     /*let value;
     value = this.form.controls[this.fieldObj.name].value;
@@ -873,7 +882,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.name === 'selectCard') {
       this.clearSelectCard();
-      this.form.controls['selectCard'].setValue("4");
+      this.form.controls.selectCard.setValue('4');
       this.clearTxtBank();
       this.clearTxtClabe();
       this.clearTxtClabeConfir();
@@ -881,7 +890,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.name === 'txtBank') {
       this.clearTxtBank();
-      this.form.controls['txtBank'].setValue("BANCA SERFIN S.A");
+      this.form.controls.txtBank.setValue('BANCA SERFIN S.A');
       const element = document.getElementById('txtBank');
       element.setAttribute('disabled', 'true');
       this.clearTxtClabe();
@@ -1329,20 +1338,20 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     if (typePerson !== 'M') {
       // quitar elemento
       if (contractorType === false) {
-        let el = document.getElementById('slctPacking');
+        const el = document.getElementById('slctPacking');
         // this.form.controls.packing.reset();
         // this.setValueField('packing', 'slctPacking', 'selectOptions1');
         this.getOptionsDefine('packingdos', 'IPRE', 'select-1', el);
         // getOptionsDefine(sourceID , source, sourceStructure , type , el: Element )
       } else {
-        let el = document.getElementById('slctPacking');
+        const el = document.getElementById('slctPacking');
         // this.form.controls.packing.reset();
         this.getOptionsDefine('packing', 'IPRE', 'select-1', el);
 
       }
     } else {
       // quitar elemento
-      let el = document.getElementById('slctPacking');
+      const el = document.getElementById('slctPacking');
       // this.form.controls.packing.reset('selectOptions1', []);
       this.getOptionsDefine('packingdos', 'IPRE', 'select-1', el);
 
@@ -1383,7 +1392,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   onKeyDownRadio(event, nextElementId) {
     if (event.keyCode === 9) { // tab clicked
-      let el = document.getElementById(nextElementId);
+      const el = document.getElementById(nextElementId);
       if (el !== null) {
         setTimeout(() => {
           el.focus();
