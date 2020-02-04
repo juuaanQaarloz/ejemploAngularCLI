@@ -4,6 +4,7 @@ import {ApplicationService} from './application.service';
 import {Beneficiary, Step} from '../../models';
 import set from 'lodash/set';
 import get from 'lodash/get';
+import setWith from 'lodash/setWith';
 import {calculateAge, transformDate} from '../utilities';
 import {BeneciciaryJson} from '../../models/applicationJson/beneciciaryJson';
 import {PersonJson} from '../../models/applicationJson/personJson';
@@ -16,7 +17,8 @@ import {DiseaseJson} from '../../models/applicationJson/diseaseJson';
 import {ForeignCountryTaxJson} from '../../models/applicationJson/foreignCountryTaxJson';
 import {QuesList} from '../../models/applicationJson/questionaryJson/quesList';
 import {Cvr} from '../../models/applicationJson/coverageJson/cvr';
-import {Subject} from 'rxjs';
+import {Subject, Observable, of} from 'rxjs';
+import {forEachComment} from "tslint";
 
 @Injectable({
   providedIn: 'root'
@@ -45,8 +47,10 @@ export class JsonApplicationService {
     this.appJson = newAppJson;
   }
 
-  saveInJsonSwagger(stepObj: Step) {
-    // console.log('on saveInJsonSwagger');
+  // saveInJsonSwagger(stepObj: Step) {
+  //   // console.log('on saveInJsonSwagger');
+  saveInJsonSwagger(stepObj: Step): Observable<any> {
+    console.log('on saveInJsonSwagger');
     const step = this.appService.getStepById(stepObj.id);
     if (step) {
       // validate each field individually in the step
@@ -136,7 +140,7 @@ export class JsonApplicationService {
         let resp = this.appService.getFormGroup().controls.typePerson.value;
       }
 
-      return this.getAppJson();
+      return of(this.getAppJson());
     }
   }
 
@@ -184,6 +188,7 @@ export class JsonApplicationService {
         items.forEach((disease, i) => {
           // console.log('disease item: ', disease);
           set(this.appJson, `insured.diseases[${i}]`, this.mapItem('disease', disease, i));
+          set(this.appJson, `insurer.diseases[${i}]`, this.mapItem('disease', disease, i));
         });
       }
 
@@ -191,6 +196,7 @@ export class JsonApplicationService {
         items2.forEach((disease, i) => {
           // console.log('disease item: ', disease);
           set(this.appJson, `insured.diseases[${i + items.length}]`, this.mapItem('disease', disease, i));
+          set(this.appJson, `insurer.diseases[${i + items.length}]`, this.mapItem('disease', disease, i));
         });
       }
 
@@ -198,6 +204,7 @@ export class JsonApplicationService {
         items3.forEach((disease, i) => {
           // console.log('disease item: ', disease);
           set(this.appJson, `insured.diseases[${i + items.length + items2.length}]`, this.mapItem('disease', disease, i));
+          set(this.appJson, `insurer.diseases[${i + items.length + items2.length}]`, this.mapItem('disease', disease, i));
         });
       }
 
