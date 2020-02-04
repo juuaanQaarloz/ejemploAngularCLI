@@ -35,6 +35,7 @@ export class ApplicationComponent implements OnInit, OnDestroy {
   appFuc;
 
   subscription: Subscription;
+  modalMessage;
 
   constructor(private appService: ApplicationService,
               private httpClient: HttpClient,
@@ -101,26 +102,27 @@ export class ApplicationComponent implements OnInit, OnDestroy {
     }
   }
 
-  executeOperation(delegateOperation) {
+  executeOperation(delegateOperation, disable?) {
     // console.log('delegateOperation: ', delegateOperation);
-
-    if (delegateOperation === 'generatePDF') {
-      this.downloadPDF();
-    } else if (delegateOperation === 'validateApplication') {
-      // console.log('validateApplication ');
-      this.validateApplication();
-    } else if (delegateOperation === 'closeModal') {
-      this.closeModal('modal-error');
-      this.closeModal(this.modalErrorId);
-    } else if (delegateOperation === 'toJsonApplication') {
-      // console.log('on toJsonApplication...');
+    if (disable !== true) {
+      if (delegateOperation === 'generatePDF') {
+        this.downloadPDF();
+      } else if (delegateOperation === 'validateApplication') {
+        // console.log('validateApplication ');
+        this.validateApplication();
+      } else if (delegateOperation === 'closeModal') {
+        this.closeModal('modal-error');
+        this.closeModal(this.modalErrorId);
+      } else if (delegateOperation === 'toJsonApplication') {
+        // console.log('on toJsonApplication...');
+      }
     }
   }
 
   downloadPDF() {
     this.viewLoading = true;
     this.openDialog(this.modalLoadPDFId);
-    // console.log('valor de app_id', this.jsonAppService.getAppJson().app_id);
+    this.modalMessage = 'Generando PDF ... ';
     if (this.jsonAppService.getAppJson().app_id === null) {
       this.viewLoading = false;
       this.closeModal(this.modalLoadPDFId);
@@ -138,20 +140,47 @@ export class ApplicationComponent implements OnInit, OnDestroy {
       }, error => {
         this.viewLoading = false;
         this.closeModal(this.modalLoadPDFId);
+        this.modalMessage = 'Lo sentimos, ha ocurrido un error al generar el PDF';
         this.openDialog(this.modalErrorId);
-        // console.log('onError PDFBroker:');
-        // console.log(error);
       });
     }
   }
 
   validateApplication() {
     const response = this.appService.validateApplicationForm();
-    // console.log('response: ', response);
     if (response.status === false) {
       this.openDialog('modal-error');
       this.errorMessage = response.msg;
-      // console.log('errorMessage: ', this.errorMessage);
+    } else if (response.status === true) {
+      let currentJson = this.jsonAppService.getAppJson();
+
+      // change the status of the application to 'Validada' --> '30'
+      currentJson.app_stts_cd = '30';
+      console.log('current JSON: ', this.jsonAppService.getAppJson());
+
+      this.jsonAppService.setAppJson(currentJson);
+
+      this.viewLoading = true;
+      this.openDialog(this.modalLoadPDFId);
+      this.modalMessage = 'Validando solicitud ... ';
+      // able 'GENERAR PDF button
+      APPL_OPERATIONS[1].disable = false;
+
+      this.appService.saveApplication(currentJson).subscribe((res: any) => {
+        console.log('response from saveApplication on ValidateApplication: ', res);
+        if (res.data) {
+          console.log('res.data: ', res.data);
+          this.jsonAppService.setAppJson(res.data);
+          this.viewLoading = false;
+          this.closeModal(this.modalLoadPDFId);
+        }
+      }, error => {
+        console.log('error: ', error);
+        this.viewLoading = false;
+        this.closeModal(this.modalLoadPDFId);
+        this.modalMessage = 'Lo sentimos, ha ocurrido un error al validar la solicitud';
+        this.openDialog(this.modalErrorId);
+      });
     }
   }
 

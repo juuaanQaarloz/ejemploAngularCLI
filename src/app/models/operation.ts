@@ -13,4 +13,5 @@ export interface Operation {
   messageClass: string;
   /*added extra of original model*/
   delegateOperationParameters?: any;
+  disable?: boolean;
 }
