@@ -56,7 +56,6 @@ export class HeaderComponent implements OnInit {
   }
 
   home(){
-    // console.log("redirect to home");
-    this.router.navigate(['https://dev.des.metlife.com/des/#/']);
+    window.location.href = "https://dev.des.metlife.com/des/#/";
   }
 }

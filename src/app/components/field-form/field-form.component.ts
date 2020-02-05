@@ -49,6 +49,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   fileName: string;
   contadorDoc: number;
   modalMitToken = 'modal-MitToken';
+  modalTokenError = 'modal-TokenError';
   okOperation: Operation = {
     id: 'opt-1',
     idHtml: 'btnOK',
@@ -221,7 +222,9 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     // set default value to field radio type
     if (this.fieldObj.type === 'radio') {
-      this.form.controls[this.fieldObj.name].setValue(this.fieldObj.value);
+      if (this.fieldObj.value !== undefined) {
+        this.form.controls[this.fieldObj.name].setValue(this.fieldObj.value);
+      }
     }
   }
 
@@ -233,11 +236,21 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       let valueToSet;
       if (elem) {
         if (this.fieldObj.value) { // set default value from configuration
-          valueToSet = this.fieldObj.value;
+          if (this.fieldObj.subtype === 'currency') {
+            // add currency mask
+            valueToSet = addCurrencyFormat(this.fieldObj.value.toString());
+          } else {
+            valueToSet = this.fieldObj.value;
+          }
           elem.setAttribute('value', valueToSet);
           this.form.controls[this.fieldObj.name].setValue(valueToSet);
         } else if (this.form.controls[this.fieldObj.name].value) { // set value from an older capture
-          valueToSet = this.form.controls[this.fieldObj.name].value;
+          if (this.fieldObj.subtype === 'currency') {
+            // add currency mask
+            valueToSet = addCurrencyFormat(this.form.controls[this.fieldObj.name].value.toString());
+          } else {
+            valueToSet = this.form.controls[this.fieldObj.name].value;
+          }
           elem.setAttribute('value', valueToSet);
           this.form.controls[this.fieldObj.name].setValue(valueToSet);
         }
@@ -365,6 +378,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
 
     if (this.fieldObj.name === 'txtClabe') {
+      this.clearTxtClabeConfir();
       const idClabe = 'txtClabe';
       const txtClabeConfir = document.getElementById('txtClabeConfir');
       if (this.form.controls[idClabe].value === this.form.controls[this.fieldObj.name].value) {
@@ -397,9 +411,9 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       if (this.form.controls[idClabe].value === this.form.controls[this.fieldObj.name].value) {
         const bine = Number(this.form.controls[this.fieldObj.name].value.substring(0, 6));
         if (this.form.controls[this.fieldObj.name].value.length === 15) {
+          this.modalService.open(this.modalMitToken);
           this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
             .subscribe((results) => {
-              this.modalService.open(this.modalMitToken);
               this.myToken = results;
               if (this.myToken.data === '00') {
                 // console.log('El Token es valido.');
@@ -415,11 +429,14 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
                 // console.log("El Token no es valido.")
               }
               this.modalService.close(this.modalMitToken);
+            }, error => {
+              this.modalService.close(this.modalMitToken);
+              this.modalService.open(this.modalTokenError);
             });
         } else if (this.form.controls[this.fieldObj.name].value.length === 16) {
+          this.modalService.open(this.modalMitToken);
           this.wsService.validateMitToken(this.form.controls[this.fieldObj.name].value)
             .subscribe((results) => {
-              this.modalService.open(this.modalMitToken);
               this.myToken = results;
               if (this.myToken.data === '00') {
                 // console.log("El Token es valido.");
@@ -434,6 +451,9 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
                 // console.log('El Token no es valido.');
               }
               this.modalService.close(this.modalMitToken);
+            }, error => {
+              this.modalService.close(this.modalMitToken);
+              this.modalService.open(this.modalTokenError);
             });
         } else if (this.form.controls[this.fieldObj.name].value.length === 18) {
           this.getDataPaymentMit(bine);
@@ -863,23 +883,6 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       });
     }
 
-
-    /*if (this.fieldObj.name === 'dtxtClabeConfir') {
-      const idClabe = 'txtClabe';
-      console.log('TOKEN MIT 11 --->: ' + this.form.controls[this.fieldObj.name]);
-      if (this.form.controls[idClabe] === this.form.controls[this.fieldObj.name]) {
-        console.log('TOKEN MIT 22 --->: ' + this.form.controls[this.fieldObj.name]);
-        this.wsService.validateMitToken(this.form.controls[this.fieldObj.name])
-          .subscribe((results) => {
-            console.log(results);
-          });
-      } else {
-        this.fieldObj.message = this.messageClabe;
-        this.fieldObj.valid = false;
-      }
-    }*/
-    // las validaciones deben estar antes
-
     if (this.fieldObj.name === 'selectCard') {
       this.clearSelectCard();
       this.form.controls['selectCard'].setValue("4");
@@ -1273,9 +1276,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   setAddress(sepoMexResponse: SepomexObj) {
-    const colonia = correctFieldValue(sepoMexResponse.extension.settlement);
-    const municipio = correctFieldValue(sepoMexResponse.extension.townHall);
-    const estado = correctFieldValue(sepoMexResponse.stateDescription);
+    const colonia = correctFieldValue(sepoMexResponse.settlement);
+    const municipio = correctFieldValue(sepoMexResponse.townHall);
+    const estado = correctFieldValue(sepoMexResponse.state);
+    // // console.log('ADDRESS: ', colonia, municipio, estado);
 
     if (this.fieldObj.name === 'zipCode') {
       this.setValueField('suburb', 'txtSuburb', colonia);
@@ -1534,5 +1538,3 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     document.getElementById(this.fieldObj.idHtml).click();
   }
 }
-
-

@@ -11,4 +11,14 @@ export interface SepomexObj {
   stateDescription: string; // estado / provincia
   countryCode: string;
   extension: SepomexExtension;
+  street: string;  // *
+  interiorNumber: string;  // *
+  exteriorNumber: string;  // *
+  stateId: string;  // *
+  zipCode: string;  // *
+  settlement: string;  // *
+  settlementType: string;  // *
+  townHall: string;  // *
+  state: string;  // *
+  zoneType: string;  // *
 }

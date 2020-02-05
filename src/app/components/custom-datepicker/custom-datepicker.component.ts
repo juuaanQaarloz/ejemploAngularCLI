@@ -3,6 +3,7 @@ import {Field} from '../../models';
 import {FormGroup} from '@angular/forms';
 import {addSlashesToDate, calculateAge} from '../../core/utilities';
 import {ApplicationService} from '../../core/services';
+import {calculateRFC, transformDate} from '../../core/utilities';
 
 @Component({
   selector: 'app-custom-datepicker',
@@ -94,10 +95,29 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
         }
       }
     }
+
+    if (this.fieldObj.name === 'birthDate'){
+      const calcRFC = this.calculateRFC();
+      if (calcRFC !== null) {
+        this.setCalculatedRFC(calcRFC);
+      }
+    }
+    if (this.fieldObj.name === 'birthDateS') {
+      const calcRFC = this.calculateRFC();
+      if (calcRFC !== null){
+        this.setCalculatedRFC(calcRFC);
+      }
+    }
     this.validate.emit(true);
   }
 
   onBlur() {
+    if(this.fieldObj.name==='birthDate'){
+      const calcRFC = this.calculateRFC();
+      if (calcRFC !== null) {
+        this.setCalculatedRFC(calcRFC);
+      }
+    }
     this.validate.emit(true);
   }
 
@@ -124,5 +144,58 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
       result = true;
     }
     return result;
+  }
+
+  calculateRFC() {
+    let apellidoPaterno;
+    let apellidoMaterno;
+    let nombre;
+    let date;
+    let fechaNacimiento;
+
+    if (this.fieldObj.name === 'birthDate') {
+      apellidoPaterno = this.form.controls.fatherLastName.value;
+      apellidoMaterno = this.form.controls.motherLastName.value;
+      nombre = this.form.controls.name.value;
+      date = this.form.controls.birthDate.value;
+      fechaNacimiento = transformDate(date, 'YYYY/MM/DD');
+
+    } else if (this.fieldObj.name === 'birthDateS') {
+      apellidoPaterno = this.form.controls.fatherLastNameS.value;
+      apellidoMaterno = this.form.controls.motherLastNameS.value;
+      nombre = this.form.controls.nameS.value;
+      date = this.form.controls.birthDateS.value;
+      fechaNacimiento = transformDate(date, 'YYYY/MM/DD');
+    } else if (this.fieldObj.name === 'formatwoRfc') {
+      apellidoPaterno = this.form.controls.formatwoFatherLastName.value;
+      apellidoMaterno = this.form.controls.formatwoMotherLastName.value;
+      nombre = this.form.controls.formatwoName.value;
+      date = this.form.controls.formatwoBirthDate.value;
+      fechaNacimiento = transformDate(date, 'YYYY/MM/DD');
+    }
+
+    if(apellidoPaterno!=="" && apellidoMaterno!=="" && fechaNacimiento!==""){
+      const calculatedRFC = calculateRFC(apellidoPaterno, apellidoMaterno, nombre, fechaNacimiento);
+      return calculatedRFC;
+    }else{
+      return null;
+    }
+  }
+
+  setValueField(formControlName, htmlID, value) {
+    const el = document.getElementById(htmlID);
+    el.setAttribute('value', value);
+    this.form.controls[formControlName].setValue(value);
+  }
+
+
+  setCalculatedRFC(calculatedRFC) {
+    if (this.fieldObj.name === 'birthDate') {
+      this.setValueField('rfc', 'txtRFC', calculatedRFC);
+    } else if (this.fieldObj.name === 'birthDateS') {
+      this.setValueField('rfcS', 'txtRFCS', calculatedRFC);
+    } else if (this.fieldObj.name === 'formatwoRfc') {
+      this.setValueField('formatwoRfc', 'txtFormatwoRFC', calculatedRFC);
+    }
   }
 }

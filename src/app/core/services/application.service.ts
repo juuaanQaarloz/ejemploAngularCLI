@@ -216,6 +216,12 @@ export class ApplicationService {
       section.contents.forEach((contentFromSection) => {
         if (contentFromSection.fields) {
           contentFromSection.fields.forEach(field => {
+            if (field.name === 'age' || field.name === 'ageS' || field.name === 'costContributions' ) {
+              field.disable = true;
+            } else {
+              field.disable = false;
+            }
+
             group[field.name] = new FormControl(
               field.value || '',
               this.getValidationFunctions(field));
@@ -226,6 +232,11 @@ export class ApplicationService {
               step.contents.forEach((contentFromStep) => {
                 if (contentFromStep.fields) {
                   contentFromStep.fields.forEach(field => {
+                    if (field.name === 'age' || field.name === 'ageS' || field.name === 'costContributions') {
+                      field.disable = true;
+                    } else {
+                      field.disable = false;
+                    }
                     group[field.name] = new FormControl(
                       field.value || '',
                       this.getValidationFunctions(field));
@@ -235,6 +246,11 @@ export class ApplicationService {
                     contentFromStep.contentChildren.forEach(contentChild => {
                       if (contentChild.fields) {
                         contentChild.fields.forEach(field => {
+                          if (field.name === 'age' || field.name === 'ageS' || field.name === 'costContributions') {
+                            field.disable = true;
+                          } else {
+                            field.disable = false;
+                          }
                           group[field.name] = new FormControl(
                             field.value || '',
                             this.getValidationFunctions(field));
@@ -248,7 +264,6 @@ export class ApplicationService {
           }
         }
       });
-
     });
     // tslint:disable-next-line:max-line-length
     return new FormGroup(group, [equalEmailsValidator, higherAssuredImport, validateFunds, validateSameName, validateSameName2, validateSameName3]);
@@ -1130,11 +1145,19 @@ export class ApplicationService {
           return response.data.items[0].item as SepomexObj;
         }
       ));*/
-    return this.httpClient.get(URL_SEPOMEX)
+      // TODO: Verificar end-point correcto para ambiente requerido
+      //const URL_SEPOMEX = this.url_services + '/ipreservices/sepomex/'+ zipCode;
+      let addressSelect:SepomexObj = null;
+      return this.httpClient.get(URL_SEPOMEX)
       .pipe(
         map((response: any) => {
-          // return response.data.items[0].item as SepomexObj;
-          return null;
+          response.catalogData.extension.variations.forEach((e) => {
+            if ( e.zipCode == zipCode ){
+              addressSelect = e;
+              console.log('ZIP_CODE: ', addressSelect);
+            }
+          });
+          return addressSelect;
         })
       );
   }
@@ -2077,7 +2100,7 @@ export class ApplicationService {
       set(appJson, 'insured', appJson.insurer);
     }
 
-    // console.log('appJson to passed to de save service: ', appJson);
+    console.log('appJson to passed to de save service: ', appJson);
 
     return this.httpClient.post(URL, JSON.stringify(appJson), {headers})
       .pipe(

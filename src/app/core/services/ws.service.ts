@@ -5,6 +5,7 @@ import { AppConstants } from "../../app.constants";
 import { map, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import {parseHttpResponse} from "selenium-webdriver/http";
+import {ApplicationService} from "./application.service";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -25,7 +26,8 @@ const httpOptionsUndefined = {
 })
 export class WsService {
 
-  constructor(private http: HttpClient
+  constructor(private http: HttpClient,
+              private appService: ApplicationService
   ) { }
 
   /**
@@ -91,8 +93,9 @@ export class WsService {
   public validateMitToken(mitToken): Observable<any> {
     // console.log('Entro a validateMitToken');
     const BODY = new FormData();
+    let URL_CONS = this.appService.getUrlServices();
     BODY.append('token', mitToken);
-    return this.http.post(AppConstants.URL_SERVICE + '/validateMitToken', BODY, httpOptionsUndefined);
+    return this.http.post(URL_CONS + '/validateMitToken', BODY, httpOptionsUndefined);
   }
 
   /**

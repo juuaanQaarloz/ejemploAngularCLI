@@ -96,37 +96,29 @@ export class StepFormComponent implements OnInit {
           // console.log('isApplicationComplete: ', this.applicationService.isApplicationComplete());
           this.applicationService.changeLastStepCompleted(true);
         }*/
-        console.log('Validate step log');
-        this.jsonApplicationService.saveInJsonSwagger(this.stepObj).subscribe((res: any) => {
-          console.log('res: ', res);
-          this.applicationService.saveApplication(res)
-            .subscribe((response: any) => {
-              console.log('response from saveApplication service in component step: ', response);
-              this.jsonApplicationService.setAppJson(response.data);
-              console.log('response.data: ', response.data);
-              this.jsonApplicationService.change(response.data);
-              this.showLoading = false;
-              this.closeModal(this.modalLoadingId);
-              this.applicationService.submitFunction('nextStep', this.stepObj);
-              this.completed = true;
-              this.stepObj.isCompleted = true;
-              // emits a true when the section 21 is valid and save
-              /*if (this.stepObj.id === '21') {
-                console.log('application Object: ', this.applicationService.getApplicationObject());
-                this.applicationService.changeLastStepCompleted(true);
-              }*/
-            }, error => {
-              this.showLoading = false;
-              this.closeModal(this.modalLoadingId);
-              this.openDialog(this.modalErrorId);
-              console.log('error: ', error);
-            });
-        }, error => {
-          this.showLoading = false;
-          this.closeModal(this.modalLoadingId);
-          this.openDialog(this.modalErrorId);
-          console.log('error: ', error);
-        });
+
+        this.applicationService.saveApplication(this.jsonApplicationService.saveInJsonSwagger(this.stepObj))
+          .subscribe((response: any) => {
+            console.log('response from saveApplication service in component step: ', response);
+            this.jsonApplicationService.setAppJson(response.data);
+            // console.log('response.data: ', response.data);
+            this.jsonApplicationService.change(response.data);
+            this.showLoading = false;
+            this.closeModal(this.modalLoadingId);
+            this.applicationService.submitFunction('nextStep', this.stepObj);
+            this.completed = true;
+            this.stepObj.isCompleted = true;
+            // emits a true when the section 21 is valid and save
+            /*if (this.stepObj.id === '21') {
+              // console.log('application Object: ', this.applicationService.getApplicationObject());
+              this.applicationService.changeLastStepCompleted(true);
+            }*/
+          }, error => {
+            this.showLoading = false;
+            this.closeModal(this.modalLoadingId);
+            this.openDialog(this.modalErrorId);
+            // console.log('error: ', error);
+          });
       }
     } else if (delegateOperation === 'closeModal') {
       this.closeModal(this.modalErrorId);
@@ -135,7 +127,7 @@ export class StepFormComponent implements OnInit {
 
   validateStep() {
     const response = this.applicationService.validateFormByStep(this.stepObj);
-    // console.log('response: ', response);
+    console.log('response: ', response);
     this.stepObj.isValid = response.status;
     this.stepObj.message = response.msg ? response.msg : this.stepObj.message;
     if (response.listDocument && response.listDocument.length > 0) {
@@ -158,4 +150,3 @@ export class StepFormComponent implements OnInit {
     this.modalService.open(modalID);
   }
 }
-

@@ -28,6 +28,7 @@ export class SearchCriteriaComponent implements OnInit {
   metrolename: string;
   metroluid: string;
   url_services;
+  noRecords:boolean=false;
 
   criteria = {
     param1: '',
@@ -52,7 +53,7 @@ export class SearchCriteriaComponent implements OnInit {
   }
 
   search() {
-
+    this.noRecords = false;
     let metrolname = localStorage.getItem('metrolename');
     let metuserid = localStorage.getItem('metroluid');
     let agentID = '';
@@ -98,9 +99,17 @@ export class SearchCriteriaComponent implements OnInit {
     }
 
     this.httpClient.get( this.url_services  + '/getApp', {headers, params}).subscribe((resp: any) => {
-      localStorage.setItem('search', JSON.stringify(resp.data));
-      // console.log('resp: ', resp);
-      this.router.navigate(['search', 'results']);
+      if(resp!==null && resp.data!==null && resp.data.length > 0){
+        localStorage.setItem('search', JSON.stringify(resp.data));
+        // console.log('resp: ', resp);
+        this.router.navigate(['search', 'results']);  
+      }else{
+        this.noRecords = true;
+        this.criteria.param1 = "";
+        this.criteria.param2 = "";
+        this.criteria.param3 = "";
+        this.criteria.param4 = "";
+      }
     });
   }
 
