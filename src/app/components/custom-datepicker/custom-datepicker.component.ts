@@ -96,13 +96,18 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
       }
     }
 
-    if(this.fieldObj.name==='birthDate'){
+    if (this.fieldObj.name === 'birthDate'){
       const calcRFC = this.calculateRFC();
       if (calcRFC !== null) {
         this.setCalculatedRFC(calcRFC);
       }
     }
-
+    if (this.fieldObj.name === 'birthDateS') {
+      const calcRFC = this.calculateRFC();
+      if (calcRFC !== null){
+        this.setCalculatedRFC(calcRFC);
+      }
+    }
     this.validate.emit(true);
   }
 
@@ -155,7 +160,7 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
       date = this.form.controls.birthDate.value;
       fechaNacimiento = transformDate(date, 'YYYY/MM/DD');
 
-    } else if (this.fieldObj.name === 'rfcS') {
+    } else if (this.fieldObj.name === 'birthDateS') {
       apellidoPaterno = this.form.controls.fatherLastNameS.value;
       apellidoMaterno = this.form.controls.motherLastNameS.value;
       nombre = this.form.controls.nameS.value;
@@ -187,7 +192,7 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   setCalculatedRFC(calculatedRFC) {
     if (this.fieldObj.name === 'birthDate') {
       this.setValueField('rfc', 'txtRFC', calculatedRFC);
-    } else if (this.fieldObj.name === 'rfcS') {
+    } else if (this.fieldObj.name === 'birthDateS') {
       this.setValueField('rfcS', 'txtRFCS', calculatedRFC);
     } else if (this.fieldObj.name === 'formatwoRfc') {
       this.setValueField('formatwoRfc', 'txtFormatwoRFC', calculatedRFC);
