@@ -37,6 +37,7 @@
              [noAllowedCharactersPattern]="fieldObj.noAllowedCharactersPattern"
              [pattern]="regExpPattern"
              [type]="toggleVisible ? 'password' : 'password'"
+             appBlockCopyPaste
              [formControlName]="fieldObj.name"
              [id]="fieldObj.idHtml"
              placeholder="{{fieldObj.placeholder}}"
