@@ -40,6 +40,17 @@
                     <button class="btn btn-primary" (click)="search()" [disabled]="disable()">BUSCAR</button>
                 </div>
             </div>
+            <br/>
+            <div class="row" *ngIf="noRecords">
+                <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+                    <div class="ml-msg ml-msg-msg" >
+                        <p>
+                            <span class="fa fa-info-circle low-priority" ></span>
+                            <strong>No existen coincidencias con los parámetros seleccionados.</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <app-footer></app-footer>

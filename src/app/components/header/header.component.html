@@ -2,13 +2,13 @@
      [ngStyle]="{'height':resizeHeaderHeight ? '50px' : '70px' }">
   <div class="header-left-container"
        [ngClass]="resizeHeaderHeight ? 'header-left-container-minimized' : 'header-left-container' ">
-    <a href="" class="ml-icon-link-menu"
-       [ngStyle]="{'padding':resizeHeaderHeight ? '3px' : '9px' }">
+    <a class="ml-icon-link-menu"
+       [ngStyle]="{'padding':resizeHeaderHeight ? '3px' : '9px' }" (click)="home()">
       <img id="iconHome" [src]='"../../../assets/icons/" + iconHome + ".svg"'
            (mouseover)="onMouseMove($event)"
            (mouseout)="onMouseMove($event)"/>
       <span id="labelHome" (mouseover)="onMouseMove($event)"
-            (mouseout)="onMouseMove($event)" (click)="home()">
+            (mouseout)="onMouseMove($event)">
         INICIO</span>
     </a>
   </div>
@@ -18,7 +18,7 @@
 
   <div class="header-right-container"
        [ngClass]="resizeHeaderHeight ? 'header-right-container-minimized' : 'header-right-container' ">
-    <a href="" class="ml-icon-link-menu" (click)="logout()"
+    <a class="ml-icon-link-menu" (click)="logout()"
        [ngStyle]="{'padding':resizeHeaderHeight ? '3px' : '9px' }">
       <span id="labelSecurity" (mouseover)="onMouseMove($event)"
             (mouseout)="onMouseMove($event)" (click)="logout()">

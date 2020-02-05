@@ -99,7 +99,7 @@ export class StepFormComponent implements OnInit {
 
         this.applicationService.saveApplication(this.jsonApplicationService.saveInJsonSwagger(this.stepObj))
           .subscribe((response: any) => {
-            // console.log('response from saveApplication service in component step: ', response);
+            console.log('response from saveApplication service in component step: ', response);
             this.jsonApplicationService.setAppJson(response.data);
             // console.log('response.data: ', response.data);
             this.jsonApplicationService.change(response.data);
@@ -127,7 +127,7 @@ export class StepFormComponent implements OnInit {
 
   validateStep() {
     const response = this.applicationService.validateFormByStep(this.stepObj);
-    // console.log('response: ', response);
+    console.log('response: ', response);
     this.stepObj.isValid = response.status;
     this.stepObj.message = response.msg ? response.msg : this.stepObj.message;
     if (response.listDocument && response.listDocument.length > 0) {
@@ -150,4 +150,3 @@ export class StepFormComponent implements OnInit {
     this.modalService.open(modalID);
   }
 }
-
