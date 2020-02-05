@@ -2094,13 +2094,15 @@ export class ApplicationService {
     appJson.insurer.party_typ_cd = this.getFormGroup().controls.typePerson.value;
     set(appJson, 'type_operation_app', 'save');
 
+    console.log('appJson to passed to de save service BEFORE: ', appJson);
+
     // verificar si el solicitante es el mismo que el contratante y replicar la info
     if (this.getFormGroup().controls.contractorType.value === true && this.getFormGroup().controls.typePerson.value === 'P') {
-      // console.log('HERE');
+      console.log('HERE');
       set(appJson, 'insured', appJson.insurer);
     }
 
-    console.log('appJson to passed to de save service: ', appJson);
+    console.log('appJson to passed to de save service AFTER: ', appJson);
 
     return this.httpClient.post(URL, JSON.stringify(appJson), {headers})
       .pipe(
