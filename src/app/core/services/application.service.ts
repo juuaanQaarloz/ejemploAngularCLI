@@ -1145,11 +1145,19 @@ export class ApplicationService {
           return response.data.items[0].item as SepomexObj;
         }
       ));*/
-    return this.httpClient.get(URL_SEPOMEX)
+      // TODO: Verificar end-point correcto para ambiente requerido
+      //const URL_SEPOMEX = this.url_services + '/ipreservices/sepomex/'+ zipCode;
+      let addressSelect:SepomexObj = null;
+      return this.httpClient.get(URL_SEPOMEX)
       .pipe(
         map((response: any) => {
-          // return response.data.items[0].item as SepomexObj;
-          return null;
+          response.catalogData.extension.variations.forEach((e) => {
+            if ( e.zipCode == zipCode ){
+              addressSelect = e;
+              console.log('ZIP_CODE: ', addressSelect);
+            }
+          });
+          return addressSelect;
         })
       );
   }

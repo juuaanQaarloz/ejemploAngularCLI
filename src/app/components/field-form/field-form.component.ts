@@ -1266,9 +1266,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   setAddress(sepoMexResponse: SepomexObj) {
-    const colonia = correctFieldValue(sepoMexResponse.extension.settlement);
-    const municipio = correctFieldValue(sepoMexResponse.extension.townHall);
-    const estado = correctFieldValue(sepoMexResponse.stateDescription);
+    const colonia = correctFieldValue(sepoMexResponse.settlement);
+    const municipio = correctFieldValue(sepoMexResponse.townHall);
+    const estado = correctFieldValue(sepoMexResponse.state);
+    // // console.log('ADDRESS: ', colonia, municipio, estado);
 
     if (this.fieldObj.name === 'zipCode') {
       this.setValueField('suburb', 'txtSuburb', colonia);
@@ -1527,5 +1528,3 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     document.getElementById(this.fieldObj.idHtml).click();
   }
 }
-
-

@@ -1,39 +1,357 @@
 {
-  "message": "SEPOMEX service executed successfully",
-  "success": true,
-  "data": {
-    "items": [
-      {
-        "item": {
-          "number": "",
-          "typeCode": "",
-          "addressLine1": "",
-          "addressLine2": "",
-          "city": "Ciudad de México",
-          "postalCode": "06060",
-          "stateCode": "Ciudad de México",
-          "stateDescription": "Ciudad de México",
-          "countryCode": "",
-          "extension": {
-            "street": "",
-            "interiorNumber": "",
-            "exteriorNumber": "",
-            "settlement": "Centro (Área 6)",
-            "settlementType": "Colonia",
-            "townHall": "Cuauhtémoc",
-            "zoneType": "Urbano"
-          }
+    "catalogData": {
+        "catalogInfo": {
+            "version": "6",
+            "name": "SEPOMEX",
+            "numColumns": 9,
+            "owner": "EXTERNO",
+            "status": "ACTIVO",
+            "columns": [
+                {
+                    "name": "stateId",
+                    "type": "VARCHAR2",
+                    "length": 8,
+                    "format": "null",
+                    "nullIndicator": true,
+                    "pkIndicator": true,
+                    "prnIndicator": true,
+                    "status": "ACTIVO",
+                    "id": 1501,
+                    "idcatalog": 10
+                },
+                {
+                    "name": "zipCode",
+                    "type": "VARCHAR2",
+                    "length": 5,
+                    "format": "null",
+                    "nullIndicator": true,
+                    "pkIndicator": true,
+                    "prnIndicator": true,
+                    "status": "ACTIVO",
+                    "id": 1502,
+                    "idcatalog": 10
+                },
+                {
+                    "name": "settlement",
+                    "type": "VARCHAR2",
+                    "length": 128,
+                    "format": "null",
+                    "nullIndicator": true,
+                    "pkIndicator": true,
+                    "prnIndicator": true,
+                    "status": "ACTIVO",
+                    "id": 1503,
+                    "idcatalog": 10
+                },
+                {
+                    "name": "settlementType",
+                    "type": "VARCHAR2",
+                    "length": 64,
+                    "format": "null",
+                    "nullIndicator": true,
+                    "pkIndicator": true,
+                    "prnIndicator": true,
+                    "status": "ACTIVO",
+                    "id": 1504,
+                    "idcatalog": 10
+                },
+                {
+                    "name": "townHall",
+                    "type": "VARCHAR2",
+                    "length": 128,
+                    "format": "null",
+                    "nullIndicator": true,
+                    "pkIndicator": true,
+                    "prnIndicator": true,
+                    "status": "ACTIVO",
+                    "id": 1505,
+                    "idcatalog": 10
+                },
+                {
+                    "name": "state",
+                    "type": "VARCHAR2",
+                    "length": 64,
+                    "format": "null",
+                    "nullIndicator": true,
+                    "pkIndicator": true,
+                    "prnIndicator": true,
+                    "status": "ACTIVO",
+                    "id": 1506,
+                    "idcatalog": 10
+                },
+                {
+                    "name": "city",
+                    "type": "VARCHAR2",
+                    "length": 64,
+                    "format": "null",
+                    "nullIndicator": true,
+                    "pkIndicator": true,
+                    "prnIndicator": true,
+                    "status": "ACTIVO",
+                    "id": 1507,
+                    "idcatalog": 10
+                },
+                {
+                    "name": "zoneType",
+                    "type": "VARCHAR2",
+                    "length": 20,
+                    "format": "null",
+                    "nullIndicator": true,
+                    "pkIndicator": true,
+                    "prnIndicator": true,
+                    "status": "ACTIVO",
+                    "id": 1508,
+                    "idcatalog": 10
+                },
+                {
+                    "name": "c_cve_ciudad",
+                    "type": "VARCHAR2",
+                    "length": 20,
+                    "format": "null",
+                    "nullIndicator": true,
+                    "pkIndicator": true,
+                    "prnIndicator": true,
+                    "status": "ACTIVO",
+                    "id": 1509,
+                    "idcatalog": 10
+                }
+            ],
+            "id": 10
         },
-        "links": [
-          {}
-        ],
-        "metadata": {}
-      }
-    ],
-    "metadata": {
-      "limit": 10,
-      "offset": 0,
-      "count": 1
+        "extension": {
+            "variations": [
+                {
+                    "rowID": 1,
+                    "street": "",
+                    "interiorNumber": "",
+                    "exteriorNumber": "",
+                    "stateId": "09",
+                    "zipCode": "01000",
+                    "settlement": "San Ángel",
+                    "settlementType": "Colonia",
+                    "townHall": "Álvaro Obregón",
+                    "state": "Ciudad de México",
+                    "city": "Ciudad de México",
+                    "zoneType": "Urbano"
+                },
+                {
+                    "rowID": 2,
+                    "street": "",
+                    "interiorNumber": "",
+                    "exteriorNumber": "",
+                    "stateId": "09",
+                    "zipCode": "01010",
+                    "settlement": "Los Alpes",
+                    "settlementType": "Colonia",
+                    "townHall": "Álvaro Obregón",
+                    "state": "Ciudad de México",
+                    "city": "Ciudad de México",
+                    "zoneType": "Urbano"
+                },
+                {
+                    "rowID": 3,
+                    "street": "",
+                    "interiorNumber": "",
+                    "exteriorNumber": "",
+                    "stateId": "09",
+                    "zipCode": "01020",
+                    "settlement": "Guadalupe Inn",
+                    "settlementType": "Colonia",
+                    "townHall": "Álvaro Obregón",
+                    "state": "Ciudad de México",
+                    "city": "Ciudad de México",
+                    "zoneType": "Urbano"
+                },
+                {
+                    "rowID": 4,
+                    "street": "",
+                    "interiorNumber": "",
+                    "exteriorNumber": "",
+                    "stateId": "09",
+                    "zipCode": "01030",
+                    "settlement": "Florida",
+                    "settlementType": "Colonia",
+                    "townHall": "Álvaro Obregón",
+                    "state": "Ciudad de México",
+                    "city": "Ciudad de México",
+                    "zoneType": "Urbano"
+                },
+                {
+                    "rowID": 5,
+                    "street": "",
+                    "interiorNumber": "",
+                    "exteriorNumber": "",
+                    "stateId": "09",
+                    "zipCode": "01030",
+                    "settlement": "Axotla",
+                    "settlementType": "Pueblo",
+                    "townHall": "Álvaro Obregón",
+                    "state": "Ciudad de México",
+                    "city": "Ciudad de México",
+                    "zoneType": "Urbano"
+                },
+                {
+                    "rowID": 6,
+                    "street": "",
+                    "interiorNumber": "",
+                    "exteriorNumber": "",
+                    "stateId": "09",
+                    "zipCode": "01040",
+                    "settlement": "Campestre",
+                    "settlementType": "Colonia",
+                    "townHall": "Álvaro Obregón",
+                    "state": "Ciudad de México",
+                    "city": "Ciudad de México",
+                    "zoneType": "Urbano"
+                },
+                {
+                    "rowID": 7,
+                    "street": "",
+                    "interiorNumber": "",
+                    "exteriorNumber": "",
+                    "stateId": "09",
+                    "zipCode": "01049",
+                    "settlement": "Tlacopac",
+                    "settlementType": "Pueblo",
+                    "townHall": "Álvaro Obregón",
+                    "state": "Ciudad de México",
+                    "city": "Ciudad de México",
+                    "zoneType": "Urbano"
+                },
+                {
+                    "rowID": 8,
+                    "street": "",
+                    "interiorNumber": "",
+                    "exteriorNumber": "",
+                    "stateId": "09",
+                    "zipCode": "01050",
+                    "settlement": "Ex-Hacienda de Guadalupe Chimalistac",
+                    "settlementType": "Colonia",
+                    "townHall": "Álvaro Obregón",
+                    "state": "Ciudad de México",
+                    "city": "Ciudad de México",
+                    "zoneType": "Urbano"
+                },
+                {
+                    "rowID": 9,
+                    "street": "",
+                    "interiorNumber": "",
+                    "exteriorNumber": "",
+                    "stateId": "09",
+                    "zipCode": "01060",
+                    "settlement": "Altavista",
+                    "settlementType": "Colonia",
+                    "townHall": "Álvaro Obregón",
+                    "state": "Ciudad de México",
+                    "city": "Ciudad de México",
+                    "zoneType": "Urbano"
+                },
+                {
+                    "rowID": 10,
+                    "street": "",
+                    "interiorNumber": "",
+                    "exteriorNumber": "",
+                    "stateId": "09",
+                    "zipCode": "01060",
+                    "settlement": "San Ángel Inn",
+                    "settlementType": "Colonia",
+                    "townHall": "Álvaro Obregón",
+                    "state": "Ciudad de México",
+                    "city": "Ciudad de México",
+                    "zoneType": "Urbano"
+                },
+                {
+                    "rowID": 11,
+                    "street": "",
+                    "interiorNumber": "",
+                    "exteriorNumber": "",
+                    "stateId": "09",
+                    "zipCode": "01070",
+                    "settlement": "Chimalistac",
+                    "settlementType": "Colonia",
+                    "townHall": "Álvaro Obregón",
+                    "state": "Ciudad de México",
+                    "city": "Ciudad de México",
+                    "zoneType": "Urbano"
+                },
+                {
+                    "rowID": 12,
+                    "street": "",
+                    "interiorNumber": "",
+                    "exteriorNumber": "",
+                    "stateId": "09",
+                    "zipCode": "01080",
+                    "settlement": "Progreso Tizapan",
+                    "settlementType": "Colonia",
+                    "townHall": "Álvaro Obregón",
+                    "state": "Ciudad de México",
+                    "city": "Ciudad de México",
+                    "zoneType": "Urbano"
+                },
+                {
+                    "rowID": 13,
+                    "street": "",
+                    "interiorNumber": "",
+                    "exteriorNumber": "",
+                    "stateId": "09",
+                    "zipCode": "01089",
+                    "settlement": "Ermita Tizapan",
+                    "settlementType": "Colonia",
+                    "townHall": "Álvaro Obregón",
+                    "state": "Ciudad de México",
+                    "city": "Ciudad de México",
+                    "zoneType": "Urbano"
+                },
+                {
+                    "rowID": 14,
+                    "street": "",
+                    "interiorNumber": "",
+                    "exteriorNumber": "",
+                    "stateId": "09",
+                    "zipCode": "01090",
+                    "settlement": "Tizapan",
+                    "settlementType": "Pueblo",
+                    "townHall": "Álvaro Obregón",
+                    "state": "Ciudad de México",
+                    "city": "Ciudad de México",
+                    "zoneType": "Urbano"
+                },
+                {
+                    "rowID": 15,
+                    "street": "",
+                    "interiorNumber": "",
+                    "exteriorNumber": "",
+                    "stateId": "09",
+                    "zipCode": "01090",
+                    "settlement": "La Otra Banda",
+                    "settlementType": "Barrio",
+                    "townHall": "Álvaro Obregón",
+                    "state": "Ciudad de México",
+                    "city": "Ciudad de México",
+                    "zoneType": "Urbano"
+                },
+                {
+                    "rowID": 16,
+                    "street": "",
+                    "interiorNumber": "",
+                    "exteriorNumber": "",
+                    "stateId": "09",
+                    "zipCode": "01090",
+                    "settlement": "Loreto",
+                    "settlementType": "Barrio",
+                    "townHall": "Álvaro Obregón",
+                    "state": "Ciudad de México",
+                    "city": "Ciudad de México",
+                    "zoneType": "Urbano"
+                }
+            ]
+        },
+        "metadata": {
+            "recordCount": 143672,
+            "offset": 2533689
+        }
+    },
+    "link": {
+        "link": null
     }
-  }
 }

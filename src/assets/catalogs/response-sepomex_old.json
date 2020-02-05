@@ -1,0 +1,39 @@
+{
+  "message": "SEPOMEX service executed successfully",
+  "success": true,
+  "data": {
+    "items": [
+      {
+        "item": {
+          "number": "",
+          "typeCode": "",
+          "addressLine1": "",
+          "addressLine2": "",
+          "city": "Ciudad de México",
+          "postalCode": "06060",
+          "stateCode": "Ciudad de México",
+          "stateDescription": "Ciudad de México",
+          "countryCode": "",
+          "extension": {
+            "street": "",
+            "interiorNumber": "",
+            "exteriorNumber": "",
+            "settlement": "Centro (Área 6)",
+            "settlementType": "Colonia",
+            "townHall": "Cuauhtémoc",
+            "zoneType": "Urbano"
+          }
+        },
+        "links": [
+          {}
+        ],
+        "metadata": {}
+      }
+    ],
+    "metadata": {
+      "limit": 10,
+      "offset": 0,
+      "count": 1
+    }
+  }
+}
