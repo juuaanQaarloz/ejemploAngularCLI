@@ -2092,7 +2092,7 @@ export class ApplicationService {
       set(appJson, 'insured', appJson.insurer);
     }
 
-    // console.log('appJson to passed to de save service: ', appJson);
+    console.log('appJson to passed to de save service: ', appJson);
 
     return this.httpClient.post(URL, JSON.stringify(appJson), {headers})
       .pipe(

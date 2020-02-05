@@ -87,6 +87,8 @@ export class JsonApplicationService {
             }
           });
         } else if (contentFromStep.contentType.includes('table')) {
+          console.log('contentType: ', contentFromStep.contentType);
+          console.log('contentTypeId: ', contentFromStep.contentTypeId);
           this.mapTableToJson(contentFromStep.contentType, contentFromStep.contentTypeId);
         }
 
@@ -125,6 +127,8 @@ export class JsonApplicationService {
                 }
               });
             } else if (contentChild.contentType.includes('table')) {
+              console.log('contentType: ', contentChild.contentType);
+              console.log('contentTypeId: ', contentChild.contentTypeId);
               this.mapTableToJson(contentChild.contentType, contentChild.contentTypeId);
             }
           });
@@ -142,7 +146,7 @@ export class JsonApplicationService {
 
   mapTableToJson(tableType: string, tableId?: string) {
     let items;
-    // console.log('tableType: ', tableType);
+    console.log('tableType: ', tableType);
     if (tableType === 'table-beneficiary') {
       items = this.appService.beneficiaries.getValue();
       if (items.length > 0) {
@@ -176,29 +180,28 @@ export class JsonApplicationService {
         });
       }
     } else if (tableType === 'table-diseases') {
-      items = this.appService.diseases.getValue();
-      let items2 = this.appService.diseases2.getValue();
-      let items3 = this.appService.diseases3.getValue();
+      if (tableId === '1') {
+        items = this.appService.diseases.getValue();
+      } else if (tableId === '2') {
+        items =  this.appService.diseases2.getValue();
+      } else if (tableId === '3') {
+        items = this.appService.diseases3.getValue();
+      }
+
+      console.log('items.length: ', items.length);
 
       if (items.length > 0) {
+        console.log('items.lenght es mayor a 0');
+        let index = this.appJson.insured.diseases.length;
         items.forEach((disease, i) => {
-          // console.log('disease item: ', disease);
-          set(this.appJson, `insured.diseases[${i}]`, this.mapItem('disease', disease, i));
+          console.log('i: ', i);
+          let mappedItem = this.mapItem('disease', disease, i);
+          console.log('mappedItem: ', mappedItem);
+          set(this.appJson, `insured.diseases[${index}]`, mappedItem);
+          index ++;
+          console.log('index: ', index);
         });
-      }
-
-      if (items2.length > 0) {
-        items2.forEach((disease, i) => {
-          // console.log('disease item: ', disease);
-          set(this.appJson, `insured.diseases[${i + items.length}]`, this.mapItem('disease', disease, i));
-        });
-      }
-
-      if (items3.length > 0) {
-        items3.forEach((disease, i) => {
-          // console.log('disease item: ', disease);
-          set(this.appJson, `insured.diseases[${i + items.length + items2.length}]`, this.mapItem('disease', disease, i));
-        });
+        console.log('this.appJson: ', this.appJson);
       }
 
     } else if (tableType === 'table-country') {
@@ -308,8 +311,10 @@ export class JsonApplicationService {
       newDisease.illnss_drtn = item.duration;
       newDisease.illnss_hlth_stt = item.actualCondition;
       newDisease.party_app_id = this.appJson.insured.party_app_id;
-      newDisease.app_id = this.appJson.app_id;
+      // newDisease.app_id = this.appJson.app_id;
       newDisease.qstn_id = item.fromTable;
+
+      console.log('newDisease: ', newDisease);
 
       return newDisease;
     } else if (itemType === 'country') {
