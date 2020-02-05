@@ -20,39 +20,22 @@
         <div class="name-column" *ngFor="let columnName of columnsNames">{{columnName}}</div>
       </div>
 
-     <!-- <app-pagination (changePage)="" [items]="foundOccupations"></app-pagination>-->
-      <div *ngIf="foundOccupations.length > 25">
-        <div class="occupation-row" *ngFor="let foundOccupation of foundOccupations; let i = index;"
-             [ngStyle]="{'background-color':  this.appService.determinateEvenOrOdd(i) ? '#E5F4FB': '#FFFFFF'}">
-          <div class="result-attribute">
-            <!--<a (click)="setOccupation(foundOccupation)">{{foundOccupation.specificOccupationCode}}</a>-->
-            <a (click)="setOccupation(foundOccupation)">{{foundOccupation.occupationId}}</a>
-          </div>
-          <!--<div class="result-attribute">{{foundOccupation.specificOccupationName}}</div>-->
-          <div class="result-attribute">{{foundOccupation.name}}</div>
-          <!--<div class="result-attribute">{{foundOccupation.specificOccupationAlias}}</div>-->
-          <div class="result-attribute">{{foundOccupation.alias}}</div>
-        </div>
-      </div>
       <div *ngIf="foundOccupations.length <= 25">
         <div class="occupation-row" *ngFor="let foundOccupation of foundOccupations; let i = index;"
              [ngStyle]="{'background-color':  this.appService.determinateEvenOrOdd(i) ? '#E5F4FB': '#FFFFFF'}">
           <div class="result-attribute">
-            <!--<a (click)="setOccupation(foundOccupation)">{{foundOccupation.specificOccupationCode}}</a>-->
             <a (click)="setOccupation(foundOccupation)">{{foundOccupation.occupationId}}</a>
           </div>
-          <!--<div class="result-attribute">{{foundOccupation.specificOccupationName}}</div>-->
           <div class="result-attribute">{{foundOccupation.name}}</div>
-          <!--<div class="result-attribute">{{foundOccupation.specificOccupationAlias}}</div>-->
           <div class="result-attribute">{{foundOccupation.alias}}</div>
         </div>
       </div>
+    </div>
   </div>
-</div>
   <app-pagination *ngIf="foundOccupations.length > 25" [items]="foundOccupations" [modalID]="modalID">
   </app-pagination>
 
   <div *ngIf="notResultsFound">
     <p>No se han encontrado resultados para su búsqueda</p>
   </div>
-
+</div>
