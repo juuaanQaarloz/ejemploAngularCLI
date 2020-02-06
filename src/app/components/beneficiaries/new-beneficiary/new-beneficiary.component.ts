@@ -322,38 +322,32 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
       switch (field.name) {
         case 'beneficiaryType':
           value = this.config.data.item.beneficiaryType;
-          this.formGroup.controls[field.name].setValue(value);
           break;
         case 'suspensiveCondition':
           value = this.config.data.item.suspensiveCondition;
-          this.formGroup.controls[field.name].setValue(value);
           break;
         case 'contractNumber':
           value = this.config.data.item.contractNumber;
-          this.formGroup.controls[field.name].setValue(value);
           break;
         case 'instructionLetterNumber':
           value = this.config.data.item.instructionLetterNumber;
-          this.formGroup.controls[field.name].setValue(value);
           break;
         case 'beneficiaryRelationshipF':
           value = this.config.data.item.relationship;
-          this.formGroup.controls[field.name].setValue(value);
           break;
         case 'espBeneficiaryRelationshipF':
           value = this.config.data.item.espRelationship;
-          this.formGroup.controls[field.name].setValue(value);
           break;
         case 'participationPercentageF':
           value = this.config.data.item.participationPercentage;
-          this.formGroup.controls[field.name].setValue(value);
           break;
       }
+      this.formGroup.controls[field.name].setValue(value);
     });
   }
 
   mapNewBeneficiaryData() {
-    let newBeneficiaryBase = {
+    const newBeneficiaryBase = {
       beneficiaryId: (this.applicationService.getLastItemId('beneficiary') + 1).toString(),
       beneficiaryType: this.formGroup.controls.beneficiaryType.value
     };
@@ -572,21 +566,20 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         fields.push(field);
         fieldsPerBeneficiary.push(field);
       });
-      this.formGroup = this.applicationService.createNewFormGroup(fieldsPerBeneficiary);
     } else if (this.beneficiaryType === 'M') {
       BeneficiaryFieldsM.forEach((field) => {
         fields.push(field);
         fieldsPerBeneficiary.push(field);
       });
-      this.formGroup = this.applicationService.createNewFormGroup(fieldsPerBeneficiary);
     } else if (this.beneficiaryType === 'fidPerson') {
       BeneficiaryFieldsF.forEach((field) => {
         fields.push(field);
         fieldsPerBeneficiary.push(field);
       });
-      this.formGroup = this.applicationService.createNewFormGroup(fieldsPerBeneficiary);
     }
 
+    this.formGroup = this.applicationService.createNewFormGroup(fieldsPerBeneficiary);
+    this.formGroup.controls.beneficiaryType.setValue(this.beneficiaryType);
     return fields;
   }
 
