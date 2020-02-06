@@ -101,12 +101,12 @@ export class NewCountryComponent implements OnInit {
     }
   }
 
-  updateFormatwo() {
+  updateCountry() {
 
     const formStatus = this.getFormStatus();
     if (formStatus === 'VALID') {
-      const updatedBeneficiary = this.mapCountryData();
-      // this.applicationService.updateItem(updatedBeneficiary, 'beneficiary');
+      const updatedCountry = this.mapCountryData();
+      this.applicationService.updateItem(updatedCountry, 'country');
       this.closeDialog();
     } else {
       this.showFormError = true;
@@ -116,13 +116,13 @@ export class NewCountryComponent implements OnInit {
   }
 
   executeOperation(delegateOperation: string) {
-    // console.log('delegateOperation: ', delegateOperation);
+    // console.log('executeOperation: ', delegateOperation);
     if (delegateOperation === 'closeDialog') {
       this.closeDialog();
     } else if (delegateOperation === 'addNewBeneficiary') {
       this.addNewCountry();
     } else if (delegateOperation === 'updateBeneficiary') {
-      this.updateFormatwo();
+      this.updateCountry();
     } else if (delegateOperation === 'closeModal') {
       this.modalService.close(this.modalID);
     }
@@ -145,7 +145,7 @@ export class NewCountryComponent implements OnInit {
           break;
       }
       this.formGroup.controls[field.name].setValue(value);
-      // console.log('this.formGroup.controls[field.name].value: ', this.formGroup.controls[field.name].value);
+      //console.log('this.formGroup.controls[field.name].value: ', this.formGroup.controls[field.name].value);
     });
   }
 
