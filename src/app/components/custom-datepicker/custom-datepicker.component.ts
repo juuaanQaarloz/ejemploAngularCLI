@@ -84,7 +84,6 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
         if (this.fieldObj.name === 'birthDate') {
           if (contractorType === true) {
             this.setAge('age', 'txtAge', age);
-            this.setAge2('ageS', 'txtAgeS', age);
           } else {
             this.setAge('age', 'txtAge', age);
           }

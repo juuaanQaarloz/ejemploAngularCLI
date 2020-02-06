@@ -91,16 +91,16 @@ export class SearchOccupationComponent implements OnInit {
   }
 
   searchOccupation(keyWord: string) {
-    // console.log('buscando ocupacion...', keyWord);
+    console.log('buscando ocupacion...', keyWord);
     this.foundOccupations = [];
     this.appService.getCatalogById(FIELDS[0].sourceID, FIELDS[0].source).subscribe((occupations: Occupation[]) => {
-      // console.log(occupations);
       occupations.forEach((occupation) => {
         if (occupation.name.includes(keyWord.toUpperCase())) {
           this.foundOccupations.push(occupation);
         }
       });
-      // console.log(this.foundOccupations.length);
+      console.log('foundOccupations: ', this.foundOccupations);
+      console.log(this.foundOccupations.length);
       if (this.foundOccupations.length === 0) {
         this.notResultsFound = true;
       } else {
@@ -110,20 +110,26 @@ export class SearchOccupationComponent implements OnInit {
   }
 
   setOccupation(selectedOccupation: Occupation) {
-    // // // console.log('selectedOccupation... ', selectedOccupation);
-    this.appService.setSelectedOccupation(selectedOccupation,);
+    this.appService.setSelectedOccupation(selectedOccupation);
     this.closeModal(this.modalID);
-
   }
 
   closeModal(modalID: string) {
+    console.log('onCloseModal');
+    // cleans searchOccupation field
+    const elem: Element = document.getElementById('txtSearchOccupation');
+    elem.setAttribute('value', '');
+    this.form.controls.searchOccupation.setValue('');
+    // cleans foundOccupation results
     this.foundOccupations = [];
+    // close modal
     this.modalService.close(modalID);
   }
 
-  onChangePage(pageOfItems: Array<any>) {
-    // update current page of items
-    // this.pageOfItems = pageOfItems;
+  onClean(event) {
+    console.log('onClean event: ', event);
+    if (event === true) {
+      this.foundOccupations = [];
+    }
   }
-
 }

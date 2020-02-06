@@ -23,7 +23,7 @@ import set from 'lodash/set';
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
 const URL_PATTERN_CATALOG = '../assets/catalogs/pattern-catalogs.json';
-const URL_SEPOMEX = '../assets/catalogs/response-sepomex.json';
+// const URL_SEPOMEX = '../assets/catalogs/response-sepomex.json';
 
 // Generic Catalog
 const URL_CAT_ADDRESS_TYPE = '../assets/catalogs/address-type.json';
@@ -288,6 +288,9 @@ export class ApplicationService {
         } else {
           if (contentFromSection.process) {
             contentFromSection.process.steps.forEach(step => {
+              if (estatus !== null && estatus >= 30) {
+                step.isCompleted = true;
+              }
               step.contents.forEach((contentFromStep) => {
                 if (contentFromStep.contentType === 'looseFields' || contentFromStep.fields) {
                   contentFromStep.fields.forEach((field) => {
@@ -1132,27 +1135,26 @@ export class ApplicationService {
   }
 
   getInfoFromSepomex(zipCode: string): Observable<SepomexObj> {
-    /*const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-      })
+    const metrolname = localStorage.getItem('metrolename');
+    const metuserid = localStorage.getItem('metroluid');
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+      'metrolename': metrolname,
+      'metuserid': metuserid
     };
 
-    const url = 'https://dev.des.metlife.com/des/ipreservices/sepomex/' + zipCode;
-    return this.httpClient.get(url)
-      .pipe(
-        map((response: any) => {
-          return response.data.items[0].item as SepomexObj;
-        }
-      ));*/
-      // TODO: Verificar end-point correcto para ambiente requerido
-      //const URL_SEPOMEX = this.url_services + '/ipreservices/sepomex/'+ zipCode;
-      let addressSelect:SepomexObj = null;
-      return this.httpClient.get(URL_SEPOMEX)
+    // TODO: Validate response of services sepomex back
+    const URL_SEPOMEX = `${ this.url_services }/ipreservices/sepomex/${zipCode}`;
+    let addressSelect: SepomexObj = null;
+    return this.httpClient.get(URL_SEPOMEX, {headers})
       .pipe(
         map((response: any) => {
           response.catalogData.extension.variations.forEach((e) => {
-            if ( e.zipCode == zipCode ){
+            if ( e.zipCode === zipCode ) {
               addressSelect = e;
               console.log('ZIP_CODE: ', addressSelect);
             }
@@ -2094,13 +2096,15 @@ export class ApplicationService {
     appJson.insurer.party_typ_cd = this.getFormGroup().controls.typePerson.value;
     set(appJson, 'type_operation_app', 'save');
 
+    console.log('appJson to passed to de save service BEFORE: ', appJson);
+
     // verificar si el solicitante es el mismo que el contratante y replicar la info
     if (this.getFormGroup().controls.contractorType.value === true && this.getFormGroup().controls.typePerson.value === 'P') {
-      // console.log('HERE');
+      console.log('HERE');
       set(appJson, 'insured', appJson.insurer);
     }
 
-    console.log('appJson to passed to de save service: ', appJson);
+    console.log('appJson to passed to de save service AFTER: ', appJson);
 
     return this.httpClient.post(URL, JSON.stringify(appJson), {headers})
       .pipe(

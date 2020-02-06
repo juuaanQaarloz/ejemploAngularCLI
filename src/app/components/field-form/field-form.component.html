@@ -165,6 +165,7 @@
          *ngFor="let radioOption of radioOptions">
 
       <input type="radio"
+             [checked]="checkDefaultValue(radioOption.value)"
              [formControlName]="fieldObj.name"
              [id]="fieldObj.idHtml + radioOption.id"
              [name]="fieldObj.name"
@@ -177,7 +178,7 @@
 
     <div class="ml-form-field-errortext"
          *ngIf="!fieldObj.valid">
-      Debe eligirse un valor
+      Debe elegirse un valor
     </div>
 
   </fieldset>

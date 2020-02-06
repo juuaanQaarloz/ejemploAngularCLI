@@ -63,7 +63,7 @@ export const AgentQuestion1: Field[] = [
     requiredConditions: '',
     entity: '',
     entityField: 'applicationExtension.clnt_fill_ind',
-    value: ''
+    value: false
   }
 ];
 

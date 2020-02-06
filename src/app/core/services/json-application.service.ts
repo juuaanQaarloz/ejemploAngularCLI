@@ -46,7 +46,8 @@ export class JsonApplicationService {
   }
 
   saveInJsonSwagger(stepObj: Step) {
-    // console.log('on saveInJsonSwagger');
+  // saveInJsonSwagger(stepObj: Step): Observable<any> {
+    console.log('on saveInJsonSwagger');
     const step = this.appService.getStepById(stepObj.id);
     if (step) {
       // validate each field individually in the step
@@ -193,9 +194,8 @@ export class JsonApplicationService {
       if (items.length > 0) {
         console.log('items.lenght es mayor a 0');
         let index = this.appJson.insured.diseases.length;
-        items.forEach((disease, i) => {
-          console.log('i: ', i);
-          let mappedItem = this.mapItem('disease', disease, i);
+        items.forEach((disease) => {
+          let mappedItem = this.mapItem('disease', disease, index);
           console.log('mappedItem: ', mappedItem);
           set(this.appJson, `insured.diseases[${index}]`, mappedItem);
           index ++;
@@ -313,8 +313,6 @@ export class JsonApplicationService {
       newDisease.party_app_id = this.appJson.insured.party_app_id;
       // newDisease.app_id = this.appJson.app_id;
       newDisease.qstn_id = item.fromTable;
-
-      console.log('newDisease: ', newDisease);
 
       return newDisease;
     } else if (itemType === 'country') {
