@@ -66,9 +66,9 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   };
 
   myToken = {
-    message: "",
+    message: '',
     success: false,
-    data: "",
+    data: '',
   };
 
   constructor(private applicationService: ApplicationService,
@@ -183,7 +183,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.type === 'radio') {
       this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
-        // // // console.log('onValueChanges value: ', value);
+        console.log('onValueChanges value: ', value);
         // // // console.log('formControlName: ', this.fieldObj.name);
         this.isValid();
       });
@@ -220,12 +220,11 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       });
     }
 
-    // set default value to field radio type
-    /*if (this.fieldObj.type === 'radio') {
+    if (this.fieldObj.type === 'radio' && this.fieldObj.disable === false) {
       if (this.fieldObj.value !== undefined) {
         this.form.controls[this.fieldObj.name].setValue(this.fieldObj.value);
       }
-    }*/
+    }
   }
 
   checkDefaultValue(radioOptionValue) {
@@ -234,6 +233,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     console.log('field.value: ', this.fieldObj.value);*/
     // set default value to field radio type
     if (radioOptionValue === this.fieldObj.value) {
+
       return true;
     } else {
       return false;
@@ -407,11 +407,11 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       if (this.form.controls[this.fieldObj.name].value.length === 17) {
         this.fieldObj.message = this.messageLength17;
         this.fieldObj.valid = false;
-        txtClabeConfir.setAttribute("readonly", "true");
+        txtClabeConfir.setAttribute('readonly', 'true');
       } else if (this.form.controls[this.fieldObj.name].value.length === 18 ||
         this.form.controls[this.fieldObj.name].value.length === 16 ||
         this.form.controls[this.fieldObj.name].value.length === 15) {
-        txtClabeConfir.removeAttribute("readonly");
+        txtClabeConfir.removeAttribute('readonly');
       }
     }
 
@@ -646,31 +646,31 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
         // console.log(milliseconds);
 
         const filenetSkeletonRequest = {
-          "name": milliseconds + '_' + fileSelected.name,
-          "categoryCode": "APPLICATION",
-          "typeCode": "EOB",
-          "typeDescription": " ",
-          "formatCode": extensionArchivoCopy,
-          "description": fileSelected.name,
-          "content": "JVBERi0xLjQKJaqrrK0KMSAwIG9iago8PAovQ3JlYXRvciAoQXBhY2hlIEZPUCBWZXJzaW9uIDIuMSkKL1Byb2R1",
-          "extension": {
-            "size": {
-              "unitCode": "B",
-              "value": fileSelected.size
+          'name': milliseconds + '_' + fileSelected.name,
+          'categoryCode': 'APPLICATION',
+          'typeCode': 'EOB',
+          'typeDescription': ' ',
+          'formatCode': extensionArchivoCopy,
+          'description': fileSelected.name,
+          'content': 'JVBERi0xLjQKJaqrrK0KMSAwIG9iago8PAovQ3JlYXRvciAoQXBhY2hlIEZPUCBWZXJzaW9uIDIuMSkKL1Byb2R1',
+          'extension': {
+            'size': {
+              'unitCode': 'B',
+              'value': fileSelected.size
             },
-            "applicationNumber": "fwhgg2323232",
-            "businessTypeCode": "Product Management",
-            "businessTypeDescription": " ",
-            "subTypeCode": "D-EOB",
-            "subTypeDescription": " ",
-            "initiatedDateTime": date.toLocaleString(),
-            "initiatorNumber": "",
-            "initiatorTypeCode": 123456789,
-            "product": {
-              "number": this.contadorDoc,
-              "typeCode": "Met99",
-              "nameCode": " ",
-              "nameCategoryCode": " "
+            'applicationNumber': 'fwhgg2323232',
+            'businessTypeCode': 'Product Management',
+            'businessTypeDescription': ' ',
+            'subTypeCode': 'D-EOB',
+            'subTypeDescription': ' ',
+            'initiatedDateTime': date.toLocaleString(),
+            'initiatorNumber': '',
+            'initiatorTypeCode': 123456789,
+            'product': {
+              'number': this.contadorDoc,
+              'typeCode': 'Met99',
+              'nameCode': ' ',
+              'nameCategoryCode': ' '
             }
           }
         };
@@ -897,7 +897,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.name === 'selectCard') {
       this.clearSelectCard();
-      this.form.controls['selectCard'].setValue("4");
+      this.form.controls['selectCard'].setValue('4');
       this.clearTxtBank();
       this.clearTxtClabe();
       this.clearTxtClabeConfir();
@@ -905,7 +905,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.name === 'txtBank') {
       this.clearTxtBank();
-      this.form.controls['txtBank'].setValue("BANCA SERFIN S.A");
+      this.form.controls['txtBank'].setValue('BANCA SERFIN S.A');
       const element = document.getElementById('txtBank');
       element.setAttribute('disabled', 'true');
       this.clearTxtClabe();

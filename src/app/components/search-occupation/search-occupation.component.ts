@@ -110,13 +110,12 @@ export class SearchOccupationComponent implements OnInit {
   }
 
   setOccupation(selectedOccupation: Occupation) {
-    // // // console.log('selectedOccupation... ', selectedOccupation);
     this.appService.setSelectedOccupation(selectedOccupation);
     this.closeModal(this.modalID);
-
   }
 
   closeModal(modalID: string) {
+    console.log('onCloseModal');
     // cleans searchOccupation field
     const elem: Element = document.getElementById('txtSearchOccupation');
     elem.setAttribute('value', '');
@@ -127,9 +126,10 @@ export class SearchOccupationComponent implements OnInit {
     this.modalService.close(modalID);
   }
 
-  onChangePage(pageOfItems: Array<any>) {
-    // update current page of items
-    // this.pageOfItems = pageOfItems;
+  onClean(event) {
+    console.log('onClean event: ', event);
+    if (event === true) {
+      this.foundOccupations = [];
+    }
   }
-
 }

@@ -180,7 +180,7 @@ export const InformacionLaboralSolicitante: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: 'insured.per_job_add_ind',
-    value: ''
+    value: false
   },
   {
     id: 'field-91',
