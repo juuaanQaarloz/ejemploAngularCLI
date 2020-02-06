@@ -23,7 +23,7 @@ import set from 'lodash/set';
 const URL_IPRE = '../assets/catalogs/catalogs.json';
 const URL_CUSTOM_CATALOG = '../assets/catalogs/custom-catalogs.json';
 const URL_PATTERN_CATALOG = '../assets/catalogs/pattern-catalogs.json';
-const URL_SEPOMEX = '../assets/catalogs/response-sepomex.json';
+// const URL_SEPOMEX = '../assets/catalogs/response-sepomex.json';
 
 // Generic Catalog
 const URL_CAT_ADDRESS_TYPE = '../assets/catalogs/address-type.json';
@@ -1132,27 +1132,26 @@ export class ApplicationService {
   }
 
   getInfoFromSepomex(zipCode: string): Observable<SepomexObj> {
-    /*const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-      })
+    const metrolname = localStorage.getItem('metrolename');
+    const metuserid = localStorage.getItem('metroluid');
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
+      'metrolename': metrolname,
+      'metuserid': metuserid
     };
 
-    const url = 'https://dev.des.metlife.com/des/ipreservices/sepomex/' + zipCode;
-    return this.httpClient.get(url)
-      .pipe(
-        map((response: any) => {
-          return response.data.items[0].item as SepomexObj;
-        }
-      ));*/
-      // TODO: Verificar end-point correcto para ambiente requerido
-      //const URL_SEPOMEX = this.url_services + '/ipreservices/sepomex/'+ zipCode;
-      let addressSelect:SepomexObj = null;
-      return this.httpClient.get(URL_SEPOMEX)
+    // TODO: Validate response of services sepomex back
+    const URL_SEPOMEX = `${ this.url_services }/ipreservices/sepomex/${zipCode}`;
+    let addressSelect: SepomexObj = null;
+    return this.httpClient.get(URL_SEPOMEX, {headers})
       .pipe(
         map((response: any) => {
           response.catalogData.extension.variations.forEach((e) => {
-            if ( e.zipCode == zipCode ){
+            if ( e.zipCode === zipCode ) {
               addressSelect = e;
               console.log('ZIP_CODE: ', addressSelect);
             }
