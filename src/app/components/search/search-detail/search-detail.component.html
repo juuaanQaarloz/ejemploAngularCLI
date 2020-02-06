@@ -27,6 +27,62 @@
     <app-search-occupation [modalID]="'modal-search'"></app-search-occupation>
   </jw-modal>
 
+  <jw-modal [id]="'modal-error'"
+            [modalType]="'overlay'">
+    <div class="overlay-container">
+      <div style="text-align: right">
+        <img class="button-close" (click)="closeModal('modal-error')">
+      </div>
+      <p class="header-small"> Por favor verificar la información en las sección(es):</p>
+      <div *ngIf="errorMessage">
+        <p *ngFor="let errorMsg of getMessages()">{{errorMsg}}</p>
+      </div>
+
+      <div class="operation-modal">
+        <app-operation-form [operationObj]=closeWindowOpt
+                            (click)="executeOperation(closeWindowOpt.delegateOperation)">
+        </app-operation-form>
+      </div>
+    </div>
+  </jw-modal>
+
+  <br>
+  <br>
+
+
+  <jw-modal [id]= modalLoadPDFId
+            [modalType]="'overlay'">
+    <div *ngIf="viewLoading" class="ml-loader-container">
+      <div class="ml-loader">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="ml-loader-label"><p>{{modalMessage}}</p></div>
+    </div>
+  </jw-modal>
+
+  <jw-modal [id]= modalErrorId
+            [modalType]="'overlay'">
+    <div class="overlay-container">
+      <div style="text-align: right">
+        <img class="button-close" (click)="closeModal(modalErrorId)">
+      </div>
+      <p class="header-small">{{modalMessage}}</p>
+
+      <div class="operation-modal">
+        <app-operation-form [operationObj]= closeWindowOpt
+                            (click)="executeOperation(closeWindowOpt.delegateOperation)">
+        </app-operation-form>
+      </div>
+    </div>
+  </jw-modal>
+
   <app-footer></app-footer>
 
 </div>

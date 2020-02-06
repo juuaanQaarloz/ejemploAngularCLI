@@ -84,7 +84,9 @@ export class ApplicationComponent implements OnInit, OnDestroy {
   }
 
   fromHexaToBase64(hexa) {
-    return btoa(String.fromCharCode.apply(null, hexa.replace(/\r|\n/g, '').replace(/([\da-fA-F]{2}) ?/g, '0x$1 ').replace(/ +$/, '').split(' ')));
+    return btoa(String.fromCharCode.apply(null, hexa.replace(/\r|\n/g, '').
+    replace(/([\da-fA-F]{2}) ?/g, '0x$1 ').replace(/ +$/, '').
+    split(' ')));
   }
 
   convertPdf(base64) {

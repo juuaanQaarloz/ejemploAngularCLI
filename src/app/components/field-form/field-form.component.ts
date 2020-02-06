@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {Field} from '../../models/field';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormGroup} from '@angular/forms';
 import {SelectOption} from '../../models/select-option-interface';
 import {ApplicationService, validateAge, DateValidator} from '../../core/services';
 import {WsService} from '../../core/services/ws.service';
@@ -221,10 +221,22 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
 
     // set default value to field radio type
-    if (this.fieldObj.type === 'radio') {
+    /*if (this.fieldObj.type === 'radio') {
       if (this.fieldObj.value !== undefined) {
         this.form.controls[this.fieldObj.name].setValue(this.fieldObj.value);
       }
+    }*/
+  }
+
+  checkDefaultValue(radioOptionValue) {
+    /*console.log('inCheckDefaultValue');
+    console.log('radioOptionValue: ', radioOptionValue);
+    console.log('field.value: ', this.fieldObj.value);*/
+    // set default value to field radio type
+    if (radioOptionValue === this.fieldObj.value) {
+      return true;
+    } else {
+      return false;
     }
   }
 
