@@ -17,7 +17,12 @@
                         [form]="formGroup" [sectionObj]="section"></app-section-form>
 
       <div class="operation">
-        <app-operation-form [operationObj]="pdfOperation" (click)="downloadPDF()"></app-operation-form>
+        <!--<app-operation-form [operationObj]="pdfOperation" (click)="downloadPDF()"></app-operation-form>-->
+        <div class="operation">
+          <app-operation-form *ngFor="let appOperation of applOperations"
+                              [operationObj]="appOperation"
+                              (click)="executeOperation(appOperation.delegateOperation, appOperation.disable)"></app-operation-form>
+        </div>
       </div>
     </div>
   </div>

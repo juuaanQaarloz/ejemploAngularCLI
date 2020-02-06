@@ -115,8 +115,6 @@ export class ApplicationComponent implements OnInit, OnDestroy {
       } else if (delegateOperation === 'closeModal') {
         this.closeModal('modal-error');
         this.closeModal(this.modalErrorId);
-      } else if (delegateOperation === 'toJsonApplication') {
-        // console.log('on toJsonApplication...');
       }
     }
   }
@@ -156,7 +154,7 @@ export class ApplicationComponent implements OnInit, OnDestroy {
 
       // change the status of the application to 'Validada' --> '30'
       currentJson.app_stts_cd = '30';
-      console.log('current JSON: ', this.jsonAppService.getAppJson());
+      console.log('current JSON: ', currentJson);
 
       this.jsonAppService.setAppJson(currentJson);
 
