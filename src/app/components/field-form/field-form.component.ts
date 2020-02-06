@@ -221,7 +221,9 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     }
 
     if (this.fieldObj.type === 'radio' && this.fieldObj.disable === false) {
-      this.form.controls[this.fieldObj.name].setValue(this.fieldObj.value);
+      if (this.fieldObj.value !== undefined) {
+        this.form.controls[this.fieldObj.name].setValue(this.fieldObj.value);
+      }
     }
   }
 
