@@ -183,8 +183,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.type === 'radio') {
       this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
-        console.log('onValueChanges value: ', value);
-        // // // console.log('formControlName: ', this.fieldObj.name);
+        // console.log('onValueChanges value: ', value);
         this.isValid();
       });
     }
