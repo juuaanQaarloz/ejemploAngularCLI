@@ -55,6 +55,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   fileNameUpload = 'Ningún archivo seleccionado';
   fidMessage = 'Se requiere adjuntar documentos:  Carta instrucción a la fiduciaria';
   beneficiaryType = 'P';
+  sameAsTitular = false;
   showplus = false;
   fields = [];
   showFormError = false;
@@ -75,6 +76,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
     if (this.config.data !== null) {
       this.operationType = 'edit';
       this.beneficiaryType = this.config.data.item.beneficiaryType;
+      this.sameAsTitular = this.config.data.item.addressSameAsTitular;
 
       this.fields = this.getFields();
       this.setBeneficiaryValues();
@@ -83,6 +85,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
     } else {
       this.operationType = 'add';
       this.beneficiaryType = 'P';
+      this.sameAsTitular = true;
       this.fields = this.getFields();
       // console.log(this.fields);
       // console.log(3);
@@ -122,6 +125,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
     if (formStatus === 'VALID') {
       const updatedBeneficiary = this.mapBeneficiaryData();
+      console.log('updatedBeneficiary: ', updatedBeneficiary);
       const response = this.applicationService.updateItem(updatedBeneficiary, 'beneficiary');
       // console.log('response: ', response);
       if (response.status) {
@@ -211,6 +215,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           break;
         case 'beneficiaryRelationshipP':
           value = this.config.data.item.relationshipCd;
+          console.log('beneficiaryRelationshipP', value);
           break;
         case 'participationPercentageP':
           value = this.config.data.item.participationPercentage;
@@ -268,6 +273,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           break;
         case 'beneficiaryRelationshipM':
           value = this.config.data.item.relationshipCd;
+          console.log('beneficiaryRelationshipM', value);
           break;
         case 'espBeneficiaryRelationshipM':
           value = this.config.data.item.espRelationship;
@@ -439,7 +445,8 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         name: this.formGroup.controls.beneficiaryName.value,
         fatherLastName: this.formGroup.controls.beneficiaryFaLastName.value,
         motherLastName: this.formGroup.controls.beneficiaryMoLastName.value,
-        relationship: this.formGroup.controls.beneficiaryRelationshipP.value,
+        relationshipCd: this.formGroup.controls.beneficiaryRelationshipP.value,
+        relationship: BeneficiaryFieldsP[4].additionalData.name,
         birthDateOrConstitution: transformDate(this.formGroup.controls.beneficiaryBirthDate.value, 'YYYY/MM/DD'),
         addressSameAsTitular: this.formGroup.controls.sameAsTitular.value,
         address: {
@@ -459,7 +466,10 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
       return {
         ...beneficiaryBase,
         businessName: this.formGroup.controls.beneficiaryBusinessName.value,
-        relationship: this.formGroup.controls.beneficiaryRelationshipM.value,
+        relationshipCd: this.formGroup.controls.beneficiaryRelationshipM.value,
+        relationship: BeneficiaryFieldsM[1].additionalData ?
+          BeneficiaryFieldsM[1].additionalData.name :
+          this.formGroup.controls.espBeneficiaryRelationshipM.value,
         espRelationship: this.formGroup.controls.espBeneficiaryRelationshipM.value,
         birthDateOrConstitution: transformDate(this.formGroup.controls.beneficiaryConstitutionDate.value, 'YYYY/MM/DD'),
         address: {
@@ -580,6 +590,10 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
     this.formGroup = this.applicationService.createNewFormGroup(fieldsPerBeneficiary);
     this.formGroup.controls.beneficiaryType.setValue(this.beneficiaryType);
+    if ( this.formGroup.controls.sameAsTitular !== undefined ) {
+      // console.log('sameAsTitular: ', this.sameAsTitular);
+      this.formGroup.controls.sameAsTitular.setValue(this.sameAsTitular);
+    }
     return fields;
   }
 
