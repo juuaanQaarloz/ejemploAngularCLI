@@ -47,9 +47,8 @@ export class JsonApplicationService {
     this.appJson = newAppJson;
   }
 
-  // saveInJsonSwagger(stepObj: Step) {
-  //   // console.log('on saveInJsonSwagger');
-  saveInJsonSwagger(stepObj: Step): Observable<any> {
+  saveInJsonSwagger(stepObj: Step) {
+  // saveInJsonSwagger(stepObj: Step): Observable<any> {
     console.log('on saveInJsonSwagger');
     const step = this.appService.getStepById(stepObj.id);
     if (step) {
@@ -144,7 +143,7 @@ export class JsonApplicationService {
         let resp = this.appService.getFormGroup().controls.typePerson.value;
       }
 
-      return of(this.getAppJson());
+      return this.getAppJson();
     }
   }
 
