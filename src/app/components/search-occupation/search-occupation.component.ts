@@ -111,13 +111,19 @@ export class SearchOccupationComponent implements OnInit {
 
   setOccupation(selectedOccupation: Occupation) {
     // // // console.log('selectedOccupation... ', selectedOccupation);
-    this.appService.setSelectedOccupation(selectedOccupation,);
+    this.appService.setSelectedOccupation(selectedOccupation);
     this.closeModal(this.modalID);
 
   }
 
   closeModal(modalID: string) {
+    // cleans searchOccupation field
+    const elem: Element = document.getElementById('txtSearchOccupation');
+    elem.setAttribute('value', '');
+    this.form.controls.searchOccupation.setValue('');
+    // cleans foundOccupation results
     this.foundOccupations = [];
+    // close modal
     this.modalService.close(modalID);
   }
 
