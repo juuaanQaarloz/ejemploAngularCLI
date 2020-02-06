@@ -31,6 +31,7 @@ export class SearchDetailComponent implements OnInit {
   viewLoading = false;
   modalMessage;
   modalErrorId;
+  applOperations = APPL_OPERATIONS;
 
   constructor(private appService: ApplicationService,
               public dialog: DialogService,
@@ -47,6 +48,14 @@ export class SearchDetailComponent implements OnInit {
     this.applicationObj = this.appService.getApplicationObject();
     this.formGroup = this.appService.toFormGroupReadOnly(this.applicationObj, this.detail);
     this.appService.setFormGroup(this.formGroup);
+
+    if (this.detail.app_stts_cd >= 30) {
+      APPL_OPERATIONS[0].disable = true;
+      APPL_OPERATIONS[1].disable = false;
+    } else {
+      APPL_OPERATIONS[0].disable = false;
+      APPL_OPERATIONS[1].disable = true;
+    }
 
     let partyAppType = this.appService.getFormGroup().controls.typePerson.value;
     if (partyAppType !== null && partyAppType !== undefined) {
@@ -78,11 +87,11 @@ export class SearchDetailComponent implements OnInit {
       this.openDialog('modal-error');
       this.errorMessage = response.msg;
     } else if (response.status === true) {
-      let currentJson = this.jsonApplicationService.getAppJson();
+      let currentJson = this.detail;
 
       // change the status of the application to 'Validada' --> '30'
       currentJson.app_stts_cd = '30';
-      console.log('current JSON: ', this.jsonApplicationService.getAppJson());
+      console.log('current JSON: ', currentJson);
 
       this.jsonApplicationService.setAppJson(currentJson);
 
@@ -90,6 +99,7 @@ export class SearchDetailComponent implements OnInit {
       this.openDialog(this.modalLoadPDFId);
       this.modalMessage = 'Validando solicitud ... ';
       // able 'GENERAR PDF button
+      APPL_OPERATIONS[0].disable = true;
       APPL_OPERATIONS[1].disable = false;
 
       this.appService.saveApplication(currentJson).subscribe((res: any) => {

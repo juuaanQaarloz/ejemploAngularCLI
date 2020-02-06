@@ -220,9 +220,15 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       });
     }
 
-    if (this.fieldObj.type === 'radio' && this.fieldObj.disable === false) {
-      if (this.fieldObj.value !== undefined) {
-        this.form.controls[this.fieldObj.name].setValue(this.fieldObj.value);
+    if (this.fieldObj.type === 'radio') {
+      // console.log('this.fieldObj.disable: ', this.fieldObj.disable);
+      if (this.fieldObj.disable === false || this.fieldObj.disable === undefined) {
+        // console.log('here1');
+        if (this.fieldObj.value !== undefined) {
+          // console.log('here2');
+          this.form.controls[this.fieldObj.name].setValue(this.fieldObj.value);
+          // console.log('current value: ', this.form.controls[this.fieldObj.name].value);
+        }
       }
     }
   }

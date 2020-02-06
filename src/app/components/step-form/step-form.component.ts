@@ -61,6 +61,14 @@ export class StepFormComponent implements OnInit {
         });
       });
     }
+
+    // disable 'SIGUENTE' button when the application is validate and set complete state in the steps
+    if (this.stepObj.isCompleted === true) {
+      this.completed = true;
+      this.stepsOperations[1].disable = true;
+    }
+
+    // console.log('step.isComplete: ', this.stepObj.isCompleted);
   }
 
   toggleAccordion() {

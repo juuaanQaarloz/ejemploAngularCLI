@@ -288,6 +288,9 @@ export class ApplicationService {
         } else {
           if (contentFromSection.process) {
             contentFromSection.process.steps.forEach(step => {
+              if (estatus !== null && estatus >= 30) {
+                step.isCompleted = true;
+              }
               step.contents.forEach((contentFromStep) => {
                 if (contentFromStep.contentType === 'looseFields' || contentFromStep.fields) {
                   contentFromStep.fields.forEach((field) => {
