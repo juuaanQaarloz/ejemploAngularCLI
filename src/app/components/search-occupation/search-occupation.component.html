@@ -31,9 +31,14 @@
         </div>
       </div>
     </div>
+
+    <app-pagination *ngIf="foundOccupations.length > 25"
+                    [items]="foundOccupations"
+                    [modalID]="modalID"
+                    [form]="form"
+                    (cleanResult)="onClean($event)">
+    </app-pagination>
   </div>
-  <app-pagination *ngIf="foundOccupations.length > 25" [items]="foundOccupations" [modalID]="modalID">
-  </app-pagination>
 
   <div *ngIf="notResultsFound">
     <p>No se han encontrado resultados para su búsqueda</p>

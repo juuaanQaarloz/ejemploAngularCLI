@@ -3,6 +3,7 @@ import {PagerService} from '../../core/services/pager.service';
 import {ApplicationService} from '../../core/services';
 import {Occupation} from '../../models';
 import {ModalService} from '../custom-modal';
+import {FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-pagination',
@@ -12,6 +13,8 @@ import {ModalService} from '../custom-modal';
 export class PaginationComponent implements OnInit {
   @Input() items: any[];
   @Input() modalID;
+  @Input() form: FormGroup;
+  @Output() cleanResult = new EventEmitter<boolean>();
 
   // array of all items to be paged
   allItems: any[];
@@ -46,12 +49,21 @@ export class PaginationComponent implements OnInit {
 
   setOccupation(selectedOccupation: Occupation) {
     // // // console.log('selectedOccupation... ', selectedOccupation);
-    this.appService.setSelectedOccupation(selectedOccupation,);
+    this.appService.setSelectedOccupation(selectedOccupation);
     this.closeModal(this.modalID);
   }
 
   closeModal(modalID: string) {
-    // this.foundOccupations = [];
+    console.log('onCloseModal');
+    // cleans searchOccupation field
+    const elem: Element = document.getElementById('txtSearchOccupation');
+    elem.setAttribute('value', '');
+    this.form.controls.searchOccupation.setValue('');
+    // cleans foundOccupation results
+    this.pagedItems = [];
+    this.allItems = [];
+    this.cleanResult.emit(true);
+    // close modal
     this.modalService.close(modalID);
   }
 
