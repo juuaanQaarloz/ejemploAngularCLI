@@ -51,7 +51,7 @@ export class HeaderComponent implements OnInit {
     // console.log('logout');
     this.authService.logout().subscribe(
       response => {
-        // console.log(response);
+        console.log(response);
         this.home();
       }
     );

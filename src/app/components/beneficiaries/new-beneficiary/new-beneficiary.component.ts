@@ -376,7 +376,8 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           municipality: this.formGroup.controls.beneficiaryMunicipality.value,
           state: this.formGroup.controls.beneficiaryState.value,
           city: this.formGroup.controls.beneficiaryCity.value,
-          country: this.formGroup.controls.beneficiaryCountry.value,
+          countryCd: this.formGroup.controls.beneficiaryCountry.value,
+          countryName: BeneficiaryFieldsP[15].additionalData.name,
         },
         participationPercentage: this.formGroup.controls.participationPercentageP.value,
       };
@@ -399,7 +400,9 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           municipality: this.formGroup.controls.beneficiaryMunicipalityM.value,
           state: this.formGroup.controls.beneficiaryStateM.value,
           city: this.formGroup.controls.beneficiaryCityM.value,
-          country: this.formGroup.controls.beneficiaryCountryM.value,
+          countryCd: this.formGroup.controls.beneficiaryCountryM.value,
+          countryName: BeneficiaryFieldsM[13].additionalData ? BeneficiaryFieldsM[13].additionalData.name :
+            'MEXICO'
         },
         participationPercentage: this.formGroup.controls.participationPercentageM.value,
       };
@@ -425,7 +428,9 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           municipality: this.formGroup.controls.beneficiaryMunicipalityF.value,
           state: this.formGroup.controls.beneficiaryStateF.value,
           city: this.formGroup.controls.beneficiaryCityF.value,
-          country: this.formGroup.controls.beneficiaryCountryF.value,
+          countryCd: this.formGroup.controls.beneficiaryCountryF.value,
+          countryName: BeneficiaryFieldsF[15].additionalData ? BeneficiaryFieldsF[15].additionalData :
+            'MEXICO'
         },
         participationPercentage: this.formGroup.controls.participationPercentageF.value,
       };
@@ -457,7 +462,8 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           municipality: this.formGroup.controls.beneficiaryMunicipality.value,
           state: this.formGroup.controls.beneficiaryState.value,
           city: this.formGroup.controls.beneficiaryCity.value,
-          country: this.formGroup.controls.beneficiaryCountry.value,
+          countryCd: this.formGroup.controls.beneficiaryCountry.value,
+          countryName: BeneficiaryFieldsP[15].additionalData.name,
         },
         participationPercentage: this.formGroup.controls.participationPercentageP.value,
       };
@@ -480,7 +486,8 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           municipality: this.formGroup.controls.beneficiaryMunicipalityM.value,
           state: this.formGroup.controls.beneficiaryStateM.value,
           city: this.formGroup.controls.beneficiaryCityM.value,
-          country: this.formGroup.controls.beneficiaryCountryM.value,
+          countryCd: this.formGroup.controls.beneficiaryCountryM.value,
+          countryName: BeneficiaryFieldsM[13].additionalData.name
         },
         participationPercentage: this.formGroup.controls.participationPercentageM.value,
       };
@@ -506,7 +513,8 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           municipality: this.formGroup.controls.beneficiaryMunicipalityF.value,
           state: this.formGroup.controls.beneficiaryStateF.value,
           city: this.formGroup.controls.beneficiaryCityF.value,
-          country: this.formGroup.controls.beneficiaryCountryF.value,
+          countryCd: this.formGroup.controls.beneficiaryCountryF.value,
+          countryName: BeneficiaryFieldsF[15].additionalData.name
         },
         participationPercentage: this.formGroup.controls.participationPercentageF.value,
       };

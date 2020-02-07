@@ -346,16 +346,19 @@ export class JsonApplicationService {
   mapAddressBeneficiary(beneficiaryType: string, item: Beneficiary) {
     let address: AddressJson = new AddressJson();
 
+    // console.log('item: ', item);
+
     if (beneficiaryType === 'P') {
       // set beneficiary type 'Fisico'
       address.strt_nm = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].strt_nm : item.address.street;
       address.ext_num = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].ext_num : item.address.exteriorNumber;
       address.int_num = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].int_num : item.address.interiorNumber;
       address.zip_cod = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].zip_cod : item.address.zipCode;
-      address.subt_nm = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].zip_cod : item.address.neighborhood;
+      address.subt_nm = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].subt_nm : item.address.neighborhood;
       address.towt_nm = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].towt_nm : item.address.city;
       address.sta_cod = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].sta_cod : item.address.state;
-      address.cntry_cod = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].cntry_cod : item.address.country;
+      address.cntry_cod = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].cntry_cod : item.address.countryCd;
+      address.cntry_spe = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].cntry_spe : item.address.countryName;
       address.mncplty_nm = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].mncplty_nm : item.address.municipality;
 
     } else if (beneficiaryType === 'M') {
@@ -368,21 +371,25 @@ export class JsonApplicationService {
       address.subt_nm = item.address.neighborhood;
       address.towt_nm = item.address.city;
       address.sta_cod = item.address.state;
-      address.cntry_cod = item.address.country;
+      address.cntry_cod = item.address.countryCd;
+      address.cntry_spe = item.address.countryName;
       address.mncplty_nm = item.address.municipality;
 
     } else if (beneficiaryType === 'F') {
       // set beneficiary type 'Fiduciaria'
-      address.strt_nm = 'CALLE';
-      address.ext_num = 'EXT';
-      address.int_num = 'INT';
-      address.zip_cod = 'ZIP_CODE';
-      address.subt_nm = 'SUBURB';
-      address.towt_nm = 'TOWN';
-      address.sta_cod = 'STATE';
-      address.cntry_cod = 'COUNTRY';
-      address.mncplty_nm = 'MUN';
+      address.strt_nm = 'AV DE LOS INSURGENTES SUR';
+      address.ext_num = '1457';
+      address.int_num = '';
+      address.zip_cod = '03920';
+      address.subt_nm = 'INSURGENTES MIXCOAC';
+      address.towt_nm = '';
+      address.sta_cod = 'CIUDAD DE MEXICO';
+      address.cntry_cod = '151';
+      address.cntry_spe = 'MEXICO';
+      address.mncplty_nm = 'BENITO JUAREZ';
     }
+
+    // console.log('address: ', address);
 
     return address;
   }

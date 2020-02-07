@@ -51,7 +51,8 @@ export const BENEFICIARIES: Beneficiary[] =  [
       municipality: 'Venustiano Carranza',
       state: 'CDMX',
       city: 'CDMX',
-      country: '151'
+      countryCd: '151',
+      countryName: 'MEXICO'
       // country: 'MX'
     },
     participationPercentage: '50'
@@ -71,7 +72,8 @@ export const BENEFICIARIES: Beneficiary[] =  [
       municipality: 'MUNICIPIO',
       state: 'ESTADO DE MEXICO',
       city: 'CIUDAD',
-      country: '151'
+      countryCd: '151',
+      countryName: 'MEXICO'
       // country: 'MX'
     },
     participationPercentage: '50',
