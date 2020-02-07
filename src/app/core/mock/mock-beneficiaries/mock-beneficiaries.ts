@@ -81,7 +81,7 @@ export const BENEFICIARIES: Beneficiary[] =  [
   }
   /*{
     beneficiaryId: '6',
-    beneficiaryType: 'fidPerson',
+    beneficiaryType: 'F',
     relationship: 'OT',
     businessName: 'Empresa',
     birthDateOrConstitution: '2001/03/08',

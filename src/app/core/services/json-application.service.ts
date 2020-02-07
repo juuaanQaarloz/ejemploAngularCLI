@@ -252,10 +252,10 @@ export class JsonApplicationService {
       newBeneficiary.bene_rel_desc = item.relationship;
 
       newBeneficiary.bene_prtcp_pct = item.participationPercentage;
-      newBeneficiary.bene_fid_cnd_flg = item.beneficiaryType === 'fidPerson' ? 'true' : null;
-      newBeneficiary.bene_fid_cntrc_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : null;
-      newBeneficiary.bene_fid_lttr_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : null;
-      newBeneficiary.bene_ref_inst_lttr = item.beneficiaryType === 'fidPerson' ? item.instructionLetterNumber : null;
+      newBeneficiary.bene_fid_cnd_flg = item.beneficiaryType === 'F' ? 'true' : null;
+      newBeneficiary.bene_fid_cntrc_nm = item.beneficiaryType === 'F' ? item.contractNumber : null;
+      newBeneficiary.bene_fid_lttr_nm = item.beneficiaryType === 'F' ? item.contractNumber : null;
+      newBeneficiary.bene_ref_inst_lttr = item.beneficiaryType === 'F' ? item.instructionLetterNumber : null;
       newBeneficiary.bene_addrss_sm_inss_ind = item.addressSameAsTitular !== undefined && item.addressSameAsTitular !== null && item.addressSameAsTitular !== '' ? item.addressSameAsTitular : null;
 
       return newBeneficiary;
@@ -371,7 +371,7 @@ export class JsonApplicationService {
       address.cntry_cod = item.address.country;
       address.mncplty_nm = item.address.municipality;
 
-    } else if (beneficiaryType === 'fidPerson') {
+    } else if (beneficiaryType === 'F') {
       // set beneficiary type 'Fiduciaria'
       address.strt_nm = 'CALLE';
       address.ext_num = 'EXT';
@@ -402,7 +402,7 @@ export class JsonApplicationService {
       person.co_bus_nm = item.businessName;
       person.co_estab_dt = transformDate(new Date(item.birthDateOrConstitution), 'YYYY-MM-DD').toString();
 
-    } else if (beneficiaryType === 'fidPerson') {
+    } else if (beneficiaryType === 'F') {
       person.co_sspsv_cond = item.suspensiveCondition;
       person.co_ctrct_nmbr = item.contractNumber;
       person.co_ins_lttr_nmbr = item.instructionLetterNumber;

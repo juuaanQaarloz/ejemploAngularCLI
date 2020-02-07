@@ -167,7 +167,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
       case 'M':
         this.setBeneficiaryM();
         break;
-      case 'fidPerson':
+      case 'F':
         this.setBeneficiaryF();
         break;
     }
@@ -403,7 +403,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         },
         participationPercentage: this.formGroup.controls.participationPercentageM.value,
       };
-    } else if (this.beneficiaryType === 'fidPerson') {
+    } else if (this.beneficiaryType === 'F') {
       return {
         ...newBeneficiaryBase,
         businessName: 'METLIFE',
@@ -484,7 +484,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         },
         participationPercentage: this.formGroup.controls.participationPercentageM.value,
       };
-    } else if (this.beneficiaryType === 'fidPerson') {
+    } else if (this.beneficiaryType === 'F') {
       return {
         ...beneficiaryBase,
         suspensiveCondition: this.formGroup.controls.suspensiveCondition.value,
@@ -594,7 +594,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         fields.push(field);
         fieldsPerBeneficiary.push(field);
       });
-    } else if (this.beneficiaryType === 'fidPerson') {
+    } else if (this.beneficiaryType === 'F') {
       BeneficiaryFieldsF.forEach((field) => {
         fields.push(field);
         fieldsPerBeneficiary.push(field);
