@@ -410,6 +410,8 @@ export class JsonApplicationService {
       person.co_estab_dt = transformDate(new Date(item.birthDateOrConstitution), 'YYYY-MM-DD').toString();
 
     } else if (beneficiaryType === 'F') {
+      person.co_bus_nm = item.businessName;
+      person.co_estab_dt = transformDate(new Date(item.birthDateOrConstitution), 'YYYY-MM-DD').toString();
       person.co_sspsv_cond = item.suspensiveCondition;
       person.co_ctrct_nmbr = item.contractNumber;
       person.co_ins_lttr_nmbr = item.instructionLetterNumber;

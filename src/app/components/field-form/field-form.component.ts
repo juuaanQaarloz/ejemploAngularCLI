@@ -1559,12 +1559,19 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   checkContractorType(optValue) {
-    // console.log('optValue', optValue);
-    const value = this.form.controls.contractorType.value;
-    if (value ===  true) {
+    const formControl = this.form.get('contractorType');
+
+    // console.log('formControl: ', formControl);
+
+    if (formControl) {
+      const value = this.form.controls.contractorType.value;
+      if (value === true) {
+        return false;
+      } else if (optValue === 'RE') {
+        return true;
+      }
+    } else {
       return false;
-    } else if (optValue === 'RE') {
-      return true;
     }
   }
 }
