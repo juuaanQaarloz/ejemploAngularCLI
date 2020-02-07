@@ -97,7 +97,9 @@
               (blur)="onBlur()">
         <option value="" [selected]="isSelected"> {{fieldObj.label}} </option>
         <option *ngFor="let opt of selectOptions" [value]="opt.value"
-                [selected]="checkValue(opt.value)">{{opt.name}}</option>
+                [selected]="checkValue(opt.value)"
+                [disabled]="checkContractorType(opt.value)"
+        >{{opt.name}}</option>
 
       </select>
       <span *ngIf="showSelectLabel" [ngStyle]="{'background': this.disable ? '#EBEBE4':''}">{{fieldObj.label}}</span>

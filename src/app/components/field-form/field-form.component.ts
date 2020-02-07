@@ -183,8 +183,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.type === 'radio') {
       this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
-        // console.log('onValueChanges value: ', value);
         this.isValid();
+        if (this.fieldObj.name === 'contractorType') {
+          const val = this.form.controls[this.fieldObj.name].value;
+        }
       });
     }
 
@@ -936,11 +938,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onChangeSelect(event) {
+    // console.log('event: ', event);
     const selectedIndex = event.target.selectedIndex;
     const selectedOption = this.selectOptions[event.target.selectedIndex - 1];
     this.fieldObj.additionalData = selectedOption;
 
-    // console.log('selectedOption: ', selectedOption);
+    // console.log('selectedOptions: ', this.selectOptions);
 
     /*if (this.fieldObj.entity) {
       let selectedIndex = event.target.selectedIndex;
@@ -1553,5 +1556,15 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   onClickFile() {
     document.getElementById(this.fieldObj.idHtml).click();
+  }
+
+  checkContractorType(optValue) {
+    // console.log('optValue', optValue);
+    const value = this.form.controls.contractorType.value;
+    if (value ===  true) {
+      return false;
+    } else if (optValue === 'RE') {
+      return true;
+    }
   }
 }
