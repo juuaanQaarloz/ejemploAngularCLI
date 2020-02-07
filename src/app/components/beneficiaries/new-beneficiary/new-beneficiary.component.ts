@@ -215,7 +215,6 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           break;
         case 'beneficiaryRelationshipP':
           value = this.config.data.item.relationshipCd;
-          console.log('beneficiaryRelationshipP', value);
           break;
         case 'participationPercentageP':
           value = this.config.data.item.participationPercentage;
@@ -273,7 +272,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           break;
         case 'beneficiaryRelationshipM':
           value = this.config.data.item.relationshipCd;
-          console.log('beneficiaryRelationshipM', value);
+          // console.log('beneficiaryRelationshipM', value);
           break;
         case 'espBeneficiaryRelationshipM':
           value = this.config.data.item.espRelationship;
@@ -339,7 +338,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           value = this.config.data.item.instructionLetterNumber;
           break;
         case 'beneficiaryRelationshipF':
-          value = this.config.data.item.relationship;
+          value = this.config.data.item.relationshipCd;
           break;
         case 'espBeneficiaryRelationshipF':
           value = this.config.data.item.espRelationship;
@@ -491,7 +490,11 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         suspensiveCondition: this.formGroup.controls.suspensiveCondition.value,
         contractNumber: this.formGroup.controls.contractNumber.value,
         instructionLetterNumber: this.formGroup.controls.instructionLetterNumber.value,
-        relationship: this.formGroup.controls.beneficiaryRelationshipF.value,
+        relationshipCd: this.formGroup.controls.beneficiaryRelationshipF.value,
+        relationship: BeneficiaryFieldsF[1].additionalData ?
+          BeneficiaryFieldsF[1].additionalData.name :
+          this.formGroup.controls.espBeneficiaryRelationshipF.value,
+        // this.formGroup.controls.beneficiaryRelationshipF.value,
         espRelationship: this.formGroup.controls.espBeneficiaryRelationshipF.value,
         birthDateOrConstitution: transformDate(this.formGroup.controls.beneficiaryConstitutionDateF.value, 'YYYY/MM/DD'),
         address: {
@@ -567,12 +570,22 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
     const fieldsPerBeneficiary = [];
 
     NewBeneficiaryFields.forEach((field) => {
+      if ('beneficiaryType' === field.name ) {
+        field.value = this.beneficiaryType;
+      }
+      if ('sameAsTitular' === field.name ) {
+        field.value = this.sameAsTitular;
+      }
       fields.push(field);
       fieldsPerBeneficiary.push(field);
     });
 
     if (this.beneficiaryType === 'P') {
       BeneficiaryFieldsP.forEach((field) => {
+        if ('sameAsTitular' === field.name ) {
+          field.value = this.sameAsTitular;
+          console.log('sameAsTitular field value: ', field.value);
+        }
         fields.push(field);
         fieldsPerBeneficiary.push(field);
       });
@@ -590,9 +603,10 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
     this.formGroup = this.applicationService.createNewFormGroup(fieldsPerBeneficiary);
     this.formGroup.controls.beneficiaryType.setValue(this.beneficiaryType);
+    console.log('beneficiaryType: ', this.formGroup.controls.beneficiaryType.value);
     if ( this.formGroup.controls.sameAsTitular !== undefined ) {
-      // console.log('sameAsTitular: ', this.sameAsTitular);
       this.formGroup.controls.sameAsTitular.setValue(this.sameAsTitular);
+      console.log('sameAsTitular: ', this.formGroup.controls.sameAsTitular.value);
     }
     return fields;
   }
