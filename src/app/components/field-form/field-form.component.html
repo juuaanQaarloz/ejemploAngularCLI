@@ -98,7 +98,7 @@
         <option value="" [selected]="isSelected"> {{fieldObj.label}} </option>
         <option *ngFor="let opt of selectOptions" [value]="opt.value"
                 [selected]="checkValue(opt.value)"
-                [disabled]="checkContractorType(opt.value)"
+                [hidden]="checkContractorType(opt.value)"
         >{{opt.name}}</option>
 
       </select>
