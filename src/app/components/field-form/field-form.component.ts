@@ -336,8 +336,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     // this.form.controls[this.fieldObj.name].setValue(event.target.value);
 
 
-    if (this.fieldObj.subtype === 'password') {
-      this.toggleVisible = true;
+    if (this.fieldObj.subtype === 'text') {
+      this.toggleVisible = false;
     }
     if (this.fieldObj.name === 'assuredImport') {
       // // // console.log('Entro assuredImport: ');
@@ -708,8 +708,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   onBlur() {
     console.log('onBlur');
 
-    if (this.fieldObj.subtype === 'password') {
-      this.toggleVisible = false;
+    if (this.fieldObj.subtype === 'text') {
+      this.toggleVisible = true;
     }
 
     /*let value;
