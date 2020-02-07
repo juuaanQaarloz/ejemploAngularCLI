@@ -121,9 +121,7 @@ export class MenuPageComponent implements OnInit {
 
   setUrlServices() {
     const hostName = this.getHostname();
-
     // console.log('hostName: ', hostName);
-
     if (hostName.includes('dev') ) {
       this.appService.setUrlServices('https://dev.des.metlife.com/despriv');
     } else if (hostName.includes('qa')) {
@@ -131,9 +129,8 @@ export class MenuPageComponent implements OnInit {
     } else if (hostName.includes('int'))  {
       this.appService.setUrlServices('https://int.des.metlife.com/despriv');
     } else if (hostName.includes('localhost') ) {
-      this.appService.setUrlServices('http://localhost:9080/despriv');
+      this.appService.setUrlServices('http://localhost:4200/despriv');
     }
-
     // console.log('url_services: ', this.appService.getUrlServices());
   }
 

@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/core/services';
+import {Component, Inject, OnInit} from '@angular/core';
+import {ApplicationService, AuthService} from 'src/app/core/services';
 import { Router } from '@angular/router';
+import {WINDOW} from '../../core/providers/windowProviders';
 
 @Component({
   selector: 'app-header',
@@ -14,7 +15,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private appService: ApplicationService,
+    @Inject(WINDOW) private window: Window
   ) { }
 
   ngOnInit() {
@@ -45,7 +47,7 @@ export class HeaderComponent implements OnInit {
     // // // console.log('event: ', event.target.id);
   }
 
-  logout(){
+  logout() {
     // console.log('logout');
     this.authService.logout().subscribe(
       response => {
@@ -55,7 +57,26 @@ export class HeaderComponent implements OnInit {
     );
   }
 
-  home(){
-    window.location.href = "https://dev.des.metlife.com/des/#/";
+  home() {
+    const hostName = this.getHostname();
+    let url;
+
+    console.log('hostName: ', hostName);
+    if (hostName.includes('dev')) {
+      url = 'https://dev.des.metlife.com/des/#';
+    } else if (hostName.includes('qa')) {
+      url = 'https://qa.des.metlife.com/des/#';
+    } else if (hostName.includes('int'))  {
+      url = 'https://int.des.metlife.com/des/#';
+    } else if (hostName.includes('localhost') ) {
+      url = 'http://localhost:4200//des/#';
+    }
+
+    console.log('url: ', url);
+    window.location.href = url;
+  }
+
+  getHostname(): string {
+    return this.window.location.hostname;
   }
 }
