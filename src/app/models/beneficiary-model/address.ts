@@ -7,5 +7,6 @@ export interface Address {
   municipality: string;
   state: string;
   city: string;
-  country: string;
+  countryCd: string;
+  countryName: string;
 }

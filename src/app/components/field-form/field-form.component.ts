@@ -183,9 +183,10 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
     if (this.fieldObj.type === 'radio') {
       this.form.controls[this.fieldObj.name].valueChanges.subscribe((value) => {
-        console.log('onValueChanges value: ', value);
-        // // // console.log('formControlName: ', this.fieldObj.name);
         this.isValid();
+        if (this.fieldObj.name === 'contractorType') {
+          const val = this.form.controls[this.fieldObj.name].value;
+        }
       });
     }
 
@@ -342,8 +343,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
     // this.form.controls[this.fieldObj.name].setValue(event.target.value);
 
 
-    if (this.fieldObj.subtype === 'password') {
-      this.toggleVisible = true;
+    if (this.fieldObj.subtype === 'text') {
+      this.toggleVisible = false;
     }
     if (this.fieldObj.name === 'assuredImport') {
       // // // console.log('Entro assuredImport: ');
@@ -714,8 +715,8 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   onBlur() {
     console.log('onBlur');
 
-    if (this.fieldObj.subtype === 'password') {
-      this.toggleVisible = false;
+    if (this.fieldObj.subtype === 'text') {
+      this.toggleVisible = true;
     }
 
     /*let value;
@@ -937,11 +938,12 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
   }
 
   onChangeSelect(event) {
+    // console.log('event: ', event);
     const selectedIndex = event.target.selectedIndex;
     const selectedOption = this.selectOptions[event.target.selectedIndex - 1];
     this.fieldObj.additionalData = selectedOption;
 
-    // console.log('selectedOption: ', selectedOption);
+    // console.log('selectedOptions: ', this.selectOptions);
 
     /*if (this.fieldObj.entity) {
       let selectedIndex = event.target.selectedIndex;
@@ -1554,5 +1556,22 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   onClickFile() {
     document.getElementById(this.fieldObj.idHtml).click();
+  }
+
+  checkContractorType(optValue) {
+    const formControl = this.form.get('contractorType');
+
+    // console.log('formControl: ', formControl);
+
+    if (formControl) {
+      const value = this.form.controls.contractorType.value;
+      if (value === true) {
+        return false;
+      } else if (optValue === 'RE') {
+        return true;
+      }
+    } else {
+      return false;
+    }
   }
 }

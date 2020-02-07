@@ -27,6 +27,6 @@ export class AuthService {
 
   logout(): any {
     this.url_services = this.appService.getUrlServices();
-    return this.http.post(this.url_services  + "/closeSession", {});
+    return this.http.post(this.url_services  + '/closeSession', {});
   }
 }

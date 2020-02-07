@@ -36,7 +36,7 @@
       <input appOnlyGivenCharacters
              [noAllowedCharactersPattern]="fieldObj.noAllowedCharactersPattern"
              [pattern]="regExpPattern"
-             [type]="toggleVisible ? 'password' : 'password'"
+             [type]="toggleVisible ? 'password' : 'text'"
              appBlockCopyPaste
              [formControlName]="fieldObj.name"
              [id]="fieldObj.idHtml"
@@ -97,7 +97,9 @@
               (blur)="onBlur()">
         <option value="" [selected]="isSelected"> {{fieldObj.label}} </option>
         <option *ngFor="let opt of selectOptions" [value]="opt.value"
-                [selected]="checkValue(opt.value)">{{opt.name}}</option>
+                [selected]="checkValue(opt.value)"
+                [hidden]="checkContractorType(opt.value)"
+        >{{opt.name}}</option>
 
       </select>
       <span *ngIf="showSelectLabel" [ngStyle]="{'background': this.disable ? '#EBEBE4':''}">{{fieldObj.label}}</span>

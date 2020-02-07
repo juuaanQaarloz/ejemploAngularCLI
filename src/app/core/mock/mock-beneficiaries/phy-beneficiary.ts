@@ -185,7 +185,8 @@ export const BeneficiaryFieldsP: Field[] = [
     requiredConditions: '(beneficiaryType=P)',
     enableConditions: '',
     entity: '',
-    entityField: ''
+    entityField: '',
+    value: 0
   },
   {
     id: 'field-99',
@@ -244,7 +245,8 @@ export const BeneficiaryFieldsP: Field[] = [
     requiredConditions: '(beneficiaryType=P)',
     enableConditions: '',
     entity: '',
-    entityField: ''
+    entityField: '',
+    value: true
   },
   {
     id: 'field-101',

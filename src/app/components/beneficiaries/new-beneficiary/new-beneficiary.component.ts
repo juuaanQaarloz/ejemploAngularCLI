@@ -167,7 +167,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
       case 'M':
         this.setBeneficiaryM();
         break;
-      case 'fidPerson':
+      case 'F':
         this.setBeneficiaryF();
         break;
     }
@@ -215,7 +215,6 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           break;
         case 'beneficiaryRelationshipP':
           value = this.config.data.item.relationshipCd;
-          console.log('beneficiaryRelationshipP', value);
           break;
         case 'participationPercentageP':
           value = this.config.data.item.participationPercentage;
@@ -273,7 +272,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           break;
         case 'beneficiaryRelationshipM':
           value = this.config.data.item.relationshipCd;
-          console.log('beneficiaryRelationshipM', value);
+          // console.log('beneficiaryRelationshipM', value);
           break;
         case 'espBeneficiaryRelationshipM':
           value = this.config.data.item.espRelationship;
@@ -339,7 +338,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           value = this.config.data.item.instructionLetterNumber;
           break;
         case 'beneficiaryRelationshipF':
-          value = this.config.data.item.relationship;
+          value = this.config.data.item.relationshipCd;
           break;
         case 'espBeneficiaryRelationshipF':
           value = this.config.data.item.espRelationship;
@@ -377,7 +376,8 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           municipality: this.formGroup.controls.beneficiaryMunicipality.value,
           state: this.formGroup.controls.beneficiaryState.value,
           city: this.formGroup.controls.beneficiaryCity.value,
-          country: this.formGroup.controls.beneficiaryCountry.value,
+          countryCd: this.formGroup.controls.beneficiaryCountry.value,
+          countryName: BeneficiaryFieldsP[15].additionalData.name,
         },
         participationPercentage: this.formGroup.controls.participationPercentageP.value,
       };
@@ -400,14 +400,16 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           municipality: this.formGroup.controls.beneficiaryMunicipalityM.value,
           state: this.formGroup.controls.beneficiaryStateM.value,
           city: this.formGroup.controls.beneficiaryCityM.value,
-          country: this.formGroup.controls.beneficiaryCountryM.value,
+          countryCd: this.formGroup.controls.beneficiaryCountryM.value,
+          countryName: BeneficiaryFieldsM[13].additionalData ? BeneficiaryFieldsM[13].additionalData.name :
+            'MEXICO'
         },
         participationPercentage: this.formGroup.controls.participationPercentageM.value,
       };
-    } else if (this.beneficiaryType === 'fidPerson') {
+    } else if (this.beneficiaryType === 'F') {
       return {
         ...newBeneficiaryBase,
-        businessName: 'METLIFE',
+        businessName: 'METLIFE MÉXICO SA',
         suspensiveCondition: this.formGroup.controls.suspensiveCondition.value,
         contractNumber: this.formGroup.controls.contractNumber.value,
         instructionLetterNumber: this.formGroup.controls.instructionLetterNumber.value,
@@ -426,7 +428,9 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           municipality: this.formGroup.controls.beneficiaryMunicipalityF.value,
           state: this.formGroup.controls.beneficiaryStateF.value,
           city: this.formGroup.controls.beneficiaryCityF.value,
-          country: this.formGroup.controls.beneficiaryCountryF.value,
+          countryCd: this.formGroup.controls.beneficiaryCountryF.value,
+          countryName: BeneficiaryFieldsF[15].additionalData ? BeneficiaryFieldsF[15].additionalData :
+            'MEXICO'
         },
         participationPercentage: this.formGroup.controls.participationPercentageF.value,
       };
@@ -458,7 +462,8 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           municipality: this.formGroup.controls.beneficiaryMunicipality.value,
           state: this.formGroup.controls.beneficiaryState.value,
           city: this.formGroup.controls.beneficiaryCity.value,
-          country: this.formGroup.controls.beneficiaryCountry.value,
+          countryCd: this.formGroup.controls.beneficiaryCountry.value,
+          countryName: BeneficiaryFieldsP[15].additionalData.name,
         },
         participationPercentage: this.formGroup.controls.participationPercentageP.value,
       };
@@ -481,17 +486,22 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           municipality: this.formGroup.controls.beneficiaryMunicipalityM.value,
           state: this.formGroup.controls.beneficiaryStateM.value,
           city: this.formGroup.controls.beneficiaryCityM.value,
-          country: this.formGroup.controls.beneficiaryCountryM.value,
+          countryCd: this.formGroup.controls.beneficiaryCountryM.value,
+          countryName: BeneficiaryFieldsM[13].additionalData.name
         },
         participationPercentage: this.formGroup.controls.participationPercentageM.value,
       };
-    } else if (this.beneficiaryType === 'fidPerson') {
+    } else if (this.beneficiaryType === 'F') {
       return {
         ...beneficiaryBase,
         suspensiveCondition: this.formGroup.controls.suspensiveCondition.value,
         contractNumber: this.formGroup.controls.contractNumber.value,
         instructionLetterNumber: this.formGroup.controls.instructionLetterNumber.value,
-        relationship: this.formGroup.controls.beneficiaryRelationshipF.value,
+        relationshipCd: this.formGroup.controls.beneficiaryRelationshipF.value,
+        relationship: BeneficiaryFieldsF[1].additionalData ?
+          BeneficiaryFieldsF[1].additionalData.name :
+          this.formGroup.controls.espBeneficiaryRelationshipF.value,
+        // this.formGroup.controls.beneficiaryRelationshipF.value,
         espRelationship: this.formGroup.controls.espBeneficiaryRelationshipF.value,
         birthDateOrConstitution: transformDate(this.formGroup.controls.beneficiaryConstitutionDateF.value, 'YYYY/MM/DD'),
         address: {
@@ -503,7 +513,8 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           municipality: this.formGroup.controls.beneficiaryMunicipalityF.value,
           state: this.formGroup.controls.beneficiaryStateF.value,
           city: this.formGroup.controls.beneficiaryCityF.value,
-          country: this.formGroup.controls.beneficiaryCountryF.value,
+          countryCd: this.formGroup.controls.beneficiaryCountryF.value,
+          countryName: BeneficiaryFieldsF[15].additionalData.name
         },
         participationPercentage: this.formGroup.controls.participationPercentageF.value,
       };
@@ -567,12 +578,22 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
     const fieldsPerBeneficiary = [];
 
     NewBeneficiaryFields.forEach((field) => {
+      if ('beneficiaryType' === field.name ) {
+        field.value = this.beneficiaryType;
+      }
+      if ('sameAsTitular' === field.name ) {
+        field.value = this.sameAsTitular;
+      }
       fields.push(field);
       fieldsPerBeneficiary.push(field);
     });
 
     if (this.beneficiaryType === 'P') {
       BeneficiaryFieldsP.forEach((field) => {
+        if ('sameAsTitular' === field.name ) {
+          field.value = this.sameAsTitular;
+          console.log('sameAsTitular field value: ', field.value);
+        }
         fields.push(field);
         fieldsPerBeneficiary.push(field);
       });
@@ -581,7 +602,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
         fields.push(field);
         fieldsPerBeneficiary.push(field);
       });
-    } else if (this.beneficiaryType === 'fidPerson') {
+    } else if (this.beneficiaryType === 'F') {
       BeneficiaryFieldsF.forEach((field) => {
         fields.push(field);
         fieldsPerBeneficiary.push(field);
@@ -590,9 +611,10 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
 
     this.formGroup = this.applicationService.createNewFormGroup(fieldsPerBeneficiary);
     this.formGroup.controls.beneficiaryType.setValue(this.beneficiaryType);
+    console.log('beneficiaryType: ', this.formGroup.controls.beneficiaryType.value);
     if ( this.formGroup.controls.sameAsTitular !== undefined ) {
-      // console.log('sameAsTitular: ', this.sameAsTitular);
       this.formGroup.controls.sameAsTitular.setValue(this.sameAsTitular);
+      console.log('sameAsTitular: ', this.formGroup.controls.sameAsTitular.value);
     }
     return fields;
   }

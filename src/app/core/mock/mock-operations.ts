@@ -86,7 +86,7 @@ export const BeneficiariesOperations: Operation[] = [
     message: '',
     messageClass: '',
     delegateOperation: 'uploadInstructionLetter',
-    renderConditions: '(beneficiaryType=fidPerson)',
+    renderConditions: '(beneficiaryType=F)',
     enableConditions: '',
   }
 ];
@@ -365,7 +365,7 @@ export const FormatwoOperations: Operation[] = [
     message: '',
     messageClass: '',
     delegateOperation: 'uploadInstructionLetter',
-    renderConditions: '(beneficiaryType=fidPerson)',
+    renderConditions: '(beneficiaryType=F)',
     enableConditions: '',
   }
 ];
