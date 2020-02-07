@@ -176,7 +176,7 @@ export const BeneficiaryFieldsF: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '1993/01/06',
+    value: '1902-09-26',
     disable: true
   },
   {
@@ -237,7 +237,7 @@ export const BeneficiaryFieldsF: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: 'ALUMINIO',
+    value: 'AV DE LOS INSURGENTES SUR',
     disable: true
   },
   {
@@ -267,7 +267,7 @@ export const BeneficiaryFieldsF: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '145',
+    value: '1457',
     disable: true
   },
   {
@@ -297,7 +297,7 @@ export const BeneficiaryFieldsF: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: 'D7',
+    value: '',
     disable: true
   },
   {
@@ -327,7 +327,7 @@ export const BeneficiaryFieldsF: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: '15220',
+    value: '03920',
     disable: true
   },
   {
@@ -358,7 +358,7 @@ export const BeneficiaryFieldsF: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: 'NICOLAS BRAVO',
+    value: 'INSURGENTES MIXCOAC',
     disable: true
   },
   {
@@ -389,7 +389,7 @@ export const BeneficiaryFieldsF: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: 'VENUSTIANO CARRANZA',
+    value: 'BENITO JUAREZ',
     disable: true
   },
   {
@@ -449,7 +449,7 @@ export const BeneficiaryFieldsF: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: '',
-    value: 'CDMX',
+    value: 'CIUDAD DE MEXICO',
     disable: true
   },
   {
