@@ -216,7 +216,7 @@ export class ApplicationService {
       section.contents.forEach((contentFromSection) => {
         if (contentFromSection.fields) {
           contentFromSection.fields.forEach(field => {
-            if (field.name === 'age' || field.name === 'ageS' || field.name === 'costContributions' ) {
+            if (field.name === 'age' || field.name === 'ageS' || field.name === 'costContributions') {
               field.disable = true;
             } else {
               field.disable = false;
@@ -280,7 +280,36 @@ export class ApplicationService {
               field.disable = true;
             }
             // field.value = get(detail, field.entityField);
-            let value = get(detail, field.entityField);
+            let value;
+            if (field.type === 'autocomplete') {
+              if (field.entity) {
+                value = get(detail, field.entity);
+              } else {
+                value = get(detail, field.entityField);
+              }
+            } else {
+              // get value from json
+              value = get(detail, field.entityField);
+              if (field.name === 'fixedFunds') {
+                console.log('value: ', value);
+              }
+            }
+
+            if (value !== null && value !== undefined) {
+              if (estatus !== null && estatus >= 30) {
+                field.disable = true;
+              }
+              // setting value from JSON to FORM
+              if (value === 'true' || value === 'false') {
+                value = Boolean(JSON.parse(value));
+              } else if (field.type === 'select') {
+                value = value.toString();
+              }
+              if (field.type === 'radio') {
+                field.value = value;
+              }
+              // field.value = value;
+            }
             group[field.name] = new FormControl(
               value || '',
               this.getValidationFunctions(field));
@@ -295,24 +324,34 @@ export class ApplicationService {
                 if (contentFromStep.contentType === 'looseFields' || contentFromStep.fields) {
                   contentFromStep.fields.forEach((field) => {
                     let value;
-                    if (field.entityField) {
+                    if (field.type === 'autocomplete') {
+                      if (field.entity) {
+                        value = get(detail, field.entity);
+                      } else {
+                        value = get(detail, field.entityField);
+                      }
+                    } else {
                       // get value from json
                       value = get(detail, field.entityField);
-                      if (value !== null && value !== undefined) {
-                        if (estatus !== null && estatus >= 30) {
-                          field.disable = true;
-                        }
-                        // setting value from JSON to FORM
-                        if (value === 'true' || value === 'false') {
-                          value = Boolean(JSON.parse(value));
-                        } else if (field.type === 'select') {
-                          value = value.toString();
-                        }
-                        if (field.type ===  'radio') {
-                          field.value = value;
-                        }
-                        // field.value = value;
+                      if (field.name === 'fixedFunds') {
+                        console.log('value: ', value);
                       }
+                    }
+
+                    if (value !== null && value !== undefined) {
+                      if (estatus !== null && estatus >= 30) {
+                        field.disable = true;
+                      }
+                      // setting value from JSON to FORM
+                      if (value === 'true' || value === 'false') {
+                        value = Boolean(JSON.parse(value));
+                      } else if (field.type === 'select') {
+                        value = value.toString();
+                      }
+                      if (field.type === 'radio') {
+                        field.value = value;
+                      }
+                      // field.value = value;
                     }
                     group[field.name] = new FormControl(
                       value || '',
@@ -328,23 +367,34 @@ export class ApplicationService {
                     if (contentChild.contentType === 'looseFields' || contentChild.fields) {
                       contentChild.fields.forEach((field) => {
                         let value;
-                        if (field.entityField) {
+                        if (field.type === 'autocomplete') {
+                          if (field.entity) {
+                            value = get(detail, field.entity);
+                          }  else {
+                            value = get(detail, field.entityField);
+                          }
+                        } else {
                           // get value from json
                           value = get(detail, field.entityField);
-                          if (value !== null && value !== undefined) {
-                            if (estatus !== null && estatus >= 30) {
-                              field.disable = true;
-                            }
-                            if (value === 'true' || value === 'false') {
-                              value = Boolean(JSON.parse(value));
-                            } else if (field.type === 'select') {
-                              value = value.toString();
-                            }
-                            if (field.type ===  'radio') {
-                              field.value = value;
-                            }
-                            // field.value = value;
+                          if (field.name === 'fixedFunds') {
+                            console.log('value: ', value);
                           }
+                        }
+
+                        if (value !== null && value !== undefined) {
+                          if (estatus !== null && estatus >= 30) {
+                            field.disable = true;
+                          }
+                          // setting value from JSON to FORM
+                          if (value === 'true' || value === 'false') {
+                            value = Boolean(JSON.parse(value));
+                          } else if (field.type === 'select') {
+                            value = value.toString();
+                          }
+                          if (field.type === 'radio') {
+                            field.value = value;
+                          }
+                          // field.value = value;
                         }
                         group[field.name] = new FormControl(
                           value || '',
@@ -1148,13 +1198,13 @@ export class ApplicationService {
     };
 
     // TODO: Validate response of services sepomex back
-    const URL_SEPOMEX = `${ this.url_services }/ipreservices/sepomex/${zipCode}`;
+    const URL_SEPOMEX = `${this.url_services}/ipreservices/sepomex/${zipCode}`;
     let addressSelect: SepomexObj = null;
     return this.httpClient.get(URL_SEPOMEX, {headers})
       .pipe(
         map((response: any) => {
           response.catalogData.extension.variations.forEach((e) => {
-            if ( e.zipCode === zipCode ) {
+            if (e.zipCode === zipCode) {
               addressSelect = e;
               console.log('ZIP_CODE: ', addressSelect);
             }
@@ -2255,6 +2305,7 @@ export class ApplicationService {
         });
       }
     } else if (tableType === 'table-diseases,1' || tableType === 'table-diseases,2' || tableType === 'table-diseases,3') {
+
       if (tableType === 'table-diseases,1') {
         json.insured.diseases.forEach((item) => {
           if (item.qstn_id === '1') {
@@ -2274,11 +2325,19 @@ export class ApplicationService {
           }
         });
       }
+
+      console.log('on setJsonToTable items: ', items);
+
       if (items.length > 0) {
         items.forEach((item) => {
           this.addItem(this.mapItemJson('disease', item), 'disease', item.qstn_id);
         });
       }
+
+      console.log('this.diseases: ', this.diseases.getValue());
+      console.log('this.diseases2: ', this.diseases2.getValue());
+      console.log('this.diseases3: ', this.diseases3.getValue());
+
     } else if (tableType === 'table-country') {
       items = json.foreignCountryTaxes;
       if (items.length > 0) {
@@ -2384,10 +2443,12 @@ export class ApplicationService {
       return newSport;
 
     } else if (itemType === 'disease') {
+      const diagnosticDateFormatted = item.illnss_dt.replace(/-/g, '/').split('T')[0];
+
       const newDisease = {
         idDisease: (this.getLastItemId('disease', item.qstn_id)).toString(),
         name: item.illnss_nm,
-        diagnosticDate: item.illnss_dt.replace(/-/g, '/'),
+        diagnosticDate: diagnosticDateFormatted,
         duration: item.illnss_drtn,
         actualCondition: item.illnss_hlth_stt,
         hasQuestionnaire: false,
