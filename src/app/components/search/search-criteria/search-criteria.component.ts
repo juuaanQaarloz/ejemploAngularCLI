@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { AppConstants } from 'src/app/app.constants';
 import {ApplicationService} from '../../../core/services';
 
 const httpOptions = {
@@ -28,7 +27,7 @@ export class SearchCriteriaComponent implements OnInit {
   metrolename: string;
   metroluid: string;
   url_services;
-  noRecords:boolean=false;
+  noRecords = false;
 
   criteria = {
     param1: '',

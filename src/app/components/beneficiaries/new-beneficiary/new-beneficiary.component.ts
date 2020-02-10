@@ -60,6 +60,8 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
   fields = [];
   showFormError = false;
   formMsgError = FORM_MSG_ERROR;
+  modalLoadId = 'modal-loading-beneficiary';
+  viewLoading = false;
 
   constructor(private applicationService: ApplicationService,
               public config: DialogConfig,
@@ -107,10 +109,17 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
     const formStatus = this.getFormStatus();
     if (formStatus === 'VALID') {
       const newBeneficiary = this.mapNewBeneficiaryData();
+      this.modalService.open(this.modalLoadId);
+      this.viewLoading = true;
+      this.modalMessage = 'Cargando...';
       const response = this.applicationService.addItem(newBeneficiary, 'beneficiary');
       if (response.status) {
+        this.modalService.close(this.modalLoadId);
+        this.viewLoading = false;
         this.closeDialog();
       } else {
+        this.modalService.close(this.modalLoadId);
+        this.viewLoading = false;
         this.modalMessage = response.message;
         this.modalService.open(this.modalID);
       }
@@ -126,11 +135,18 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
     if (formStatus === 'VALID') {
       const updatedBeneficiary = this.mapBeneficiaryData();
       console.log('updatedBeneficiary: ', updatedBeneficiary);
+      this.modalService.open(this.modalLoadId);
+      this.viewLoading = true;
+      this.modalMessage = 'Cargando...';
       const response = this.applicationService.updateItem(updatedBeneficiary, 'beneficiary');
       // console.log('response: ', response);
       if (response.status) {
+        this.modalService.close(this.modalLoadId);
+        this.viewLoading = false;
         this.closeDialog();
       } else {
+        this.modalService.close(this.modalLoadId);
+        this.viewLoading = false;
         this.modalMessage = response.message;
         this.modalService.open(this.modalID);
       }
@@ -211,7 +227,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           value = this.config.data.item.motherLastName;
           break;
         case 'beneficiaryBirthDate':
-          value = this.config.data.item.birthDateOrConstitution;
+          value = new Date(this.config.data.item.birthDateOrConstitution);
           break;
         case 'beneficiaryRelationshipP':
           value = this.config.data.item.relationshipCd;
@@ -247,7 +263,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           value = this.config.data.item.address.city;
           break;
         case 'beneficiaryCountry':
-          value = this.config.data.item.address.country;
+          value = this.config.data.item.address.countryCd;
           break;
       }
       // console.log('value: ', value);
@@ -278,7 +294,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           value = this.config.data.item.espRelationship;
           break;
         case 'beneficiaryConstitutionDate':
-          value = this.config.data.item.birthDateOrConstitution;
+          value = new Date(this.config.data.item.birthDateOrConstitution);
           break;
         case 'participationPercentageM':
           value = this.config.data.item.participationPercentage;
@@ -308,7 +324,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           value = this.config.data.item.address.city;
           break;
         case 'beneficiaryCountryM':
-          value = this.config.data.item.address.country;
+          value = this.config.data.item.address.countryCd;
           break;
       }
       // console.log('value: ', value);
@@ -330,6 +346,7 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           break;
         case 'suspensiveCondition':
           value = this.config.data.item.suspensiveCondition;
+          console.log('value: ', value);
           break;
         case 'contractNumber':
           value = this.config.data.item.contractNumber;
