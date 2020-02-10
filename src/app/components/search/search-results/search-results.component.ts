@@ -15,7 +15,7 @@ export class SearchResultsComponent implements OnInit {
   columns: any;
   records: any = [];
   p: any;
-  numItems: number = 10;
+  numItems = 10;
   url_services;
 
   constructor(
@@ -69,8 +69,8 @@ export class SearchResultsComponent implements OnInit {
     params = params.append('app_id', app_id);
     const DUMMY_SEARCH_JSON = '../assets/dummies/dummy-search-result.json';
 
-    this.httpClient.get(this.url_services + '/getApp', {headers, params}).subscribe((response: any) => {
-    // this.httpClient.get(DUMMY_SEARCH_JSON).subscribe((response: any) => {
+    // this.httpClient.get(this.url_services + '/getApp', {headers, params}).subscribe((response: any) => {
+    this.httpClient.get(DUMMY_SEARCH_JSON).subscribe((response: any) => {
       // console.log('detalle: ', response.data);
 
       // set the result json if the search globally
