@@ -46,7 +46,7 @@ export class JsonApplicationService {
   }
 
   saveInJsonSwagger(stepObj: Step) {
-  // saveInJsonSwagger(stepObj: Step): Observable<any> {
+    // saveInJsonSwagger(stepObj: Step): Observable<any> {
     console.log('on saveInJsonSwagger');
     const step = this.appService.getStepById(stepObj.id);
     if (step) {
@@ -88,8 +88,8 @@ export class JsonApplicationService {
             }
           });
         } else if (contentFromStep.contentType.includes('table')) {
-          console.log('contentType: ', contentFromStep.contentType);
-          console.log('contentTypeId: ', contentFromStep.contentTypeId);
+          /*console.log('contentType: ', contentFromStep.contentType);
+          console.log('contentTypeId: ', contentFromStep.contentTypeId);*/
           this.mapTableToJson(contentFromStep.contentType, contentFromStep.contentTypeId);
         }
 
@@ -128,8 +128,8 @@ export class JsonApplicationService {
                 }
               });
             } else if (contentChild.contentType.includes('table')) {
-              console.log('contentType: ', contentChild.contentType);
-              console.log('contentTypeId: ', contentChild.contentTypeId);
+              /*console.log('contentType: ', contentChild.contentType);
+              console.log('contentTypeId: ', contentChild.contentTypeId);*/
               this.mapTableToJson(contentChild.contentType, contentChild.contentTypeId);
             }
           });
