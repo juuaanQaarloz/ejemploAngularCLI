@@ -278,7 +278,9 @@
     </fieldset>
 
     <mat-autocomplete #auto="matAutocomplete">
-      <ng-container *ngIf="loading && (autocompleteOptions | filter: form.controls[fieldObj.name].value) as result">
+
+      <ng-container *ngIf="(autocompleteOptions | filter: form.controls[fieldObj.name].value) as result">
+
         <mat-option *ngFor="let option of result" [value]="option.name"
                     (onSelectionChange)="onKeyUpAutoComplete($event, option)">
           {{option.name}}
