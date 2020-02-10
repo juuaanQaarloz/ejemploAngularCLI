@@ -169,7 +169,7 @@ export const BeneficiaryFieldsM: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'Calle / Avenida es obligatoria. Puede contener más de 3 letras y/o 3 números iguales consecutivos.' +
+    message: 'Calle / Avenida es obligatoria. No Puede contener más de 3 letras y/o 3 números iguales consecutivos.' +
       ' No se permiten caracteres especiales.',
     messageClass: '',
     messageError: '',
@@ -200,7 +200,8 @@ export const BeneficiaryFieldsM: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'El valor capturado contine caracteres no válidos, valores aceptados ([A-Z], Ñ, 0-9\'. , _ / + # & -)',
+    message: 'Número exterior es obligatorio. No  Puede contener más de 3 letras y/o 3 números iguales consecutivos. ' +
+      'El valor capturado contine caracteres no válidos, valores aceptados ([A-Z], Ñ, 0-9\'. , _ / + # & -)',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
@@ -230,7 +231,8 @@ export const BeneficiaryFieldsM: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'El valor capturado contine caracteres no válidos, valores aceptados ([A-Z], Ñ, 0-9\'. , _ / + # & -)',
+    message: 'Número interior No  Puede contener más de 3 letras y/o 3 números iguales consecutivos. ' +
+      'El valor capturado contine caracteres no válidos, valores aceptados ([A-Z], Ñ, 0-9\'. , _ / + # & -)',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
@@ -289,7 +291,7 @@ export const BeneficiaryFieldsM: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'Colonia / Barrio es obligatorio. No puede contener más de 3 letras y/o 3 números iguales consecutivos.' +
+    message: 'Colonia / Barrio No puede contener más de 3 letras y/o 3 números iguales consecutivos.' +
       ' No se permiten caracteres especiales.',
     messageClass: '',
     messageError: '',
@@ -351,7 +353,7 @@ export const BeneficiaryFieldsM: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'Estado / Provincia No puede contener más de 3 letras iguales consecutivas ni números. No se permiten caracteres especiales',
+    message: 'Estado / Provincia No puede contener más de 3 letras y/o 3 números iguales consecutivos. No se permiten caracteres especiales',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
@@ -382,7 +384,7 @@ export const BeneficiaryFieldsM: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'Ciudad / Población es un campo obligatorio y no puede estar vacío.',
+    message: 'Ciudad / Población No puede contener más de 3 letras y/o 3 números iguales consecutivos.',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',
