@@ -107,7 +107,7 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
     }
     if (this.fieldObj.name === 'birthDateS') {
       const calcRFC = this.calculateRFC();
-      if (calcRFC !== null){
+      if (calcRFC !== null) {
         this.setCalculatedRFC(calcRFC);
       }
     }
