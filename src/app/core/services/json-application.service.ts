@@ -4,7 +4,6 @@ import {ApplicationService} from './application.service';
 import {Beneficiary, Step} from '../../models';
 import set from 'lodash/set';
 import get from 'lodash/get';
-import setWith from 'lodash/setWith';
 import {calculateAge, transformDate} from '../utilities';
 import {BeneciciaryJson} from '../../models/applicationJson/beneciciaryJson';
 import {PersonJson} from '../../models/applicationJson/personJson';
@@ -198,7 +197,6 @@ export class JsonApplicationService {
         items.forEach((disease) => {
           let mappedItem = this.mapItem('disease', disease, index);
           console.log('mappedItem: ', mappedItem);
-          set(this.appJson, `insurer.diseases[${index}]`, mappedItem);
           set(this.appJson, `insured.diseases[${index}]`, mappedItem);
           index ++;
           console.log('index: ', index);

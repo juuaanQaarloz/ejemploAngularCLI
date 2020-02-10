@@ -463,9 +463,25 @@ export class ApplicationService {
       if (field.maxValue) {
         validationFunctions.push(Validators.maxLength(field.maxValue));
       }
-      /*if (field.pattern) {
-        validationFunctions.push((Validators.pattern(field.pattern)));
-      }*/
+      if (field.pattern) {
+        if ( field.idHtml === 'txtBeneficiaryStreetM' || field.idHtml === 'txtBeneficiaryExteriorNumberM' ||
+        field.idHtml === 'txtBeneficiaryInteriorNumberM' || field.idHtml === 'beneficiarySuburbM' ||
+        field.idHtml === 'beneficiaryMunicipalityM' || field.idHtml === 'beneficiaryStateM' ||
+        field.idHtml === 'beneficiaryCityM') {
+          const pattern = field.pattern;
+          if (pattern.includes('/^')) {
+            const patternToSet = pattern.substring(2, pattern.length - 2);
+            console.log('patternToSet: ', patternToSet);
+            validationFunctions.push((Validators.pattern(patternToSet)));
+          } else if ( pattern.includes('/(') ) {
+            const patternToSet = pattern.substring(1, pattern.length - 1);
+            console.log('patternToSet: ', patternToSet);
+            validationFunctions.push((Validators.pattern(patternToSet)));
+          } else {
+            validationFunctions.push((Validators.pattern(field.pattern)));
+          }
+        }
+      }
     } else {
       validationFunctions = [];
     }
