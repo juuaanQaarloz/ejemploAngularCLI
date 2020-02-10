@@ -222,8 +222,20 @@ export class ApplicationService {
               field.disable = false;
             }
 
+            let defaultValue;
+            if (field.type === 'date' && field.value) {
+              defaultValue = field.value;
+              if (defaultValue.includes('-')) {
+                defaultValue = defaultValue.replace(/-/g , '/');
+              }
+              defaultValue = new Date(defaultValue);
+              console.log('defaultValue: ', defaultValue);
+            } else {
+              defaultValue = field.value;
+            }
+
             group[field.name] = new FormControl(
-              field.value || '',
+              defaultValue || '',
               this.getValidationFunctions(field));
           });
         } else {
@@ -237,8 +249,19 @@ export class ApplicationService {
                     } else {
                       field.disable = false;
                     }
+                    let defaultValue;
+                    if (field.type === 'date' && field.value) {
+                      defaultValue = field.value;
+                      if (defaultValue.includes('-')) {
+                        defaultValue = defaultValue.replace(/-/g , '/');
+                      }
+                      defaultValue = new Date(defaultValue);
+                      console.log('defaultValue: ', defaultValue);
+                    } else {
+                      defaultValue = field.value;
+                    }
                     group[field.name] = new FormControl(
-                      field.value || '',
+                      defaultValue || '',
                       this.getValidationFunctions(field));
                   });
                 } else {
@@ -251,8 +274,19 @@ export class ApplicationService {
                           } else {
                             field.disable = false;
                           }
+                          let defaultValue;
+                          if (field.type === 'date' && field.value) {
+                            defaultValue = field.value;
+                            if (defaultValue.includes('-')) {
+                              defaultValue = defaultValue.replace(/-/g , '/');
+                            }
+                            defaultValue = new Date(defaultValue);
+                            console.log('defaultValue: ', defaultValue);
+                          } else {
+                            defaultValue = field.value;
+                          }
                           group[field.name] = new FormControl(
-                            field.value || '',
+                            defaultValue || '',
                             this.getValidationFunctions(field));
                         });
                       }
@@ -306,6 +340,12 @@ export class ApplicationService {
                 field.value = value;
               }
               // field.value = value;
+              if (field.type === 'date') {
+                if (value.includes('-')) {
+                  value = value.replace(/-/g, '/');
+                }
+                value = new Date(value);
+              }
             }
 
             group[field.name] = new FormControl(
@@ -345,6 +385,12 @@ export class ApplicationService {
                       }
                       if (field.type === 'radio') {
                         field.value = value;
+                      }
+                      if (field.type === 'date') {
+                        if (value.includes('-')) {
+                          value = value.replace(/-/g, '/');
+                        }
+                        value = new Date(value);
                       }
                       // field.value = value;
                     }
@@ -388,6 +434,12 @@ export class ApplicationService {
                             field.value = value;
                           }
                           // field.value = value;
+                          if (field.type === 'date') {
+                            if (value.includes('-')) {
+                              value = value.replace(/-/g, '/');
+                            }
+                            value = new Date(value);
+                          }
                         }
 
                         group[field.name] = new FormControl(

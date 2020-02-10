@@ -122,7 +122,6 @@ export const DatosGeneralesPersonaFisica: Field[] = [
     requiredConditions: '(typePerson=P)',
     entity: '',
     entityField: 'insurer.per_brth_dt',
-    value: ''
   },
   {
     id: 'field-7',

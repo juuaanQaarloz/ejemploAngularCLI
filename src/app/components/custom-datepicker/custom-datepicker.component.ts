@@ -32,32 +32,37 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
         // // console.log('this.disable: ', this.disable);
       });
     }
-
-
   }
 
   ngAfterViewInit() {
+    console.log('ngAfterViewInit...');
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
-    let value;
-    let currentValue = this.fieldObj.value.toString();
-    if (currentValue) {
-      // console.log('currentValue before if : ', currentValue);
-      if (currentValue.includes('-')) {
-        currentValue = currentValue.replace(/-/g , '/');
+    let valueToSet;
+    if (elem) {
+      if (this.form.controls[this.fieldObj.name].value) { // set value from an older capture
+        console.log('inside this if ');
+        valueToSet = this.form.controls[this.fieldObj.name].value.toString();
+        if (valueToSet.includes('-')) {
+          valueToSet = valueToSet.replace(/-/g , '/');
+        }
+        const valueToSetDate = new Date(valueToSet);
+        elem.setAttribute('value', valueToSet);
+        // this.form.controls[this.fieldObj.name].setValue(valueToSetDate);
+
+      } else if (this.fieldObj.value) {
+        console.log('inside this else if ');
+        valueToSet = this.fieldObj.value;
+        if (valueToSet.includes('-')) {
+          valueToSet = valueToSet.replace(/-/g , '/');
+        }
+        const valueToSetDate = new Date(valueToSet);
+        elem.setAttribute('value', valueToSet);
+        this.form.controls[this.fieldObj.name].setValue(valueToSetDate);
       }
-      // console.log('currentValue after if : ', currentValue);
-      value = new Date(new Date(currentValue));
-      elem.setAttribute('value', value);
-      this.form.controls[this.fieldObj.name].setValue(value);
-    } else if (this.form.controls[this.fieldObj.name].value) { // set value from an older capture
-      value = new Date(this.form.controls[this.fieldObj.name].value);
-      elem.setAttribute('value', value);
-      this.form.controls[this.fieldObj.name].setValue(value);
     }
   }
 
   onDateInput(typeEvent: string, event) {
-    // // console.log('onDateInput...');
     if (typeEvent === 'input') {
       event.targetElement.value = addSlashesToDate(event.targetElement.value);
       // // console.log('type of input: ', typeof event.targetElement.value);
@@ -65,7 +70,6 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   }
 
   onDateChange(event) {
-    // // console.log('onDateChange...');
     const elem: Element = document.getElementById(this.fieldObj.idHtml);
     let contractorType;
 
@@ -95,7 +99,7 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
       }
     }
 
-    if (this.fieldObj.name === 'birthDate'){
+    if (this.fieldObj.name === 'birthDate') {
       const calcRFC = this.calculateRFC();
       if (calcRFC !== null) {
         this.setCalculatedRFC(calcRFC);
@@ -111,7 +115,7 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
   }
 
   onBlur() {
-    if(this.fieldObj.name==='birthDate'){
+    if (this.fieldObj.name === 'birthDate') {
       const calcRFC = this.calculateRFC();
       if (calcRFC !== null) {
         this.setCalculatedRFC(calcRFC);
@@ -137,7 +141,6 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
 
   checkState() {
     const status = this.form.controls[this.fieldObj.name].status;
-    // // console.log('state: ', status);
     let result = false;
     if (status === 'DISABLED') {
       result = true;
@@ -173,10 +176,10 @@ export class CustomDatepickerComponent implements OnInit, AfterViewInit {
       fechaNacimiento = transformDate(date, 'YYYY/MM/DD');
     }
 
-    if(apellidoPaterno!=="" && apellidoMaterno!=="" && fechaNacimiento!==""){
+    if (apellidoPaterno !== '' && apellidoMaterno !== '' && fechaNacimiento !== '') {
       const calculatedRFC = calculateRFC(apellidoPaterno, apellidoMaterno, nombre, fechaNacimiento);
       return calculatedRFC;
-    }else{
+    } else {
       return null;
     }
   }
