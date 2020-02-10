@@ -17,8 +17,7 @@ import {DiseaseJson} from '../../models/applicationJson/diseaseJson';
 import {ForeignCountryTaxJson} from '../../models/applicationJson/foreignCountryTaxJson';
 import {QuesList} from '../../models/applicationJson/questionaryJson/quesList';
 import {Cvr} from '../../models/applicationJson/coverageJson/cvr';
-import {Subject, Observable, of} from 'rxjs';
-import {forEachComment} from "tslint";
+import {Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -48,7 +47,7 @@ export class JsonApplicationService {
   }
 
   saveInJsonSwagger(stepObj: Step) {
-  // saveInJsonSwagger(stepObj: Step): Observable<any> {
+    // saveInJsonSwagger(stepObj: Step): Observable<any> {
     console.log('on saveInJsonSwagger');
     const step = this.appService.getStepById(stepObj.id);
     if (step) {
@@ -90,8 +89,8 @@ export class JsonApplicationService {
             }
           });
         } else if (contentFromStep.contentType.includes('table')) {
-          console.log('contentType: ', contentFromStep.contentType);
-          console.log('contentTypeId: ', contentFromStep.contentTypeId);
+          /*console.log('contentType: ', contentFromStep.contentType);
+          console.log('contentTypeId: ', contentFromStep.contentTypeId);*/
           this.mapTableToJson(contentFromStep.contentType, contentFromStep.contentTypeId);
         }
 
@@ -130,8 +129,8 @@ export class JsonApplicationService {
                 }
               });
             } else if (contentChild.contentType.includes('table')) {
-              console.log('contentType: ', contentChild.contentType);
-              console.log('contentTypeId: ', contentChild.contentTypeId);
+              /*console.log('contentType: ', contentChild.contentType);
+              console.log('contentTypeId: ', contentChild.contentTypeId);*/
               this.mapTableToJson(contentChild.contentType, contentChild.contentTypeId);
             }
           });

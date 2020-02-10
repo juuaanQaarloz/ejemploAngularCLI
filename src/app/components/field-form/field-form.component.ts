@@ -254,21 +254,21 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
       // // console.log('elem: ', elem);
       let valueToSet;
       if (elem) {
-        if (this.fieldObj.value) { // set default value from configuration
-          if (this.fieldObj.subtype === 'currency') {
-            // add currency mask
-            valueToSet = addCurrencyFormat(this.fieldObj.value.toString());
-          } else {
-            valueToSet = this.fieldObj.value;
-          }
-          elem.setAttribute('value', valueToSet);
-          this.form.controls[this.fieldObj.name].setValue(valueToSet);
-        } else if (this.form.controls[this.fieldObj.name].value) { // set value from an older capture
+        if (this.form.controls[this.fieldObj.name].value) { // set value from an older capture
           if (this.fieldObj.subtype === 'currency') {
             // add currency mask
             valueToSet = addCurrencyFormat(this.form.controls[this.fieldObj.name].value.toString());
           } else {
             valueToSet = this.form.controls[this.fieldObj.name].value;
+          }
+          elem.setAttribute('value', valueToSet);
+          this.form.controls[this.fieldObj.name].setValue(valueToSet);
+        } else if (this.fieldObj.value) { // set default value from configuration
+          if (this.fieldObj.subtype === 'currency') {
+            // add currency mask
+            valueToSet = addCurrencyFormat(this.fieldObj.value.toString());
+          } else {
+            valueToSet = this.fieldObj.value;
           }
           elem.setAttribute('value', valueToSet);
           this.form.controls[this.fieldObj.name].setValue(valueToSet);
@@ -1447,7 +1447,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
             contador++;
           }
         });
-        if (contador == 0) {
+        if (contador === 0) {
           this.clearTxtBank();
           this.clearTxtClabe();
           this.clearSelectCard();

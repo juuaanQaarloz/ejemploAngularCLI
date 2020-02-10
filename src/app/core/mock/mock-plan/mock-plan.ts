@@ -286,7 +286,7 @@ export const Plan4: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: 'insuredCondition.aplicationPlan.pln_fx_fnd_dist',
-    // value: '100.00'
+    value: '100'
   },
   {
     id: 'field-1407',

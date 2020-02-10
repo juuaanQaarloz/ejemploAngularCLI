@@ -290,9 +290,6 @@ export class ApplicationService {
             } else {
               // get value from json
               value = get(detail, field.entityField);
-              if (field.name === 'fixedFunds') {
-                console.log('value: ', value);
-              }
             }
 
             if (value !== null && value !== undefined) {
@@ -310,6 +307,7 @@ export class ApplicationService {
               }
               // field.value = value;
             }
+
             group[field.name] = new FormControl(
               value || '',
               this.getValidationFunctions(field));
@@ -333,9 +331,6 @@ export class ApplicationService {
                     } else {
                       // get value from json
                       value = get(detail, field.entityField);
-                      if (field.name === 'fixedFunds') {
-                        console.log('value: ', value);
-                      }
                     }
 
                     if (value !== null && value !== undefined) {
@@ -353,6 +348,7 @@ export class ApplicationService {
                       }
                       // field.value = value;
                     }
+
                     group[field.name] = new FormControl(
                       value || '',
                       this.getValidationFunctions(field));
@@ -376,9 +372,6 @@ export class ApplicationService {
                         } else {
                           // get value from json
                           value = get(detail, field.entityField);
-                          if (field.name === 'fixedFunds') {
-                            console.log('value: ', value);
-                          }
                         }
 
                         if (value !== null && value !== undefined) {
@@ -396,6 +389,7 @@ export class ApplicationService {
                           }
                           // field.value = value;
                         }
+
                         group[field.name] = new FormControl(
                           value || '',
                           this.getValidationFunctions(field));
@@ -2326,7 +2320,7 @@ export class ApplicationService {
         });
       }
 
-      console.log('on setJsonToTable items: ', items);
+      // console.log('on setJsonToTable items: ', items);
 
       if (items.length > 0) {
         items.forEach((item) => {
@@ -2334,9 +2328,9 @@ export class ApplicationService {
         });
       }
 
-      console.log('this.diseases: ', this.diseases.getValue());
+      /*console.log('this.diseases: ', this.diseases.getValue());
       console.log('this.diseases2: ', this.diseases2.getValue());
-      console.log('this.diseases3: ', this.diseases3.getValue());
+      console.log('this.diseases3: ', this.diseases3.getValue());*/
 
     } else if (tableType === 'table-country') {
       items = json.foreignCountryTaxes;
