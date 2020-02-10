@@ -494,8 +494,11 @@ export function calculateRFC(apellidoPaterno: string, apellidoMaterno: string, n
 
       RFC = RFC + 'A';
     }
-
-    return RFC;
+    if (RFC.length > 13) {
+      return RFC.slice(0, RFC.length - 1);
+    } else {
+      return RFC;
+    }
   }
 
   return null;
