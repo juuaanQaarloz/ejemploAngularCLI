@@ -377,7 +377,8 @@ export class NewBeneficiaryComponent implements OnInit, AfterViewInit {
           state: this.formGroup.controls.beneficiaryState.value,
           city: this.formGroup.controls.beneficiaryCity.value,
           countryCd: this.formGroup.controls.beneficiaryCountry.value,
-          countryName: BeneficiaryFieldsP[15].additionalData.name,
+          countryName: BeneficiaryFieldsP[15].additionalData ? BeneficiaryFieldsP[15].additionalData.name :
+            'MEXICO'
         },
         participationPercentage: this.formGroup.controls.participationPercentageP.value,
       };

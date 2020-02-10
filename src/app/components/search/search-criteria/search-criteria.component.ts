@@ -99,16 +99,16 @@ export class SearchCriteriaComponent implements OnInit {
     }
 
     this.httpClient.get( this.url_services  + '/getApp', {headers, params}).subscribe((resp: any) => {
-      if(resp!==null && resp.data!==null && resp.data.length > 0){
+      if (resp !== null && resp.data !== null && resp.data.length > 0) {
         localStorage.setItem('search', JSON.stringify(resp.data));
         // console.log('resp: ', resp);
-        this.router.navigate(['search', 'results']);  
-      }else{
+        this.router.navigate(['search', 'results']);
+      } else {
         this.noRecords = true;
-        this.criteria.param1 = "";
-        this.criteria.param2 = "";
-        this.criteria.param3 = "";
-        this.criteria.param4 = "";
+        this.criteria.param1 = '';
+        this.criteria.param2 = '';
+        this.criteria.param3 = '';
+        this.criteria.param4 = '';
       }
     });
   }

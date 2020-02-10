@@ -257,7 +257,8 @@ export const DatosDomicilio: Field[] = [
     style: '',
     styleClass: '',
     styleClassError: '',
-    message: 'El valor capturado no puede contener mas de 6 números iguales consecutivos o contiene caracteres no válidos, valores aceptados (0-9)',
+    message: 'El valor capturado no puede contener mas de 6 números iguales consecutivos o contiene caracteres no válidos, ' +
+      'valores aceptados (0-9)',
     messageClass: '',
     messageError: '',
     messageErrorClass: '',

@@ -66,6 +66,9 @@ export class StepFormComponent implements OnInit {
     if (this.stepObj.isCompleted === true) {
       this.completed = true;
       this.stepsOperations[1].disable = true;
+    } else {
+      this.completed = false;
+      this.stepsOperations[1].disable = false;
     }
 
     // console.log('step.isComplete: ', this.stepObj.isCompleted);

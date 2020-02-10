@@ -241,6 +241,8 @@ export class ApplicationService {
         } else {
           if (contentFromSection.process) {
             contentFromSection.process.steps.forEach(step => {
+              // set all the steps to false for 'Nuevos Negocios'
+              step.isCompleted = false;
               step.contents.forEach((contentFromStep) => {
                 if (contentFromStep.fields) {
                   contentFromStep.fields.forEach(field => {
@@ -357,7 +359,12 @@ export class ApplicationService {
             contentFromSection.process.steps.forEach(step => {
               if (estatus !== null && estatus >= 30) {
                 step.isCompleted = true;
+              } else {
+                step.isCompleted = false;
               }
+
+              console.log('step.isComplete: ', step.isCompleted);
+
               step.contents.forEach((contentFromStep) => {
                 if (contentFromStep.contentType === 'looseFields' || contentFromStep.fields) {
                   contentFromStep.fields.forEach((field) => {
@@ -2388,7 +2395,7 @@ export class ApplicationService {
         });
       }
 
-      // console.log('on setJsonToTable items: ', items);
+      console.log('on setJsonToTable items: ', items);
 
       if (items.length > 0) {
         items.forEach((item) => {
@@ -2396,9 +2403,9 @@ export class ApplicationService {
         });
       }
 
-      /*console.log('this.diseases: ', this.diseases.getValue());
+      console.log('this.diseases: ', this.diseases.getValue());
       console.log('this.diseases2: ', this.diseases2.getValue());
-      console.log('this.diseases3: ', this.diseases3.getValue());*/
+      console.log('this.diseases3: ', this.diseases3.getValue());
 
     } else if (tableType === 'table-country') {
       items = json.foreignCountryTaxes;
