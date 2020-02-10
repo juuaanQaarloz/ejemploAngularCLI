@@ -988,6 +988,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
 
   getOptions() {
     let options = [];
+    this.loading = true;
     this.applicationService.getCatalogById(this.fieldObj.sourceID, this.fieldObj.source)
       .subscribe((results) => {
         options = results;
@@ -1006,7 +1007,7 @@ export class FieldFormComponent implements OnInit, AfterViewInit {
           });
 
           if (this.fieldObj.type === 'autocomplete') {
-            this.loading = true;
+            this.loading = false;
           }
           // // console.log('autoComplete: ', this.autocompleteOptions);
         }

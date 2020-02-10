@@ -62,3 +62,20 @@
     </div>
   </div>
 </jw-modal>
+
+<jw-modal [id]= modalLoadId
+          [modalType]="'overlay'">
+  <div *ngIf="viewLoading" class="ml-loader-container">
+    <div class="ml-loader">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="ml-loader-label"><p>{{modalMessage}}</p></div>
+  </div>
+</jw-modal>

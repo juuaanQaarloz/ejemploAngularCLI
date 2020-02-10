@@ -30,6 +30,8 @@ export class NewRowComponent implements OnInit {
   showFormError = false;
   formMsgError = FORM_MSG_ERROR;
   contentTypeId: string;
+  modalLoadId = 'modal-loading-new-row';
+  viewLoading = false;
 
   constructor(private appService: ApplicationService,
               public config: DialogConfig,
@@ -72,19 +74,19 @@ export class NewRowComponent implements OnInit {
       this.closeDialog();
     } else if (delegateOperation === 'addNewItem') {
       Object.keys(this.formGroup.controls).forEach((formControl) => {
-        if ( formControl === 'extremeSportsD' ) {
+        if (formControl === 'extremeSportsD') {
           // console.log('Va a validar los deportes');
           this.appService.getCatalogById('sports', 'IPRE').subscribe(result => {
-            if (this.validateSport(result) === 'INVALID' ) {
+            if (this.validateSport(result) === 'INVALID') {
               this.addNewItem('INVALID');
             } else {
               this.addNewItem();
             }
           });
-        } else if ( formControl === 'describeDiseasesD' ) {
+        } else if (formControl === 'describeDiseasesD') {
           // console.log('Va a validar las enfermedades');
           this.appService.getCatalogById('diseases', 'IPRE').subscribe((results) => {
-            if (this.validateDesease(results) === 'INVALID' ) {
+            if (this.validateDesease(results) === 'INVALID') {
               this.addNewItem('INVALID');
             } else {
               this.addNewItem();
@@ -94,19 +96,19 @@ export class NewRowComponent implements OnInit {
       });
     } else if (delegateOperation === 'updateItem') {
       Object.keys(this.formGroup.controls).forEach((formControl) => {
-        if ( formControl === 'extremeSportsD' ) {
+        if (formControl === 'extremeSportsD') {
           // console.log('Va a validar los deportes');
           this.appService.getCatalogById('sports', 'IPRE').subscribe(result => {
-            if (this.validateSport(result) === 'INVALID' ) {
+            if (this.validateSport(result) === 'INVALID') {
               this.updateItem('INVALID');
             } else {
               this.updateItem();
             }
           });
-        } else if ( formControl === 'describeDiseasesD' ) {
+        } else if (formControl === 'describeDiseasesD') {
           // console.log('Va a validar las enfermedades');
           this.appService.getCatalogById('diseases', 'IPRE').subscribe((results) => {
-            if (this.validateDesease(results) === 'INVALID' ) {
+            if (this.validateDesease(results) === 'INVALID') {
               this.updateItem('INVALID');
             } else {
               this.updateItem();
@@ -129,15 +131,15 @@ export class NewRowComponent implements OnInit {
     let contador = 0;
     let valueExtremeSport;
     Object.keys(this.formGroup.controls).forEach((formControl) => {
-      if ( formControl === 'extremeSportsD' ) {
+      if (formControl === 'extremeSportsD') {
         valueExtremeSport = this.formGroup.controls[formControl].value;
         // console.log('-----Value sport-----');
         // console.log(valueExtremeSport);
         // console.log('-----Value sport-----');
-        if ( valueExtremeSport ) {
+        if (valueExtremeSport) {
           const index = listToCompare.findIndex((i) => i['alias'] === valueExtremeSport);
           // console.log('indexSport:', index);
-          if ( index !== -1 ) {
+          if (index !== -1) {
             formStatus = 'VALID';
           } else {
             formStatus = 'INVALID';
@@ -149,20 +151,20 @@ export class NewRowComponent implements OnInit {
           formStatus = 'INVALID';
         }
       }
-      if ( formControl === 'periodicityD' ) {
+      if (formControl === 'periodicityD') {
         const value = this.formGroup.controls[formControl].value;
-        if ( !value ) {
+        if (!value) {
           contador++;
         }
       }
-      if ( formControl === 'otherActivityD' && valueExtremeSport === 'OTRO') {
+      if (formControl === 'otherActivityD' && valueExtremeSport === 'OTRO') {
         const value = this.formGroup.controls[formControl].value;
-        if ( !value ) {
+        if (!value) {
           contador++;
         }
       }
       // console.log('Contador: ', contador);
-      if ( contador > 0 ) {
+      if (contador > 0) {
         formStatus = 'INVALID';
       }
     });
@@ -174,14 +176,14 @@ export class NewRowComponent implements OnInit {
     const listToCompare = list;
     let formStatus = 'VALID';
     Object.keys(this.formGroup.controls).forEach((formControl) => {
-      if ( formControl === 'describeDiseasesD' ) {
+      if (formControl === 'describeDiseasesD') {
         const value = this.formGroup.controls[formControl].value;
         // console.log('-----Value-----');
         // console.log(value);
         // console.log('-----Value-----');
-        if ( value ) {
+        if (value) {
           const index = listToCompare.findIndex((i) => i['alias'] === value);
-          if ( index !== -1 ) {
+          if (index !== -1) {
             formStatus = 'VALID';
           } else {
             formStatus = 'INVALID';
@@ -203,18 +205,27 @@ export class NewRowComponent implements OnInit {
     // console.log(formStatus);
     // console.log(statusValidateCatalog);
     // console.log(statusValidateCatalog);
-    if ( statusValidateCatalog === 'INVALID' ) {
+    if (statusValidateCatalog === 'INVALID') {
       formStatus = statusValidateCatalog;
     }
     if (formStatus === 'VALID') {
       const newItem = this.mapNewItemData();
+      this.viewLoading = true;
+      this.modalService.open(this.modalLoadId);
+      this.modalMessage = 'Agregando...';
       const response = this.appService.addItem(newItem, this.itemType, this.contentTypeId);
+      // setTimeout(() => {
       if (response.status) {
+        this.modalService.close(this.modalLoadId);
+        this.viewLoading = false;
         this.closeDialog();
       } else {
+        this.modalService.close(this.modalLoadId);
+        this.viewLoading = false;
         this.modalMessage = response.message;
         this.modalService.open(this.modalID);
       }
+      // }, 1000);
     } else {
       this.showFormError = true;
     }
@@ -254,18 +265,36 @@ export class NewRowComponent implements OnInit {
     // console.log(formStatus);
     // console.log(statusValidateCatalog);
     // console.log(statusValidateCatalog);
-    if ( statusValidateCatalog === 'INVALID' ) {
+    if (statusValidateCatalog === 'INVALID') {
       formStatus = statusValidateCatalog;
     }
     if (formStatus === 'VALID') {
       const updatedItem = this.mapItemData();
       // console.log('this.contentId: ', this.contentTypeId);
+      let response;
+
+      this.viewLoading = true;
+      this.modalService.open(this.modalLoadId);
+      this.modalMessage = 'Actualizando...';
+
       if (this.contentTypeId) {
-        this.appService.updateItem(updatedItem, this.itemType, this.contentTypeId);
+        response = this.appService.updateItem(updatedItem, this.itemType, this.contentTypeId);
       } else {
-        this.appService.updateItem(updatedItem, this.itemType);
+        response = this.appService.updateItem(updatedItem, this.itemType);
       }
-      this.closeDialog();
+
+      // setTimeout(() => {
+      if (response.status) {
+        this.modalService.close(this.modalLoadId);
+        this.viewLoading = false;
+        this.closeDialog();
+      } else {
+        this.modalService.close(this.modalLoadId);
+        this.viewLoading = false;
+        this.modalMessage = response.message;
+        this.modalService.open(this.modalID);
+      }
+      // }, 1000);
     } else {
       this.showFormError = true;
     }
@@ -320,13 +349,20 @@ export class NewRowComponent implements OnInit {
       }
     });
 
+    let value;
+
     this.content.fields.forEach((field, index) => {
-      this.formGroup.controls[field.name].setValue(this.item[itemAttrNames[index]]);
+      if (field.type === 'date') {
+        value = new Date(this.item[itemAttrNames[index]]);
+      } else {
+        value = this.item[itemAttrNames[index]];
+      }
+
+      this.formGroup.controls[field.name].setValue(value);
     });
   }
 
   getFormStatus() {
-    // console.log('this.appService.validateFieldArray(this.content.fields): ', this.appService.validateFieldArray(this.content.fields, this.formGroup));
     return this.formGroup.status;
   }
 
