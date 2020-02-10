@@ -4,7 +4,7 @@
   <div class="item-attribute"
        *ngIf="itemType === 'beneficiary' && item.beneficiaryType === 'P'">{{item.name + ' ' + item.fatherLastName + ' ' + item.motherLastName}}</div>
   <div class="item-attribute"
-       *ngIf="itemType === 'beneficiary' && (item.beneficiaryType === 'M' || item.beneficiaryType === 'fidPerson')">{{item.businessName}}</div>
+       *ngIf="itemType === 'beneficiary' && (item.beneficiaryType === 'M' || item.beneficiaryType === 'F')">{{item.businessName}}</div>
   <div class="item-attribute" *ngIf="itemType === 'beneficiary'">{{item.birthDateOrConstitution}}</div>
   <div *ngIf="itemType === 'formatwo'" class="item-attribute">{{getFormaTwoTypeLabel()}}</div>
   <div class="item-attribute"

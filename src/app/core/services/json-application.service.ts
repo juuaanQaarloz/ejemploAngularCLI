@@ -17,8 +17,7 @@ import {DiseaseJson} from '../../models/applicationJson/diseaseJson';
 import {ForeignCountryTaxJson} from '../../models/applicationJson/foreignCountryTaxJson';
 import {QuesList} from '../../models/applicationJson/questionaryJson/quesList';
 import {Cvr} from '../../models/applicationJson/coverageJson/cvr';
-import {Subject, Observable, of} from 'rxjs';
-import {forEachComment} from "tslint";
+import {Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -48,7 +47,7 @@ export class JsonApplicationService {
   }
 
   saveInJsonSwagger(stepObj: Step) {
-  // saveInJsonSwagger(stepObj: Step): Observable<any> {
+    // saveInJsonSwagger(stepObj: Step): Observable<any> {
     console.log('on saveInJsonSwagger');
     const step = this.appService.getStepById(stepObj.id);
     if (step) {
@@ -90,8 +89,8 @@ export class JsonApplicationService {
             }
           });
         } else if (contentFromStep.contentType.includes('table')) {
-          console.log('contentType: ', contentFromStep.contentType);
-          console.log('contentTypeId: ', contentFromStep.contentTypeId);
+          /*console.log('contentType: ', contentFromStep.contentType);
+          console.log('contentTypeId: ', contentFromStep.contentTypeId);*/
           this.mapTableToJson(contentFromStep.contentType, contentFromStep.contentTypeId);
         }
 
@@ -130,8 +129,8 @@ export class JsonApplicationService {
                 }
               });
             } else if (contentChild.contentType.includes('table')) {
-              console.log('contentType: ', contentChild.contentType);
-              console.log('contentTypeId: ', contentChild.contentTypeId);
+              /*console.log('contentType: ', contentChild.contentType);
+              console.log('contentTypeId: ', contentChild.contentTypeId);*/
               this.mapTableToJson(contentChild.contentType, contentChild.contentTypeId);
             }
           });
@@ -252,10 +251,10 @@ export class JsonApplicationService {
       newBeneficiary.bene_rel_desc = item.relationship;
 
       newBeneficiary.bene_prtcp_pct = item.participationPercentage;
-      newBeneficiary.bene_fid_cnd_flg = item.beneficiaryType === 'fidPerson' ? 'true' : null;
-      newBeneficiary.bene_fid_cntrc_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : null;
-      newBeneficiary.bene_fid_lttr_nm = item.beneficiaryType === 'fidPerson' ? item.contractNumber : null;
-      newBeneficiary.bene_ref_inst_lttr = item.beneficiaryType === 'fidPerson' ? item.instructionLetterNumber : null;
+      newBeneficiary.bene_fid_cnd_flg = item.beneficiaryType === 'F' ? 'true' : null;
+      newBeneficiary.bene_fid_cntrc_nm = item.beneficiaryType === 'F' ? item.contractNumber : null;
+      newBeneficiary.bene_fid_lttr_nm = item.beneficiaryType === 'F' ? item.contractNumber : null;
+      newBeneficiary.bene_ref_inst_lttr = item.beneficiaryType === 'F' ? item.instructionLetterNumber : null;
       newBeneficiary.bene_addrss_sm_inss_ind = item.addressSameAsTitular !== undefined && item.addressSameAsTitular !== null && item.addressSameAsTitular !== '' ? item.addressSameAsTitular : null;
 
       return newBeneficiary;
@@ -346,16 +345,19 @@ export class JsonApplicationService {
   mapAddressBeneficiary(beneficiaryType: string, item: Beneficiary) {
     let address: AddressJson = new AddressJson();
 
+    // console.log('item: ', item);
+
     if (beneficiaryType === 'P') {
       // set beneficiary type 'Fisico'
       address.strt_nm = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].strt_nm : item.address.street;
       address.ext_num = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].ext_num : item.address.exteriorNumber;
       address.int_num = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].int_num : item.address.interiorNumber;
       address.zip_cod = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].zip_cod : item.address.zipCode;
-      address.subt_nm = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].zip_cod : item.address.neighborhood;
+      address.subt_nm = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].subt_nm : item.address.neighborhood;
       address.towt_nm = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].towt_nm : item.address.city;
       address.sta_cod = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].sta_cod : item.address.state;
-      address.cntry_cod = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].cntry_cod : item.address.country;
+      address.cntry_cod = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].cntry_cod : item.address.countryCd;
+      address.cntry_spe = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].cntry_spe : item.address.countryName;
       address.mncplty_nm = item.addressSameAsTitular === true ? this.appJson.insurer.Address[0].mncplty_nm : item.address.municipality;
 
     } else if (beneficiaryType === 'M') {
@@ -368,21 +370,25 @@ export class JsonApplicationService {
       address.subt_nm = item.address.neighborhood;
       address.towt_nm = item.address.city;
       address.sta_cod = item.address.state;
-      address.cntry_cod = item.address.country;
+      address.cntry_cod = item.address.countryCd;
+      address.cntry_spe = item.address.countryName;
       address.mncplty_nm = item.address.municipality;
 
-    } else if (beneficiaryType === 'fidPerson') {
+    } else if (beneficiaryType === 'F') {
       // set beneficiary type 'Fiduciaria'
-      address.strt_nm = 'CALLE';
-      address.ext_num = 'EXT';
-      address.int_num = 'INT';
-      address.zip_cod = 'ZIP_CODE';
-      address.subt_nm = 'SUBURB';
-      address.towt_nm = 'TOWN';
-      address.sta_cod = 'STATE';
-      address.cntry_cod = 'COUNTRY';
-      address.mncplty_nm = 'MUN';
+      address.strt_nm = 'AV DE LOS INSURGENTES SUR';
+      address.ext_num = '1457';
+      address.int_num = '';
+      address.zip_cod = '03920';
+      address.subt_nm = 'INSURGENTES MIXCOAC';
+      address.towt_nm = '';
+      address.sta_cod = 'CIUDAD DE MEXICO';
+      address.cntry_cod = '151';
+      address.cntry_spe = 'MEXICO';
+      address.mncplty_nm = 'BENITO JUAREZ';
     }
+
+    // console.log('address: ', address);
 
     return address;
   }
@@ -402,7 +408,9 @@ export class JsonApplicationService {
       person.co_bus_nm = item.businessName;
       person.co_estab_dt = transformDate(new Date(item.birthDateOrConstitution), 'YYYY-MM-DD').toString();
 
-    } else if (beneficiaryType === 'fidPerson') {
+    } else if (beneficiaryType === 'F') {
+      person.co_bus_nm = item.businessName;
+      person.co_estab_dt = transformDate(new Date(item.birthDateOrConstitution), 'YYYY-MM-DD').toString();
       person.co_sspsv_cond = item.suspensiveCondition;
       person.co_ctrct_nmbr = item.contractNumber;
       person.co_ins_lttr_nmbr = item.instructionLetterNumber;
