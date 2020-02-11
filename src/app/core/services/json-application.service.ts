@@ -194,6 +194,7 @@ export class JsonApplicationService {
       if (items.length > 0) {
         console.log('items.lenght es mayor a 0');
         let index = this.appJson.insured.diseases.length;
+        console.log('index: ', index);
         items.forEach((disease) => {
           let mappedItem = this.mapItem('disease', disease, index);
           console.log('mappedItem: ', mappedItem);
@@ -405,6 +406,7 @@ export class JsonApplicationService {
     } else if (beneficiaryType === 'M') {
       person.co_bus_nm = item.businessName;
       person.co_estab_dt = transformDate(new Date(item.birthDateOrConstitution), 'YYYY-MM-DD').toString();
+      person.co_cmrc_rlshnshp = item.espRelationship;
 
     } else if (beneficiaryType === 'F') {
       person.co_bus_nm = item.businessName;
@@ -412,6 +414,7 @@ export class JsonApplicationService {
       person.co_sspsv_cond = item.suspensiveCondition;
       person.co_ctrct_nmbr = item.contractNumber;
       person.co_ins_lttr_nmbr = item.instructionLetterNumber;
+      person.co_cmrc_rlshnshp = item.espRelationship;
     }
 
     person.nationalities = [];
