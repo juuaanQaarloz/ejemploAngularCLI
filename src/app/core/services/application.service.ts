@@ -1279,25 +1279,25 @@ export class ApplicationService {
     const metrolname = localStorage.getItem('metrolename');
     const metuserid = localStorage.getItem('metroluid');
     const headers = {
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token',
-      'metrolename': metrolname,
-      'metuserid': metuserid
+      metrolename: metrolname,
+      metuserid: metuserid
     };
 
-    // TODO: Validate response of services sepomex back
     const URL_SEPOMEX = `${this.url_services}/ipreservices/sepomex/${zipCode}`;
     let addressSelect: SepomexObj = null;
     return this.httpClient.get(URL_SEPOMEX, {headers})
+    // return this.httpClient.get(URL_SEPOMEX)
       .pipe(
         map((response: any) => {
-          response.catalogData.extension.variations.forEach((e) => {
-            if (e.zipCode === zipCode) {
-              addressSelect = e;
-              console.log('ZIP_CODE: ', addressSelect);
+          response.items.forEach(e => {
+            if (e.item.postalCode === zipCode) {
+              addressSelect = e.item;
+              // console.log('ZIP_CODE: ', addressSelect);
             }
           });
           return addressSelect;
