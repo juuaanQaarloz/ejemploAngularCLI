@@ -151,7 +151,7 @@ export const statements1: Field[] = [
     renderConditions: '',
     enableConditions: '',
     entity: '',
-    entityField: 'app_own_shre_ind',
+    entityField: 'app_guard_box_ind',
     value: false
   }
 ];
