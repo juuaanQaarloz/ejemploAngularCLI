@@ -523,11 +523,33 @@ export class ApplicationService {
         validationFunctions.push(Validators.maxLength(field.maxValue));
       }
       if (field.pattern) {
-        if ( field.idHtml === 'txtBeneficiaryStreetM' || field.idHtml === 'txtBeneficiaryExteriorNumberM' ||
-        field.idHtml === 'txtBeneficiaryInteriorNumberM' || field.idHtml === 'beneficiarySuburbM' ||
-        field.idHtml === 'beneficiaryMunicipalityM' || field.idHtml === 'beneficiaryStateM' ||
-        field.idHtml === 'beneficiaryCityM') {
+        if ( field.name === 'beneficiaryStreetM' ||
+             field.name === 'beneficiaryExteriorNumberM' ||
+             field.name === 'beneficiaryBusinessName' ||
+             field.name === 'participationPercentageM' ||
+             field.name === 'beneficiaryZipCodeM' ||
+             field.name === 'beneficiaryInteriorNumberM' ||
+             field.name === 'beneficiarySuburbM' ||
+             field.name === 'beneficiaryMunicipalityM' ||
+             field.name === 'beneficiaryStateM' ||
+             field.name === 'beneficiaryName' ||
+             field.name === 'beneficiaryFaLastName' ||
+             field.name === 'beneficiaryMoLastName' ||
+             field.name === 'participationPercentageP' ||
+             field.name === 'beneficiaryStreet' ||
+             field.name === 'beneficiaryExteriorNumber' ||
+             field.name === 'beneficiaryInteriorNumber' ||
+             field.name === 'beneficiaryZipCode' ||
+             field.name === 'beneficiarySuburb' ||
+             field.name === 'beneficiaryMunicipality' ||
+             field.name === 'beneficiaryState' ||
+             field.name === 'beneficiaryCity' ||
+             field.name === 'participationPercentageF' ||
+             field.name === 'beneficiaryCityM'
+        ) {
+          console.log('Entro a setear pattern: ', field.name);
           const pattern = field.pattern;
+          console.log('Entro a pattern: ', pattern);
           if (pattern.includes('/^')) {
             const patternToSet = pattern.substring(2, pattern.length - 2);
             console.log('patternToSet: ', patternToSet);
@@ -1970,7 +1992,7 @@ export class ApplicationService {
           // // console.log('validateFieldArrayResult: ', validateFieldArrayResult);
           if (validateFieldArrayResult === false) {
             isValid = false;
-            message = 'Por favor, verfique la información a continuación';
+            message = 'Por favor, verifique la información a continuación';
           }
         } else {
           if (contentFromSection.process) {
