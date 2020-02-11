@@ -435,6 +435,6 @@ export const authorizationSection5: Field[] = [
     enableConditions: '',
     entity: '',
     entityField: 'app_own_rcv_email_ind',
-    value: ''
+    value: false
   }
 ];
